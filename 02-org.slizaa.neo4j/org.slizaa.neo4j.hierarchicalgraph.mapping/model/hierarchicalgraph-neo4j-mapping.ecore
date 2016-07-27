@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mapping" nsURI="http://org/slizaa/neo4j/hierarchicalgraph/mapping"
+    nsPrefix="org.slizaa.neo4j.hierarchicalgraph.mapping">
+  <eClassifiers xsi:type="ecore:EClass" name="HierarchicalGraphMappingDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootMappings" lowerBound="1"
+        upperBound="-1" eType="#//CypherQuery" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hierarchyMappings" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dependencyMappers" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="labelMappers" upperBound="-1"
+        eType="#//NodeLabelMapper" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeLabelMapper">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredNeo4jLabel" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultImage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textPropertyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyBasedImages" upperBound="-1"
+        eType="#//PropertyBasedImageMapper" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ImagePosition">
+    <eLiterals name="Base"/>
+    <eLiterals name="OverlayTopLeft" value="1"/>
+    <eLiterals name="OverlayTopRight" value="2"/>
+    <eLiterals name="OverlayBottomLeft" value="3"/>
+    <eLiterals name="OverlayBottomRight" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyBasedImageMapper">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" lowerBound="1"
+        eType="#//ImagePosition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyValue" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="image" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CypherQuery">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cypherQuery" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

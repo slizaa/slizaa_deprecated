@@ -1,0 +1,18 @@
+
+jdk:
+  - oraclejdk8
+
+env:
+  global:
+  - secure: "onvtI0jngBuQz9ph7J11ehRJa8n8pofVvYFWDxcpLDUQLLp7o8AAcczPpSPawVZ6SBKJlEjuVvfCAnDUfcY4g9d4Wyuh9Iv0Wqz91CVBjyKEH0xhr1InOkjBpXvbwN5DCgf1y/JTGa6fWdtH8+c2mS52f+FYzKquryn+2FUW/We8pY6K8hayp7eFU5ZIByQFhZQGPkQwoPaoiy8IMKkMN+jZ9D1s0lYjXR6tZEEAeg8+RRNdx1TEvREar13z+NFGUZFwgnRcOXGwMBbcvB4RgCIv2uyr0cdCLVmFeoCeTQCJBwO9F7GPfMXhTD4RCbTNrXJSGD+tG1433ZIXbCEwJjB4Zypm6JiPVu61Zl1bHYiH9JMmLDS6eoET4vH39LEJTEXUnfc4r+tIDIb3XQZz/JKZ3QLrtzSd+lGqF3xJrXfQwqCirT8JjTENJHFs9yyIFJoA2fLBQ5vyOxrFv6y0M4EyF68mSNkPm4QQGBGuC4RL7QrY4jV+BT/eZieCFKq43gVCOZAxfw9tjUaY1vA4iNpVkYlnQDyK27cDRNxe8PKcrRlRIB3Ta7hk52R+DlbRZo9+cLavU0jd9iPpi+ewmrq+hYxx/HC30cndrL39jpOngX0LlSVa+bZ9C3qZT0oj3c61GVNmTp4Uck719gfrhrp45GvpAXy62hlwatCkWpw="
+  - secure: "cRaH5HwgWhkueZepCkFkLvfkbV4xmwWGNuVZzynS0F6YgN1aSJCcAOPBCRYbiY1U43+qxX1p/lqGewWJPY7z0o8g85Llaskwm1LqUp23RHxtCuS2RpXxuh1TDYd1yh0O7oaxJQWRsTCcJSgLIma80mDRWtiFs0ulGeUov7SfPn9zSmIiO++3QT5ZIBLPIZJt8nlrw+lW8FRu6pq7dci1YT0P0Lt0uSnfShUCzwWpDGozqJJxrl5S4IzvKZo3j5V4nyiFVgIiGQnVbBU16/U6kAUouRsO0DrlbDyiCfrkfMxwJrj1KoPjD3RmTvtSWqfFAFL+bNpxu2SoRCFghi0EbCBUdcK2zJ3PYChQVJnbo0+h9pvPv16YgLSSFa6pQcgj26ScfBz2wuf+S2fkVSrkpyp5T4Sgg1UTWNNHlf+0Ee8PTRdXWzir+u+os6LSiXJJmaswL5m7iqZbcpjuA8/WTIbJk/yyqQOcnwoOwXFNfoN99ktjnYouU2qqqJO1w2aa32hHiAzukOrPnijY+5TYrxkxxjlntIwzGp1wpkLPsnluhXGJkiisWiCqGcDIO4NYgtQCJpZaKEmfqT/4HMBhoo4Ll/uvVo3+KKIjUOna6Gqro+RDhUtvWfWFkO6KWxHYcwP+WELlV5eVee1Y+XqNgEUY8q0c7iLhwFGpzfLn3Fw="
+
+script: 
+  - "mvn clean install -f 00-releng/pom.xml"
+  - "mvn clean install -f 01-org.slizaa/pom.xml"
+  - "mvn clean install -f 02-org.slizaa.neo4j/pom.xml"
+  - "mvn clean install -f 03-org.slizaa.neo4j.jqassistant/pom.xml"
+
+after_success:
+  - chmod +x ./.travis/artifact-upload.sh
+  - ./.travis/artifact-upload.sh

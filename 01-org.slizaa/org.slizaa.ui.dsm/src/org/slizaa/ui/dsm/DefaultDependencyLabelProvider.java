@@ -1,0 +1,48 @@
+/*******************************************************************************
+ * Copyright (c) Gerd Wütherich 2012-2016.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Public License v3.0
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl.html
+ * 
+ * Contributors:
+ *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
+ ******************************************************************************/
+package org.slizaa.ui.dsm;
+
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.swt.graphics.Image;
+import org.slizaa.hierarchicalgraph.HGDependency;
+
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
+public class DefaultDependencyLabelProvider extends LabelProvider {
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Image getImage(Object element) {
+    return null;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getText(Object element) {
+
+    //
+    if (element instanceof HGDependency) {
+      HGDependency dependency = ((HGDependency) element);
+      return dependency.getWeight() + "";
+    }
+
+    //
+    return "";
+  }
+}

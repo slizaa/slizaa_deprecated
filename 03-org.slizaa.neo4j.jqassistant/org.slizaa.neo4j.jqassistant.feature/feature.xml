@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.slizaa.neo4j.jqassistant.feature"
+      label="org.slizaa.neo4j.jqassistant.feature"
+      version="1.0.0.qualifier">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import feature="org.eclipse.draw2d" version="3.10.100.201606061308"/>
+      <import feature="org.eclipse.e4.rcp" version="1.5.0.v20160606-1342"/>
+      <import feature="org.eclipse.emf.common" version="2.12.0.v20160420-0247"/>
+      <import feature="org.eclipse.emf.edit" version="2.12.0.v20160526-0356"/>
+      <import feature="org.eclipse.emf.edit.ui" version="2.12.0.v20160526-0356"/>
+      <import feature="org.eclipse.equinox.executable" version="3.6.300.v20160525-1303"/>
+      <import feature="org.eclipse.rcp" version="4.6.0.v20160606-1342"/>
+      <import feature="org.eclipse.emf.ecp.emfforms.runtime.feature" version="1.8.0.20160216-1319"/>
+      <import feature="org.eclipse.emf.ecp.view.treemasterdetail.feature" version="1.8.0.20160216-1319"/>
+      <import feature="org.eclipse.emf.ecp.viewmodel.feature" version="1.8.0.20160216-1319"/>
+   </requires>
+
+   <plugin
+         id="com.google.gson"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.google.guava"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.hierarchicalgraph"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.hierarchicalgraph.algorithms"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.hierarchicalgraph.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.neo4j.hierarchicalgraph"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.neo4j.hierarchicalgraph.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.neo4j.hierarchicalgraph.mapping"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.neo4j.hierarchicalgraph.mapping.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.neo4j.hierarchicalgraph.mapping.service"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.neo4j.jqassistant.application"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.neo4j.projectmodel"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.neo4j.projectmodel.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.neo4j.projectmodel.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.selection"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.ui.dependencytable"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.ui.dependencytree"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.ui.dsm"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.ui.klighd"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.ui.tree"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.slizaa.ui.widget.dsm"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

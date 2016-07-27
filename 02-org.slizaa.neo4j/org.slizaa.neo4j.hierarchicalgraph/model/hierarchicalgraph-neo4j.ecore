@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hierarchicalgraph" nsURI="http://org/slizaa/neo4j/hierarchicalgraph"
+    nsPrefix="org.slizaa.neo4j.hierarchicalgraph">
+  <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedNodeSource" eSuperTypes="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGNodeSource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//StringToStringMap"
+        changeable="false" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="labels" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedRootNodeSource" eSuperTypes="#//Neo4JBackedNodeSource">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repository" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="INeo4JRepository" abstract="true" interface="true">
+    <eOperations name="getNodeLabels" eType="#//JsonArray">
+      <eParameters name="nodeId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    </eOperations>
+    <eOperations name="getNodeProperties" eType="#//JsonObject">
+      <eParameters name="nodeId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    </eOperations>
+    <eOperations name="executeCypherQuery">
+      <eGenericType eClassifier="#//Future">
+        <eTypeArguments eClassifier="#//JsonObject"/>
+      </eGenericType>
+      <eParameters name="cypherQuery" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="executeCypherQuery">
+      <eGenericType eClassifier="#//Future">
+        <eTypeArguments eClassifier="#//JsonObject"/>
+      </eGenericType>
+      <eParameters name="cypherQuery" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="params">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hierarchicalGraphs" upperBound="-1"
+        eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGRootNode"
+        transient="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Future" instanceClassName="java.util.concurrent.Future">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="JsonArray" instanceClassName="com.google.gson.JsonArray"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="JsonObject" instanceClassName="com.google.gson.JsonObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Neo4JRemoteRepository" eSuperTypes="#//INeo4JRepository">
+    <eOperations name="init"/>
+    <eOperations name="dispose"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPoolSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+</ecore:EPackage>

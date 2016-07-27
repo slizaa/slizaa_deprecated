@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.slizaa</groupId>
+	<artifactId>org.slizaa.neo4j</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
+	
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>org.slizaa.neo4j.graphdb.ui</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.edit</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.mapping</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.edit</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.service</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.ui</module>
+		<module>org.slizaa.neo4j.workbenchmodel</module>
+		<module>org.slizaa.neo4j.workbenchmodel.edit</module>
+	</modules>
+
+</project>

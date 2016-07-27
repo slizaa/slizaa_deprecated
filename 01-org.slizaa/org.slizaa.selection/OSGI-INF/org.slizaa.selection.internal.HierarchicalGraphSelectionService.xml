@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="org.slizaa.selection.internal.HierarchicalGraphSelectionService">
+   <service>
+      <provide interface="org.slizaa.selection.IHierarchicalGraphSelectionService"/>
+   </service>
+   <reference bind="addHierarchicalGraphSelectionListener" cardinality="0..n" interface="org.slizaa.selection.IHierarchicalGraphSelectionListener" name="HierarchicalGraphSelectionListener" policy="dynamic" unbind="removeHierarchicalGraphSelectionListener"/>
+   <implementation class="org.slizaa.selection.internal.HierarchicalGraphSelectionService"/>
+</scr:component>

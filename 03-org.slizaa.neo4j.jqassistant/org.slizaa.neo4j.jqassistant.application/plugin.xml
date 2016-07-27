@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.slizaa.neo4j.jqassistant.application.Application">
+         </run>
+      </application>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Visualize Dependencies"
+            class="org.slizaa.neo4j.jqassistant.application.Perspective"
+            id="org.slizaa.neo4j.jqassistant.application.perspective.dependencies" />
+   </extension>
+
+   <extension
+         id="org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant"
+            name="Slizaa for jQAssistant">
+         <property name="appName" value="Slizaa for jQAssistant"> </property>
+         <property name="applicationXMI" value="org.slizaa.neo4j.jqassistant.application/Application.e4xmi"> </property>
+         <property
+     name="applicationCSS"
+     value="platform:/plugin/org.slizaa.neo4j.jqassistant.application/css/default.css" />
+      </product>
+   </extension>
+   
+   <extension
+         id="eObject2PropertySourceAdapter"
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.emf.ecore.EObject"
+            class="org.slizaa.neo4j.jqassistant.application.EObject2PropertySourceAdapterFactory">
+         <adapter
+               type="org.eclipse.ui.views.properties.IPropertySource">
+         </adapter>
+      </factory>
+   </extension>
+   
+   <extension point="org.eclipse.ui.activities">  
+   <activity id="menuHidingActivity" name="MenuHidingActivity">  
+      <enabledWhen>  
+         <with variable="activePartId">    
+            <equals value="nonExistentPartId"></equals>      
+         </with>
+      </enabledWhen>
+   </activity>
+   <activityPatternBinding activityId="menuHidingActivity" pattern="org.eclipse.ui.edit.text.gotoLastEditPosition" />
+   <activityPatternBinding activityId="menuHidingActivity" pattern="org.eclipse.ui.navigate.next" />  
+   <activityPatternBinding activityId="menuHidingActivity" pattern="org.eclipse.ui.navigate.previous" />  
+   
+</extension>
+   <extension
+         id="slizaa4jqassistant"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant"
+            name="Slizaa for jQAssistant">
+         <property
+               name="appName"
+               value="Slizaa for jQAssistant">
+         </property>
+      </product>
+   </extension> 
+	
+</plugin>

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: de.gerdwuetherich.hierarchicalgraph.test
+Bundle-SymbolicName: org.slizaa.hierarchicalgraph.test
+Fragment-Host: org.slizaa.hierarchicalgraph
+Bundle-Version: 0.0.2.qualifier
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.junit;visibility:=reexport,
+ com.google.guava;bundle-version="15.0.0",
+ org.assertj.core;bundle-version="3.3.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

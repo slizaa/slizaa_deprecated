@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: de.gerdwuetherich.jqassistant.ui.dependencytable
+Bundle-SymbolicName: org.slizaa.ui.dependencytable;singleton:=true
+Bundle-Version: 0.0.2.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.edit;bundle-version="2.11.1",
+ org.slizaa.selection;bundle-version="0.0.2",
+ org.slizaa.hierarchicalgraph;bundle-version="0.0.2"
+Bundle-ActivationPolicy: lazy
+Import-Package: javax.inject;version="1.0.0"
+

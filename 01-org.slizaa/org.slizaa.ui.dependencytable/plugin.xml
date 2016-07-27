@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+              <view
+                    category="org.slizaa.core.eclipse.ui.views"
+                    class="org.slizaa.ui.dependencytable.DependencyTableView"
+                    icon="icons/dependency-table-small.png"
+                    id="org.slizaa.core.ui.view.dependencytable.DependencyTableView"
+                    name="Dependencies Table"
+                    restorable="true">
+				</view>
+   </extension>
+
+</plugin>

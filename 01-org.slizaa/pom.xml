@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.slizaa</groupId>
+	<artifactId>org.slizaa</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
+	
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>org.slizaa.hierarchicalgraph</module>
+		<module>org.slizaa.hierarchicalgraph.algorithms</module>
+		<module>org.slizaa.hierarchicalgraph.edit</module>
+		<module>org.slizaa.hierarchicalgraph.test</module>
+		<module>org.slizaa.selection</module>
+		<module>org.slizaa.ui.dependencytable</module>
+		<module>org.slizaa.ui.dependencytree</module>
+		<module>org.slizaa.ui.dsm</module>
+		<module>org.slizaa.ui.klighd</module>
+		<module>org.slizaa.ui.klighd.synthesis</module>
+		<module>org.slizaa.ui.tree</module>
+		<module>org.slizaa.ui.widget.dsm</module>
+	</modules>
+
+</project>

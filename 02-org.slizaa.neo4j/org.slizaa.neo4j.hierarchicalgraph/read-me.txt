@@ -1,0 +1,2 @@
+FeatureDelegation: Reflective
+Root extends class: org.eclipse.emf.ecore.impl.EStoreEObjectImpl

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ASCII"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_ZCnwYLRYEeWVj_GUPFMSKw" elementId="org.slizaa.neo4j.jqassistant.application">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_LQqxgLRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.trimmedwindow.mymainwindow" label="Slizaa" iconURI="platform:/plugin/org.slizaa.neo4j.jqassistant.application/icons/slizaa_24.png">
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_VaObcLRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.perspectivestack.0" selectedElement="_XYjJULRaEeWVj_GUPFMSKw">
+      <children xsi:type="advanced:Perspective" xmi:id="_XYjJULRaEeWVj_GUPFMSKw" elementId="org.slizaa.neo4j.jqassistant.application.perspective.dependencies" label="Visualize Dependencies" iconURI="platform:/plugin/org.slizaa.ui.dsm/icons/DSM.png">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_cYZHcLRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.partsashcontainer.0" horizontal="true">
+          <children xsi:type="basic:PartSashContainer" xmi:id="_jFEa0LRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.partsashcontainer.1" containerData="35">
+            <children xsi:type="basic:PartStack" xmi:id="_VnnBgdSzEeGBn6dQ9VPexA" containerData="60">
+              <tags>newtablook</tags>
+              <tags>org.eclipse.e4.primaryNavigationStack</tags>
+              <children xsi:type="basic:Part" xmi:id="_iPjA4FMzEeaSiO47da3qqA" elementId="org.slizaa.neo4j.jqassistant.application.part..GraphDbViewPart" contributionURI="bundleclass://org.slizaa.neo4j.graphdb.ui/org.slizaa.neo4j.graphdb.ui.GraphDbViewPart" label="Graph DBs" iconURI="platform:/plugin/org.slizaa.neo4j.graphdb.ui/icons/obj16/graphdbview.gif">
+                <toolbar xmi:id="_9SmXgFMzEeaSiO47da3qqA" elementId="org.slizaa.neo4j.jqassistant.application.toolbar.1">
+                  <children xsi:type="menu:HandledToolItem" xmi:id="_-QF6gFMzEeaSiO47da3qqA" elementId="org.slizaa.neo4j.jqassistant.application.handledtoolitem.newgraphdb" label="Add new Neo4j-GraphDB" iconURI="platform:/plugin/org.slizaa.neo4j.graphdb.ui/icons/obj16/newgraphdb.gif" command="_4zBUEEE7EeajAorWx6G97w"/>
+                </toolbar>
+              </children>
+              <children xsi:type="basic:Part" xmi:id="_s3rpsFPiEeaBfYSF9flFDA" elementId="org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart" contributionURI="bundleclass://org.slizaa.neo4j.hierarchicalgraph.ui/org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart" label="Mapped Graphs" iconURI="platform:/plugin/org.slizaa.neo4j.hierarchicalgraph.ui/icons/HGRootNode.gif"/>
+            </children>
+            <children xsi:type="basic:PartStack" xmi:id="_qAHrYNS2EeGBn6dQ9VPexA" elementId="org.eclipse.ui.views.PropertySheetMStack" containerData="40" selectedElement="_soNH8NS2EeGBn6dQ9VPexA">
+              <tags>newtablook</tags>
+              <tags>org.eclipse.e4.secondaryDataStack</tags>
+              <children xsi:type="advanced:Placeholder" xmi:id="_soNH8NS2EeGBn6dQ9VPexA" elementId="org.eclipse.ui.views.PropertySheet" ref="_WqRGcNS1EeGBn6dQ9VPexA"/>
+            </children>
+          </children>
+          <children xsi:type="basic:PartSashContainer" xmi:id="_-mhZMEE6EeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.partsashcontainer.0" containerData="65">
+            <children xsi:type="basic:PartStack" xmi:id="__K878EE6EeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.partstack.0" containerData="60">
+              <children xsi:type="basic:Part" xmi:id="_2KUpIEFfEeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.part.dsm" contributionURI="bundleclass://org.slizaa.ui.dsm/org.slizaa.ui.dsm.DsmPart" label="DSM" iconURI="platform:/plugin/org.slizaa.ui.dsm/icons/DSM.png"/>
+              <children xsi:type="advanced:Placeholder" xmi:id="_IdcE8ELxEealhJdRRUyEZA" elementId="org.slizaa.neo4j.jqassistant.application.placeholder.0" ref="_uIM2kELwEealhJdRRUyEZA"/>
+            </children>
+            <children xsi:type="basic:PartStack" xmi:id="__i1QcEE6EeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.partstack.1" containerData="40">
+              <children xsi:type="basic:Part" xmi:id="_ES2qEEFgEeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.part.dependencytree" contributionURI="bundleclass://org.slizaa.ui.dependencytree/org.slizaa.ui.dependencytree.internal.DependencyTreePart" label="Dependency Tree" iconURI="platform:/plugin/org.slizaa.ui.dependencytree/icons/dependency-tree-small.png"/>
+              <children xsi:type="basic:Part" xmi:id="_ErCgkEFgEeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.part.dependencytable" contributionURI="bundleclass://org.slizaa.ui.dependencytable/org.slizaa.ui.dependencytable.DependencyTablePart" label="Dependency Table" iconURI="platform:/plugin/org.slizaa.ui.dependencytable/icons/dependency-table-small.png"/>
+            </children>
+          </children>
+        </children>
+      </children>
+    </children>
+    <mainMenu xmi:id="_VdKSkEFjEeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.menu">
+      <children xsi:type="menu:Menu" xmi:id="_kpqR8EFjEeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.menu.file" label="File">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_WQ41kEFjEeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.handledmenuitem.exit" label="Exit" command="_vVtk8EFjEeajAorWx6G97w"/>
+      </children>
+    </mainMenu>
+    <sharedElements xsi:type="basic:Part" xmi:id="_WqRGcNS1EeGBn6dQ9VPexA" elementId="org.eclipse.ui.views.PropertySheet" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Properties" iconURI="platform:/plugin/org.eclipse.ui.views//icons/full/eview16/prop_ps.gif" closeable="true">
+      <tags>View</tags>
+      <tags>categoryTag:General</tags>
+      <menus xmi:id="_HngXENSjEeGwXp2p959l3w" elementId="org.eclipse.ui.views.PropertySheet">
+        <tags>ViewMenu</tags>
+        <tags>menuContribution:menu</tags>
+      </menus>
+      <toolbar xmi:id="_Hng-INSjEeGwXp2p959l3w" elementId="org.eclipse.ui.views.PropertySheet"/>
+    </sharedElements>
+    <sharedElements xsi:type="basic:Part" xmi:id="_uIM2kELwEealhJdRRUyEZA" elementId="org.slizaa.ui.klighd.SlizaaDiagramViewPart" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Diagram" iconURI="platform:/plugin/org.slizaa.ui.klighd/icons/full/etool16/diagram_view.png">
+      <tags>categoryTag:General</tags>
+      <tags>View</tags>
+    </sharedElements>
+    <trimBars xmi:id="_gqMEUEFmEeajAorWx6G97w" elementId="org.eclipse.ui.main.toolbar">
+      <children xsi:type="menu:ToolControl" xmi:id="_mHThMCjkEea7i8crIf9fnw" elementId="de.gerdwuetherich.jqassistant.ui.application.toolcontrol.1" contributionURI="bundleclass://org.slizaa.neo4j.jqassistant.application/org.slizaa.neo4j.jqassistant.application.perspectiveswitcher.SpacerControl"/>
+      <children xsi:type="menu:ToolControl" xmi:id="_AzK5ICjgEea7i8crIf9fnw" elementId="PerspectiveSpacer" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
+        <tags>stretch</tags>
+      </children>
+      <children xsi:type="menu:ToolControl" xmi:id="_qQNFsCjjEea7i8crIf9fnw" elementId="de.gerdwuetherich.jqassistant.ui.application.toolcontrol.0" contributionURI="bundleclass://org.slizaa.neo4j.jqassistant.application/org.slizaa.neo4j.jqassistant.application.perspectiveswitcher.PerspectiveSwitcherControl"/>
+    </trimBars>
+  </children>
+  <handlers xmi:id="_JV0_EEE8EeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.handler.addNeo4jServer" contributionURI="bundleclass://org.slizaa.neo4j.graphdb.ui/org.slizaa.neo4j.graphdb.ui.handler.AddRemoteServerHandler" command="_4zBUEEE7EeajAorWx6G97w"/>
+  <handlers xmi:id="_s1HQcEFjEeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.handler.quit" contributionURI="bundleclass://org.slizaa.neo4j.jqassistant.application/org.slizaa.neo4j.jqassistant.application.handler.QuitHandler" command="_vVtk8EFjEeajAorWx6G97w"/>
+  <commands xmi:id="_4zBUEEE7EeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.command.addneo4jserver" commandName="Add Neo4j Server"/>
+  <commands xmi:id="_vVtk8EFjEeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.command.quit" commandName="Quit"/>
+  <addons xmi:id="_ZCnwYbRYEeWVj_GUPFMSKw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_ZCnwYrRYEeWVj_GUPFMSKw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_ZCnwY7RYEeWVj_GUPFMSKw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_ZCnwZLRYEeWVj_GUPFMSKw" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_ZCnwZbRYEeWVj_GUPFMSKw" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_ZCnwZrRYEeWVj_GUPFMSKw" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+  <addons xmi:id="_ZCnwZ7RYEeWVj_GUPFMSKw" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
+  <addons xmi:id="_MWC9EEFjEeajAorWx6G97w" elementId="org.slizaa.neo4j.jqassistant.application.addon.0" contributionURI="bundleclass://org.slizaa.neo4j.jqassistant.application/org.slizaa.neo4j.jqassistant.application.perspectiveswitcher.TrimbarAddon"/>
+</application:Application>
