@@ -93,14 +93,16 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INode
 				it.setGridPlacement(2);
 
 				// SHOW IMAGE
-				// TODO: WORKAROUND as the KlighdImage Implementation disposes our cached image
-				// de.cau.cs.kieler.klighd.piccolo.internal.nodes.KlighdImage#setImage (line 174)
 				val IItemLabelProvider itemLabelProvider = object.rootNode.itemLabelProvider;
 				val Image original = itemLabelProvider.getImage(object) as Image;
-				val Image image = new Image(Display.current, original, SWT.IMAGE_COPY);
 
 				// upper part is icon
-				if (image != null) {
+				if (original != null) {
+					
+					// TODO: WORKAROUND as the KlighdImage Implementation disposes our cached image
+					// de.cau.cs.kieler.klighd.piccolo.internal.nodes.KlighdImage#setImage (line 174)
+					val Image image = new Image(Display.current, original, SWT.IMAGE_COPY);
+
 					it.addRectangle =>
 						[
 							it.invisible = true;
