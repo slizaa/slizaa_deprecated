@@ -1,7 +1,6 @@
 package org.slizaa.ui.klighd.synthesis.hierarchicalgraph
 
 import de.cau.cs.kieler.klighd.krendering.Colors
-import de.cau.cs.kieler.klighd.krendering.extensions.KColorExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KContainerRenderingExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KEdgeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KLabelExtensions
@@ -17,12 +16,12 @@ import org.eclipse.elk.core.options.CoreOptions
 import org.eclipse.elk.core.options.Direction
 import org.eclipse.elk.core.options.EdgeRouting
 import org.eclipse.elk.graph.KNode
+import org.eclipse.emf.edit.provider.IItemLabelProvider
 import org.eclipse.swt.SWT
 import org.eclipse.swt.graphics.Image
 import org.eclipse.swt.widgets.Display
 import org.slizaa.hierarchicalgraph.HGNode
 import org.slizaa.selection.INodeSelection
-import org.eclipse.emf.edit.provider.IItemLabelProvider
 
 class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INodeSelection> {
 
@@ -32,7 +31,8 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INode
 	@Inject extension KRenderingExtensions
 	@Inject extension KContainerRenderingExtensions
 	@Inject extension KPolylineExtensions
-	@Inject extension KColorExtensions
+	
+	val float LINE_WIDTH = 1.5f;
 
 	override KNode transform(INodeSelection nodeSelection) {
 		val rootNode = nodeSelection.createNode().associateWith(nodeSelection);
@@ -66,9 +66,9 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INode
 							it.target = targetElement.node;
 							it.associateWith(outgoingDependencies)
 							it.addPolyline => [
-								it.lineWidth = 2.0f
+								it.lineWidth = LINE_WIDTH
 								it.addHeadArrowDecorator => [
-									it.lineWidth = 2.0f
+									it.lineWidth = LINE_WIDTH
 								]
 								it.addSingleOrMultiClickAction(SelectDependenciesAction.ID)
 							]
@@ -93,14 +93,16 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INode
 				it.setGridPlacement(2);
 
 				// SHOW IMAGE
-				// TODO: WORKAROUND as the KlighdImage Implementation disposes our cached image
-				// de.cau.cs.kieler.klighd.piccolo.internal.nodes.KlighdImage#setImage (line 174)
 				val IItemLabelProvider itemLabelProvider = object.rootNode.itemLabelProvider;
 				val Image original = itemLabelProvider.getImage(object) as Image;
-				val Image image = new Image(Display.current, original, SWT.IMAGE_COPY);
 
 				// upper part is icon
-				if (image != null) {
+				if (original != null) {
+					
+					// TODO: WORKAROUND as the KlighdImage Implementation disposes our cached image
+					// de.cau.cs.kieler.klighd.piccolo.internal.nodes.KlighdImage#setImage (line 174)
+					val Image image = new Image(Display.current, original, SWT.IMAGE_COPY);
+
 					it.addRectangle =>
 						[
 							it.invisible = true;
@@ -123,12 +125,12 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INode
 		node.addRectangle() => [
 
 			it.invisible = false
-			it.lineWidth = 2
+			it.lineWidth = LINE_WIDTH
 			it.foreground = Colors.BLACK
 
 			it.shadow = Colors.GRAY_50;
-			it.shadow.XOffset = 6;
-			it.shadow.YOffset = 6;
+			it.shadow.XOffset = 4;
+			it.shadow.YOffset = 4;
 
 		// it.setBackgroundGradient("#FFF3D3".color, "#FFFFFF".color, 90)
 		]

@@ -82,10 +82,14 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
-      
+
       //
-      MPart part = _partService.findPart(HierarchicalGraphViewPart.PART_ID);
-      _partService.bringToTop(part);
+        Display.getDefault().asyncExec(new Runnable() {
+          public void run() {
+            MPart part = _partService.findPart(HierarchicalGraphViewPart.PART_ID);
+            _partService.bringToTop(part);
+          }
+      });
     });
   }
 
