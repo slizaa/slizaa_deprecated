@@ -21,7 +21,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     @Override
     public void preWindowOpen() {
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
-        configurer.setInitialSize(new Point(1000 , 750));
+        configurer.setInitialSize(new Point(1200 , 900));
         configurer.setShowPerspectiveBar(false);
         configurer.setShowStatusLine(false);
         configurer.setTitle("Slizaa"); //$NON-NLS-1$
