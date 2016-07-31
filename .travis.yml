@@ -9,6 +9,9 @@ env:
 
 script: 
   - "mvn clean install -f 00-releng/pom.xml"
+  - "mvn clean install -f 01-org.slizaa/pom.xml"
+  - "mvn clean install -f 02-org.slizaa.neo4j/pom.xml"
+  - "mvn clean install -f 03-org.slizaa.neo4j.jqassistant/pom.xml"
 
 after_success:
   - chmod +x ./.travis/artifact-upload.sh
