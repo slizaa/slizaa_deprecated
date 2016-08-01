@@ -24,16 +24,6 @@
 		<xtend-version>2.10.0</xtend-version>
 	</properties>
 
-	<repositories>
-
-		<!-- add Mars repository to resolve dependencies -->
-		<repository>
-			<id>Mars</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/mars/</url>
-		</repository>
-	</repositories>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -71,15 +61,13 @@
 							<version>${project.version}</version>
 						</artifact>
 					</target>
-					<configuration>
-						<filters>
-							<filter>
-								<type>eclipse-plugin</type>
-								<id>org.eclipse.search</id>
-								<removeAll />
-							</filter>
-						</filters>
-					</configuration>
+					<filters>
+						<filter>
+							<type>eclipse-plugin</type>
+							<id>org.eclipse.search</id>
+							<removeAll />
+						</filter>
+					</filters>
 					<pomDependencies>consider</pomDependencies>
 					<environments>
 						<environment>
