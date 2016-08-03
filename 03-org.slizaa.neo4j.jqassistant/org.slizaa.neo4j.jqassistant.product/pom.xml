@@ -57,6 +57,7 @@
 					<products>
 						<product>
 							<id>org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant</id>
+							<rootFolder>slizaa</rootFolder>
 							<archiveFileName>slizaa-${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${maven.build.timestamp}</archiveFileName>
 						</product>
 					</products>
