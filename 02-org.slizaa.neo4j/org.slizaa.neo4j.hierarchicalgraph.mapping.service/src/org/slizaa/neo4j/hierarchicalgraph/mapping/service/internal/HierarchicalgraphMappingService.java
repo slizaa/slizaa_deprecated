@@ -6,6 +6,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGNodeSource;
@@ -21,11 +22,21 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 @Component
 public class HierarchicalgraphMappingService implements IHierarchicalGraphMappingService {
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public HGRootNode convert(HierarchicalGraphMappingDescriptor mappingDescriptor, Neo4JRemoteRepository repository) {
+  public HGRootNode convert(HierarchicalGraphMappingDescriptor mappingDescriptor, Neo4JRemoteRepository repository,
+      IProgressMonitor progressMonitor) {
 
     //
     Stopwatch stopwatch = Stopwatch.createStarted();
@@ -56,26 +67,38 @@ public class HierarchicalgraphMappingService implements IHierarchicalGraphMappin
       dependencyQueries.add(future);
     });
 
+    System.out.println("Compute root queries " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    
     // create the hierarchy
     rootQueries.forEach((f) -> {
       try {
+        System.out.println("Compute root queries " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
         createRootElements(f.get().getAsJsonArray("data"), creator);
+        System.out.println("Done " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
       }
     });
 
+    System.out.println("Compute hierarchies queries " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    
     hierachyQueries.forEach((f) -> {
       try {
+        System.out.println("Compute hierarchies queries " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
         createHierarchy(f.get().getAsJsonArray("data"), creator);
+        System.out.println("Done " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
       }
     });
 
+    System.out.println("Compute dependencies " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    
     dependencyQueries.forEach((f) -> {
       try {
+        System.out.println("Create dependencies " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
         createDependencies(f.get().getAsJsonArray("data"), creator);
+        System.out.println("Done " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
       }

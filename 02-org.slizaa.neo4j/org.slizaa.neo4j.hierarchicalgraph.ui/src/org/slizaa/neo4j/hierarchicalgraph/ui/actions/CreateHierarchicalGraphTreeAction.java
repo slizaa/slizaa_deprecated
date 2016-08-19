@@ -57,8 +57,12 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
         progressDialog.run(false, false, new IRunnableWithProgress() {
 
           @Override
-          public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-            monitor.beginTask("Creating internal model...", 50);
+          public void run(IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException {
+            
+            //
+            progressMonitor.beginTask("Creating internal model...", 50);
+            
+            //
             try {
 
               // create the default mapping descriptor
@@ -67,14 +71,16 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
 
               // convert the model
               // TODO
-              HGRootNode rootElement = _mappingService.convert(mappingDescriptor, remoteRepository);
+              HGRootNode rootElement = _mappingService.convert(mappingDescriptor, remoteRepository, progressMonitor);
               remoteRepository.getHierarchicalGraphs().add(rootElement);
               _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().add(rootElement);
 
             } catch (Exception e) {
               MessageDialogs.openCannotConnectToServerDialog(remoteRepository.getBaseURI());
             }
-            monitor.done();
+            
+            //
+            progressMonitor.done();
           }
         });
       } catch (InvocationTargetException e) {
