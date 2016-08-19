@@ -1,65 +1,61 @@
 package org.slizaa.hierarchicalgraph;
 
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Map;
+
 import org.junit.Before;
+import org.slizaa.hierarchicalgraph.util.XmiUtils;
 
 public class AbstractHierarchicalTest {
 
   private HGRootNode _rootNode;
 
-  private HGNode     _child;
-
-  private HGNode     _grandChild;
-
-  private HGNode     _greatGrandChild;
-
-  private HGNode     _child2;
-
-  private HGNode     _grandChild2;
-
-  private HGNode     _greatGrandChild2;
-
   @Before
-  public void setup() {
+  public void setup() throws IOException {
 
     //
-    _rootNode = HierarchicalgraphFactory.eINSTANCE.createHGRootNode();
-    _child = Factory.createNode(_rootNode);
-    _child2 = Factory.createNode(_rootNode);
-    _grandChild = Factory.createNode(_child);
-    _grandChild2 = Factory.createNode(_child2);
-    _greatGrandChild = Factory.createNode(_grandChild);
-    _greatGrandChild2 = Factory.createNode(_grandChild2);
+    _rootNode = XmiUtils.load("org/slizaa/hierarchicalgraph/mapstruct_1-1-0-Beta2.hggraph");
 
-    Factory.createDependency(_child, _child2);
-    Factory.createDependency(_grandChild, _grandChild2);
-    Factory.createDependency(_greatGrandChild, _greatGrandChild2);
+    //
+    for (HGNode node : _rootNode.getChildren()) {
+      System.out.println(node.getIdentifier());
+      // System.out.println(getProperties(node));
+    }
+
+    //
+    System.out.println(_rootNode.getNode(new Long(1)));
+    System.out.println(_rootNode.getNode(new Long(577)));
   }
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
   public HGRootNode rootNode() {
     return _rootNode;
   }
 
-  public HGNode child() {
-    return _child;
-  }
+  /**
+   * <p>
+   * </p>
+   *
+   * @param node
+   * @return
+   */
+  public Map<String, String> getProperties(HGNode node) {
 
-  public HGNode grandChild() {
-    return _grandChild;
-  }
+    //
+    HGNodeSource nodeSource = (HGNodeSource) node.getNodeSource();
 
-  public HGNode greatGrandChild() {
-    return _greatGrandChild;
-  }
+    //
+    if (nodeSource instanceof DefaultHGNodeSource) {
+      return ((DefaultHGNodeSource) nodeSource).getProperties();
+    }
 
-  public HGNode child2() {
-    return _child2;
-  }
-
-  public HGNode grandChild2() {
-    return _grandChild2;
-  }
-
-  public HGNode greatGrandChild2() {
-    return _greatGrandChild2;
+    //
+    return Collections.emptyMap();
   }
 }

@@ -18,7 +18,7 @@ public class CreateModelTest {
   public void createModel() {
 
     //
-    GraphCreator creator = new GraphCreator();
+    ExampleGraphCreator creator = new ExampleGraphCreator();
 
     //
     creator.createNodeIfAbsent(createNodeSource(5497), creator.getRootNode());
