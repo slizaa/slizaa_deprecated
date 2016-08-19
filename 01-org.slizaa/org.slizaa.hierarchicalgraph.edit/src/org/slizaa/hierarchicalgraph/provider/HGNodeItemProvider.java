@@ -34,8 +34,8 @@ public class HGNodeItemProvider extends ItemProviderAdapter
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
 		IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
 
-	/** - */
-	private AdapterFactoryItemDelegator adapterFactoryItemDelegatorInstance;
+	/** the AdapterFactoryItemDelegator */
+	private AdapterFactoryItemDelegator _adapterFactoryItemDelegatorInstance;
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -46,11 +46,12 @@ public class HGNodeItemProvider extends ItemProviderAdapter
 	public HGNodeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 
-		//
+		// create the composed adapter factory (based on the registry instance)
 		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-		adapterFactoryItemDelegatorInstance = new AdapterFactoryItemDelegator(composedAdapterFactory);
+		// create the AdapterFactoryItemDelegator
+		_adapterFactoryItemDelegatorInstance = new AdapterFactoryItemDelegator(composedAdapterFactory);
 	}
 
 	/**
@@ -66,7 +67,7 @@ public class HGNodeItemProvider extends ItemProviderAdapter
 		HGNodeSource hgNodeSource = (HGNodeSource) ((HGNode) object).getNodeSource();
 
 		// return the property descriptors
-		return adapterFactoryItemDelegatorInstance.getPropertyDescriptors(hgNodeSource);
+		return _adapterFactoryItemDelegatorInstance.getPropertyDescriptors(hgNodeSource);
 	}
 
 	/**
