@@ -6,8 +6,23 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 public class ParentChildTest extends AbstractHierarchicalTest {
 
+  /** - */
+  public static final Long ID_JAR_MAPSTRUCT          = new Long(1);
+
+  /** - */
+  public static final Long ID_PKG_ORG_MAPSTRUCT = new Long(21);
+  
+  /** - */
+  public static final Long ID_TYPE_MAPPING = new Long(249);
+  
   /**
    * <p>
    * </p>
@@ -15,9 +30,8 @@ public class ParentChildTest extends AbstractHierarchicalTest {
    */
   @Test
   public void testRootNode() {
-    assertThat(greatGrandChild().getRootNode()).isSameAs(rootNode());
-    assertThat(grandChild().getRootNode()).isSameAs(rootNode());
-    assertThat(child().getRootNode()).isSameAs(rootNode());
+    assertThat(node(ID_PKG_ORG_MAPSTRUCT).getRootNode()).isSameAs(rootNode());
+    assertThat(node(ID_JAR_MAPSTRUCT).getRootNode()).isSameAs(rootNode());
     assertThat(rootNode().getRootNode()).isSameAs(rootNode());
   }
 
@@ -26,27 +40,18 @@ public class ParentChildTest extends AbstractHierarchicalTest {
 
     //
     assertFalse(rootNode().isPredecessorOf(rootNode()));
-    assertTrue(rootNode().isPredecessorOf(child()));
-    assertTrue(rootNode().isPredecessorOf(grandChild()));
-    assertTrue(rootNode().isPredecessorOf(greatGrandChild()));
+    assertTrue(rootNode().isPredecessorOf(node(ID_JAR_MAPSTRUCT)));
+    assertTrue(rootNode().isPredecessorOf(node(ID_PKG_ORG_MAPSTRUCT)));
 
     //
-    assertFalse(child().isPredecessorOf(rootNode()));
-    assertFalse(child().isPredecessorOf(child()));
-    assertTrue(child().isPredecessorOf(grandChild()));
-    assertTrue(child().isPredecessorOf(greatGrandChild()));
+    assertFalse(node(ID_JAR_MAPSTRUCT).isPredecessorOf(rootNode()));
+    assertFalse(node(ID_JAR_MAPSTRUCT).isPredecessorOf(node(ID_JAR_MAPSTRUCT)));
+    assertTrue(node(ID_JAR_MAPSTRUCT).isPredecessorOf(node(ID_PKG_ORG_MAPSTRUCT)));
 
     //
-    assertFalse(grandChild().isPredecessorOf(rootNode()));
-    assertFalse(grandChild().isPredecessorOf(child()));
-    assertFalse(grandChild().isPredecessorOf(grandChild()));
-    assertTrue(grandChild().isPredecessorOf(greatGrandChild()));
-
-    //
-    assertFalse(greatGrandChild().isPredecessorOf(rootNode()));
-    assertFalse(greatGrandChild().isPredecessorOf(child()));
-    assertFalse(greatGrandChild().isPredecessorOf(grandChild()));
-    assertFalse(greatGrandChild().isPredecessorOf(greatGrandChild()));
+    assertFalse(node(ID_PKG_ORG_MAPSTRUCT).isPredecessorOf(rootNode()));
+    assertFalse(node(ID_PKG_ORG_MAPSTRUCT).isPredecessorOf(node(ID_JAR_MAPSTRUCT)));
+    assertFalse(node(ID_PKG_ORG_MAPSTRUCT).isPredecessorOf(node(ID_PKG_ORG_MAPSTRUCT)));
   }
 
   @Test
@@ -54,26 +59,17 @@ public class ParentChildTest extends AbstractHierarchicalTest {
 
     //
     assertFalse(rootNode().isSuccessorOf(rootNode()));
-    assertFalse(rootNode().isSuccessorOf(child()));
-    assertFalse(rootNode().isSuccessorOf(grandChild()));
-    assertFalse(rootNode().isSuccessorOf(greatGrandChild()));
+    assertFalse(rootNode().isSuccessorOf(node(ID_JAR_MAPSTRUCT)));
+    assertFalse(rootNode().isSuccessorOf(node(ID_PKG_ORG_MAPSTRUCT)));
 
     //
-    assertTrue(child().isSuccessorOf(rootNode()));
-    assertFalse(child().isSuccessorOf(child()));
-    assertFalse(child().isSuccessorOf(grandChild()));
-    assertFalse(child().isSuccessorOf(greatGrandChild()));
+    assertTrue(node(ID_JAR_MAPSTRUCT).isSuccessorOf(rootNode()));
+    assertFalse(node(ID_JAR_MAPSTRUCT).isSuccessorOf(node(ID_JAR_MAPSTRUCT)));
+    assertFalse(node(ID_JAR_MAPSTRUCT).isSuccessorOf(node(ID_PKG_ORG_MAPSTRUCT)));
 
     //
-    assertTrue(grandChild().isSuccessorOf(rootNode()));
-    assertTrue(grandChild().isSuccessorOf(child()));
-    assertFalse(grandChild().isSuccessorOf(grandChild()));
-    assertFalse(grandChild().isSuccessorOf(greatGrandChild()));
-
-    //
-    assertTrue(greatGrandChild().isSuccessorOf(rootNode()));
-    assertTrue(greatGrandChild().isSuccessorOf(child()));
-    assertTrue(greatGrandChild().isSuccessorOf(grandChild()));
-    assertFalse(greatGrandChild().isSuccessorOf(greatGrandChild()));
+    assertTrue(node(ID_PKG_ORG_MAPSTRUCT).isSuccessorOf(rootNode()));
+    assertTrue(node(ID_PKG_ORG_MAPSTRUCT).isSuccessorOf(node(ID_JAR_MAPSTRUCT)));
+    assertFalse(node(ID_PKG_ORG_MAPSTRUCT).isSuccessorOf(node(ID_PKG_ORG_MAPSTRUCT)));
   }
 }

@@ -1,5 +1,7 @@
 package org.slizaa.hierarchicalgraph;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
@@ -7,25 +9,39 @@ import java.util.Map;
 import org.junit.Before;
 import org.slizaa.hierarchicalgraph.util.XmiUtils;
 
-public class AbstractHierarchicalTest {
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
+public abstract class AbstractHierarchicalTest {
 
+  /** - */
   private HGRootNode _rootNode;
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @throws IOException
+   */
   @Before
   public void setup() throws IOException {
-
-    //
     _rootNode = XmiUtils.load("org/slizaa/hierarchicalgraph/mapstruct_1-1-0-Beta2.hggraph");
 
-    //
-    for (HGNode node : _rootNode.getChildren()) {
-      System.out.println(node.getIdentifier());
-      // System.out.println(getProperties(node));
-    }
+    // dumpChildren(node(new Long(6308)));
+  }
 
-    //
-    System.out.println(_rootNode.getNode(new Long(1)));
-    System.out.println(_rootNode.getNode(new Long(577)));
+  /**
+   * <p>
+   * </p>
+   *
+   * @param id
+   * @return
+   */
+  public HGNode node(Long id) {
+    return _rootNode.getNode(checkNotNull(id));
   }
 
   /**
@@ -56,6 +72,20 @@ public class AbstractHierarchicalTest {
     }
 
     //
-    return Collections.emptyMap();
+    else {
+      return Collections.emptyMap();
+    }
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param hgNode
+   */
+  protected void dumpChildren(HGNode hgNode) {
+    for (HGNode node : checkNotNull(hgNode).getChildren()) {
+      System.out.println(node.getIdentifier() + " : " + getProperties(node));
+    }
   }
 }
