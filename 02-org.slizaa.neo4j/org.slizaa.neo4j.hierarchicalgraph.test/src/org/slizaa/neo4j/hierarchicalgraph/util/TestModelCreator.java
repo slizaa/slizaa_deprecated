@@ -9,9 +9,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import org.slizaa.hierarchicalgraph.DefaultHGDependencySource;
 import org.slizaa.hierarchicalgraph.DefaultHGNodeSource;
+import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HGNodeSource;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
@@ -35,7 +38,7 @@ public class TestModelCreator {
   public static final String TYPES            = "MATCH (d:Directory)-[:CONTAINS]->(t:Type) RETURN id(d), id(t)";
 
   /** - */
-  public static final String DEPENDENCIES     = "MATCH (t1:File:Type:Java)-[:DEPENDS_ON]->(t2:File:Type:Java) RETURN id(t1),id(t2), 'DEPENDS_ON'";
+  public static final String DEPENDENCIES     = "MATCH (t1:File:Type:Java)-[r:DEPENDS_ON]->(t2:File:Type:Java) RETURN id(t1),id(t2),id(r),type(r)";
 
   /**
    * <p>
@@ -60,7 +63,9 @@ public class TestModelCreator {
     rootNodeSource.setIdentifier(-1l);
     rootElement.setNodeSource(rootNodeSource);
 
+    // ***************************************************
     // create the node source creator function
+    // ***************************************************
     Function<Long, HGNodeSource> createNodeSourceFunction = (id) -> {
 
       // create the node source
@@ -79,6 +84,27 @@ public class TestModelCreator {
       return nodeSource;
     };
 
+    // ***************************************************
+    // create the node source creator function
+    // ***************************************************
+    BiFunction<Long, String, HGDependencySource> createDependencySourceFunction = (id, type) -> {
+
+      // create the dependency source
+      DefaultHGDependencySource dependencySource = HierarchicalgraphFactory.eINSTANCE.createDefaultHGDependencySource();
+      dependencySource.setIdentifier(id);
+
+      // // add properties
+      // remoteRepository.getNodeProperties(id).entrySet().forEach((e) -> {
+      // nodeSource.getProperties().put(e.getKey(), e.getValue().getAsString());
+      // });
+
+      // add type
+      dependencySource.getProperties().put("type", type);
+
+      // return the result
+      return dependencySource;
+    };
+
     //
     Future<JsonObject> resultRoot = remoteRepository.executeCypherQuery(ROOT_MODULES);
     Future<JsonObject> resultDirectories = remoteRepository.executeCypherQuery(FLAT_DIRECTORIES);
@@ -90,7 +116,9 @@ public class TestModelCreator {
     createHierarchy(resultDirectories.get().getAsJsonArray("data"), rootElement, createNodeSourceFunction);
     createHierarchy(resultFiles.get().getAsJsonArray("data"), rootElement, createNodeSourceFunction);
     createHierarchy(resultTypes.get().getAsJsonArray("data"), rootElement, createNodeSourceFunction);
-    createDependencies(dependencies.get().getAsJsonArray("data"), rootElement);
+
+    //
+    createDependencies(dependencies.get().getAsJsonArray("data"), rootElement, createDependencySourceFunction);
 
     //
     save(fileName, rootElement);
@@ -107,6 +135,7 @@ public class TestModelCreator {
    * @throws Exception
    */
   public static void main(String[] args) throws Exception {
-    TestModelCreator.createTestModel(new File(System.getProperty("user.dir"), "test.hggraph").getAbsolutePath(), "http://localhost:7474");
+    TestModelCreator.createTestModel(new File(System.getProperty("user.dir"), "test.hggraph").getAbsolutePath(),
+        "http://localhost:7474");
   }
 }

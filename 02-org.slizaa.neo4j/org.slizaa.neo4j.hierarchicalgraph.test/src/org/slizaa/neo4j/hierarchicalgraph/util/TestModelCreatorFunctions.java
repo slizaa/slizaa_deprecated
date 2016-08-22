@@ -2,10 +2,12 @@ package org.slizaa.neo4j.hierarchicalgraph.util;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import org.slizaa.hierarchicalgraph.Factory;
 import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGNodeSource;
 import org.slizaa.hierarchicalgraph.HGRootNode;
@@ -62,13 +64,14 @@ public class TestModelCreatorFunctions {
     }
   }
 
-  public static void createDependencies(JsonArray asJsonArray, HGRootNode rootElement) {
+  public static void createDependencies(JsonArray asJsonArray, HGRootNode rootElement, BiFunction<Long, String, HGDependencySource> dependencySourceCreator) {
     asJsonArray.forEach((element) -> {
       JsonArray row = element.getAsJsonArray();
       long idStart = row.get(0).getAsLong();
       long idTarget = row.get(1).getAsLong();
-      String type = row.get(2).getAsString();
-      createDependency(idStart, idTarget, type, rootElement);
+      long idRel = row.get(2).getAsLong();
+      String type = row.get(3).getAsString();
+      createDependency(idStart, idTarget, idRel, type, rootElement, dependencySourceCreator);
     });
   }
 
@@ -78,10 +81,10 @@ public class TestModelCreatorFunctions {
    *
    * @param from
    * @param to
-   * @param string
+   * @param type
    * @return
    */
-  public static HGDependency createDependency(Long from, Long to, String string, HGRootNode rootElement) {
+  public static HGDependency createDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement, BiFunction<Long, String, HGDependencySource> dependencySourceCreator) {
 
     // get the from...
     HGNode fromElement = ((ExtendedHGRootNodeImpl) rootElement).getIdToNodeMap().get(from);
@@ -96,7 +99,12 @@ public class TestModelCreatorFunctions {
     }
 
     //
-    return Factory.createDependency(fromElement, toElement);
+    HGDependency hgDependency = Factory.createDependency(fromElement, toElement);
+    HGDependencySource dependencySource = dependencySourceCreator.apply(idRel, type);
+    hgDependency.setDependencySource(dependencySource);
+    
+    //
+    return hgDependency;
   }
 
   /**
