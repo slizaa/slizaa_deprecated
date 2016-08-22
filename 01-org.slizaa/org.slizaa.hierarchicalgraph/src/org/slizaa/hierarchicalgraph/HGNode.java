@@ -155,6 +155,9 @@ public interface HGNode extends EObject {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * <!-- begin-model-doc -->
+   * Returns the unique identifier of this node.
+   * <!-- end-model-doc -->
    * @model kind="operation"
    * @generated
    */
@@ -179,18 +182,27 @@ public interface HGNode extends EObject {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model
+   * <!-- begin-model-doc -->
+   * Returns an aggregated dependency that wraps up all outgoing dependencies from this node to the specified target node.
+   * If there are no such dependencies, <code>null</code> will be returned instead.
+   * <!-- end-model-doc -->
+   * @model targetNodeRequired="true"
    * @generated
    */
-  HGDependency getOutgoingDependenciesTo(HGNode node);
+  HGDependency getOutgoingDependenciesTo(HGNode targetNode);
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model nodesMany="true"
+   * <!-- begin-model-doc -->
+   * Returns a list of aggregated dependencies that wrap up the outgoing dependencies from this node to the specified target nodes.
+   * Note that no aggregated dependency will be added if there are no core dependencies from this node to a specified target node. That means that the result list eventually contains less elements 
+   * than the specified list of target nodes.
+   * <!-- end-model-doc -->
+   * @model targetNodesMany="true"
    * @generated
    */
-  List<HGDependency> getOutgoingDependenciesTo(List<HGNode> nodes);
+  List<HGDependency> getOutgoingDependenciesTo(List<HGNode> targetNodes);
 
   /**
    * <!-- begin-user-doc -->

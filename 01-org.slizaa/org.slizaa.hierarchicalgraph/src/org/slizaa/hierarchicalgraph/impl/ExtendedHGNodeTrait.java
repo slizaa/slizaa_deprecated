@@ -1,5 +1,7 @@
 package org.slizaa.hierarchicalgraph.impl;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -8,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
+import org.slizaa.hierarchicalgraph.DependencyType;
 import org.slizaa.hierarchicalgraph.HGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
@@ -88,14 +91,14 @@ public class ExtendedHGNodeTrait {
 			HGDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGDependency();
 			dependency.setFrom(node);
 			dependency.setTo(_hgNode);
-			dependency.setCoreDependency(false);
+			dependency.setType(DependencyType.AGGREGATED_DEPENDENCY);
 
-			//
+			// add all incoming dependencies directly from the specified node
 			if (_hgNode.incomingCoreDependenciesMap != null && _hgNode.incomingCoreDependenciesMap.containsKey(node)) {
 				dependency.getDependencies().addAll(_hgNode.incomingCoreDependenciesMap.get(node));
 			}
 
-			//
+		  // add all incoming dependencies from successors of the specified node
 			dependency.getDependencies().addAll(getIncomingCoreDependencies(true).stream()
 					.filter((dep) -> node.isPredecessorOf(dep.getFrom())).collect(Collectors.toList()));
 
@@ -132,6 +135,9 @@ public class ExtendedHGNodeTrait {
 	}
 
 	public HGDependency getOutgoingDependenciesTo(HGNode node) {
+	  
+	  //
+	  checkNotNull(node);
 
 		// 'aggregated' dependency
 		if (!cachedAggregatedOutgoingDependenciesMap().containsKey(node)) {
@@ -140,7 +146,7 @@ public class ExtendedHGNodeTrait {
 			HGDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGDependency();
 			dependency.setFrom(_hgNode);
 			dependency.setTo(node);
-			dependency.setCoreDependency(false);
+      dependency.setType(DependencyType.AGGREGATED_DEPENDENCY);
 
 			//
 			if (_hgNode.outgoingCoreDependenciesMap != null && _hgNode.outgoingCoreDependenciesMap.containsKey(node)) {

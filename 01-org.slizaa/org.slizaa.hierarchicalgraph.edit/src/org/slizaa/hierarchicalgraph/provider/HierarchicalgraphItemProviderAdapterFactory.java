@@ -96,6 +96,29 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.HGDependencySource} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected HGDependencySourceItemProvider hgDependencySourceItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.HGDependencySource}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createHGDependencySourceAdapter() {
+    if (hgDependencySourceItemProvider == null) {
+      hgDependencySourceItemProvider = new HGDependencySourceItemProvider(this);
+    }
+
+    return hgDependencySourceItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.HGRootNode} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -116,6 +139,29 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
     }
 
     return hgRootNodeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.DefaultHGDependencySource} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected DefaultHGDependencySourceItemProvider defaultHGDependencySourceItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.DefaultHGDependencySource}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createDefaultHGDependencySourceAdapter() {
+    if (defaultHGDependencySourceItemProvider == null) {
+      defaultHGDependencySourceItemProvider = new DefaultHGDependencySourceItemProvider(this);
+    }
+
+    return defaultHGDependencySourceItemProvider;
   }
 
   /**
@@ -241,7 +287,9 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
    */
   public void dispose() {
     if (hgNodeItemProvider != null) hgNodeItemProvider.dispose();
+    if (hgDependencySourceItemProvider != null) hgDependencySourceItemProvider.dispose();
     if (hgRootNodeItemProvider != null) hgRootNodeItemProvider.dispose();
+    if (defaultHGDependencySourceItemProvider != null) defaultHGDependencySourceItemProvider.dispose();
     if (hgDependencyItemProvider != null) hgDependencyItemProvider.dispose();
   }
 

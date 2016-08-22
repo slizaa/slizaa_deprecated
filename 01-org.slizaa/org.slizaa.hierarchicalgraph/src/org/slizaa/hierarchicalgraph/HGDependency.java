@@ -15,10 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGDependency#getDependencySource <em>Dependency Source</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGDependency#getFrom <em>From</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGDependency#getTo <em>To</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGDependency#getDependencies <em>Dependencies</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.HGDependency#isCoreDependency <em>Core Dependency</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGDependency#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependency()
@@ -26,6 +27,32 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface HGDependency extends EObject {
+
+  /**
+   * Returns the value of the '<em><b>Dependency Source</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Dependency Source</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Dependency Source</em>' containment reference.
+   * @see #setDependencySource(HGDependencySource)
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependency_DependencySource()
+   * @model containment="true" required="true"
+   * @generated
+   */
+  HGDependencySource getDependencySource();
+
+  /**
+   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGDependency#getDependencySource <em>Dependency Source</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Dependency Source</em>' containment reference.
+   * @see #getDependencySource()
+   * @generated
+   */
+  void setDependencySource(HGDependencySource value);
 
   /**
    * Returns the value of the '<em><b>From</b></em>' reference.
@@ -96,30 +123,33 @@ public interface HGDependency extends EObject {
   List<HGDependency> getDependencies();
 
   /**
-   * Returns the value of the '<em><b>Core Dependency</b></em>' attribute.
+   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * The literals are from the enumeration {@link org.slizaa.hierarchicalgraph.DependencyType}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Core Dependency</em>' attribute isn't clear,
+   * If the meaning of the '<em>Type</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Core Dependency</em>' attribute.
-   * @see #setCoreDependency(boolean)
-   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependency_CoreDependency()
+   * @return the value of the '<em>Type</em>' attribute.
+   * @see org.slizaa.hierarchicalgraph.DependencyType
+   * @see #setType(DependencyType)
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependency_Type()
    * @model
    * @generated
    */
-  boolean isCoreDependency();
+  DependencyType getType();
 
   /**
-   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGDependency#isCoreDependency <em>Core Dependency</em>}' attribute.
+   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGDependency#getType <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Core Dependency</em>' attribute.
-   * @see #isCoreDependency()
+   * @param value the new value of the '<em>Type</em>' attribute.
+   * @see org.slizaa.hierarchicalgraph.DependencyType
+   * @see #getType()
    * @generated
    */
-  void setCoreDependency(boolean value);
+  void setType(DependencyType value);
 
   /**
    * <!-- begin-user-doc -->
@@ -136,4 +166,12 @@ public interface HGDependency extends EObject {
    * @generated
    */
   int getWeight();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  void resolveAggregatedCoreDependency();
 } // HGDependency

@@ -281,7 +281,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependency getOutgoingDependenciesTo(HGNode node) {
+  public HGDependency getOutgoingDependenciesTo(HGNode targetNode) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -292,7 +292,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public List<HGDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
+  public List<HGDependency> getOutgoingDependenciesTo(List<HGNode> targetNodes) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();

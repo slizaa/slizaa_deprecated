@@ -22,17 +22,17 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.slizaa.hierarchicalgraph.DependencyType;
-import org.slizaa.hierarchicalgraph.HGDependency;
+
+import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
- * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.HGDependency} object.
+ * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.HGDependencySource} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class HGDependencyItemProvider 
+public class HGDependencySourceItemProvider 
   extends ItemProviderAdapter
   implements
     IEditingDomainItemProvider,
@@ -47,7 +47,7 @@ public class HGDependencyItemProvider
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependencyItemProvider(AdapterFactory adapterFactory) {
+  public HGDependencySourceItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -62,117 +62,26 @@ public class HGDependencyItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addDependencySourcePropertyDescriptor(object);
-      addFromPropertyDescriptor(object);
-      addToPropertyDescriptor(object);
-      addDependenciesPropertyDescriptor(object);
-      addTypePropertyDescriptor(object);
+      addIdentifierPropertyDescriptor(object);
+      addDependencyPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Dependency Source feature.
+   * This adds a property descriptor for the Identifier feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addDependencySourcePropertyDescriptor(Object object) {
+  protected void addIdentifierPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGDependency_dependencySource_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGDependency_dependencySource_feature", "_UI_HGDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_DEPENDENCY__DEPENDENCY_SOURCE,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the From feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addFromPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_HGDependency_from_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGDependency_from_feature", "_UI_HGDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_DEPENDENCY__FROM,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the To feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addToPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_HGDependency_to_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGDependency_to_feature", "_UI_HGDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_DEPENDENCY__TO,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Dependencies feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addDependenciesPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_HGDependency_dependencies_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGDependency_dependencies_feature", "_UI_HGDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_DEPENDENCY__DEPENDENCIES,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Type feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addTypePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_HGDependency_type_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGDependency_type_feature", "_UI_HGDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_DEPENDENCY__TYPE,
+         getString("_UI_HGDependencySource_identifier_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGDependencySource_identifier_feature", "_UI_HGDependencySource_type"),
+         HierarchicalgraphPackage.Literals.HG_DEPENDENCY_SOURCE__IDENTIFIER,
          true,
          false,
          false,
@@ -182,14 +91,36 @@ public class HGDependencyItemProvider
   }
 
   /**
-   * This returns HGDependency.gif.
+   * This adds a property descriptor for the Dependency feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addDependencyPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_HGDependencySource_dependency_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGDependencySource_dependency_feature", "_UI_HGDependencySource_type"),
+         HierarchicalgraphPackage.Literals.HG_DEPENDENCY_SOURCE__DEPENDENCY,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
+  }
+
+  /**
+   * This returns HGDependencySource.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/HGDependency"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/HGDependencySource"));
   }
 
   /**
@@ -221,13 +152,13 @@ public class HGDependencyItemProvider
    */
   @Override
   public Object getStyledText(Object object) {
-    DependencyType labelValue = ((HGDependency)object).getType();
+    Object labelValue = ((HGDependencySource)object).getIdentifier();
     String label = labelValue == null ? null : labelValue.toString();
     	StyledString styledLabel = new StyledString();
     if (label == null || label.length() == 0) {
-      styledLabel.append(getString("_UI_HGDependency_type"), StyledString.Style.QUALIFIER_STYLER); 
+      styledLabel.append(getString("_UI_HGDependencySource_type"), StyledString.Style.QUALIFIER_STYLER); 
     } else {
-      styledLabel.append(getString("_UI_HGDependency_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+      styledLabel.append(getString("_UI_HGDependencySource_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
     }
     return styledLabel;
   }	
@@ -243,8 +174,8 @@ public class HGDependencyItemProvider
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(HGDependency.class)) {
-      case HierarchicalgraphPackage.HG_DEPENDENCY__TYPE:
+    switch (notification.getFeatureID(HGDependencySource.class)) {
+      case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__IDENTIFIER:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

@@ -77,12 +77,20 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
         return createHGNodeSourceAdapter();
       }
       @Override
+      public Adapter caseHGDependencySource(HGDependencySource object) {
+        return createHGDependencySourceAdapter();
+      }
+      @Override
       public Adapter caseHGRootNode(HGRootNode object) {
         return createHGRootNodeAdapter();
       }
       @Override
       public Adapter caseDefaultHGNodeSource(DefaultHGNodeSource object) {
         return createDefaultHGNodeSourceAdapter();
+      }
+      @Override
+      public Adapter caseDefaultHGDependencySource(DefaultHGDependencySource object) {
+        return createDefaultHGDependencySourceAdapter();
       }
       @Override
       public Adapter caseHGDependency(HGDependency object) {
@@ -153,6 +161,20 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.HGDependencySource <em>HG Dependency Source</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.hierarchicalgraph.HGDependencySource
+   * @generated
+   */
+  public Adapter createHGDependencySourceAdapter() {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.HGRootNode <em>HG Root Node</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -177,6 +199,20 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createDefaultHGNodeSourceAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.DefaultHGDependencySource <em>Default HG Dependency Source</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.hierarchicalgraph.DefaultHGDependencySource
+   * @generated
+   */
+  public Adapter createDefaultHGDependencySourceAdapter() {
     return null;
   }
 

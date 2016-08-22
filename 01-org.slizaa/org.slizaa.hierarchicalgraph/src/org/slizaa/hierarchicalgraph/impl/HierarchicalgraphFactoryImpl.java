@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.slizaa.hierarchicalgraph.*;
 import org.slizaa.hierarchicalgraph.DefaultHGNodeSource;
 import org.slizaa.hierarchicalgraph.HGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
@@ -64,8 +65,10 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
       case HierarchicalgraphPackage.HG_NODE: return createHGNode();
+      case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE: return createHGDependencySource();
       case HierarchicalgraphPackage.HG_ROOT_NODE: return createHGRootNode();
       case HierarchicalgraphPackage.DEFAULT_HG_NODE_SOURCE: return createDefaultHGNodeSource();
+      case HierarchicalgraphPackage.DEFAULT_HG_DEPENDENCY_SOURCE: return createDefaultHGDependencySource();
       case HierarchicalgraphPackage.HG_DEPENDENCY: return createHGDependency();
       case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP: return (EObject)createNodeToDependencyMap();
       case HierarchicalgraphPackage.STRING_TO_STRING_MAP: return (EObject)createStringToStringMap();
@@ -84,6 +87,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID()) {
+      case HierarchicalgraphPackage.DEPENDENCY_TYPE:
+        return createDependencyTypeFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
         return createIItemLabelProviderFromString(eDataType, initialValue);
       default:
@@ -99,6 +104,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID()) {
+      case HierarchicalgraphPackage.DEPENDENCY_TYPE:
+        return convertDependencyTypeToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
         return convertIItemLabelProviderToString(eDataType, instanceValue);
       default:
@@ -114,6 +121,16 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   public HGNode createHGNode() {
     ExtendedHGNodeImpl hgNode = new ExtendedHGNodeImpl();
     return hgNode;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public HGDependencySource createHGDependencySource() {
+    HGDependencySourceImpl hgDependencySource = new HGDependencySourceImpl();
+    return hgDependencySource;
   }
 
   /**
@@ -141,8 +158,18 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public DefaultHGDependencySource createDefaultHGDependencySource() {
+    DefaultHGDependencySourceImpl defaultHGDependencySource = new DefaultHGDependencySourceImpl();
+    return defaultHGDependencySource;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
   public HGDependency createHGDependency() {
-    HGDependencyImpl hgDependency = new HGDependencyImpl();
+    HGDependencyImpl hgDependency = new ExtendedHGDependencyImpl();
     return hgDependency;
   }
 
@@ -184,6 +211,26 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   public Map.Entry<HGNode, List<HGDependency>> createNodeToDependenciesMap() {
     NodeToDependenciesMapImpl nodeToDependenciesMap = new NodeToDependenciesMapImpl();
     return nodeToDependenciesMap;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DependencyType createDependencyTypeFromString(EDataType eDataType, String initialValue) {
+    DependencyType result = DependencyType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertDependencyTypeToString(EDataType eDataType, Object instanceValue) {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

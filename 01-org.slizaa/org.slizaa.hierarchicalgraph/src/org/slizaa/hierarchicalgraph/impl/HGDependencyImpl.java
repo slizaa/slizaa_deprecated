@@ -7,14 +7,16 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.slizaa.hierarchicalgraph.DependencyType;
 import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
@@ -24,15 +26,26 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGDependencyImpl#getDependencySource <em>Dependency Source</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGDependencyImpl#getFrom <em>From</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGDependencyImpl#getTo <em>To</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGDependencyImpl#getDependencies <em>Dependencies</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGDependencyImpl#isCoreDependency <em>Core Dependency</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGDependencyImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HGDependency {
+  /**
+   * The cached value of the '{@link #getDependencySource() <em>Dependency Source</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDependencySource()
+   * @generated
+   * @ordered
+   */
+  protected HGDependencySource dependencySource;
+
   /**
    * The cached value of the '{@link #getFrom() <em>From</em>}' reference.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -62,24 +75,24 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
   protected EList<HGDependency>  dependencies;
 
   /**
-   * The default value of the '{@link #isCoreDependency() <em>Core Dependency</em>}' attribute.
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isCoreDependency()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected static final boolean CORE_DEPENDENCY_EDEFAULT = false;
+  protected static final DependencyType TYPE_EDEFAULT = DependencyType.CORE_DEPENDENCY;
 
   /**
-   * The cached value of the '{@link #isCoreDependency() <em>Core Dependency</em>}' attribute.
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isCoreDependency()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected boolean              coreDependency           = CORE_DEPENDENCY_EDEFAULT;
+  protected DependencyType type = TYPE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -96,6 +109,49 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
   @Override
   protected EClass eStaticClass() {
     return HierarchicalgraphPackage.Literals.HG_DEPENDENCY;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public HGDependencySource getDependencySource() {
+    return dependencySource;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetDependencySource(HGDependencySource newDependencySource, NotificationChain msgs) {
+    HGDependencySource oldDependencySource = dependencySource;
+    dependencySource = newDependencySource;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE, oldDependencySource, newDependencySource);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDependencySource(HGDependencySource newDependencySource) {
+    if (newDependencySource != dependencySource) {
+      NotificationChain msgs = null;
+      if (dependencySource != null)
+        msgs = ((InternalEObject)dependencySource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE, null, msgs);
+      if (newDependencySource != null)
+        msgs = ((InternalEObject)newDependencySource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE, null, msgs);
+      msgs = basicSetDependencySource(newDependencySource, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE, newDependencySource, newDependencySource));
   }
 
   /**
@@ -180,67 +236,72 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isCoreDependency() {
-    return coreDependency;
+  public DependencyType getType() {
+    return type;
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  public void setCoreDependency(boolean newCoreDependency) {
-    boolean oldCoreDependency = coreDependency;
-    coreDependency = newCoreDependency;
+  public void setType(DependencyType newType) {
+    DependencyType oldType = type;
+    type = newType == null ? TYPE_EDEFAULT : newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_DEPENDENCY__CORE_DEPENDENCY, oldCoreDependency, coreDependency));
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_DEPENDENCY__TYPE, oldType, type));
   }
 
+  
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
    */
-  public EList<HGDependency> getCoreDependencies() {
-    EList<HGDependency> result = new BasicEList<HGDependency>();
-    getLeafDependencies(result);
-    return result;
+  public List<HGDependency> getCoreDependencies() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
    */
   public int getWeight() {
-    //
-    if (this.dependencies != null && !this.dependencies.isEmpty()) {
-      return this.coreDependency ? this.dependencies.size() + 1 : this.dependencies.size();
-    } else {
-      return this.coreDependency ? 1 : 0;
-    }
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**
-   * @generated NOT
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
    */
-  private void getLeafDependencies(Collection<HGDependency> leafDependencies) {
+  public void resolveAggregatedCoreDependency() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
 
-    //
-    if (this.coreDependency) {
-      leafDependencies.add(this);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE:
+        return basicSetDependencySource(null, msgs);
     }
-
-    //
-    else {
-      if (this.dependencies != null) {
-        for (HGDependency dependency : this.dependencies) {
-          ((HGDependencyImpl) dependency).getLeafDependencies(leafDependencies);
-        }
-      }
-    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -250,6 +311,8 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+      case HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE:
+        return getDependencySource();
       case HierarchicalgraphPackage.HG_DEPENDENCY__FROM:
         if (resolve) return getFrom();
         return basicGetFrom();
@@ -258,8 +321,8 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
         return basicGetTo();
       case HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCIES:
         return getDependencies();
-      case HierarchicalgraphPackage.HG_DEPENDENCY__CORE_DEPENDENCY:
-        return isCoreDependency();
+      case HierarchicalgraphPackage.HG_DEPENDENCY__TYPE:
+        return getType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -272,6 +335,9 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
+      case HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE:
+        setDependencySource((HGDependencySource)newValue);
+        return;
       case HierarchicalgraphPackage.HG_DEPENDENCY__FROM:
         setFrom((HGNode)newValue);
         return;
@@ -282,8 +348,8 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
         getDependencies().clear();
         getDependencies().addAll((Collection<? extends HGDependency>)newValue);
         return;
-      case HierarchicalgraphPackage.HG_DEPENDENCY__CORE_DEPENDENCY:
-        setCoreDependency((Boolean)newValue);
+      case HierarchicalgraphPackage.HG_DEPENDENCY__TYPE:
+        setType((DependencyType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -296,6 +362,9 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
+      case HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE:
+        setDependencySource((HGDependencySource)null);
+        return;
       case HierarchicalgraphPackage.HG_DEPENDENCY__FROM:
         setFrom((HGNode)null);
         return;
@@ -305,8 +374,8 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
       case HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCIES:
         getDependencies().clear();
         return;
-      case HierarchicalgraphPackage.HG_DEPENDENCY__CORE_DEPENDENCY:
-        setCoreDependency(CORE_DEPENDENCY_EDEFAULT);
+      case HierarchicalgraphPackage.HG_DEPENDENCY__TYPE:
+        setType(TYPE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -319,14 +388,16 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+      case HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE:
+        return dependencySource != null;
       case HierarchicalgraphPackage.HG_DEPENDENCY__FROM:
         return from != null;
       case HierarchicalgraphPackage.HG_DEPENDENCY__TO:
         return to != null;
       case HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCIES:
         return dependencies != null && !dependencies.isEmpty();
-      case HierarchicalgraphPackage.HG_DEPENDENCY__CORE_DEPENDENCY:
-        return coreDependency != CORE_DEPENDENCY_EDEFAULT;
+      case HierarchicalgraphPackage.HG_DEPENDENCY__TYPE:
+        return type != TYPE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -342,6 +413,9 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
         return getCoreDependencies();
       case HierarchicalgraphPackage.HG_DEPENDENCY___GET_WEIGHT:
         return getWeight();
+      case HierarchicalgraphPackage.HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCY:
+        resolveAggregatedCoreDependency();
+        return null;
     }
     return super.eInvoke(operationID, arguments);
   }
@@ -355,8 +429,8 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (coreDependency: ");
-    result.append(coreDependency);
+    result.append(" (type: ");
+    result.append(type);
     result.append(')');
     return result.toString();
   }

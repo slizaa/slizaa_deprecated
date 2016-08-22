@@ -175,7 +175,9 @@ public class DefaultHGNodeSourceImpl extends MinimalEObjectImpl.Container implem
    * @generated
    */
   public void onExpand() {
-    // do nothing
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**
@@ -183,7 +185,9 @@ public class DefaultHGNodeSourceImpl extends MinimalEObjectImpl.Container implem
    * @generated
    */
   public void onCollapse() {
-    // do nothing
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**

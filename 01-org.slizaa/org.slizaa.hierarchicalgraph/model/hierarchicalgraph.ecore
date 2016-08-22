@@ -3,7 +3,11 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hierarchicalgraph" nsURI="http://org/slizaa/hierarchicalgraph"
     nsPrefix="org.slizaa.hierarchicalgraph">
   <eClassifiers xsi:type="ecore:EClass" name="HGNode">
-    <eOperations name="getIdentifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eOperations name="getIdentifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Returns the unique identifier of this node."/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="getIncomingDependenciesFrom" eType="#//HGDependency">
       <eParameters name="node" eType="#//HGNode"/>
     </eOperations>
@@ -11,10 +15,16 @@
       <eParameters name="nodes" upperBound="-1" eType="#//HGNode"/>
     </eOperations>
     <eOperations name="getOutgoingDependenciesTo" eType="#//HGDependency">
-      <eParameters name="node" eType="#//HGNode"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Returns an aggregated dependency that wraps up all outgoing dependencies from this node to the specified target node.&#xD;&#xA;If there are no such dependencies, &lt;code>null&lt;/code> will be returned instead."/>
+      </eAnnotations>
+      <eParameters name="targetNode" lowerBound="1" eType="#//HGNode"/>
     </eOperations>
     <eOperations name="getOutgoingDependenciesTo" upperBound="-1" eType="#//HGDependency">
-      <eParameters name="nodes" upperBound="-1" eType="#//HGNode"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Returns a list of aggregated dependencies that wrap up the outgoing dependencies from this node to the specified target nodes.&#xD;&#xA;Note that no aggregated dependency will be added if there are no core dependencies from this node to a specified target node. That means that the result list eventually contains less elements &#xD;&#xA;than the specified list of target nodes."/>
+      </eAnnotations>
+      <eParameters name="targetNodes" upperBound="-1" eType="#//HGNode"/>
     </eOperations>
     <eOperations name="isPredecessorOf" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="node" lowerBound="1" eType="#//HGNode"/>
@@ -52,6 +62,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="autoExpand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HGDependencySource">
+    <eOperations name="onResolveAggregatedCoreDependency"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependency" lowerBound="1"
+        eType="#//HGDependency"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HGRootNode" eSuperTypes="#//HGNode">
     <eOperations name="invalidateCaches"/>
     <eOperations name="initializeCaches"/>
@@ -66,14 +82,21 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//StringToStringMap" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultHGDependencySource" eSuperTypes="#//HGDependencySource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//StringToStringMap" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HGDependency">
     <eOperations name="getCoreDependencies" upperBound="-1" eType="#//HGDependency"/>
     <eOperations name="getWeight" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eOperations name="resolveAggregatedCoreDependency"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencySource" lowerBound="1"
+        eType="#//HGDependencySource" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1" eType="#//HGNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//HGNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
         eType="#//HGDependency" transient="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coreDependency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//DependencyType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NodeToDependencyMap" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//HGNode"/>
@@ -94,4 +117,9 @@
         eType="#//HGDependency"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IItemLabelProvider" instanceClassName="org.eclipse.emf.edit.provider.IItemLabelProvider"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="DependencyType">
+    <eLiterals name="CORE_DEPENDENCY"/>
+    <eLiterals name="AGGREGATED_DEPENDENCY" value="1" literal="AGGREGATED_DEPENDENCY"/>
+    <eLiterals name="AGGREGATED_CORE_DEPENDENCY" value="2"/>
+  </eClassifiers>
 </ecore:EPackage>
