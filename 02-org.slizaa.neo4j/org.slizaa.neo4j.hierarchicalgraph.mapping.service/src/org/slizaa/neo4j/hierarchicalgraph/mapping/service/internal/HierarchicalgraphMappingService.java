@@ -109,7 +109,7 @@ public class HierarchicalgraphMappingService implements IHierarchicalGraphMappin
     System.out.println("Model created in " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
 
     // set label provider
-    creator.getRootNode().setItemLabelProvider(new ItemProviderImpl(mappingDescriptor));
+    creator.getRootNode().setItemLabelProvider(new ItemLabelProviderImpl(mappingDescriptor));
 
     //
     return creator.getRootNode();

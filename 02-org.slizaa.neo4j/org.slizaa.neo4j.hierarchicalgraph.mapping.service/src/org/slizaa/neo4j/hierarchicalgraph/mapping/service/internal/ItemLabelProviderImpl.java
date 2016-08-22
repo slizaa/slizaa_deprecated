@@ -23,7 +23,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescri
 import org.slizaa.neo4j.hierarchicalgraph.mapping.NodeLabelMapper;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.PropertyBasedImageMapper;
 
-public class ItemProviderImpl implements IItemLabelProvider, IItemStyledLabelProvider {
+public class ItemLabelProviderImpl implements IItemLabelProvider, IItemStyledLabelProvider {
 
   private OverlayImageRegistry               _imageRegistry;
 
@@ -31,12 +31,12 @@ public class ItemProviderImpl implements IItemLabelProvider, IItemStyledLabelPro
 
   /**
    * <p>
-   * Creates a new instance of type {@link ItemProviderImpl}.
+   * Creates a new instance of type {@link ItemLabelProviderImpl}.
    * </p>
    *
    * @param imageRegistry
    */
-  public ItemProviderImpl(HierarchicalGraphMappingDescriptor descriptor) {
+  public ItemLabelProviderImpl(HierarchicalGraphMappingDescriptor descriptor) {
     _imageRegistry = new OverlayImageRegistry();
     _descriptor = descriptor;
   }
@@ -53,7 +53,7 @@ public class ItemProviderImpl implements IItemLabelProvider, IItemStyledLabelPro
     if (nodeSource.getLabels().contains("Method")) {
       return new MethodSignatureParser().parse(labelDefinition.text);
     }
-    return labelDefinition.text;
+    return labelDefinition.text + " (" + nodeSource.getIdentifier() + ")";
   }
 
   @Override
