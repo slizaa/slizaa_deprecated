@@ -28,8 +28,8 @@ public class Neo4JBackedRootNodeSourceItemProvider extends Neo4JBackedNodeSource
 	 * @generated
 	 */
 	public Neo4JBackedRootNodeSourceItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+    super(adapterFactory);
+  }
 
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
@@ -49,54 +49,54 @@ public class Neo4JBackedRootNodeSourceItemProvider extends Neo4JBackedNodeSource
 	 * @generated
 	 */
 	protected void addRepositoryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Neo4JBackedRootNodeSource_repository_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Neo4JBackedRootNodeSource_repository_feature", "_UI_Neo4JBackedRootNodeSource_type"),
-				 Neo4jHierarchicalgraphPackage.Literals.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Neo4JBackedRootNodeSource_repository_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4JBackedRootNodeSource_repository_feature", "_UI_Neo4JBackedRootNodeSource_type"),
+         Neo4jHierarchicalgraphPackage.Literals.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public String getText(Object object) {
-		Object labelValue = ((Neo4JBackedRootNodeSource)object).getIdentifier();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Neo4JBackedRootNodeSource_type") :
-			getString("_UI_Neo4JBackedRootNodeSource_type") + " " + label;
-	}
+    Object labelValue = ((Neo4JBackedRootNodeSource)object).getIdentifier();
+    String label = labelValue == null ? null : labelValue.toString();
+    return label == null || label.length() == 0 ?
+      getString("_UI_Neo4JBackedRootNodeSource_type") :
+      getString("_UI_Neo4JBackedRootNodeSource_type") + " " + label;
+  }
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+    updateChildren(notification);
 
-		switch (notification.getFeatureID(Neo4JBackedRootNodeSource.class)) {
-			case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
-		super.notifyChanged(notification);
-	}
+    switch (notification.getFeatureID(Neo4JBackedRootNodeSource.class)) {
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
+    }
+    super.notifyChanged(notification);
+  }
 
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
@@ -107,7 +107,7 @@ public class Neo4JBackedRootNodeSourceItemProvider extends Neo4JBackedNodeSource
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
+    super.collectNewChildDescriptors(newChildDescriptors, object);
+  }
 
 }

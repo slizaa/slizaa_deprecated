@@ -12,27 +12,17 @@ public class Descriptors2 {
   /** HIERARCHY_QUERY */
   public static final String HIERARCHY_ROOT_MODULES_QUERY          = "MATCH (module:Java:Artifact) WHERE (module:Directory OR module:Jar:Archive) RETURN id(module)";
 
-  // public static final String HIERARCHY_TOP_LEVEL_DIRECTORIES = "MATCH
-  // (module:Java:Artifact)-[:CONTAINS]->(d:Directory) WHERE (module:Directory OR module:Jar:Archive) AND NOT
-  // (:Directory)-[:CONTAINS]->(d) RETURN id(module), id(d)";
-  //
-  // public static final String HIERARCHY_DIRECTORIES = "MATCH (d1:Directory)-[:CONTAINS]->(d2:Directory) RETURN id(d1),
-  // id(d2)";
-  
-  
-  // SNIPPET:
-  // MATCH (m)-[r:CONTAINS]->(p:Package) WHERE id(m)=145766 AND p.fqn =~ '.*\\.impl' RETURN id(m), id(p), type(r)
-  
-  public static String FLAT_DIRECTORIES = "MATCH (module:Java:Artifact)-[:CONTAINS]->(d:Directory)-[:CONTAINS]->(f:File) WHERE (module:Directory OR module:Jar:Archive)  AND NOT (f:Directory) RETURN DISTINCT id(module), id(d)";
+  public static final String FLAT_DIRECTORIES                      = "MATCH (module:Java:Artifact)-[:CONTAINS]->(d:Directory)-[:CONTAINS]->(f:File) WHERE (module:Directory OR module:Jar:Archive)  AND NOT (f:Directory) RETURN DISTINCT id(module), id(d)";
 
   public static final String HIERARCHY_FILES                       = "MATCH (d:Directory)-[:CONTAINS]->(f:File) WHERE NOT (f:Type) AND NOT (f:Directory) RETURN id(d), id(f)";
-
-  // HIER HAT JQASSISTANT einen BUG (glaube ich)
-  public static final String HIERARCHY_INNER_CLASSES               = "MATCH (t1:Type)-[:DECLARES]->(t2:Type) RETURN id(t1), id(t2)";
 
   public static final String HIERARCHY_TOPLEVEL_CLASSES            = "MATCH (d:Directory)-[:CONTAINS]->(t:Type) RETURN id(d), id(t)";
 
   public static final String HIERARCHY_METHODS_AND_FIELDS          = "MATCH (t:Type)-[:DECLARES]->(e) WHERE ((e:Method) OR (e:Field)) AND NOT e.visibility IS NULL RETURN id(t), id(e)";
+
+  public static final String QUERY_SIMPLE_DEPENDENCIES             = "MATCH (t1:File:Type:Java)-[r:DEPENDS_ON]->(t2:File:Type:Java) RETURN id(t1),id(t2),id(r),type(r)";
+
+  // ************************************** //
 
   public static final String QUERY_DEPENDENCIES_EXTENDS_IMPLEMENTS = "MATCH (t)-[rel:EXTENDS|:IMPLEMENTS]->(t2), (:Artifact)-[:CONTAINS]->(t2) RETURN id(t), id(t2), id(rel), type(rel)";
 
@@ -48,8 +38,30 @@ public class Descriptors2 {
 
   public static final String QUERY_DEPENDENCIES_HAS_PARAM_OF_TYPE  = "MATCH (m:Method)-[rel:HAS]->(p:Parameter)-[rel2:OF_TYPE]->(t:Type)<-[:CONTAINS]-(:Artifact) RETURN id(m), id(t), id(rel), 'HAS_PARAM_OF_TYPE'";
 
-  public static final String QUERY_SIMPLE_DEPENDENCIES             = "MATCH (t1:File:Type:Java)-[:DEPENDS_ON]->(t2:File:Type:Java) RETURN id(t1),id(t2), 'DEPENDS_ON'";
-
+//  MATCH (n1)-[rel]->(n2) 
+//  WHERE id(n1) in [98364, 98847, 98851, 98850, 98854, 98846, 98848,98853, 98855,98852,98849,98895, 98844, 98365,98868,98870,98887,98865] 
+//  AND (
+//   (n1:Type)-[rel:EXTENDS|:IMPLEMENTS]->(n2:Type) OR
+//   (n1:Method)-[rel:INVOKES]->(n2:Method) OR
+//   (n1:Method)-[rel:READS|:WRITES]->(n2:Field) OR 
+//   (n1:Field)-[rel:OF_TYPE]->(n2:Type) OR
+//   (n1:Method)-[rel:THROWS]->(n2:Type) OR
+//   (n1:Method)-[rel:RETURNS]->(n2:Type) OR
+//   (n1:Method)-[rel:RETURNS]->(n2:Type)
+//  ) 
+//  RETURN id(n1), id(n2), id(rel), type(rel)  
+//
+//
+//  MATCH (n1:Method)-[rel:HAS]->(p:Parameter)-[rel2:OF_TYPE]->(n2:Type) 
+//  WHERE id(n1) in [98364, 98847, 98851, 98850, 98854, 98846, 98848,98853, 98855,98852,98849,98895, 98844, 98365,98868,98870,98887,98865] 
+//  RETURN id(n1), id(n2), id(rel), "HAS_PARAMETER_OF_TYPE" 
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
   public static HierarchicalGraphMappingDescriptor createHierarchicalGraphMappingDescriptor() {
 
     //
@@ -58,10 +70,8 @@ public class Descriptors2 {
 
     // hierachy
     graphProviderDescriptor.getRootMappings().add(cypherQuery(HIERARCHY_ROOT_MODULES_QUERY));
-    // graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOP_LEVEL_DIRECTORIES);
-    // graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_DIRECTORIES);
-    graphProviderDescriptor.getHierarchyMappings().add(FLAT_DIRECTORIES);
     graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_FILES);
+    graphProviderDescriptor.getHierarchyMappings().add(FLAT_DIRECTORIES);
     graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOPLEVEL_CLASSES);
     graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_METHODS_AND_FIELDS);
 

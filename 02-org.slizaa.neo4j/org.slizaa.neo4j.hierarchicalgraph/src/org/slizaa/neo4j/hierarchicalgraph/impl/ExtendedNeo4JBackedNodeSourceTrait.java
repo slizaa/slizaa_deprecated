@@ -160,7 +160,10 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
           Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE__PROPERTIES);
     }
 
-    //
+    // clear the properties first
+    _nodeSource.properties.clear();
+
+    // re-populate
     jsonObject.entrySet().forEach((e) -> {
       _nodeSource.properties.put(e.getKey(), e.getValue().getAsString());
     });

@@ -17,256 +17,257 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.PropertyBasedImageMapper;
 
 public class Descriptors {
 
-	/** HIERARCHY_QUERY */
-	public static final String HIERARCHY_ROOT_MODULES_QUERY = "MATCH (module:Java:Artifact) WHERE (module:Directory OR module:Jar:Archive) RETURN id(module)";
+  /** HIERARCHY_QUERY */
+  public static final String HIERARCHY_ROOT_MODULES_QUERY          = "MATCH (module:Java:Artifact) WHERE (module:Directory OR module:Jar:Archive) RETURN id(module)";
 
-	public static final String HIERARCHY_TOP_LEVEL_DIRECTORIES = "MATCH (module:Java:Artifact)-[:CONTAINS]->(d:Directory) WHERE (module:Directory OR module:Jar:Archive) AND NOT (:Directory)-[:CONTAINS]->(d) RETURN id(module), id(d)";
+  public static final String HIERARCHY_TOP_LEVEL_DIRECTORIES       = "MATCH (module:Java:Artifact)-[:CONTAINS]->(d:Directory) WHERE (module:Directory OR module:Jar:Archive) AND NOT (:Directory)-[:CONTAINS]->(d) RETURN id(module), id(d)";
 
-	public static final String HIERARCHY_DIRECTORIES = "MATCH (d1:Directory)-[:CONTAINS]->(d2:Directory) RETURN id(d1), id(d2)";
+  public static final String HIERARCHY_DIRECTORIES                 = "MATCH (d1:Directory)-[:CONTAINS]->(d2:Directory) RETURN id(d1), id(d2)";
 
-	public static final String HIERARCHY_TOPLEVEL_FILES = "MATCH (d:Directory)-[:CONTAINS]->(f:File) WHERE NOT (f:Type) RETURN id(d), id(f)";
+  public static final String HIERARCHY_TOPLEVEL_FILES              = "MATCH (d:Directory)-[:CONTAINS]->(f:File) WHERE NOT (f:Type) RETURN id(d), id(f)";
 
-	// HIER HAT JQASSISTANT einen BUG (glaube ich)
-	public static final String HIERARCHY_INNER_CLASSES = "MATCH (t1:Type)-[:DECLARES]->(t2:Type) RETURN id(t1), id(t2)";
+  // HIER HAT JQASSISTANT einen BUG (glaube ich)
+  public static final String HIERARCHY_INNER_CLASSES               = "MATCH (t1:Type)-[:DECLARES]->(t2:Type) RETURN id(t1), id(t2)";
 
-	public static final String HIERARCHY_TOPLEVEL_CLASSES = "MATCH (d:Directory)-[:CONTAINS]->(t:Type) RETURN id(d), id(t)";
+  public static final String HIERARCHY_TOPLEVEL_CLASSES            = "MATCH (d:Directory)-[:CONTAINS]->(t:Type) RETURN id(d), id(t)";
 
-	public static final String HIERARCHY_METHODS_AND_FIELDS = "MATCH (t:Type)-[:DECLARES]->(e) WHERE ((e:Method) OR (e:Field)) AND NOT e.visibility IS NULL RETURN id(t), id(e)";
+  public static final String HIERARCHY_METHODS_AND_FIELDS          = "MATCH (t:Type)-[:DECLARES]->(e) WHERE ((e:Method) OR (e:Field)) AND NOT e.visibility IS NULL RETURN id(t), id(e)";
 
-	public static final String QUERY_DEPENDENCIES_EXTENDS_IMPLEMENTS = "MATCH (t)-[rel:EXTENDS|:IMPLEMENTS]->(t2), (:Artifact)-[:CONTAINS]->(t2) RETURN id(t), id(t2), id(rel), type(rel)";
+  public static final String QUERY_DEPENDENCIES_EXTENDS_IMPLEMENTS = "MATCH (t)-[rel:EXTENDS|:IMPLEMENTS]->(t2), (:Artifact)-[:CONTAINS]->(t2) RETURN id(t), id(t2), id(rel), type(rel)";
 
-	public static final String QUERY_DEPENDENCIES_INVOKE = "MATCH (m:Method)-[rel:INVOKES]->(m2:Method) WHERE (:Artifact)-[:CONTAINS]->(:Type)-[:DECLARES]->(m2) AND (:Artifact)-[:CONTAINS]->(:Type)-[:DECLARES]->(m)  RETURN id(m), id(m2), id(rel), 'INVOKES'";
+  public static final String QUERY_DEPENDENCIES_INVOKE             = "MATCH (m:Method)-[rel:INVOKES]->(m2:Method) WHERE (:Artifact)-[:CONTAINS]->(:Type)-[:DECLARES]->(m2) AND (:Artifact)-[:CONTAINS]->(:Type)-[:DECLARES]->(m)  RETURN id(m), id(m2), id(rel), 'INVOKES'";
 
-	public static final String QUERY_DEPENDENCIES_READS_WRITES = "MATCH (m:Method)-[rel:READS|:WRITES]->(f:Field) WHERE (:Artifact)-[:CONTAINS]->(:Type)-[:DECLARES]->(f) RETURN id(m), id(f), id(rel), type(rel)";
+  public static final String QUERY_DEPENDENCIES_READS_WRITES       = "MATCH (m:Method)-[rel:READS|:WRITES]->(f:Field) WHERE (:Artifact)-[:CONTAINS]->(:Type)-[:DECLARES]->(f) RETURN id(m), id(f), id(rel), type(rel)";
 
-	public static final String QUERY_DEPENDENCIES_FIELD_OF_TYPE = "MATCH  (f:Field)-[rel:OF_TYPE]->(t:Type)<-[:CONTAINS]-(:Artifact) RETURN id(f), id(t), id(rel), 'FIELD_OF_TYPE'";
+  public static final String QUERY_DEPENDENCIES_FIELD_OF_TYPE      = "MATCH  (f:Field)-[rel:OF_TYPE]->(t:Type)<-[:CONTAINS]-(:Artifact) RETURN id(f), id(t), id(rel), 'FIELD_OF_TYPE'";
 
-	public static final String QUERY_DEPENDENCIES_THROWS = "MATCH (m:Method)-[rel:THROWS]->(t:Type)<-[:CONTAINS]-(:Artifact) RETURN id(m), id(t), id(rel), 'THROWS'";
+  public static final String QUERY_DEPENDENCIES_THROWS             = "MATCH (m:Method)-[rel:THROWS]->(t:Type)<-[:CONTAINS]-(:Artifact) RETURN id(m), id(t), id(rel), 'THROWS'";
 
-	public static final String QUERY_DEPENDENCIES_RETURNS = "MATCH (m:Method)-[rel:RETURNS]->(t:Type)<-[:CONTAINS]-(:Artifact) RETURN id(m), id(t), id(rel), 'RETURNS'";
+  public static final String QUERY_DEPENDENCIES_RETURNS            = "MATCH (m:Method)-[rel:RETURNS]->(t:Type)<-[:CONTAINS]-(:Artifact) RETURN id(m), id(t), id(rel), 'RETURNS'";
 
-	public static final String QUERY_DEPENDENCIES_HAS_PARAM_OF_TYPE = "MATCH (m:Method)-[rel:HAS]->(p:Parameter)-[rel2:OF_TYPE]->(t:Type)<-[:CONTAINS]-(:Artifact) RETURN id(m), id(t), id(rel), 'HAS_PARAM_OF_TYPE'";
+  public static final String QUERY_DEPENDENCIES_HAS_PARAM_OF_TYPE  = "MATCH (m:Method)-[rel:HAS]->(p:Parameter)-[rel2:OF_TYPE]->(t:Type)<-[:CONTAINS]-(:Artifact) RETURN id(m), id(t), id(rel), 'HAS_PARAM_OF_TYPE'";
 
-	public static final String QUERY_SIMPLE_DEPENDENCIES = "MATCH (t1:File:Type:Java)-[:DEPENDS_ON]->(t2:File:Type:Java) RETURN id(t1),id(t2), 'DEPENDS_ON'";
+  public static final String QUERY_SIMPLE_DEPENDENCIES             = "MATCH (t1:File:Type:Java)-[r:DEPENDS_ON]->(t2:File:Type:Java) RETURN id(t1),id(t2),id(r),type(r)";
 
-	// MISSING TYPES:
-	// match (t:Type) WHERE (NOT ()-[:CONTAINS]->(t)) AND (NOT (t)-[:RESOLVES_TO]->()) AND (NOT (t.fqn IN ['void','int','boolean','long','char','double','byte'])) return distinct t.fqn, id(t) order by t.fqn
-	
-	public static HierarchicalGraphMappingDescriptor createHierarchicalGraphMappingDescriptor() {
+  // MISSING TYPES:
+  // match (t:Type) WHERE (NOT ()-[:CONTAINS]->(t)) AND (NOT (t)-[:RESOLVES_TO]->()) AND (NOT (t.fqn IN
+  // ['void','int','boolean','long','char','double','byte'])) return distinct t.fqn, id(t) order by t.fqn
 
-		//
-		HierarchicalGraphMappingDescriptor graphProviderDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE
-				.createHierarchicalGraphMappingDescriptor();
+  public static HierarchicalGraphMappingDescriptor createHierarchicalGraphMappingDescriptor() {
 
-		// hierachy
-		graphProviderDescriptor.getRootMappings().add(cypherQuery(HIERARCHY_ROOT_MODULES_QUERY));
-		graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOP_LEVEL_DIRECTORIES);
-		graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_DIRECTORIES);
-		graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOPLEVEL_FILES);
-		graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOPLEVEL_CLASSES);
-		graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_METHODS_AND_FIELDS);
+    //
+    HierarchicalGraphMappingDescriptor graphProviderDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE
+        .createHierarchicalGraphMappingDescriptor();
 
-		graphProviderDescriptor.getDependencyMappers().add(QUERY_SIMPLE_DEPENDENCIES);
-		// graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_EXTENDS_IMPLEMENTS);
-		// graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_INVOKE);
-		// graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_READS_WRITES);
-		// graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_FIELD_OF_TYPE);
-		// graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_THROWS);
-		// graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_RETURNS);
-		// graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_HAS_PARAM_OF_TYPE);
+    // hierachy
+    graphProviderDescriptor.getRootMappings().add(cypherQuery(HIERARCHY_ROOT_MODULES_QUERY));
+    graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOP_LEVEL_DIRECTORIES);
+    graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_DIRECTORIES);
+    graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOPLEVEL_FILES);
+    graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOPLEVEL_CLASSES);
+    graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_METHODS_AND_FIELDS);
 
-		// label
-		NodeLabelMapper labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
-		graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
-		labelDescriptor.getRequiredNeo4jLabel().add("Artifact");
-		labelDescriptor.setTextPropertyName("fileName");
-		labelDescriptor.setDefaultImage("icons/jdt/obj16/jar_obj.png");
+    graphProviderDescriptor.getDependencyMappers().add(QUERY_SIMPLE_DEPENDENCIES);
+    // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_EXTENDS_IMPLEMENTS);
+    // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_INVOKE);
+    // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_READS_WRITES);
+    // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_FIELD_OF_TYPE);
+    // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_THROWS);
+    // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_RETURNS);
+    // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_HAS_PARAM_OF_TYPE);
 
-		//
-		labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
-		graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
-		labelDescriptor.getRequiredNeo4jLabel().add("Package");
-		labelDescriptor.setTextPropertyName("name");
-		labelDescriptor.setDefaultImage("icons/jdt/obj16/package_obj.png");
+    // label
+    NodeLabelMapper labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
+    graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
+    labelDescriptor.getRequiredNeo4jLabel().add("Artifact");
+    labelDescriptor.setTextPropertyName("fileName");
+    labelDescriptor.setDefaultImage("icons/jdt/obj16/jar_obj.png");
 
-		//
-		labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
-		graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
-		labelDescriptor.getRequiredNeo4jLabel().add("Method");
-		labelDescriptor.setTextPropertyName("signature");
-		// text = methodSignatureParser.parse(properties.get("signature"));
-		labelDescriptor.setDefaultImage("icons/jdt/obj16/methdef_obj.png");
+    //
+    labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
+    graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
+    labelDescriptor.getRequiredNeo4jLabel().add("Package");
+    labelDescriptor.setTextPropertyName("name");
+    labelDescriptor.setDefaultImage("icons/jdt/obj16/package_obj.png");
 
-		addPropertyBasedImageMapper(labelDescriptor, "visibility", "public", ImagePosition.BASE,
-				"icons/jdt/obj16/methpub_obj.png");
-		addPropertyBasedImageMapper(labelDescriptor, "visibility", "private", ImagePosition.BASE,
-				"icons/jdt/obj16/methpri_obj.png");
-		addPropertyBasedImageMapper(labelDescriptor, "visibility", "protected", ImagePosition.BASE,
-				"icons/jdt/obj16/methpri_obj.png");
-		addPropertyBasedImageMapper(labelDescriptor, "visibility", "default", ImagePosition.BASE,
-				"icons/jdt/obj16/methdef_obj.png");
+    //
+    labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
+    graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
+    labelDescriptor.getRequiredNeo4jLabel().add("Method");
+    labelDescriptor.setTextPropertyName("signature");
+    // text = methodSignatureParser.parse(properties.get("signature"));
+    labelDescriptor.setDefaultImage("icons/jdt/obj16/methdef_obj.png");
 
-		// imageProvider =
-		// HierarchicalgraphMappingFactory.eINSTANCE.createPropertyBasedImageProvider();
-		// imageProvider.setPropertyKey("final");
-		// imageProvider.getImageMap().put("true",
-		// "icons/jdt/ovr16/final_co.png");
-		// labelDescriptor.getBottomRightOverlayImages().add(imageProvider);
-		// graphProviderDescriptor.getLabelDescriptors().add(labelDescriptor);
+    addPropertyBasedImageMapper(labelDescriptor, "visibility", "public", ImagePosition.BASE,
+        "icons/jdt/obj16/methpub_obj.png");
+    addPropertyBasedImageMapper(labelDescriptor, "visibility", "private", ImagePosition.BASE,
+        "icons/jdt/obj16/methpri_obj.png");
+    addPropertyBasedImageMapper(labelDescriptor, "visibility", "protected", ImagePosition.BASE,
+        "icons/jdt/obj16/methpri_obj.png");
+    addPropertyBasedImageMapper(labelDescriptor, "visibility", "default", ImagePosition.BASE,
+        "icons/jdt/obj16/methdef_obj.png");
 
-		labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
-		graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
-		labelDescriptor.getRequiredNeo4jLabel().add("Field");
-		labelDescriptor.setTextPropertyName("name");
-		labelDescriptor.setDefaultImage("icons/jdt/obj16/field_default_obj.png");
+    // imageProvider =
+    // HierarchicalgraphMappingFactory.eINSTANCE.createPropertyBasedImageProvider();
+    // imageProvider.setPropertyKey("final");
+    // imageProvider.getImageMap().put("true",
+    // "icons/jdt/ovr16/final_co.png");
+    // labelDescriptor.getBottomRightOverlayImages().add(imageProvider);
+    // graphProviderDescriptor.getLabelDescriptors().add(labelDescriptor);
 
-		addPropertyBasedImageMapper(labelDescriptor, "visibility", "public", ImagePosition.BASE,
-				"icons/jdt/obj16/field_public_obj.png");
-		addPropertyBasedImageMapper(labelDescriptor, "visibility", "private", ImagePosition.BASE,
-				"icons/jdt/obj16/field_private_obj.png");
-		addPropertyBasedImageMapper(labelDescriptor, "visibility", "protected", ImagePosition.BASE,
-				"icons/jdt/obj16/field_protected_obj.png");
-		addPropertyBasedImageMapper(labelDescriptor, "visibility", "default", ImagePosition.BASE,
-				"icons/jdt/obj16/field_default_obj.png");
+    labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
+    graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
+    labelDescriptor.getRequiredNeo4jLabel().add("Field");
+    labelDescriptor.setTextPropertyName("name");
+    labelDescriptor.setDefaultImage("icons/jdt/obj16/field_default_obj.png");
 
-		labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
-		graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
-		labelDescriptor.getRequiredNeo4jLabel().add("Class");
-		labelDescriptor.setTextPropertyName("name");
-		labelDescriptor.setDefaultImage("icons/jdt/obj16/class_obj.png");
+    addPropertyBasedImageMapper(labelDescriptor, "visibility", "public", ImagePosition.BASE,
+        "icons/jdt/obj16/field_public_obj.png");
+    addPropertyBasedImageMapper(labelDescriptor, "visibility", "private", ImagePosition.BASE,
+        "icons/jdt/obj16/field_private_obj.png");
+    addPropertyBasedImageMapper(labelDescriptor, "visibility", "protected", ImagePosition.BASE,
+        "icons/jdt/obj16/field_protected_obj.png");
+    addPropertyBasedImageMapper(labelDescriptor, "visibility", "default", ImagePosition.BASE,
+        "icons/jdt/obj16/field_default_obj.png");
 
-		labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
-		graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
-		labelDescriptor.getRequiredNeo4jLabel().add("Annotation");
-		labelDescriptor.setTextPropertyName("name");
-		labelDescriptor.setDefaultImage("icons/jdt/obj16/annotation_obj.png");
+    labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
+    graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
+    labelDescriptor.getRequiredNeo4jLabel().add("Class");
+    labelDescriptor.setTextPropertyName("name");
+    labelDescriptor.setDefaultImage("icons/jdt/obj16/class_obj.png");
 
-		labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
-		graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
-		labelDescriptor.getRequiredNeo4jLabel().add("Enum");
-		labelDescriptor.setTextPropertyName("name");
-		labelDescriptor.setDefaultImage("icons/jdt/obj16/enum_obj.png");
+    labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
+    graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
+    labelDescriptor.getRequiredNeo4jLabel().add("Annotation");
+    labelDescriptor.setTextPropertyName("name");
+    labelDescriptor.setDefaultImage("icons/jdt/obj16/annotation_obj.png");
 
-		labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
-		graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
-		labelDescriptor.getRequiredNeo4jLabel().add("Interface");
-		labelDescriptor.setTextPropertyName("name");
-		labelDescriptor.setDefaultImage("icons/jdt/obj16/int_obj.png");
+    labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
+    graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
+    labelDescriptor.getRequiredNeo4jLabel().add("Enum");
+    labelDescriptor.setTextPropertyName("name");
+    labelDescriptor.setDefaultImage("icons/jdt/obj16/enum_obj.png");
 
-		labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
-		graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
-		labelDescriptor.getRequiredNeo4jLabel().add("Directory");
-		labelDescriptor.setTextPropertyName("fileName");
-		labelDescriptor.setDefaultImage("icons/core/obj16/fldr_obj.png");
+    labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
+    graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
+    labelDescriptor.getRequiredNeo4jLabel().add("Interface");
+    labelDescriptor.setTextPropertyName("name");
+    labelDescriptor.setDefaultImage("icons/jdt/obj16/int_obj.png");
 
-		labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
-		graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
-		labelDescriptor.getRequiredNeo4jLabel().add("File");
-		labelDescriptor.setTextPropertyName("fileName");
-		labelDescriptor.setDefaultImage("icons/core/obj16/file_obj.png");
+    labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
+    graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
+    labelDescriptor.getRequiredNeo4jLabel().add("Directory");
+    labelDescriptor.setTextPropertyName("fileName");
+    labelDescriptor.setDefaultImage("icons/core/obj16/fldr_obj.png");
 
-		// //
-		// // parallelExecuter.handle((j) ->
-		// createHierarchy(j.getAsJsonArray("data"), creator));
-		// Future<JsonObject> queryHierarchy =
-		// repository.executeCypherQuery(HIERARCHY_ROOT_MODULES_QUERY);
-		// createRootElements(queryHierarchy.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created RootElements " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		//
-		// queryHierarchy =
-		// repository.executeCypherQuery(HIERARCHY_TOP_LEVEL_DIRECTORIES);
-		// createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created Toplevel directories " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		//
-		// queryHierarchy =
-		// repository.executeCypherQuery(HIERARCHY_DIRECTORIES);
-		// createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created directories " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		//
-		// queryHierarchy =
-		// repository.executeCypherQuery(HIERARCHY_TOPLEVEL_FILES);
-		// createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created toplevel files " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		//
-		// // queryHierarchy =
-		// repository.executeCypherQuery(HIERARCHY_INNER_CLASSES);
-		// // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-		// creator);
-		// // System.out.println("Created directories " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		//
-		// queryHierarchy =
-		// repository.executeCypherQuery(HIERARCHY_TOPLEVEL_CLASSES);
-		// createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created toplevel classes " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		//
-		// queryHierarchy =
-		// repository.executeCypherQuery(HIERARCHY_METHODS_AND_FIELDS);
-		// createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created method and fields " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    labelDescriptor = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createNodeLabelMapper();
+    graphProviderDescriptor.getLabelMappers().add(labelDescriptor);
+    labelDescriptor.getRequiredNeo4jLabel().add("File");
+    labelDescriptor.setTextPropertyName("fileName");
+    labelDescriptor.setDefaultImage("icons/core/obj16/file_obj.png");
 
-		// createDependencies(dependenciesInvoke.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created Invoke " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		// createDependencies(dependenciesExtendsImplements.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created Extends/Implements " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		// createDependencies(dependencyReadsWrites.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created Reads/Writes " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		// createDependencies(dependenciesFieldOfType.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created Field of Type " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		// createDependencies(dependenciesThrows.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created Throws " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		// createDependencies(dependenciesReturns.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created Returns " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
-		// createDependencies(dependenciesHasParamOfType.get().getAsJsonArray("data"),
-		// creator);
-		// System.out.println("Created Has Param Of Type " +
-		// stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    // //
+    // // parallelExecuter.handle((j) ->
+    // createHierarchy(j.getAsJsonArray("data"), creator));
+    // Future<JsonObject> queryHierarchy =
+    // repository.executeCypherQuery(HIERARCHY_ROOT_MODULES_QUERY);
+    // createRootElements(queryHierarchy.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created RootElements " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    //
+    // queryHierarchy =
+    // repository.executeCypherQuery(HIERARCHY_TOP_LEVEL_DIRECTORIES);
+    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created Toplevel directories " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    //
+    // queryHierarchy =
+    // repository.executeCypherQuery(HIERARCHY_DIRECTORIES);
+    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created directories " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    //
+    // queryHierarchy =
+    // repository.executeCypherQuery(HIERARCHY_TOPLEVEL_FILES);
+    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created toplevel files " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    //
+    // // queryHierarchy =
+    // repository.executeCypherQuery(HIERARCHY_INNER_CLASSES);
+    // // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
+    // creator);
+    // // System.out.println("Created directories " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    //
+    // queryHierarchy =
+    // repository.executeCypherQuery(HIERARCHY_TOPLEVEL_CLASSES);
+    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created toplevel classes " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    //
+    // queryHierarchy =
+    // repository.executeCypherQuery(HIERARCHY_METHODS_AND_FIELDS);
+    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created method and fields " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
 
-		return graphProviderDescriptor;
-	}
+    // createDependencies(dependenciesInvoke.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created Invoke " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    // createDependencies(dependenciesExtendsImplements.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created Extends/Implements " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    // createDependencies(dependencyReadsWrites.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created Reads/Writes " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    // createDependencies(dependenciesFieldOfType.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created Field of Type " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    // createDependencies(dependenciesThrows.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created Throws " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    // createDependencies(dependenciesReturns.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created Returns " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    // createDependencies(dependenciesHasParamOfType.get().getAsJsonArray("data"),
+    // creator);
+    // System.out.println("Created Has Param Of Type " +
+    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
 
-	public static PropertyBasedImageMapper addPropertyBasedImageMapper(NodeLabelMapper labelDescriptor,
-			String propertyName, String propertyValue, ImagePosition imagePosition, String image) {
+    return graphProviderDescriptor;
+  }
 
-		PropertyBasedImageMapper imageProvider = Neo4jHierarchicalGraphMappingFactory.eINSTANCE
-				.createPropertyBasedImageMapper();
-		imageProvider.setPropertyName("visibility");
-		imageProvider.setPropertyValue("public");
-		imageProvider.setPosition(ImagePosition.BASE);
-		imageProvider.setImage("icons/jdt/obj16/methpub_obj.png");
-		labelDescriptor.getPropertyBasedImages().add(imageProvider);
-		return imageProvider;
-	}
+  public static PropertyBasedImageMapper addPropertyBasedImageMapper(NodeLabelMapper labelDescriptor,
+      String propertyName, String propertyValue, ImagePosition imagePosition, String image) {
 
-	private static CypherQuery cypherQuery(String query) {
-		CypherQuery cypherQuery = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createCypherQuery();
-		cypherQuery.setCypherQuery(query);
-		return cypherQuery;
-	}
+    PropertyBasedImageMapper imageProvider = Neo4jHierarchicalGraphMappingFactory.eINSTANCE
+        .createPropertyBasedImageMapper();
+    imageProvider.setPropertyName("visibility");
+    imageProvider.setPropertyValue("public");
+    imageProvider.setPosition(ImagePosition.BASE);
+    imageProvider.setImage("icons/jdt/obj16/methpub_obj.png");
+    labelDescriptor.getPropertyBasedImages().add(imageProvider);
+    return imageProvider;
+  }
+
+  private static CypherQuery cypherQuery(String query) {
+    CypherQuery cypherQuery = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createCypherQuery();
+    cypherQuery.setCypherQuery(query);
+    return cypherQuery;
+  }
 
   // public static void main(String[] args) {
   //

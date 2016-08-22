@@ -34,214 +34,238 @@ import org.slizaa.neo4j.hierarchicalgraph.util.Neo4jHierarchicalgraphAdapterFact
  */
 public class Neo4jHierarchicalgraphItemProviderAdapterFactory extends Neo4jHierarchicalgraphAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the root adapter factory that delegates to this adapter factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-	 * <!-- begin-user-doc -->
+   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
 	/**
-	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-	 * <!-- begin-user-doc -->
+   * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance.
-	 * <!-- begin-user-doc -->
+   * This constructs an instance.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Neo4jHierarchicalgraphItemProviderAdapterFactory() {
-		supportedTypes.add(IEditingDomainItemProvider.class);
-		supportedTypes.add(IStructuredItemContentProvider.class);
-		supportedTypes.add(ITreeItemContentProvider.class);
-		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);
-	}
+    supportedTypes.add(IEditingDomainItemProvider.class);
+    supportedTypes.add(IStructuredItemContentProvider.class);
+    supportedTypes.add(ITreeItemContentProvider.class);
+    supportedTypes.add(IItemLabelProvider.class);
+    supportedTypes.add(IItemPropertySource.class);
+  }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource} instances.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected Neo4JBackedNodeSourceItemProvider neo4JBackedNodeSourceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter createNeo4JBackedNodeSourceAdapter() {
-		if (neo4JBackedNodeSourceItemProvider == null) {
-			neo4JBackedNodeSourceItemProvider = new Neo4JBackedNodeSourceItemProvider(this);
-		}
+    if (neo4JBackedNodeSourceItemProvider == null) {
+      neo4JBackedNodeSourceItemProvider = new Neo4JBackedNodeSourceItemProvider(this);
+    }
 
-		return neo4JBackedNodeSourceItemProvider;
-	}
+    return neo4JBackedNodeSourceItemProvider;
+  }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource} instances.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected Neo4JBackedRootNodeSourceItemProvider neo4JBackedRootNodeSourceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter createNeo4JBackedRootNodeSourceAdapter() {
-		if (neo4JBackedRootNodeSourceItemProvider == null) {
-			neo4JBackedRootNodeSourceItemProvider = new Neo4JBackedRootNodeSourceItemProvider(this);
-		}
+    if (neo4JBackedRootNodeSourceItemProvider == null) {
+      neo4JBackedRootNodeSourceItemProvider = new Neo4JBackedRootNodeSourceItemProvider(this);
+    }
 
-		return neo4JBackedRootNodeSourceItemProvider;
-	}
+    return neo4JBackedRootNodeSourceItemProvider;
+  }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository} instances.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected Neo4JRemoteRepositoryItemProvider neo4JRemoteRepositoryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter createNeo4JRemoteRepositoryAdapter() {
-		if (neo4JRemoteRepositoryItemProvider == null) {
-			neo4JRemoteRepositoryItemProvider = new Neo4JRemoteRepositoryItemProvider(this);
-		}
+    if (neo4JRemoteRepositoryItemProvider == null) {
+      neo4JRemoteRepositoryItemProvider = new Neo4JRemoteRepositoryItemProvider(this);
+    }
 
-		return neo4JRemoteRepositoryItemProvider;
-	}
+    return neo4JRemoteRepositoryItemProvider;
+  }
 
 	/**
-	 * This returns the root adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected Neo4JBackedDependencySourceItemProvider neo4JBackedDependencySourceItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createNeo4JBackedDependencySourceAdapter() {
+    if (neo4JBackedDependencySourceItemProvider == null) {
+      neo4JBackedDependencySourceItemProvider = new Neo4JBackedDependencySourceItemProvider(this);
+    }
+
+    return neo4JBackedDependencySourceItemProvider;
+  }
+
+  /**
+   * This returns the root adapter factory that contains this factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-	}
+    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+  }
 
 	/**
-	 * This sets the composed adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
+   * This sets the composed adapter factory that contains this factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-		this.parentAdapterFactory = parentAdapterFactory;
-	}
+    this.parentAdapterFactory = parentAdapterFactory;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return supportedTypes.contains(type) || super.isFactoryForType(type);
-	}
+    return supportedTypes.contains(type) || super.isFactoryForType(type);
+  }
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter.
-	 * <!-- begin-user-doc -->
+   * This implementation substitutes the factory itself as the key for the adapter.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Adapter adapt(Notifier notifier, Object type) {
-		return super.adapt(notifier, this);
-	}
+    return super.adapt(notifier, this);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
-			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
-				return adapter;
-			}
-		}
+    if (isFactoryForType(type)) {
+      Object adapter = super.adapt(object, type);
+      if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+        return adapter;
+      }
+    }
 
-		return null;
-	}
+    return null;
+  }
 
 	/**
-	 * This adds a listener.
-	 * <!-- begin-user-doc -->
+   * This adds a listener.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.addListener(notifyChangedListener);
-	}
+    changeNotifier.addListener(notifyChangedListener);
+  }
 
 	/**
-	 * This removes a listener.
-	 * <!-- begin-user-doc -->
+   * This removes a listener.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.removeListener(notifyChangedListener);
-	}
+    changeNotifier.removeListener(notifyChangedListener);
+  }
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-	 * <!-- begin-user-doc -->
+   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public void fireNotifyChanged(Notification notification) {
-		changeNotifier.fireNotifyChanged(notification);
+    changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
-			parentAdapterFactory.fireNotifyChanged(notification);
-		}
-	}
+    if (parentAdapterFactory != null) {
+      parentAdapterFactory.fireNotifyChanged(notification);
+    }
+  }
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc -->
+   * This disposes all of the item providers created by this factory. 
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public void dispose() {
-		if (neo4JBackedNodeSourceItemProvider != null) neo4JBackedNodeSourceItemProvider.dispose();
-		if (neo4JBackedRootNodeSourceItemProvider != null) neo4JBackedRootNodeSourceItemProvider.dispose();
-		if (neo4JRemoteRepositoryItemProvider != null) neo4JRemoteRepositoryItemProvider.dispose();
-	}
+    if (neo4JBackedNodeSourceItemProvider != null) neo4JBackedNodeSourceItemProvider.dispose();
+    if (neo4JBackedRootNodeSourceItemProvider != null) neo4JBackedRootNodeSourceItemProvider.dispose();
+    if (neo4JBackedDependencySourceItemProvider != null) neo4JBackedDependencySourceItemProvider.dispose();
+    if (neo4JRemoteRepositoryItemProvider != null) neo4JRemoteRepositoryItemProvider.dispose();
+  }
 
 }

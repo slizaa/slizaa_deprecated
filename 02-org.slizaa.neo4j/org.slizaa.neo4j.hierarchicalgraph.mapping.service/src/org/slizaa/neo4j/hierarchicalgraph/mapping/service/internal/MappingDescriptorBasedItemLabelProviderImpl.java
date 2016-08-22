@@ -23,7 +23,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescri
 import org.slizaa.neo4j.hierarchicalgraph.mapping.NodeLabelMapper;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.PropertyBasedImageMapper;
 
-public class ItemLabelProviderImpl implements IItemLabelProvider, IItemStyledLabelProvider {
+public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelProvider, IItemStyledLabelProvider {
 
   private OverlayImageRegistry               _imageRegistry;
 
@@ -31,12 +31,12 @@ public class ItemLabelProviderImpl implements IItemLabelProvider, IItemStyledLab
 
   /**
    * <p>
-   * Creates a new instance of type {@link ItemLabelProviderImpl}.
+   * Creates a new instance of type {@link MappingDescriptorBasedItemLabelProviderImpl}.
    * </p>
    *
    * @param imageRegistry
    */
-  public ItemLabelProviderImpl(HierarchicalGraphMappingDescriptor descriptor) {
+  public MappingDescriptorBasedItemLabelProviderImpl(HierarchicalGraphMappingDescriptor descriptor) {
     _imageRegistry = new OverlayImageRegistry();
     _descriptor = descriptor;
   }
@@ -51,7 +51,7 @@ public class ItemLabelProviderImpl implements IItemLabelProvider, IItemStyledLab
     Neo4JBackedNodeSource nodeSource = getNodeSource(object);
     LabelDefinition labelDefinition = getLabelDefinition(nodeSource);
     if (nodeSource.getLabels().contains("Method")) {
-      return new MethodSignatureParser().parse(labelDefinition.text);
+      return new MethodSignatureParser().parse(labelDefinition.text) + " (" + nodeSource.getIdentifier() + ")";
     }
     return labelDefinition.text + " (" + nodeSource.getIdentifier() + ")";
   }
@@ -84,7 +84,7 @@ public class ItemLabelProviderImpl implements IItemLabelProvider, IItemStyledLab
 
       // TODO: cache?
       if (containsAll(nodeSource.getLabels(), labelMapper.getRequiredNeo4jLabel())) {
-        
+
         EMap<String, String> properties = nodeSource.getProperties();
 
         // System.out.println("---------------------------------");
@@ -95,10 +95,10 @@ public class ItemLabelProviderImpl implements IItemLabelProvider, IItemStyledLab
 
         result.text = properties.get(labelMapper.getTextPropertyName());
 
-         //
-         if (result.image == null) {
-         result.image = labelMapper.getDefaultImage();
-         }
+        //
+        if (result.image == null) {
+          result.image = labelMapper.getDefaultImage();
+        }
 
         //
         for (PropertyBasedImageMapper mapper : labelMapper.getPropertyBasedImages()) {

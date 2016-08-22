@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.slizaa.neo4j.hierarchicalgraph.*;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
@@ -28,87 +29,88 @@ import com.google.gson.JsonObject;
  */
 public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements Neo4jHierarchicalgraphFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public static Neo4jHierarchicalgraphFactory init() {
-		try {
-			Neo4jHierarchicalgraphFactory theNeo4jHierarchicalgraphFactory = (Neo4jHierarchicalgraphFactory)EPackage.Registry.INSTANCE.getEFactory(Neo4jHierarchicalgraphPackage.eNS_URI);
-			if (theNeo4jHierarchicalgraphFactory != null) {
-				return theNeo4jHierarchicalgraphFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new Neo4jHierarchicalgraphFactoryImpl();
-	}
+    try {
+      Neo4jHierarchicalgraphFactory theNeo4jHierarchicalgraphFactory = (Neo4jHierarchicalgraphFactory)EPackage.Registry.INSTANCE.getEFactory(Neo4jHierarchicalgraphPackage.eNS_URI);
+      if (theNeo4jHierarchicalgraphFactory != null) {
+        return theNeo4jHierarchicalgraphFactory;
+      }
+    }
+    catch (Exception exception) {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new Neo4jHierarchicalgraphFactoryImpl();
+  }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Neo4jHierarchicalgraphFactoryImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE: return createNeo4JBackedNodeSource();
-			case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE: return createNeo4JBackedRootNodeSource();
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY: return createNeo4JRemoteRepository();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eClass.getClassifierID()) {
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE: return createNeo4JBackedNodeSource();
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE: return createNeo4JBackedRootNodeSource();
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE: return createNeo4JBackedDependencySource();
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY: return createNeo4JRemoteRepository();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case Neo4jHierarchicalgraphPackage.FUTURE:
-				return createFutureFromString(eDataType, initialValue);
-			case Neo4jHierarchicalgraphPackage.JSON_ARRAY:
-				return createJsonArrayFromString(eDataType, initialValue);
-			case Neo4jHierarchicalgraphPackage.JSON_OBJECT:
-				return createJsonObjectFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eDataType.getClassifierID()) {
+      case Neo4jHierarchicalgraphPackage.FUTURE:
+        return createFutureFromString(eDataType, initialValue);
+      case Neo4jHierarchicalgraphPackage.JSON_ARRAY:
+        return createJsonArrayFromString(eDataType, initialValue);
+      case Neo4jHierarchicalgraphPackage.JSON_OBJECT:
+        return createJsonObjectFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case Neo4jHierarchicalgraphPackage.FUTURE:
-				return convertFutureToString(eDataType, instanceValue);
-			case Neo4jHierarchicalgraphPackage.JSON_ARRAY:
-				return convertJsonArrayToString(eDataType, instanceValue);
-			case Neo4jHierarchicalgraphPackage.JSON_OBJECT:
-				return convertJsonObjectToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eDataType.getClassifierID()) {
+      case Neo4jHierarchicalgraphPackage.FUTURE:
+        return convertFutureToString(eDataType, instanceValue);
+      case Neo4jHierarchicalgraphPackage.JSON_ARRAY:
+        return convertJsonArrayToString(eDataType, instanceValue);
+      case Neo4jHierarchicalgraphPackage.JSON_OBJECT:
+        return convertJsonObjectToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,77 +143,87 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  public Neo4JBackedDependencySource createNeo4JBackedDependencySource() {
+    Neo4JBackedDependencySourceImpl neo4JBackedDependencySource = new ExtendedNeo4JBackedDependencySourceImpl();
+    return neo4JBackedDependencySource;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Future<?> createFutureFromString(EDataType eDataType, String initialValue) {
-		return (Future<?>)super.createFromString(initialValue);
-	}
+    return (Future<?>)super.createFromString(initialValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public String convertFutureToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(instanceValue);
-	}
+    return super.convertToString(instanceValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public JsonArray createJsonArrayFromString(EDataType eDataType, String initialValue) {
-		return (JsonArray)super.createFromString(eDataType, initialValue);
-	}
+    return (JsonArray)super.createFromString(eDataType, initialValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public String convertJsonArrayToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
+    return super.convertToString(eDataType, instanceValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public JsonObject createJsonObjectFromString(EDataType eDataType, String initialValue) {
-		return (JsonObject)super.createFromString(eDataType, initialValue);
-	}
+    return (JsonObject)super.createFromString(eDataType, initialValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public String convertJsonObjectToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
+    return super.convertToString(eDataType, instanceValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Neo4jHierarchicalgraphPackage getNeo4jHierarchicalgraphPackage() {
-		return (Neo4jHierarchicalgraphPackage)getEPackage();
-	}
+    return (Neo4jHierarchicalgraphPackage)getEPackage();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+   * @deprecated
+   * @generated
+   */
 	@Deprecated
 	public static Neo4jHierarchicalgraphPackage getPackage() {
-		return Neo4jHierarchicalgraphPackage.eINSTANCE;
-	}
+    return Neo4jHierarchicalgraphPackage.eINSTANCE;
+  }
 
 } //Neo4jHierarchicalgraphFactoryImpl

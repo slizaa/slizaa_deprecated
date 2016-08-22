@@ -4,8 +4,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.HierarchicalgraphMappingService;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.HierarchicalgraphMappingServiceImpl;
 
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 public interface IHierarchicalGraphMappingService {
 
   /**
@@ -28,6 +34,6 @@ public interface IHierarchicalGraphMappingService {
    * @return
    */
   public static IHierarchicalGraphMappingService createHierarchicalgraphMappingService() {
-    return new HierarchicalgraphMappingService();
+    return new HierarchicalgraphMappingServiceImpl();
   }
 }

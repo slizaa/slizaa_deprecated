@@ -1,7 +1,5 @@
 package org.slizaa.neo4j.hierarchicalgraph.impl;
 
-import java.util.Collections;
-
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
@@ -11,7 +9,6 @@ import org.eclipse.emf.common.util.EMap;
  * </p>
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
- *
  */
 public class ExtendedNeo4JBackedRootNodeSourceImpl extends Neo4JBackedRootNodeSourceImpl {
 

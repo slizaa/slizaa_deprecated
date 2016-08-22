@@ -17,4 +17,4 @@ Require-Bundle:
 Export-Package: org.slizaa.neo4j.hierarchicalgraph.mapping.service
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.Activator
-Service-Component: OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.HierarchicalgraphMappingService.xml
+Service-Component: OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.HierarchicalgraphMappingServiceImpl.xml

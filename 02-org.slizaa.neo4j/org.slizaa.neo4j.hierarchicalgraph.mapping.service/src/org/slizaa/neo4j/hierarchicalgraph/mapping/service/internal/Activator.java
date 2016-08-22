@@ -1,7 +1,6 @@
 package org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal;
 
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.osgi.framework.BundleContext;
 
 /**

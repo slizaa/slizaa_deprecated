@@ -26,36 +26,36 @@ import org.slizaa.hierarchicalgraph.HGNodeSource;
  */
 public interface Neo4JBackedNodeSource extends HGNodeSource {
 	/**
-	 * Returns the value of the '<em><b>Properties</b></em>' map.
-	 * The key is of type {@link java.lang.String},
-	 * and the value is of type {@link java.lang.String},
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Properties</b></em>' map.
+   * The key is of type {@link java.lang.String},
+   * and the value is of type {@link java.lang.String},
+   * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Properties</em>' map isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Properties</em>' map.
-	 * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedNodeSource_Properties()
-	 * @model mapType="org.slizaa.hierarchicalgraph.StringToStringMap<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>" changeable="false"
-	 * @generated
-	 */
+   * @return the value of the '<em>Properties</em>' map.
+   * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedNodeSource_Properties()
+   * @model mapType="org.slizaa.hierarchicalgraph.StringToStringMap<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>" changeable="false"
+   * @generated
+   */
 	EMap<String, String> getProperties();
 
 	/**
-	 * Returns the value of the '<em><b>Labels</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Labels</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Labels</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Labels</em>' attribute list.
-	 * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedNodeSource_Labels()
-	 * @model changeable="false"
-	 * @generated
-	 */
+   * @return the value of the '<em>Labels</em>' attribute list.
+   * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedNodeSource_Labels()
+   * @model changeable="false"
+   * @generated
+   */
 	EList<String> getLabels();
 
 } // Neo4JBackedNodeSource

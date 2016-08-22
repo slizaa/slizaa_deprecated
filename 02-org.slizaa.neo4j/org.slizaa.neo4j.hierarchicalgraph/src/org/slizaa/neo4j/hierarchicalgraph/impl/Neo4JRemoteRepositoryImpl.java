@@ -43,370 +43,370 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
  */
 public class Neo4JRemoteRepositoryImpl extends MinimalEObjectImpl.Container implements Neo4JRemoteRepository {
   /**
-	 * The cached value of the '{@link #getHierarchicalGraphs() <em>Hierarchical Graphs</em>}' reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getHierarchicalGraphs() <em>Hierarchical Graphs</em>}' reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getHierarchicalGraphs()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getHierarchicalGraphs()
+   * @generated
+   * @ordered
+   */
   protected EList<HGRootNode> hierarchicalGraphs;
 
   /**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
   protected static final String NAME_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
   protected String name = NAME_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getBaseURI() <em>Base URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getBaseURI() <em>Base URI</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getBaseURI()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getBaseURI()
+   * @generated
+   * @ordered
+   */
   protected static final String BASE_URI_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getBaseURI() <em>Base URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getBaseURI() <em>Base URI</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getBaseURI()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getBaseURI()
+   * @generated
+   * @ordered
+   */
   protected String baseURI = BASE_URI_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getThreadPoolSize() <em>Thread Pool Size</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getThreadPoolSize() <em>Thread Pool Size</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getThreadPoolSize()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getThreadPoolSize()
+   * @generated
+   * @ordered
+   */
   protected static final int THREAD_POOL_SIZE_EDEFAULT = 0;
 
   /**
-	 * The cached value of the '{@link #getThreadPoolSize() <em>Thread Pool Size</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getThreadPoolSize() <em>Thread Pool Size</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getThreadPoolSize()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getThreadPoolSize()
+   * @generated
+   * @ordered
+   */
   protected int threadPoolSize = THREAD_POOL_SIZE_EDEFAULT;
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected Neo4JRemoteRepositoryImpl() {
-		super();
-	}
+    super();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass() {
-		return Neo4jHierarchicalgraphPackage.Literals.NEO4_JREMOTE_REPOSITORY;
-	}
+    return Neo4jHierarchicalgraphPackage.Literals.NEO4_JREMOTE_REPOSITORY;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EList<HGRootNode> getHierarchicalGraphs() {
-		if (hierarchicalGraphs == null) {
-			hierarchicalGraphs = new EObjectResolvingEList<HGRootNode>(HGRootNode.class, this, Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__HIERARCHICAL_GRAPHS);
-		}
-		return hierarchicalGraphs;
-	}
+    if (hierarchicalGraphs == null) {
+      hierarchicalGraphs = new EObjectResolvingEList<HGRootNode>(HGRootNode.class, this, Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__HIERARCHICAL_GRAPHS);
+    }
+    return hierarchicalGraphs;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getName() {
-		return name;
-	}
+    return name;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__NAME, oldName, name));
-	}
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__NAME, oldName, name));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getBaseURI() {
-		return baseURI;
-	}
+    return baseURI;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setBaseURI(String newBaseURI) {
-		String oldBaseURI = baseURI;
-		baseURI = newBaseURI;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__BASE_URI, oldBaseURI, baseURI));
-	}
+    String oldBaseURI = baseURI;
+    baseURI = newBaseURI;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__BASE_URI, oldBaseURI, baseURI));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public int getThreadPoolSize() {
-		return threadPoolSize;
-	}
+    return threadPoolSize;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setThreadPoolSize(int newThreadPoolSize) {
-		int oldThreadPoolSize = threadPoolSize;
-		threadPoolSize = newThreadPoolSize;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__THREAD_POOL_SIZE, oldThreadPoolSize, threadPoolSize));
-	}
+    int oldThreadPoolSize = threadPoolSize;
+    threadPoolSize = newThreadPoolSize;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__THREAD_POOL_SIZE, oldThreadPoolSize, threadPoolSize));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void init() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void dispose() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public JsonArray getNodeLabels(long nodeId) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public JsonObject getNodeProperties(long nodeId) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public Future<JsonObject> executeCypherQuery(String cypherQuery) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public Future<JsonObject> executeCypherQuery(String cypherQuery, Map<String, String> params) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__HIERARCHICAL_GRAPHS:
-				return getHierarchicalGraphs();
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__NAME:
-				return getName();
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__BASE_URI:
-				return getBaseURI();
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__THREAD_POOL_SIZE:
-				return getThreadPoolSize();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID) {
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__HIERARCHICAL_GRAPHS:
+        return getHierarchicalGraphs();
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__NAME:
+        return getName();
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__BASE_URI:
+        return getBaseURI();
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__THREAD_POOL_SIZE:
+        return getThreadPoolSize();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__HIERARCHICAL_GRAPHS:
-				getHierarchicalGraphs().clear();
-				getHierarchicalGraphs().addAll((Collection<? extends HGRootNode>)newValue);
-				return;
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__NAME:
-				setName((String)newValue);
-				return;
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__BASE_URI:
-				setBaseURI((String)newValue);
-				return;
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__THREAD_POOL_SIZE:
-				setThreadPoolSize((Integer)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID) {
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__HIERARCHICAL_GRAPHS:
+        getHierarchicalGraphs().clear();
+        getHierarchicalGraphs().addAll((Collection<? extends HGRootNode>)newValue);
+        return;
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__NAME:
+        setName((String)newValue);
+        return;
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__BASE_URI:
+        setBaseURI((String)newValue);
+        return;
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__THREAD_POOL_SIZE:
+        setThreadPoolSize((Integer)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void eUnset(int featureID) {
-		switch (featureID) {
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__HIERARCHICAL_GRAPHS:
-				getHierarchicalGraphs().clear();
-				return;
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__BASE_URI:
-				setBaseURI(BASE_URI_EDEFAULT);
-				return;
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__THREAD_POOL_SIZE:
-				setThreadPoolSize(THREAD_POOL_SIZE_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID) {
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__HIERARCHICAL_GRAPHS:
+        getHierarchicalGraphs().clear();
+        return;
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__NAME:
+        setName(NAME_EDEFAULT);
+        return;
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__BASE_URI:
+        setBaseURI(BASE_URI_EDEFAULT);
+        return;
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__THREAD_POOL_SIZE:
+        setThreadPoolSize(THREAD_POOL_SIZE_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__HIERARCHICAL_GRAPHS:
-				return hierarchicalGraphs != null && !hierarchicalGraphs.isEmpty();
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__BASE_URI:
-				return BASE_URI_EDEFAULT == null ? baseURI != null : !BASE_URI_EDEFAULT.equals(baseURI);
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__THREAD_POOL_SIZE:
-				return threadPoolSize != THREAD_POOL_SIZE_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID) {
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__HIERARCHICAL_GRAPHS:
+        return hierarchicalGraphs != null && !hierarchicalGraphs.isEmpty();
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__BASE_URI:
+        return BASE_URI_EDEFAULT == null ? baseURI != null : !BASE_URI_EDEFAULT.equals(baseURI);
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY__THREAD_POOL_SIZE:
+        return threadPoolSize != THREAD_POOL_SIZE_EDEFAULT;
+    }
+    return super.eIsSet(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   @SuppressWarnings("unchecked")
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___INIT:
-				init();
-				return null;
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___DISPOSE:
-				dispose();
-				return null;
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___GET_NODE_LABELS__LONG:
-				return getNodeLabels((Long)arguments.get(0));
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___GET_NODE_PROPERTIES__LONG:
-				return getNodeProperties((Long)arguments.get(0));
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING:
-				return executeCypherQuery((String)arguments.get(0));
-			case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP:
-				return executeCypherQuery((String)arguments.get(0), (Map<String, String>)arguments.get(1));
-		}
-		return super.eInvoke(operationID, arguments);
-	}
+    switch (operationID) {
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___INIT:
+        init();
+        return null;
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___DISPOSE:
+        dispose();
+        return null;
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___GET_NODE_LABELS__LONG:
+        return getNodeLabels((Long)arguments.get(0));
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___GET_NODE_PROPERTIES__LONG:
+        return getNodeProperties((Long)arguments.get(0));
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING:
+        return executeCypherQuery((String)arguments.get(0));
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP:
+        return executeCypherQuery((String)arguments.get(0), (Map<String, String>)arguments.get(1));
+    }
+    return super.eInvoke(operationID, arguments);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public String toString() {
-		if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", baseURI: ");
-		result.append(baseURI);
-		result.append(", threadPoolSize: ");
-		result.append(threadPoolSize);
-		result.append(')');
-		return result.toString();
-	}
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(", baseURI: ");
+    result.append(baseURI);
+    result.append(", threadPoolSize: ");
+    result.append(threadPoolSize);
+    result.append(')');
+    return result.toString();
+  }
 
 } //Neo4JRemoteRepositoryImpl
