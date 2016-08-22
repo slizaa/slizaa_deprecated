@@ -43,6 +43,10 @@ public abstract class AbstractHierarchicalTest {
   public HGNode node(Long id) {
     return _rootNode.getNode(checkNotNull(id));
   }
+  
+  public HGNode node(long id) {
+    return _rootNode.getNode(new Long(id));
+  }
 
   /**
    * <p>
