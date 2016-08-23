@@ -148,6 +148,9 @@ public class HierarchicalGraphSelectionService implements IHierarchicalGraphSele
       //
       for (HGDependency dependency : selectedDependencies) {
         checkNotNull(dependency);
+        
+        // TODO: resolveAggregatedCoreDependency
+        dependency.resolveAggregatedCoreDependency();
       }
 
       //
