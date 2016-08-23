@@ -5,15 +5,22 @@
   <eClassifiers xsi:type="ecore:EClass" name="HierarchicalGraphMappingDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rootMappings" lowerBound="1"
-        upperBound="-1" eType="#//CypherQuery" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rootMappings" lowerBound="1"
+        upperBound="-1" eType="#//CyperQuery"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hierarchyMappings" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dependencyMappers" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="#//CyperQuery"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencyMappings" upperBound="-1"
+        eType="#//DependencyMapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="labelMappers" upperBound="-1"
         eType="#//NodeLabelMapper" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DependencyMapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mainQuery" lowerBound="1"
+        eType="#//CyperQuery"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="detailQueries" upperBound="-1"
+        eType="#//CyperQuery"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CyperQuery" instanceClassName="java.lang.String"/>
   <eClassifiers xsi:type="ecore:EClass" name="NodeLabelMapper">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredNeo4jLabel" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -38,9 +45,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyValue" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="image" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CypherQuery">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cypherQuery" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.osgi.service.component.annotations.Component;
-import org.slizaa.hierarchicalgraph.DefaultHGNodeSource;
 import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HGNodeSource;
 import org.slizaa.hierarchicalgraph.HGRootNode;
@@ -83,11 +82,12 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
     // create the root element
     final HGRootNode rootNode = HierarchicalgraphFactory.eINSTANCE.createHGRootNode();
-    Neo4JBackedRootNodeSource rootNodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE.createNeo4JBackedRootNodeSource();
+    Neo4JBackedRootNodeSource rootNodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE
+        .createNeo4JBackedRootNodeSource();
     rootNodeSource.setIdentifier(-1l);
     rootNodeSource.setRepository(remoteRepository);
     rootNode.setNodeSource(rootNodeSource);
-    
+
     //
     Stopwatch stopwatch = Stopwatch.createStarted();
 
@@ -98,7 +98,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
     // process the root queries
     mappingDescriptor.getRootMappings().forEach((cypherQuery) -> {
-      rootQueries.add(remoteRepository.executeCypherQuery(cypherQuery.getCypherQuery()));
+      rootQueries.add(remoteRepository.executeCypherQuery(cypherQuery));
     });
 
     // process the hierarchy queries
@@ -107,8 +107,10 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     });
 
     // process the dependency queries
-    mappingDescriptor.getDependencyMappers().forEach((cypherQuery) -> {
-      dependencyQueries.add(remoteRepository.executeCypherQuery(cypherQuery));
+    mappingDescriptor.getDependencyMappings().forEach((dependencyMapping) -> {
+      
+      // TODO: DETAILS
+      dependencyQueries.add(remoteRepository.executeCypherQuery(dependencyMapping.getMainQuery()));
     });
 
     System.out.println("Compute root queries " + stopwatch.elapsed(TimeUnit.MILLISECONDS));

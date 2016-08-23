@@ -1,14 +1,6 @@
 package org.slizaa.neo4j.hierarchicalgraph.ui.deprecated;
 
-import java.io.IOException;
-import java.util.Collections;
-import java.util.Map;
-
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.CypherQuery;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.DependencyMapping;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.ImagePosition;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.Neo4jHierarchicalGraphMappingFactory;
@@ -60,14 +52,17 @@ public class Descriptors {
         .createHierarchicalGraphMappingDescriptor();
 
     // hierachy
-    graphProviderDescriptor.getRootMappings().add(cypherQuery(HIERARCHY_ROOT_MODULES_QUERY));
+    graphProviderDescriptor.getRootMappings().add(HIERARCHY_ROOT_MODULES_QUERY);
     graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOP_LEVEL_DIRECTORIES);
     graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_DIRECTORIES);
     graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOPLEVEL_FILES);
     graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOPLEVEL_CLASSES);
     graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_METHODS_AND_FIELDS);
 
-    graphProviderDescriptor.getDependencyMappers().add(QUERY_SIMPLE_DEPENDENCIES);
+    DependencyMapping dependencyMapping = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createDependencyMapping();
+    dependencyMapping.setMainQuery(QUERY_SIMPLE_DEPENDENCIES);
+    graphProviderDescriptor.getDependencyMappings().add(dependencyMapping);
+    
     // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_EXTENDS_IMPLEMENTS);
     // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_INVOKE);
     // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_READS_WRITES);
@@ -166,87 +161,6 @@ public class Descriptors {
     labelDescriptor.setTextPropertyName("fileName");
     labelDescriptor.setDefaultImage("icons/core/obj16/file_obj.png");
 
-    // //
-    // // parallelExecuter.handle((j) ->
-    // createHierarchy(j.getAsJsonArray("data"), creator));
-    // Future<JsonObject> queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_ROOT_MODULES_QUERY);
-    // createRootElements(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created RootElements " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_TOP_LEVEL_DIRECTORIES);
-    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Toplevel directories " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_DIRECTORIES);
-    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created directories " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_TOPLEVEL_FILES);
-    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created toplevel files " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_INNER_CLASSES);
-    // // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // // System.out.println("Created directories " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_TOPLEVEL_CLASSES);
-    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created toplevel classes " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_METHODS_AND_FIELDS);
-    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created method and fields " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-
-    // createDependencies(dependenciesInvoke.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Invoke " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependenciesExtendsImplements.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Extends/Implements " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependencyReadsWrites.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Reads/Writes " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependenciesFieldOfType.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Field of Type " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependenciesThrows.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Throws " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependenciesReturns.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Returns " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependenciesHasParamOfType.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Has Param Of Type " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-
     return graphProviderDescriptor;
   }
 
@@ -262,38 +176,4 @@ public class Descriptors {
     labelDescriptor.getPropertyBasedImages().add(imageProvider);
     return imageProvider;
   }
-
-  private static CypherQuery cypherQuery(String query) {
-    CypherQuery cypherQuery = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createCypherQuery();
-    cypherQuery.setCypherQuery(query);
-    return cypherQuery;
-  }
-
-  // public static void main(String[] args) {
-  //
-  // //
-  // HierarchicalGraphMappingDescriptor descriptor = createHierarchicalGraphMappingDescriptor();
-  //
-  // //
-  // Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-  // Map<String, Object> m = reg.getExtensionToFactoryMap();
-  // m.put("neo4j2sl", new XMIResourceFactoryImpl());
-  //
-  // // Obtain a new resource set
-  // ResourceSet resSet = new ResourceSetImpl();
-  //
-  // // create a resource
-  // Resource resource = resSet.createResource(URI.createURI("neo4j2sl/mapping.neo4j2sl"));
-  // // Get the first model element and cast it to the right type, in my
-  // // example everything is hierarchical included in this first node
-  // resource.getContents().add(descriptor);
-  //
-  // // now save the content.
-  // try {
-  // resource.save(Collections.EMPTY_MAP);
-  // } catch (IOException e) {
-  // // TODO Auto-generated catch block
-  // e.printStackTrace();
-  // }
-  // }
 }
