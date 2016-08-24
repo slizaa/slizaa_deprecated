@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -41,6 +39,9 @@ public class ExtendedHGDependencyImpl extends HGDependencyImpl {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public void resolveAggregatedCoreDependency() {
 
     //
@@ -51,17 +52,23 @@ public class ExtendedHGDependencyImpl extends HGDependencyImpl {
     //
     resolved = true;
 
+    System.out.println("getType(): " + getType());
 
-
+    //
     if (DependencyType.AGGREGATED_DEPENDENCY.equals(getType())) {
-      
+      for (HGDependency hgDependency : getCoreDependencies()) {
+        hgDependency.resolveAggregatedCoreDependency();
+      }
+    }
+
+    //
+    else if (DependencyType.AGGREGATED_CORE_DEPENDENCY.equals(getType())) {
+
+      System.out.println(getFrom().getIdentifier() + " -> " + getTo().getIdentifier());
+
       Set<Object> fromNodes = new HashSet<>();
       Set<Object> toNodes = new HashSet<>();
-      
-      //
       for (HGDependency hgDependency : getCoreDependencies()) {
-
-        //
         for (Iterator<?> iter = EcoreUtil.getAllContents(Collections.singleton(hgDependency.getFrom())); iter
             .hasNext();) {
           Object containedElement = iter.next();
@@ -69,8 +76,6 @@ public class ExtendedHGDependencyImpl extends HGDependencyImpl {
             fromNodes.add(((HGNode) containedElement).getIdentifier());
           }
         }
-
-        //
         for (Iterator<?> iter = EcoreUtil.getAllContents(Collections.singleton(hgDependency.getTo())); iter
             .hasNext();) {
           Object containedElement = iter.next();
@@ -78,22 +83,27 @@ public class ExtendedHGDependencyImpl extends HGDependencyImpl {
             toNodes.add(((HGNode) containedElement).getIdentifier());
           }
         }
-      } 
-      System.out.println("FROM " + fromNodes.size());
-      System.out.println("TO " + toNodes.size());
+      }
+      System.out.println("FROM " + fromNodes);
+      System.out.println("TO " + toNodes);
     }
   }
 
   private void getLeafDependencies(Collection<HGDependency> leafDependencies) {
 
-    //
-    if (DependencyType.CORE_DEPENDENCY.equals(this.getType())) {
+    // AGGREGATED_CORE_DEPENDENCY
+    if (DependencyType.CORE_DEPENDENCY.equals(this.getType())
+        || DependencyType.AGGREGATED_CORE_DEPENDENCY.equals(this.getType())) {
       leafDependencies.add(this);
     }
 
     //
     else {
+
+      //
       if (this.dependencies != null) {
+
+        //
         for (HGDependency dependency : this.dependencies) {
           ((ExtendedHGDependencyImpl) dependency).getLeafDependencies(leafDependencies);
         }

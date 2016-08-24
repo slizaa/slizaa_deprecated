@@ -54,7 +54,8 @@ public class Factory {
     HGDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGDependency();
     dependency.setFrom(source);
     dependency.setTo(target);
-    dependency.setType(DependencyType.CORE_DEPENDENCY);
+    // TODO
+    dependency.setType(DependencyType.AGGREGATED_CORE_DEPENDENCY);
 
     //
     source.getOutgoingCoreDependenciesMap().putIfAbsent(target, new ArrayList<>());
