@@ -584,7 +584,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGDependency__ResolveAggregatedCoreDependency() {
+  public EOperation getHGDependency__ResolveAggregatedCoreDependencies() {
     return hgDependencyEClass.getEOperations().get(2);
   }
 
@@ -792,7 +792,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEAttribute(hgDependencyEClass, HG_DEPENDENCY__TYPE);
     createEOperation(hgDependencyEClass, HG_DEPENDENCY___GET_CORE_DEPENDENCIES);
     createEOperation(hgDependencyEClass, HG_DEPENDENCY___GET_WEIGHT);
-    createEOperation(hgDependencyEClass, HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCY);
+    createEOperation(hgDependencyEClass, HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES);
 
     nodeToDependencyMapEClass = createEClass(NODE_TO_DEPENDENCY_MAP);
     createEReference(nodeToDependencyMapEClass, NODE_TO_DEPENDENCY_MAP__KEY);
@@ -895,7 +895,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     initEClass(hgDependencySourceEClass, HGDependencySource.class, "HGDependencySource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHGDependencySource_Identifier(), ecorePackage.getEJavaObject(), "identifier", null, 0, 1, HGDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getHGDependencySource_Dependency(), this.getHGDependency(), null, "dependency", null, 1, 1, HGDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getHGDependencySource_Dependency(), this.getHGDependency(), this.getHGDependency_DependencySource(), "dependency", null, 1, 1, HGDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEOperation(getHGDependencySource__OnResolveAggregatedCoreDependency(), null, "onResolveAggregatedCoreDependency", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -917,7 +917,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEReference(getDefaultHGDependencySource_Properties(), this.getStringToStringMap(), null, "properties", null, 0, -1, DefaultHGDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(hgDependencyEClass, HGDependency.class, "HGDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getHGDependency_DependencySource(), this.getHGDependencySource(), null, "dependencySource", null, 1, 1, HGDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getHGDependency_DependencySource(), this.getHGDependencySource(), this.getHGDependencySource_Dependency(), "dependencySource", null, 1, 1, HGDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGDependency_From(), this.getHGNode(), null, "from", null, 1, 1, HGDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGDependency_To(), this.getHGNode(), null, "to", null, 1, 1, HGDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGDependency_Dependencies(), this.getHGDependency(), null, "dependencies", null, 0, -1, HGDependency.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -927,7 +927,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     initEOperation(getHGDependency__GetWeight(), ecorePackage.getEInt(), "getWeight", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-    initEOperation(getHGDependency__ResolveAggregatedCoreDependency(), null, "resolveAggregatedCoreDependency", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getHGDependency__ResolveAggregatedCoreDependencies(), null, "resolveAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(nodeToDependencyMapEClass, Map.Entry.class, "NodeToDependencyMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNodeToDependencyMap_Key(), this.getHGNode(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

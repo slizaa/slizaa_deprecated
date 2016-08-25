@@ -30,6 +30,7 @@ public interface HGDependency extends EObject {
 
   /**
    * Returns the value of the '<em><b>Dependency Source</b></em>' containment reference.
+   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGDependencySource#getDependency <em>Dependency</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Dependency Source</em>' reference isn't clear,
@@ -39,7 +40,8 @@ public interface HGDependency extends EObject {
    * @return the value of the '<em>Dependency Source</em>' containment reference.
    * @see #setDependencySource(HGDependencySource)
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependency_DependencySource()
-   * @model containment="true" required="true"
+   * @see org.slizaa.hierarchicalgraph.HGDependencySource#getDependency
+   * @model opposite="dependency" containment="true" required="true"
    * @generated
    */
   HGDependencySource getDependencySource();
@@ -173,5 +175,5 @@ public interface HGDependency extends EObject {
    * @model
    * @generated
    */
-  void resolveAggregatedCoreDependency();
+  void resolveAggregatedCoreDependencies();
 } // HGDependency

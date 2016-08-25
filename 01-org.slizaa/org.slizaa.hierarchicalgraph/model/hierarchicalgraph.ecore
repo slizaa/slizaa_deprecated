@@ -66,7 +66,7 @@
     <eOperations name="onResolveAggregatedCoreDependency"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependency" lowerBound="1"
-        eType="#//HGDependency"/>
+        eType="#//HGDependency" eOpposite="#//HGDependency/dependencySource"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HGRootNode" eSuperTypes="#//HGNode">
     <eOperations name="invalidateCaches"/>
@@ -89,9 +89,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="HGDependency">
     <eOperations name="getCoreDependencies" upperBound="-1" eType="#//HGDependency"/>
     <eOperations name="getWeight" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eOperations name="resolveAggregatedCoreDependency"/>
+    <eOperations name="resolveAggregatedCoreDependencies"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencySource" lowerBound="1"
-        eType="#//HGDependencySource" containment="true"/>
+        eType="#//HGDependencySource" containment="true" eOpposite="#//HGDependencySource/dependency"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1" eType="#//HGNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//HGNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"

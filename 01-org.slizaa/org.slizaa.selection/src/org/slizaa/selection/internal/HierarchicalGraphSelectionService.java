@@ -150,7 +150,7 @@ public class HierarchicalGraphSelectionService implements IHierarchicalGraphSele
         checkNotNull(dependency);
         
         // TODO: resolveAggregatedCoreDependency
-        dependency.resolveAggregatedCoreDependency();
+        dependency.resolveAggregatedCoreDependencies();
       }
 
       //

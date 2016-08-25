@@ -144,9 +144,9 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
     if (newDependencySource != dependencySource) {
       NotificationChain msgs = null;
       if (dependencySource != null)
-        msgs = ((InternalEObject)dependencySource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE, null, msgs);
+        msgs = ((InternalEObject)dependencySource).eInverseRemove(this, HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY, HGDependencySource.class, msgs);
       if (newDependencySource != null)
-        msgs = ((InternalEObject)newDependencySource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE, null, msgs);
+        msgs = ((InternalEObject)newDependencySource).eInverseAdd(this, HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY, HGDependencySource.class, msgs);
       msgs = basicSetDependencySource(newDependencySource, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -284,10 +284,26 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
    * <!-- end-user-doc -->
    * @generated
    */
-  public void resolveAggregatedCoreDependency() {
+  public void resolveAggregatedCoreDependencies() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE:
+        if (dependencySource != null)
+          msgs = ((InternalEObject)dependencySource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE, null, msgs);
+        return basicSetDependencySource((HGDependencySource)otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
@@ -413,8 +429,8 @@ public class HGDependencyImpl extends MinimalEObjectImpl.Container implements HG
         return getCoreDependencies();
       case HierarchicalgraphPackage.HG_DEPENDENCY___GET_WEIGHT:
         return getWeight();
-      case HierarchicalgraphPackage.HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCY:
-        resolveAggregatedCoreDependency();
+      case HierarchicalgraphPackage.HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES:
+        resolveAggregatedCoreDependencies();
         return null;
     }
     return super.eInvoke(operationID, arguments);

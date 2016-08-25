@@ -49,26 +49,28 @@ public interface HGDependencySource extends EObject {
   void setIdentifier(Object value);
 
   /**
-   * Returns the value of the '<em><b>Dependency</b></em>' reference.
+   * Returns the value of the '<em><b>Dependency</b></em>' container reference.
+   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGDependency#getDependencySource <em>Dependency Source</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Dependency</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Dependency</em>' reference.
+   * @return the value of the '<em>Dependency</em>' container reference.
    * @see #setDependency(HGDependency)
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependencySource_Dependency()
-   * @model required="true"
+   * @see org.slizaa.hierarchicalgraph.HGDependency#getDependencySource
+   * @model opposite="dependencySource" required="true" transient="false"
    * @generated
    */
   HGDependency getDependency();
 
   /**
-   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGDependencySource#getDependency <em>Dependency</em>}' reference.
+   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGDependencySource#getDependency <em>Dependency</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Dependency</em>' reference.
+   * @param value the new value of the '<em>Dependency</em>' container reference.
    * @see #getDependency()
    * @generated
    */

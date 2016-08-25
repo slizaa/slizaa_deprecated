@@ -63,7 +63,6 @@ public class HGDependencySourceItemProvider
       super.getPropertyDescriptors(object);
 
       addIdentifierPropertyDescriptor(object);
-      addDependencyPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -86,28 +85,6 @@ public class HGDependencySourceItemProvider
          false,
          false,
          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Dependency feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addDependencyPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_HGDependencySource_dependency_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGDependencySource_dependency_feature", "_UI_HGDependencySource_type"),
-         HierarchicalgraphPackage.Literals.HG_DEPENDENCY_SOURCE__DEPENDENCY,
-         true,
-         false,
-         true,
-         null,
          null,
          null));
   }

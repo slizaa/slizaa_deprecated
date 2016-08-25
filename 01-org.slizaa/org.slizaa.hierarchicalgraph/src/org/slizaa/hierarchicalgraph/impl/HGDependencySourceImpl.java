@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slizaa.hierarchicalgraph.HGDependency;
 import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
@@ -52,16 +54,6 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
    * @ordered
    */
   protected Object identifier = IDENTIFIER_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getDependency() <em>Dependency</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDependency()
-   * @generated
-   * @ordered
-   */
-  protected HGDependency dependency;
 
   /**
    * <!-- begin-user-doc -->
@@ -109,15 +101,8 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    */
   public HGDependency getDependency() {
-    if (dependency != null && dependency.eIsProxy()) {
-      InternalEObject oldDependency = (InternalEObject)dependency;
-      dependency = (HGDependency)eResolveProxy(oldDependency);
-      if (dependency != oldDependency) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY, oldDependency, dependency));
-      }
-    }
-    return dependency;
+    if (eContainerFeatureID() != HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY) return null;
+    return (HGDependency)eInternalContainer();
   }
 
   /**
@@ -125,8 +110,9 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependency basicGetDependency() {
-    return dependency;
+  public NotificationChain basicSetDependency(HGDependency newDependency, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject)newDependency, HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY, msgs);
+    return msgs;
   }
 
   /**
@@ -135,10 +121,19 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    */
   public void setDependency(HGDependency newDependency) {
-    HGDependency oldDependency = dependency;
-    dependency = newDependency;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY, oldDependency, dependency));
+    if (newDependency != eInternalContainer() || (eContainerFeatureID() != HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY && newDependency != null)) {
+      if (EcoreUtil.isAncestor(this, newDependency))
+        throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+      NotificationChain msgs = null;
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      if (newDependency != null)
+        msgs = ((InternalEObject)newDependency).eInverseAdd(this, HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE, HGDependency.class, msgs);
+      msgs = basicSetDependency(newDependency, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY, newDependency, newDependency));
   }
 
   /**
@@ -158,13 +153,56 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    */
   @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY:
+        if (eInternalContainer() != null)
+          msgs = eBasicRemoveFromContainer(msgs);
+        return basicSetDependency((HGDependency)otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY:
+        return basicSetDependency(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    switch (eContainerFeatureID()) {
+      case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY:
+        return eInternalContainer().eInverseRemove(this, HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE, HGDependency.class, msgs);
+    }
+    return super.eBasicRemoveFromContainerFeature(msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__IDENTIFIER:
         return getIdentifier();
       case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY:
-        if (resolve) return getDependency();
-        return basicGetDependency();
+        return getDependency();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -216,7 +254,7 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
       case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__IDENTIFIER:
         return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
       case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY:
-        return dependency != null;
+        return getDependency() != null;
     }
     return super.eIsSet(featureID);
   }

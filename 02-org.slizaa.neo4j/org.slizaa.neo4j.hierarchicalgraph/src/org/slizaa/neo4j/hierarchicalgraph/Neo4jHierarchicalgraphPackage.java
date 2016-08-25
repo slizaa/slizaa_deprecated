@@ -291,7 +291,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
   int NEO4_JBACKED_DEPENDENCY_SOURCE__IDENTIFIER = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__IDENTIFIER;
 
   /**
-   * The feature id for the '<em><b>Dependency</b></em>' reference.
+   * The feature id for the '<em><b>Dependency</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
