@@ -4,6 +4,7 @@ package org.slizaa.neo4j.hierarchicalgraph.impl;
 
 import java.util.concurrent.Future;
 
+import java.util.function.Consumer;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -16,7 +17,6 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
-import org.slizaa.neo4j.hierarchicalgraph.internal.ExtendedNeo4JRemoteRepositoryImpl;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -84,6 +84,8 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
     switch (eDataType.getClassifierID()) {
       case Neo4jHierarchicalgraphPackage.FUTURE:
         return createFutureFromString(eDataType, initialValue);
+      case Neo4jHierarchicalgraphPackage.CONSUMER:
+        return createConsumerFromString(eDataType, initialValue);
       case Neo4jHierarchicalgraphPackage.JSON_ARRAY:
         return createJsonArrayFromString(eDataType, initialValue);
       case Neo4jHierarchicalgraphPackage.JSON_OBJECT:
@@ -103,6 +105,8 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
     switch (eDataType.getClassifierID()) {
       case Neo4jHierarchicalgraphPackage.FUTURE:
         return convertFutureToString(eDataType, instanceValue);
+      case Neo4jHierarchicalgraphPackage.CONSUMER:
+        return convertConsumerToString(eDataType, instanceValue);
       case Neo4jHierarchicalgraphPackage.JSON_ARRAY:
         return convertJsonArrayToString(eDataType, instanceValue);
       case Neo4jHierarchicalgraphPackage.JSON_OBJECT:
@@ -171,6 +175,24 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
   }
 
 	/**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Consumer<?> createConsumerFromString(EDataType eDataType, String initialValue) {
+    return (Consumer<?>)super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertConsumerToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(instanceValue);
+  }
+
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated

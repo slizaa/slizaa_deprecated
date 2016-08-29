@@ -4,10 +4,12 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.Map;
 
+import java.util.concurrent.Future;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -121,6 +123,13 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * @generated
    */
   private EDataType iItemLabelProviderEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType futureEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -719,6 +728,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public EDataType getFuture() {
+    return futureEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public HierarchicalgraphFactory getHierarchicalgraphFactory() {
     return (HierarchicalgraphFactory)getEFactoryInstance();
   }
@@ -815,6 +833,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     // Create data types
     iItemLabelProviderEDataType = createEDataType(IITEM_LABEL_PROVIDER);
+    futureEDataType = createEDataType(FUTURE);
   }
 
   /**
@@ -841,6 +860,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     setNsURI(eNS_URI);
 
     // Create type parameters
+    addETypeParameter(futureEDataType, "T");
 
     // Set bounds for type parameters
 
@@ -897,7 +917,11 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEAttribute(getHGDependencySource_Identifier(), ecorePackage.getEJavaObject(), "identifier", null, 0, 1, HGDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGDependencySource_Dependency(), this.getHGDependency(), this.getHGDependency_DependencySource(), "dependency", null, 1, 1, HGDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEOperation(getHGDependencySource__OnResolveAggregatedCoreDependency(), null, "onResolveAggregatedCoreDependency", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getHGDependencySource__OnResolveAggregatedCoreDependency(), null, "onResolveAggregatedCoreDependency", 0, 1, IS_UNIQUE, IS_ORDERED);
+    EGenericType g1 = createEGenericType(this.getFuture());
+    EGenericType g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
 
     initEClass(hgRootNodeEClass, HGRootNode.class, "HGRootNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHGRootNode_ItemLabelProvider(), this.getIItemLabelProvider(), "itemLabelProvider", null, 1, 1, HGRootNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -917,7 +941,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEReference(getDefaultHGDependencySource_Properties(), this.getStringToStringMap(), null, "properties", null, 0, -1, DefaultHGDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(hgDependencyEClass, HGDependency.class, "HGDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getHGDependency_DependencySource(), this.getHGDependencySource(), this.getHGDependencySource_Dependency(), "dependencySource", null, 1, 1, HGDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getHGDependency_DependencySource(), this.getHGDependencySource(), this.getHGDependencySource_Dependency(), "dependencySource", null, 0, 1, HGDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGDependency_From(), this.getHGNode(), null, "from", null, 1, 1, HGDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGDependency_To(), this.getHGNode(), null, "to", null, 1, 1, HGDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGDependency_Dependencies(), this.getHGDependency(), null, "dependencies", null, 0, -1, HGDependency.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -953,6 +977,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     // Initialize data types
     initEDataType(iItemLabelProviderEDataType, IItemLabelProvider.class, "IItemLabelProvider", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(futureEDataType, Future.class, "Future", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

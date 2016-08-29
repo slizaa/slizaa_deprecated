@@ -11,6 +11,7 @@ import java.util.Map;
 
 import java.util.concurrent.Future;
 
+import java.util.function.Consumer;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
@@ -277,6 +278,28 @@ public class Neo4JRemoteRepositoryImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  public Future<?> executeCypherQuery(String cypherQuery, Consumer<JsonObject> consumer) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Future<?> executeCypherQuery(String cypherQuery, Map<String, String> params, Consumer<JsonObject> consumer) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
@@ -385,6 +408,10 @@ public class Neo4JRemoteRepositoryImpl extends MinimalEObjectImpl.Container impl
         return executeCypherQuery((String)arguments.get(0));
       case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP:
         return executeCypherQuery((String)arguments.get(0), (Map<String, String>)arguments.get(1));
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING_CONSUMER:
+        return executeCypherQuery((String)arguments.get(0), (Consumer<JsonObject>)arguments.get(1));
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER:
+        return executeCypherQuery((String)arguments.get(0), (Map<String, String>)arguments.get(1), (Consumer<JsonObject>)arguments.get(2));
     }
     return super.eInvoke(operationID, arguments);
   }

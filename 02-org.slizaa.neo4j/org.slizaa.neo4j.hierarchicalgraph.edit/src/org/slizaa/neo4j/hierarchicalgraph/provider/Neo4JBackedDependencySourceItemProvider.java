@@ -52,6 +52,7 @@ public class Neo4JBackedDependencySourceItemProvider extends HGDependencySourceI
       super.getPropertyDescriptors(object);
 
       addTypePropertyDescriptor(object);
+      addResolvedPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -74,6 +75,28 @@ public class Neo4JBackedDependencySourceItemProvider extends HGDependencySourceI
          false,
          false,
          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Resolved feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addResolvedPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Neo4JBackedDependencySource_resolved_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4JBackedDependencySource_resolved_feature", "_UI_Neo4JBackedDependencySource_type"),
+         Neo4jHierarchicalgraphPackage.Literals.NEO4_JBACKED_DEPENDENCY_SOURCE__RESOLVED,
+         false,
+         false,
+         false,
+         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
          null,
          null));
   }
@@ -148,6 +171,7 @@ public class Neo4JBackedDependencySourceItemProvider extends HGDependencySourceI
 
     switch (notification.getFeatureID(Neo4JBackedDependencySource.class)) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE:
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__RESOLVED:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__PROPERTIES:

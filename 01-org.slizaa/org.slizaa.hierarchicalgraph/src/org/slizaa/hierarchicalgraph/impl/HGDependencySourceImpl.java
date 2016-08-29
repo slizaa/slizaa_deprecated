@@ -4,6 +4,7 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.util.concurrent.Future;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -141,7 +142,7 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void onResolveAggregatedCoreDependency() {
+  public Future<?> onResolveAggregatedCoreDependency() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -268,8 +269,7 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
       case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE___ON_RESOLVE_AGGREGATED_CORE_DEPENDENCY:
-        onResolveAggregatedCoreDependency();
-        return null;
+        return onResolveAggregatedCoreDependency();
     }
     return super.eInvoke(operationID, arguments);
   }

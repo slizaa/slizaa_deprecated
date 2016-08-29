@@ -17,6 +17,7 @@ import org.slizaa.hierarchicalgraph.HGDependencySource;
  * <ul>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#getType <em>Type</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#isResolved <em>Resolved</em>}</li>
  * </ul>
  *
  * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedDependencySource()
@@ -66,5 +67,20 @@ public interface Neo4JBackedDependencySource extends HGDependencySource {
    * @generated
    */
   void setType(String value);
+
+  /**
+   * Returns the value of the '<em><b>Resolved</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Resolved</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Resolved</em>' attribute.
+   * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedDependencySource_Resolved()
+   * @model required="true" transient="true" changeable="false"
+   * @generated
+   */
+  boolean isResolved();
 
 } // Neo4JBackedDependencySource

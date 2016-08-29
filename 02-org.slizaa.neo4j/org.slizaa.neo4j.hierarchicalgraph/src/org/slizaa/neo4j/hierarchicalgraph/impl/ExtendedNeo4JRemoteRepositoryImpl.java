@@ -8,7 +8,7 @@
  * Contributors:
  *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.neo4j.hierarchicalgraph.internal;
+package org.slizaa.neo4j.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -19,9 +19,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 import org.glassfish.jersey.client.ClientConfig;
-import org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JRemoteRepositoryImpl;
+import org.slizaa.neo4j.hierarchicalgraph.internal.QueryCallable;
+import org.slizaa.neo4j.hierarchicalgraph.internal.Neo4JRemoteServiceRestApi;
 
 import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 import com.eclipsesource.jaxrs.provider.gson.GsonProvider;
@@ -85,7 +87,7 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4JRemoteRepositoryImpl
 
     // create future task
     FutureTask<JsonObject> futureTask = new FutureTask<JsonObject>(
-        new Neo4JRemoteCypherCallable(_cypherQueryService, checkNotNull(query), null));
+        new QueryCallable(_cypherQueryService, checkNotNull(query), null));
 
     // execute
     _executor.execute(futureTask);
@@ -102,13 +104,25 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4JRemoteRepositoryImpl
 
     // create future task
     FutureTask<JsonObject> futureTask = new FutureTask<JsonObject>(
-        new Neo4JRemoteCypherCallable(_cypherQueryService, checkNotNull(query), maps));
+        new QueryCallable(_cypherQueryService, checkNotNull(query), maps));
 
     // execute
     _executor.execute(futureTask);
 
     // return the running task
     return futureTask;
+  }
+  
+  @Override
+  public Future<?> executeCypherQuery(String cypherQuery, Consumer<JsonObject> consumer) {
+    // TODO Auto-generated method stub
+    return super.executeCypherQuery(cypherQuery, consumer);
+  }
+
+  @Override
+  public Future<?> executeCypherQuery(String cypherQuery, Map<String, String> params, Consumer<JsonObject> consumer) {
+    // TODO Auto-generated method stub
+    return super.executeCypherQuery(cypherQuery, params, consumer);
   }
 
   @Override

@@ -63,7 +63,11 @@
         changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HGDependencySource">
-    <eOperations name="onResolveAggregatedCoreDependency"/>
+    <eOperations name="onResolveAggregatedCoreDependency">
+      <eGenericType eClassifier="#//Future">
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependency" lowerBound="1"
         eType="#//HGDependency" eOpposite="#//HGDependency/dependencySource"/>
@@ -90,8 +94,8 @@
     <eOperations name="getCoreDependencies" upperBound="-1" eType="#//HGDependency"/>
     <eOperations name="getWeight" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eOperations name="resolveAggregatedCoreDependencies"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencySource" lowerBound="1"
-        eType="#//HGDependencySource" containment="true" eOpposite="#//HGDependencySource/dependency"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencySource" eType="#//HGDependencySource"
+        containment="true" eOpposite="#//HGDependencySource/dependency"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1" eType="#//HGNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//HGNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
@@ -121,5 +125,8 @@
     <eLiterals name="CORE_DEPENDENCY"/>
     <eLiterals name="AGGREGATED_DEPENDENCY" value="1" literal="AGGREGATED_DEPENDENCY"/>
     <eLiterals name="AGGREGATED_CORE_DEPENDENCY" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Future" instanceClassName="java.util.concurrent.Future">
+    <eTypeParameters name="T"/>
   </eClassifiers>
 </ecore:EPackage>

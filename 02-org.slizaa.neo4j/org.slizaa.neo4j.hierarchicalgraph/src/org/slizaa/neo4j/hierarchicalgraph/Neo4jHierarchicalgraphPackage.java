@@ -318,13 +318,22 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
   int NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Resolved</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4_JBACKED_DEPENDENCY_SOURCE__RESOLVED = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Neo4 JBacked Dependency Source</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 2;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 3;
 
   /**
    * The operation id for the '<em>On Resolve Aggregated Core Dependency</em>' operation.
@@ -399,13 +408,31 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	int INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP = 3;
 
   /**
+   * The operation id for the '<em>Execute Cypher Query</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_CONSUMER = 4;
+
+  /**
+   * The operation id for the '<em>Execute Cypher Query</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = 5;
+
+  /**
    * The number of operations of the '<em>INeo4 JRepository</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int INEO4_JREPOSITORY_OPERATION_COUNT = 4;
+	int INEO4_JREPOSITORY_OPERATION_COUNT = 6;
 
   /**
    * The feature id for the '<em><b>Hierarchical Graphs</b></em>' reference list.
@@ -489,6 +516,24 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	int NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP = INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP;
 
   /**
+   * The operation id for the '<em>Execute Cypher Query</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING_CONSUMER = INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_CONSUMER;
+
+  /**
+   * The operation id for the '<em>Execute Cypher Query</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER;
+
+  /**
    * The operation id for the '<em>Init</em>' operation.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -526,6 +571,16 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	int FUTURE = 5;
 
 	/**
+   * The meta object id for the '<em>Consumer</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see java.util.function.Consumer
+   * @see org.slizaa.neo4j.hierarchicalgraph.impl.Neo4jHierarchicalgraphPackageImpl#getConsumer()
+   * @generated
+   */
+  int CONSUMER = 6;
+
+  /**
    * The meta object id for the '<em>Json Array</em>' data type.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -533,7 +588,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.neo4j.hierarchicalgraph.impl.Neo4jHierarchicalgraphPackageImpl#getJsonArray()
    * @generated
    */
-	int JSON_ARRAY = 6;
+	int JSON_ARRAY = 7;
 
 	/**
    * The meta object id for the '<em>Json Object</em>' data type.
@@ -543,7 +598,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.neo4j.hierarchicalgraph.impl.Neo4jHierarchicalgraphPackageImpl#getJsonObject()
    * @generated
    */
-	int JSON_OBJECT = 7;
+	int JSON_OBJECT = 8;
 
 
 	/**
@@ -661,6 +716,26 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	EOperation getINeo4JRepository__ExecuteCypherQuery__String_Map();
 
 	/**
+   * Returns the meta object for the '{@link org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository#executeCypherQuery(java.lang.String, java.util.function.Consumer) <em>Execute Cypher Query</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Execute Cypher Query</em>' operation.
+   * @see org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository#executeCypherQuery(java.lang.String, java.util.function.Consumer)
+   * @generated
+   */
+  EOperation getINeo4JRepository__ExecuteCypherQuery__String_Consumer();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository#executeCypherQuery(java.lang.String, java.util.Map, java.util.function.Consumer) <em>Execute Cypher Query</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Execute Cypher Query</em>' operation.
+   * @see org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository#executeCypherQuery(java.lang.String, java.util.Map, java.util.function.Consumer)
+   * @generated
+   */
+  EOperation getINeo4JRepository__ExecuteCypherQuery__String_Map_Consumer();
+
+  /**
    * Returns the meta object for class '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository <em>Neo4 JRemote Repository</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -756,6 +831,17 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
   EAttribute getNeo4JBackedDependencySource_Type();
 
   /**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#isResolved <em>Resolved</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Resolved</em>'.
+   * @see org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#isResolved()
+   * @see #getNeo4JBackedDependencySource()
+   * @generated
+   */
+  EAttribute getNeo4JBackedDependencySource_Resolved();
+
+  /**
    * Returns the meta object for data type '{@link java.util.concurrent.Future <em>Future</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -767,6 +853,17 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	EDataType getFuture();
 
 	/**
+   * Returns the meta object for data type '{@link java.util.function.Consumer <em>Consumer</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>Consumer</em>'.
+   * @see java.util.function.Consumer
+   * @model instanceClass="java.util.function.Consumer" typeParameters="T"
+   * @generated
+   */
+  EDataType getConsumer();
+
+  /**
    * Returns the meta object for data type '{@link com.google.gson.JsonArray <em>Json Array</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -906,6 +1003,22 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 		EOperation INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP = eINSTANCE.getINeo4JRepository__ExecuteCypherQuery__String_Map();
 
 		/**
+     * The meta object literal for the '<em><b>Execute Cypher Query</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_CONSUMER = eINSTANCE.getINeo4JRepository__ExecuteCypherQuery__String_Consumer();
+
+    /**
+     * The meta object literal for the '<em><b>Execute Cypher Query</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = eINSTANCE.getINeo4JRepository__ExecuteCypherQuery__String_Map_Consumer();
+
+    /**
      * The meta object literal for the '{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JRemoteRepositoryImpl <em>Neo4 JRemote Repository</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -982,6 +1095,14 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
     EAttribute NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE = eINSTANCE.getNeo4JBackedDependencySource_Type();
 
     /**
+     * The meta object literal for the '<em><b>Resolved</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NEO4_JBACKED_DEPENDENCY_SOURCE__RESOLVED = eINSTANCE.getNeo4JBackedDependencySource_Resolved();
+
+    /**
      * The meta object literal for the '<em>Future</em>' data type.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -992,6 +1113,16 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 		EDataType FUTURE = eINSTANCE.getFuture();
 
 		/**
+     * The meta object literal for the '<em>Consumer</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.util.function.Consumer
+     * @see org.slizaa.neo4j.hierarchicalgraph.impl.Neo4jHierarchicalgraphPackageImpl#getConsumer()
+     * @generated
+     */
+    EDataType CONSUMER = eINSTANCE.getConsumer();
+
+    /**
      * The meta object literal for the '<em>Json Array</em>' data type.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

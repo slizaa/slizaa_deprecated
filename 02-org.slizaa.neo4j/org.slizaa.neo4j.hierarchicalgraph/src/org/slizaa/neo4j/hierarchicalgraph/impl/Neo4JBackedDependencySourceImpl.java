@@ -32,6 +32,7 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
  * <ul>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedDependencySourceImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedDependencySourceImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedDependencySourceImpl#isResolved <em>Resolved</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,6 +66,26 @@ public class Neo4JBackedDependencySourceImpl extends HGDependencySourceImpl impl
    * @ordered
    */
   protected String type = TYPE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isResolved() <em>Resolved</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isResolved()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean RESOLVED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isResolved() <em>Resolved</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isResolved()
+   * @generated
+   * @ordered
+   */
+  protected boolean resolved = RESOLVED_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -123,6 +144,15 @@ public class Neo4JBackedDependencySourceImpl extends HGDependencySourceImpl impl
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isResolved() {
+    return resolved;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -145,6 +175,8 @@ public class Neo4JBackedDependencySourceImpl extends HGDependencySourceImpl impl
         else return getProperties().map();
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE:
         return getType();
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__RESOLVED:
+        return isResolved();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -191,6 +223,8 @@ public class Neo4JBackedDependencySourceImpl extends HGDependencySourceImpl impl
         return properties != null && !properties.isEmpty();
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__RESOLVED:
+        return resolved != RESOLVED_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -207,6 +241,8 @@ public class Neo4JBackedDependencySourceImpl extends HGDependencySourceImpl impl
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (type: ");
     result.append(type);
+    result.append(", resolved: ");
+    result.append(resolved);
     result.append(')');
     return result.toString();
   }

@@ -41,7 +41,7 @@ public interface HGDependency extends EObject {
    * @see #setDependencySource(HGDependencySource)
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependency_DependencySource()
    * @see org.slizaa.hierarchicalgraph.HGDependencySource#getDependency
-   * @model opposite="dependency" containment="true" required="true"
+   * @model opposite="dependency" containment="true"
    * @generated
    */
   HGDependencySource getDependencySource();

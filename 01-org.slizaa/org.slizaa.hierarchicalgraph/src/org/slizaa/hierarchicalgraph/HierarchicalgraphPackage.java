@@ -1012,6 +1012,17 @@ public interface HierarchicalgraphPackage extends EPackage {
 
 
   /**
+   * The meta object id for the '<em>Future</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see java.util.concurrent.Future
+   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getFuture()
+   * @generated
+   */
+  int FUTURE = 13;
+
+
+  /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGNode <em>HG Node</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1639,6 +1650,17 @@ public interface HierarchicalgraphPackage extends EPackage {
   EDataType getIItemLabelProvider();
 
   /**
+   * Returns the meta object for data type '{@link java.util.concurrent.Future <em>Future</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>Future</em>'.
+   * @see java.util.concurrent.Future
+   * @model instanceClass="java.util.concurrent.Future" typeParameters="T"
+   * @generated
+   */
+  EDataType getFuture();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2158,6 +2180,16 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EDataType IITEM_LABEL_PROVIDER = eINSTANCE.getIItemLabelProvider();
+
+    /**
+     * The meta object literal for the '<em>Future</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.util.concurrent.Future
+     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getFuture()
+     * @generated
+     */
+    EDataType FUTURE = eINSTANCE.getFuture();
 
   }
 

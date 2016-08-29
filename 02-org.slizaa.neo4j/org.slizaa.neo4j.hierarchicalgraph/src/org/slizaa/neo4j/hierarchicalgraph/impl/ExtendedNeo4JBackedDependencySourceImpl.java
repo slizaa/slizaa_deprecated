@@ -1,14 +1,18 @@
 package org.slizaa.neo4j.hierarchicalgraph.impl;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Future;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.slizaa.hierarchicalgraph.DependencyType;
 import org.slizaa.hierarchicalgraph.HGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
@@ -18,10 +22,24 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
 
 import com.google.gson.JsonObject;
 
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependencySourceImpl {
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void onResolveAggregatedCoreDependency() {
+  public Future<?> onResolveAggregatedCoreDependency() {
+
+    //
+    if (resolved) {
+      return null;
+    }
 
     System.out.println(getDependency().getFrom().getIdentifier() + " -> " + getDependency().getTo().getIdentifier());
 
@@ -48,13 +66,27 @@ public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependen
         }
       }
     }
-    
+
     //
-    System.out.println("FROM " + fromNodes);
-    System.out.println("TO " + toNodes);
+    Map<String, String> params = new HashMap<>();
+    params.put("from", fromNodes.toString());
+    params.put("to", toNodes.toString());
+    Future<JsonObject> future = getJQAssistantRemoteService().executeCypherQuery(TEMP_HELPER.QUERY, params);
+    try {
+      System.out.println(future.get());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    //
+    resolved = true;
+    return future;
   }
 
-    @Override
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public EMap<String, String> getProperties() {
 
     // lazy load...
@@ -103,12 +135,7 @@ public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependen
    * @return
    */
   public INeo4JRepository getJQAssistantRemoteService() {
-
-    //
-    Neo4JBackedRootNodeSource rootNodeSource = (Neo4JBackedRootNodeSource) getDependency().getFrom().getRootNode()
-        .getNodeSource();
-
-    //
-    return (INeo4JRepository) rootNodeSource.getRepository();
+    return (INeo4JRepository) ((Neo4JBackedRootNodeSource) getDependency().getFrom().getRootNode().getNodeSource())
+        .getRepository();
   }
 }

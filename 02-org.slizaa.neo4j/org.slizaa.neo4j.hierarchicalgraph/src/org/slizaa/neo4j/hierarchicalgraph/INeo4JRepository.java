@@ -9,6 +9,7 @@ import java.util.Map;
 
 import java.util.concurrent.Future;
 
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -79,5 +80,21 @@ public interface INeo4JRepository extends EObject {
    * @generated
    */
 	Future<JsonObject> executeCypherQuery(String cypherQuery, Map<String, String> params);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model dataType="org.slizaa.neo4j.hierarchicalgraph.Future<?>" consumerDataType="org.slizaa.neo4j.hierarchicalgraph.Consumer<org.slizaa.neo4j.hierarchicalgraph.JsonObject>"
+   * @generated
+   */
+  Future<?> executeCypherQuery(String cypherQuery, Consumer<JsonObject> consumer);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model dataType="org.slizaa.neo4j.hierarchicalgraph.Future<?>" consumerDataType="org.slizaa.neo4j.hierarchicalgraph.Consumer<org.slizaa.neo4j.hierarchicalgraph.JsonObject>"
+   * @generated
+   */
+  Future<?> executeCypherQuery(String cypherQuery, Map<String, String> params, Consumer<JsonObject> consumer);
 
 } // INeo4JRepository

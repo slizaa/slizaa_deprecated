@@ -1,17 +1,15 @@
 package org.slizaa.hierarchicalgraph.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slizaa.hierarchicalgraph.DependencyType;
 import org.slizaa.hierarchicalgraph.HGDependency;
-import org.slizaa.hierarchicalgraph.HGNode;
 
 /**
  * <p>
@@ -20,8 +18,6 @@ import org.slizaa.hierarchicalgraph.HGNode;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class ExtendedHGDependencyImpl extends HGDependencyImpl {
-
-  private boolean resolved = false;
 
   /**
    * {@inheritDoc}
@@ -54,23 +50,32 @@ public class ExtendedHGDependencyImpl extends HGDependencyImpl {
   public void resolveAggregatedCoreDependencies() {
 
     //
-    if (resolved) {
-      return;
-    }
-
-    //
-    resolved = true;
+    List<Future<?>> futures = new ArrayList<>();
 
     //
     if (DependencyType.AGGREGATED_DEPENDENCY.equals(getType())) {
       for (HGDependency hgDependency : getCoreDependencies()) {
-        hgDependency.resolveAggregatedCoreDependencies();
+        Future<?> future = hgDependency.getDependencySource().onResolveAggregatedCoreDependency();
+        if (future != null) {
+          futures.add(future);
+        }
+      }
+    } else {
+      Future<?> future = dependencySource.onResolveAggregatedCoreDependency();
+      if (future != null) {
+        futures.add(future);
       }
     }
 
     //
-    else if (DependencyType.AGGREGATED_CORE_DEPENDENCY.equals(getType())) {
-      getDependencySource().onResolveAggregatedCoreDependency();
+    for (Future<?> future : futures) {
+      try {
+        future.get();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      } catch (ExecutionException e) {
+        e.printStackTrace();
+      }
     }
   }
 
@@ -84,7 +89,7 @@ public class ExtendedHGDependencyImpl extends HGDependencyImpl {
 
     // AGGREGATED_CORE_DEPENDENCY
     if (DependencyType.CORE_DEPENDENCY.equals(this.getType())
-        || (DependencyType.AGGREGATED_CORE_DEPENDENCY.equals(this.getType()) /*&& !resolved*/)) {
+        || (DependencyType.AGGREGATED_CORE_DEPENDENCY.equals(this.getType()) /* && !resolved */)) {
       leafDependencies.add(this);
     }
 

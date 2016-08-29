@@ -15,9 +15,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.Callable;
-
-import com.google.gson.JsonObject;
 
 /**
  * <p>
@@ -25,35 +22,58 @@ import com.google.gson.JsonObject;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class Neo4JRemoteCypherCallable implements Callable<JsonObject> {
+public abstract class AbstractNeo4JCypherCallable {
 
   /** - */
   private Neo4JRemoteServiceRestApi _service;
 
   /** - */
-  private String                          _query;
+  private String                    _query;
 
   /** - */
-  private Map<String, String>             _params;
+  private Map<String, String>       _params;
 
   /**
    * <p>
-   * Creates a new instance of type {@link Neo4JRemoteCypherCallable}.
+   * Creates a new instance of type {@link AbstractNeo4JCypherCallable}.
    * </p>
    *
    * @param query
    */
-  public Neo4JRemoteCypherCallable(Neo4JRemoteServiceRestApi service, String query, Map<String, String> params) {
+  public AbstractNeo4JCypherCallable(Neo4JRemoteServiceRestApi service, String query, Map<String, String> params) {
     _service = checkNotNull(service);
     _query = checkNotNull(query);
     _params = params;
   }
 
   /**
-   * {@inheritDoc}
+   * <p>
+   * </p>
+   *
+   * @return the service
    */
-  public JsonObject call() throws Exception {
-    return _service.executeCypherQuery(asQuery(_query, _params));
+  protected Neo4JRemoteServiceRestApi neo4JRemoteServiceRestApi() {
+    return _service;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return the query
+   */
+  protected String query() {
+    return _query;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return the params
+   */
+  protected Map<String, String> params() {
+    return _params;
   }
 
   /**
@@ -63,7 +83,7 @@ public class Neo4JRemoteCypherCallable implements Callable<JsonObject> {
    * @param cypherQuery
    * @return
    */
-  private static String asQuery(String cypherQuery, Map<String, String> params) {
+  protected static String asQuery(String cypherQuery, Map<String, String> params) {
 
     //
     if (params != null && !params.isEmpty()) {

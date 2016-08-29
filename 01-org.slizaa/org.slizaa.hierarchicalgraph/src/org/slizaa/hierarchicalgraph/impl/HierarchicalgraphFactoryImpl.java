@@ -5,6 +5,7 @@ package org.slizaa.hierarchicalgraph.impl;
 import java.util.List;
 import java.util.Map;
 
+import java.util.concurrent.Future;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -91,6 +92,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
         return createDependencyTypeFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
         return createIItemLabelProviderFromString(eDataType, initialValue);
+      case HierarchicalgraphPackage.FUTURE:
+        return createFutureFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -108,6 +111,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
         return convertDependencyTypeToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
         return convertIItemLabelProviderToString(eDataType, instanceValue);
+      case HierarchicalgraphPackage.FUTURE:
+        return convertFutureToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -249,6 +254,24 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
    */
   public String convertIItemLabelProviderToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Future<?> createFutureFromString(EDataType eDataType, String initialValue) {
+    return (Future<?>)super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertFutureToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(instanceValue);
   }
 
   /**
