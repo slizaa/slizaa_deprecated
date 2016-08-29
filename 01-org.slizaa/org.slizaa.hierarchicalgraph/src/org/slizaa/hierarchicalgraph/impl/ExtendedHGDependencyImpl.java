@@ -60,14 +60,14 @@ public class ExtendedHGDependencyImpl extends HGDependencyImpl {
           futures.add(future);
         }
       }
-    } else {
+    } else if (DependencyType.AGGREGATED_CORE_DEPENDENCY.equals(getType())) {
       Future<?> future = dependencySource.onResolveAggregatedCoreDependency();
       if (future != null) {
         futures.add(future);
       }
     }
 
-    //
+    // wait for completion the result
     for (Future<?> future : futures) {
       try {
         future.get();

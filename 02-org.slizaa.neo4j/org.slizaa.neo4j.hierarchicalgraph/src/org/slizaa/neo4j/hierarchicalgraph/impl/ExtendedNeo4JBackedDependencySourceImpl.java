@@ -12,7 +12,6 @@ import java.util.concurrent.Future;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.slizaa.hierarchicalgraph.DependencyType;
 import org.slizaa.hierarchicalgraph.HGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
@@ -40,8 +39,6 @@ public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependen
     if (resolved) {
       return null;
     }
-
-    System.out.println(getDependency().getFrom().getIdentifier() + " -> " + getDependency().getTo().getIdentifier());
 
     //
     Set<Object> fromNodes = new HashSet<>();
@@ -71,15 +68,15 @@ public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependen
     Map<String, String> params = new HashMap<>();
     params.put("from", fromNodes.toString());
     params.put("to", toNodes.toString());
-    Future<JsonObject> future = getJQAssistantRemoteService().executeCypherQuery(TEMP_HELPER.QUERY, params);
-    try {
-      System.out.println(future.get());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
 
     //
-    resolved = true;
+    Future<?> future = getJQAssistantRemoteService().executeCypherQuery(TEMP_HELPER.QUERY, params, (queryResult) -> {
+      // TODO
+      System.out.println(queryResult);
+      resolved = true;
+    });
+
+    //
     return future;
   }
 

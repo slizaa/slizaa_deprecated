@@ -24,8 +24,12 @@ import javax.inject.Inject;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.BusyIndicator;
+import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.slizaa.hierarchicalgraph.HGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.selection.IHierarchicalGraphSelection;
@@ -67,7 +71,7 @@ public class DsmPart implements IHierarchicalGraphSelectionListener {
 
   /** - */
   private IDsmContentProvider                _dsmContentProvider;
-  
+
   /** - */
   private DelegatingLabelProvider            _labelProvider;
 
@@ -143,11 +147,23 @@ public class DsmPart implements IHierarchicalGraphSelectionListener {
 
           HGDependency dependency = (HGDependency) _dsmContentProvider.getDependency(event.getX(), event.getY());
 
-          List<HGDependency> dependencies = new LinkedList<>();
+          final List<HGDependency> dependencies = new LinkedList<>();
           if (dependency != null) {
             dependencies.add(dependency);
           }
-          _hierarchicalGraphSelectionService.setCurrentDependencySelection(DSM_EDITOR_ID, dependencies);
+
+          Display.getDefault().syncExec(new Runnable() {
+            @Override
+            public void run() {
+              try {
+                Cursor cursor = Display.getDefault().getSystemCursor(SWT.CURSOR_WAIT);
+                _viewWidget.setCursor(cursor);
+                _hierarchicalGraphSelectionService.setCurrentDependencySelection(DSM_EDITOR_ID, dependencies);
+              } finally {
+                _viewWidget.setCursor(null);
+              }
+            }
+          });
 
           _fromArtifact = (HGNode) _dsmContentProvider.getNodes()[event.getX()];
           _toArtifact = (HGNode) _dsmContentProvider.getNodes()[event.getY()];
@@ -191,21 +207,22 @@ public class DsmPart implements IHierarchicalGraphSelectionListener {
       INodeSelection nodeSelection = selection.cast(INodeSelection.class);
 
       if (nodeSelection != null && !nodeSelection.getSelectedNodes().isEmpty()) {
-        
+
         //
         _dsmContentProvider = new DefaultAnalysisModelElementDsmContentProvider(nodeSelection.getSelectedNodes());
-        
+
         //
-        IItemLabelProvider itemLabelProvider = nodeSelection.getSelectedNodes().get(0).getRootNode().getItemLabelProvider();
+        IItemLabelProvider itemLabelProvider = nodeSelection.getSelectedNodes().get(0).getRootNode()
+            .getItemLabelProvider();
         _labelProvider.setItemLabelProvider(itemLabelProvider);
-        
+
       } else {
         _dsmContentProvider = new DefaultAnalysisModelElementDsmContentProvider();
       }
 
       // _artifactLabelProvider.setLabelPresentationMode(_detailComposite.getLabelPresentationMode());
       _viewWidget.setModel(_dsmContentProvider);
-      
+
       //
 
       // clear the dependency selection

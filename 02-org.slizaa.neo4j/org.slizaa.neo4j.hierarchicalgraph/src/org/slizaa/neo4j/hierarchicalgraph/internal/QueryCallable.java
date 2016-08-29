@@ -40,6 +40,7 @@ public class QueryCallable extends AbstractNeo4JCypherCallable implements Callab
    * {@inheritDoc}
    */
   public JsonObject call() throws Exception {
-    return neo4JRemoteServiceRestApi().executeCypherQuery(asQuery(query(), params()));
+    String query = asQuery(query(), params());
+    return neo4JRemoteServiceRestApi().executeCypherQuery(query);
   }
 }

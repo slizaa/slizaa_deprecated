@@ -23,6 +23,7 @@ import java.util.function.Consumer;
 
 import org.glassfish.jersey.client.ClientConfig;
 import org.slizaa.neo4j.hierarchicalgraph.internal.QueryCallable;
+import org.slizaa.neo4j.hierarchicalgraph.internal.QueryConsumerCallable;
 import org.slizaa.neo4j.hierarchicalgraph.internal.Neo4JRemoteServiceRestApi;
 
 import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
@@ -114,15 +115,31 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4JRemoteRepositoryImpl
   }
   
   @Override
-  public Future<?> executeCypherQuery(String cypherQuery, Consumer<JsonObject> consumer) {
-    // TODO Auto-generated method stub
-    return super.executeCypherQuery(cypherQuery, consumer);
+  public Future<?> executeCypherQuery(String query, Consumer<JsonObject> consumer) {
+    
+    // create future task
+    FutureTask<Void> futureTask = new FutureTask<Void>(
+        new QueryConsumerCallable(_cypherQueryService, checkNotNull(query), null, checkNotNull(consumer)));
+
+    // execute
+    _executor.execute(futureTask);
+
+    // return the running task
+    return futureTask;
   }
 
   @Override
-  public Future<?> executeCypherQuery(String cypherQuery, Map<String, String> params, Consumer<JsonObject> consumer) {
-    // TODO Auto-generated method stub
-    return super.executeCypherQuery(cypherQuery, params, consumer);
+  public Future<?> executeCypherQuery(String query, Map<String, String> params, Consumer<JsonObject> consumer) {
+    
+    // create future task
+    FutureTask<Void> futureTask = new FutureTask<Void>(
+        new QueryConsumerCallable(_cypherQueryService, checkNotNull(query), params, checkNotNull(consumer)));
+
+    // execute
+    _executor.execute(futureTask);
+
+    // return the running task
+    return futureTask;
   }
 
   @Override

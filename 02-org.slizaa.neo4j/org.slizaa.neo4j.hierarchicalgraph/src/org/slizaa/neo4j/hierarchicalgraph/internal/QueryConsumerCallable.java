@@ -43,7 +43,7 @@ public class QueryConsumerCallable extends AbstractNeo4JCypherCallable implement
     super(service, query, params);
 
     //
-    _consumer = checkNotNull(_consumer);
+    _consumer = checkNotNull(consumer);
   }
 
   /**
