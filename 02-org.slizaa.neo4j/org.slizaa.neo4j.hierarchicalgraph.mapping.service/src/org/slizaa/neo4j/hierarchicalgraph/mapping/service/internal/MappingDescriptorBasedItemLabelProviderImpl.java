@@ -53,7 +53,7 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
     if (nodeSource.getLabels().contains("Method")) {
       return new MethodSignatureParser().parse(labelDefinition.text) + " (" + nodeSource.getIdentifier() + ")";
     }
-    return labelDefinition.text + " (" + nodeSource.getIdentifier() + ")";
+    return labelDefinition.text /*+ " (" + nodeSource.getIdentifier() + ")"*/;
   }
 
   @Override
