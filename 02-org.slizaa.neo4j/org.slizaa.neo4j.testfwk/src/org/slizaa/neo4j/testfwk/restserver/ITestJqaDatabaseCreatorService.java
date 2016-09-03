@@ -17,7 +17,7 @@ public interface ITestJqaDatabaseCreatorService {
    * @param delete
    * @return
    */
-  public ITestJqaDatabaseHandle createJqaServer(TestDB testDB);
+  public AutoCloseable createJqaServer(TestDB testDB);
 
   /**
    * <p>

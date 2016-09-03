@@ -15,7 +15,6 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.slizaa.neo4j.testfwk.restserver.ITestJqaDatabaseCreatorService;
-import org.slizaa.neo4j.testfwk.restserver.ITestJqaDatabaseHandle;
 import org.slizaa.neo4j.testfwk.restserver.TestDB;
 import org.slizaa.neo4j.testfwk.restserver.internal.aether.TransitiveDependenciesResolver;
 
@@ -23,7 +22,10 @@ import org.slizaa.neo4j.testfwk.restserver.internal.aether.TransitiveDependencie
 public class TestJqaDatabaseCreatorServiceImpl implements ITestJqaDatabaseCreatorService {
 
   /** - */
-  private Path _tempDirectoryPath;
+  private Path        _tempDirectoryPath;
+
+  /** - */
+  private ClassLoader _classLoader;
 
   /**
    * <p>
@@ -38,6 +40,10 @@ public class TestJqaDatabaseCreatorServiceImpl implements ITestJqaDatabaseCreato
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+
+    // resolve all required dependencies
+    URL[] urls = TransitiveDependenciesResolver.resolve("org.neo4j.test:neo4j-harness:2.3.3");
+    _classLoader = new URLClassLoader(urls);
   }
 
   /**
@@ -70,26 +76,20 @@ public class TestJqaDatabaseCreatorServiceImpl implements ITestJqaDatabaseCreato
    * @param databaseDirectory
    * @return
    */
-  public ITestJqaDatabaseHandle createJqaServer(TestDB testDB) {
+  public AutoCloseable createJqaServer(TestDB testDB) {
     checkNotNull(testDB);
 
     try {
 
-      // resolve all required dependencies
-      URL[] urls = TransitiveDependenciesResolver.resolve("org.neo4j.test:neo4j-harness:2.3.3");
-
-      // create the ULR class loader
-      ClassLoader classLoader = new URLClassLoader(urls);
-
       //
-      return TCCLExecuter.execute(classLoader, () -> {
+      return TCCLExecuter.execute(_classLoader, () -> {
 
         // TestServerBuilders.newInProcessBuilder(new File("blablabal"))
-        AutoCloseable server = on("org.neo4j.harness.TestServerBuilders", classLoader).call("newInProcessBuilder")
+        AutoCloseable server = on("org.neo4j.harness.TestServerBuilders", _classLoader).call("newInProcessBuilder")
             .call("copyFrom", unzip(testDB)).call("newServer").get();
 
         //
-        return new TestJqaDatabaseHandleImpl(server);
+        return server;
       });
 
     } catch (Throwable e) {
