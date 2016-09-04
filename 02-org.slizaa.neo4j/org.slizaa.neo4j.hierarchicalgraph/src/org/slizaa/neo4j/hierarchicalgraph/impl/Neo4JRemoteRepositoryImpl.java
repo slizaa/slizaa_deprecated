@@ -256,6 +256,17 @@ public class Neo4JRemoteRepositoryImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  public JsonObject getRelationshipProperties(long nodeId) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Future<JsonObject> executeCypherQuery(String cypherQuery) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
@@ -404,6 +415,8 @@ public class Neo4JRemoteRepositoryImpl extends MinimalEObjectImpl.Container impl
         return getNodeLabels((Long)arguments.get(0));
       case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___GET_NODE_PROPERTIES__LONG:
         return getNodeProperties((Long)arguments.get(0));
+      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___GET_RELATIONSHIP_PROPERTIES__LONG:
+        return getRelationshipProperties((Long)arguments.get(0));
       case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING:
         return executeCypherQuery((String)arguments.get(0));
       case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP:

@@ -10,7 +10,10 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedRootNodeSource" eSuperTypes="#//Neo4JBackedNodeSource">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repository" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repository" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedDependencyResolver"
+        lowerBound="1" eType="#//IAggregatedDependencyResolver"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedDependencySource" eSuperTypes="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGDependencySource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
@@ -26,6 +29,9 @@
       <eParameters name="nodeId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eOperations>
     <eOperations name="getNodeProperties" eType="#//JsonObject">
+      <eParameters name="nodeId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    </eOperations>
+    <eOperations name="getRelationshipProperties" eType="#//JsonObject">
       <eParameters name="nodeId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eOperations>
     <eOperations name="executeCypherQuery">
@@ -93,4 +99,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="JsonArray" instanceClassName="com.google.gson.JsonArray"/>
   <eClassifiers xsi:type="ecore:EDataType" name="JsonObject" instanceClassName="com.google.gson.JsonObject"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="IAggregatedDependencyResolver" instanceClassName="org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver"/>
 </ecore:EPackage>

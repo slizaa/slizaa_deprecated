@@ -216,13 +216,22 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	int NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY = NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT + 0;
 
 	/**
+   * The feature id for the '<em><b>Aggregated Dependency Resolver</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER = NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Neo4 JBacked Root Node Source</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int NEO4_JBACKED_ROOT_NODE_SOURCE_FEATURE_COUNT = NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT + 1;
+	int NEO4_JBACKED_ROOT_NODE_SOURCE_FEATURE_COUNT = NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT + 2;
 
 	/**
    * The operation id for the '<em>On Expand</em>' operation.
@@ -390,13 +399,13 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	int INEO4_JREPOSITORY___GET_NODE_PROPERTIES__LONG = 1;
 
   /**
-   * The operation id for the '<em>Execute Cypher Query</em>' operation.
+   * The operation id for the '<em>Get Relationship Properties</em>' operation.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING = 2;
+  int INEO4_JREPOSITORY___GET_RELATIONSHIP_PROPERTIES__LONG = 2;
 
   /**
    * The operation id for the '<em>Execute Cypher Query</em>' operation.
@@ -405,7 +414,16 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP = 3;
+	int INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING = 3;
+
+  /**
+   * The operation id for the '<em>Execute Cypher Query</em>' operation.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+	int INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP = 4;
 
   /**
    * The operation id for the '<em>Execute Cypher Query</em>' operation.
@@ -414,7 +432,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_CONSUMER = 4;
+  int INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_CONSUMER = 5;
 
   /**
    * The operation id for the '<em>Execute Cypher Query</em>' operation.
@@ -423,7 +441,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = 5;
+  int INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = 6;
 
   /**
    * The number of operations of the '<em>INeo4 JRepository</em>' class.
@@ -432,7 +450,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int INEO4_JREPOSITORY_OPERATION_COUNT = 6;
+	int INEO4_JREPOSITORY_OPERATION_COUNT = 7;
 
   /**
    * The feature id for the '<em><b>Hierarchical Graphs</b></em>' reference list.
@@ -498,6 +516,15 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	int NEO4_JREMOTE_REPOSITORY___GET_NODE_PROPERTIES__LONG = INEO4_JREPOSITORY___GET_NODE_PROPERTIES__LONG;
 
   /**
+   * The operation id for the '<em>Get Relationship Properties</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4_JREMOTE_REPOSITORY___GET_RELATIONSHIP_PROPERTIES__LONG = INEO4_JREPOSITORY___GET_RELATIONSHIP_PROPERTIES__LONG;
+
+  /**
    * The operation id for the '<em>Execute Cypher Query</em>' operation.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -559,6 +586,16 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @ordered
    */
 	int NEO4_JREMOTE_REPOSITORY_OPERATION_COUNT = INEO4_JREPOSITORY_OPERATION_COUNT + 2;
+
+  /**
+   * The meta object id for the '<em>IAggregated Dependency Resolver</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver
+   * @see org.slizaa.neo4j.hierarchicalgraph.impl.Neo4jHierarchicalgraphPackageImpl#getIAggregatedDependencyResolver()
+   * @generated
+   */
+  int IAGGREGATED_DEPENDENCY_RESOLVER = 9;
 
   /**
    * The meta object id for the '<em>Future</em>' data type.
@@ -655,6 +692,17 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	EAttribute getNeo4JBackedRootNodeSource_Repository();
 
 	/**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getAggregatedDependencyResolver <em>Aggregated Dependency Resolver</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Aggregated Dependency Resolver</em>'.
+   * @see org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getAggregatedDependencyResolver()
+   * @see #getNeo4JBackedRootNodeSource()
+   * @generated
+   */
+  EAttribute getNeo4JBackedRootNodeSource_AggregatedDependencyResolver();
+
+  /**
    * Returns the meta object for class '{@link org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository <em>INeo4 JRepository</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -696,6 +744,16 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	EOperation getINeo4JRepository__GetNodeProperties__long();
 
 	/**
+   * Returns the meta object for the '{@link org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository#getRelationshipProperties(long) <em>Get Relationship Properties</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Relationship Properties</em>' operation.
+   * @see org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository#getRelationshipProperties(long)
+   * @generated
+   */
+  EOperation getINeo4JRepository__GetRelationshipProperties__long();
+
+  /**
    * Returns the meta object for the '{@link org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository#executeCypherQuery(java.lang.String) <em>Execute Cypher Query</em>}' operation.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -799,6 +857,17 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	EOperation getNeo4JRemoteRepository__Dispose();
 
 	/**
+   * Returns the meta object for data type '{@link org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver <em>IAggregated Dependency Resolver</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>IAggregated Dependency Resolver</em>'.
+   * @see org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver
+   * @model instanceClass="org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver"
+   * @generated
+   */
+  EDataType getIAggregatedDependencyResolver();
+
+  /**
    * Returns the meta object for class '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource <em>Neo4 JBacked Dependency Source</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -953,6 +1022,14 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 		EAttribute NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY = eINSTANCE.getNeo4JBackedRootNodeSource_Repository();
 
 		/**
+     * The meta object literal for the '<em><b>Aggregated Dependency Resolver</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER = eINSTANCE.getNeo4JBackedRootNodeSource_AggregatedDependencyResolver();
+
+    /**
      * The meta object literal for the '{@link org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository <em>INeo4 JRepository</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -987,6 +1064,14 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 		EOperation INEO4_JREPOSITORY___GET_NODE_PROPERTIES__LONG = eINSTANCE.getINeo4JRepository__GetNodeProperties__long();
 
 		/**
+     * The meta object literal for the '<em><b>Get Relationship Properties</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation INEO4_JREPOSITORY___GET_RELATIONSHIP_PROPERTIES__LONG = eINSTANCE.getINeo4JRepository__GetRelationshipProperties__long();
+
+    /**
      * The meta object literal for the '<em><b>Execute Cypher Query</b></em>' operation.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1069,6 +1154,16 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 		EOperation NEO4_JREMOTE_REPOSITORY___DISPOSE = eINSTANCE.getNeo4JRemoteRepository__Dispose();
 
 		/**
+     * The meta object literal for the '<em>IAggregated Dependency Resolver</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver
+     * @see org.slizaa.neo4j.hierarchicalgraph.impl.Neo4jHierarchicalgraphPackageImpl#getIAggregatedDependencyResolver()
+     * @generated
+     */
+    EDataType IAGGREGATED_DEPENDENCY_RESOLVER = eINSTANCE.getIAggregatedDependencyResolver();
+
+    /**
      * The meta object literal for the '{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedDependencySourceImpl <em>Neo4 JBacked Dependency Source</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

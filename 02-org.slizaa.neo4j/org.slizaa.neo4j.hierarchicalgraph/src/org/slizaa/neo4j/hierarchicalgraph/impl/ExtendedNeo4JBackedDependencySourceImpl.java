@@ -1,20 +1,11 @@
 package org.slizaa.neo4j.hierarchicalgraph.impl;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.Future;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.util.EcoreEMap;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.slizaa.hierarchicalgraph.HGDependency;
-import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver;
 import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
@@ -40,44 +31,12 @@ public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependen
       return null;
     }
 
-    //
-    Set<Object> fromNodes = new HashSet<>();
-    Set<Object> toNodes = new HashSet<>();
+    // get the aggregated dependency resolver
+    IAggregatedDependencyResolver dependencyResolver = getAggregatedDependencyResolver();
 
     //
-    List<HGDependency> coreDependencies = getDependency().getCoreDependencies();
-
-    //
-    for (HGDependency hgDependency : coreDependencies) {
-      for (Iterator<?> iter = EcoreUtil.getAllContents(Collections.singleton(hgDependency.getFrom())); iter
-          .hasNext();) {
-        Object containedElement = iter.next();
-        if (containedElement instanceof HGNode) {
-          fromNodes.add(((HGNode) containedElement).getIdentifier());
-        }
-      }
-      for (Iterator<?> iter = EcoreUtil.getAllContents(Collections.singleton(hgDependency.getTo())); iter.hasNext();) {
-        Object containedElement = iter.next();
-        if (containedElement instanceof HGNode) {
-          toNodes.add(((HGNode) containedElement).getIdentifier());
-        }
-      }
-    }
-
-    //
-    Map<String, String> params = new HashMap<>();
-    params.put("from", fromNodes.toString());
-    params.put("to", toNodes.toString());
-
-    //
-    Future<?> future = getJQAssistantRemoteService().executeCypherQuery(TEMP_HELPER.QUERY, params, (queryResult) -> {
-      // TODO
-      System.out.println(queryResult);
-      resolved = true;
-    });
-
-    //
-    return future;
+    return dependencyResolver == null ? null
+        : dependencyResolver.createNewAggregatedDependencyResolver(getDependency());
   }
 
   /**
@@ -104,7 +63,7 @@ public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependen
   public EMap<String, String> reloadProperties() {
 
     //
-    JsonObject jsonObject = getJQAssistantRemoteService().getNodeProperties((long) getIdentifier());
+    JsonObject jsonObject = getJQAssistantRemoteService().getRelationshipProperties((long) getIdentifier());
 
     // lazy init
     if (properties == null) {
@@ -134,5 +93,16 @@ public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependen
   public INeo4JRepository getJQAssistantRemoteService() {
     return (INeo4JRepository) ((Neo4JBackedRootNodeSource) getDependency().getFrom().getRootNode().getNodeSource())
         .getRepository();
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public IAggregatedDependencyResolver getAggregatedDependencyResolver() {
+    return (IAggregatedDependencyResolver) ((Neo4JBackedRootNodeSource) getDependency().getFrom().getRootNode()
+        .getNodeSource()).getAggregatedDependencyResolver();
   }
 }

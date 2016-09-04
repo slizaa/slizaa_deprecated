@@ -67,6 +67,14 @@ public interface INeo4JRepository extends EObject {
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model dataType="org.slizaa.neo4j.hierarchicalgraph.JsonObject" nodeIdRequired="true"
+   * @generated
+   */
+  JsonObject getRelationshipProperties(long nodeId);
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @model dataType="org.slizaa.neo4j.hierarchicalgraph.Future<org.slizaa.neo4j.hierarchicalgraph.JsonObject>"
    * @generated

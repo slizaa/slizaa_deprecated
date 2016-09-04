@@ -41,6 +41,11 @@ public interface Neo4JRemoteServiceRestApi {
   @Path("/db/data/node/{id: \\d+}/properties")
   @Produces(MediaType.APPLICATION_JSON)
   JsonObject getNodeProperties(@PathParam("id") long id);
+  
+  @GET
+  @Path("/db/data/relationship/{id: \\d+}/properties")
+  @Produces(MediaType.APPLICATION_JSON)
+  JsonObject getRelationshipProperties(@PathParam("id") long id);
 
   @GET
   @Path("/db/data/node/{id: \\d+}/labels")

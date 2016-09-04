@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
+import org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver;
 import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
@@ -99,6 +100,13 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 	private EDataType jsonObjectEDataType = null;
 
 	/**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType iAggregatedDependencyResolverEDataType = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -209,6 +217,15 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNeo4JBackedRootNodeSource_AggregatedDependencyResolver() {
+    return (EAttribute)neo4JBackedRootNodeSourceEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -245,11 +262,20 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getINeo4JRepository__GetRelationshipProperties__long() {
+    return iNeo4JRepositoryEClass.getEOperations().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
 	public EOperation getINeo4JRepository__ExecuteCypherQuery__String() {
-    return iNeo4JRepositoryEClass.getEOperations().get(2);
+    return iNeo4JRepositoryEClass.getEOperations().get(3);
   }
 
 	/**
@@ -258,7 +284,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
    * @generated
    */
 	public EOperation getINeo4JRepository__ExecuteCypherQuery__String_Map() {
-    return iNeo4JRepositoryEClass.getEOperations().get(3);
+    return iNeo4JRepositoryEClass.getEOperations().get(4);
   }
 
 	/**
@@ -267,7 +293,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
    * @generated
    */
   public EOperation getINeo4JRepository__ExecuteCypherQuery__String_Consumer() {
-    return iNeo4JRepositoryEClass.getEOperations().get(4);
+    return iNeo4JRepositoryEClass.getEOperations().get(5);
   }
 
   /**
@@ -276,7 +302,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
    * @generated
    */
   public EOperation getINeo4JRepository__ExecuteCypherQuery__String_Map_Consumer() {
-    return iNeo4JRepositoryEClass.getEOperations().get(5);
+    return iNeo4JRepositoryEClass.getEOperations().get(6);
   }
 
   /**
@@ -334,6 +360,15 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
   }
 
 	/**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EDataType getIAggregatedDependencyResolver() {
+    return iAggregatedDependencyResolverEDataType;
+  }
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -439,6 +474,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
     neo4JBackedRootNodeSourceEClass = createEClass(NEO4_JBACKED_ROOT_NODE_SOURCE);
     createEAttribute(neo4JBackedRootNodeSourceEClass, NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY);
+    createEAttribute(neo4JBackedRootNodeSourceEClass, NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER);
 
     neo4JBackedDependencySourceEClass = createEClass(NEO4_JBACKED_DEPENDENCY_SOURCE);
     createEReference(neo4JBackedDependencySourceEClass, NEO4_JBACKED_DEPENDENCY_SOURCE__PROPERTIES);
@@ -449,6 +485,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     createEReference(iNeo4JRepositoryEClass, INEO4_JREPOSITORY__HIERARCHICAL_GRAPHS);
     createEOperation(iNeo4JRepositoryEClass, INEO4_JREPOSITORY___GET_NODE_LABELS__LONG);
     createEOperation(iNeo4JRepositoryEClass, INEO4_JREPOSITORY___GET_NODE_PROPERTIES__LONG);
+    createEOperation(iNeo4JRepositoryEClass, INEO4_JREPOSITORY___GET_RELATIONSHIP_PROPERTIES__LONG);
     createEOperation(iNeo4JRepositoryEClass, INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING);
     createEOperation(iNeo4JRepositoryEClass, INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_MAP);
     createEOperation(iNeo4JRepositoryEClass, INEO4_JREPOSITORY___EXECUTE_CYPHER_QUERY__STRING_CONSUMER);
@@ -466,6 +503,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     consumerEDataType = createEDataType(CONSUMER);
     jsonArrayEDataType = createEDataType(JSON_ARRAY);
     jsonObjectEDataType = createEDataType(JSON_OBJECT);
+    iAggregatedDependencyResolverEDataType = createEDataType(IAGGREGATED_DEPENDENCY_RESOLVER);
   }
 
 	/**
@@ -512,7 +550,8 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     initEAttribute(getNeo4JBackedNodeSource_Labels(), ecorePackage.getEString(), "labels", null, 0, -1, Neo4JBackedNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(neo4JBackedRootNodeSourceEClass, Neo4JBackedRootNodeSource.class, "Neo4JBackedRootNodeSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getNeo4JBackedRootNodeSource_Repository(), ecorePackage.getEJavaObject(), "repository", null, 0, 1, Neo4JBackedRootNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNeo4JBackedRootNodeSource_Repository(), ecorePackage.getEJavaObject(), "repository", null, 1, 1, Neo4JBackedRootNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNeo4JBackedRootNodeSource_AggregatedDependencyResolver(), this.getIAggregatedDependencyResolver(), "aggregatedDependencyResolver", null, 1, 1, Neo4JBackedRootNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(neo4JBackedDependencySourceEClass, Neo4JBackedDependencySource.class, "Neo4JBackedDependencySource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNeo4JBackedDependencySource_Properties(), theHierarchicalgraphPackage.getStringToStringMap(), null, "properties", null, 0, -1, Neo4JBackedDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -526,6 +565,9 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     addEParameter(op, ecorePackage.getELong(), "nodeId", 1, 1, IS_UNIQUE, IS_ORDERED);
 
     op = initEOperation(getINeo4JRepository__GetNodeProperties__long(), this.getJsonObject(), "getNodeProperties", 0, 1, IS_UNIQUE, IS_ORDERED);
+    addEParameter(op, ecorePackage.getELong(), "nodeId", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+    op = initEOperation(getINeo4JRepository__GetRelationshipProperties__long(), this.getJsonObject(), "getRelationshipProperties", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getELong(), "nodeId", 1, 1, IS_UNIQUE, IS_ORDERED);
 
     op = initEOperation(getINeo4JRepository__ExecuteCypherQuery__String(), null, "executeCypherQuery", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -590,6 +632,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     initEDataType(consumerEDataType, Consumer.class, "Consumer", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(jsonArrayEDataType, JsonArray.class, "JsonArray", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(jsonObjectEDataType, JsonObject.class, "JsonObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(iAggregatedDependencyResolverEDataType, IAggregatedDependencyResolver.class, "IAggregatedDependencyResolver", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);
