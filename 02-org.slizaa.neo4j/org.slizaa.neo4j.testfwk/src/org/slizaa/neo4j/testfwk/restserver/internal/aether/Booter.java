@@ -49,7 +49,7 @@ public class Booter
     session.setLocalRepositoryManager(system.newLocalRepositoryManager(session, localRepo));
 
     session.setTransferListener(new ConsoleTransferListener());
-    session.setRepositoryListener(new ConsoleRepositoryListener());
+    session.setRepositoryListener(new NullConsoleRepositoryListener());
 
     // uncomment to generate dirty trees
     // session.setDependencyGraphTransformer( null );

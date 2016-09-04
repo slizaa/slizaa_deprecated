@@ -33,14 +33,12 @@ public class Delete {
       @Override
       public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         Files.delete(file);
-        System.out.println("Delete " + file);
         return FileVisitResult.CONTINUE;
       }
 
       @Override
       public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
         Files.delete(dir);
-        System.out.println("Delete " + dir);
         return FileVisitResult.CONTINUE;
       }
 
@@ -55,14 +53,12 @@ public class Delete {
       @Override
       public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         Files.delete(file);
-        System.out.println("Delete " + file);
         return FileVisitResult.CONTINUE;
       }
 
       @Override
       public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
         Files.delete(dir);
-        System.out.println("Delete " + dir);
         return FileVisitResult.CONTINUE;
       }
 

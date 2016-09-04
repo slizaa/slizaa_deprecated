@@ -24,5 +24,6 @@ Bundle-ClassPath: lib/aether-api-1.0.2.v20150114.jar,
 Service-Component: OSGI-INF/org.slizaa.neo4j.testfwk.restserver.internal.TestJqaDatabaseCreatorServiceImpl.xml
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.osgi.services,
- org.eclipse.osgi;bundle-version="3.11.0"
+ org.eclipse.osgi;bundle-version="3.11.0",
+ org.junit;bundle-version="4.12.0"
 Export-Package: org.slizaa.neo4j.testfwk.restserver
