@@ -10,6 +10,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.junit;visibility:=reexport,
  com.google.guava;bundle-version="15.0.0",
  org.assertj.core;bundle-version="3.3.0",
- org.slizaa.neo4j.testfwk;bundle-version="0.0.3"
+ org.slizaa.neo4j.testfwk;bundle-version="0.0.3",
+ net.javacrumbs.json-unit.json-unit-fluent;bundle-version="1.15.0",
+ net.javacrumbs.json-unit.json-unit;bundle-version="1.15.0",
+ net.javacrumbs.json-unit.json-unit-core;bundle-version="1.15.0"
 Import-Package: org.osgi.service.component.annotations;version="1.2.0"
  
