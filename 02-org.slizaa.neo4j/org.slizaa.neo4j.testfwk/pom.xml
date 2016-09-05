@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.slizaa</groupId>
 		<artifactId>org.slizaa.parent</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
+		<version>0.0.3-SNAPSHOT</version>
 		<relativePath>../../00-releng/org.slizaa.parent/pom.xml</relativePath>
 	</parent>
 

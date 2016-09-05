@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.slizaa.neo4j.hierarchicalgraph;singleton:=true
-Bundle-Version: 0.0.2.qualifier
+Bundle-Version: 0.0.3.qualifier
 Bundle-ClassPath: .,
  libs/com.eclipsesource.jaxrs.consumer_5.3.0.201512270850.jar,
  libs/com.eclipsesource.jaxrs.jersey-min_2.22.1.jar,
@@ -17,6 +17,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  com.google.gson;bundle-version="2.5.0",
  com.google.guava;bundle-version="15.0.0",
- org.slizaa.hierarchicalgraph;bundle-version="0.0.2";visibility:=reexport
+ org.slizaa.hierarchicalgraph;bundle-version="0.0.3";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 
