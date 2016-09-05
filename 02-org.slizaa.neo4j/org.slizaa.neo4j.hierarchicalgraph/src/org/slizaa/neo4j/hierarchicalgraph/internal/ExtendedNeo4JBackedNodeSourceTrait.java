@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph.impl;
+package org.slizaa.neo4j.hierarchicalgraph.internal;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -17,6 +17,7 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
+import org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedNodeSourceImpl;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

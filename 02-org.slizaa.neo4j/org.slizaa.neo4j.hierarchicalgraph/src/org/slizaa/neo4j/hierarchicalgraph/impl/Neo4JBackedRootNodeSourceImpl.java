@@ -6,8 +6,10 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver;
+import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
 
@@ -27,24 +29,14 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
  */
 public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl implements Neo4JBackedRootNodeSource {
   /**
-   * The default value of the '{@link #getRepository() <em>Repository</em>}' attribute.
+   * The cached value of the '{@link #getRepository() <em>Repository</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getRepository()
    * @generated
    * @ordered
    */
-  protected static final Object REPOSITORY_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getRepository() <em>Repository</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRepository()
-   * @generated
-   * @ordered
-   */
-  protected Object repository = REPOSITORY_EDEFAULT;
+  protected INeo4JRepository repository;
 
   /**
    * The default value of the '{@link #getAggregatedDependencyResolver() <em>Aggregated Dependency Resolver</em>}' attribute.
@@ -90,7 +82,15 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public Object getRepository() {
+  public INeo4JRepository getRepository() {
+    if (repository != null && repository.eIsProxy()) {
+      InternalEObject oldRepository = (InternalEObject)repository;
+      repository = (INeo4JRepository)eResolveProxy(oldRepository);
+      if (repository != oldRepository) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY, oldRepository, repository));
+      }
+    }
     return repository;
   }
 
@@ -99,8 +99,17 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRepository(Object newRepository) {
-    Object oldRepository = repository;
+  public INeo4JRepository basicGetRepository() {
+    return repository;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRepository(INeo4JRepository newRepository) {
+    INeo4JRepository oldRepository = repository;
     repository = newRepository;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY, oldRepository, repository));
@@ -136,7 +145,8 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY:
-        return getRepository();
+        if (resolve) return getRepository();
+        return basicGetRepository();
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER:
         return getAggregatedDependencyResolver();
     }
@@ -152,7 +162,7 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY:
-        setRepository(newValue);
+        setRepository((INeo4JRepository)newValue);
         return;
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER:
         setAggregatedDependencyResolver((IAggregatedDependencyResolver)newValue);
@@ -170,7 +180,7 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
   public void eUnset(int featureID) {
     switch (featureID) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY:
-        setRepository(REPOSITORY_EDEFAULT);
+        setRepository((INeo4JRepository)null);
         return;
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER:
         setAggregatedDependencyResolver(AGGREGATED_DEPENDENCY_RESOLVER_EDEFAULT);
@@ -188,7 +198,7 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY:
-        return REPOSITORY_EDEFAULT == null ? repository != null : !REPOSITORY_EDEFAULT.equals(repository);
+        return repository != null;
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER:
         return AGGREGATED_DEPENDENCY_RESOLVER_EDEFAULT == null ? aggregatedDependencyResolver != null : !AGGREGATED_DEPENDENCY_RESOLVER_EDEFAULT.equals(aggregatedDependencyResolver);
     }
@@ -205,9 +215,7 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (repository: ");
-    result.append(repository);
-    result.append(", aggregatedDependencyResolver: ");
+    result.append(" (aggregatedDependencyResolver: ");
     result.append(aggregatedDependencyResolver);
     result.append(')');
     return result.toString();

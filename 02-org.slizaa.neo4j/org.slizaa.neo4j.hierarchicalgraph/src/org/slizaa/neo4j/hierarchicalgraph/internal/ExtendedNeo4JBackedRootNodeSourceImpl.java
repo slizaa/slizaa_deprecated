@@ -1,65 +1,74 @@
-package org.slizaa.neo4j.hierarchicalgraph.impl;
+package org.slizaa.neo4j.hierarchicalgraph.internal;
 
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+import org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedRootNodeSourceImpl;
 
 /**
  * <p>
  * </p>
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
- *
  */
-public class ExtendedNeo4JBackedNodeSourceImpl extends Neo4JBackedNodeSourceImpl {
+public class ExtendedNeo4JBackedRootNodeSourceImpl extends Neo4JBackedRootNodeSourceImpl {
 
   /** - */
   private ExtendedNeo4JBackedNodeSourceTrait _trait;
 
   /**
    * <p>
-   * Creates a new instance of type {@link ExtendedNeo4JBackedNodeSourceImpl}.
+   * Creates a new instance of type {@link ExtendedNeo4JBackedRootNodeSourceImpl}.
    * </p>
    */
-  public ExtendedNeo4JBackedNodeSourceImpl() {
+  public ExtendedNeo4JBackedRootNodeSourceImpl() {
     _trait = new ExtendedNeo4JBackedNodeSourceTrait(this);
-  }
-
-  ExtendedNeo4JBackedNodeSourceTrait getTrait() {
-    return _trait;
   }
 
   /**
    * {@inheritDoc}
    */
   public EMap<String, String> getProperties() {
-    return _trait.getProperties();
+    return ECollections.emptyEMap();
   }
 
   /**
    * {@inheritDoc}
    */
   public EList<String> getLabels() {
-    return _trait.getLabels();
+    return ECollections.emptyEList();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public EMap<String, String> reloadProperties() {
-    return _trait.reloadProperties();
+    return ECollections.emptyEMap();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public EList<String> reloadLabels() {
-    return _trait.reloadLabels();
+    return ECollections.emptyEList();
   }
-
+  
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void onExpand() {
     _trait.onExpand();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void onCollapse() {
     _trait.onCollapse();
   }
-  
+
   @Override
   public boolean isAutoExpand() {
     return _trait.isAutoExpand();

@@ -207,7 +207,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	int NEO4_JBACKED_ROOT_NODE_SOURCE__LABELS = NEO4_JBACKED_NODE_SOURCE__LABELS;
 
 	/**
-   * The feature id for the '<em><b>Repository</b></em>' attribute.
+   * The feature id for the '<em><b>Repository</b></em>' reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -681,15 +681,15 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	EClass getNeo4JBackedRootNodeSource();
 
 	/**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getRepository <em>Repository</em>}'.
+   * Returns the meta object for the reference '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getRepository <em>Repository</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Repository</em>'.
+   * @return the meta object for the reference '<em>Repository</em>'.
    * @see org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getRepository()
    * @see #getNeo4JBackedRootNodeSource()
    * @generated
    */
-	EAttribute getNeo4JBackedRootNodeSource_Repository();
+	EReference getNeo4JBackedRootNodeSource_Repository();
 
 	/**
    * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getAggregatedDependencyResolver <em>Aggregated Dependency Resolver</em>}'.
@@ -1014,12 +1014,12 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 		EClass NEO4_JBACKED_ROOT_NODE_SOURCE = eINSTANCE.getNeo4JBackedRootNodeSource();
 
 		/**
-     * The meta object literal for the '<em><b>Repository</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Repository</b></em>' reference feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
      */
-		EAttribute NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY = eINSTANCE.getNeo4JBackedRootNodeSource_Repository();
+		EReference NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY = eINSTANCE.getNeo4JBackedRootNodeSource_Repository();
 
 		/**
      * The meta object literal for the '<em><b>Aggregated Dependency Resolver</b></em>' attribute feature.

@@ -10,8 +10,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedRootNodeSource" eSuperTypes="#//Neo4JBackedNodeSource">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repository" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repository" lowerBound="1"
+        eType="#//INeo4JRepository"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedDependencyResolver"
         lowerBound="1" eType="#//IAggregatedDependencyResolver"/>
   </eClassifiers>

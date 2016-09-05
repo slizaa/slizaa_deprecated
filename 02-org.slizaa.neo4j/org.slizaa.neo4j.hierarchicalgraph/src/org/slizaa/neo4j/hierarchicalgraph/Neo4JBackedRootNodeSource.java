@@ -22,30 +22,30 @@ package org.slizaa.neo4j.hierarchicalgraph;
  */
 public interface Neo4JBackedRootNodeSource extends Neo4JBackedNodeSource {
 	/**
-   * Returns the value of the '<em><b>Repository</b></em>' attribute.
+   * Returns the value of the '<em><b>Repository</b></em>' reference.
    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Repository</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Repository</em>' attribute.
-   * @see #setRepository(Object)
+   * @return the value of the '<em>Repository</em>' reference.
+   * @see #setRepository(INeo4JRepository)
    * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedRootNodeSource_Repository()
    * @model required="true"
    * @generated
    */
-	Object getRepository();
+	INeo4JRepository getRepository();
 
 	/**
-   * Sets the value of the '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getRepository <em>Repository</em>}' attribute.
+   * Sets the value of the '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getRepository <em>Repository</em>}' reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Repository</em>' attribute.
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Repository</em>' reference.
    * @see #getRepository()
    * @generated
    */
-	void setRepository(Object value);
+  void setRepository(INeo4JRepository value);
 
   /**
    * Returns the value of the '<em><b>Aggregated Dependency Resolver</b></em>' attribute.

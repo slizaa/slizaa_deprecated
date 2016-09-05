@@ -2,7 +2,7 @@ package org.slizaa.neo4j.hierarchicalgraph;
 
 import org.junit.After;
 import org.junit.Before;
-import org.slizaa.neo4j.hierarchicalgraph.impl.ExtendedNeo4JRemoteRepositoryImpl;
+import org.slizaa.neo4j.hierarchicalgraph.internal.ExtendedNeo4JRemoteRepositoryImpl;
 import org.slizaa.neo4j.testfwk.restserver.AbstractNeo4JServerTest;
 
 /**

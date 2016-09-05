@@ -8,13 +8,10 @@
  * Contributors:
  *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.neo4j.hierarchicalgraph.internal;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+package org.slizaa.neo4j.hierarchicalgraph.internal.rest;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
-import java.util.function.Consumer;
 
 import com.google.gson.JsonObject;
 
@@ -24,40 +21,26 @@ import com.google.gson.JsonObject;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class QueryConsumerCallable extends AbstractNeo4JCypherCallable implements Callable<Void> {
-
-  /** the consumer */
-  private Consumer<JsonObject> _consumer;
-
+public class QueryCallable extends AbstractNeo4JCypherCallable implements Callable<JsonObject> {
+  
   /**
    * <p>
-   * Creates a new instance of type {@link QueryConsumerCallable}.
+   * Creates a new instance of type {@link QueryCallable}.
    * </p>
    *
    * @param service
    * @param query
    * @param params
    */
-  public QueryConsumerCallable(Neo4JRemoteServiceRestApi service, String query, Map<String, String> params,
-      Consumer<JsonObject> consumer) {
+  public QueryCallable(Neo4JRemoteServiceRestApi service, String query, Map<String, String> params) {
     super(service, query, params);
-
-    //
-    _consumer = checkNotNull(consumer);
   }
 
   /**
    * {@inheritDoc}
    */
-  public Void call() throws Exception {
-
-    //
-    JsonObject jsonObject = neo4JRemoteServiceRestApi().executeCypherQuery(asQuery(query(), params()));
-
-    //
-    _consumer.accept(jsonObject);
-
-    //
-    return null;
+  public JsonObject call() throws Exception {
+    String query = asQuery(query(), params());
+    return neo4JRemoteServiceRestApi().executeCypherQuery(query);
   }
 }

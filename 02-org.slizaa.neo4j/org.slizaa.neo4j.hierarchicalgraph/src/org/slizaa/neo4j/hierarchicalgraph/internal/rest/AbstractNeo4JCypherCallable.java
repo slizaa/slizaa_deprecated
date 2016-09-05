@@ -8,7 +8,7 @@
  * Contributors:
  *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.neo4j.hierarchicalgraph.internal;
+package org.slizaa.neo4j.hierarchicalgraph.internal.rest;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

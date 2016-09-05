@@ -211,8 +211,8 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getNeo4JBackedRootNodeSource_Repository() {
-    return (EAttribute)neo4JBackedRootNodeSourceEClass.getEStructuralFeatures().get(0);
+	public EReference getNeo4JBackedRootNodeSource_Repository() {
+    return (EReference)neo4JBackedRootNodeSourceEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -473,7 +473,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     createEAttribute(neo4JBackedNodeSourceEClass, NEO4_JBACKED_NODE_SOURCE__LABELS);
 
     neo4JBackedRootNodeSourceEClass = createEClass(NEO4_JBACKED_ROOT_NODE_SOURCE);
-    createEAttribute(neo4JBackedRootNodeSourceEClass, NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY);
+    createEReference(neo4JBackedRootNodeSourceEClass, NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY);
     createEAttribute(neo4JBackedRootNodeSourceEClass, NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER);
 
     neo4JBackedDependencySourceEClass = createEClass(NEO4_JBACKED_DEPENDENCY_SOURCE);
@@ -550,7 +550,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     initEAttribute(getNeo4JBackedNodeSource_Labels(), ecorePackage.getEString(), "labels", null, 0, -1, Neo4JBackedNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(neo4JBackedRootNodeSourceEClass, Neo4JBackedRootNodeSource.class, "Neo4JBackedRootNodeSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getNeo4JBackedRootNodeSource_Repository(), ecorePackage.getEJavaObject(), "repository", null, 1, 1, Neo4JBackedRootNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNeo4JBackedRootNodeSource_Repository(), this.getINeo4JRepository(), null, "repository", null, 1, 1, Neo4JBackedRootNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getNeo4JBackedRootNodeSource_AggregatedDependencyResolver(), this.getIAggregatedDependencyResolver(), "aggregatedDependencyResolver", null, 1, 1, Neo4JBackedRootNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(neo4JBackedDependencySourceEClass, Neo4JBackedDependencySource.class, "Neo4JBackedDependencySource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

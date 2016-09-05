@@ -8,7 +8,7 @@
  * Contributors:
  *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.neo4j.hierarchicalgraph.impl;
+package org.slizaa.neo4j.hierarchicalgraph.internal;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
@@ -22,9 +22,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 import org.glassfish.jersey.client.ClientConfig;
-import org.slizaa.neo4j.hierarchicalgraph.internal.QueryCallable;
-import org.slizaa.neo4j.hierarchicalgraph.internal.QueryConsumerCallable;
-import org.slizaa.neo4j.hierarchicalgraph.internal.Neo4JRemoteServiceRestApi;
+import org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JRemoteRepositoryImpl;
+import org.slizaa.neo4j.hierarchicalgraph.internal.rest.Neo4JRemoteServiceRestApi;
+import org.slizaa.neo4j.hierarchicalgraph.internal.rest.QueryCallable;
+import org.slizaa.neo4j.hierarchicalgraph.internal.rest.QueryConsumerCallable;
 
 import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 import com.eclipsesource.jaxrs.provider.gson.GsonProvider;
@@ -114,6 +115,9 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4JRemoteRepositoryImpl
     return futureTask;
   }
   
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Future<?> executeCypherQuery(String query, Consumer<JsonObject> consumer) {
     
@@ -128,6 +132,9 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4JRemoteRepositoryImpl
     return futureTask;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Future<?> executeCypherQuery(String query, Map<String, String> params, Consumer<JsonObject> consumer) {
     
@@ -142,11 +149,25 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4JRemoteRepositoryImpl
     return futureTask;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public JsonObject getNodeProperties(long identifier) {
     return _cypherQueryService.getNodeProperties(identifier);
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public JsonObject getRelationshipProperties(long nodeId) {
+    return _cypherQueryService.getRelationshipProperties(nodeId);
+  }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public JsonArray getNodeLabels(long identifier) {
     return _cypherQueryService.getNodeLabels(identifier);

@@ -9,6 +9,6 @@
 		<relativePath>../../00-releng/org.slizaa.parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>org.slizaa.selection</artifactId>
+	<artifactId>org.slizaa.neo4j.hierarchicalgraph.test</artifactId>
 	<packaging>eclipse-plugin</packaging>
 </project>

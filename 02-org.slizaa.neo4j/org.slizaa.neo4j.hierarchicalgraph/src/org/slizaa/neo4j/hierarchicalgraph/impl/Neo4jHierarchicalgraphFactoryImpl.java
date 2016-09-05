@@ -17,6 +17,10 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
+import org.slizaa.neo4j.hierarchicalgraph.internal.ExtendedNeo4JBackedDependencySourceImpl;
+import org.slizaa.neo4j.hierarchicalgraph.internal.ExtendedNeo4JBackedNodeSourceImpl;
+import org.slizaa.neo4j.hierarchicalgraph.internal.ExtendedNeo4JBackedRootNodeSourceImpl;
+import org.slizaa.neo4j.hierarchicalgraph.internal.ExtendedNeo4JRemoteRepositoryImpl;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

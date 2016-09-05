@@ -10,8 +10,10 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>org.slizaa.neo4j.testfwk</module>
 		<module>org.slizaa.neo4j.graphdb.ui</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.test</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.edit</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.mapping</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.edit</module>
