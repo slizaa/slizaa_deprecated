@@ -5,6 +5,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
+import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
+
 /**
  * <p>
  * </p>
@@ -39,13 +41,16 @@ public class HierarchicalgraphFactoryMethods {
    * @param nodeSource
    * @return
    */
-  public static HGNode createNewNode(HGNode parent, Supplier<HGNodeSource> nodeSourceSupplier) {
+  public static HGNode createNewNode(HGRootNode rootNode, HGNode parent, Supplier<HGNodeSource> nodeSourceSupplier) {
 
     //
     HGNode result = HierarchicalgraphFactory.eINSTANCE.createHGNode();
-    result.setParent(checkNotNull(parent));
+    result.setParent(parent);
     result.setNodeSource(checkNotNull(checkNotNull(nodeSourceSupplier)).get());
 
+    // put in cache
+    ((ExtendedHGRootNodeImpl) checkNotNull(rootNode)).getIdToNodeMap().put(result.getIdentifier(), result);
+    
     //
     return result;
   }
