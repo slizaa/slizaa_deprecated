@@ -1,8 +1,9 @@
 package org.slizaa.neo4j.hierarchicalgraph;
 
+import static org.slizaa.neo4j.testfwk.testmodel.TestModelFactory.createNeo4JRemoteRepository;
+
 import org.junit.After;
 import org.junit.Before;
-import org.slizaa.neo4j.hierarchicalgraph.internal.ExtendedNeo4JRemoteRepositoryImpl;
 import org.slizaa.neo4j.testfwk.restserver.AbstractNeo4JServerTest;
 
 /**
@@ -17,11 +18,8 @@ public abstract class AbstractRemoteRepositoryTest extends AbstractNeo4JServerTe
   private Neo4JRemoteRepository _neo4JRemoteRepository;
 
   @Before
-  public void init() {
-    _neo4JRemoteRepository = new ExtendedNeo4JRemoteRepositoryImpl();
-    _neo4JRemoteRepository.setBaseURI("http://localhost:7474");
-    _neo4JRemoteRepository.setThreadPoolSize(10);
-    _neo4JRemoteRepository.init();
+  public void init() throws Exception {
+    _neo4JRemoteRepository = createNeo4JRemoteRepository("http://localhost:7474");
   }
 
   @After

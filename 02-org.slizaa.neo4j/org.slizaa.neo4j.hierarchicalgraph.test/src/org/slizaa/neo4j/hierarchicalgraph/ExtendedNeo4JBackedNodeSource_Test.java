@@ -26,7 +26,7 @@ public class ExtendedNeo4JBackedNodeSource_Test extends AbstractRemoteRepository
   private HGNode     _node;
 
   @Before
-  public void init() {
+  public void init() throws Exception {
     super.init();
 
     //
@@ -43,7 +43,7 @@ public class ExtendedNeo4JBackedNodeSource_Test extends AbstractRemoteRepository
     });
 
     //
-    _node = createNewNode(_rootNode, () -> {
+    _node = createNewNode(_rootNode, _rootNode, () -> {
 
       // create the
       Neo4JBackedNodeSource nodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE.createNeo4JBackedNodeSource();

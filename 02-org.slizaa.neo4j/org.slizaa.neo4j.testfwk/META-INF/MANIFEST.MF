@@ -25,5 +25,9 @@ Service-Component: OSGI-INF/org.slizaa.neo4j.testfwk.restserver.internal.TestJqa
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.osgi.services,
  org.eclipse.osgi;bundle-version="3.11.0",
- org.junit;bundle-version="4.12.0"
-Export-Package: org.slizaa.neo4j.testfwk.restserver
+ org.junit;bundle-version="4.12.0",
+ org.slizaa.hierarchicalgraph;bundle-version="0.0.3",
+ org.slizaa.neo4j.hierarchicalgraph;bundle-version="0.0.3",
+ com.google.gson;bundle-version="2.5.0"
+Export-Package: org.slizaa.neo4j.testfwk.restserver,
+ org.slizaa.neo4j.testfwk.testmodel
