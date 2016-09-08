@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,16 +24,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.slizaa.hierarchicalgraph.HGDependency;
+
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
- * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.HGDependency} object.
+ * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.AbstractHGDependency} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class HGDependencyItemProvider 
+public class AbstractHGDependencyItemProvider 
   extends ItemProviderAdapter
   implements
     IEditingDomainItemProvider,
@@ -47,7 +49,7 @@ public class HGDependencyItemProvider
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependencyItemProvider(AdapterFactory adapterFactory) {
+  public AbstractHGDependencyItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -79,9 +81,9 @@ public class HGDependencyItemProvider
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGDependency_from_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGDependency_from_feature", "_UI_HGDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_DEPENDENCY__FROM,
+         getString("_UI_AbstractHGDependency_from_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_AbstractHGDependency_from_feature", "_UI_AbstractHGDependency_type"),
+         HierarchicalgraphPackage.Literals.ABSTRACT_HG_DEPENDENCY__FROM,
          true,
          false,
          true,
@@ -101,9 +103,9 @@ public class HGDependencyItemProvider
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGDependency_to_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGDependency_to_feature", "_UI_HGDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_DEPENDENCY__TO,
+         getString("_UI_AbstractHGDependency_to_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_AbstractHGDependency_to_feature", "_UI_AbstractHGDependency_type"),
+         HierarchicalgraphPackage.Literals.ABSTRACT_HG_DEPENDENCY__TO,
          true,
          false,
          true,
@@ -124,7 +126,7 @@ public class HGDependencyItemProvider
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(HierarchicalgraphPackage.Literals.HG_DEPENDENCY__DEPENDENCY_SOURCE);
+      childrenFeatures.add(HierarchicalgraphPackage.Literals.ABSTRACT_HG_DEPENDENCY__DEPENDENCY_SOURCE);
     }
     return childrenFeatures;
   }
@@ -140,17 +142,6 @@ public class HGDependencyItemProvider
     // adding (see {@link AddCommand}) it as a child.
 
     return super.getChildFeature(object, child);
-  }
-
-  /**
-   * This returns HGDependency.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/HGDependency"));
   }
 
   /**
@@ -182,7 +173,7 @@ public class HGDependencyItemProvider
    */
   @Override
   public Object getStyledText(Object object) {
-    return new StyledString(getString("_UI_HGDependency_type"));
+    return new StyledString(getString("_UI_AbstractHGDependency_type"));
   }	
 
   /**
@@ -196,8 +187,8 @@ public class HGDependencyItemProvider
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(HGDependency.class)) {
-      case HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE:
+    switch (notification.getFeatureID(AbstractHGDependency.class)) {
+      case HierarchicalgraphPackage.ABSTRACT_HG_DEPENDENCY__DEPENDENCY_SOURCE:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }

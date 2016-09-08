@@ -112,6 +112,27 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY: {
+        HGCoreDependency hgCoreDependency = (HGCoreDependency)theEObject;
+        T result = caseHGCoreDependency(hgCoreDependency);
+        if (result == null) result = caseHGDependency(hgCoreDependency);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY: {
+        HGAggregatedCoreDependency hgAggregatedCoreDependency = (HGAggregatedCoreDependency)theEObject;
+        T result = caseHGAggregatedCoreDependency(hgAggregatedCoreDependency);
+        if (result == null) result = caseHGDependency(hgAggregatedCoreDependency);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY: {
+        HGAggregatedDependency hgAggregatedDependency = (HGAggregatedDependency)theEObject;
+        T result = caseHGAggregatedDependency(hgAggregatedDependency);
+        if (result == null) result = caseHGDependency(hgAggregatedDependency);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP: {
         @SuppressWarnings("unchecked") Map.Entry<HGNode, HGDependency> nodeToDependencyMap = (Map.Entry<HGNode, HGDependency>)theEObject;
         T result = caseNodeToDependencyMap(nodeToDependencyMap);
@@ -242,6 +263,51 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseHGDependency(HGDependency object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>HG Core Dependency</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>HG Core Dependency</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseHGCoreDependency(HGCoreDependency object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>HG Aggregated Core Dependency</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>HG Aggregated Core Dependency</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseHGAggregatedCoreDependency(HGAggregatedCoreDependency object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>HG Aggregated Dependency</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>HG Aggregated Dependency</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseHGAggregatedDependency(HGAggregatedDependency object) {
     return null;
   }
 
