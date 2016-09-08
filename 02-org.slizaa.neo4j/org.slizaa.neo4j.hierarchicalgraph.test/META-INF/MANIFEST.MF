@@ -13,6 +13,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.slizaa.neo4j.testfwk;bundle-version="0.0.3",
  net.javacrumbs.json-unit.json-unit-fluent;bundle-version="1.15.0",
  net.javacrumbs.json-unit.json-unit;bundle-version="1.15.0",
- net.javacrumbs.json-unit.json-unit-core;bundle-version="1.15.0"
+ net.javacrumbs.json-unit.json-unit-core;bundle-version="1.15.0",
+ org.mockito;bundle-version="1.9.5"
 Import-Package: org.osgi.service.component.annotations;version="1.2.0"
  

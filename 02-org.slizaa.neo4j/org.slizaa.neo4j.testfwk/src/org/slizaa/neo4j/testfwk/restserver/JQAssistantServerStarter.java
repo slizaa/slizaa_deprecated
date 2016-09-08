@@ -1,10 +1,10 @@
-package org.slizaa.neo4j.testfwk.restserver.internal;
+package org.slizaa.neo4j.testfwk.restserver;
 
 import java.io.IOException;
 
-import org.slizaa.neo4j.testfwk.restserver.TestDB;
+import org.slizaa.neo4j.testfwk.restserver.internal.TestJqaDatabaseCreatorServiceImpl;
 
-public class Main {
+public class JQAssistantServerStarter {
 
   public static void main(String[] args) throws Exception {
 
