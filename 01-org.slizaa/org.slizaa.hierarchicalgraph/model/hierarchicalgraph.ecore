@@ -90,28 +90,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//StringToStringMap" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HGDependency" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="HGDependency">
     <eOperations name="getCoreDependencies" upperBound="-1" eType="#//HGDependency"/>
     <eOperations name="getWeight" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eOperations name="resolveAggregatedCoreDependencies"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencySource" eType="#//HGDependencySource"
         containment="true" eOpposite="#//HGDependencySource/dependency"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1" eType="#//HGNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//HGNode"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HGCoreDependency" eSuperTypes="#//HGDependency">
-    <eOperations name="isResolvedAggregatedCoreDependency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="aggregatedCoreDependencyParent"
-        eType="#//HGAggregatedCoreDependency"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HGAggregatedCoreDependency" eSuperTypes="#//HGDependency">
-    <eOperations name="resolveAggregatedCoreDependencies"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
         eType="#//HGDependency" transient="true" derived="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HGAggregatedDependency" eSuperTypes="#//HGDependency">
-    <eOperations name="resolveAggregatedCoreDependencies"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
-        eType="#//HGDependency" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//DependencyType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NodeToDependencyMap" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//HGNode"/>
@@ -132,6 +121,11 @@
         eType="#//HGDependency"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IItemLabelProvider" instanceClassName="org.eclipse.emf.edit.provider.IItemLabelProvider"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="DependencyType">
+    <eLiterals name="CORE_DEPENDENCY"/>
+    <eLiterals name="AGGREGATED_DEPENDENCY" value="1" literal="AGGREGATED_DEPENDENCY"/>
+    <eLiterals name="AGGREGATED_CORE_DEPENDENCY" value="2"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Future" instanceClassName="java.util.concurrent.Future">
     <eTypeParameters name="T"/>
   </eClassifiers>

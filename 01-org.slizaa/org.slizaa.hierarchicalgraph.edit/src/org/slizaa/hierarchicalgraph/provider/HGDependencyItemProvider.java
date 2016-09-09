@@ -20,9 +20,11 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.slizaa.hierarchicalgraph.DependencyType;
 import org.slizaa.hierarchicalgraph.HGDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
@@ -64,6 +66,8 @@ public class HGDependencyItemProvider
 
       addFromPropertyDescriptor(object);
       addToPropertyDescriptor(object);
+      addDependenciesPropertyDescriptor(object);
+      addTypePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -108,6 +112,50 @@ public class HGDependencyItemProvider
          false,
          true,
          null,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Dependencies feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addDependenciesPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_HGDependency_dependencies_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGDependency_dependencies_feature", "_UI_HGDependency_type"),
+         HierarchicalgraphPackage.Literals.HG_DEPENDENCY__DEPENDENCIES,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Type feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addTypePropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_HGDependency_type_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGDependency_type_feature", "_UI_HGDependency_type"),
+         HierarchicalgraphPackage.Literals.HG_DEPENDENCY__TYPE,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
          null,
          null));
   }
@@ -182,7 +230,15 @@ public class HGDependencyItemProvider
    */
   @Override
   public Object getStyledText(Object object) {
-    return new StyledString(getString("_UI_HGDependency_type"));
+    DependencyType labelValue = ((HGDependency)object).getType();
+    String label = labelValue == null ? null : labelValue.toString();
+    	StyledString styledLabel = new StyledString();
+    if (label == null || label.length() == 0) {
+      styledLabel.append(getString("_UI_HGDependency_type"), StyledString.Style.QUALIFIER_STYLER); 
+    } else {
+      styledLabel.append(getString("_UI_HGDependency_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+    }
+    return styledLabel;
   }	
 
   /**
@@ -197,6 +253,9 @@ public class HGDependencyItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(HGDependency.class)) {
+      case HierarchicalgraphPackage.HG_DEPENDENCY__TYPE:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
       case HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;

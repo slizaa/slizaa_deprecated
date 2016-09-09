@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
-import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.DependencyType;
 import org.slizaa.hierarchicalgraph.HGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
@@ -88,9 +88,10 @@ public class ExtendedHGNodeTrait {
 		if (!cachedAggregatedIncomingDependenciesMap().containsKey(node)) {
 
 			// create new dependency
-			HGAggregatedDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGAggregatedDependency();
+			HGDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGDependency();
 			dependency.setFrom(node);
 			dependency.setTo(_hgNode);
+			dependency.setType(DependencyType.AGGREGATED_DEPENDENCY);
 
 			// add all incoming dependencies directly from the specified node
 			if (_hgNode.incomingCoreDependenciesMap != null && _hgNode.incomingCoreDependenciesMap.containsKey(node)) {
@@ -142,9 +143,10 @@ public class ExtendedHGNodeTrait {
 		if (!cachedAggregatedOutgoingDependenciesMap().containsKey(node)) {
 
 			// create new dependency
-			HGAggregatedDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGAggregatedDependency();
+			HGDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGDependency();
 			dependency.setFrom(_hgNode);
 			dependency.setTo(node);
+      dependency.setType(DependencyType.AGGREGATED_DEPENDENCY);
 
 			//
 			if (_hgNode.outgoingCoreDependenciesMap != null && _hgNode.outgoingCoreDependenciesMap.containsKey(node)) {

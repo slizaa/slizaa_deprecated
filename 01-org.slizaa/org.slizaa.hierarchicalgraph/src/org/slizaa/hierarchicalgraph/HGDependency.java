@@ -18,10 +18,12 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.slizaa.hierarchicalgraph.HGDependency#getDependencySource <em>Dependency Source</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGDependency#getFrom <em>From</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGDependency#getTo <em>To</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGDependency#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGDependency#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependency()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface HGDependency extends EObject {
@@ -107,6 +109,51 @@ public interface HGDependency extends EObject {
   void setTo(HGNode value);
 
   /**
+   * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
+   * The list contents are of type {@link org.slizaa.hierarchicalgraph.HGDependency}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Dependencies</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Dependencies</em>' reference list.
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependency_Dependencies()
+   * @model transient="true" derived="true"
+   * @generated
+   */
+  List<HGDependency> getDependencies();
+
+  /**
+   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * The literals are from the enumeration {@link org.slizaa.hierarchicalgraph.DependencyType}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Type</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Type</em>' attribute.
+   * @see org.slizaa.hierarchicalgraph.DependencyType
+   * @see #setType(DependencyType)
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependency_Type()
+   * @model
+   * @generated
+   */
+  DependencyType getType();
+
+  /**
+   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGDependency#getType <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' attribute.
+   * @see org.slizaa.hierarchicalgraph.DependencyType
+   * @see #getType()
+   * @generated
+   */
+  void setType(DependencyType value);
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @model kind="operation"
@@ -121,4 +168,12 @@ public interface HGDependency extends EObject {
    * @generated
    */
   int getWeight();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  void resolveAggregatedCoreDependencies();
 } // HGDependency

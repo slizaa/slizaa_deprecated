@@ -70,9 +70,7 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
       case HierarchicalgraphPackage.HG_ROOT_NODE: return createHGRootNode();
       case HierarchicalgraphPackage.DEFAULT_HG_NODE_SOURCE: return createDefaultHGNodeSource();
       case HierarchicalgraphPackage.DEFAULT_HG_DEPENDENCY_SOURCE: return createDefaultHGDependencySource();
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY: return createHGCoreDependency();
-      case HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY: return createHGAggregatedCoreDependency();
-      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY: return createHGAggregatedDependency();
+      case HierarchicalgraphPackage.HG_DEPENDENCY: return createHGDependency();
       case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP: return (EObject)createNodeToDependencyMap();
       case HierarchicalgraphPackage.STRING_TO_STRING_MAP: return (EObject)createStringToStringMap();
       case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP: return (EObject)createIdentifierToNodeMap();
@@ -90,6 +88,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID()) {
+      case HierarchicalgraphPackage.DEPENDENCY_TYPE:
+        return createDependencyTypeFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
         return createIItemLabelProviderFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.FUTURE:
@@ -107,6 +107,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID()) {
+      case HierarchicalgraphPackage.DEPENDENCY_TYPE:
+        return convertDependencyTypeToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
         return convertIItemLabelProviderToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.FUTURE:
@@ -181,36 +183,6 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGCoreDependency createHGCoreDependency() {
-    HGCoreDependencyImpl hgCoreDependency = new HGCoreDependencyImpl();
-    return hgCoreDependency;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public HGAggregatedCoreDependency createHGAggregatedCoreDependency() {
-    HGAggregatedCoreDependencyImpl hgAggregatedCoreDependency = new HGAggregatedCoreDependencyImpl();
-    return hgAggregatedCoreDependency;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public HGAggregatedDependency createHGAggregatedDependency() {
-    HGAggregatedDependencyImpl hgAggregatedDependency = new HGAggregatedDependencyImpl();
-    return hgAggregatedDependency;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Map.Entry<HGNode, HGDependency> createNodeToDependencyMap() {
     NodeToDependencyMapImpl nodeToDependencyMap = new NodeToDependencyMapImpl();
     return nodeToDependencyMap;
@@ -244,6 +216,26 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   public Map.Entry<HGNode, List<HGDependency>> createNodeToDependenciesMap() {
     NodeToDependenciesMapImpl nodeToDependenciesMap = new NodeToDependenciesMapImpl();
     return nodeToDependenciesMap;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DependencyType createDependencyTypeFromString(EDataType eDataType, String initialValue) {
+    DependencyType result = DependencyType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertDependencyTypeToString(EDataType eDataType, Object instanceValue) {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

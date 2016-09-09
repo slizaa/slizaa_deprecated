@@ -165,72 +165,26 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.HGCoreDependency} instances.
+   * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.HGDependency} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected HGCoreDependencyItemProvider hgCoreDependencyItemProvider;
+  protected HGDependencyItemProvider hgDependencyItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.HGCoreDependency}.
+   * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.HGDependency}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createHGCoreDependencyAdapter() {
-    if (hgCoreDependencyItemProvider == null) {
-      hgCoreDependencyItemProvider = new HGCoreDependencyItemProvider(this);
+  public Adapter createHGDependencyAdapter() {
+    if (hgDependencyItemProvider == null) {
+      hgDependencyItemProvider = new HGDependencyItemProvider(this);
     }
 
-    return hgCoreDependencyItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected HGAggregatedCoreDependencyItemProvider hgAggregatedCoreDependencyItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createHGAggregatedCoreDependencyAdapter() {
-    if (hgAggregatedCoreDependencyItemProvider == null) {
-      hgAggregatedCoreDependencyItemProvider = new HGAggregatedCoreDependencyItemProvider(this);
-    }
-
-    return hgAggregatedCoreDependencyItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.HGAggregatedDependency} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected HGAggregatedDependencyItemProvider hgAggregatedDependencyItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.HGAggregatedDependency}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createHGAggregatedDependencyAdapter() {
-    if (hgAggregatedDependencyItemProvider == null) {
-      hgAggregatedDependencyItemProvider = new HGAggregatedDependencyItemProvider(this);
-    }
-
-    return hgAggregatedDependencyItemProvider;
+    return hgDependencyItemProvider;
   }
 
   /**
@@ -336,9 +290,7 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
     if (hgDependencySourceItemProvider != null) hgDependencySourceItemProvider.dispose();
     if (hgRootNodeItemProvider != null) hgRootNodeItemProvider.dispose();
     if (defaultHGDependencySourceItemProvider != null) defaultHGDependencySourceItemProvider.dispose();
-    if (hgCoreDependencyItemProvider != null) hgCoreDependencyItemProvider.dispose();
-    if (hgAggregatedCoreDependencyItemProvider != null) hgAggregatedCoreDependencyItemProvider.dispose();
-    if (hgAggregatedDependencyItemProvider != null) hgAggregatedDependencyItemProvider.dispose();
+    if (hgDependencyItemProvider != null) hgDependencyItemProvider.dispose();
   }
 
 }

@@ -63,24 +63,9 @@ public class HierarchicalgraphFactoryMethods {
    * @param target
    * @return
    */
-  public static HGAggregatedCoreDependency createNewAggregatedCoreDependency(HGNode source, HGNode target,
+  public static HGDependency createNewAggregatedCoreDependency(HGNode source, HGNode target,
       Supplier<HGDependencySource> dependencySourceSupplier) {
-    
-    //
-    HGAggregatedCoreDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGAggregatedCoreDependency();
-    dependency.setFrom(checkNotNull(source));
-    dependency.setTo(checkNotNull(target));
-    dependency.setDependencySource(checkNotNull(checkNotNull(dependencySourceSupplier)).get());
-
-    //
-    source.getOutgoingCoreDependenciesMap().putIfAbsent(target, new ArrayList<>());
-    source.getOutgoingCoreDependenciesMap().get(target).add(dependency);
-
-    target.getIncomingCoreDependenciesMap().putIfAbsent(source, new ArrayList<>());
-    target.getIncomingCoreDependenciesMap().get(source).add(dependency);
-
-    //
-    return dependency;
+    return createNewDependency(source, target, DependencyType.AGGREGATED_CORE_DEPENDENCY, dependencySourceSupplier);
   }
 
   /**
@@ -91,13 +76,28 @@ public class HierarchicalgraphFactoryMethods {
    * @param target
    * @return
    */
-  public static HGCoreDependency createNewCoreDependency(HGNode source, HGNode target,
+  public static HGDependency createNewCoreDependency(HGNode source, HGNode target,
       Supplier<HGDependencySource> dependencySourceSupplier) {
-    
+    return createNewDependency(source, target, DependencyType.CORE_DEPENDENCY, dependencySourceSupplier);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param source
+   * @param target
+   * @param dependencyType
+   * @return
+   */
+  public static HGDependency createNewDependency(HGNode source, HGNode target, DependencyType dependencyType,
+      Supplier<HGDependencySource> dependencySourceSupplier) {
+
     //
-    HGCoreDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGCoreDependency();
+    HGDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGDependency();
     dependency.setFrom(checkNotNull(source));
     dependency.setTo(checkNotNull(target));
+    dependency.setType(checkNotNull(dependencyType));
     dependency.setDependencySource(checkNotNull(checkNotNull(dependencySourceSupplier)).get());
 
     //
