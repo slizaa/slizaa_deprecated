@@ -1,13 +1,13 @@
 package org.slizaa.neo4j.testfwk.testmodel.internal;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewAggregatedCoreDependency;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewNode;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGNodeSource;
@@ -88,7 +88,7 @@ public class TestModelMappingFunctions {
    * @param type
    * @return
    */
-  public static HGDependency mapDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
+  public static HGCoreDependency mapDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
       boolean isAggregatedCoreDependency, BiFunction<Long, String, HGDependencySource> dependencySourceCreator) {
 
     // get the from...
@@ -104,7 +104,7 @@ public class TestModelMappingFunctions {
     }
 
     //
-    HGDependency hgDependency = createNewAggregatedCoreDependency(fromElement, toElement, () -> {
+    HGCoreDependency hgDependency = createNewCoreDependency(fromElement, toElement, () -> {
       return dependencySourceCreator.apply(idRel, type);
     });
 

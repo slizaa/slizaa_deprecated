@@ -12,6 +12,7 @@ package org.slizaa.ui.dependencytree.internal;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -24,7 +25,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceRegistration;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.util.HierarchicalGraphUtils;
 import org.slizaa.selection.IDependencySelection;
 import org.slizaa.selection.IHierarchicalGraphSelection;
 import org.slizaa.selection.IHierarchicalGraphSelectionListener;
@@ -107,9 +109,13 @@ public class DependencyTreePart implements IHierarchicalGraphSelectionListener {
       IDependencySelection dependencySelection = selection.findFirstOccurrence(IDependencySelection.class);
 
       if (dependencySelection != null) {
-        _composite.setDependencies(dependencySelection.getSelectedDependencies());
+
+        List<HGCoreDependency> dependencies = HierarchicalGraphUtils
+            .getCoreDependencies(dependencySelection.getSelectedDependencies());
+
+        _composite.setDependencies(dependencies);
       } else {
-        Collection<HGDependency> dependencies = Collections.emptyList();
+        Collection<HGCoreDependency> dependencies = Collections.emptyList();
         _composite.setDependencies(dependencies);
       }
     }

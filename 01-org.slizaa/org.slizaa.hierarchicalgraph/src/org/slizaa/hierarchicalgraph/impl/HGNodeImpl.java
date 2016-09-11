@@ -20,7 +20,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGNodeSource;
 import org.slizaa.hierarchicalgraph.HGRootNode;
@@ -83,7 +84,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * @generated
    * @ordered
    */
-  protected EMap<HGNode, List<HGDependency>> incomingCoreDependenciesMap;
+  protected EMap<HGNode, List<HGCoreDependency>> incomingCoreDependenciesMap;
 
   /**
    * The cached value of the '{@link #getOutgoingCoreDependenciesMap() <em>Outgoing Core Dependencies Map</em>}' map.
@@ -93,7 +94,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * @generated
    * @ordered
    */
-  protected EMap<HGNode, List<HGDependency>> outgoingCoreDependenciesMap;
+  protected EMap<HGNode, List<HGCoreDependency>> outgoingCoreDependenciesMap;
 
   /**
    * <!-- begin-user-doc -->
@@ -224,9 +225,9 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Map<HGNode, List<HGDependency>> getIncomingCoreDependenciesMap() {
+  public Map<HGNode, List<HGCoreDependency>> getIncomingCoreDependenciesMap() {
     if (incomingCoreDependenciesMap == null) {
-      incomingCoreDependenciesMap = new EcoreEMap<HGNode,List<HGDependency>>(HierarchicalgraphPackage.Literals.NODE_TO_DEPENDENCIES_MAP, NodeToDependenciesMapImpl.class, this, HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES_MAP);
+      incomingCoreDependenciesMap = new EcoreEMap<HGNode,List<HGCoreDependency>>(HierarchicalgraphPackage.Literals.NODE_TO_CORE_DEPENDENCIES_MAP, NodeToCoreDependenciesMapImpl.class, this, HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES_MAP);
     }
     return incomingCoreDependenciesMap.map();
   }
@@ -236,9 +237,9 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Map<HGNode, List<HGDependency>> getOutgoingCoreDependenciesMap() {
+  public Map<HGNode, List<HGCoreDependency>> getOutgoingCoreDependenciesMap() {
     if (outgoingCoreDependenciesMap == null) {
-      outgoingCoreDependenciesMap = new EcoreEMap<HGNode,List<HGDependency>>(HierarchicalgraphPackage.Literals.NODE_TO_DEPENDENCIES_MAP, NodeToDependenciesMapImpl.class, this, HierarchicalgraphPackage.HG_NODE__OUTGOING_CORE_DEPENDENCIES_MAP);
+      outgoingCoreDependenciesMap = new EcoreEMap<HGNode,List<HGCoreDependency>>(HierarchicalgraphPackage.Literals.NODE_TO_CORE_DEPENDENCIES_MAP, NodeToCoreDependenciesMapImpl.class, this, HierarchicalgraphPackage.HG_NODE__OUTGOING_CORE_DEPENDENCIES_MAP);
     }
     return outgoingCoreDependenciesMap.map();
   }
@@ -259,7 +260,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependency getIncomingDependenciesFrom(HGNode node) {
+  public HGAggregatedDependency getIncomingDependenciesFrom(HGNode node) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -270,7 +271,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public List<HGDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
+  public List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -281,7 +282,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependency getOutgoingDependenciesTo(HGNode targetNode) {
+  public HGAggregatedDependency getOutgoingDependenciesTo(HGNode targetNode) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -292,7 +293,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public List<HGDependency> getOutgoingDependenciesTo(List<HGNode> targetNodes) {
+  public List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> targetNodes) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -325,7 +326,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public List<HGDependency> getOutgoingCoreDependencies(boolean includeChildren) {
+  public List<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -336,7 +337,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public List<HGDependency> getIncomingCoreDependencies(boolean includeChildren) {
+  public List<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -380,9 +381,9 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
       case HierarchicalgraphPackage.HG_NODE__NODE_SOURCE:
         return basicSetNodeSource(null, msgs);
       case HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES_MAP:
-        return ((InternalEList<?>)((EMap.InternalMapView<HGNode, List<HGDependency>>)getIncomingCoreDependenciesMap()).eMap()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>)((EMap.InternalMapView<HGNode, List<HGCoreDependency>>)getIncomingCoreDependenciesMap()).eMap()).basicRemove(otherEnd, msgs);
       case HierarchicalgraphPackage.HG_NODE__OUTGOING_CORE_DEPENDENCIES_MAP:
-        return ((InternalEList<?>)((EMap.InternalMapView<HGNode, List<HGDependency>>)getOutgoingCoreDependenciesMap()).eMap()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>)((EMap.InternalMapView<HGNode, List<HGCoreDependency>>)getOutgoingCoreDependenciesMap()).eMap()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -418,10 +419,10 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
       case HierarchicalgraphPackage.HG_NODE__NODE_SOURCE:
         return getNodeSource();
       case HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES_MAP:
-        if (coreType) return ((EMap.InternalMapView<HGNode, List<HGDependency>>)getIncomingCoreDependenciesMap()).eMap();
+        if (coreType) return ((EMap.InternalMapView<HGNode, List<HGCoreDependency>>)getIncomingCoreDependenciesMap()).eMap();
         else return getIncomingCoreDependenciesMap();
       case HierarchicalgraphPackage.HG_NODE__OUTGOING_CORE_DEPENDENCIES_MAP:
-        if (coreType) return ((EMap.InternalMapView<HGNode, List<HGDependency>>)getOutgoingCoreDependenciesMap()).eMap();
+        if (coreType) return ((EMap.InternalMapView<HGNode, List<HGCoreDependency>>)getOutgoingCoreDependenciesMap()).eMap();
         else return getOutgoingCoreDependenciesMap();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -447,10 +448,10 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
         setNodeSource((HGNodeSource)newValue);
         return;
       case HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES_MAP:
-        ((EStructuralFeature.Setting)((EMap.InternalMapView<HGNode, List<HGDependency>>)getIncomingCoreDependenciesMap()).eMap()).set(newValue);
+        ((EStructuralFeature.Setting)((EMap.InternalMapView<HGNode, List<HGCoreDependency>>)getIncomingCoreDependenciesMap()).eMap()).set(newValue);
         return;
       case HierarchicalgraphPackage.HG_NODE__OUTGOING_CORE_DEPENDENCIES_MAP:
-        ((EStructuralFeature.Setting)((EMap.InternalMapView<HGNode, List<HGDependency>>)getOutgoingCoreDependenciesMap()).eMap()).set(newValue);
+        ((EStructuralFeature.Setting)((EMap.InternalMapView<HGNode, List<HGCoreDependency>>)getOutgoingCoreDependenciesMap()).eMap()).set(newValue);
         return;
     }
     super.eSet(featureID, newValue);

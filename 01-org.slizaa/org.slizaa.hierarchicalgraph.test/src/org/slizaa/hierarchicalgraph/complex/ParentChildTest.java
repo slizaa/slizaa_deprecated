@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph;
+package org.slizaa.hierarchicalgraph.complex;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;

@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph;
+package org.slizaa.hierarchicalgraph.complex;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
@@ -61,7 +61,7 @@ public class DependencyTest extends AbstractHierarchicalTest {
     assertThat(node(577).getOutgoingDependenciesTo(node(1))).isNull();
     
     // '/mapstruct-processor-1.1.0.Beta2.jar/org.mapstrcut.ap.internal.model' -> '/mapstruct-processor-1.1.0.Beta2.jar/org.mapstrcut.ap.internal.util'
-    assertThat(node(1063).getOutgoingDependenciesTo(node(5922)).getWeight()).isEqualTo(50);
+    assertThat(node(1063).getOutgoingDependenciesTo(node(5922)).getAggregatedWeight()).isEqualTo(50);
 
     // TODO
   }

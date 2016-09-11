@@ -14,15 +14,15 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 import org.eclipse.swt.SWT;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 
 /**
- * Compares {@link HGDependency} instances, either by their from- or to-side or their usage
+ * Compares {@link AbstractHGDependency} instances, either by their from- or to-side or their usage
  * 
  * @author Nils Hartmann (nils@nilshartmann.net)
  * 
  */
-public class DependencyComparator implements Comparator<HGDependency> {
+public class DependencyComparator implements Comparator<AbstractHGDependency> {
 
   private static final int                 DESCENDING = 1;
 
@@ -69,7 +69,7 @@ public class DependencyComparator implements Comparator<HGDependency> {
     }
   }
 
-  public void sortDependencies(HGDependency[] dependencies) {
+  public void sortDependencies(AbstractHGDependency[] dependencies) {
     if (dependencies == null || this._columnIndex == -1) {
       return;
     }
@@ -79,7 +79,7 @@ public class DependencyComparator implements Comparator<HGDependency> {
   }
 
   @Override
-  public int compare(HGDependency o1, HGDependency o2) {
+  public int compare(AbstractHGDependency o1, AbstractHGDependency o2) {
     // Get the actual values to compare (dependending on the order column)
     String value1 = getCompareValue(o1);
     String value2 = getCompareValue(o2);
@@ -88,7 +88,7 @@ public class DependencyComparator implements Comparator<HGDependency> {
     return (direction == DESCENDING ? value1.compareTo(value2) : value2.compareTo(value1));
   }
 
-  protected String getCompareValue(HGDependency dependency) {
+  protected String getCompareValue(AbstractHGDependency dependency) {
     if (_columnIndex == 0) {
       return _fromArtifactPathLabelGenerator.getLabel(dependency.getFrom());
     }

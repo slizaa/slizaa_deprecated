@@ -15,8 +15,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.slizaa.hierarchicalgraph.HGDependency;
-import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 
 /**
  * <p>
@@ -33,102 +34,109 @@ public class HierarchicalGraphUtils {
    * 
    * @return
    */
-  public static List<HGDependency> getCoreDependencies(Collection<HGDependency> dependencies) {
+  public static List<HGCoreDependency> getCoreDependencies(Collection<AbstractHGDependency> dependencies) {
 
+    //
     if (dependencies == null) {
       return Collections.emptyList();
     }
 
     //
-    final List<HGDependency> result = new LinkedList<HGDependency>();
+    final List<HGCoreDependency> result = new LinkedList<>();
 
-    for (HGDependency dependency : dependencies) {
-      result.addAll(dependency.getCoreDependencies());
+    for (AbstractHGDependency dependency : dependencies) {
+      if (dependency instanceof HGCoreDependency) {
+        result.add((HGCoreDependency) dependency);
+      }
+      //
+      else if (dependency instanceof HGAggregatedDependency) {
+        result.addAll(((HGAggregatedDependency) dependency).getCoreDependencies());
+      }
     }
 
     return result;
   }
 
-  public static void prettyPrint(Collection<HGDependency> dependencies) {
-    for (HGDependency dependency : dependencies) {
-      prettyPrint(dependency);
-    }
-  }
-
-  public static void prettyPrint(HGDependency dependency) {
-    System.out.println(String.format("%s -(%s)-> %s", dependency.getTo().getNodeSource().toString(),
-        dependency.getWeight(), dependency.getFrom().getNodeSource().toString()));
-  }
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @param node
-   * @param level
-   * @param stringBuilder
-   */
-  private static void dump(HGNode node, int level, StringBuilder stringBuilder, int limit) {
-
-    // limit
-    if (limit != -1 && level >= limit) {
-      return;
-    }
-
-    //
-    for (int i = 0; i < level; i++) {
-      stringBuilder.append("  ");
-    }
-
-    //
-    stringBuilder.append("[");
-    stringBuilder.append(node.getIdentifier());
-    stringBuilder.append("] ");
-    stringBuilder.append(node.getNodeSource().toString());
-    stringBuilder.append("\n");
-
-    for (HGNode child : node.getChildren()) {
-      dump(child, level + 1, stringBuilder, limit);
-    }
-  }
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @param artifact
-   */
-  public static void printPretty(HGNode artifact) {
-
-    if (artifact == null) {
-      System.out.println("Artifact is 'null'.");
-      return;
-    }
-
-    StringBuilder builder = new StringBuilder();
-    dump(artifact, 0, builder, -1);
-    System.out.println(builder.toString());
-  }
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @param artifact
-   */
-  public static void dumpArtifact(HGNode artifact, int limit) {
-    StringBuilder builder = new StringBuilder();
-    dump(artifact, 0, builder, limit);
-    System.out.println(builder.toString());
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param artifact
-   */
-  public static void dumpArtifact(HGNode artifact) {
-    dumpArtifact(artifact, -1);
-  }
+  // public static void prettyPrint(Collection<HGDependency> dependencies) {
+  // for (HGDependency dependency : dependencies) {
+  // prettyPrint(dependency);
+  // }
+  // }
+  //
+  // public static void prettyPrint(HGDependency dependency) {
+  // System.out.println(String.format("%s -(%s)-> %s", dependency.getTo().getNodeSource().toString(),
+  // dependency.getWeight(), dependency.getFrom().getNodeSource().toString()));
+  // }
+  //
+  // /**
+  // * <p>
+  // * </p>
+  // *
+  // * @param node
+  // * @param level
+  // * @param stringBuilder
+  // */
+  // private static void dump(HGNode node, int level, StringBuilder stringBuilder, int limit) {
+  //
+  // // limit
+  // if (limit != -1 && level >= limit) {
+  // return;
+  // }
+  //
+  // //
+  // for (int i = 0; i < level; i++) {
+  // stringBuilder.append(" ");
+  // }
+  //
+  // //
+  // stringBuilder.append("[");
+  // stringBuilder.append(node.getIdentifier());
+  // stringBuilder.append("] ");
+  // stringBuilder.append(node.getNodeSource().toString());
+  // stringBuilder.append("\n");
+  //
+  // for (HGNode child : node.getChildren()) {
+  // dump(child, level + 1, stringBuilder, limit);
+  // }
+  // }
+  //
+  // /**
+  // * <p>
+  // * </p>
+  // *
+  // * @param artifact
+  // */
+  // public static void printPretty(HGNode artifact) {
+  //
+  // if (artifact == null) {
+  // System.out.println("Artifact is 'null'.");
+  // return;
+  // }
+  //
+  // StringBuilder builder = new StringBuilder();
+  // dump(artifact, 0, builder, -1);
+  // System.out.println(builder.toString());
+  // }
+  //
+  // /**
+  // * <p>
+  // * </p>
+  // *
+  // * @param artifact
+  // */
+  // public static void dumpArtifact(HGNode artifact, int limit) {
+  // StringBuilder builder = new StringBuilder();
+  // dump(artifact, 0, builder, limit);
+  // System.out.println(builder.toString());
+  // }
+  //
+  // /**
+  // * <p>
+  // * </p>
+  // *
+  // * @param artifact
+  // */
+  // public static void dumpArtifact(HGNode artifact) {
+  // dumpArtifact(artifact, -1);
+  // }
 }

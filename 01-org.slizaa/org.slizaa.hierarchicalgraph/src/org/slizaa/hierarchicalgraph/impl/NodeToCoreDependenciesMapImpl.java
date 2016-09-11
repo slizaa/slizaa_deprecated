@@ -6,34 +6,39 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.slizaa.hierarchicalgraph.HGDependency;
+
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Node To Dependencies Map</b></em>'.
+ * An implementation of the model object '<em><b>Node To Core Dependencies Map</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.NodeToDependenciesMapImpl#getTypedKey <em>Key</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.NodeToDependenciesMapImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.NodeToCoreDependenciesMapImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.NodeToCoreDependenciesMapImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<HGNode,List<HGDependency>> {
+public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<HGNode,List<HGCoreDependency>> {
   /**
    * The cached value of the '{@link #getTypedKey() <em>Key</em>}' reference.
    * <!-- begin-user-doc -->
@@ -52,14 +57,14 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
    * @generated
    * @ordered
    */
-  protected EList<HGDependency> value;
+  protected EList<HGCoreDependency> value;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected NodeToDependenciesMapImpl() {
+  protected NodeToCoreDependenciesMapImpl() {
     super();
   }
 
@@ -70,7 +75,7 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
    */
   @Override
   protected EClass eStaticClass() {
-    return HierarchicalgraphPackage.Literals.NODE_TO_DEPENDENCIES_MAP;
+    return HierarchicalgraphPackage.Literals.NODE_TO_CORE_DEPENDENCIES_MAP;
   }
 
   /**
@@ -84,7 +89,7 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
       key = (HGNode)eResolveProxy(oldKey);
       if (key != oldKey) {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP__KEY, oldKey, key));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY, oldKey, key));
       }
     }
     return key;
@@ -108,7 +113,7 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
     HGNode oldKey = key;
     key = newKey;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP__KEY, oldKey, key));
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY, oldKey, key));
   }
 
   /**
@@ -116,9 +121,9 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public List<HGDependency> getTypedValue() {
+  public List<HGCoreDependency> getTypedValue() {
     if (value == null) {
-      value = new EObjectResolvingEList<HGDependency>(HGDependency.class, this, HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP__VALUE);
+      value = new EObjectResolvingEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__VALUE);
     }
     return value;
   }
@@ -131,10 +136,10 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP__KEY:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY:
         if (resolve) return getTypedKey();
         return basicGetTypedKey();
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP__VALUE:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__VALUE:
         return getTypedValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -149,12 +154,12 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP__KEY:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY:
         setTypedKey((HGNode)newValue);
         return;
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP__VALUE:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__VALUE:
         getTypedValue().clear();
-        getTypedValue().addAll((Collection<? extends HGDependency>)newValue);
+        getTypedValue().addAll((Collection<? extends HGCoreDependency>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,10 +173,10 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP__KEY:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY:
         setTypedKey((HGNode)null);
         return;
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP__VALUE:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__VALUE:
         getTypedValue().clear();
         return;
     }
@@ -186,9 +191,9 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP__KEY:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY:
         return key != null;
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP__VALUE:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__VALUE:
         return value != null && !value.isEmpty();
     }
     return super.eIsSet(featureID);
@@ -246,7 +251,7 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public List<HGDependency> getValue() {
+  public List<HGCoreDependency> getValue() {
     return getTypedValue();
   }
 
@@ -255,8 +260,8 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public List<HGDependency> setValue(List<HGDependency> value) {
-    List<HGDependency> oldValue = getValue();
+  public List<HGCoreDependency> setValue(List<HGCoreDependency> value) {
+    List<HGCoreDependency> oldValue = getValue();
     getTypedValue().clear();
     getTypedValue().addAll(value);
     return oldValue;
@@ -268,9 +273,9 @@ public class NodeToDependenciesMapImpl extends MinimalEObjectImpl.Container impl
    * @generated
    */
   @SuppressWarnings("unchecked")
-  public EMap<HGNode, List<HGDependency>> getEMap() {
+  public EMap<HGNode, List<HGCoreDependency>> getEMap() {
     EObject container = eContainer();
-    return container == null ? null : (EMap<HGNode, List<HGDependency>>)container.eGet(eContainmentFeature());
+    return container == null ? null : (EMap<HGNode, List<HGCoreDependency>>)container.eGet(eContainmentFeature());
   }
 
-} //NodeToDependenciesMapImpl
+} //NodeToCoreDependenciesMapImpl

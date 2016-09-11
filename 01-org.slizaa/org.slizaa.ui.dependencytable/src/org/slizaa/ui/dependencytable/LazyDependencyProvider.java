@@ -14,7 +14,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ILazyContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 
 /**
  * <p>
@@ -28,7 +28,7 @@ public class LazyDependencyProvider implements ILazyContentProvider {
   private TableViewer   _tableViewer;
 
   /** - */
-  private HGDependency[] _dependencies;
+  private AbstractHGDependency[] _dependencies;
 
   /**
    * <p>
@@ -55,7 +55,7 @@ public class LazyDependencyProvider implements ILazyContentProvider {
    */
   @Override
   public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-    this._dependencies = (HGDependency[]) newInput;
+    this._dependencies = (AbstractHGDependency[]) newInput;
 
   }
 

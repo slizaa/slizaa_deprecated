@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.elk.graph.KGraphElement;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 
 import de.cau.cs.kieler.klighd.IAction;
 
@@ -24,9 +24,9 @@ public class SelectDependenciesAction implements IAction {
 
       Object sourceElement = context.getViewContext().getSourceElement(kGraphElement);
 
-      if (sourceElement instanceof HGDependency) {
-        HGDependency dependency = (HGDependency) sourceElement;
-        List<HGDependency> dependencies = new LinkedList<>();
+      if (sourceElement instanceof HGAggregatedDependency) {
+        HGAggregatedDependency dependency = (HGAggregatedDependency) sourceElement;
+        List<HGAggregatedDependency> dependencies = new LinkedList<>();
         if (dependency != null) {
           dependencies.add(dependency);
         }

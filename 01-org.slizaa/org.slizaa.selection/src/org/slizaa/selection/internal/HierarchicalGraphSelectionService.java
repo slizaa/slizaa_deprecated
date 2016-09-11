@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.selection.IHierarchicalGraphSelection;
 import org.slizaa.selection.IHierarchicalGraphSelectionListener;
@@ -127,7 +127,7 @@ public class HierarchicalGraphSelectionService implements IHierarchicalGraphSele
    * {@inheritDoc}
    */
   @Override
-  public void setCurrentDependencySelection(String selectionProviderId, HGDependency... selectedDependencies) {
+  public void setCurrentDependencySelection(String selectionProviderId, AbstractHGDependency... selectedDependencies) {
     setCurrentDependencySelection(selectionProviderId, Arrays.asList(selectedDependencies));
   }
 
@@ -135,7 +135,8 @@ public class HierarchicalGraphSelectionService implements IHierarchicalGraphSele
    * {@inheritDoc}
    */
   @Override
-  public void setCurrentDependencySelection(String selectionProviderId, List<HGDependency> selectedDependencies) {
+  public void setCurrentDependencySelection(String selectionProviderId,
+      List<? extends AbstractHGDependency> selectedDependencies) {
 
     //
     if (selectedDependencies.isEmpty()) {
@@ -144,13 +145,6 @@ public class HierarchicalGraphSelectionService implements IHierarchicalGraphSele
 
     //
     else {
-
-      // TODO: resolveAggregatedCoreDependency
-      if (false) {
-        for (HGDependency dependency : selectedDependencies) {
-          checkNotNull(dependency).resolveAggregatedCoreDependencies();
-        }
-      }
 
       //
       _setCurrentSelection(

@@ -106,7 +106,7 @@ public interface HGNode extends EObject {
   /**
    * Returns the value of the '<em><b>Incoming Core Dependencies Map</b></em>' map.
    * The key is of type {@link org.slizaa.hierarchicalgraph.HGNode},
-   * and the value is of type list of {@link org.slizaa.hierarchicalgraph.HGDependency},
+   * and the value is of type list of {@link org.slizaa.hierarchicalgraph.HGCoreDependency},
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Incoming Core Dependencies Map</em>' map isn't clear,
@@ -115,15 +115,15 @@ public interface HGNode extends EObject {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Incoming Core Dependencies Map</em>' map.
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_IncomingCoreDependenciesMap()
-   * @model mapType="org.slizaa.hierarchicalgraph.NodeToDependenciesMap<org.slizaa.hierarchicalgraph.HGNode, org.slizaa.hierarchicalgraph.HGDependency>" ordered="false"
+   * @model mapType="org.slizaa.hierarchicalgraph.NodeToCoreDependenciesMap<org.slizaa.hierarchicalgraph.HGNode, org.slizaa.hierarchicalgraph.HGCoreDependency>" ordered="false"
    * @generated
    */
-  Map<HGNode, List<HGDependency>> getIncomingCoreDependenciesMap();
+  Map<HGNode, List<HGCoreDependency>> getIncomingCoreDependenciesMap();
 
   /**
    * Returns the value of the '<em><b>Outgoing Core Dependencies Map</b></em>' map.
    * The key is of type {@link org.slizaa.hierarchicalgraph.HGNode},
-   * and the value is of type list of {@link org.slizaa.hierarchicalgraph.HGDependency},
+   * and the value is of type list of {@link org.slizaa.hierarchicalgraph.HGCoreDependency},
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Outgoing Core Dependencies Map</em>' map isn't clear,
@@ -132,10 +132,10 @@ public interface HGNode extends EObject {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Outgoing Core Dependencies Map</em>' map.
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_OutgoingCoreDependenciesMap()
-   * @model mapType="org.slizaa.hierarchicalgraph.NodeToDependenciesMap<org.slizaa.hierarchicalgraph.HGNode, org.slizaa.hierarchicalgraph.HGDependency>" ordered="false"
+   * @model mapType="org.slizaa.hierarchicalgraph.NodeToCoreDependenciesMap<org.slizaa.hierarchicalgraph.HGNode, org.slizaa.hierarchicalgraph.HGCoreDependency>" ordered="false"
    * @generated
    */
-  Map<HGNode, List<HGDependency>> getOutgoingCoreDependenciesMap();
+  Map<HGNode, List<HGCoreDependency>> getOutgoingCoreDependenciesMap();
 
   /**
    * Returns the value of the '<em><b>Root Node</b></em>' reference.
@@ -169,7 +169,7 @@ public interface HGNode extends EObject {
    * @model
    * @generated
    */
-  HGDependency getIncomingDependenciesFrom(HGNode node);
+  HGAggregatedDependency getIncomingDependenciesFrom(HGNode node);
 
   /**
    * <!-- begin-user-doc -->
@@ -177,7 +177,7 @@ public interface HGNode extends EObject {
    * @model nodesMany="true"
    * @generated
    */
-  List<HGDependency> getIncomingDependenciesFrom(List<HGNode> nodes);
+  List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes);
 
   /**
    * <!-- begin-user-doc -->
@@ -189,7 +189,7 @@ public interface HGNode extends EObject {
    * @model targetNodeRequired="true"
    * @generated
    */
-  HGDependency getOutgoingDependenciesTo(HGNode targetNode);
+  HGAggregatedDependency getOutgoingDependenciesTo(HGNode targetNode);
 
   /**
    * <!-- begin-user-doc -->
@@ -202,7 +202,7 @@ public interface HGNode extends EObject {
    * @model targetNodesMany="true"
    * @generated
    */
-  List<HGDependency> getOutgoingDependenciesTo(List<HGNode> targetNodes);
+  List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> targetNodes);
 
   /**
    * <!-- begin-user-doc -->
@@ -210,7 +210,7 @@ public interface HGNode extends EObject {
    * @model
    * @generated
    */
-  List<HGDependency> getOutgoingCoreDependencies(boolean includeChildren);
+  List<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren);
 
   /**
    * <!-- begin-user-doc -->
@@ -218,7 +218,7 @@ public interface HGNode extends EObject {
    * @model
    * @generated
    */
-  List<HGDependency> getIncomingCoreDependencies(boolean includeChildren);
+  List<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren);
 
   /**
    * <!-- begin-user-doc -->

@@ -60,7 +60,7 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INode
 
 					val outgoingDependencies = sourceElement.getOutgoingDependenciesTo(targetElement);
 
-					if (outgoingDependencies != null && outgoingDependencies.weight > 0) {
+					if (outgoingDependencies != null && outgoingDependencies.aggregatedWeight > 0) {
 						createEdge => [
 							it.source = sourceElement.node;
 							it.target = targetElement.node;
@@ -72,7 +72,7 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INode
 								]
 								it.addSingleOrMultiClickAction(SelectDependenciesAction.ID)
 							]
-							it.createLabel.configureCenterEdgeLabel(Integer.toString(outgoingDependencies.weight), 10)
+							it.createLabel.configureCenterEdgeLabel(Integer.toString(outgoingDependencies.aggregatedWeight), 10)
 						]
 					}
 				}

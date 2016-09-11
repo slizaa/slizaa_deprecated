@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph;
+package org.slizaa.hierarchicalgraph.complex;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -7,7 +7,10 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.junit.Before;
-import org.slizaa.hierarchicalgraph.util.XmiUtils;
+import org.slizaa.hierarchicalgraph.DefaultHGNodeSource;
+import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGNodeSource;
+import org.slizaa.hierarchicalgraph.HGRootNode;
 
 /**
  * <p>

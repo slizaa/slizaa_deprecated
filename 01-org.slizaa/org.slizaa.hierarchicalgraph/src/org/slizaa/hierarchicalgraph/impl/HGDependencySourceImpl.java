@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
@@ -101,9 +101,9 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependency getDependency() {
+  public HGCoreDependency getDependency() {
     if (eContainerFeatureID() != HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY) return null;
-    return (HGDependency)eInternalContainer();
+    return (HGCoreDependency)eInternalContainer();
   }
 
   /**
@@ -111,7 +111,7 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDependency(HGDependency newDependency, NotificationChain msgs) {
+  public NotificationChain basicSetDependency(HGCoreDependency newDependency, NotificationChain msgs) {
     msgs = eBasicSetContainer((InternalEObject)newDependency, HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY, msgs);
     return msgs;
   }
@@ -121,7 +121,7 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDependency(HGDependency newDependency) {
+  public void setDependency(HGCoreDependency newDependency) {
     if (newDependency != eInternalContainer() || (eContainerFeatureID() != HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY && newDependency != null)) {
       if (EcoreUtil.isAncestor(this, newDependency))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -129,7 +129,7 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newDependency != null)
-        msgs = ((InternalEObject)newDependency).eInverseAdd(this, HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE, HGDependency.class, msgs);
+        msgs = ((InternalEObject)newDependency).eInverseAdd(this, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE, HGCoreDependency.class, msgs);
       msgs = basicSetDependency(newDependency, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -159,7 +159,7 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
       case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY:
         if (eInternalContainer() != null)
           msgs = eBasicRemoveFromContainer(msgs);
-        return basicSetDependency((HGDependency)otherEnd, msgs);
+        return basicSetDependency((HGCoreDependency)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -187,7 +187,7 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
       case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY:
-        return eInternalContainer().eInverseRemove(this, HierarchicalgraphPackage.HG_DEPENDENCY__DEPENDENCY_SOURCE, HGDependency.class, msgs);
+        return eInternalContainer().eInverseRemove(this, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE, HGCoreDependency.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }
@@ -220,7 +220,7 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
         setIdentifier(newValue);
         return;
       case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY:
-        setDependency((HGDependency)newValue);
+        setDependency((HGCoreDependency)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -238,7 +238,7 @@ public class HGDependencySourceImpl extends MinimalEObjectImpl.Container impleme
         setIdentifier(IDENTIFIER_EDEFAULT);
         return;
       case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY:
-        setDependency((HGDependency)null);
+        setDependency((HGCoreDependency)null);
         return;
     }
     super.eUnset(featureID);

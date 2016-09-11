@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 
 public class AdjacencyList {
@@ -59,7 +59,7 @@ public class AdjacencyList {
     for (HGNode node : nodes) {
 
       // get the referenced artifacts
-      Collection<? extends HGDependency> dependencies = node.getOutgoingDependenciesTo(Arrays.asList(nodes));
+      Collection<HGAggregatedDependency> dependencies = node.getOutgoingDependenciesTo(Arrays.asList(nodes));
 
       if (dependencies == null) {
         dependencies = Collections.emptyList();
@@ -71,7 +71,7 @@ public class AdjacencyList {
 
       // GENERICS HACK
       int count = 0;
-      for (HGDependency dependency : dependencies) {
+      for (HGAggregatedDependency dependency : dependencies) {
         matrix[index][count] = map.get(dependency.getTo());
         count++;
       }

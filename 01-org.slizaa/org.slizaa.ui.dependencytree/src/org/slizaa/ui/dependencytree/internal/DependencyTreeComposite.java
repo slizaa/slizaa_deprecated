@@ -28,7 +28,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TreeItem;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.algorithms.DependencySelector;
@@ -46,7 +47,7 @@ import org.slizaa.ui.tree.SlizaaTreeFactory;
 public class DependencyTreeComposite extends Composite {
 
   /** - */
-  private static final Set<HGDependency>     EMPTY_DEPENDENCY_SET = Collections.emptySet();
+  private static final Set<HGCoreDependency> EMPTY_DEPENDENCY_SET = Collections.emptySet();
 
   /** the from tree viewer */
   private TreeViewer                         _fromTreeViewer;
@@ -98,14 +99,14 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @param dependencies
    */
-  public void setDependencies(Collection<HGDependency> dependencies) {
+  public void setDependencies(Collection<HGCoreDependency> dependencies) {
 
     //
     _selector = new DependencySelector(dependencies);
 
     // set the root if necessary...
     if (dependencies.size() > 0) {
-      HGRootNode rootNode = dependencies.toArray(new HGDependency[0])[0].getFrom().getRootNode();
+      HGRootNode rootNode = dependencies.toArray(new AbstractHGDependency[0])[0].getFrom().getRootNode();
       if (!rootNode.equals(_fromTreeViewer.getInput()) && !rootNode.equals(_toTreeViewer.getInput())) {
         _fromTreeViewer.setInput(new RootObject(rootNode));
         _toTreeViewer.setInput(new RootObject(rootNode));
@@ -141,7 +142,7 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @return
    */
-  public final Set<HGDependency> getSelectedDetailDependencies() {
+  public final Set<HGCoreDependency> getSelectedDetailDependencies() {
     return _selector != null ? _selector.getFilteredDependencies() : EMPTY_DEPENDENCY_SET;
   }
 
@@ -167,8 +168,8 @@ public class DependencyTreeComposite extends Composite {
 
     //
     GridLayout layout = new GridLayout(1, false);
-    layout.marginWidth=0;
-    layout.marginHeight=0;
+    layout.marginWidth = 0;
+    layout.marginHeight = 0;
     this.setLayout(layout);
 
     //
@@ -195,11 +196,11 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @param selectedDetailDependencies
    */
-  private void setSelectedDetailDependencies(Set<HGDependency> dependencies) {
+  private void setSelectedDetailDependencies(Set<HGCoreDependency> dependencies) {
 
     //
     if (propagateSelectedDetailDependencies() && !dependencies.isEmpty()) {
-      _selectionService.setCurrentDependencySelection(DependencyTreePart.ID, dependencies.toArray(new HGDependency[0]));
+      _selectionService.setCurrentDependencySelection(DependencyTreePart.ID, dependencies.toArray(new HGCoreDependency[0]));
     }
   }
 

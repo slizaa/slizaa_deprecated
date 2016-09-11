@@ -2,7 +2,7 @@ package org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal;
 
 import java.util.concurrent.Future;
 
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver;
 
 public class CustomAggregatedDependencyResolver implements IAggregatedDependencyResolver {
@@ -11,7 +11,7 @@ public class CustomAggregatedDependencyResolver implements IAggregatedDependency
    * {@inheritDoc}
    */
   @Override
-  public Future<?> createNewAggregatedDependencyResolver(HGDependency dependencyToResolve) {
+  public Future<?> createNewAggregatedDependencyResolver(HGCoreDependency dependencyToResolve) {
     
     // Set<Object> fromNodes = new HashSet<>();
     // Set<Object> toNodes = new HashSet<>();

@@ -12,7 +12,7 @@ package org.slizaa.selection;
 
 import java.util.List;
 
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 
 public interface IHierarchicalGraphSelectionService {
@@ -47,7 +47,7 @@ public interface IHierarchicalGraphSelectionService {
 
   void setCurrentNodeSelection(String selectionProviderId, HGNode... selectedNodes);
 
-  void setCurrentDependencySelection(String selectionProviderId, List<HGDependency> selectedDependencies);
+  void setCurrentDependencySelection(String selectionProviderId, List<? extends AbstractHGDependency> selectedDependencies);
 
-  void setCurrentDependencySelection(String selectionProviderId, HGDependency... selectedDependencies);
+  void setCurrentDependencySelection(String selectionProviderId, AbstractHGDependency... selectedDependencies);
 }

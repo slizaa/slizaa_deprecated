@@ -1,9 +1,11 @@
-package org.slizaa.hierarchicalgraph;
+package org.slizaa.hierarchicalgraph.complex;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
+import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
  * <p>

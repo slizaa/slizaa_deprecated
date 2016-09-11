@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph.util;
+package org.slizaa.hierarchicalgraph.complex;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 
@@ -75,7 +75,7 @@ public class XmiUtils {
       if (containedElement instanceof HGNode) {
         HGNode node = (HGNode) containedElement;
   
-        for (List<HGDependency> dependencies : node.getOutgoingCoreDependenciesMap().values()) {
+        for (List<HGCoreDependency> dependencies : node.getOutgoingCoreDependenciesMap().values()) {
           System.out.println(dependencies);
           resource.getContents().addAll(dependencies);
         }

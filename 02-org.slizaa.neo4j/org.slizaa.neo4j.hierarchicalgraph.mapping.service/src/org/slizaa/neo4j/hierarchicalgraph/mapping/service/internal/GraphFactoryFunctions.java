@@ -6,7 +6,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGNodeSource;
@@ -93,7 +93,7 @@ public class GraphFactoryFunctions {
    * @param type
    * @return
    */
-  public static HGDependency createDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
+  public static HGCoreDependency createDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
       BiFunction<Long, String, HGDependencySource> dependencySourceCreator) {
 
     // get the from...
@@ -109,7 +109,7 @@ public class GraphFactoryFunctions {
     }
 
     //
-    HGDependency hgDependency = HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement, () -> {
+    HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement, () -> {
       return dependencySourceCreator.apply(idRel, type);
     });
 

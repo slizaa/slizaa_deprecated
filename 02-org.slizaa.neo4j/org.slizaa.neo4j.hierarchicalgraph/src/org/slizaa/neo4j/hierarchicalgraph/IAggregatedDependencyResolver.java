@@ -2,7 +2,7 @@ package org.slizaa.neo4j.hierarchicalgraph;
 
 import java.util.concurrent.Future;
 
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 
 /**
  * <p>
@@ -18,5 +18,5 @@ public interface IAggregatedDependencyResolver {
    *
    * @param dependencyToResolve
    */
-  Future<?> createNewAggregatedDependencyResolver(HGDependency dependencyToResolve);
+  Future<?> createNewAggregatedDependencyResolver(HGCoreDependency dependencyToResolve);
 }

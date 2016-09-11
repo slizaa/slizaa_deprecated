@@ -19,13 +19,11 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
@@ -33,7 +31,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Widget;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.selection.IHierarchicalGraphSelectionService;
 import org.slizaa.ui.dependencytree.internal.expand.DefaultExpandStrategy;
 import org.slizaa.ui.dependencytree.internal.expand.IExpandStrategy;
@@ -59,7 +57,7 @@ public class CropableDependencyTreeComposite extends Composite {
   private int                                _currentPosition = -1;
 
   /** - */
-  private List<Collection<HGDependency>>      _dependencySelectionList;
+  private List<Collection<HGCoreDependency>>      _dependencySelectionList;
 
   /** - */
   private String                             _detailDependencyProviderId;
@@ -88,7 +86,7 @@ public class CropableDependencyTreeComposite extends Composite {
 
     //
     _detailDependencyProviderId = detailDependencyProviderId;
-    _dependencySelectionList = new LinkedList<Collection<HGDependency>>();
+    _dependencySelectionList = new LinkedList<Collection<HGCoreDependency>>();
 
     //
     _fromExpandStrategy = new DefaultExpandStrategy();
@@ -344,7 +342,7 @@ public class CropableDependencyTreeComposite extends Composite {
    * 
    * @param dependencies
    */
-  public void setDependencies(Collection<HGDependency> dependencies) {
+  public void setDependencies(Collection<HGCoreDependency> dependencies) {
 
     // check disposed
     if (checkDisposed()) {
@@ -456,7 +454,7 @@ public class CropableDependencyTreeComposite extends Composite {
     }
 
     //
-    Set<HGDependency> currentSelection = _dependencyTreeComposite.getSelectedDetailDependencies();
+    Set<HGCoreDependency> currentSelection = _dependencyTreeComposite.getSelectedDetailDependencies();
     _dependencySelectionList.add(currentSelection);
     _currentPosition = _currentPosition + 1;
     _dependencyTreeComposite.setDependencies(currentSelection);

@@ -7,7 +7,8 @@ import static org.slizaa.neo4j.testfwk.testmodel.TestModelFactory.createGraphFro
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 
@@ -55,22 +56,21 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
     HGNode pkg_omaimodelcommon = _rootNode.getNode(new Long(1634));
 
     //
-    HGDependency hgDependency = pkg_omaiconversion.getOutgoingDependenciesTo(pkg_omaimodelcommon);
+    HGAggregatedDependency hgDependency = pkg_omaiconversion.getOutgoingDependenciesTo(pkg_omaimodelcommon);
     assertThat(hgDependency).isNotNull();
-    assertThat(hgDependency.getWeight()).isEqualTo(59);
+    assertThat(hgDependency.getAggregatedWeight()).isEqualTo(59);
     assertThat(hgDependency.getCoreDependencies().size()).isEqualTo(59);
 
     // resolve the dependency
     hgDependency.resolveAggregatedCoreDependencies();
-    
+
     //
-    for (HGDependency dependency : hgDependency.getCoreDependencies()) {
+    for (HGCoreDependency dependency : hgDependency.getCoreDependencies()) {
       verify(_aggregatedDependencyResolver).createNewAggregatedDependencyResolver(dependency);
     }
-    
-    
-   //
-    assertThat(hgDependency.getWeight()).isEqualTo(59);
+
+    //
+    assertThat(hgDependency.getAggregatedWeight()).isEqualTo(59);
     assertThat(hgDependency.getCoreDependencies().size()).isEqualTo(59);
   }
 }

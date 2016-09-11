@@ -51,7 +51,7 @@ public interface HGDependencySource extends EObject {
 
   /**
    * Returns the value of the '<em><b>Dependency</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGDependency#getDependencySource <em>Dependency Source</em>}'.
+   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getDependencySource <em>Dependency Source</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Dependency</em>' reference isn't clear,
@@ -59,13 +59,13 @@ public interface HGDependencySource extends EObject {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Dependency</em>' container reference.
-   * @see #setDependency(HGDependency)
+   * @see #setDependency(HGCoreDependency)
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependencySource_Dependency()
-   * @see org.slizaa.hierarchicalgraph.HGDependency#getDependencySource
+   * @see org.slizaa.hierarchicalgraph.HGCoreDependency#getDependencySource
    * @model opposite="dependencySource" required="true" transient="false"
    * @generated
    */
-  HGDependency getDependency();
+  HGCoreDependency getDependency();
 
   /**
    * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGDependencySource#getDependency <em>Dependency</em>}' container reference.
@@ -75,7 +75,7 @@ public interface HGDependencySource extends EObject {
    * @see #getDependency()
    * @generated
    */
-  void setDependency(HGDependency value);
+  void setDependency(HGCoreDependency value);
 
   /**
    * <!-- begin-user-doc -->

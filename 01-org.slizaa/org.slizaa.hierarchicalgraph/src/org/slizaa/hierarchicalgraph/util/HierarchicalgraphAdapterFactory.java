@@ -93,12 +93,20 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
         return createDefaultHGDependencySourceAdapter();
       }
       @Override
-      public Adapter caseHGDependency(HGDependency object) {
-        return createHGDependencyAdapter();
+      public Adapter caseAbstractHGDependency(AbstractHGDependency object) {
+        return createAbstractHGDependencyAdapter();
       }
       @Override
-      public Adapter caseNodeToDependencyMap(Map.Entry<HGNode, HGDependency> object) {
-        return createNodeToDependencyMapAdapter();
+      public Adapter caseHGAggregatedDependency(HGAggregatedDependency object) {
+        return createHGAggregatedDependencyAdapter();
+      }
+      @Override
+      public Adapter caseHGCoreDependency(HGCoreDependency object) {
+        return createHGCoreDependencyAdapter();
+      }
+      @Override
+      public Adapter caseNodeToCoreDependencyMap(Map.Entry<HGNode, HGCoreDependency> object) {
+        return createNodeToCoreDependencyMapAdapter();
       }
       @Override
       public Adapter caseStringToStringMap(Map.Entry<String, String> object) {
@@ -109,8 +117,8 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
         return createIdentifierToNodeMapAdapter();
       }
       @Override
-      public Adapter caseNodeToDependenciesMap(Map.Entry<HGNode, List<HGDependency>> object) {
-        return createNodeToDependenciesMapAdapter();
+      public Adapter caseNodeToCoreDependenciesMap(Map.Entry<HGNode, List<HGCoreDependency>> object) {
+        return createNodeToCoreDependenciesMapAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -217,21 +225,49 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.HGDependency <em>HG Dependency</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.AbstractHGDependency <em>Abstract HG Dependency</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.slizaa.hierarchicalgraph.HGDependency
+   * @see org.slizaa.hierarchicalgraph.AbstractHGDependency
    * @generated
    */
-  public Adapter createHGDependencyAdapter() {
+  public Adapter createAbstractHGDependencyAdapter() {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Node To Dependency Map</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency <em>HG Aggregated Dependency</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.hierarchicalgraph.HGAggregatedDependency
+   * @generated
+   */
+  public Adapter createHGAggregatedDependencyAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.HGCoreDependency <em>HG Core Dependency</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.hierarchicalgraph.HGCoreDependency
+   * @generated
+   */
+  public Adapter createHGCoreDependencyAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Node To Core Dependency Map</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -240,7 +276,7 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
    * @see java.util.Map.Entry
    * @generated
    */
-  public Adapter createNodeToDependencyMapAdapter() {
+  public Adapter createNodeToCoreDependencyMapAdapter() {
     return null;
   }
 
@@ -273,7 +309,7 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Node To Dependencies Map</em>}'.
+   * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Node To Core Dependencies Map</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -282,7 +318,7 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
    * @see java.util.Map.Entry
    * @generated
    */
-  public Adapter createNodeToDependenciesMapAdapter() {
+  public Adapter createNodeToCoreDependenciesMapAdapter() {
     return null;
   }
 

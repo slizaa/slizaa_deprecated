@@ -18,17 +18,17 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.selection.IDependencySelection;
 import org.slizaa.selection.IHierarchicalGraphSelection;
 
 public class DependencySelection extends AbstractHierarchicalGraphSelection implements IDependencySelection {
 
   /** - */
-  private List<HGDependency> _selection;
+  private List<AbstractHGDependency> _selection;
 
   public DependencySelection(String selectionId, IHierarchicalGraphSelection parentSelection,
-      List<HGDependency> selection) {
+      List<? extends AbstractHGDependency> selection) {
     super(selectionId, parentSelection);
 
     //
@@ -37,7 +37,7 @@ public class DependencySelection extends AbstractHierarchicalGraphSelection impl
   }
 
   public DependencySelection(String selectionId, IHierarchicalGraphSelection parentSelection,
-      HGDependency... selection) {
+      AbstractHGDependency... selection) {
     super(selectionId, parentSelection);
 
     //
@@ -52,7 +52,7 @@ public class DependencySelection extends AbstractHierarchicalGraphSelection impl
    *
    * @param selection
    */
-  public DependencySelection(String selectionId, List<HGDependency> selection) {
+  public DependencySelection(String selectionId, List<AbstractHGDependency> selection) {
     super(selectionId);
 
     checkState(!selection.isEmpty(), "Selection must not be empty.");
@@ -66,7 +66,7 @@ public class DependencySelection extends AbstractHierarchicalGraphSelection impl
    *
    * @param selection
    */
-  public DependencySelection(String selectionId, HGDependency... selection) {
+  public DependencySelection(String selectionId, AbstractHGDependency... selection) {
     super(selectionId);
 
     checkState(selection.length > 0, "Selection must not be empty.");
@@ -74,7 +74,7 @@ public class DependencySelection extends AbstractHierarchicalGraphSelection impl
   }
 
   @Override
-  public List<HGDependency> getSelectedDependencies() {
+  public List<AbstractHGDependency> getSelectedDependencies() {
     return _selection;
   }
 

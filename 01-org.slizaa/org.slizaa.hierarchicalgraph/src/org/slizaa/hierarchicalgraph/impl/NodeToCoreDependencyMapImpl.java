@@ -3,32 +3,36 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.slizaa.hierarchicalgraph.HGDependency;
+
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Node To Dependency Map</b></em>'.
+ * An implementation of the model object '<em><b>Node To Core Dependency Map</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.NodeToDependencyMapImpl#getTypedKey <em>Key</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.NodeToDependencyMapImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.NodeToCoreDependencyMapImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.NodeToCoreDependencyMapImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<HGNode,HGDependency> {
+public class NodeToCoreDependencyMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<HGNode,HGCoreDependency> {
   /**
    * The cached value of the '{@link #getTypedKey() <em>Key</em>}' reference.
    * <!-- begin-user-doc -->
@@ -47,14 +51,14 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
    * @generated
    * @ordered
    */
-  protected HGDependency value;
+  protected HGCoreDependency value;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected NodeToDependencyMapImpl() {
+  protected NodeToCoreDependencyMapImpl() {
     super();
   }
 
@@ -65,7 +69,7 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
    */
   @Override
   protected EClass eStaticClass() {
-    return HierarchicalgraphPackage.Literals.NODE_TO_DEPENDENCY_MAP;
+    return HierarchicalgraphPackage.Literals.NODE_TO_CORE_DEPENDENCY_MAP;
   }
 
   /**
@@ -79,7 +83,7 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
       key = (HGNode)eResolveProxy(oldKey);
       if (key != oldKey) {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__KEY, oldKey, key));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__KEY, oldKey, key));
       }
     }
     return key;
@@ -103,7 +107,7 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
     HGNode oldKey = key;
     key = newKey;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__KEY, oldKey, key));
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__KEY, oldKey, key));
   }
 
   /**
@@ -111,13 +115,13 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependency getTypedValue() {
+  public HGCoreDependency getTypedValue() {
     if (value != null && value.eIsProxy()) {
       InternalEObject oldValue = (InternalEObject)value;
-      value = (HGDependency)eResolveProxy(oldValue);
+      value = (HGCoreDependency)eResolveProxy(oldValue);
       if (value != oldValue) {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__VALUE, oldValue, value));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__VALUE, oldValue, value));
       }
     }
     return value;
@@ -128,7 +132,7 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependency basicGetTypedValue() {
+  public HGCoreDependency basicGetTypedValue() {
     return value;
   }
 
@@ -137,11 +141,11 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTypedValue(HGDependency newValue) {
-    HGDependency oldValue = value;
+  public void setTypedValue(HGCoreDependency newValue) {
+    HGCoreDependency oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__VALUE, oldValue, value));
   }
 
   /**
@@ -152,10 +156,10 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__KEY:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__KEY:
         if (resolve) return getTypedKey();
         return basicGetTypedKey();
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__VALUE:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__VALUE:
         if (resolve) return getTypedValue();
         return basicGetTypedValue();
     }
@@ -170,11 +174,11 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__KEY:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__KEY:
         setTypedKey((HGNode)newValue);
         return;
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__VALUE:
-        setTypedValue((HGDependency)newValue);
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__VALUE:
+        setTypedValue((HGCoreDependency)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -188,11 +192,11 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__KEY:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__KEY:
         setTypedKey((HGNode)null);
         return;
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__VALUE:
-        setTypedValue((HGDependency)null);
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__VALUE:
+        setTypedValue((HGCoreDependency)null);
         return;
     }
     super.eUnset(featureID);
@@ -206,9 +210,9 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__KEY:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__KEY:
         return key != null;
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP__VALUE:
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP__VALUE:
         return value != null;
     }
     return super.eIsSet(featureID);
@@ -266,7 +270,7 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependency getValue() {
+  public HGCoreDependency getValue() {
     return getTypedValue();
   }
 
@@ -275,8 +279,8 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependency setValue(HGDependency value) {
-    HGDependency oldValue = getValue();
+  public HGCoreDependency setValue(HGCoreDependency value) {
+    HGCoreDependency oldValue = getValue();
     setTypedValue(value);
     return oldValue;
   }
@@ -287,9 +291,9 @@ public class NodeToDependencyMapImpl extends MinimalEObjectImpl.Container implem
    * @generated
    */
   @SuppressWarnings("unchecked")
-  public EMap<HGNode, HGDependency> getEMap() {
+  public EMap<HGNode, HGCoreDependency> getEMap() {
     EObject container = eContainer();
-    return container == null ? null : (EMap<HGNode, HGDependency>)container.eGet(eContainmentFeature());
+    return container == null ? null : (EMap<HGNode, HGCoreDependency>)container.eGet(eContainmentFeature());
   }
 
-} //NodeToDependencyMapImpl
+} //NodeToCoreDependencyMapImpl

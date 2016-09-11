@@ -14,7 +14,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static java.util.Arrays.asList;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 
 import com.google.common.cache.CacheBuilder;
@@ -48,34 +47,34 @@ public class DependencySelector {
   }
 
   /** - */
-  private LoadingCache<HGNode, List<HGDependency>> _sourceElementMap;
+  private LoadingCache<HGNode, List<HGCoreDependency>> _sourceElementMap;
 
   /** - */
-  private Set<HGNode>                              _unfilteredSourceElementsWithParents;
+  private Set<HGNode>                                  _unfilteredSourceElementsWithParents;
 
   /** - */
-  private LoadingCache<HGNode, List<HGDependency>> _targetElementMap;
+  private LoadingCache<HGNode, List<HGCoreDependency>> _targetElementMap;
 
   /** - */
-  private Set<HGNode>                              _unfilteredTargetElementsWithParents;
+  private Set<HGNode>                                  _unfilteredTargetElementsWithParents;
 
   /** - */
-  private Set<HGDependency>                        _unfilteredDependencies;
+  private Set<HGCoreDependency>                        _unfilteredDependencies;
 
   /** - */
-  private Set<HGDependency>                        _filteredDependencies;
+  private Set<HGCoreDependency>                        _filteredDependencies;
 
   /** - */
-  private Set<HGNode>                              _filteredSourceElements;
+  private Set<HGNode>                                  _filteredSourceElements;
 
   /** - */
-  private Set<HGNode>                              _filteredSourceElementsWithParents;
+  private Set<HGNode>                                  _filteredSourceElementsWithParents;
 
   /** - */
-  private Set<HGNode>                              _filteredTargetElements;
+  private Set<HGNode>                                  _filteredTargetElements;
 
   /** - */
-  private Set<HGNode>                              _filteredTargetElementsWithParents;
+  private Set<HGNode>                                  _filteredTargetElementsWithParents;
 
   /**
    * <p>
@@ -84,7 +83,7 @@ public class DependencySelector {
    * 
    * @param dependencies
    */
-  public DependencySelector(Collection<HGDependency> dependencies) {
+  public DependencySelector(Collection<HGCoreDependency> dependencies) {
 
     //
     checkNotNull(dependencies);
@@ -94,25 +93,25 @@ public class DependencySelector {
     _filteredTargetElements = new HashSet<HGNode>();
 
     //
-    _targetElementMap = CacheBuilder.newBuilder().build(new CacheLoader<HGNode, List<HGDependency>>() {
-      public List<HGDependency> load(HGNode key) {
-        return new LinkedList<HGDependency>();
+    _targetElementMap = CacheBuilder.newBuilder().build(new CacheLoader<HGNode, List<HGCoreDependency>>() {
+      public List<HGCoreDependency> load(HGNode key) {
+        return new LinkedList<>();
       }
     });
 
     //
-    _sourceElementMap = CacheBuilder.newBuilder().build(new CacheLoader<HGNode, List<HGDependency>>() {
-      public List<HGDependency> load(HGNode key) {
-        return new LinkedList<HGDependency>();
+    _sourceElementMap = CacheBuilder.newBuilder().build(new CacheLoader<HGNode, List<HGCoreDependency>>() {
+      public List<HGCoreDependency> load(HGNode key) {
+        return new LinkedList<>();
       }
     });
 
     //
-    _unfilteredDependencies = getCoreDependencies(dependencies);
-    _filteredDependencies = new HashSet<HGDependency>(_unfilteredDependencies);
+    _unfilteredDependencies = new HashSet<>(dependencies);
+    _filteredDependencies = new HashSet<>(_unfilteredDependencies);
 
     //
-    for (HGDependency dependency : _unfilteredDependencies) {
+    for (HGCoreDependency dependency : _unfilteredDependencies) {
       _sourceElementMap.getUnchecked(dependency.getFrom()).add(dependency);
       _targetElementMap.getUnchecked(dependency.getTo()).add(dependency);
     }
@@ -177,7 +176,7 @@ public class DependencySelector {
     _filteredDependencies.clear();
 
     //
-    Map<HGNode, List<HGDependency>> analysisModelElementMap = sourceOrTarget == SourceOrTarget.SOURCE
+    Map<HGNode, List<HGCoreDependency>> analysisModelElementMap = sourceOrTarget == SourceOrTarget.SOURCE
         ? _sourceElementMap.asMap() : _targetElementMap.asMap();
 
     //
@@ -188,10 +187,10 @@ public class DependencySelector {
 
         if (analysisModelElementMap.containsKey(artifact)) {
 
-          List<HGDependency> dependencies = analysisModelElementMap.get(artifact);
+          List<HGCoreDependency> dependencies = analysisModelElementMap.get(artifact);
 
           _filteredDependencies.addAll(dependencies);
-          for (HGDependency dep : dependencies) {
+          for (HGCoreDependency dep : dependencies) {
             // compute the reverse side
             filteredArtifacts.add(sourceOrTarget == SourceOrTarget.SOURCE ? dep.getTo() : dep.getFrom());
           }
@@ -219,7 +218,7 @@ public class DependencySelector {
    * 
    * @return
    */
-  public Set<HGDependency> getUnfilteredDependencies() {
+  public Set<HGCoreDependency> getUnfilteredDependencies() {
     return _unfilteredDependencies;
   }
 
@@ -229,7 +228,7 @@ public class DependencySelector {
    * 
    * @return
    */
-  public Set<HGDependency> getFilteredDependencies() {
+  public Set<HGCoreDependency> getFilteredDependencies() {
     return _filteredDependencies;
   }
 
@@ -314,32 +313,30 @@ public class DependencySelector {
     return result;
   }
 
-  /**
-   * <p>
-   * </p>
-   * 
-   * @return
-   */
-  private static Set<HGDependency> getCoreDependencies(Collection<HGDependency> dependencies) {
-
-    if (dependencies == null) {
-      return Collections.emptySet();
-    }
-
-    //
-    final Set<HGDependency> result = new HashSet<HGDependency>();
-
-    for (HGDependency dependency : dependencies) {
-      if (dependency == null) {
-        System.out.println("BUMM");
-      }
-      for (HGDependency coreDependency : dependency.getCoreDependencies()) {
-        result.add(coreDependency);
-      }
-    }
-
-    return result;
-  }
+  // /**
+  // * <p>
+  // * </p>
+  // *
+  // * @return
+  // */
+  // private static Set<HGCoreDependency> getCoreDependencies(Collection<HGAggregatedDependency> dependencies) {
+  //
+  // if (dependencies == null) {
+  // return Collections.emptySet();
+  // }
+  //
+  // //
+  // final Set<HGCoreDependency> result = new HashSet<>();
+  //
+  // for (HGAggregatedDependency dependency : dependencies) {
+  // if (dependency == null) {
+  // System.out.println("BUMM");
+  // }
+  // result.addAll(dependency.getCoreDependencies());
+  // }
+  //
+  // return result;
+  // }
 
   // TODO MOVE!
   /**
@@ -362,7 +359,7 @@ public class DependencySelector {
     while (treeIterator.hasNext()) {
       EObject child = treeIterator.next();
       if (child instanceof HGNode) {
-        result.add((HGNode)child);
+        result.add((HGNode) child);
       }
     }
 
@@ -378,12 +375,12 @@ public class DependencySelector {
    * @param direction
    * @return
    */
-  private static Set<HGDependency> getDependencies(Collection<HGNode> elements, DependencyDirection direction) {
+  private static Set<HGCoreDependency> getDependencies(Collection<HGNode> elements, DependencyDirection direction) {
 
     checkNotNull(elements);
     checkNotNull(direction);
 
-    Set<HGDependency> result = new HashSet<>();
+    Set<HGCoreDependency> result = new HashSet<>();
     for (HGNode node : elements) {
       result.addAll(direction == DependencyDirection.INCOMING ? node.getIncomingCoreDependencies(true)
           : node.getOutgoingCoreDependencies(true));

@@ -165,26 +165,95 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.HGDependency} instances.
+   * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.HGAggregatedDependency} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected HGDependencyItemProvider hgDependencyItemProvider;
+  protected HGAggregatedDependencyItemProvider hgAggregatedDependencyItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.HGDependency}.
+   * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.HGAggregatedDependency}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createHGDependencyAdapter() {
-    if (hgDependencyItemProvider == null) {
-      hgDependencyItemProvider = new HGDependencyItemProvider(this);
+  public Adapter createHGAggregatedDependencyAdapter() {
+    if (hgAggregatedDependencyItemProvider == null) {
+      hgAggregatedDependencyItemProvider = new HGAggregatedDependencyItemProvider(this);
     }
 
-    return hgDependencyItemProvider;
+    return hgAggregatedDependencyItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.HGCoreDependency} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected HGCoreDependencyItemProvider hgCoreDependencyItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.HGCoreDependency}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createHGCoreDependencyAdapter() {
+    if (hgCoreDependencyItemProvider == null) {
+      hgCoreDependencyItemProvider = new HGCoreDependencyItemProvider(this);
+    }
+
+    return hgCoreDependencyItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected NodeToCoreDependencyMapItemProvider nodeToCoreDependencyMapItemProvider;
+
+  /**
+   * This creates an adapter for a {@link java.util.Map.Entry}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createNodeToCoreDependencyMapAdapter() {
+    if (nodeToCoreDependencyMapItemProvider == null) {
+      nodeToCoreDependencyMapItemProvider = new NodeToCoreDependencyMapItemProvider(this);
+    }
+
+    return nodeToCoreDependencyMapItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected NodeToCoreDependenciesMapItemProvider nodeToCoreDependenciesMapItemProvider;
+
+  /**
+   * This creates an adapter for a {@link java.util.Map.Entry}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createNodeToCoreDependenciesMapAdapter() {
+    if (nodeToCoreDependenciesMapItemProvider == null) {
+      nodeToCoreDependenciesMapItemProvider = new NodeToCoreDependenciesMapItemProvider(this);
+    }
+
+    return nodeToCoreDependenciesMapItemProvider;
   }
 
   /**
@@ -290,7 +359,10 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
     if (hgDependencySourceItemProvider != null) hgDependencySourceItemProvider.dispose();
     if (hgRootNodeItemProvider != null) hgRootNodeItemProvider.dispose();
     if (defaultHGDependencySourceItemProvider != null) defaultHGDependencySourceItemProvider.dispose();
-    if (hgDependencyItemProvider != null) hgDependencyItemProvider.dispose();
+    if (hgAggregatedDependencyItemProvider != null) hgAggregatedDependencyItemProvider.dispose();
+    if (hgCoreDependencyItemProvider != null) hgCoreDependencyItemProvider.dispose();
+    if (nodeToCoreDependencyMapItemProvider != null) nodeToCoreDependencyMapItemProvider.dispose();
+    if (nodeToCoreDependenciesMapItemProvider != null) nodeToCoreDependenciesMapItemProvider.dispose();
   }
 
 }

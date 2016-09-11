@@ -2,7 +2,8 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.List;
 
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 
@@ -15,53 +16,62 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
     _trait = new ExtendedHGNodeTrait(this);
   }
 
-  public ExtendedHGNodeTrait getTrait() {
-    return _trait;
-  }
-
   @Override
   public HGRootNode getRootNode() {
     return _trait.getRootNode();
   }
 
+  @Override
   public Object getIdentifier() {
     return _trait.getIdentifier();
   }
 
-  public void onInitializeCaches() {
-    _trait.onInitializeCaches();
-  }
-
-  public HGDependency getIncomingDependenciesFrom(HGNode node) {
+  @Override
+  public HGAggregatedDependency getIncomingDependenciesFrom(HGNode node) {
     return _trait.getIncomingDependenciesFrom(node);
   }
 
-  public List<HGDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
+  @Override
+  public List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
     return _trait.getIncomingDependenciesFrom(nodes);
   }
 
-  public HGDependency getOutgoingDependenciesTo(HGNode node) {
+  @Override
+  public HGAggregatedDependency getOutgoingDependenciesTo(HGNode node) {
     return _trait.getOutgoingDependenciesTo(node);
   }
 
-  public List<HGDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
+  @Override
+  public List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
     return _trait.getOutgoingDependenciesTo(nodes);
   }
 
-  public List<HGDependency> getOutgoingCoreDependencies(boolean includeChildren) {
+  @Override
+  public List<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
     return _trait.getOutgoingCoreDependencies(includeChildren);
   }
 
-  public List<HGDependency> getIncomingCoreDependencies(boolean includeChildren) {
+  @Override
+  public List<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
     return _trait.getIncomingCoreDependencies(includeChildren);
   }
 
+  @Override
   public boolean isPredecessorOf(HGNode node) {
     return _trait.isPredecessorOf(node);
   }
 
+  @Override
   public boolean isSuccessorOf(HGNode node) {
     return _trait.isSuccessorOf(node);
+  }
+
+  public ExtendedHGNodeTrait getTrait() {
+    return _trait;
+  }
+
+  public void onInitializeCaches() {
+    _trait.onInitializeCaches();
   }
 
   public void onExpand() {

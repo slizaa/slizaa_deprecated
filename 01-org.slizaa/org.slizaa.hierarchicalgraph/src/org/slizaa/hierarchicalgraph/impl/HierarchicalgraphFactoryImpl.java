@@ -4,8 +4,8 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.List;
 import java.util.Map;
-
 import java.util.concurrent.Future;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -13,9 +13,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
-import org.slizaa.hierarchicalgraph.*;
+import org.slizaa.hierarchicalgraph.DefaultHGDependencySource;
 import org.slizaa.hierarchicalgraph.DefaultHGNodeSource;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
@@ -70,11 +72,12 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
       case HierarchicalgraphPackage.HG_ROOT_NODE: return createHGRootNode();
       case HierarchicalgraphPackage.DEFAULT_HG_NODE_SOURCE: return createDefaultHGNodeSource();
       case HierarchicalgraphPackage.DEFAULT_HG_DEPENDENCY_SOURCE: return createDefaultHGDependencySource();
-      case HierarchicalgraphPackage.HG_DEPENDENCY: return createHGDependency();
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCY_MAP: return (EObject)createNodeToDependencyMap();
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY: return createHGAggregatedDependency();
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY: return createHGCoreDependency();
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP: return (EObject)createNodeToCoreDependencyMap();
       case HierarchicalgraphPackage.STRING_TO_STRING_MAP: return (EObject)createStringToStringMap();
       case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP: return (EObject)createIdentifierToNodeMap();
-      case HierarchicalgraphPackage.NODE_TO_DEPENDENCIES_MAP: return (EObject)createNodeToDependenciesMap();
+      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP: return (EObject)createNodeToCoreDependenciesMap();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -88,8 +91,6 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID()) {
-      case HierarchicalgraphPackage.DEPENDENCY_TYPE:
-        return createDependencyTypeFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
         return createIItemLabelProviderFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.FUTURE:
@@ -107,8 +108,6 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID()) {
-      case HierarchicalgraphPackage.DEPENDENCY_TYPE:
-        return convertDependencyTypeToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
         return convertIItemLabelProviderToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.FUTURE:
@@ -173,9 +172,19 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated NOT
    */
-  public HGDependency createHGDependency() {
-    HGDependencyImpl hgDependency = new ExtendedHGDependencyImpl();
-    return hgDependency;
+  public HGAggregatedDependency createHGAggregatedDependency() {
+    HGAggregatedDependencyImpl hgAggregatedDependency = new ExtendedHGAggregatedDependencyImpl();
+    return hgAggregatedDependency;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  public HGCoreDependency createHGCoreDependency() {
+    HGCoreDependencyImpl hgCoreDependency = new ExtendedHGCoreDependencyImpl();
+    return hgCoreDependency;
   }
 
   /**
@@ -183,9 +192,9 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public Map.Entry<HGNode, HGDependency> createNodeToDependencyMap() {
-    NodeToDependencyMapImpl nodeToDependencyMap = new NodeToDependencyMapImpl();
-    return nodeToDependencyMap;
+  public Map.Entry<HGNode, HGCoreDependency> createNodeToCoreDependencyMap() {
+    NodeToCoreDependencyMapImpl nodeToCoreDependencyMap = new NodeToCoreDependencyMapImpl();
+    return nodeToCoreDependencyMap;
   }
 
   /**
@@ -213,29 +222,9 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public Map.Entry<HGNode, List<HGDependency>> createNodeToDependenciesMap() {
-    NodeToDependenciesMapImpl nodeToDependenciesMap = new NodeToDependenciesMapImpl();
-    return nodeToDependenciesMap;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public DependencyType createDependencyTypeFromString(EDataType eDataType, String initialValue) {
-    DependencyType result = DependencyType.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertDependencyTypeToString(EDataType eDataType, Object instanceValue) {
-    return instanceValue == null ? null : instanceValue.toString();
+  public Map.Entry<HGNode, List<HGCoreDependency>> createNodeToCoreDependenciesMap() {
+    NodeToCoreDependenciesMapImpl nodeToCoreDependenciesMap = new NodeToCoreDependenciesMapImpl();
+    return nodeToCoreDependenciesMap;
   }
 
   /**

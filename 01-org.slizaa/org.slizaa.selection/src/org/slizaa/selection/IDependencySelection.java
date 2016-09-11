@@ -12,7 +12,7 @@ package org.slizaa.selection;
 
 import java.util.List;
 
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 
 /**
  * <p>
@@ -22,5 +22,5 @@ import org.slizaa.hierarchicalgraph.HGDependency;
  */
 public interface IDependencySelection extends IHierarchicalGraphSelection {
 
-  List<HGDependency> getSelectedDependencies();
+  List<AbstractHGDependency> getSelectedDependencies();
 }

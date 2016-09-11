@@ -5,11 +5,19 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ *
+ */
 public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
 
   /** - */
@@ -27,10 +35,19 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     _trait = new ExtendedHGNodeTrait(this);
   }
 
-  public Map<Object, HGNode> getIdToNodeMap() {
-    return idToNodeMap();
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Object getIdentifier() {
+    return _trait.getIdentifier();
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public HGNode getNode(Object identifier) {
 
     if (_idToNodeMap == null) {
@@ -45,51 +62,74 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     return _idToNodeMap.get(identifier);
   }
 
-  public ExtendedHGNodeTrait getTrait() {
-    return _trait;
-  }
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public HGRootNode getRootNode() {
     return _trait.getRootNode();
   }
-
-  public Object getIdentifier() {
-    return _trait.getIdentifier();
-  }
-
-  public void onInitializeCaches() {
-    _trait.onInitializeCaches();
-  }
-
-  public HGDependency getIncomingDependenciesFrom(HGNode node) {
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public HGAggregatedDependency getIncomingDependenciesFrom(HGNode node) {
     return _trait.getIncomingDependenciesFrom(node);
   }
 
-  public List<HGDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
     return _trait.getIncomingDependenciesFrom(nodes);
   }
 
-  public HGDependency getOutgoingDependenciesTo(HGNode node) {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public HGAggregatedDependency getOutgoingDependenciesTo(HGNode node) {
     return _trait.getOutgoingDependenciesTo(node);
   }
 
-  public List<HGDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
     return _trait.getOutgoingDependenciesTo(nodes);
   }
 
-  public List<HGDependency> getOutgoingCoreDependencies(boolean includeChildren) {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
     return _trait.getOutgoingCoreDependencies(includeChildren);
   }
 
-  public List<HGDependency> getIncomingCoreDependencies(boolean includeChildren) {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
     return _trait.getIncomingCoreDependencies(includeChildren);
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public boolean isPredecessorOf(HGNode node) {
     return _trait.isPredecessorOf(node);
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public boolean isSuccessorOf(HGNode node) {
     return _trait.isSuccessorOf(node);
   }
@@ -102,6 +142,18 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     _trait.onCollapse();
   }
 
+  public Map<Object, HGNode> getIdToNodeMap() {
+    return idToNodeMap();
+  }
+  
+  public ExtendedHGNodeTrait getTrait() {
+    return _trait;
+  }
+
+  public void onInitializeCaches() {
+    _trait.onInitializeCaches();
+  }
+  
   /**
    * <p>
    * </p>
