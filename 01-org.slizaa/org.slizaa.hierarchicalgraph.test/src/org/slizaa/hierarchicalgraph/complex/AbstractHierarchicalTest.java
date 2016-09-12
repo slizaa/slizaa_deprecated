@@ -31,7 +31,7 @@ public abstract class AbstractHierarchicalTest {
    */
   @Before
   public void setup() throws IOException {
-    _rootNode = XmiUtils.load("org/slizaa/hierarchicalgraph/mapstruct_1-1-0-Beta2.hggraph");
+    _rootNode = XmiUtils.load("org/slizaa/hierarchicalgraph/complex/mapstruct_1-1-0-Beta2.hggraph");
 
     // dumpChildren(node(new Long(6308)));
   }

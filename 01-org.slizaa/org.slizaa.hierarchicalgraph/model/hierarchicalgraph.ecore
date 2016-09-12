@@ -96,9 +96,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//HGNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HGAggregatedDependency" eSuperTypes="#//AbstractHGDependency">
-    <eOperations name="getCoreDependencies" upperBound="-1" eType="#//HGCoreDependency"/>
     <eOperations name="getAggregatedWeight" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coreDependencies" upperBound="-1"
         eType="#//HGCoreDependency" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HGCoreDependency" eSuperTypes="#//AbstractHGDependency">

@@ -787,13 +787,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_AGGREGATED_DEPENDENCY__TO = ABSTRACT_HG_DEPENDENCY__TO;
 
     /**
-   * The feature id for the '<em><b>Dependencies</b></em>' reference list.
+   * The feature id for the '<em><b>Core Dependencies</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_DEPENDENCY__DEPENDENCIES = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 0;
+  int HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 0;
 
     /**
    * The number of structural features of the '<em>HG Aggregated Dependency</em>' class.
@@ -814,22 +814,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_AGGREGATED_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES;
 
     /**
-   * The operation id for the '<em>Get Core Dependencies</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_AGGREGATED_DEPENDENCY___GET_CORE_DEPENDENCIES = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 0;
-
-    /**
    * The operation id for the '<em>Get Aggregated Weight</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_DEPENDENCY___GET_AGGREGATED_WEIGHT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 1;
+  int HG_AGGREGATED_DEPENDENCY___GET_AGGREGATED_WEIGHT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 0;
 
     /**
    * The number of operations of the '<em>HG Aggregated Dependency</em>' class.
@@ -838,7 +829,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_DEPENDENCY_OPERATION_COUNT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 2;
+  int HG_AGGREGATED_DEPENDENCY_OPERATION_COUNT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 1;
 
     /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl <em>HG Core Dependency</em>}' class.
@@ -1565,25 +1556,15 @@ public interface HierarchicalgraphPackage extends EPackage {
   EClass getHGAggregatedDependency();
 
   /**
-   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#getDependencies <em>Dependencies</em>}'.
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#getCoreDependencies <em>Core Dependencies</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Dependencies</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGAggregatedDependency#getDependencies()
+   * @return the meta object for the reference list '<em>Core Dependencies</em>'.
+   * @see org.slizaa.hierarchicalgraph.HGAggregatedDependency#getCoreDependencies()
    * @see #getHGAggregatedDependency()
    * @generated
    */
-  EReference getHGAggregatedDependency_Dependencies();
-
-  /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#getCoreDependencies() <em>Get Core Dependencies</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Core Dependencies</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGAggregatedDependency#getCoreDependencies()
-   * @generated
-   */
-  EOperation getHGAggregatedDependency__GetCoreDependencies();
+  EReference getHGAggregatedDependency_CoreDependencies();
 
   /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#getAggregatedWeight() <em>Get Aggregated Weight</em>}' operation.
@@ -2175,20 +2156,12 @@ public interface HierarchicalgraphPackage extends EPackage {
     EClass HG_AGGREGATED_DEPENDENCY = eINSTANCE.getHGAggregatedDependency();
 
     /**
-     * The meta object literal for the '<em><b>Dependencies</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Core Dependencies</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference HG_AGGREGATED_DEPENDENCY__DEPENDENCIES = eINSTANCE.getHGAggregatedDependency_Dependencies();
-
-    /**
-     * The meta object literal for the '<em><b>Get Core Dependencies</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation HG_AGGREGATED_DEPENDENCY___GET_CORE_DEPENDENCIES = eINSTANCE.getHGAggregatedDependency__GetCoreDependencies();
+    EReference HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES = eINSTANCE.getHGAggregatedDependency_CoreDependencies();
 
     /**
      * The meta object literal for the '<em><b>Get Aggregated Weight</b></em>' operation.

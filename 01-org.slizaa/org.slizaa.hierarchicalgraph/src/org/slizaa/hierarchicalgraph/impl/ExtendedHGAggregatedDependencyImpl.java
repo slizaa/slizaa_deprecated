@@ -1,9 +1,5 @@
 package org.slizaa.hierarchicalgraph.impl;
 
-import org.eclipse.emf.common.util.ECollections;
-import org.eclipse.emf.common.util.EList;
-import org.slizaa.hierarchicalgraph.HGCoreDependency;
-
 /**
  * <p>
  * </p>
@@ -16,16 +12,8 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
    * {@inheritDoc}
    */
   @Override
-  public EList<HGCoreDependency> getCoreDependencies() {
-    return ECollections.unmodifiableEList(this.dependencies);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
   public int getAggregatedWeight() {
-    return this.dependencies != null ? this.dependencies.size() : 0;
+    return this.coreDependencies != null ? this.coreDependencies.size() : 0;
   }
 
   // /**

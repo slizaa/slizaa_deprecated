@@ -25,22 +25,21 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedDependencyImpl#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedDependencyImpl#getCoreDependencies <em>Core Dependencies</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl implements HGAggregatedDependency {
   /**
-   * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
+   * The cached value of the '{@link #getCoreDependencies() <em>Core Dependencies</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDependencies()
+   * @see #getCoreDependencies()
    * @generated
    * @ordered
    */
-  protected EList<HGCoreDependency> dependencies;
-
+  protected EList<HGCoreDependency> coreDependencies;
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -65,22 +64,11 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public List<HGCoreDependency> getDependencies() {
-    if (dependencies == null) {
-      dependencies = new EObjectResolvingEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__DEPENDENCIES);
-    }
-    return dependencies;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public List<HGCoreDependency> getCoreDependencies() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    if (coreDependencies == null) {
+      coreDependencies = new EObjectResolvingEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES);
+    }
+    return coreDependencies;
   }
 
   /**
@@ -102,8 +90,8 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__DEPENDENCIES:
-        return getDependencies();
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES:
+        return getCoreDependencies();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -117,9 +105,9 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__DEPENDENCIES:
-        getDependencies().clear();
-        getDependencies().addAll((Collection<? extends HGCoreDependency>)newValue);
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES:
+        getCoreDependencies().clear();
+        getCoreDependencies().addAll((Collection<? extends HGCoreDependency>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -133,8 +121,8 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__DEPENDENCIES:
-        getDependencies().clear();
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES:
+        getCoreDependencies().clear();
         return;
     }
     super.eUnset(featureID);
@@ -148,8 +136,8 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__DEPENDENCIES:
-        return dependencies != null && !dependencies.isEmpty();
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES:
+        return coreDependencies != null && !coreDependencies.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -162,8 +150,6 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY___GET_CORE_DEPENDENCIES:
-        return getCoreDependencies();
       case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY___GET_AGGREGATED_WEIGHT:
         return getAggregatedWeight();
     }

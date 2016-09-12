@@ -94,11 +94,11 @@ public class ExtendedHGNodeTrait {
 
       // add all incoming dependencies directly from the specified node
       if (_hgNode.incomingCoreDependenciesMap != null && _hgNode.incomingCoreDependenciesMap.containsKey(node)) {
-        dependency.getDependencies().addAll(_hgNode.incomingCoreDependenciesMap.get(node));
+        dependency.getCoreDependencies().addAll(_hgNode.incomingCoreDependenciesMap.get(node));
       }
 
       // add all incoming dependencies from successors of the specified node
-      dependency.getDependencies().addAll(getIncomingCoreDependencies(true).stream()
+      dependency.getCoreDependencies().addAll(getIncomingCoreDependencies(true).stream()
           .filter((dep) -> node.isPredecessorOf(dep.getFrom())).collect(Collectors.toList()));
 
       // store dependency
@@ -148,11 +148,11 @@ public class ExtendedHGNodeTrait {
 
       //
       if (_hgNode.outgoingCoreDependenciesMap != null && _hgNode.outgoingCoreDependenciesMap.containsKey(node)) {
-        dependency.getDependencies().addAll(_hgNode.outgoingCoreDependenciesMap.get(node));
+        dependency.getCoreDependencies().addAll(_hgNode.outgoingCoreDependenciesMap.get(node));
       }
 
       //
-      dependency.getDependencies().addAll(getOutgoingCoreDependencies(true).stream()
+      dependency.getCoreDependencies().addAll(getOutgoingCoreDependencies(true).stream()
           .filter((dep) -> node.isPredecessorOf(dep.getTo())).collect(Collectors.toList()));
 
       // store dependency

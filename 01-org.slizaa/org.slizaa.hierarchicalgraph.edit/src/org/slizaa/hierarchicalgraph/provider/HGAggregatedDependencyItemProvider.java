@@ -42,25 +42,25 @@ public class HGAggregatedDependencyItemProvider extends AbstractHGDependencyItem
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addDependenciesPropertyDescriptor(object);
+      addCoreDependenciesPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Dependencies feature.
+   * This adds a property descriptor for the Core Dependencies feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addDependenciesPropertyDescriptor(Object object) {
+  protected void addCoreDependenciesPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGAggregatedDependency_dependencies_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGAggregatedDependency_dependencies_feature", "_UI_HGAggregatedDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_AGGREGATED_DEPENDENCY__DEPENDENCIES,
+         getString("_UI_HGAggregatedDependency_coreDependencies_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGAggregatedDependency_coreDependencies_feature", "_UI_HGAggregatedDependency_type"),
+         HierarchicalgraphPackage.Literals.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES,
          true,
          false,
          true,
