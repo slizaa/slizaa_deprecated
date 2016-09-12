@@ -98,13 +98,13 @@ public class AbstractSimpleModelTest {
       _a3 = createNewNode(_rootNode, _a2, nodeSourceSupplier);
       _b3 = createNewNode(_rootNode, _b2, nodeSourceSupplier);
 
-      _dep_a1_b1_core1 = createNewCoreDependency(_a1, _b1, /* "USES", */ dependencySourceSupplier);
-      _dep_a1_b1_core2 = createNewCoreDependency(_a1, _b1, /* "DEPENDS_ON", */ dependencySourceSupplier);
+      _dep_a1_b1_core1 = createNewCoreDependency(_a1, _b1, "USES", dependencySourceSupplier);
+      _dep_a1_b1_core2 = createNewCoreDependency(_a1, _b1, "DEPENDS_ON", dependencySourceSupplier);
 
-      _dep_a2_b2_core1 = createNewCoreDependency(_a2, _b2, /* "USES", */ dependencySourceSupplier);
+      _dep_a2_b2_core1 = createNewCoreDependency(_a2, _b2, "USES", dependencySourceSupplier);
 
-      _dep_a3_b3_core1 = createNewCoreDependency(_a3, _b3, /* "USES", */ dependencySourceSupplier);
-      _dep_a3_b3_core2 = createNewCoreDependency(_a3, _b3, /* "DEPENDS_ON", */ dependencySourceSupplier);
+      _dep_a3_b3_core1 = createNewCoreDependency(_a3, _b3, "USES", dependencySourceSupplier);
+      _dep_a3_b3_core2 = createNewCoreDependency(_a3, _b3, "DEPENDS_ON", dependencySourceSupplier);
     }
 
     /**

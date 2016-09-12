@@ -18,8 +18,14 @@ public class DependencyTest extends AbstractXmiBasedTest {
   /** - */
   public static final Long ID_TYPE_MODEL_WRITER                    = new Long(5769);
 
-  public DependencyTest(String xmiModelPath) {
-    super(xmiModelPath);
+  /**
+   * <p>
+   * Creates a new instance of type {@link DependencyTest}.
+   * </p>
+   *
+   */
+  public DependencyTest() {
+    super("org/slizaa/hierarchicalgraph/mapstruct/mapstruct_1-1-0-Beta2.hggraph");
   }
 
   /**

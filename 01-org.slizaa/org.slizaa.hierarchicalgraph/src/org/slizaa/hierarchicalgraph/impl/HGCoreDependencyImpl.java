@@ -22,15 +22,36 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl#getWeight <em>Weight</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl#getDependencySource <em>Dependency Source</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl#isAggregatedCoreDependency <em>Aggregated Core Dependency</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl#isAggregatedCoreDependencyResolved <em>Aggregated Core Dependency Resolved</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl#getDependencySource <em>Dependency Source</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HGCoreDependency {
+  /**
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected static final String TYPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected String type = TYPE_EDEFAULT;
+
   /**
    * The default value of the '{@link #getWeight() <em>Weight</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -39,7 +60,7 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * @generated
    * @ordered
    */
-  protected static final int WEIGHT_EDEFAULT = 0;
+  protected static final int WEIGHT_EDEFAULT = 1;
 
   /**
    * The cached value of the '{@link #getWeight() <em>Weight</em>}' attribute.
@@ -50,6 +71,16 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * @ordered
    */
   protected int weight = WEIGHT_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getDependencySource() <em>Dependency Source</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDependencySource()
+   * @generated
+   * @ordered
+   */
+  protected HGDependencySource dependencySource;
 
   /**
    * The default value of the '{@link #isAggregatedCoreDependency() <em>Aggregated Core Dependency</em>}' attribute.
@@ -92,16 +123,6 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
   protected boolean aggregatedCoreDependencyResolved = AGGREGATED_CORE_DEPENDENCY_RESOLVED_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getDependencySource() <em>Dependency Source</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDependencySource()
-   * @generated
-   * @ordered
-   */
-  protected HGDependencySource dependencySource;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -118,6 +139,27 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
   @Override
   protected EClass eStaticClass() {
     return HierarchicalgraphPackage.Literals.HG_CORE_DEPENDENCY;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getType() {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(String newType) {
+    String oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__TYPE, oldType, type));
   }
 
   /**
@@ -252,14 +294,16 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__TYPE:
+        return getType();
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__WEIGHT:
         return getWeight();
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
+        return getDependencySource();
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
         return isAggregatedCoreDependency();
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_RESOLVED:
         return isAggregatedCoreDependencyResolved();
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
-        return getDependencySource();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -272,14 +316,17 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__TYPE:
+        setType((String)newValue);
+        return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__WEIGHT:
         setWeight((Integer)newValue);
         return;
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
-        setAggregatedCoreDependency((Boolean)newValue);
-        return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
         setDependencySource((HGDependencySource)newValue);
+        return;
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
+        setAggregatedCoreDependency((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -293,14 +340,17 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__TYPE:
+        setType(TYPE_EDEFAULT);
+        return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__WEIGHT:
         setWeight(WEIGHT_EDEFAULT);
         return;
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
-        setAggregatedCoreDependency(AGGREGATED_CORE_DEPENDENCY_EDEFAULT);
-        return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
         setDependencySource((HGDependencySource)null);
+        return;
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
+        setAggregatedCoreDependency(AGGREGATED_CORE_DEPENDENCY_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -314,14 +364,16 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__TYPE:
+        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__WEIGHT:
         return weight != WEIGHT_EDEFAULT;
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
+        return dependencySource != null;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
         return aggregatedCoreDependency != AGGREGATED_CORE_DEPENDENCY_EDEFAULT;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_RESOLVED:
         return aggregatedCoreDependencyResolved != AGGREGATED_CORE_DEPENDENCY_RESOLVED_EDEFAULT;
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
-        return dependencySource != null;
     }
     return super.eIsSet(featureID);
   }
@@ -336,7 +388,9 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (weight: ");
+    result.append(" (type: ");
+    result.append(type);
+    result.append(", weight: ");
     result.append(weight);
     result.append(", aggregatedCoreDependency: ");
     result.append(aggregatedCoreDependency);

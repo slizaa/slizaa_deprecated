@@ -63,13 +63,14 @@ public class HierarchicalgraphFactoryMethods {
    * @param target
    * @return
    */
-  public static HGCoreDependency createNewCoreDependency(HGNode source, HGNode target,
+  public static HGCoreDependency createNewCoreDependency(HGNode source, HGNode target, String type,
       Supplier<HGDependencySource> dependencySourceSupplier) {
 
     //
     HGCoreDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGCoreDependency();
     dependency.setFrom(checkNotNull(source));
     dependency.setTo(checkNotNull(target));
+    dependency.setType(checkNotNull(type));
     dependency.setDependencySource(checkNotNull(checkNotNull(dependencySourceSupplier)).get());
 
     //

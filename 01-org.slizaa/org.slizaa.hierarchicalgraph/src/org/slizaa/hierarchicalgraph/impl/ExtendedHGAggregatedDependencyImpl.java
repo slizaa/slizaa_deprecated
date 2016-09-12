@@ -20,7 +20,14 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
    */
   @Override
   public int getAggregatedWeight() {
-    return this.coreDependencies != null ? this.coreDependencies.size() : 0;
+
+    //
+    if (this.coreDependencies == null) {
+      return 0;
+    }
+
+    //
+    return this.coreDependencies.stream().mapToInt(i -> i.getWeight()).sum();
   }
 
   /**
@@ -42,7 +49,7 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
           futures.add(future);
         }
       }
-      
+
       //
       else {
         throw new RuntimeException("Wrong subclass!");

@@ -851,31 +851,22 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_CORE_DEPENDENCY__TO = ABSTRACT_HG_DEPENDENCY__TO;
 
     /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_CORE_DEPENDENCY__TYPE = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 0;
+
+    /**
    * The feature id for the '<em><b>Weight</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_CORE_DEPENDENCY__WEIGHT = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 0;
-
-    /**
-   * The feature id for the '<em><b>Aggregated Core Dependency</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 1;
-
-    /**
-   * The feature id for the '<em><b>Aggregated Core Dependency Resolved</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_RESOLVED = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 2;
+  int HG_CORE_DEPENDENCY__WEIGHT = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 1;
 
     /**
    * The feature id for the '<em><b>Dependency Source</b></em>' containment reference.
@@ -884,7 +875,25 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 3;
+  int HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 2;
+
+    /**
+   * The feature id for the '<em><b>Aggregated Core Dependency</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 3;
+
+    /**
+   * The feature id for the '<em><b>Aggregated Core Dependency Resolved</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_RESOLVED = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 4;
 
     /**
    * The number of structural features of the '<em>HG Core Dependency</em>' class.
@@ -893,7 +902,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_CORE_DEPENDENCY_FEATURE_COUNT = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 4;
+  int HG_CORE_DEPENDENCY_FEATURE_COUNT = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 5;
 
     /**
    * The operation id for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
@@ -1590,6 +1599,17 @@ public interface HierarchicalgraphPackage extends EPackage {
   EClass getHGCoreDependency();
 
   /**
+   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.slizaa.hierarchicalgraph.HGCoreDependency#getType()
+   * @see #getHGCoreDependency()
+   * @generated
+   */
+  EAttribute getHGCoreDependency_Type();
+
+  /**
    * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getWeight <em>Weight</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2194,6 +2214,14 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EClass HG_CORE_DEPENDENCY = eINSTANCE.getHGCoreDependency();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute HG_CORE_DEPENDENCY__TYPE = eINSTANCE.getHGCoreDependency_Type();
 
     /**
      * The meta object literal for the '<em><b>Weight</b></em>' attribute feature.

@@ -64,8 +64,8 @@ public class TestModelMappingFunctions {
     }
   }
 
-  public static void mapDependencies(JsonArray asJsonArray, HGRootNode rootElement,
-      boolean isAggregatedCoreDependency, BiFunction<Long, String, HGDependencySource> dependencySourceCreator) {
+  public static void mapDependencies(JsonArray asJsonArray, HGRootNode rootElement, boolean isAggregatedCoreDependency,
+      BiFunction<Long, String, HGDependencySource> dependencySourceCreator) {
 
     //
     asJsonArray.forEach((element) -> {
@@ -74,8 +74,7 @@ public class TestModelMappingFunctions {
       long idTarget = row.get(1).getAsLong();
       long idRel = row.get(2).getAsLong();
       String type = row.get(3).getAsString();
-      mapDependency(idStart, idTarget, idRel, type, rootElement, isAggregatedCoreDependency,
-          dependencySourceCreator);
+      mapDependency(idStart, idTarget, idRel, type, rootElement, isAggregatedCoreDependency, dependencySourceCreator);
     });
   }
 
@@ -104,7 +103,7 @@ public class TestModelMappingFunctions {
     }
 
     //
-    HGCoreDependency hgDependency = createNewCoreDependency(fromElement, toElement, () -> {
+    HGCoreDependency hgDependency = createNewCoreDependency(fromElement, toElement, type, () -> {
       return dependencySourceCreator.apply(idRel, type);
     });
 

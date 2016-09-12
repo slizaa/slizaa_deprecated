@@ -109,7 +109,7 @@ public class GraphFactoryFunctions {
     }
 
     //
-    HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement, () -> {
+    HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement, type, () -> {
       return dependencySourceCreator.apply(idRel, type);
     });
 

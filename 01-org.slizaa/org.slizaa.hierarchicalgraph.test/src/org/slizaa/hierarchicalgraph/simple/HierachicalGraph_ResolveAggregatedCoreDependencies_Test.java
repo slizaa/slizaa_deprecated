@@ -2,6 +2,8 @@ package org.slizaa.hierarchicalgraph.simple;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
@@ -17,6 +19,28 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
  */
 public class HierachicalGraph_ResolveAggregatedCoreDependencies_Test extends AbstractSimpleModelTest {
 
+  /** - */
+  private IAggregatedCoreDependencyResolver _resolver;
+
+  /** - */
+  private HGAggregatedDependency            _aggregatedDependency;
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void before() {
+    super.before();
+
+    //
+    _resolver = mock(IAggregatedCoreDependencyResolver.class);
+    simpleModel().root().setAggregatedCoreDependencyResolver(_resolver);
+
+    // get the aggregated dependency
+    _aggregatedDependency = simpleModel().getA1().getOutgoingDependenciesTo(simpleModel().getB1());
+    assertThat(_aggregatedDependency).isNotNull();
+  }
+
   /**
    * <p>
    * </p>
@@ -24,21 +48,23 @@ public class HierachicalGraph_ResolveAggregatedCoreDependencies_Test extends Abs
   @Test
   public void testResolveAggregatedCoreDependencies() {
 
-    // set the resolver
-    IAggregatedCoreDependencyResolver resolver = mock(IAggregatedCoreDependencyResolver.class);
-    simpleModel().root().setAggregatedCoreDependencyResolver(resolver);
+    //
+    _aggregatedDependency.resolveAggregatedCoreDependencies();
 
     //
-    HGAggregatedDependency aggregatedDependency = simpleModel().getA1()
-        .getOutgoingDependenciesTo(simpleModel().getB1());
-    assertThat(aggregatedDependency).isNotNull();
+    for (HGCoreDependency coreDependency : _aggregatedDependency.getCoreDependencies()) {
+      verify(_resolver).createNewAggregatedDependencyResolver(coreDependency);
+    }
 
     //
-    aggregatedDependency.resolveAggregatedCoreDependencies();
+    reset(_resolver);
+
+    // don't call 'createNewAggregatedDependencyResolver' again
+    _aggregatedDependency.resolveAggregatedCoreDependencies();
 
     //
-    for (HGCoreDependency coreDependency : aggregatedDependency.getCoreDependencies()) {
-      verify(resolver).createNewAggregatedDependencyResolver(coreDependency);
+    for (HGCoreDependency coreDependency : _aggregatedDependency.getCoreDependencies()) {
+      verify(_resolver, never()).createNewAggregatedDependencyResolver(coreDependency);
     }
   }
 }

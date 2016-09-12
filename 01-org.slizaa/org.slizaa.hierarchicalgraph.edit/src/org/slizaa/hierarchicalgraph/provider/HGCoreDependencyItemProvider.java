@@ -48,11 +48,34 @@ public class HGCoreDependencyItemProvider extends AbstractHGDependencyItemProvid
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addTypePropertyDescriptor(object);
       addWeightPropertyDescriptor(object);
       addAggregatedCoreDependencyPropertyDescriptor(object);
       addAggregatedCoreDependencyResolvedPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Type feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addTypePropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_HGCoreDependency_type_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGCoreDependency_type_feature", "_UI_HGCoreDependency_type"),
+         HierarchicalgraphPackage.Literals.HG_CORE_DEPENDENCY__TYPE,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
@@ -191,8 +214,14 @@ public class HGCoreDependencyItemProvider extends AbstractHGDependencyItemProvid
    */
   @Override
   public Object getStyledText(Object object) {
-    HGCoreDependency hgCoreDependency = (HGCoreDependency)object;
-    return new StyledString(getString("_UI_HGCoreDependency_type"), StyledString.Style.QUALIFIER_STYLER).append(" ").append(Integer.toString(hgCoreDependency.getWeight()));
+    String label = ((HGCoreDependency)object).getType();
+    	StyledString styledLabel = new StyledString();
+    if (label == null || label.length() == 0) {
+      styledLabel.append(getString("_UI_HGCoreDependency_type"), StyledString.Style.QUALIFIER_STYLER); 
+    } else {
+      styledLabel.append(getString("_UI_HGCoreDependency_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+    }
+    return styledLabel;
   }	
 
   /**
@@ -207,6 +236,7 @@ public class HGCoreDependencyItemProvider extends AbstractHGDependencyItemProvid
     updateChildren(notification);
 
     switch (notification.getFeatureID(HGCoreDependency.class)) {
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__TYPE:
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__WEIGHT:
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_RESOLVED:
