@@ -1,11 +1,9 @@
 package org.slizaa.hierarchicalgraph;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -18,14 +16,14 @@ import org.junit.runners.Parameterized.Parameters;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 @RunWith(Parameterized.class)
-public class LookupTest extends AbstractXmiBasedTest {
+public class InvalidateCachesTest extends AbstractXmiBasedTest {
 
   /**
    * <p>
-   * Creates a new instance of type {@link LookupTest}.
+   * Creates a new instance of type {@link InvalidateCachesTest}.
    * </p>
    */
-  public LookupTest(String xmiModelPath) {
+  public InvalidateCachesTest(String xmiModelPath) {
     super(xmiModelPath);
   }
 
@@ -34,16 +32,13 @@ public class LookupTest extends AbstractXmiBasedTest {
    * </p>
    */
   @Test
-  public void testLookup() {
-    EcoreUtil.getAllContents(rootNode(), false).forEachRemaining((c) -> {
-      if (HierarchicalgraphPackage.eINSTANCE.getHGNode().isInstance(c)) {
-        HGNode node = (HGNode) c;
-        assertThat(node.getIdentifier()).isNotNull();
-        assertThat(rootNode().lookupNode(node.getIdentifier())).isEqualTo(node);
-      }
-    });
+  public void testInvalidateAllCaches() {
+    rootNode().invalidateAllCaches();
+    
+    // TODO: Assertions!
+    Assert.fail();
   }
-
+  
   /**
    * <p>
    * </p>

@@ -463,16 +463,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getHGRootNode_Name() {
-    return (EAttribute)hgRootNodeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getHGRootNode__InvalidateCaches() {
+  public EOperation getHGRootNode__InvalidateAllCaches() {
     return hgRootNodeEClass.getEOperations().get(0);
   }
 
@@ -481,8 +472,17 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGRootNode__InitializeCaches() {
+  public EOperation getHGRootNode__InvalidateCaches__List() {
     return hgRootNodeEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getHGRootNode_Name() {
+    return (EAttribute)hgRootNodeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -833,8 +833,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__NAME);
     createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__ITEM_LABEL_PROVIDER);
     createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__AGGREGATED_CORE_DEPENDENCY_RESOLVER);
-    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_CACHES);
-    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INITIALIZE_CACHES);
+    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_ALL_CACHES);
+    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_CACHES__LIST);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___LOOKUP_NODE__OBJECT);
 
     defaultHGNodeSourceEClass = createEClass(DEFAULT_HG_NODE_SOURCE);
@@ -968,9 +968,10 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEAttribute(getHGRootNode_ItemLabelProvider(), this.getIItemLabelProvider(), "itemLabelProvider", null, 1, 1, HGRootNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getHGRootNode_AggregatedCoreDependencyResolver(), this.getIAggregatedCoreDependencyResolver(), "aggregatedCoreDependencyResolver", null, 0, 1, HGRootNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEOperation(getHGRootNode__InvalidateCaches(), null, "invalidateCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getHGRootNode__InvalidateAllCaches(), null, "invalidateAllCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    initEOperation(getHGRootNode__InitializeCaches(), null, "initializeCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getHGRootNode__InvalidateCaches__List(), null, "invalidateCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
+    addEParameter(op, this.getHGNode(), "modifiedNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
     op = initEOperation(getHGRootNode__LookupNode__Object(), this.getHGNode(), "lookupNode", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEJavaObject(), "identifier", 0, 1, IS_UNIQUE, IS_ORDERED);

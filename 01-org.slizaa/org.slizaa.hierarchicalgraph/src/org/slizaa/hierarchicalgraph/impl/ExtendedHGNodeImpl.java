@@ -70,15 +70,15 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
     return _trait;
   }
 
-  public void onInitializeCaches() {
-    _trait.onInitializeCaches();
-  }
-
   public void onExpand() {
     _trait.onExpand();
   }
 
   public void onCollapse() {
     _trait.onCollapse();
+  }
+  
+  public void invalidateLocalCaches() {
+    _trait.invalidateLocalCaches();
   }
 }

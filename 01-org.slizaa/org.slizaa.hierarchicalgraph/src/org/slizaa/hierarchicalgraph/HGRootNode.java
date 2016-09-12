@@ -2,6 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph;
 
+import java.util.List;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
@@ -77,6 +78,22 @@ public interface HGRootNode extends HGNode {
   void setAggregatedCoreDependencyResolver(IAggregatedCoreDependencyResolver value);
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  void invalidateAllCaches();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model modifiedNodesMany="true"
+   * @generated
+   */
+  void invalidateCaches(List<HGNode> modifiedNodes);
+
+  /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
@@ -101,22 +118,6 @@ public interface HGRootNode extends HGNode {
    * @generated
    */
   void setName(String value);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
-  void invalidateCaches();
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
-  void initializeCaches();
 
   /**
    * <!-- begin-user-doc -->

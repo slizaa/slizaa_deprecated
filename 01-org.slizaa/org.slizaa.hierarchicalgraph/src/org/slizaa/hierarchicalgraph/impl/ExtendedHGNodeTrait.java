@@ -70,8 +70,26 @@ public class ExtendedHGNodeTrait {
     return _hgNode.rootNode;
   }
 
-  public void onInitializeCaches() {
-
+  /**
+   * <p>
+   * </p>
+   */
+  public void invalidateLocalCaches() {
+    if (_cachedParents != null) {
+      _cachedParents.clear();
+    }
+    if (_cachedOutgoingSubTreeCoreDependencies != null) {
+      _cachedOutgoingSubTreeCoreDependencies.clear();
+    }
+    if (_cachedIncomingSubTreeCoreDependencies != null) {
+      _cachedIncomingSubTreeCoreDependencies.clear();
+    }
+    if (_cachedAggregatedOutgoingDependenciesMap != null) {
+      _cachedAggregatedOutgoingDependenciesMap.clear();
+    }
+    if (_cachedAggregatedIncomingDependenciesMap != null) {
+      _cachedAggregatedIncomingDependenciesMap.clear();
+    }
   }
 
   public void onExpand() {

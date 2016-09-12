@@ -4,6 +4,7 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -152,6 +153,28 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
    * <!-- end-user-doc -->
    * @generated
    */
+  public void invalidateAllCaches() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void invalidateCaches(List<HGNode> modifiedNodes) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getName() {
     return name;
   }
@@ -166,29 +189,6 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_ROOT_NODE__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public void invalidateCaches() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void initializeCaches() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
   }
 
   /**
@@ -285,13 +285,14 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
    * @generated
    */
   @Override
+  @SuppressWarnings("unchecked")
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case HierarchicalgraphPackage.HG_ROOT_NODE___INVALIDATE_CACHES:
-        invalidateCaches();
+      case HierarchicalgraphPackage.HG_ROOT_NODE___INVALIDATE_ALL_CACHES:
+        invalidateAllCaches();
         return null;
-      case HierarchicalgraphPackage.HG_ROOT_NODE___INITIALIZE_CACHES:
-        initializeCaches();
+      case HierarchicalgraphPackage.HG_ROOT_NODE___INVALIDATE_CACHES__LIST:
+        invalidateCaches((List<HGNode>)arguments.get(0));
         return null;
       case HierarchicalgraphPackage.HG_ROOT_NODE___LOOKUP_NODE__OBJECT:
         return lookupNode(arguments.get(0));

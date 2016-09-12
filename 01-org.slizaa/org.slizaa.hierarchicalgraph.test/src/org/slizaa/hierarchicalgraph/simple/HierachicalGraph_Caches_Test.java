@@ -15,9 +15,9 @@ public class HierachicalGraph_Caches_Test extends AbstractSimpleModelTest {
    * </p>
    */
   @Test
-  public void testResolveAggregatedCoreDependencies() {
+  public void testInvalidateAllCaches() {
 
-    simpleModel().root().invalidateCaches();
-    simpleModel().root().initializeCaches();
+    //
+    simpleModel().root().invalidateAllCaches();
   }
 }

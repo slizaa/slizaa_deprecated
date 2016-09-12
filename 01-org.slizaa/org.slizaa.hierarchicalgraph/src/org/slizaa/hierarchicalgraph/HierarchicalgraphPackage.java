@@ -522,22 +522,22 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN = HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN;
 
   /**
+   * The operation id for the '<em>Invalidate All Caches</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___INVALIDATE_ALL_CACHES = HG_NODE_OPERATION_COUNT + 0;
+
+  /**
    * The operation id for the '<em>Invalidate Caches</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___INVALIDATE_CACHES = HG_NODE_OPERATION_COUNT + 0;
-
-  /**
-   * The operation id for the '<em>Initialize Caches</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_ROOT_NODE___INITIALIZE_CACHES = HG_NODE_OPERATION_COUNT + 1;
+  int HG_ROOT_NODE___INVALIDATE_CACHES__LIST = HG_NODE_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Lookup Node</em>' operation.
@@ -1424,6 +1424,26 @@ public interface HierarchicalgraphPackage extends EPackage {
   EAttribute getHGRootNode_AggregatedCoreDependencyResolver();
 
   /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#invalidateAllCaches() <em>Invalidate All Caches</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Invalidate All Caches</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#invalidateAllCaches()
+   * @generated
+   */
+  EOperation getHGRootNode__InvalidateAllCaches();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#invalidateCaches(java.util.List) <em>Invalidate Caches</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Invalidate Caches</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#invalidateCaches(java.util.List)
+   * @generated
+   */
+  EOperation getHGRootNode__InvalidateCaches__List();
+
+  /**
    * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGRootNode#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1433,26 +1453,6 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    */
   EAttribute getHGRootNode_Name();
-
-  /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#invalidateCaches() <em>Invalidate Caches</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Invalidate Caches</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGRootNode#invalidateCaches()
-   * @generated
-   */
-  EOperation getHGRootNode__InvalidateCaches();
-
-  /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#initializeCaches() <em>Initialize Caches</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Initialize Caches</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGRootNode#initializeCaches()
-   * @generated
-   */
-  EOperation getHGRootNode__InitializeCaches();
 
   /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#lookupNode(java.lang.Object) <em>Lookup Node</em>}' operation.
@@ -2058,12 +2058,12 @@ public interface HierarchicalgraphPackage extends EPackage {
     EAttribute HG_ROOT_NODE__AGGREGATED_CORE_DEPENDENCY_RESOLVER = eINSTANCE.getHGRootNode_AggregatedCoreDependencyResolver();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Invalidate All Caches</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute HG_ROOT_NODE__NAME = eINSTANCE.getHGRootNode_Name();
+    EOperation HG_ROOT_NODE___INVALIDATE_ALL_CACHES = eINSTANCE.getHGRootNode__InvalidateAllCaches();
 
     /**
      * The meta object literal for the '<em><b>Invalidate Caches</b></em>' operation.
@@ -2071,15 +2071,15 @@ public interface HierarchicalgraphPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_ROOT_NODE___INVALIDATE_CACHES = eINSTANCE.getHGRootNode__InvalidateCaches();
+    EOperation HG_ROOT_NODE___INVALIDATE_CACHES__LIST = eINSTANCE.getHGRootNode__InvalidateCaches__List();
 
     /**
-     * The meta object literal for the '<em><b>Initialize Caches</b></em>' operation.
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_ROOT_NODE___INITIALIZE_CACHES = eINSTANCE.getHGRootNode__InitializeCaches();
+    EAttribute HG_ROOT_NODE__NAME = eINSTANCE.getHGRootNode_Name();
 
     /**
      * The meta object literal for the '<em><b>Lookup Node</b></em>' operation.

@@ -1,5 +1,6 @@
 package org.slizaa.hierarchicalgraph.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,28 +36,40 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     _trait = new ExtendedHGNodeTrait(this);
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
-  public void invalidateCaches() {
-    super.invalidateCaches();
+  public void invalidateAllCaches() {
+    this.invalidateLocalCaches();
+    EcoreUtil.getAllContents(this, false).forEachRemaining((c) -> {
+      if (c instanceof ExtendedHGNodeImpl) {
+        ((ExtendedHGNodeImpl) c).invalidateLocalCaches();
+      }
+    });
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
-  public void initializeCaches() {
-    super.initializeCaches();
-  }
+  public void invalidateCaches(List<HGNode> modifiedNodes) {
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public Object getIdentifier() {
-    return _trait.getIdentifier();
+    //
+    List<HGNode> selfAndParentNodes = new ArrayList<HGNode>();
+
+    //
+    for (HGNode hgNode : modifiedNodes) {
+      if (hgNode instanceof ExtendedHGNodeImpl) {
+        ExtendedHGNodeImpl extendedHGNode = (ExtendedHGNodeImpl) hgNode;
+        selfAndParentNodes.add(extendedHGNode);
+        if (extendedHGNode.getTrait()._cachedParents != null) {
+          selfAndParentNodes.addAll(extendedHGNode.getTrait()._cachedParents);
+        }
+      }
+    }
+
+    //
+    for (HGNode hgNode : selfAndParentNodes) {
+      if (hgNode instanceof ExtendedHGNodeImpl) {
+        ExtendedHGNodeImpl extendedHGNode = (ExtendedHGNodeImpl) hgNode;
+        extendedHGNode.invalidateLocalCaches();
+      }
+    }
   }
 
   /**
@@ -75,6 +88,14 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     }
 
     return _idToNodeMap.get(identifier);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Object getIdentifier() {
+    return _trait.getIdentifier();
   }
 
   /**
@@ -165,8 +186,8 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     return _trait;
   }
 
-  public void onInitializeCaches() {
-    _trait.onInitializeCaches();
+  public void invalidateLocalCaches() {
+    _trait.invalidateLocalCaches();
   }
 
   /**
@@ -181,5 +202,4 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     }
     return _idToNodeMap;
   }
-
 }
