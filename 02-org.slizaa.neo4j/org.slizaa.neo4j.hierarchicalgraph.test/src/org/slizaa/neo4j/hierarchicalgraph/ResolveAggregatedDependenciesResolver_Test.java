@@ -49,8 +49,8 @@ public class ResolveAggregatedDependenciesResolver_Test extends AbstractRemoteRe
   public void testResolveAggregatedCoreDependencies() {
 
     //
-    HGNode pkg_omaiconversion = _rootNode.getNode(new Long(611));
-    HGNode pkg_omaimodelcommon = _rootNode.getNode(new Long(1634));
+    HGNode pkg_omaiconversion = _rootNode.lookupNode(new Long(611));
+    HGNode pkg_omaimodelcommon = _rootNode.lookupNode(new Long(1634));
 
     //
     HGAggregatedDependency hgDependency = pkg_omaiconversion.getOutgoingDependenciesTo(pkg_omaimodelcommon);

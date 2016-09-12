@@ -71,7 +71,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="HGRootNode" eSuperTypes="#//HGNode">
     <eOperations name="invalidateCaches"/>
     <eOperations name="initializeCaches"/>
-    <eOperations name="getNode" eType="#//HGNode">
+    <eOperations name="lookupNode" eType="#//HGNode">
       <eParameters name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

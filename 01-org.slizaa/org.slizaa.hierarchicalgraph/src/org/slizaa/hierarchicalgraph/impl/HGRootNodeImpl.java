@@ -196,7 +196,7 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGNode getNode(Object identifier) {
+  public HGNode lookupNode(Object identifier) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -293,8 +293,8 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
       case HierarchicalgraphPackage.HG_ROOT_NODE___INITIALIZE_CACHES:
         initializeCaches();
         return null;
-      case HierarchicalgraphPackage.HG_ROOT_NODE___GET_NODE__OBJECT:
-        return getNode(arguments.get(0));
+      case HierarchicalgraphPackage.HG_ROOT_NODE___LOOKUP_NODE__OBJECT:
+        return lookupNode(arguments.get(0));
     }
     return super.eInvoke(operationID, arguments);
   }

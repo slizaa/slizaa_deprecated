@@ -2,6 +2,7 @@ package org.slizaa.hierarchicalgraph.mapstruct;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
+import org.slizaa.hierarchicalgraph.AbstractXmiBasedTest;
 
 /**
  * <p>
@@ -9,13 +10,17 @@ import org.junit.Test;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class DependencyTest extends AbstractHierarchicalTest {
+public class DependencyTest extends AbstractXmiBasedTest {
 
   /** - */
   public static final Long ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER = new Long(6308);
 
   /** - */
   public static final Long ID_TYPE_MODEL_WRITER                    = new Long(5769);
+
+  public DependencyTest(String xmiModelPath) {
+    super(xmiModelPath);
+  }
 
   /**
    * <p>
@@ -29,7 +34,7 @@ public class DependencyTest extends AbstractHierarchicalTest {
     assertThat(node(ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER).getOutgoingCoreDependencies(false)).hasSize(0);
     assertThat(node(ID_TYPE_MODEL_WRITER).getOutgoingCoreDependencies(false)).hasSize(11);
 
-    //  'mapstruct--processor-1.1.0.Beta2.jar'
+    // 'mapstruct--processor-1.1.0.Beta2.jar'
     assertThat(node(577).getOutgoingCoreDependencies(true)).hasSize(4983);
     assertThat(node(ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER).getOutgoingCoreDependencies(true)).hasSize(75);
     assertThat(node(ID_TYPE_MODEL_WRITER).getOutgoingCoreDependencies(true)).hasSize(11);
@@ -54,8 +59,9 @@ public class DependencyTest extends AbstractHierarchicalTest {
 
     // '/mapstruct-processor-1.1.0.Beta2.jar' -> 'mapstruct-1.1.0.Beta2.jar'
     assertThat(node(577).getOutgoingDependenciesTo(node(1))).isNull();
-    
-    // '/mapstruct-processor-1.1.0.Beta2.jar/org.mapstrcut.ap.internal.model' -> '/mapstruct-processor-1.1.0.Beta2.jar/org.mapstrcut.ap.internal.util'
+
+    // '/mapstruct-processor-1.1.0.Beta2.jar/org.mapstrcut.ap.internal.model' ->
+    // '/mapstruct-processor-1.1.0.Beta2.jar/org.mapstrcut.ap.internal.util'
     assertThat(node(1063).getOutgoingDependenciesTo(node(5922)).getAggregatedWeight()).isEqualTo(50);
   }
 }

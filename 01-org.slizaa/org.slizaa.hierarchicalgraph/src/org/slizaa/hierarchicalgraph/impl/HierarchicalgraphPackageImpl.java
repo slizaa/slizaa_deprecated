@@ -490,7 +490,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGRootNode__GetNode__Object() {
+  public EOperation getHGRootNode__LookupNode__Object() {
     return hgRootNodeEClass.getEOperations().get(2);
   }
 
@@ -835,7 +835,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__AGGREGATED_CORE_DEPENDENCY_RESOLVER);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_CACHES);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INITIALIZE_CACHES);
-    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___GET_NODE__OBJECT);
+    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___LOOKUP_NODE__OBJECT);
 
     defaultHGNodeSourceEClass = createEClass(DEFAULT_HG_NODE_SOURCE);
     createEReference(defaultHGNodeSourceEClass, DEFAULT_HG_NODE_SOURCE__PROPERTIES);
@@ -972,7 +972,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     initEOperation(getHGRootNode__InitializeCaches(), null, "initializeCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    op = initEOperation(getHGRootNode__GetNode__Object(), this.getHGNode(), "getNode", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getHGRootNode__LookupNode__Object(), this.getHGNode(), "lookupNode", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEJavaObject(), "identifier", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(defaultHGNodeSourceEClass, DefaultHGNodeSource.class, "DefaultHGNodeSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

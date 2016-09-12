@@ -124,6 +124,6 @@ public interface HGRootNode extends HGNode {
    * @model
    * @generated
    */
-  HGNode getNode(Object identifier);
+  HGNode lookupNode(Object identifier);
 
 } // HGRootNode

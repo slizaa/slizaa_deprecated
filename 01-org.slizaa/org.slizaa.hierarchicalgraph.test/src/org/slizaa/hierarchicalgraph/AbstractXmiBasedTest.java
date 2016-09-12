@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph.mapstruct;
+package org.slizaa.hierarchicalgraph;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,10 +24,24 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public abstract class AbstractHierarchicalTest {
+public abstract class AbstractXmiBasedTest {
 
   /** - */
   private HGRootNode _rootNode;
+
+  /** - */
+  private String     _xmiModelPath;
+
+  /**
+   * <p>
+   * Creates a new instance of type {@link AbstractXmiBasedTest}.
+   * </p>
+   *
+   * @param _miModelPath
+   */
+  public AbstractXmiBasedTest(String xmiModelPath) {
+    this._xmiModelPath = checkNotNull(xmiModelPath);
+  }
 
   /**
    * <p>
@@ -37,8 +51,7 @@ public abstract class AbstractHierarchicalTest {
    */
   @Before
   public void setup() throws IOException {
-    _rootNode = load("org/slizaa/hierarchicalgraph/mapstruct/mapstruct_1-1-0-Beta2.hggraph");
-
+    _rootNode = load(_xmiModelPath);
     // dumpChildren(node(new Long(6308)));
   }
 
@@ -50,11 +63,11 @@ public abstract class AbstractHierarchicalTest {
    * @return
    */
   public HGNode node(Long id) {
-    return _rootNode.getNode(checkNotNull(id));
+    return _rootNode.lookupNode(checkNotNull(id));
   }
 
   public HGNode node(long id) {
-    return _rootNode.getNode(new Long(id));
+    return _rootNode.lookupNode(new Long(id));
   }
 
   /**
@@ -123,7 +136,7 @@ public abstract class AbstractHierarchicalTest {
     // Resource resource = resSet.getResource(URI.createFileURI(fileName), true);
 
     ResourceImpl resource = new XMIResourceImpl();
-    InputStream inputStream = AbstractHierarchicalTest.class.getClassLoader().getResourceAsStream(fileName);
+    InputStream inputStream = AbstractXmiBasedTest.class.getClassLoader().getResourceAsStream(fileName);
     assertThat(inputStream).isNotNull();
     resource.load(inputStream, null);
 

@@ -540,13 +540,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE___INITIALIZE_CACHES = HG_NODE_OPERATION_COUNT + 1;
 
   /**
-   * The operation id for the '<em>Get Node</em>' operation.
+   * The operation id for the '<em>Lookup Node</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___GET_NODE__OBJECT = HG_NODE_OPERATION_COUNT + 2;
+  int HG_ROOT_NODE___LOOKUP_NODE__OBJECT = HG_NODE_OPERATION_COUNT + 2;
 
   /**
    * The number of operations of the '<em>HG Root Node</em>' class.
@@ -1455,14 +1455,14 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGRootNode__InitializeCaches();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#getNode(java.lang.Object) <em>Get Node</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#lookupNode(java.lang.Object) <em>Lookup Node</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Node</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGRootNode#getNode(java.lang.Object)
+   * @return the meta object for the '<em>Lookup Node</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#lookupNode(java.lang.Object)
    * @generated
    */
-  EOperation getHGRootNode__GetNode__Object();
+  EOperation getHGRootNode__LookupNode__Object();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.DefaultHGNodeSource <em>Default HG Node Source</em>}'.
@@ -2082,12 +2082,12 @@ public interface HierarchicalgraphPackage extends EPackage {
     EOperation HG_ROOT_NODE___INITIALIZE_CACHES = eINSTANCE.getHGRootNode__InitializeCaches();
 
     /**
-     * The meta object literal for the '<em><b>Get Node</b></em>' operation.
+     * The meta object literal for the '<em><b>Lookup Node</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_ROOT_NODE___GET_NODE__OBJECT = eINSTANCE.getHGRootNode__GetNode__Object();
+    EOperation HG_ROOT_NODE___LOOKUP_NODE__OBJECT = eINSTANCE.getHGRootNode__LookupNode__Object();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultHGNodeSourceImpl <em>Default HG Node Source</em>}' class.

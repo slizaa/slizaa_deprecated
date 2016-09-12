@@ -35,7 +35,22 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     _trait = new ExtendedHGNodeTrait(this);
   }
 
-  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void invalidateCaches() {
+    super.invalidateCaches();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void initializeCaches() {
+    super.initializeCaches();
+  }
+
   /**
    * {@inheritDoc}
    */
@@ -48,7 +63,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    * {@inheritDoc}
    */
   @Override
-  public HGNode getNode(Object identifier) {
+  public HGNode lookupNode(Object identifier) {
 
     if (_idToNodeMap == null) {
       EcoreUtil.getAllContents(this, false).forEachRemaining((c) -> {
@@ -69,7 +84,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
   public HGRootNode getRootNode() {
     return _trait.getRootNode();
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -145,7 +160,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
   public Map<Object, HGNode> getIdToNodeMap() {
     return idToNodeMap();
   }
-  
+
   public ExtendedHGNodeTrait getTrait() {
     return _trait;
   }
@@ -153,7 +168,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
   public void onInitializeCaches() {
     _trait.onInitializeCaches();
   }
-  
+
   /**
    * <p>
    * </p>
