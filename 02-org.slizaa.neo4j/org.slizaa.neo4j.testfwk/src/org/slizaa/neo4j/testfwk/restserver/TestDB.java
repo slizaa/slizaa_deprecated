@@ -11,7 +11,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public enum TestDB {
   
   /** - */
-  MAPSTRUCT("mapstruct-db", "/mapstruct-db.zip");
+  MAPSTRUCT("mapstruct-db", "/mapstruct_1-1-0-Beta2-db.zip");
   
   /**
    * <p>
