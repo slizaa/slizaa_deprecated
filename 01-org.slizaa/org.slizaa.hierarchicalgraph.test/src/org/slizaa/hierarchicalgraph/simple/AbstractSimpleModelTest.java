@@ -2,6 +2,7 @@ package org.slizaa.hierarchicalgraph.simple;
 
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewNode;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewRootNode;
 
 import java.util.function.Supplier;
 
@@ -52,7 +53,7 @@ public class AbstractSimpleModelTest {
   public SimpleModel simpleModel() {
     return _simpleModel;
   }
-  
+
   public class SimpleModel {
 
     private HGNode           _a1;
@@ -85,7 +86,7 @@ public class AbstractSimpleModelTest {
           .createDefaultHGDependencySource();
 
       //
-      HGRootNode rootNode = HierarchicalgraphFactory.eINSTANCE.createHGRootNode();
+      HGRootNode rootNode = createNewRootNode(nodeSourceSupplier);
 
       _a1 = createNewNode(rootNode, rootNode, nodeSourceSupplier);
       _b1 = createNewNode(rootNode, rootNode, nodeSourceSupplier);

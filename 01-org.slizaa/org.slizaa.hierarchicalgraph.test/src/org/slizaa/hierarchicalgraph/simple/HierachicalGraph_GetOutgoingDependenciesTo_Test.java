@@ -41,4 +41,14 @@ public class HierachicalGraph_GetOutgoingDependenciesTo_Test extends AbstractSim
     assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a3_b3_core1(),
         simpleModel().getDep_a3_b3_core2());
   }
+
+  @Test
+  public void testGetOutgoingDependenciesTo_Null() {
+
+    //
+    HGAggregatedDependency aggregatedDependency = simpleModel().getA1()
+        .getOutgoingDependenciesTo(simpleModel().getA2());
+
+    assertThat(aggregatedDependency).isNull();
+  }
 }

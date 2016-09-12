@@ -13,6 +13,7 @@ package org.slizaa.ui.dependencytree.internal;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -110,7 +111,7 @@ public class DependencyTreePart implements IHierarchicalGraphSelectionListener {
 
       if (dependencySelection != null) {
 
-        List<HGCoreDependency> dependencies = HierarchicalGraphUtils
+        Set<HGCoreDependency> dependencies = HierarchicalGraphUtils
             .getCoreDependencies(dependencySelection.getSelectedDependencies());
 
         _composite.setDependencies(dependencies);
