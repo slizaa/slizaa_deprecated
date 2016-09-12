@@ -3,6 +3,7 @@
 package org.slizaa.hierarchicalgraph;
 
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,8 +14,9 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.hierarchicalgraph.HGRootNode#getItemLabelProvider <em>Item Label Provider</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGRootNode#getName <em>Name</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGRootNode#getItemLabelProvider <em>Item Label Provider</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGRootNode#getAggregatedCoreDependencyResolver <em>Aggregated Core Dependency Resolver</em>}</li>
  * </ul>
  *
  * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGRootNode()
@@ -47,6 +49,32 @@ public interface HGRootNode extends HGNode {
    * @generated
    */
   void setItemLabelProvider(IItemLabelProvider value);
+
+  /**
+   * Returns the value of the '<em><b>Aggregated Core Dependency Resolver</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Aggregated Core Dependency Resolver</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Aggregated Core Dependency Resolver</em>' attribute.
+   * @see #setAggregatedCoreDependencyResolver(IAggregatedCoreDependencyResolver)
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGRootNode_AggregatedCoreDependencyResolver()
+   * @model dataType="org.slizaa.hierarchicalgraph.IAggregatedCoreDependencyResolver"
+   * @generated
+   */
+  IAggregatedCoreDependencyResolver getAggregatedCoreDependencyResolver();
+
+  /**
+   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGRootNode#getAggregatedCoreDependencyResolver <em>Aggregated Core Dependency Resolver</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Aggregated Core Dependency Resolver</em>' attribute.
+   * @see #getAggregatedCoreDependencyResolver()
+   * @generated
+   */
+  void setAggregatedCoreDependencyResolver(IAggregatedCoreDependencyResolver value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

@@ -31,15 +31,6 @@ public interface HierarchicalgraphFactory extends EFactory {
   HGNode createHGNode();
 
   /**
-   * Returns a new object of class '<em>HG Dependency Source</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>HG Dependency Source</em>'.
-   * @generated
-   */
-  HGDependencySource createHGDependencySource();
-
-  /**
    * Returns a new object of class '<em>HG Root Node</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

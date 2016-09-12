@@ -3,9 +3,9 @@ package org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal;
 import java.util.concurrent.Future;
 
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver;
+import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
-public class CustomAggregatedDependencyResolver implements IAggregatedDependencyResolver {
+public class CustomAggregatedDependencyResolver implements IAggregatedCoreDependencyResolver {
 
   /**
    * {@inheritDoc}

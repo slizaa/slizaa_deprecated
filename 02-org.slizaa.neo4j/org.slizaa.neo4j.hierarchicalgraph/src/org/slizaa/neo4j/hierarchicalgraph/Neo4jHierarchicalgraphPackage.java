@@ -216,22 +216,13 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	int NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY = NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT + 0;
 
 	/**
-   * The feature id for the '<em><b>Aggregated Dependency Resolver</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER = NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT + 1;
-
-  /**
    * The number of structural features of the '<em>Neo4 JBacked Root Node Source</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int NEO4_JBACKED_ROOT_NODE_SOURCE_FEATURE_COUNT = NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT + 2;
+	int NEO4_JBACKED_ROOT_NODE_SOURCE_FEATURE_COUNT = NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT + 1;
 
 	/**
    * The operation id for the '<em>On Expand</em>' operation.
@@ -327,31 +318,13 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
   int NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Resolved</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE__RESOLVED = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 2;
-
-  /**
    * The number of structural features of the '<em>Neo4 JBacked Dependency Source</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 3;
-
-  /**
-   * The operation id for the '<em>On Resolve Aggregated Core Dependency</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE___ON_RESOLVE_AGGREGATED_CORE_DEPENDENCY = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE___ON_RESOLVE_AGGREGATED_CORE_DEPENDENCY;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Neo4 JBacked Dependency Source</em>' class.
@@ -588,16 +561,6 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	int NEO4_JREMOTE_REPOSITORY_OPERATION_COUNT = INEO4_JREPOSITORY_OPERATION_COUNT + 2;
 
   /**
-   * The meta object id for the '<em>IAggregated Dependency Resolver</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver
-   * @see org.slizaa.neo4j.hierarchicalgraph.impl.Neo4jHierarchicalgraphPackageImpl#getIAggregatedDependencyResolver()
-   * @generated
-   */
-  int IAGGREGATED_DEPENDENCY_RESOLVER = 9;
-
-  /**
    * The meta object id for the '<em>Future</em>' data type.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -692,17 +655,6 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	EReference getNeo4JBackedRootNodeSource_Repository();
 
 	/**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getAggregatedDependencyResolver <em>Aggregated Dependency Resolver</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Aggregated Dependency Resolver</em>'.
-   * @see org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getAggregatedDependencyResolver()
-   * @see #getNeo4JBackedRootNodeSource()
-   * @generated
-   */
-  EAttribute getNeo4JBackedRootNodeSource_AggregatedDependencyResolver();
-
-  /**
    * Returns the meta object for class '{@link org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository <em>INeo4 JRepository</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -857,17 +809,6 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 	EOperation getNeo4JRemoteRepository__Dispose();
 
 	/**
-   * Returns the meta object for data type '{@link org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver <em>IAggregated Dependency Resolver</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>IAggregated Dependency Resolver</em>'.
-   * @see org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver
-   * @model instanceClass="org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver"
-   * @generated
-   */
-  EDataType getIAggregatedDependencyResolver();
-
-  /**
    * Returns the meta object for class '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource <em>Neo4 JBacked Dependency Source</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -898,17 +839,6 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    */
   EAttribute getNeo4JBackedDependencySource_Type();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#isResolved <em>Resolved</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Resolved</em>'.
-   * @see org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#isResolved()
-   * @see #getNeo4JBackedDependencySource()
-   * @generated
-   */
-  EAttribute getNeo4JBackedDependencySource_Resolved();
 
   /**
    * Returns the meta object for data type '{@link java.util.concurrent.Future <em>Future</em>}'.
@@ -1022,14 +952,6 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 		EReference NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY = eINSTANCE.getNeo4JBackedRootNodeSource_Repository();
 
 		/**
-     * The meta object literal for the '<em><b>Aggregated Dependency Resolver</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER = eINSTANCE.getNeo4JBackedRootNodeSource_AggregatedDependencyResolver();
-
-    /**
      * The meta object literal for the '{@link org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository <em>INeo4 JRepository</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1154,16 +1076,6 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 		EOperation NEO4_JREMOTE_REPOSITORY___DISPOSE = eINSTANCE.getNeo4JRemoteRepository__Dispose();
 
 		/**
-     * The meta object literal for the '<em>IAggregated Dependency Resolver</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver
-     * @see org.slizaa.neo4j.hierarchicalgraph.impl.Neo4jHierarchicalgraphPackageImpl#getIAggregatedDependencyResolver()
-     * @generated
-     */
-    EDataType IAGGREGATED_DEPENDENCY_RESOLVER = eINSTANCE.getIAggregatedDependencyResolver();
-
-    /**
      * The meta object literal for the '{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedDependencySourceImpl <em>Neo4 JBacked Dependency Source</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1188,14 +1100,6 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EAttribute NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE = eINSTANCE.getNeo4JBackedDependencySource_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Resolved</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NEO4_JBACKED_DEPENDENCY_SOURCE__RESOLVED = eINSTANCE.getNeo4JBackedDependencySource_Resolved();
 
     /**
      * The meta object literal for the '<em>Future</em>' data type.

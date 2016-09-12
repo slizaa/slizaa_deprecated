@@ -62,12 +62,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="autoExpand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HGDependencySource">
-    <eOperations name="onResolveAggregatedCoreDependency">
-      <eGenericType eClassifier="#//Future">
-        <eTypeArguments/>
-      </eGenericType>
-    </eOperations>
+  <eClassifiers xsi:type="ecore:EClass" name="HGDependencySource" abstract="true"
+      interface="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependency" lowerBound="1"
         eType="#//HGCoreDependency" eOpposite="#//HGCoreDependency/dependencySource"/>
@@ -78,9 +74,11 @@
     <eOperations name="getNode" eType="#//HGNode">
       <eParameters name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemLabelProvider" lowerBound="1"
         eType="#//IItemLabelProvider" transient="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedCoreDependencyResolver"
+        eType="#//IAggregatedCoreDependencyResolver"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DefaultHGNodeSource" eSuperTypes="#//HGNodeSource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
@@ -105,7 +103,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedCoreDependency"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedCoreDependencyResolved"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencySource" eType="#//HGDependencySource"
         containment="true" eOpposite="#//HGDependencySource/dependency"/>
   </eClassifiers>
@@ -131,4 +129,6 @@
   <eClassifiers xsi:type="ecore:EDataType" name="Future" instanceClassName="java.util.concurrent.Future">
     <eTypeParameters name="T"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="IAggregatedCoreDependencyResolver"
+      instanceClassName="org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver"/>
 </ecore:EPackage>

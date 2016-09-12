@@ -94,8 +94,6 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
         return createJsonArrayFromString(eDataType, initialValue);
       case Neo4jHierarchicalgraphPackage.JSON_OBJECT:
         return createJsonObjectFromString(eDataType, initialValue);
-      case Neo4jHierarchicalgraphPackage.IAGGREGATED_DEPENDENCY_RESOLVER:
-        return createIAggregatedDependencyResolverFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -117,8 +115,6 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
         return convertJsonArrayToString(eDataType, instanceValue);
       case Neo4jHierarchicalgraphPackage.JSON_OBJECT:
         return convertJsonObjectToString(eDataType, instanceValue);
-      case Neo4jHierarchicalgraphPackage.IAGGREGATED_DEPENDENCY_RESOLVER:
-        return convertIAggregatedDependencyResolverToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -237,24 +233,6 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
   }
 
 	/**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public IAggregatedDependencyResolver createIAggregatedDependencyResolverFromString(EDataType eDataType, String initialValue) {
-    return (IAggregatedDependencyResolver)super.createFromString(eDataType, initialValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertIAggregatedDependencyResolverToString(EDataType eDataType, Object instanceValue) {
-    return super.convertToString(eDataType, instanceValue);
-  }
-
-  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated

@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
@@ -65,28 +64,6 @@ public class Neo4JBackedRootNodeSourceItemProvider extends Neo4JBackedNodeSource
   }
 
 	/**
-   * This adds a property descriptor for the Aggregated Dependency Resolver feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addAggregatedDependencyResolverPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Neo4JBackedRootNodeSource_aggregatedDependencyResolver_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Neo4JBackedRootNodeSource_aggregatedDependencyResolver_feature", "_UI_Neo4JBackedRootNodeSource_type"),
-         Neo4jHierarchicalgraphPackage.Literals.NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -114,7 +91,6 @@ public class Neo4JBackedRootNodeSourceItemProvider extends Neo4JBackedNodeSource
 
     switch (notification.getFeatureID(Neo4JBackedRootNodeSource.class)) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY:
-      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

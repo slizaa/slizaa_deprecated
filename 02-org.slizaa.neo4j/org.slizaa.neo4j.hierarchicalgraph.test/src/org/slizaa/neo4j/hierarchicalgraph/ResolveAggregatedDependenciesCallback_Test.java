@@ -11,6 +11,7 @@ import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
  * <p>
@@ -24,7 +25,7 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
   private HGRootNode                    _rootNode;
 
   /** - */
-  private IAggregatedDependencyResolver _aggregatedDependencyResolver;
+  private IAggregatedCoreDependencyResolver _aggregatedDependencyResolver;
 
   /**
    * {@inheritDoc}
@@ -37,11 +38,10 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
     _rootNode = createGraphFromDefaultMapping(getNeo4JRemoteRepository());
 
     //
-    _aggregatedDependencyResolver = mock(IAggregatedDependencyResolver.class);
+    _aggregatedDependencyResolver = mock(IAggregatedCoreDependencyResolver.class);
 
     //
-    Neo4JBackedRootNodeSource rootNodeSource = (Neo4JBackedRootNodeSource) _rootNode.getNodeSource();
-    rootNodeSource.setAggregatedDependencyResolver(_aggregatedDependencyResolver);
+    _rootNode.setAggregatedCoreDependencyResolver(_aggregatedDependencyResolver);
   }
 
   /**

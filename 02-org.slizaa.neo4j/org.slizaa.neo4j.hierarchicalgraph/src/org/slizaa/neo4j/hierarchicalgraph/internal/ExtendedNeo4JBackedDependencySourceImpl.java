@@ -1,11 +1,8 @@
 package org.slizaa.neo4j.hierarchicalgraph.internal;
 
-import java.util.concurrent.Future;
-
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-import org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver;
 import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
@@ -20,25 +17,6 @@ import com.google.gson.JsonObject;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependencySourceImpl {
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public Future<?> onResolveAggregatedCoreDependency() {
-
-    //
-    if (resolved) {
-      return null;
-    }
-
-    // get the aggregated dependency resolver
-    IAggregatedDependencyResolver dependencyResolver = getAggregatedDependencyResolver();
-
-    //
-    return dependencyResolver == null ? null
-        : dependencyResolver.createNewAggregatedDependencyResolver(getDependency());
-  }
 
   /**
    * {@inheritDoc}
@@ -94,16 +72,5 @@ public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependen
   public INeo4JRepository getJQAssistantRemoteService() {
     return (INeo4JRepository) ((Neo4JBackedRootNodeSource) getDependency().getFrom().getRootNode().getNodeSource())
         .getRepository();
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  public IAggregatedDependencyResolver getAggregatedDependencyResolver() {
-    return (IAggregatedDependencyResolver) ((Neo4JBackedRootNodeSource) getDependency().getFrom().getRootNode()
-        .getNodeSource()).getAggregatedDependencyResolver();
   }
 }

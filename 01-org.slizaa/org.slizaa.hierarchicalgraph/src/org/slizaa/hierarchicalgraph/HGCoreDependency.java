@@ -84,22 +84,11 @@ public interface HGCoreDependency extends AbstractHGDependency {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Aggregated Core Dependency Resolved</em>' attribute.
-   * @see #setAggregatedCoreDependencyResolved(boolean)
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGCoreDependency_AggregatedCoreDependencyResolved()
-   * @model
+   * @model changeable="false"
    * @generated
    */
   boolean isAggregatedCoreDependencyResolved();
-
-  /**
-   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#isAggregatedCoreDependencyResolved <em>Aggregated Core Dependency Resolved</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Aggregated Core Dependency Resolved</em>' attribute.
-   * @see #isAggregatedCoreDependencyResolved()
-   * @generated
-   */
-  void setAggregatedCoreDependencyResolved(boolean value);
 
   /**
    * Returns the value of the '<em><b>Dependency Source</b></em>' containment reference.

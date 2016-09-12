@@ -1,5 +1,12 @@
 package org.slizaa.hierarchicalgraph.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
+
 /**
  * <p>
  * </p>
@@ -16,39 +23,41 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
     return this.coreDependencies != null ? this.coreDependencies.size() : 0;
   }
 
-  // /**
-  // * {@inheritDoc}
-  // */
-  // @Override
-  // public void resolveAggregatedCoreDependencies() {
-  //
-  // //
-  // List<Future<?>> futures = new ArrayList<>();
-  //
-  // //
-  // if (DependencyType.AGGREGATED_DEPENDENCY.equals(getType())) {
-  // for (HGDependency hgDependency : getCoreDependencies()) {
-  // Future<?> future = hgDependency.getDependencySource().onResolveAggregatedCoreDependency();
-  // if (future != null) {
-  // futures.add(future);
-  // }
-  // }
-  // } else if (DependencyType.AGGREGATED_CORE_DEPENDENCY.equals(getType())) {
-  // Future<?> future = dependencySource.onResolveAggregatedCoreDependency();
-  // if (future != null) {
-  // futures.add(future);
-  // }
-  // }
-  //
-  // // wait for completion the result
-  // for (Future<?> future : futures) {
-  // try {
-  // future.get();
-  // } catch (InterruptedException e) {
-  // e.printStackTrace();
-  // } catch (ExecutionException e) {
-  // e.printStackTrace();
-  // }
-  // }
-  // }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void resolveAggregatedCoreDependencies() {
+
+    //
+    List<Future<?>> futures = new ArrayList<>();
+
+    //
+    for (HGCoreDependency coreDependency : getCoreDependencies()) {
+
+      //
+      if (coreDependency instanceof ExtendedHGCoreDependencyImpl) {
+        Future<?> future = ((ExtendedHGCoreDependencyImpl) coreDependency).onResolveAggregatedCoreDependency();
+        if (future != null) {
+          futures.add(future);
+        }
+      }
+      
+      //
+      else {
+        throw new RuntimeException("Wrong subclass!");
+      }
+    }
+
+    // wait for completion the result
+    for (Future<?> future : futures) {
+      try {
+        future.get();
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      } catch (ExecutionException e) {
+        throw new RuntimeException(e);
+      }
+    }
+  }
 }

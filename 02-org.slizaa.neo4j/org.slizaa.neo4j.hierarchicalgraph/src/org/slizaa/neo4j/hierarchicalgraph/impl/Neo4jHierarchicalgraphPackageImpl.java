@@ -19,8 +19,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-
-import org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver;
 import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
@@ -100,13 +98,6 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 	private EDataType jsonObjectEDataType = null;
 
 	/**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EDataType iAggregatedDependencyResolverEDataType = null;
-
-  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -216,15 +207,6 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
   }
 
 	/**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getNeo4JBackedRootNodeSource_AggregatedDependencyResolver() {
-    return (EAttribute)neo4JBackedRootNodeSourceEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -364,15 +346,6 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
    * <!-- end-user-doc -->
    * @generated
    */
-  public EDataType getIAggregatedDependencyResolver() {
-    return iAggregatedDependencyResolverEDataType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getNeo4JBackedDependencySource() {
     return neo4JBackedDependencySourceEClass;
   }
@@ -393,15 +366,6 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
    */
   public EAttribute getNeo4JBackedDependencySource_Type() {
     return (EAttribute)neo4JBackedDependencySourceEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getNeo4JBackedDependencySource_Resolved() {
-    return (EAttribute)neo4JBackedDependencySourceEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -474,12 +438,10 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
     neo4JBackedRootNodeSourceEClass = createEClass(NEO4_JBACKED_ROOT_NODE_SOURCE);
     createEReference(neo4JBackedRootNodeSourceEClass, NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY);
-    createEAttribute(neo4JBackedRootNodeSourceEClass, NEO4_JBACKED_ROOT_NODE_SOURCE__AGGREGATED_DEPENDENCY_RESOLVER);
 
     neo4JBackedDependencySourceEClass = createEClass(NEO4_JBACKED_DEPENDENCY_SOURCE);
     createEReference(neo4JBackedDependencySourceEClass, NEO4_JBACKED_DEPENDENCY_SOURCE__PROPERTIES);
     createEAttribute(neo4JBackedDependencySourceEClass, NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE);
-    createEAttribute(neo4JBackedDependencySourceEClass, NEO4_JBACKED_DEPENDENCY_SOURCE__RESOLVED);
 
     iNeo4JRepositoryEClass = createEClass(INEO4_JREPOSITORY);
     createEReference(iNeo4JRepositoryEClass, INEO4_JREPOSITORY__HIERARCHICAL_GRAPHS);
@@ -503,7 +465,6 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     consumerEDataType = createEDataType(CONSUMER);
     jsonArrayEDataType = createEDataType(JSON_ARRAY);
     jsonObjectEDataType = createEDataType(JSON_OBJECT);
-    iAggregatedDependencyResolverEDataType = createEDataType(IAGGREGATED_DEPENDENCY_RESOLVER);
   }
 
 	/**
@@ -551,12 +512,10 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
     initEClass(neo4JBackedRootNodeSourceEClass, Neo4JBackedRootNodeSource.class, "Neo4JBackedRootNodeSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNeo4JBackedRootNodeSource_Repository(), this.getINeo4JRepository(), null, "repository", null, 1, 1, Neo4JBackedRootNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNeo4JBackedRootNodeSource_AggregatedDependencyResolver(), this.getIAggregatedDependencyResolver(), "aggregatedDependencyResolver", null, 1, 1, Neo4JBackedRootNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(neo4JBackedDependencySourceEClass, Neo4JBackedDependencySource.class, "Neo4JBackedDependencySource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNeo4JBackedDependencySource_Properties(), theHierarchicalgraphPackage.getStringToStringMap(), null, "properties", null, 0, -1, Neo4JBackedDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getNeo4JBackedDependencySource_Type(), ecorePackage.getEString(), "type", null, 1, 1, Neo4JBackedDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNeo4JBackedDependencySource_Resolved(), ecorePackage.getEBoolean(), "resolved", null, 1, 1, Neo4JBackedDependencySource.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(iNeo4JRepositoryEClass, INeo4JRepository.class, "INeo4JRepository", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getINeo4JRepository_HierarchicalGraphs(), theHierarchicalgraphPackage.getHGRootNode(), null, "hierarchicalGraphs", null, 0, -1, INeo4JRepository.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -632,7 +591,6 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     initEDataType(consumerEDataType, Consumer.class, "Consumer", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(jsonArrayEDataType, JsonArray.class, "JsonArray", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(jsonObjectEDataType, JsonObject.class, "JsonObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-    initEDataType(iAggregatedDependencyResolverEDataType, IAggregatedDependencyResolver.class, "IAggregatedDependencyResolver", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

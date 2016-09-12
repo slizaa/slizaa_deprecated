@@ -78,6 +78,8 @@ public class AbstractSimpleModelTest {
 
     private HGCoreDependency _dep_a3_b3_core2;
 
+    private HGRootNode       _rootNode;
+
     public SimpleModel() {
 
       //
@@ -85,17 +87,16 @@ public class AbstractSimpleModelTest {
       Supplier<HGDependencySource> dependencySourceSupplier = () -> HierarchicalgraphFactory.eINSTANCE
           .createDefaultHGDependencySource();
 
-      //
-      HGRootNode rootNode = createNewRootNode(nodeSourceSupplier);
+      _rootNode = createNewRootNode(nodeSourceSupplier);
 
-      _a1 = createNewNode(rootNode, rootNode, nodeSourceSupplier);
-      _b1 = createNewNode(rootNode, rootNode, nodeSourceSupplier);
+      _a1 = createNewNode(_rootNode, _rootNode, nodeSourceSupplier);
+      _b1 = createNewNode(_rootNode, _rootNode, nodeSourceSupplier);
 
-      _a2 = createNewNode(rootNode, _a1, nodeSourceSupplier);
-      _b2 = createNewNode(rootNode, _b1, nodeSourceSupplier);
+      _a2 = createNewNode(_rootNode, _a1, nodeSourceSupplier);
+      _b2 = createNewNode(_rootNode, _b1, nodeSourceSupplier);
 
-      _a3 = createNewNode(rootNode, _a2, nodeSourceSupplier);
-      _b3 = createNewNode(rootNode, _b2, nodeSourceSupplier);
+      _a3 = createNewNode(_rootNode, _a2, nodeSourceSupplier);
+      _b3 = createNewNode(_rootNode, _b2, nodeSourceSupplier);
 
       _dep_a1_b1_core1 = createNewCoreDependency(_a1, _b1, /* "USES", */ dependencySourceSupplier);
       _dep_a1_b1_core2 = createNewCoreDependency(_a1, _b1, /* "DEPENDS_ON", */ dependencySourceSupplier);
@@ -104,6 +105,16 @@ public class AbstractSimpleModelTest {
 
       _dep_a3_b3_core1 = createNewCoreDependency(_a3, _b3, /* "USES", */ dependencySourceSupplier);
       _dep_a3_b3_core2 = createNewCoreDependency(_a3, _b3, /* "DEPENDS_ON", */ dependencySourceSupplier);
+    }
+
+    /**
+     * <p>
+     * </p>
+     *
+     * @return
+     */
+    public HGRootNode root() {
+      return _rootNode;
     }
 
     /**

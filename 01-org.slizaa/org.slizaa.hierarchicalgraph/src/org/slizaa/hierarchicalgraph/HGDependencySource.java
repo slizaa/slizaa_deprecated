@@ -2,7 +2,6 @@
  */
 package org.slizaa.hierarchicalgraph;
 
-import java.util.concurrent.Future;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -19,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGDependencySource()
- * @model
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface HGDependencySource extends EObject {
@@ -76,13 +75,5 @@ public interface HGDependencySource extends EObject {
    * @generated
    */
   void setDependency(HGCoreDependency value);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model dataType="org.slizaa.hierarchicalgraph.Future<?>"
-   * @generated
-   */
-  Future<?> onResolveAggregatedCoreDependency();
 
 } // HGDependencySource

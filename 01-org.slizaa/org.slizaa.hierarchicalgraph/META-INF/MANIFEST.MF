@@ -9,6 +9,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.slizaa.hierarchicalgraph,
  org.slizaa.hierarchicalgraph.impl,
+ org.slizaa.hierarchicalgraph.spi,
  org.slizaa.hierarchicalgraph.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

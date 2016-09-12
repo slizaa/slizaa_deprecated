@@ -176,18 +176,6 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAggregatedCoreDependencyResolved(boolean newAggregatedCoreDependencyResolved) {
-    boolean oldAggregatedCoreDependencyResolved = aggregatedCoreDependencyResolved;
-    aggregatedCoreDependencyResolved = newAggregatedCoreDependencyResolved;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_RESOLVED, oldAggregatedCoreDependencyResolved, aggregatedCoreDependencyResolved));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public HGDependencySource getDependencySource() {
     return dependencySource;
   }
@@ -290,9 +278,6 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
         setAggregatedCoreDependency((Boolean)newValue);
         return;
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_RESOLVED:
-        setAggregatedCoreDependencyResolved((Boolean)newValue);
-        return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
         setDependencySource((HGDependencySource)newValue);
         return;
@@ -313,9 +298,6 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
         return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
         setAggregatedCoreDependency(AGGREGATED_CORE_DEPENDENCY_EDEFAULT);
-        return;
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_RESOLVED:
-        setAggregatedCoreDependencyResolved(AGGREGATED_CORE_DEPENDENCY_RESOLVED_EDEFAULT);
         return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
         setDependencySource((HGDependencySource)null);

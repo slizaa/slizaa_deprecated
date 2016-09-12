@@ -113,7 +113,7 @@ public class HGCoreDependencyItemProvider extends AbstractHGDependencyItemProvid
          getString("_UI_HGCoreDependency_aggregatedCoreDependencyResolved_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_HGCoreDependency_aggregatedCoreDependencyResolved_feature", "_UI_HGCoreDependency_type"),
          HierarchicalgraphPackage.Literals.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_RESOLVED,
-         true,
+         false,
          false,
          false,
          ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,

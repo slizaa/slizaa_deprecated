@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
  * <p>
@@ -18,10 +19,10 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 public class ResolveAggregatedDependenciesResolver_Test extends AbstractRemoteRepositoryTest {
 
   /** - */
-  private HGRootNode                    _rootNode;
+  private HGRootNode                        _rootNode;
 
   /** - */
-  private IAggregatedDependencyResolver _aggregatedDependencyResolver;
+  private IAggregatedCoreDependencyResolver _aggregatedDependencyResolver;
 
   /**
    * {@inheritDoc}
@@ -37,8 +38,7 @@ public class ResolveAggregatedDependenciesResolver_Test extends AbstractRemoteRe
     _aggregatedDependencyResolver = null;
 
     //
-    Neo4JBackedRootNodeSource rootNodeSource = (Neo4JBackedRootNodeSource) _rootNode.getNodeSource();
-    rootNodeSource.setAggregatedDependencyResolver(_aggregatedDependencyResolver);
+    _rootNode.setAggregatedCoreDependencyResolver(_aggregatedDependencyResolver);
   }
 
   /**

@@ -12,17 +12,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedRootNodeSource" eSuperTypes="#//Neo4JBackedNodeSource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="repository" lowerBound="1"
         eType="#//INeo4JRepository"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedDependencyResolver"
-        lowerBound="1" eType="#//IAggregatedDependencyResolver"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedDependencySource" eSuperTypes="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGDependencySource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//StringToStringMap"
         changeable="false" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolved" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
-        transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="INeo4JRepository" abstract="true" interface="true">
     <eOperations name="getNodeLabels" eType="#//JsonArray">
@@ -99,5 +94,4 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="JsonArray" instanceClassName="com.google.gson.JsonArray"/>
   <eClassifiers xsi:type="ecore:EDataType" name="JsonObject" instanceClassName="com.google.gson.JsonObject"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="IAggregatedDependencyResolver" instanceClassName="org.slizaa.neo4j.hierarchicalgraph.IAggregatedDependencyResolver"/>
 </ecore:EPackage>

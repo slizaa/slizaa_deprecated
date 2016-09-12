@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph;
+package org.slizaa.hierarchicalgraph.spi;
 
 import java.util.concurrent.Future;
 
@@ -10,7 +10,7 @@ import org.slizaa.hierarchicalgraph.HGCoreDependency;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public interface IAggregatedDependencyResolver {
+public interface IAggregatedCoreDependencyResolver {
 
   /**
    * <p>
