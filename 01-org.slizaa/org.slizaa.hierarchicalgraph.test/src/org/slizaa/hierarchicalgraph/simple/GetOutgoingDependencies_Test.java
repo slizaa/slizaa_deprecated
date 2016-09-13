@@ -10,7 +10,7 @@ import org.junit.Test;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class HierachicalGraph_GetOutgoingDependencies_Test extends AbstractSimpleModelTest {
+public class GetOutgoingDependencies_Test extends AbstractSimpleModelTest {
 
   /**
    * <p>

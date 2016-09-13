@@ -18,7 +18,7 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class HierachicalGraph_ResolveAggregatedCoreDependencies_Test extends AbstractSimpleModelTest {
+public class ResolveAggregatedCoreDependencies_Test extends AbstractSimpleModelTest {
 
   /** - */
   private IAggregatedCoreDependencyResolver _resolver;

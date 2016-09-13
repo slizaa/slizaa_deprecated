@@ -10,7 +10,7 @@ import org.junit.Test;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class HierachicalGraph_IsSuccessorOf_Test extends AbstractSimpleModelTest {
+public class IsSuccessorOf_Test extends AbstractSimpleModelTest {
 
   /**
    * <p>

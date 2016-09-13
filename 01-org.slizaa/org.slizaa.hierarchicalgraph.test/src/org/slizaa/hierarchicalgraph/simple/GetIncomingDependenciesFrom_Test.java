@@ -11,7 +11,7 @@ import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class HierachicalGraph_GetIncomingDependenciesFrom_Test extends AbstractSimpleModelTest {
+public class GetIncomingDependenciesFrom_Test extends AbstractSimpleModelTest {
 
   @Test
   public void testGetIncomingDependenciesFrom() {
