@@ -598,6 +598,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getHGAggregatedDependency_Initialized() {
+    return (EAttribute)hgAggregatedDependencyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EOperation getHGAggregatedDependency__GetAggregatedWeight() {
     return hgAggregatedDependencyEClass.getEOperations().get(0);
   }
@@ -869,6 +878,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     hgAggregatedDependencyEClass = createEClass(HG_AGGREGATED_DEPENDENCY);
     createEReference(hgAggregatedDependencyEClass, HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES);
+    createEAttribute(hgAggregatedDependencyEClass, HG_AGGREGATED_DEPENDENCY__INITIALIZED);
     createEOperation(hgAggregatedDependencyEClass, HG_AGGREGATED_DEPENDENCY___GET_AGGREGATED_WEIGHT);
 
     hgCoreDependencyEClass = createEClass(HG_CORE_DEPENDENCY);
@@ -1012,6 +1022,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     initEClass(hgAggregatedDependencyEClass, HGAggregatedDependency.class, "HGAggregatedDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getHGAggregatedDependency_CoreDependencies(), this.getHGCoreDependency(), null, "coreDependencies", null, 0, -1, HGAggregatedDependency.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEAttribute(getHGAggregatedDependency_Initialized(), ecorePackage.getEBoolean(), "initialized", null, 0, 1, HGAggregatedDependency.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEOperation(getHGAggregatedDependency__GetAggregatedWeight(), ecorePackage.getEInt(), "getAggregatedWeight", 1, 1, IS_UNIQUE, IS_ORDERED);
 

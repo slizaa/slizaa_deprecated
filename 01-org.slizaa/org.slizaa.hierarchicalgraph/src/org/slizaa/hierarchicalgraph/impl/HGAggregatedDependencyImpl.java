@@ -6,11 +6,9 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
@@ -26,6 +24,7 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
  * </p>
  * <ul>
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedDependencyImpl#getCoreDependencies <em>Core Dependencies</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedDependencyImpl#isInitialized <em>Initialized</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,6 +39,24 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * @ordered
    */
   protected EList<HGCoreDependency> coreDependencies;
+  /**
+   * The default value of the '{@link #isInitialized() <em>Initialized</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isInitialized()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean INITIALIZED_EDEFAULT = false;
+  /**
+   * The cached value of the '{@link #isInitialized() <em>Initialized</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isInitialized()
+   * @generated
+   * @ordered
+   */
+  protected boolean initialized = INITIALIZED_EDEFAULT;
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -76,6 +93,15 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isInitialized() {
+    return initialized;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public int getAggregatedWeight() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
@@ -92,6 +118,8 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
     switch (featureID) {
       case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES:
         return getCoreDependencies();
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__INITIALIZED:
+        return isInitialized();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -138,6 +166,8 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
     switch (featureID) {
       case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES:
         return coreDependencies != null && !coreDependencies.isEmpty();
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__INITIALIZED:
+        return initialized != INITIALIZED_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -154,6 +184,22 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
         return getAggregatedWeight();
     }
     return super.eInvoke(operationID, arguments);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString() {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (initialized: ");
+    result.append(initialized);
+    result.append(')');
+    return result.toString();
   }
 
 } //HGAggregatedDependencyImpl

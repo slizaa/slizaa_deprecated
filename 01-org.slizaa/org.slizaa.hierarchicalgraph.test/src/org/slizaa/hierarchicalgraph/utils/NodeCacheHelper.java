@@ -11,8 +11,10 @@ public class NodeCacheHelper {
   public static void assertCachesAreNull(Object c) {
     ExtendedHGNodeTrait trait = getTrait(c);
     if (trait != null) {
-      assertThat(trait.getUnmodifiableCachedAggregatedIncomingDependenciesMap()).isNull();
-      assertThat(trait.getUnmodifiableCachedAggregatedOutgoingDependenciesMap()).isNull();
+      trait.getUnmodifiableCachedAggregatedIncomingDependenciesMap().values()
+          .forEach((dep) -> assertThat(!dep.isInitialized()));
+      trait.getUnmodifiableCachedAggregatedOutgoingDependenciesMap().values()
+          .forEach((dep) -> assertThat(!dep.isInitialized()));
       assertThat(trait.getUnmodifiableCachedIncomingSubTreeCoreDependencies()).isNull();
       assertThat(trait.getUnmodifiableCachedOutgoingSubTreeCoreDependencies()).isNull();
       assertThat(trait.getUnmodifiableCachedParents()).isNull();
@@ -23,8 +25,10 @@ public class NodeCacheHelper {
 
     ExtendedHGNodeTrait trait = getTrait(c);
     if (trait != null) {
-      assertThat(trait.getUnmodifiableCachedAggregatedIncomingDependenciesMap()).isNotNull();
-      assertThat(trait.getUnmodifiableCachedAggregatedOutgoingDependenciesMap()).isNotNull();
+      trait.getUnmodifiableCachedAggregatedIncomingDependenciesMap().values()
+          .forEach((dep) -> assertThat(dep.isInitialized()));
+      trait.getUnmodifiableCachedAggregatedOutgoingDependenciesMap().values()
+          .forEach((dep) -> assertThat(dep.isInitialized()));
       assertThat(trait.getUnmodifiableCachedIncomingSubTreeCoreDependencies()).isNotNull();
       assertThat(trait.getUnmodifiableCachedOutgoingSubTreeCoreDependencies()).isNotNull();
       assertThat(trait.getUnmodifiableCachedParents()).isNotNull();
