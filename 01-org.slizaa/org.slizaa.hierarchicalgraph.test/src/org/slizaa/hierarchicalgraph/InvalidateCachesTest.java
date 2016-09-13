@@ -1,9 +1,13 @@
 package org.slizaa.hierarchicalgraph;
 
+import static org.slizaa.hierarchicalgraph.utils.NodeCacheHelper.assertCachesAreNotNull;
+import static org.slizaa.hierarchicalgraph.utils.NodeCacheHelper.assertCachesAreNull;
+import static org.slizaa.hierarchicalgraph.utils.NodeCacheHelper.populateCaches;
+
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Assert;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -33,12 +37,29 @@ public class InvalidateCachesTest extends AbstractXmiBasedTest {
    */
   @Test
   public void testInvalidateAllCaches() {
+
+    // 'activate' all caches
+    populateCaches(rootNode());
+    EcoreUtil.getAllContents(rootNode(), false).forEachRemaining((c) -> {
+      populateCaches(c);
+    });
+
+    // assert that all caches are in use
+    assertCachesAreNotNull(rootNode());
+    EcoreUtil.getAllContents(rootNode(), false).forEachRemaining((c) -> {
+      assertCachesAreNotNull(c);
+    });
+
+    // invalidate caches
     rootNode().invalidateAllCaches();
-    
-    // TODO: Assertions!
-    Assert.fail();
+
+    // assert that all caches are cleared
+    assertCachesAreNull(rootNode());
+    EcoreUtil.getAllContents(rootNode(), false).forEachRemaining((c) -> {
+      assertCachesAreNull(c);
+    });
   }
-  
+
   /**
    * <p>
    * </p>

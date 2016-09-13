@@ -17,27 +17,26 @@ public class HierachicalGraph_GetIncomingDependenciesFrom_Test extends AbstractS
   public void testGetIncomingDependenciesFrom() {
 
     //
-    HGAggregatedDependency aggregatedDependency = simpleModel().getB1().getIncomingDependenciesFrom(simpleModel().getA1());
+    HGAggregatedDependency aggregatedDependency = simpleModel().getB1()
+        .getIncomingDependenciesFrom(simpleModel().getA1());
     assertThat(aggregatedDependency).isNotNull();
 
-    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(5);
+    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(4);
     assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a1_b1_core1(),
-        simpleModel().getDep_a1_b1_core2(), simpleModel().getDep_a2_b2_core1(), simpleModel().getDep_a3_b3_core1(),
-        simpleModel().getDep_a3_b3_core2());
+        simpleModel().getDep_a1_b1_core2(), simpleModel().getDep_a2_b2_core1(), simpleModel().getDep_a3_b3_core1());
 
     //
     aggregatedDependency = simpleModel().getB2().getIncomingDependenciesFrom(simpleModel().getA2());
     assertThat(aggregatedDependency).isNotNull();
 
-    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(3);
+    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(2);
     assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a2_b2_core1(),
-        simpleModel().getDep_a3_b3_core1(), simpleModel().getDep_a3_b3_core2());
+        simpleModel().getDep_a3_b3_core1());
 
     //
     aggregatedDependency = simpleModel().getB3().getIncomingDependenciesFrom(simpleModel().getA3());
     assertThat(aggregatedDependency).isNotNull();
-    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(2);
-    assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a3_b3_core1(),
-        simpleModel().getDep_a3_b3_core2());
+    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(1);
+    assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a3_b3_core1());
   }
 }

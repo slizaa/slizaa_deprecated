@@ -14,7 +14,7 @@ import org.slizaa.hierarchicalgraph.util.HierarchicalGraphUtils;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class HierachicalGraph_GetCoreDependencies_Test extends AbstractSimpleModelTest {
+public class GetCoreDependencies_Test extends AbstractSimpleModelTest {
 
   /**
    * <p>
@@ -29,6 +29,6 @@ public class HierachicalGraph_GetCoreDependencies_Test extends AbstractSimpleMod
 
     //
     assertThat(coreDependencies).isNotNull();
-    assertThat(coreDependencies).hasSize(5);
+    assertThat(coreDependencies).hasSize(4);
   }
 }

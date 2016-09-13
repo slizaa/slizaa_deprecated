@@ -6,6 +6,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGRootNode;
 
 /**
  * <p>
@@ -14,6 +16,14 @@ import org.slizaa.hierarchicalgraph.HGCoreDependency;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyImpl {
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public HGRootNode getRootNode() {
+    return getFrom().getRootNode();
+  }
 
   /**
    * {@inheritDoc}
@@ -38,20 +48,20 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
 
     //
     List<Future<?>> futures = new ArrayList<>();
+    List<HGCoreDependency> coreDependencies = getCoreDependencies();
 
     //
-    for (HGCoreDependency coreDependency : getCoreDependencies()) {
-
-      //
+    for (HGCoreDependency coreDependency : coreDependencies) {
       if (coreDependency instanceof ExtendedHGCoreDependencyImpl) {
-        Future<?> future = ((ExtendedHGCoreDependencyImpl) coreDependency).onResolveAggregatedCoreDependency();
-        if (future != null) {
-          futures.add(future);
+        if (coreDependency.isAggregatedCoreDependency()) {
+          // get the future
+          Future<?> future = ((ExtendedHGCoreDependencyImpl) coreDependency).onResolveAggregatedCoreDependency();
+          if (future != null) {
+            futures.add(future);
+          }
         }
-      }
-
-      //
-      else {
+      } else {
+        // should not happen here...
         throw new RuntimeException("Wrong subclass!");
       }
     }
@@ -66,5 +76,13 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
         throw new RuntimeException(e);
       }
     }
+
+    //
+    List<HGNode> nodesToInvalidate = new ArrayList<HGNode>();
+    for (HGCoreDependency hgCoreDependency : coreDependencies) {
+      nodesToInvalidate.add(hgCoreDependency.getFrom());
+      nodesToInvalidate.add(hgCoreDependency.getTo());
+    }
+    getRootNode().invalidateCaches(nodesToInvalidate);
   }
 }

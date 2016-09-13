@@ -732,13 +732,22 @@ public interface HierarchicalgraphPackage extends EPackage {
   int ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT = 2;
 
     /**
+   * The operation id for the '<em>Get Root Node</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE = 0;
+
+    /**
    * The operation id for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = 0;
+  int ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = 1;
 
     /**
    * The number of operations of the '<em>Abstract HG Dependency</em>' class.
@@ -747,7 +756,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT = 1;
+  int ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT = 2;
 
     /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedDependencyImpl <em>HG Aggregated Dependency</em>}' class.
@@ -794,6 +803,15 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @ordered
    */
   int HG_AGGREGATED_DEPENDENCY_FEATURE_COUNT = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 1;
+
+    /**
+   * The operation id for the '<em>Get Root Node</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_AGGREGATED_DEPENDENCY___GET_ROOT_NODE = ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE;
 
     /**
    * The operation id for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
@@ -903,6 +921,15 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @ordered
    */
   int HG_CORE_DEPENDENCY_FEATURE_COUNT = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 5;
+
+    /**
+   * The operation id for the '<em>Get Root Node</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_CORE_DEPENDENCY___GET_ROOT_NODE = ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE;
 
     /**
    * The operation id for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
@@ -1548,6 +1575,16 @@ public interface HierarchicalgraphPackage extends EPackage {
   EReference getAbstractHGDependency_To();
 
   /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.AbstractHGDependency#getRootNode() <em>Get Root Node</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Root Node</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.AbstractHGDependency#getRootNode()
+   * @generated
+   */
+  EOperation getAbstractHGDependency__GetRootNode();
+
+  /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.AbstractHGDependency#resolveAggregatedCoreDependencies() <em>Resolve Aggregated Core Dependencies</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2170,6 +2207,14 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EReference ABSTRACT_HG_DEPENDENCY__TO = eINSTANCE.getAbstractHGDependency_To();
+
+    /**
+     * The meta object literal for the '<em><b>Get Root Node</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE = eINSTANCE.getAbstractHGDependency__GetRootNode();
 
     /**
      * The meta object literal for the '<em><b>Resolve Aggregated Core Dependencies</b></em>' operation.

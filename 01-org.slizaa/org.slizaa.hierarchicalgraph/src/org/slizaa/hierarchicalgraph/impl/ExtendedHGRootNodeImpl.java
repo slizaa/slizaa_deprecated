@@ -1,5 +1,7 @@
 package org.slizaa.hierarchicalgraph.impl;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +51,8 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
   @Override
   public void invalidateCaches(List<HGNode> modifiedNodes) {
 
+    checkNotNull(modifiedNodes);
+
     //
     List<HGNode> selfAndParentNodes = new ArrayList<HGNode>();
 
@@ -57,9 +61,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
       if (hgNode instanceof ExtendedHGNodeImpl) {
         ExtendedHGNodeImpl extendedHGNode = (ExtendedHGNodeImpl) hgNode;
         selfAndParentNodes.add(extendedHGNode);
-        if (extendedHGNode.getTrait()._cachedParents != null) {
-          selfAndParentNodes.addAll(extendedHGNode.getTrait()._cachedParents);
-        }
+        selfAndParentNodes.addAll(extendedHGNode.getTrait().cachedParents());
       }
     }
 
@@ -67,6 +69,9 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     for (HGNode hgNode : selfAndParentNodes) {
       if (hgNode instanceof ExtendedHGNodeImpl) {
         ExtendedHGNodeImpl extendedHGNode = (ExtendedHGNodeImpl) hgNode;
+        extendedHGNode.invalidateLocalCaches();
+      } else if (hgNode instanceof ExtendedHGRootNodeImpl) {
+        ExtendedHGRootNodeImpl extendedHGNode = (ExtendedHGRootNodeImpl) hgNode;
         extendedHGNode.invalidateLocalCaches();
       }
     }

@@ -76,8 +76,6 @@ public class AbstractSimpleModelTest {
 
     private HGCoreDependency _dep_a3_b3_core1;
 
-    private HGCoreDependency _dep_a3_b3_core2;
-
     private HGRootNode       _rootNode;
 
     public SimpleModel() {
@@ -103,8 +101,8 @@ public class AbstractSimpleModelTest {
 
       _dep_a2_b2_core1 = createNewCoreDependency(_a2, _b2, "USES", dependencySourceSupplier);
 
-      _dep_a3_b3_core1 = createNewCoreDependency(_a3, _b3, "USES", dependencySourceSupplier);
-      _dep_a3_b3_core2 = createNewCoreDependency(_a3, _b3, "DEPENDS_ON", dependencySourceSupplier);
+      _dep_a3_b3_core1 = createNewCoreDependency(_a3, _b3, "DEPENDS_ON", dependencySourceSupplier);
+      _dep_a3_b3_core1.setAggregatedCoreDependency(true);
     }
 
     /**
@@ -216,16 +214,5 @@ public class AbstractSimpleModelTest {
     public HGCoreDependency getDep_a3_b3_core1() {
       return _dep_a3_b3_core1;
     }
-
-    /**
-     * <p>
-     * </p>
-     *
-     * @return the dep_a3_b3_core2
-     */
-    public HGCoreDependency getDep_a3_b3_core2() {
-      return _dep_a3_b3_core2;
-    }
-
   }
 }

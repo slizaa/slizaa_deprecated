@@ -66,7 +66,7 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
 
     //
     for (HGCoreDependency dependency : hgDependency.getCoreDependencies()) {
-      verify(_aggregatedDependencyResolver).createNewAggregatedDependencyResolver(dependency);
+      verify(_aggregatedDependencyResolver).resolveAggregatedDependency(dependency);
     }
 
     //

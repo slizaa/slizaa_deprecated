@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
@@ -153,6 +154,17 @@ public abstract class AbstractHGDependencyImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
+  public HGRootNode getRootNode() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public void resolveAggregatedCoreDependencies() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
@@ -237,6 +249,8 @@ public abstract class AbstractHGDependencyImpl extends MinimalEObjectImpl.Contai
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
+      case HierarchicalgraphPackage.ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE:
+        return getRootNode();
       case HierarchicalgraphPackage.ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES:
         resolveAggregatedCoreDependencies();
         return null;

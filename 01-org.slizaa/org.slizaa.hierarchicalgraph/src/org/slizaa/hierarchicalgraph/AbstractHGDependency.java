@@ -77,6 +77,14 @@ public interface AbstractHGDependency extends EObject {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  HGRootNode getRootNode();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @model
    * @generated
    */

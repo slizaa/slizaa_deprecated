@@ -1,14 +1,15 @@
 package org.slizaa.hierarchicalgraph.simple;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
-import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
@@ -52,9 +53,8 @@ public class HierachicalGraph_ResolveAggregatedCoreDependencies_Test extends Abs
     _aggregatedDependency.resolveAggregatedCoreDependencies();
 
     //
-    for (HGCoreDependency coreDependency : _aggregatedDependency.getCoreDependencies()) {
-      verify(_resolver).createNewAggregatedDependencyResolver(coreDependency);
-    }
+    verify(_resolver).resolveAggregatedDependency(simpleModel().getDep_a3_b3_core1());
+    verifyNoMoreInteractions(_resolver);
 
     //
     reset(_resolver);
@@ -63,8 +63,6 @@ public class HierachicalGraph_ResolveAggregatedCoreDependencies_Test extends Abs
     _aggregatedDependency.resolveAggregatedCoreDependencies();
 
     //
-    for (HGCoreDependency coreDependency : _aggregatedDependency.getCoreDependencies()) {
-      verify(_resolver, never()).createNewAggregatedDependencyResolver(coreDependency);
-    }
+    verify(_resolver, never()).resolveAggregatedDependency(any());
   }
 }

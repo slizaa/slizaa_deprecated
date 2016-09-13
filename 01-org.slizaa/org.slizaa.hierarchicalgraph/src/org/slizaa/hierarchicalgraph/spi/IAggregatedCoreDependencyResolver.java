@@ -18,5 +18,5 @@ public interface IAggregatedCoreDependencyResolver {
    *
    * @param dependencyToResolve
    */
-  Future<?> createNewAggregatedDependencyResolver(HGCoreDependency dependencyToResolve);
+  Future<?> resolveAggregatedDependency(HGCoreDependency dependencyToResolve);
 }

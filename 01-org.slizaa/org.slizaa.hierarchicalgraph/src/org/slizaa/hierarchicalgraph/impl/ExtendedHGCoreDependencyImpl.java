@@ -2,6 +2,7 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.concurrent.Future;
 
+import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
@@ -13,6 +14,14 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 public class ExtendedHGCoreDependencyImpl extends HGCoreDependencyImpl {
 
   /**
+   * {@inheritDoc}
+   */
+  @Override
+  public HGRootNode getRootNode() {
+    return getFrom().getRootNode();
+  }
+
+  /**
    * <p>
    * </p>
    *
@@ -21,7 +30,7 @@ public class ExtendedHGCoreDependencyImpl extends HGCoreDependencyImpl {
   public Future<?> onResolveAggregatedCoreDependency() {
 
     //
-    if (this.aggregatedCoreDependencyResolved) {
+    if (!this.aggregatedCoreDependency || this.aggregatedCoreDependencyResolved) {
       return null;
     }
 
@@ -37,6 +46,6 @@ public class ExtendedHGCoreDependencyImpl extends HGCoreDependencyImpl {
     }
 
     //
-    return resolver.createNewAggregatedDependencyResolver(this);
+    return resolver.resolveAggregatedDependency(this);
   }
 }

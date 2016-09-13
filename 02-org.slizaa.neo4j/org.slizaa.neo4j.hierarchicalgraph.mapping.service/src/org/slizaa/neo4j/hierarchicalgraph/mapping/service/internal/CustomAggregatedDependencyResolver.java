@@ -11,7 +11,7 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
    * {@inheritDoc}
    */
   @Override
-  public Future<?> createNewAggregatedDependencyResolver(HGCoreDependency dependencyToResolve) {
+  public Future<?> resolveAggregatedDependency(HGCoreDependency dependencyToResolve) {
     
     // Set<Object> fromNodes = new HashSet<>();
     // Set<Object> toNodes = new HashSet<>();

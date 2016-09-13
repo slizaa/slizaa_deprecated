@@ -21,25 +21,23 @@ public class HierachicalGraph_GetOutgoingDependenciesTo_Test extends AbstractSim
         .getOutgoingDependenciesTo(simpleModel().getB1());
     assertThat(aggregatedDependency).isNotNull();
 
-    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(5);
+    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(4);
     assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a1_b1_core1(),
-        simpleModel().getDep_a1_b1_core2(), simpleModel().getDep_a2_b2_core1(), simpleModel().getDep_a3_b3_core1(),
-        simpleModel().getDep_a3_b3_core2());
+        simpleModel().getDep_a1_b1_core2(), simpleModel().getDep_a2_b2_core1(), simpleModel().getDep_a3_b3_core1());
 
     //
     aggregatedDependency = simpleModel().getA2().getOutgoingDependenciesTo(simpleModel().getB2());
     assertThat(aggregatedDependency).isNotNull();
 
-    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(3);
+    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(2);
     assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a2_b2_core1(),
-        simpleModel().getDep_a3_b3_core1(), simpleModel().getDep_a3_b3_core2());
+        simpleModel().getDep_a3_b3_core1());
 
     //
     aggregatedDependency = simpleModel().getA3().getOutgoingDependenciesTo(simpleModel().getB3());
     assertThat(aggregatedDependency).isNotNull();
-    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(2);
-    assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a3_b3_core1(),
-        simpleModel().getDep_a3_b3_core2());
+    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(1);
+    assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a3_b3_core1());
   }
 
   @Test

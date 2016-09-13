@@ -3,6 +3,7 @@ package org.slizaa.hierarchicalgraph.impl;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,22 +20,22 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 public class ExtendedHGNodeTrait {
 
   /** - */
-  private HGNodeImpl                          _hgNode;
+  private HGNodeImpl                            _hgNode;
 
   /** - */
-  protected List<HGNode>                      _cachedParents;
+  protected List<HGNode>                        _cachedParents;
 
   /** - */
-  protected List<HGCoreDependency>            _cachedOutgoingSubTreeCoreDependencies;
+  protected List<HGCoreDependency>              _cachedOutgoingSubTreeCoreDependencies;
 
   /** - */
-  protected List<HGCoreDependency>            _cachedIncomingSubTreeCoreDependencies;
+  protected List<HGCoreDependency>              _cachedIncomingSubTreeCoreDependencies;
 
   /** - */
-  private Map<HGNode, HGAggregatedDependency> _cachedAggregatedOutgoingDependenciesMap;
+  protected Map<HGNode, HGAggregatedDependency> _cachedAggregatedOutgoingDependenciesMap;
 
   /** - */
-  private Map<HGNode, HGAggregatedDependency> _cachedAggregatedIncomingDependenciesMap;
+  protected Map<HGNode, HGAggregatedDependency> _cachedAggregatedIncomingDependenciesMap;
 
   /**
    * <p>
@@ -77,18 +78,23 @@ public class ExtendedHGNodeTrait {
   public void invalidateLocalCaches() {
     if (_cachedParents != null) {
       _cachedParents.clear();
+      _cachedParents = null;
     }
     if (_cachedOutgoingSubTreeCoreDependencies != null) {
       _cachedOutgoingSubTreeCoreDependencies.clear();
+      _cachedOutgoingSubTreeCoreDependencies = null;
     }
     if (_cachedIncomingSubTreeCoreDependencies != null) {
       _cachedIncomingSubTreeCoreDependencies.clear();
+      _cachedIncomingSubTreeCoreDependencies = null;
     }
     if (_cachedAggregatedOutgoingDependenciesMap != null) {
       _cachedAggregatedOutgoingDependenciesMap.clear();
+      _cachedAggregatedOutgoingDependenciesMap = null;
     }
     if (_cachedAggregatedIncomingDependenciesMap != null) {
       _cachedAggregatedIncomingDependenciesMap.clear();
+      _cachedAggregatedIncomingDependenciesMap = null;
     }
   }
 
@@ -297,6 +303,66 @@ public class ExtendedHGNodeTrait {
     return node.isPredecessorOf(_hgNode);
   }
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public List<HGNode> getUnmodifiableCachedParents() {
+    return _cachedParents == null ? null : Collections.unmodifiableList(_cachedParents);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public List<HGCoreDependency> getUnmodifiableCachedOutgoingSubTreeCoreDependencies() {
+    return _cachedOutgoingSubTreeCoreDependencies == null ? null
+        : Collections.unmodifiableList(_cachedOutgoingSubTreeCoreDependencies);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public List<HGCoreDependency> getUnmodifiableCachedIncomingSubTreeCoreDependencies() {
+    return _cachedIncomingSubTreeCoreDependencies == null ? null
+        : Collections.unmodifiableList(_cachedIncomingSubTreeCoreDependencies);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public Map<HGNode, HGAggregatedDependency> getUnmodifiableCachedAggregatedOutgoingDependenciesMap() {
+    return _cachedAggregatedOutgoingDependenciesMap == null ? null
+        : Collections.unmodifiableMap(_cachedAggregatedOutgoingDependenciesMap);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public Map<HGNode, HGAggregatedDependency> getUnmodifiableCachedAggregatedIncomingDependenciesMap() {
+    return _cachedAggregatedIncomingDependenciesMap == null ? null
+        : Collections.unmodifiableMap(_cachedAggregatedIncomingDependenciesMap);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
   private Map<HGNode, HGAggregatedDependency> cachedAggregatedOutgoingDependenciesMap() {
 
     //
@@ -308,6 +374,12 @@ public class ExtendedHGNodeTrait {
     return this._cachedAggregatedOutgoingDependenciesMap;
   }
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
   private Map<HGNode, HGAggregatedDependency> cachedAggregatedIncomingDependenciesMap() {
 
     //
@@ -325,7 +397,7 @@ public class ExtendedHGNodeTrait {
    *
    * @return
    */
-  private List<HGNode> cachedParents() {
+  public List<HGNode> cachedParents() {
 
     //
     if (this._cachedParents == null) {
@@ -340,7 +412,7 @@ public class ExtendedHGNodeTrait {
     }
 
     //
-    return this._cachedParents;
+    return Collections.unmodifiableList(this._cachedParents);
   }
 
   private List<HGCoreDependency> cachedOutgoingSubTreeCoreDependencies() {

@@ -91,6 +91,7 @@
         eType="#//StringToStringMap" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractHGDependency" abstract="true">
+    <eOperations name="getRootNode" eType="#//HGRootNode"/>
     <eOperations name="resolveAggregatedCoreDependencies"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1" eType="#//HGNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//HGNode"/>

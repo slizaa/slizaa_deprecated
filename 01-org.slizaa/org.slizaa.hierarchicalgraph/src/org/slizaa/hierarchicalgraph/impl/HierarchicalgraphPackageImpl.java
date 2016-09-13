@@ -562,8 +562,17 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getAbstractHGDependency__ResolveAggregatedCoreDependencies() {
+  public EOperation getAbstractHGDependency__GetRootNode() {
     return abstractHGDependencyEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getAbstractHGDependency__ResolveAggregatedCoreDependencies() {
+    return abstractHGDependencyEClass.getEOperations().get(1);
   }
 
   /**
@@ -855,6 +864,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     abstractHGDependencyEClass = createEClass(ABSTRACT_HG_DEPENDENCY);
     createEReference(abstractHGDependencyEClass, ABSTRACT_HG_DEPENDENCY__FROM);
     createEReference(abstractHGDependencyEClass, ABSTRACT_HG_DEPENDENCY__TO);
+    createEOperation(abstractHGDependencyEClass, ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE);
     createEOperation(abstractHGDependencyEClass, ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES);
 
     hgAggregatedDependencyEClass = createEClass(HG_AGGREGATED_DEPENDENCY);
@@ -995,6 +1005,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEClass(abstractHGDependencyEClass, AbstractHGDependency.class, "AbstractHGDependency", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAbstractHGDependency_From(), this.getHGNode(), null, "from", null, 1, 1, AbstractHGDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAbstractHGDependency_To(), this.getHGNode(), null, "to", null, 1, 1, AbstractHGDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEOperation(getAbstractHGDependency__GetRootNode(), this.getHGRootNode(), "getRootNode", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEOperation(getAbstractHGDependency__ResolveAggregatedCoreDependencies(), null, "resolveAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
 
