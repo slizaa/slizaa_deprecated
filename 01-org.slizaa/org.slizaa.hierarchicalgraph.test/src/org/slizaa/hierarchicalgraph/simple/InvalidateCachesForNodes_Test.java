@@ -1,8 +1,8 @@
 package org.slizaa.hierarchicalgraph.simple;
 
-import static org.slizaa.hierarchicalgraph.utils.NodeCacheHelper.assertCachesAreNotNull;
-import static org.slizaa.hierarchicalgraph.utils.NodeCacheHelper.assertCachesAreNull;
-import static org.slizaa.hierarchicalgraph.utils.NodeCacheHelper.populateCaches;
+import static org.slizaa.hierarchicalgraph.impl.NodeCacheHelper.assertCachesAreInvalid;
+import static org.slizaa.hierarchicalgraph.impl.NodeCacheHelper.assertCachesAreNotNull;
+import static org.slizaa.hierarchicalgraph.impl.NodeCacheHelper.populateCaches;
 
 import java.util.Arrays;
 
@@ -42,9 +42,9 @@ public class InvalidateCachesForNodes_Test extends AbstractSimpleModelTest {
     model().root().invalidateCaches(new BasicEList<HGNode>(Arrays.asList(model().a3(), model().b3())));
 
     // assert that all caches are cleared
-    assertCachesAreNull(model().root());
+    assertCachesAreInvalid(model().root());
     EcoreUtil.getAllContents(model().root(), false).forEachRemaining((c) -> {
-      assertCachesAreNull(c);
+      assertCachesAreInvalid(c);
     });
   }
 }
