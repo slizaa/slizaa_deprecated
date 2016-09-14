@@ -210,6 +210,22 @@ public interface HGNode extends EObject {
    * @model
    * @generated
    */
+  void resolveIncomingAggregatedCoreDependencies(boolean includeChildren);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  void resolveOutgoingAggregatedCoreDependencies(boolean includeChildren);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
   List<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren);
 
   /**
@@ -219,6 +235,14 @@ public interface HGNode extends EObject {
    * @generated
    */
   List<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  List<HGNode> getPredecessors();
 
   /**
    * <!-- begin-user-doc -->

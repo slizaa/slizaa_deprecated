@@ -8,6 +8,19 @@
         <details key="documentation" value="Returns the unique identifier of this node."/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="isPredecessorOf" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="node" lowerBound="1" eType="#//HGNode"/>
+    </eOperations>
+    <eOperations name="isSuccessorOf" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="node" lowerBound="1" eType="#//HGNode"/>
+    </eOperations>
+    <eOperations name="getPredecessors" upperBound="-1" eType="#//HGNode"/>
+    <eOperations name="getOutgoingCoreDependencies" upperBound="-1" eType="#//HGCoreDependency">
+      <eParameters name="includeChildren" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="getIncomingCoreDependencies" upperBound="-1" eType="#//HGCoreDependency">
+      <eParameters name="includeChildren" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
     <eOperations name="getIncomingDependenciesFrom" eType="#//HGAggregatedDependency">
       <eParameters name="node" eType="#//HGNode"/>
     </eOperations>
@@ -26,16 +39,10 @@
       </eAnnotations>
       <eParameters name="targetNodes" upperBound="-1" eType="#//HGNode"/>
     </eOperations>
-    <eOperations name="isPredecessorOf" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eParameters name="node" lowerBound="1" eType="#//HGNode"/>
-    </eOperations>
-    <eOperations name="isSuccessorOf" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eParameters name="node" lowerBound="1" eType="#//HGNode"/>
-    </eOperations>
-    <eOperations name="getOutgoingCoreDependencies" upperBound="-1" eType="#//HGCoreDependency">
+    <eOperations name="resolveIncomingAggregatedCoreDependencies">
       <eParameters name="includeChildren" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
-    <eOperations name="getIncomingCoreDependencies" upperBound="-1" eType="#//HGCoreDependency">
+    <eOperations name="resolveOutgoingAggregatedCoreDependencies">
       <eParameters name="includeChildren" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rootNode" eType="#//HGRootNode"

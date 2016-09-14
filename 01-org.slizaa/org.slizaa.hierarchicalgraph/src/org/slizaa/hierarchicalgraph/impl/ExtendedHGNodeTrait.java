@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
@@ -52,6 +53,238 @@ public class ExtendedHGNodeTrait {
    */
   public ExtendedHGNodeTrait(HGNodeImpl hgNode) {
     _hgNode = hgNode;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param node
+   * @return
+   */
+  public HGAggregatedDependency getIncomingDependenciesFrom(HGNode node) {
+
+    // 'aggregated' dependency
+    if (!cachedAggregatedIncomingDependenciesMap().containsKey(node)) {
+
+      // create new dependency
+      ExtendedHGAggregatedDependencyImpl dependency = (ExtendedHGAggregatedDependencyImpl) HierarchicalgraphFactory.eINSTANCE
+          .createHGAggregatedDependency();
+
+      dependency.setFrom(node);
+      dependency.setTo(_hgNode);
+      dependency.initialize();
+
+      // store dependency
+      cachedAggregatedIncomingDependenciesMap().put(node, dependency);
+      ExtendedHierarchicalGraphHelper.getTrait(node)
+          .ifPresent((t) -> t.cachedAggregatedOutgoingDependenciesMap().put(_hgNode, dependency));
+    }
+
+    //
+    HGAggregatedDependency dependency = cachedAggregatedIncomingDependenciesMap().get(node);
+
+    //
+    if (dependency != null && dependency.getAggregatedWeight() > 0) {
+      return dependency;
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param nodes
+   * @return
+   */
+  public List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
+
+    //
+    List<HGAggregatedDependency> result = new LinkedList<HGAggregatedDependency>();
+
+    //
+    for (HGNode node : nodes) {
+      HGAggregatedDependency dependency = getIncomingDependenciesFrom(node);
+      if (dependency != null) {
+        result.add(dependency);
+      }
+    }
+
+    //
+    return result;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param node
+   * @return
+   */
+  public HGAggregatedDependency getOutgoingDependenciesTo(HGNode node) {
+
+    //
+    checkNotNull(node);
+
+    // 'aggregated' dependency
+    if (!cachedAggregatedOutgoingDependenciesMap().containsKey(node)) {
+
+      // create new dependency
+      ExtendedHGAggregatedDependencyImpl dependency = (ExtendedHGAggregatedDependencyImpl) HierarchicalgraphFactory.eINSTANCE
+          .createHGAggregatedDependency();
+
+      dependency.setFrom(_hgNode);
+      dependency.setTo(node);
+      dependency.initialize();
+
+      // store dependency
+      cachedAggregatedOutgoingDependenciesMap().put(node, dependency);
+      ExtendedHierarchicalGraphHelper.getTrait(node)
+          .ifPresent((t) -> t.cachedAggregatedIncomingDependenciesMap().put(_hgNode, dependency));
+    }
+
+    //
+    HGAggregatedDependency dependency = cachedAggregatedOutgoingDependenciesMap().get(node);
+
+    //
+    if (dependency != null && dependency.getAggregatedWeight() > 0) {
+      return dependency;
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param nodes
+   * @return
+   */
+  public List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
+
+    //
+    List<HGAggregatedDependency> result = new LinkedList<>();
+
+    //
+    for (HGNode node : nodes) {
+      HGAggregatedDependency dependency = getOutgoingDependenciesTo(node);
+      if (dependency != null) {
+        result.add(dependency);
+      }
+    }
+
+    //
+    return result;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param includeChildren
+   * @return
+   */
+  public List<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
+
+    //
+    List<HGCoreDependency> result = includeChildren ? cachedOutgoingSelfAndSubTreeCoreDependencies()
+        : ExtendedHierarchicalGraphHelper.flattenCoreDependencies(_hgNode.outgoingCoreDependenciesMap);
+
+    //
+    return filterCoreDependencies(result);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param includeChildren
+   * @return
+   */
+  public List<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
+
+    //
+    List<HGCoreDependency> result = includeChildren ? cachedIncomingSelfAndSubTreeCoreDependencies()
+        : ExtendedHierarchicalGraphHelper.flattenCoreDependencies(_hgNode.incomingCoreDependenciesMap);
+
+    //
+    return filterCoreDependencies(result);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param includeChildren
+   */
+  public void resolveIncomingAggregatedCoreDependencies(boolean includeChildren) {
+    ExtendedHierarchicalGraphHelper.resolveAggregatedCoreDependencies(getIncomingCoreDependencies(includeChildren));
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param includeChildren
+   */
+  public void resolveOutgoingAggregatedCoreDependencies(boolean includeChildren) {
+    ExtendedHierarchicalGraphHelper.resolveAggregatedCoreDependencies(getOutgoingCoreDependencies(includeChildren));
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param node
+   * @return
+   */
+  public boolean isPredecessorOf(HGNode node) {
+
+    //
+    if (node == null) {
+      return false;
+    }
+
+    //
+    if (node instanceof ExtendedHGRootNodeImpl) {
+      return ((ExtendedHGRootNodeImpl) node).getTrait().cachedParents().contains(_hgNode);
+    } else if (node instanceof ExtendedHGNodeImpl) {
+      return ((ExtendedHGNodeImpl) node).getTrait().cachedParents().contains(_hgNode);
+    }
+
+    //
+    throw new RuntimeException(String.format("Unexpected node type %s.", node.getClass().getName()));
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param node
+   * @return
+   */
+  public boolean isSuccessorOf(HGNode node) {
+
+    //
+    if (node == null) {
+      return false;
+    }
+
+    //
+    return node.isPredecessorOf(_hgNode);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public List<HGNode> getPredecessors() {
+    return cachedParents();
   }
 
   /**
@@ -119,364 +352,11 @@ public class ExtendedHGNodeTrait {
   /**
    * <p>
    * </p>
-   */
-  public void onExpand() {
-    _hgNode.getNodeSource().onExpand();
-  }
-
-  /**
-   * <p>
-   * </p>
-   */
-  public void onCollapse() {
-    _hgNode.getNodeSource().onCollapse();
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param node
-   * @return
-   */
-  public HGAggregatedDependency getIncomingDependenciesFrom(HGNode node) {
-
-    // 'aggregated' dependency
-    if (!cachedAggregatedIncomingDependenciesMap().containsKey(node)) {
-
-      // create new dependency
-      ExtendedHGAggregatedDependencyImpl dependency = (ExtendedHGAggregatedDependencyImpl) HierarchicalgraphFactory.eINSTANCE
-          .createHGAggregatedDependency();
-
-      dependency.setFrom(node);
-      dependency.setTo(_hgNode);
-      dependency.initialize();
-
-      // store dependency
-      cachedAggregatedIncomingDependenciesMap().put(node, dependency);
-      ExtendedHGNodeTraitHelper.getTrait(node)
-          .ifPresent((t) -> t.cachedAggregatedOutgoingDependenciesMap().put(_hgNode, dependency));
-    }
-
-    //
-    HGAggregatedDependency dependency = cachedAggregatedIncomingDependenciesMap().get(node);
-
-    //
-    if (dependency != null && dependency.getAggregatedWeight() > 0) {
-      return dependency;
-    } else {
-      return null;
-    }
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param nodes
-   * @return
-   */
-  public List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
-
-    //
-    List<HGAggregatedDependency> result = new LinkedList<HGAggregatedDependency>();
-
-    //
-    for (HGNode node : nodes) {
-      HGAggregatedDependency dependency = getIncomingDependenciesFrom(node);
-      if (dependency != null) {
-        result.add(dependency);
-      }
-    }
-
-    //
-    return result;
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param node
-   * @return
-   */
-  public HGAggregatedDependency getOutgoingDependenciesTo(HGNode node) {
-
-    //
-    checkNotNull(node);
-
-    // 'aggregated' dependency
-    if (!cachedAggregatedOutgoingDependenciesMap().containsKey(node)) {
-
-      // create new dependency
-      ExtendedHGAggregatedDependencyImpl dependency = (ExtendedHGAggregatedDependencyImpl) HierarchicalgraphFactory.eINSTANCE
-          .createHGAggregatedDependency();
-
-      dependency.setFrom(_hgNode);
-      dependency.setTo(node);
-      dependency.initialize();
-
-      // store dependency
-      cachedAggregatedOutgoingDependenciesMap().put(node, dependency);
-      ExtendedHGNodeTraitHelper.getTrait(node)
-          .ifPresent((t) -> t.cachedAggregatedIncomingDependenciesMap().put(_hgNode, dependency));
-    }
-
-    //
-    HGAggregatedDependency dependency = cachedAggregatedOutgoingDependenciesMap().get(node);
-
-    //
-    if (dependency != null && dependency.getAggregatedWeight() > 0) {
-      return dependency;
-    } else {
-      return null;
-    }
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param nodes
-   * @return
-   */
-  public List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
-
-    //
-    List<HGAggregatedDependency> result = new LinkedList<>();
-
-    //
-    for (HGNode node : nodes) {
-      HGAggregatedDependency dependency = getOutgoingDependenciesTo(node);
-      if (dependency != null) {
-        result.add(dependency);
-      }
-    }
-
-    //
-    return result;
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param includeChildren
-   * @return
-   */
-  public List<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
-
-    //
-    if (includeChildren) {
-      return cachedOutgoingSelfAndSubTreeCoreDependencies();
-    }
-
-    //
-    else {
-
-      // return the flattened core dependencies
-      return ExtendedHGNodeTraitHelper.flattenCoreDependencies(_hgNode.outgoingCoreDependenciesMap);
-    }
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param includeChildren
-   * @return
-   */
-  public List<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
-
-    //
-    if (includeChildren) {
-      return cachedIncomingSelfAndSubTreeCoreDependencies();
-    }
-
-    //
-    else {
-
-      // return the flattened core dependencies
-      return ExtendedHGNodeTraitHelper.flattenCoreDependencies(_hgNode.incomingCoreDependenciesMap);
-    }
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param node
-   * @return
-   */
-  public boolean isPredecessorOf(HGNode node) {
-
-    //
-    if (node == null) {
-      return false;
-    }
-
-    //
-    if (node instanceof ExtendedHGRootNodeImpl) {
-      return ((ExtendedHGRootNodeImpl) node).getTrait().cachedParents().contains(_hgNode);
-    } else if (node instanceof ExtendedHGNodeImpl) {
-      return ((ExtendedHGNodeImpl) node).getTrait().cachedParents().contains(_hgNode);
-    }
-
-    //
-    throw new RuntimeException(String.format("Unexpected node type %s.", node.getClass().getName()));
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param node
-   * @return
-   */
-  public boolean isSuccessorOf(HGNode node) {
-
-    //
-    if (node == null) {
-      return false;
-    }
-
-    //
-    return node.isPredecessorOf(_hgNode);
-  }
-
-  /**
-   * <p>
-   * </p>
    *
    * @return
    */
   @VisibleForTesting
-  public Map<HGNode, HGAggregatedDependency> cachedAggregatedOutgoingDependenciesMap() {
-
-    //
-    if (this._cachedAggregatedOutgoingDependenciesMap == null) {
-      this._cachedAggregatedOutgoingDependenciesMap = new HashMap<>();
-    }
-
-    //
-    return this._cachedAggregatedOutgoingDependenciesMap;
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  @VisibleForTesting
-  public Map<HGNode, HGAggregatedDependency> cachedAggregatedIncomingDependenciesMap() {
-
-    //
-    if (this._cachedAggregatedIncomingDependenciesMap == null) {
-      this._cachedAggregatedIncomingDependenciesMap = new HashMap<>();
-    }
-
-    //
-    return this._cachedAggregatedIncomingDependenciesMap;
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  @VisibleForTesting
-  public List<HGNode> cachedParents() {
-
-    //
-    if (this._cachedParents == null) {
-      this._cachedParents = new ArrayList<>();
-      if (_hgNode.getParent() != null) {
-        HGNode parent = _hgNode.getParent();
-        this._cachedParents.add(parent);
-        if (parent instanceof ExtendedHGNodeImpl) {
-          this._cachedParents.addAll(((ExtendedHGNodeImpl) _hgNode.getParent()).getTrait().cachedParents());
-        }
-      }
-    }
-
-    //
-    return Collections.unmodifiableList(this._cachedParents);
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  @VisibleForTesting
-  public List<HGCoreDependency> cachedOutgoingSelfAndSubTreeCoreDependencies() {
-
-    // lazy init
-    if (_cachedOutgoingSubTreeCoreDependencies == null) {
-
-      //
-      _cachedOutgoingSubTreeCoreDependencies = new ArrayList<>();
-
-      // add all direct dependencies
-      _hgNode.getOutgoingCoreDependenciesMap()
-          .forEach((node, list) -> _cachedOutgoingSubTreeCoreDependencies.addAll(list));
-
-      // add children
-      if (_hgNode.children != null) {
-        for (HGNode child : _hgNode.children) {
-          ExtendedHGNodeTraitHelper.getTrait(child).ifPresent(
-              (t) -> _cachedOutgoingSubTreeCoreDependencies.addAll(t.cachedOutgoingSelfAndSubTreeCoreDependencies()));
-        }
-      }
-    }
-
-    //
-    return Collections.unmodifiableList(_cachedOutgoingSubTreeCoreDependencies);
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  @VisibleForTesting
-  public List<HGCoreDependency> cachedIncomingSelfAndSubTreeCoreDependencies() {
-
-    //
-    if (_cachedIncomingSubTreeCoreDependencies == null) {
-
-      //
-      _cachedIncomingSubTreeCoreDependencies = new ArrayList<>();
-
-      // add all direct dependencies
-      _hgNode.getIncomingCoreDependenciesMap()
-          .forEach((node, list) -> _cachedIncomingSubTreeCoreDependencies.addAll(list));
-
-      // and children
-      if (_hgNode.children != null) {
-        for (HGNode child : _hgNode.children) {
-          ExtendedHGNodeTraitHelper.getTrait(child).ifPresent(
-              (t) -> _cachedIncomingSubTreeCoreDependencies.addAll(t.cachedIncomingSelfAndSubTreeCoreDependencies()));
-        }
-      }
-    }
-
-    //
-    return Collections.unmodifiableList(_cachedIncomingSubTreeCoreDependencies);
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  @VisibleForTesting
-  public List<HGNode> getUnmodifiableCachedParents() {
+  public List<HGNode> rawUnmodifiableCachedParents() {
     return _cachedParents == null ? null : Collections.unmodifiableList(_cachedParents);
   }
 
@@ -526,5 +406,159 @@ public class ExtendedHGNodeTrait {
   public Map<HGNode, HGAggregatedDependency> rawUnmodifiableCachedAggregatedIncomingDependenciesMap() {
     return _cachedAggregatedIncomingDependenciesMap == null ? null
         : Collections.unmodifiableMap(_cachedAggregatedIncomingDependenciesMap);
+  }
+
+  /**
+   * <p>
+   * </p>
+   */
+  void onExpand() {
+    _hgNode.getNodeSource().onExpand();
+  }
+
+  /**
+   * <p>
+   * </p>
+   */
+  void onCollapse() {
+    _hgNode.getNodeSource().onCollapse();
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param result
+   * @return
+   */
+  private List<HGCoreDependency> filterCoreDependencies(List<HGCoreDependency> dependencies) {
+    checkNotNull(dependencies);
+
+    //
+    List<HGCoreDependency> filteredDependencies = dependencies.stream()
+        .filter(ExtendedHierarchicalGraphHelper.FILTER_AGGREGATED_CORE_DEPENDENCIES).collect(Collectors.toList());
+
+    //
+    return filteredDependencies;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  private List<HGNode> cachedParents() {
+
+    //
+    if (this._cachedParents == null) {
+      this._cachedParents = new ArrayList<>();
+      if (_hgNode.getParent() != null) {
+        HGNode parent = _hgNode.getParent();
+        this._cachedParents.add(parent);
+        if (parent instanceof ExtendedHGNodeImpl) {
+          this._cachedParents.addAll(((ExtendedHGNodeImpl) _hgNode.getParent()).getTrait().cachedParents());
+        }
+      }
+    }
+
+    //
+    return Collections.unmodifiableList(this._cachedParents);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  private Map<HGNode, HGAggregatedDependency> cachedAggregatedOutgoingDependenciesMap() {
+
+    //
+    if (this._cachedAggregatedOutgoingDependenciesMap == null) {
+      this._cachedAggregatedOutgoingDependenciesMap = new HashMap<>();
+    }
+
+    //
+    return this._cachedAggregatedOutgoingDependenciesMap;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  private Map<HGNode, HGAggregatedDependency> cachedAggregatedIncomingDependenciesMap() {
+
+    //
+    if (this._cachedAggregatedIncomingDependenciesMap == null) {
+      this._cachedAggregatedIncomingDependenciesMap = new HashMap<>();
+    }
+
+    //
+    return this._cachedAggregatedIncomingDependenciesMap;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  private List<HGCoreDependency> cachedOutgoingSelfAndSubTreeCoreDependencies() {
+
+    // lazy init
+    if (_cachedOutgoingSubTreeCoreDependencies == null) {
+
+      //
+      _cachedOutgoingSubTreeCoreDependencies = new ArrayList<>();
+
+      // add all direct dependencies
+      _hgNode.getOutgoingCoreDependenciesMap()
+          .forEach((node, list) -> _cachedOutgoingSubTreeCoreDependencies.addAll(list));
+
+      // add children
+      if (_hgNode.children != null) {
+        for (HGNode child : _hgNode.children) {
+          ExtendedHierarchicalGraphHelper.getTrait(child).ifPresent(
+              (t) -> _cachedOutgoingSubTreeCoreDependencies.addAll(t.cachedOutgoingSelfAndSubTreeCoreDependencies()));
+        }
+      }
+    }
+
+    //
+    return Collections.unmodifiableList(_cachedOutgoingSubTreeCoreDependencies);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  private List<HGCoreDependency> cachedIncomingSelfAndSubTreeCoreDependencies() {
+
+    //
+    if (_cachedIncomingSubTreeCoreDependencies == null) {
+
+      //
+      _cachedIncomingSubTreeCoreDependencies = new ArrayList<>();
+
+      // add all direct dependencies
+      _hgNode.getIncomingCoreDependenciesMap()
+          .forEach((node, list) -> _cachedIncomingSubTreeCoreDependencies.addAll(list));
+
+      // and children
+      if (_hgNode.children != null) {
+        for (HGNode child : _hgNode.children) {
+          ExtendedHierarchicalGraphHelper.getTrait(child).ifPresent(
+              (t) -> _cachedIncomingSubTreeCoreDependencies.addAll(t.cachedIncomingSelfAndSubTreeCoreDependencies()));
+        }
+      }
+    }
+
+    //
+    return Collections.unmodifiableList(_cachedIncomingSubTreeCoreDependencies);
   }
 }

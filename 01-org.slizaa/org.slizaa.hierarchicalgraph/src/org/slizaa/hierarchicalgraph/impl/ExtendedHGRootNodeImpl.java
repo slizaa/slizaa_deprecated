@@ -3,6 +3,7 @@ package org.slizaa.hierarchicalgraph.impl;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,18 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
   public ExtendedHGRootNodeImpl() {
     _trait = new ExtendedHGNodeTrait(this);
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<HGNode> getPredecessors() {
+    return Collections.emptyList();
+  }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void invalidateAllCaches() {
     this.invalidateLocalCaches();
@@ -61,7 +73,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
       if (hgNode instanceof ExtendedHGNodeImpl) {
         ExtendedHGNodeImpl extendedHGNode = (ExtendedHGNodeImpl) hgNode;
         selfAndParentNodes.add(extendedHGNode);
-        selfAndParentNodes.addAll(extendedHGNode.getTrait().cachedParents());
+        selfAndParentNodes.addAll(extendedHGNode.getPredecessors());
       }
     }
 

@@ -141,49 +141,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_NODE___GET_IDENTIFIER = 0;
 
   /**
-   * The operation id for the '<em>Get Incoming Dependencies From</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__HGNODE = 1;
-
-  /**
-   * The operation id for the '<em>Get Incoming Dependencies From</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__LIST = 2;
-
-  /**
-   * The operation id for the '<em>Get Outgoing Dependencies To</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__HGNODE = 3;
-
-  /**
-   * The operation id for the '<em>Get Outgoing Dependencies To</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST = 4;
-
-  /**
    * The operation id for the '<em>Is Predecessor Of</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_NODE___IS_PREDECESSOR_OF__HGNODE = 5;
+  int HG_NODE___IS_PREDECESSOR_OF__HGNODE = 1;
 
   /**
    * The operation id for the '<em>Is Successor Of</em>' operation.
@@ -192,7 +156,16 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___IS_SUCCESSOR_OF__HGNODE = 6;
+  int HG_NODE___IS_SUCCESSOR_OF__HGNODE = 2;
+
+  /**
+   * The operation id for the '<em>Get Predecessors</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_NODE___GET_PREDECESSORS = 3;
 
   /**
    * The operation id for the '<em>Get Outgoing Core Dependencies</em>' operation.
@@ -201,7 +174,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN = 7;
+  int HG_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN = 4;
 
   /**
    * The operation id for the '<em>Get Incoming Core Dependencies</em>' operation.
@@ -210,7 +183,61 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN = 8;
+  int HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN = 5;
+
+  /**
+   * The operation id for the '<em>Get Incoming Dependencies From</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__HGNODE = 6;
+
+  /**
+   * The operation id for the '<em>Get Incoming Dependencies From</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__LIST = 7;
+
+  /**
+   * The operation id for the '<em>Get Outgoing Dependencies To</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__HGNODE = 8;
+
+  /**
+   * The operation id for the '<em>Get Outgoing Dependencies To</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST = 9;
+
+  /**
+   * The operation id for the '<em>Resolve Incoming Aggregated Core Dependencies</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = 10;
+
+  /**
+   * The operation id for the '<em>Resolve Outgoing Aggregated Core Dependencies</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = 11;
 
   /**
    * The number of operations of the '<em>HG Node</em>' class.
@@ -219,7 +246,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE_OPERATION_COUNT = 9;
+  int HG_NODE_OPERATION_COUNT = 12;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.HGNodeSource <em>HG Node Source</em>}' class.
@@ -450,6 +477,51 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE___GET_IDENTIFIER = HG_NODE___GET_IDENTIFIER;
 
   /**
+   * The operation id for the '<em>Is Predecessor Of</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___IS_PREDECESSOR_OF__HGNODE = HG_NODE___IS_PREDECESSOR_OF__HGNODE;
+
+  /**
+   * The operation id for the '<em>Is Successor Of</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___IS_SUCCESSOR_OF__HGNODE = HG_NODE___IS_SUCCESSOR_OF__HGNODE;
+
+  /**
+   * The operation id for the '<em>Get Predecessors</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___GET_PREDECESSORS = HG_NODE___GET_PREDECESSORS;
+
+  /**
+   * The operation id for the '<em>Get Outgoing Core Dependencies</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN = HG_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN;
+
+  /**
+   * The operation id for the '<em>Get Incoming Core Dependencies</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN = HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN;
+
+  /**
    * The operation id for the '<em>Get Incoming Dependencies From</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -486,40 +558,22 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST = HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST;
 
   /**
-   * The operation id for the '<em>Is Predecessor Of</em>' operation.
+   * The operation id for the '<em>Resolve Incoming Aggregated Core Dependencies</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___IS_PREDECESSOR_OF__HGNODE = HG_NODE___IS_PREDECESSOR_OF__HGNODE;
+  int HG_ROOT_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN;
 
   /**
-   * The operation id for the '<em>Is Successor Of</em>' operation.
+   * The operation id for the '<em>Resolve Outgoing Aggregated Core Dependencies</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___IS_SUCCESSOR_OF__HGNODE = HG_NODE___IS_SUCCESSOR_OF__HGNODE;
-
-  /**
-   * The operation id for the '<em>Get Outgoing Core Dependencies</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_ROOT_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN = HG_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN;
-
-  /**
-   * The operation id for the '<em>Get Incoming Core Dependencies</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_ROOT_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN = HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN;
+  int HG_ROOT_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN;
 
   /**
    * The operation id for the '<em>Invalidate All Caches</em>' operation.
@@ -1302,6 +1356,26 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGNode__GetOutgoingDependenciesTo__List();
 
   /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#resolveIncomingAggregatedCoreDependencies(boolean) <em>Resolve Incoming Aggregated Core Dependencies</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Resolve Incoming Aggregated Core Dependencies</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGNode#resolveIncomingAggregatedCoreDependencies(boolean)
+   * @generated
+   */
+  EOperation getHGNode__ResolveIncomingAggregatedCoreDependencies__boolean();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#resolveOutgoingAggregatedCoreDependencies(boolean) <em>Resolve Outgoing Aggregated Core Dependencies</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Resolve Outgoing Aggregated Core Dependencies</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGNode#resolveOutgoingAggregatedCoreDependencies(boolean)
+   * @generated
+   */
+  EOperation getHGNode__ResolveOutgoingAggregatedCoreDependencies__boolean();
+
+  /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingCoreDependencies(boolean) <em>Get Outgoing Core Dependencies</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1320,6 +1394,16 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    */
   EOperation getHGNode__GetIncomingCoreDependencies__boolean();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getPredecessors() <em>Get Predecessors</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Predecessors</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGNode#getPredecessors()
+   * @generated
+   */
+  EOperation getHGNode__GetPredecessors();
 
   /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#isPredecessorOf(org.slizaa.hierarchicalgraph.HGNode) <em>Is Predecessor Of</em>}' operation.
@@ -2001,6 +2085,22 @@ public interface HierarchicalgraphPackage extends EPackage {
     EOperation HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST = eINSTANCE.getHGNode__GetOutgoingDependenciesTo__List();
 
     /**
+     * The meta object literal for the '<em><b>Resolve Incoming Aggregated Core Dependencies</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = eINSTANCE.getHGNode__ResolveIncomingAggregatedCoreDependencies__boolean();
+
+    /**
+     * The meta object literal for the '<em><b>Resolve Outgoing Aggregated Core Dependencies</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = eINSTANCE.getHGNode__ResolveOutgoingAggregatedCoreDependencies__boolean();
+
+    /**
      * The meta object literal for the '<em><b>Get Outgoing Core Dependencies</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2015,6 +2115,14 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EOperation HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN = eINSTANCE.getHGNode__GetIncomingCoreDependencies__boolean();
+
+    /**
+     * The meta object literal for the '<em><b>Get Predecessors</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_NODE___GET_PREDECESSORS = eINSTANCE.getHGNode__GetPredecessors();
 
     /**
      * The meta object literal for the '<em><b>Is Predecessor Of</b></em>' operation.

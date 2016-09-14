@@ -17,6 +17,11 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
   }
 
   @Override
+  public List<HGNode> getPredecessors() {
+    return _trait.getPredecessors();
+  }
+
+  @Override
   public HGRootNode getRootNode() {
     return _trait.getRootNode();
   }
@@ -56,6 +61,22 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
     return _trait.getIncomingCoreDependencies(includeChildren);
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void resolveIncomingAggregatedCoreDependencies(boolean includeChildren) {
+    _trait.resolveIncomingAggregatedCoreDependencies(includeChildren);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void resolveOutgoingAggregatedCoreDependencies(boolean includeChildren) {
+    _trait.resolveOutgoingAggregatedCoreDependencies(includeChildren);
+  }
+
   @Override
   public boolean isPredecessorOf(HGNode node) {
     return _trait.isPredecessorOf(node);
@@ -77,7 +98,7 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
   public void onCollapse() {
     _trait.onCollapse();
   }
-  
+
   public void invalidateLocalCaches() {
     _trait.invalidateLocalCaches();
   }

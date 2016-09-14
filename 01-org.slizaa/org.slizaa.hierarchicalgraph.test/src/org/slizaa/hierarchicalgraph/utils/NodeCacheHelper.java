@@ -17,7 +17,7 @@ public class NodeCacheHelper {
           .forEach((dep) -> assertThat(!dep.isInitialized()));
       assertThat(trait.rawUnmodifiableCachedIncomingSubTreeCoreDependencies()).isNull();
       assertThat(trait.rawUnmodifiableCachedOutgoingSubTreeCoreDependencies()).isNull();
-      assertThat(trait.getUnmodifiableCachedParents()).isNull();
+      assertThat(trait.rawUnmodifiableCachedParents()).isNull();
     }
   }
 
@@ -31,7 +31,7 @@ public class NodeCacheHelper {
           .forEach((dep) -> assertThat(dep.isInitialized()));
       assertThat(trait.rawUnmodifiableCachedIncomingSubTreeCoreDependencies()).isNotNull();
       assertThat(trait.rawUnmodifiableCachedOutgoingSubTreeCoreDependencies()).isNotNull();
-      assertThat(trait.getUnmodifiableCachedParents()).isNotNull();
+      assertThat(trait.rawUnmodifiableCachedParents()).isNotNull();
     }
   }
 
@@ -40,7 +40,7 @@ public class NodeCacheHelper {
     ExtendedHGNodeTrait trait = getTrait(c);
 
     if (trait != null) {
-      trait.cachedParents();
+      trait.getPredecessors();
       trait.getOutgoingCoreDependencies(true);
       trait.getIncomingCoreDependencies(true);
       trait.getIncomingDependenciesFrom(trait.getRootNode());

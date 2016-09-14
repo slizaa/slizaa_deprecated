@@ -1,5 +1,6 @@
 package org.slizaa.hierarchicalgraph.impl;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import org.slizaa.hierarchicalgraph.HGRootNode;
@@ -19,6 +20,31 @@ public class ExtendedHGCoreDependencyImpl extends HGCoreDependencyImpl {
   @Override
   public HGRootNode getRootNode() {
     return getFrom().getRootNode();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void resolveAggregatedCoreDependencies() {
+
+    //
+    if (!this.aggregatedCoreDependency || this.aggregatedCoreDependencyResolved) {
+      return;
+    }
+
+    //
+    // get the future
+    Future<?> future = onResolveAggregatedCoreDependency();
+    if (future != null) {
+      try {
+        future.get();
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      } catch (ExecutionException e) {
+        throw new RuntimeException(e);
+      }
+    }
   }
 
   /**

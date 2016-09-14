@@ -304,6 +304,28 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
+  public void resolveIncomingAggregatedCoreDependencies(boolean includeChildren) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void resolveOutgoingAggregatedCoreDependencies(boolean includeChildren) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public boolean isPredecessorOf(HGNode node) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
@@ -338,6 +360,17 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * @generated
    */
   public List<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public List<HGNode> getPredecessors() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -519,6 +552,16 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
     switch (operationID) {
       case HierarchicalgraphPackage.HG_NODE___GET_IDENTIFIER:
         return getIdentifier();
+      case HierarchicalgraphPackage.HG_NODE___IS_PREDECESSOR_OF__HGNODE:
+        return isPredecessorOf((HGNode)arguments.get(0));
+      case HierarchicalgraphPackage.HG_NODE___IS_SUCCESSOR_OF__HGNODE:
+        return isSuccessorOf((HGNode)arguments.get(0));
+      case HierarchicalgraphPackage.HG_NODE___GET_PREDECESSORS:
+        return getPredecessors();
+      case HierarchicalgraphPackage.HG_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN:
+        return getOutgoingCoreDependencies((Boolean)arguments.get(0));
+      case HierarchicalgraphPackage.HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN:
+        return getIncomingCoreDependencies((Boolean)arguments.get(0));
       case HierarchicalgraphPackage.HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__HGNODE:
         return getIncomingDependenciesFrom((HGNode)arguments.get(0));
       case HierarchicalgraphPackage.HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__LIST:
@@ -527,14 +570,12 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
         return getOutgoingDependenciesTo((HGNode)arguments.get(0));
       case HierarchicalgraphPackage.HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST:
         return getOutgoingDependenciesTo((List<HGNode>)arguments.get(0));
-      case HierarchicalgraphPackage.HG_NODE___IS_PREDECESSOR_OF__HGNODE:
-        return isPredecessorOf((HGNode)arguments.get(0));
-      case HierarchicalgraphPackage.HG_NODE___IS_SUCCESSOR_OF__HGNODE:
-        return isSuccessorOf((HGNode)arguments.get(0));
-      case HierarchicalgraphPackage.HG_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN:
-        return getOutgoingCoreDependencies((Boolean)arguments.get(0));
-      case HierarchicalgraphPackage.HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN:
-        return getIncomingCoreDependencies((Boolean)arguments.get(0));
+      case HierarchicalgraphPackage.HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN:
+        resolveIncomingAggregatedCoreDependencies((Boolean)arguments.get(0));
+        return null;
+      case HierarchicalgraphPackage.HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN:
+        resolveOutgoingAggregatedCoreDependencies((Boolean)arguments.get(0));
+        return null;
     }
     return super.eInvoke(operationID, arguments);
   }

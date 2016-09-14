@@ -10,8 +10,11 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
@@ -43,6 +46,7 @@ public class HGAggregatedDependencyItemProvider extends AbstractHGDependencyItem
       super.getPropertyDescriptors(object);
 
       addCoreDependenciesPropertyDescriptor(object);
+      addInitializedPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -65,6 +69,28 @@ public class HGAggregatedDependencyItemProvider extends AbstractHGDependencyItem
          false,
          true,
          null,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Initialized feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addInitializedPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_HGAggregatedDependency_initialized_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGAggregatedDependency_initialized_feature", "_UI_HGAggregatedDependency_type"),
+         HierarchicalgraphPackage.Literals.HG_AGGREGATED_DEPENDENCY__INITIALIZED,
+         false,
+         false,
+         false,
+         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
          null,
          null));
   }
@@ -109,7 +135,8 @@ public class HGAggregatedDependencyItemProvider extends AbstractHGDependencyItem
    */
   @Override
   public Object getStyledText(Object object) {
-    return new StyledString(getString("_UI_HGAggregatedDependency_type"));
+    HGAggregatedDependency hgAggregatedDependency = (HGAggregatedDependency)object;
+    return new StyledString(getString("_UI_HGAggregatedDependency_type"), StyledString.Style.QUALIFIER_STYLER).append(" ").append(Boolean.toString(hgAggregatedDependency.isInitialized()));
   }	
 
   /**
@@ -122,6 +149,12 @@ public class HGAggregatedDependencyItemProvider extends AbstractHGDependencyItem
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
+
+    switch (notification.getFeatureID(HGAggregatedDependency.class)) {
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__INITIALIZED:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
+    }
     super.notifyChanged(notification);
   }
 
