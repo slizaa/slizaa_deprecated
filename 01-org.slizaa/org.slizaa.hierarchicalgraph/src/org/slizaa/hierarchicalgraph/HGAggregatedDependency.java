@@ -2,7 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph;
 
-import java.util.List;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +32,7 @@ public interface HGAggregatedDependency extends AbstractHGDependency {
    * @model transient="true" derived="true"
    * @generated
    */
-  List<HGCoreDependency> getCoreDependencies();
+  EList<HGCoreDependency> getCoreDependencies();
 
   /**
    * Returns the value of the '<em><b>Initialized</b></em>' attribute.

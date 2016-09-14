@@ -5,7 +5,6 @@ package org.slizaa.hierarchicalgraph.impl;
 import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
-import java.util.List;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -81,7 +80,7 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public List<HGCoreDependency> getCoreDependencies() {
+  public EList<HGCoreDependency> getCoreDependencies() {
     if (coreDependencies == null) {
       coreDependencies = new EObjectResolvingEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES);
     }

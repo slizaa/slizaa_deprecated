@@ -2,6 +2,7 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
@@ -17,7 +18,7 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
   }
 
   @Override
-  public List<HGNode> getPredecessors() {
+  public EList<HGNode> getPredecessors() {
     return _trait.getPredecessors();
   }
 
@@ -37,7 +38,7 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
   }
 
   @Override
-  public List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
+  public EList<HGAggregatedDependency> getIncomingDependenciesFrom(EList<HGNode> nodes) {
     return _trait.getIncomingDependenciesFrom(nodes);
   }
 
@@ -47,17 +48,17 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
   }
 
   @Override
-  public List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
+  public EList<HGAggregatedDependency> getOutgoingDependenciesTo(EList<HGNode> nodes) {
     return _trait.getOutgoingDependenciesTo(nodes);
   }
 
   @Override
-  public List<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
+  public EList<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
     return _trait.getOutgoingCoreDependencies(includeChildren);
   }
 
   @Override
-  public List<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
+  public EList<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
     return _trait.getIncomingCoreDependencies(includeChildren);
   }
 

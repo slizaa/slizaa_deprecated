@@ -7,10 +7,12 @@ import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.creat
 import java.util.List;
 import java.util.concurrent.Future;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.junit.Before;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
@@ -130,7 +132,7 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
         () -> HierarchicalgraphFactory.eINSTANCE.createDefaultHGDependencySource());
 
     dependencyToResolve.getRootNode()
-        .invalidateCaches(asList(dependencyToResolve.getFrom(), dependencyToResolve.getTo()));
+        .invalidateCaches(new BasicEList<HGNode>(asList(dependencyToResolve.getFrom(), dependencyToResolve.getTo())));
 
     // return null as we resolved the dependencies immediately
     return null;

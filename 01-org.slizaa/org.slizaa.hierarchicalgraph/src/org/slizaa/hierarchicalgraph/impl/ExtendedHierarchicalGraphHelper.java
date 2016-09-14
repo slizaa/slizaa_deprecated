@@ -4,14 +4,15 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
@@ -75,12 +76,12 @@ public class ExtendedHierarchicalGraphHelper {
     }
 
     //
-    List<HGNode> nodesToInvalidate = new ArrayList<HGNode>();
+    EList<HGNode> nodesToInvalidate = new BasicEList<HGNode>();
     for (HGCoreDependency hgCoreDependency : coreDependencies) {
       nodesToInvalidate.add(hgCoreDependency.getFrom());
       nodesToInvalidate.add(hgCoreDependency.getTo());
     }
-    
+
     //
     coreDependencies.get(0).getRootNode().invalidateCaches(nodesToInvalidate);
   }
@@ -125,25 +126,7 @@ public class ExtendedHierarchicalGraphHelper {
    * @param map
    * @return
    */
-  public static List<HGCoreDependency> flattenCoreDependencies(EMap<?, List<HGCoreDependency>> map) {
-
-    //
-    if (map == null) {
-      return ECollections.emptyEList();
-    }
-
-    //
-    return flattenCoreDependencies(map.map());
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param map
-   * @return
-   */
-  public static List<HGCoreDependency> flattenCoreDependencies(Map<?, List<HGCoreDependency>> map) {
+  public static EList<HGCoreDependency> flattenCoreDependencies(EMap<?, EList<HGCoreDependency>> map) {
 
     //
     if (map == null) {

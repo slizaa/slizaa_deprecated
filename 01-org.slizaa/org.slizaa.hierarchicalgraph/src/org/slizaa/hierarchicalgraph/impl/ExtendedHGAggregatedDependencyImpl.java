@@ -1,8 +1,8 @@
 package org.slizaa.hierarchicalgraph.impl;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
@@ -74,7 +74,7 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
    * {@inheritDoc}
    */
   @Override
-  public List<HGCoreDependency> getCoreDependencies() {
+  public EList<HGCoreDependency> getCoreDependencies() {
 
     initialize();
 

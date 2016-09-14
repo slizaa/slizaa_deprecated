@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 
@@ -33,8 +34,7 @@ public class AdjacencyList {
   public static int[][] computeAdjacencyList(Collection<HGNode> artifacts) {
     checkNotNull(artifacts);
 
-    return computeAdjacencyList((HGNode[]) artifacts
-        .toArray(new HGNode[artifacts.size()]));
+    return computeAdjacencyList((HGNode[]) artifacts.toArray(new HGNode[artifacts.size()]));
   }
 
   /**
@@ -59,7 +59,8 @@ public class AdjacencyList {
     for (HGNode node : nodes) {
 
       // get the referenced artifacts
-      Collection<HGAggregatedDependency> dependencies = node.getOutgoingDependenciesTo(Arrays.asList(nodes));
+      Collection<HGAggregatedDependency> dependencies = node
+          .getOutgoingDependenciesTo(new BasicEList<>(Arrays.asList(nodes)));
 
       if (dependencies == null) {
         dependencies = Collections.emptyList();

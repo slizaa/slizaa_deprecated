@@ -6,8 +6,10 @@ import static org.slizaa.hierarchicalgraph.utils.NodeCacheHelper.populateCaches;
 
 import java.util.Arrays;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
+import org.slizaa.hierarchicalgraph.HGNode;
 
 /**
  * <p>
@@ -37,7 +39,7 @@ public class InvalidateCachesForNodes_Test extends AbstractSimpleModelTest {
     });
 
     // invalidate caches
-    model().root().invalidateCaches(Arrays.asList(model().a3(), model().b3()));
+    model().root().invalidateCaches(new BasicEList<HGNode>(Arrays.asList(model().a3(), model().b3())));
 
     // assert that all caches are cleared
     assertCachesAreNull(model().root());

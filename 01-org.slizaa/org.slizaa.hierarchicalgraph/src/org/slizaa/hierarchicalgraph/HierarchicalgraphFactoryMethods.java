@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 
 /**
@@ -74,10 +75,14 @@ public class HierarchicalgraphFactoryMethods {
     dependency.setDependencySource(checkNotNull(checkNotNull(dependencySourceSupplier)).get());
 
     //
-    source.getOutgoingCoreDependenciesMap().putIfAbsent(target, new ArrayList<>());
+    if (!source.getOutgoingCoreDependenciesMap().containsKey(target)) {
+      source.getOutgoingCoreDependenciesMap().put(target, new BasicEList<>());
+    }
     source.getOutgoingCoreDependenciesMap().get(target).add(dependency);
 
-    target.getIncomingCoreDependenciesMap().putIfAbsent(source, new ArrayList<>());
+    if (!target.getIncomingCoreDependenciesMap().containsKey(source)) {
+      target.getIncomingCoreDependenciesMap().put(source, new BasicEList<>());
+    }
     target.getIncomingCoreDependenciesMap().get(source).add(dependency);
 
     //

@@ -2,7 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph;
 
-import java.util.Map;
+import org.eclipse.emf.common.util.EMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +36,6 @@ public interface DefaultHGNodeSource extends HGNodeSource {
    * @model mapType="org.slizaa.hierarchicalgraph.StringToStringMap<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>"
    * @generated
    */
-  Map<String, String> getProperties();
+  EMap<String, String> getProperties();
 
 } // DefaultHGNodeSource

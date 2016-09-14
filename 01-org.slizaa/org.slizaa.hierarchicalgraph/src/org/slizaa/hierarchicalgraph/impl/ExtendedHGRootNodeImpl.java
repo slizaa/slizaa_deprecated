@@ -2,12 +2,12 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
@@ -38,13 +38,13 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
   public ExtendedHGRootNodeImpl() {
     _trait = new ExtendedHGNodeTrait(this);
   }
-  
+
   /**
    * {@inheritDoc}
    */
   @Override
-  public List<HGNode> getPredecessors() {
-    return Collections.emptyList();
+  public EList<HGNode> getPredecessors() {
+    return ECollections.emptyEList();
   }
 
   /**
@@ -61,12 +61,12 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
   }
 
   @Override
-  public void invalidateCaches(List<HGNode> modifiedNodes) {
+  public void invalidateCaches(EList<HGNode> modifiedNodes) {
 
     checkNotNull(modifiedNodes);
 
     //
-    List<HGNode> selfAndParentNodes = new ArrayList<HGNode>();
+    EList<HGNode> selfAndParentNodes = new BasicEList<HGNode>();
 
     //
     for (HGNode hgNode : modifiedNodes) {
@@ -135,7 +135,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    * {@inheritDoc}
    */
   @Override
-  public List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
+  public EList<HGAggregatedDependency> getIncomingDependenciesFrom(EList<HGNode> nodes) {
     return _trait.getIncomingDependenciesFrom(nodes);
   }
 
@@ -151,7 +151,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    * {@inheritDoc}
    */
   @Override
-  public List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
+  public EList<HGAggregatedDependency> getOutgoingDependenciesTo(EList<HGNode> nodes) {
     return _trait.getOutgoingDependenciesTo(nodes);
   }
 
@@ -159,7 +159,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    * {@inheritDoc}
    */
   @Override
-  public List<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
+  public EList<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
     return _trait.getOutgoingCoreDependencies(includeChildren);
   }
 
@@ -167,7 +167,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    * {@inheritDoc}
    */
   @Override
-  public List<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
+  public EList<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
     return _trait.getIncomingCoreDependencies(includeChildren);
   }
 

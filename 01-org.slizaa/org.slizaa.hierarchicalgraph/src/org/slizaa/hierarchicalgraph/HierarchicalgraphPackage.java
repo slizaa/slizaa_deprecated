@@ -201,7 +201,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__LIST = 7;
+  int HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__ELIST = 7;
 
   /**
    * The operation id for the '<em>Get Outgoing Dependencies To</em>' operation.
@@ -219,7 +219,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST = 9;
+  int HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__ELIST = 9;
 
   /**
    * The operation id for the '<em>Resolve Incoming Aggregated Core Dependencies</em>' operation.
@@ -537,7 +537,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___GET_INCOMING_DEPENDENCIES_FROM__LIST = HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__LIST;
+  int HG_ROOT_NODE___GET_INCOMING_DEPENDENCIES_FROM__ELIST = HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__ELIST;
 
   /**
    * The operation id for the '<em>Get Outgoing Dependencies To</em>' operation.
@@ -555,7 +555,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST = HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST;
+  int HG_ROOT_NODE___GET_OUTGOING_DEPENDENCIES_TO__ELIST = HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__ELIST;
 
   /**
    * The operation id for the '<em>Resolve Incoming Aggregated Core Dependencies</em>' operation.
@@ -591,7 +591,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___INVALIDATE_CACHES__LIST = HG_NODE_OPERATION_COUNT + 1;
+  int HG_ROOT_NODE___INVALIDATE_CACHES__ELIST = HG_NODE_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Lookup Node</em>' operation.
@@ -1326,14 +1326,14 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGNode__GetIncomingDependenciesFrom__HGNode();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingDependenciesFrom(java.util.List) <em>Get Incoming Dependencies From</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingDependenciesFrom(org.eclipse.emf.common.util.EList) <em>Get Incoming Dependencies From</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Get Incoming Dependencies From</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGNode#getIncomingDependenciesFrom(java.util.List)
+   * @see org.slizaa.hierarchicalgraph.HGNode#getIncomingDependenciesFrom(org.eclipse.emf.common.util.EList)
    * @generated
    */
-  EOperation getHGNode__GetIncomingDependenciesFrom__List();
+  EOperation getHGNode__GetIncomingDependenciesFrom__EList();
 
   /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingDependenciesTo(org.slizaa.hierarchicalgraph.HGNode) <em>Get Outgoing Dependencies To</em>}' operation.
@@ -1346,14 +1346,14 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGNode__GetOutgoingDependenciesTo__HGNode();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingDependenciesTo(java.util.List) <em>Get Outgoing Dependencies To</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingDependenciesTo(org.eclipse.emf.common.util.EList) <em>Get Outgoing Dependencies To</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Get Outgoing Dependencies To</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGNode#getOutgoingDependenciesTo(java.util.List)
+   * @see org.slizaa.hierarchicalgraph.HGNode#getOutgoingDependenciesTo(org.eclipse.emf.common.util.EList)
    * @generated
    */
-  EOperation getHGNode__GetOutgoingDependenciesTo__List();
+  EOperation getHGNode__GetOutgoingDependenciesTo__EList();
 
   /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#resolveIncomingAggregatedCoreDependencies(boolean) <em>Resolve Incoming Aggregated Core Dependencies</em>}' operation.
@@ -1563,14 +1563,14 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGRootNode__InvalidateAllCaches();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#invalidateCaches(java.util.List) <em>Invalidate Caches</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#invalidateCaches(org.eclipse.emf.common.util.EList) <em>Invalidate Caches</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Invalidate Caches</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGRootNode#invalidateCaches(java.util.List)
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#invalidateCaches(org.eclipse.emf.common.util.EList)
    * @generated
    */
-  EOperation getHGRootNode__InvalidateCaches__List();
+  EOperation getHGRootNode__InvalidateCaches__EList();
 
   /**
    * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGRootNode#getName <em>Name</em>}'.
@@ -2066,7 +2066,7 @@ public interface HierarchicalgraphPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__LIST = eINSTANCE.getHGNode__GetIncomingDependenciesFrom__List();
+    EOperation HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__ELIST = eINSTANCE.getHGNode__GetIncomingDependenciesFrom__EList();
 
     /**
      * The meta object literal for the '<em><b>Get Outgoing Dependencies To</b></em>' operation.
@@ -2082,7 +2082,7 @@ public interface HierarchicalgraphPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST = eINSTANCE.getHGNode__GetOutgoingDependenciesTo__List();
+    EOperation HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__ELIST = eINSTANCE.getHGNode__GetOutgoingDependenciesTo__EList();
 
     /**
      * The meta object literal for the '<em><b>Resolve Incoming Aggregated Core Dependencies</b></em>' operation.
@@ -2256,7 +2256,7 @@ public interface HierarchicalgraphPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_ROOT_NODE___INVALIDATE_CACHES__LIST = eINSTANCE.getHGRootNode__InvalidateCaches__List();
+    EOperation HG_ROOT_NODE___INVALIDATE_CACHES__ELIST = eINSTANCE.getHGRootNode__InvalidateCaches__EList();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

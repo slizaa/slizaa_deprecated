@@ -2,7 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph;
 
-import java.util.List;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
@@ -91,7 +91,7 @@ public interface HGRootNode extends HGNode {
    * @model modifiedNodesMany="true"
    * @generated
    */
-  void invalidateCaches(List<HGNode> modifiedNodes);
+  void invalidateCaches(EList<HGNode> modifiedNodes);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

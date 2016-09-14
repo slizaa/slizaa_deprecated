@@ -2,9 +2,8 @@
  */
 package org.slizaa.hierarchicalgraph;
 
-import java.util.List;
-import java.util.Map;
-
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -73,7 +72,7 @@ public interface HGNode extends EObject {
    * @model opposite="parent" containment="true"
    * @generated
    */
-  List<HGNode> getChildren();
+  EList<HGNode> getChildren();
 
   /**
    * Returns the value of the '<em><b>Node Source</b></em>' containment reference.
@@ -118,7 +117,7 @@ public interface HGNode extends EObject {
    * @model mapType="org.slizaa.hierarchicalgraph.NodeToCoreDependenciesMap<org.slizaa.hierarchicalgraph.HGNode, org.slizaa.hierarchicalgraph.HGCoreDependency>" ordered="false"
    * @generated
    */
-  Map<HGNode, List<HGCoreDependency>> getIncomingCoreDependenciesMap();
+  EMap<HGNode, EList<HGCoreDependency>> getIncomingCoreDependenciesMap();
 
   /**
    * Returns the value of the '<em><b>Outgoing Core Dependencies Map</b></em>' map.
@@ -135,7 +134,7 @@ public interface HGNode extends EObject {
    * @model mapType="org.slizaa.hierarchicalgraph.NodeToCoreDependenciesMap<org.slizaa.hierarchicalgraph.HGNode, org.slizaa.hierarchicalgraph.HGCoreDependency>" ordered="false"
    * @generated
    */
-  Map<HGNode, List<HGCoreDependency>> getOutgoingCoreDependenciesMap();
+  EMap<HGNode, EList<HGCoreDependency>> getOutgoingCoreDependenciesMap();
 
   /**
    * Returns the value of the '<em><b>Root Node</b></em>' reference.
@@ -177,7 +176,7 @@ public interface HGNode extends EObject {
    * @model nodesMany="true"
    * @generated
    */
-  List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes);
+  EList<HGAggregatedDependency> getIncomingDependenciesFrom(EList<HGNode> nodes);
 
   /**
    * <!-- begin-user-doc -->
@@ -202,7 +201,7 @@ public interface HGNode extends EObject {
    * @model targetNodesMany="true"
    * @generated
    */
-  List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> targetNodes);
+  EList<HGAggregatedDependency> getOutgoingDependenciesTo(EList<HGNode> targetNodes);
 
   /**
    * <!-- begin-user-doc -->
@@ -226,7 +225,7 @@ public interface HGNode extends EObject {
    * @model
    * @generated
    */
-  List<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren);
+  EList<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren);
 
   /**
    * <!-- begin-user-doc -->
@@ -234,7 +233,7 @@ public interface HGNode extends EObject {
    * @model
    * @generated
    */
-  List<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren);
+  EList<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren);
 
   /**
    * <!-- begin-user-doc -->
@@ -242,7 +241,7 @@ public interface HGNode extends EObject {
    * @model kind="operation"
    * @generated
    */
-  List<HGNode> getPredecessors();
+  EList<HGNode> getPredecessors();
 
   /**
    * <!-- begin-user-doc -->

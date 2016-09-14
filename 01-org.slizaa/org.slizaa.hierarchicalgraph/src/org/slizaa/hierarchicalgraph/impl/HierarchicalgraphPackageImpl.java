@@ -292,7 +292,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGNode__GetIncomingDependenciesFrom__List() {
+  public EOperation getHGNode__GetIncomingDependenciesFrom__EList() {
     return hgNodeEClass.getEOperations().get(7);
   }
 
@@ -310,7 +310,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGNode__GetOutgoingDependenciesTo__List() {
+  public EOperation getHGNode__GetOutgoingDependenciesTo__EList() {
     return hgNodeEClass.getEOperations().get(9);
   }
 
@@ -499,7 +499,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGRootNode__InvalidateCaches__List() {
+  public EOperation getHGRootNode__InvalidateCaches__EList() {
     return hgRootNodeEClass.getEOperations().get(1);
   }
 
@@ -869,9 +869,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEOperation(hgNodeEClass, HG_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN);
     createEOperation(hgNodeEClass, HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN);
     createEOperation(hgNodeEClass, HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__HGNODE);
-    createEOperation(hgNodeEClass, HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__LIST);
+    createEOperation(hgNodeEClass, HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__ELIST);
     createEOperation(hgNodeEClass, HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__HGNODE);
-    createEOperation(hgNodeEClass, HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST);
+    createEOperation(hgNodeEClass, HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__ELIST);
     createEOperation(hgNodeEClass, HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN);
     createEOperation(hgNodeEClass, HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN);
 
@@ -891,7 +891,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__ITEM_LABEL_PROVIDER);
     createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__AGGREGATED_CORE_DEPENDENCY_RESOLVER);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_ALL_CACHES);
-    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_CACHES__LIST);
+    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_CACHES__ELIST);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___LOOKUP_NODE__OBJECT);
 
     defaultHGNodeSourceEClass = createEClass(DEFAULT_HG_NODE_SOURCE);
@@ -1003,13 +1003,13 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     op = initEOperation(getHGNode__GetIncomingDependenciesFrom__HGNode(), this.getHGAggregatedDependency(), "getIncomingDependenciesFrom", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, this.getHGNode(), "node", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    op = initEOperation(getHGNode__GetIncomingDependenciesFrom__List(), this.getHGAggregatedDependency(), "getIncomingDependenciesFrom", 0, -1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getHGNode__GetIncomingDependenciesFrom__EList(), this.getHGAggregatedDependency(), "getIncomingDependenciesFrom", 0, -1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, this.getHGNode(), "nodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
     op = initEOperation(getHGNode__GetOutgoingDependenciesTo__HGNode(), this.getHGAggregatedDependency(), "getOutgoingDependenciesTo", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, this.getHGNode(), "targetNode", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-    op = initEOperation(getHGNode__GetOutgoingDependenciesTo__List(), this.getHGAggregatedDependency(), "getOutgoingDependenciesTo", 0, -1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getHGNode__GetOutgoingDependenciesTo__EList(), this.getHGAggregatedDependency(), "getOutgoingDependenciesTo", 0, -1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, this.getHGNode(), "targetNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
     op = initEOperation(getHGNode__ResolveIncomingAggregatedCoreDependencies__boolean(), null, "resolveIncomingAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1038,7 +1038,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     initEOperation(getHGRootNode__InvalidateAllCaches(), null, "invalidateAllCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    op = initEOperation(getHGRootNode__InvalidateCaches__List(), null, "invalidateCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getHGRootNode__InvalidateCaches__EList(), null, "invalidateCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, this.getHGNode(), "modifiedNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
     op = initEOperation(getHGRootNode__LookupNode__Object(), this.getHGNode(), "lookupNode", 0, 1, IS_UNIQUE, IS_ORDERED);
