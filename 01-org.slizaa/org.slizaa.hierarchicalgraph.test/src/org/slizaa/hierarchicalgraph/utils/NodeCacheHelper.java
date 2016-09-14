@@ -11,12 +11,12 @@ public class NodeCacheHelper {
   public static void assertCachesAreNull(Object c) {
     ExtendedHGNodeTrait trait = getTrait(c);
     if (trait != null) {
-      trait.getUnmodifiableCachedAggregatedIncomingDependenciesMap().values()
+      trait.rawUnmodifiableCachedAggregatedIncomingDependenciesMap().values()
           .forEach((dep) -> assertThat(!dep.isInitialized()));
-      trait.getUnmodifiableCachedAggregatedOutgoingDependenciesMap().values()
+      trait.rawUnmodifiableCachedAggregatedOutgoingDependenciesMap().values()
           .forEach((dep) -> assertThat(!dep.isInitialized()));
-      assertThat(trait.getUnmodifiableCachedIncomingSubTreeCoreDependencies()).isNull();
-      assertThat(trait.getUnmodifiableCachedOutgoingSubTreeCoreDependencies()).isNull();
+      assertThat(trait.rawUnmodifiableCachedIncomingSubTreeCoreDependencies()).isNull();
+      assertThat(trait.rawUnmodifiableCachedOutgoingSubTreeCoreDependencies()).isNull();
       assertThat(trait.getUnmodifiableCachedParents()).isNull();
     }
   }
@@ -25,12 +25,12 @@ public class NodeCacheHelper {
 
     ExtendedHGNodeTrait trait = getTrait(c);
     if (trait != null) {
-      trait.getUnmodifiableCachedAggregatedIncomingDependenciesMap().values()
+      trait.rawUnmodifiableCachedAggregatedIncomingDependenciesMap().values()
           .forEach((dep) -> assertThat(dep.isInitialized()));
-      trait.getUnmodifiableCachedAggregatedOutgoingDependenciesMap().values()
+      trait.rawUnmodifiableCachedAggregatedOutgoingDependenciesMap().values()
           .forEach((dep) -> assertThat(dep.isInitialized()));
-      assertThat(trait.getUnmodifiableCachedIncomingSubTreeCoreDependencies()).isNotNull();
-      assertThat(trait.getUnmodifiableCachedOutgoingSubTreeCoreDependencies()).isNotNull();
+      assertThat(trait.rawUnmodifiableCachedIncomingSubTreeCoreDependencies()).isNotNull();
+      assertThat(trait.rawUnmodifiableCachedOutgoingSubTreeCoreDependencies()).isNotNull();
       assertThat(trait.getUnmodifiableCachedParents()).isNotNull();
     }
   }

@@ -25,7 +25,7 @@ public class GetCoreDependencies_Test extends AbstractSimpleModelTest {
 
     //
     Set<HGCoreDependency> coreDependencies = HierarchicalGraphUtils
-        .getCoreDependencies(simpleModel().getA1().getOutgoingDependenciesTo(simpleModel().getB1()));
+        .getCoreDependencies(model().a1().getOutgoingDependenciesTo(model().b1()));
 
     //
     assertThat(coreDependencies).isNotNull();

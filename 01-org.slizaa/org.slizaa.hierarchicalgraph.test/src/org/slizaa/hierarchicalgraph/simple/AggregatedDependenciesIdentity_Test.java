@@ -21,15 +21,15 @@ public class AggregatedDependenciesIdentity_Test extends AbstractSimpleModelTest
   public void testAggregatedDependenciesIdentity_1() {
 
     //
-    HGAggregatedDependency aggregatedDependency_1 = simpleModel().getA1()
-        .getOutgoingDependenciesTo(simpleModel().getB1());
+    HGAggregatedDependency aggregatedDependency_1 = model().a1()
+        .getOutgoingDependenciesTo(model().b1());
 
     //
-    simpleModel().root().invalidateAllCaches();
+    model().root().invalidateAllCaches();
 
     //
-    HGAggregatedDependency aggregatedDependency_2 = simpleModel().getA1()
-        .getOutgoingDependenciesTo(simpleModel().getB1());
+    HGAggregatedDependency aggregatedDependency_2 = model().a1()
+        .getOutgoingDependenciesTo(model().b1());
 
     //
     assertThat(aggregatedDependency_1).isEqualTo(aggregatedDependency_2);
@@ -44,11 +44,11 @@ public class AggregatedDependenciesIdentity_Test extends AbstractSimpleModelTest
   public void testAggregatedDependenciesIdentity_2() {
 
     //
-    HGAggregatedDependency aggregatedDependency_1 = simpleModel().getA1()
-        .getOutgoingDependenciesTo(simpleModel().getB1());
+    HGAggregatedDependency aggregatedDependency_1 = model().a1()
+        .getOutgoingDependenciesTo(model().b1());
 
     //
-    simpleModel().root().invalidateAllCaches();
+    model().root().invalidateAllCaches();
 
     //
     HGAggregatedDependency aggregatedDependency_2 = aggregatedDependency_1.getFrom()

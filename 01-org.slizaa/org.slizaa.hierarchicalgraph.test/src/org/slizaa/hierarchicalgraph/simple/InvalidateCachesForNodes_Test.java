@@ -25,23 +25,23 @@ public class InvalidateCachesForNodes_Test extends AbstractSimpleModelTest {
   public void testGetCoreDependencies() {
 
     // 'activate' all caches
-    populateCaches(simpleModel().root());
-    EcoreUtil.getAllContents(simpleModel().root(), false).forEachRemaining((c) -> {
+    populateCaches(model().root());
+    EcoreUtil.getAllContents(model().root(), false).forEachRemaining((c) -> {
       populateCaches(c);
     });
 
     // assert that all caches are in use
-    assertCachesAreNotNull(simpleModel().root());
-    EcoreUtil.getAllContents(simpleModel().root(), false).forEachRemaining((c) -> {
+    assertCachesAreNotNull(model().root());
+    EcoreUtil.getAllContents(model().root(), false).forEachRemaining((c) -> {
       assertCachesAreNotNull(c);
     });
 
     // invalidate caches
-    simpleModel().root().invalidateCaches(Arrays.asList(simpleModel().getA3(), simpleModel().getB3()));
+    model().root().invalidateCaches(Arrays.asList(model().a3(), model().b3()));
 
     // assert that all caches are cleared
-    assertCachesAreNull(simpleModel().root());
-    EcoreUtil.getAllContents(simpleModel().root(), false).forEachRemaining((c) -> {
+    assertCachesAreNull(model().root());
+    EcoreUtil.getAllContents(model().root(), false).forEachRemaining((c) -> {
       assertCachesAreNull(c);
     });
   }

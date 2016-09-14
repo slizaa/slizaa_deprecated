@@ -20,10 +20,19 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
  */
 public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyImpl {
 
+  /**
+   * <p>
+   * Invalidates the contained core dependencies.
+   * </p>
+   */
   public void invalidate() {
+
+    // clear the core dependencies
     if (coreDependencies != null) {
       coreDependencies.clear();
     }
+
+    // set initialized to false
     initialized = false;
   }
 
@@ -33,27 +42,25 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
    */
   public void initialize() {
 
-    //
+    // return immediately if this dependency already has been initialized
     if (initialized) {
       return;
     }
 
+    // lazy create the core dependencies list
     if (coreDependencies == null) {
       coreDependencies = new EObjectResolvingEList<HGCoreDependency>(HGCoreDependency.class, this,
           HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES);
     }
 
-    // add all incoming dependencies directly from the specified node
-    if (((HGNodeImpl) to).incomingCoreDependenciesMap != null
-        && ((HGNodeImpl) to).incomingCoreDependenciesMap.containsKey((HGNodeImpl) from)) {
+    //
+    ExtendedHGNodeTraitHelper.getTrait(to).ifPresent((t) -> {
 
-      //
-      coreDependencies.addAll(((HGNodeImpl) to).incomingCoreDependenciesMap.get((HGNodeImpl) from));
-    }
-
-    // add all incoming dependencies from successors of the specified node
-    coreDependencies.addAll(((HGNodeImpl) to).getIncomingCoreDependencies(true).stream()
-        .filter((dep) -> ((HGNodeImpl) from).isPredecessorOf(dep.getFrom())).collect(Collectors.toList()));
+      // add all incoming dependencies from successors of the specified node
+      coreDependencies.addAll(t.cachedIncomingSelfAndSubTreeCoreDependencies().stream()
+          .filter((dep) -> from.equals(dep.getFrom()) || from.isPredecessorOf(dep.getFrom()))
+          .collect(Collectors.toList()));
+    });
 
     //
     initialized = true;
@@ -72,7 +79,7 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
    */
   @Override
   public List<HGCoreDependency> getCoreDependencies() {
-    
+
     initialize();
 
     return coreDependencies;
@@ -86,11 +93,6 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
 
     //
     initialize();
-
-    //
-    if (this.coreDependencies == null) {
-      return 0;
-    }
 
     //
     return this.coreDependencies.stream().mapToInt(i -> i.getWeight()).sum();

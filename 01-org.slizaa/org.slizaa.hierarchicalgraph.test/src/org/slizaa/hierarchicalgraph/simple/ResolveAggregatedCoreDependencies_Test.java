@@ -35,10 +35,10 @@ public class ResolveAggregatedCoreDependencies_Test extends AbstractSimpleModelT
 
     //
     _resolver = mock(IAggregatedCoreDependencyResolver.class);
-    simpleModel().root().setAggregatedCoreDependencyResolver(_resolver);
+    model().root().setAggregatedCoreDependencyResolver(_resolver);
 
     // get the aggregated dependency
-    _aggregatedDependency = simpleModel().getA1().getOutgoingDependenciesTo(simpleModel().getB1());
+    _aggregatedDependency = model().a1().getOutgoingDependenciesTo(model().b1());
     assertThat(_aggregatedDependency).isNotNull();
   }
 
@@ -53,7 +53,7 @@ public class ResolveAggregatedCoreDependencies_Test extends AbstractSimpleModelT
     _aggregatedDependency.resolveAggregatedCoreDependencies();
 
     //
-    verify(_resolver).resolveAggregatedDependency(simpleModel().getDep_a3_b3_core1());
+    verify(_resolver).resolveAggregatedDependency(model().a3_b3_core1());
     verifyNoMoreInteractions(_resolver);
 
     //

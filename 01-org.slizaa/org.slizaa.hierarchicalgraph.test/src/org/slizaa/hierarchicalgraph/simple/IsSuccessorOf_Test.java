@@ -20,16 +20,16 @@ public class IsSuccessorOf_Test extends AbstractSimpleModelTest {
   public void testIsSuccessorOf() {
 
     //
-    assertThat(simpleModel().getB1().isSuccessorOf(simpleModel().getB1())).isFalse();
-    assertThat(simpleModel().getB1().isSuccessorOf(simpleModel().getB2())).isFalse();
-    assertThat(simpleModel().getB1().isSuccessorOf(simpleModel().getB3())).isFalse();
+    assertThat(model().b1().isSuccessorOf(model().b1())).isFalse();
+    assertThat(model().b1().isSuccessorOf(model().b2())).isFalse();
+    assertThat(model().b1().isSuccessorOf(model().b3())).isFalse();
     
-    assertThat(simpleModel().getB2().isSuccessorOf(simpleModel().getB1())).isTrue();
-    assertThat(simpleModel().getB2().isSuccessorOf(simpleModel().getB2())).isFalse();
-    assertThat(simpleModel().getB2().isSuccessorOf(simpleModel().getB3())).isFalse();
+    assertThat(model().b2().isSuccessorOf(model().b1())).isTrue();
+    assertThat(model().b2().isSuccessorOf(model().b2())).isFalse();
+    assertThat(model().b2().isSuccessorOf(model().b3())).isFalse();
     
-    assertThat(simpleModel().getB3().isSuccessorOf(simpleModel().getB1())).isTrue();
-    assertThat(simpleModel().getB3().isSuccessorOf(simpleModel().getB2())).isTrue();
-    assertThat(simpleModel().getB3().isSuccessorOf(simpleModel().getB3())).isFalse();
+    assertThat(model().b3().isSuccessorOf(model().b1())).isTrue();
+    assertThat(model().b3().isSuccessorOf(model().b2())).isTrue();
+    assertThat(model().b3().isSuccessorOf(model().b3())).isFalse();
   }
 }

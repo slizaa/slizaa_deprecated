@@ -20,24 +20,21 @@ public class GetOutgoingDependencies_Test extends AbstractSimpleModelTest {
   public void testGetOutgoingDependencies() {
 
     //
-    assertThat(simpleModel().getA1().getOutgoingCoreDependencies(false))
-        .containsExactly(simpleModel().getDep_a1_b1_core1(), simpleModel().getDep_a1_b1_core2());
+    assertThat(model().a1().getOutgoingCoreDependencies(false)).hasSize(2).containsOnly(model().a1_b1_core1(),
+        model().a1_b1_core2());
 
-    assertThat(simpleModel().getA1().getOutgoingCoreDependencies(true)).containsExactly(
-        simpleModel().getDep_a1_b1_core1(), simpleModel().getDep_a1_b1_core2(), simpleModel().getDep_a2_b2_core1(),
-        simpleModel().getDep_a3_b3_core1());
-
-    //
-    assertThat(simpleModel().getA2().getOutgoingCoreDependencies(false))
-        .containsExactly(simpleModel().getDep_a2_b2_core1());
-
-    assertThat(simpleModel().getA2().getOutgoingCoreDependencies(true))
-        .containsExactly(simpleModel().getDep_a2_b2_core1(), simpleModel().getDep_a3_b3_core1());
+    assertThat(model().a1().getOutgoingCoreDependencies(true)).hasSize(4).containsOnly(model().a1_b1_core1(),
+        model().a1_b1_core2(), model().a2_b2_core1(), model().a3_b3_core1());
 
     //
-    assertThat(simpleModel().getA3().getOutgoingCoreDependencies(false))
-        .containsExactly(simpleModel().getDep_a3_b3_core1());
-    assertThat(simpleModel().getA3().getOutgoingCoreDependencies(true))
-        .containsExactly(simpleModel().getDep_a3_b3_core1());
+    assertThat(model().a2().getOutgoingCoreDependencies(false)).hasSize(1).containsOnly(model().a2_b2_core1());
+
+    assertThat(model().a2().getOutgoingCoreDependencies(true)).hasSize(2).containsOnly(model().a2_b2_core1(),
+        model().a3_b3_core1());
+
+    //
+    assertThat(model().a3().getOutgoingCoreDependencies(false)).hasSize(1).containsOnly(model().a3_b3_core1());
+    
+    assertThat(model().a3().getOutgoingCoreDependencies(true)).hasSize(1).containsOnly(model().a3_b3_core1());
   }
 }

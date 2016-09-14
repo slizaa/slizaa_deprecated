@@ -68,6 +68,7 @@ public class DependencyTest extends AbstractXmiBasedTest {
 
     // '/mapstruct-processor-1.1.0.Beta2.jar/org.mapstrcut.ap.internal.model' ->
     // '/mapstruct-processor-1.1.0.Beta2.jar/org.mapstrcut.ap.internal.util'
+    assertThat(node(1063).getOutgoingDependenciesTo(node(5922))).isNotNull();
     assertThat(node(1063).getOutgoingDependenciesTo(node(5922)).getAggregatedWeight()).isEqualTo(50);
   }
 }

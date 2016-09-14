@@ -50,7 +50,7 @@ public class AbstractSimpleModelTest {
    *
    * @return the simpleModel
    */
-  public SimpleModel simpleModel() {
+  public SimpleModel model() {
     return _simpleModel;
   }
 
@@ -98,7 +98,6 @@ public class AbstractSimpleModelTest {
 
       _dep_a1_b1_core1 = createNewCoreDependency(_a1, _b1, "USES", dependencySourceSupplier);
       _dep_a1_b1_core2 = createNewCoreDependency(_a1, _b1, "DEPENDS_ON", dependencySourceSupplier);
-
       _dep_a2_b2_core1 = createNewCoreDependency(_a2, _b2, "USES", dependencySourceSupplier);
 
       _dep_a3_b3_core1 = createNewCoreDependency(_a3, _b3, "DEPENDS_ON", dependencySourceSupplier);
@@ -121,7 +120,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the a1
      */
-    public HGNode getA1() {
+    public HGNode a1() {
       return _a1;
     }
 
@@ -131,7 +130,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the b1
      */
-    public HGNode getB1() {
+    public HGNode b1() {
       return _b1;
     }
 
@@ -141,7 +140,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the b2
      */
-    public HGNode getB2() {
+    public HGNode b2() {
       return _b2;
     }
 
@@ -151,7 +150,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the a2
      */
-    public HGNode getA2() {
+    public HGNode a2() {
       return _a2;
     }
 
@@ -161,7 +160,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the a3
      */
-    public HGNode getA3() {
+    public HGNode a3() {
       return _a3;
     }
 
@@ -171,7 +170,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the b3
      */
-    public HGNode getB3() {
+    public HGNode b3() {
       return _b3;
     }
 
@@ -181,7 +180,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the dep_a1_b1_core1
      */
-    public HGCoreDependency getDep_a1_b1_core1() {
+    public HGCoreDependency a1_b1_core1() {
       return _dep_a1_b1_core1;
     }
 
@@ -191,7 +190,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the dep_a1_b1_core2
      */
-    public HGCoreDependency getDep_a1_b1_core2() {
+    public HGCoreDependency a1_b1_core2() {
       return _dep_a1_b1_core2;
     }
 
@@ -201,7 +200,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the dep_a2_b2_core1
      */
-    public HGCoreDependency getDep_a2_b2_core1() {
+    public HGCoreDependency a2_b2_core1() {
       return _dep_a2_b2_core1;
     }
 
@@ -211,7 +210,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the dep_a3_b3_core1
      */
-    public HGCoreDependency getDep_a3_b3_core1() {
+    public HGCoreDependency a3_b3_core1() {
       return _dep_a3_b3_core1;
     }
   }

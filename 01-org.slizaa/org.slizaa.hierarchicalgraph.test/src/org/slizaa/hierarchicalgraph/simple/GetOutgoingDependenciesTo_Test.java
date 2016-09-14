@@ -17,35 +17,33 @@ public class GetOutgoingDependenciesTo_Test extends AbstractSimpleModelTest {
   public void testGetOutgoingDependenciesTo() {
 
     //
-    HGAggregatedDependency aggregatedDependency = simpleModel().getA1()
-        .getOutgoingDependenciesTo(simpleModel().getB1());
+    HGAggregatedDependency aggregatedDependency = model().a1().getOutgoingDependenciesTo(model().b1());
     assertThat(aggregatedDependency).isNotNull();
 
     assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(4);
-    assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a1_b1_core1(),
-        simpleModel().getDep_a1_b1_core2(), simpleModel().getDep_a2_b2_core1(), simpleModel().getDep_a3_b3_core1());
+    assertThat(aggregatedDependency.getCoreDependencies()).hasSize(4).containsOnly(model().a1_b1_core1(),
+        model().a1_b1_core2(), model().a2_b2_core1(), model().a3_b3_core1());
 
     //
-    aggregatedDependency = simpleModel().getA2().getOutgoingDependenciesTo(simpleModel().getB2());
+    aggregatedDependency = model().a2().getOutgoingDependenciesTo(model().b2());
     assertThat(aggregatedDependency).isNotNull();
 
     assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(2);
-    assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a2_b2_core1(),
-        simpleModel().getDep_a3_b3_core1());
+    assertThat(aggregatedDependency.getCoreDependencies()).hasSize(2).containsOnly(model().a2_b2_core1(),
+        model().a3_b3_core1());
 
     //
-    aggregatedDependency = simpleModel().getA3().getOutgoingDependenciesTo(simpleModel().getB3());
+    aggregatedDependency = model().a3().getOutgoingDependenciesTo(model().b3());
     assertThat(aggregatedDependency).isNotNull();
     assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(1);
-    assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(simpleModel().getDep_a3_b3_core1());
+    assertThat(aggregatedDependency.getCoreDependencies()).containsExactly(model().a3_b3_core1());
   }
 
   @Test
   public void testGetOutgoingDependenciesTo_Null() {
 
     //
-    HGAggregatedDependency aggregatedDependency = simpleModel().getA1()
-        .getOutgoingDependenciesTo(simpleModel().getA2());
+    HGAggregatedDependency aggregatedDependency = model().a1().getOutgoingDependenciesTo(model().a2());
 
     assertThat(aggregatedDependency).isNull();
   }
