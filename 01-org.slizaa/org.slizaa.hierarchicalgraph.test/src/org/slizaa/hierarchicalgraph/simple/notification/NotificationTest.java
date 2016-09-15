@@ -61,7 +61,7 @@ public class NotificationTest extends AbstractSimpleModelTest {
 
     //
     HGCoreDependency newCoreDependdency = createNewCoreDependency(model().a2(), model().b2(), "NEW_USAGE",
-        () -> HierarchicalgraphFactory.eINSTANCE.createDefaultHGDependencySource());
+        () -> HierarchicalgraphFactory.eINSTANCE.createDefaultHGDependencySource(), true);
 
     //
     assertThat(_notifications).hasSize(2);

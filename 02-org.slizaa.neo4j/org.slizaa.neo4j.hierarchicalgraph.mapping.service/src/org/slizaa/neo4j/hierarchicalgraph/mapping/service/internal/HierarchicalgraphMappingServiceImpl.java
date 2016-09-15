@@ -108,7 +108,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
     // process the dependency queries
     mappingDescriptor.getDependencyMappings().forEach((dependencyMapping) -> {
-      
+
       // TODO: DETAILS
       dependencyQueries.add(remoteRepository.executeCypherQuery(dependencyMapping.getMainQuery()));
     });
@@ -143,7 +143,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     dependencyQueries.forEach((f) -> {
       try {
         System.out.println("Create dependencies " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
-        createDependencies(f.get().getAsJsonArray("data"), rootNode, createDependencySourceFunction);
+        createDependencies(f.get().getAsJsonArray("data"), rootNode, createDependencySourceFunction, false);
         System.out.println("Done " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);

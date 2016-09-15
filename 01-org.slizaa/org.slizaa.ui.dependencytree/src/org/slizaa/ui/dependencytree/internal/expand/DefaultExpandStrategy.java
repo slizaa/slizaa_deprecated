@@ -15,7 +15,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.SourceOrTarget;
 
 /**
  * <p>
@@ -26,16 +29,31 @@ import org.slizaa.hierarchicalgraph.HGNode;
 public class DefaultExpandStrategy extends AbstractExpandStrategy implements IExpandStrategy {
 
   /** - */
-  private int _maxExpanded       = 30;
+  private int            _maxExpanded       = 30;
 
   /** - */
-  private int _currentlyExpanded = 0;
+  private int            _currentlyExpanded = 0;
+
+  /** - */
+  private SourceOrTarget _sourceOrTarget;
+
+  /**
+   * <p>
+   * Creates a new instance of type {@link DefaultExpandStrategy}.
+   * </p>
+   *
+   * @param sourceOrTarget
+   */
+  public DefaultExpandStrategy(SourceOrTarget sourceOrTarget) {
+    _sourceOrTarget = checkNotNull(sourceOrTarget);
+  }
 
   /**
    * {@inheritDoc}
    */
   @Override
   protected List<Object> computeExpandedArtifacts(HGNode rootElement) {
+    checkNotNull(rootElement);
 
     _currentlyExpanded = 0;
 
@@ -43,24 +61,15 @@ public class DefaultExpandStrategy extends AbstractExpandStrategy implements IEx
     List<Object> result = new LinkedList<>();
 
     //
-    _computeExpandedElements(rootElement, result);
+    List<HGNode> visibleChildren = computeVisibleChildren(rootElement);
+    _currentlyExpanded = visibleChildren.size();
+    result.add(rootElement);
+
+    //
+    _computeExpandedElements(visibleChildren, result);
 
     //
     return result;
-  }
-
-  private void _computeExpandedElements(HGNode elementToExpand, List<Object> result) {
-
-    checkNotNull(elementToExpand);
-    checkNotNull(result);
-
-    //
-    List<HGNode> visibleChildren = computeVisibleChildren(elementToExpand);
-    _currentlyExpanded = visibleChildren.size();
-
-    //
-    result.add(elementToExpand);
-    _computeExpandedElements(visibleChildren, result);
   }
 
   /**
@@ -91,6 +100,10 @@ public class DefaultExpandStrategy extends AbstractExpandStrategy implements IEx
 
       // don't expand resources
       if (!child.getNodeSource().isAutoExpand()) {
+        continue;
+      }
+
+      if (hasUnresolvedAggregatedCoreDependencies(child, _sourceOrTarget)) {
         continue;
       }
 
@@ -133,5 +146,20 @@ public class DefaultExpandStrategy extends AbstractExpandStrategy implements IEx
 
     //
     return result;
+  }
+
+  private boolean hasUnresolvedAggregatedCoreDependencies(HGNode child, SourceOrTarget sourceOrTarget) {
+
+    //
+    EList<HGCoreDependency> coreDependencies = checkNotNull(sourceOrTarget).equals(SourceOrTarget.SOURCE)
+        ? checkNotNull(child).getOutgoingCoreDependencies(false) : child.getOutgoingCoreDependencies(false);
+
+    //
+    for (HGCoreDependency coreDependency : coreDependencies) {
+      if (coreDependency.isAggregatedCoreDependency() && !coreDependency.isAggregatedCoreDependencyResolved()) {
+        return true;
+      }
+    }
+    return false;
   }
 }

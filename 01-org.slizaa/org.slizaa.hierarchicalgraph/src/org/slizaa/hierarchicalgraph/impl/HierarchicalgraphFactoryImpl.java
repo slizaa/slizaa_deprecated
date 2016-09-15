@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.slizaa.hierarchicalgraph.*;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 import org.slizaa.hierarchicalgraph.DefaultHGDependencySource;
 import org.slizaa.hierarchicalgraph.DefaultHGNodeSource;
@@ -84,6 +85,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID()) {
+      case HierarchicalgraphPackage.SOURCE_OR_TARGET:
+        return createSourceOrTargetFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
         return createIItemLabelProviderFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.FUTURE:
@@ -102,6 +105,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID()) {
+      case HierarchicalgraphPackage.SOURCE_OR_TARGET:
+        return convertSourceOrTargetToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
         return convertIItemLabelProviderToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.FUTURE:
@@ -206,6 +211,26 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   public Map.Entry<HGNode, EList<HGCoreDependency>> createNodeToCoreDependenciesMap() {
     NodeToCoreDependenciesMapImpl nodeToCoreDependenciesMap = new NodeToCoreDependenciesMapImpl();
     return nodeToCoreDependenciesMap;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SourceOrTarget createSourceOrTargetFromString(EDataType eDataType, String initialValue) {
+    SourceOrTarget result = SourceOrTarget.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertSourceOrTargetToString(EDataType eDataType, Object instanceValue) {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

@@ -32,6 +32,7 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Widget;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.SourceOrTarget;
 import org.slizaa.selection.IHierarchicalGraphSelectionService;
 import org.slizaa.ui.dependencytree.internal.expand.DefaultExpandStrategy;
 import org.slizaa.ui.dependencytree.internal.expand.IExpandStrategy;
@@ -89,8 +90,8 @@ public class CropableDependencyTreeComposite extends Composite {
     _dependencySelectionList = new LinkedList<Collection<HGCoreDependency>>();
 
     //
-    _fromExpandStrategy = new DefaultExpandStrategy();
-    _toExpandStrategy = new DefaultExpandStrategy();
+    _fromExpandStrategy = new DefaultExpandStrategy(SourceOrTarget.SOURCE);
+    _toExpandStrategy = new DefaultExpandStrategy(SourceOrTarget.TARGET);
 
     //
     _selectionService = selectionService;

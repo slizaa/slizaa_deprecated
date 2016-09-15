@@ -5,6 +5,7 @@ package org.slizaa.hierarchicalgraph;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -1197,6 +1198,16 @@ public interface HierarchicalgraphPackage extends EPackage {
   int NODE_TO_CORE_DEPENDENCIES_MAP_OPERATION_COUNT = 0;
 
   /**
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.hierarchicalgraph.SourceOrTarget
+   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getSourceOrTarget()
+   * @generated
+   */
+  int SOURCE_OR_TARGET = 13;
+
+  /**
    * The meta object id for the '<em>IItem Label Provider</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1204,7 +1215,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIItemLabelProvider()
    * @generated
    */
-  int IITEM_LABEL_PROVIDER = 13;
+  int IITEM_LABEL_PROVIDER = 14;
 
 
   /**
@@ -1215,7 +1226,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getFuture()
    * @generated
    */
-  int FUTURE = 14;
+  int FUTURE = 15;
 
 
   /**
@@ -1226,7 +1237,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIAggregatedCoreDependencyResolver()
    * @generated
    */
-  int IAGGREGATED_CORE_DEPENDENCY_RESOLVER = 15;
+  int IAGGREGATED_CORE_DEPENDENCY_RESOLVER = 16;
 
 
   /**
@@ -1931,6 +1942,16 @@ public interface HierarchicalgraphPackage extends EPackage {
   EReference getNodeToCoreDependenciesMap_Value();
 
   /**
+   * Returns the meta object for enum '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Source Or Target</em>'.
+   * @see org.slizaa.hierarchicalgraph.SourceOrTarget
+   * @generated
+   */
+  EEnum getSourceOrTarget();
+
+  /**
    * Returns the meta object for data type '{@link org.eclipse.emf.edit.provider.IItemLabelProvider <em>IItem Label Provider</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2539,6 +2560,16 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EReference NODE_TO_CORE_DEPENDENCIES_MAP__VALUE = eINSTANCE.getNodeToCoreDependenciesMap_Value();
+
+    /**
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.hierarchicalgraph.SourceOrTarget
+     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getSourceOrTarget()
+     * @generated
+     */
+    EEnum SOURCE_OR_TARGET = eINSTANCE.getSourceOrTarget();
 
     /**
      * The meta object literal for the '<em>IItem Label Provider</em>' data type.

@@ -8,6 +8,7 @@ import java.util.concurrent.Future;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -24,6 +25,7 @@ import org.slizaa.hierarchicalgraph.HGNodeSource;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.hierarchicalgraph.SourceOrTarget;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
@@ -123,6 +125,13 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * @generated
    */
   private EClass nodeToCoreDependenciesMapEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum sourceOrTargetEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -805,6 +814,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public EEnum getSourceOrTarget() {
+    return sourceOrTargetEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EDataType getIItemLabelProvider() {
     return iItemLabelProviderEDataType;
   }
@@ -933,6 +951,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     nodeToCoreDependenciesMapEClass = createEClass(NODE_TO_CORE_DEPENDENCIES_MAP);
     createEReference(nodeToCoreDependenciesMapEClass, NODE_TO_CORE_DEPENDENCIES_MAP__KEY);
     createEReference(nodeToCoreDependenciesMapEClass, NODE_TO_CORE_DEPENDENCIES_MAP__VALUE);
+
+    // Create enums
+    sourceOrTargetEEnum = createEEnum(SOURCE_OR_TARGET);
 
     // Create data types
     iItemLabelProviderEDataType = createEDataType(IITEM_LABEL_PROVIDER);
@@ -1087,6 +1108,11 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEClass(nodeToCoreDependenciesMapEClass, Map.Entry.class, "NodeToCoreDependenciesMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNodeToCoreDependenciesMap_Key(), this.getHGNode(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNodeToCoreDependenciesMap_Value(), this.getHGCoreDependency(), null, "value", null, 0, -1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(sourceOrTargetEEnum, SourceOrTarget.class, "SourceOrTarget");
+    addEEnumLiteral(sourceOrTargetEEnum, SourceOrTarget.SOURCE);
+    addEEnumLiteral(sourceOrTargetEEnum, SourceOrTarget.TARGET);
 
     // Initialize data types
     initEDataType(iItemLabelProviderEDataType, IItemLabelProvider.class, "IItemLabelProvider", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

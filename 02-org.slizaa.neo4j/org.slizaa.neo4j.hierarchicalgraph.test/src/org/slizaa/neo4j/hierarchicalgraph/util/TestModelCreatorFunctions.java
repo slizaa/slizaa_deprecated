@@ -101,9 +101,10 @@ public class TestModelCreatorFunctions {
     }
 
     //
-    HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement, type, () -> {
-      return dependencySourceCreator.apply(idRel, type);
-    });
+    HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement,
+        type, () -> {
+          return dependencySourceCreator.apply(idRel, type);
+        }, false);
 
     //
     return hgDependency;

@@ -147,4 +147,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IAggregatedCoreDependencyResolver"
       instanceClassName="org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="SourceOrTarget">
+    <eLiterals name="SOURCE"/>
+    <eLiterals name="TARGET"/>
+  </eClassifiers>
 </ecore:EPackage>

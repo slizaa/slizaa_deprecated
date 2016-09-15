@@ -67,7 +67,7 @@ public class HierarchicalgraphFactoryMethods {
    * @return
    */
   public static HGCoreDependency createNewCoreDependency(HGNode source, HGNode target, String type,
-      Supplier<HGDependencySource> dependencySourceSupplier) {
+      Supplier<HGDependencySource> dependencySourceSupplier, boolean reinitializeCaches) {
 
     //
     HGCoreDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGCoreDependency();
@@ -86,10 +86,12 @@ public class HierarchicalgraphFactoryMethods {
       target.getIncomingCoreDependenciesMap().put(source, new BasicEList<>());
     }
     target.getIncomingCoreDependenciesMap().get(source).add(dependency);
-    
+
     //
-    source.getRootNode().invalidateCaches(new BasicEList<HGNode>(Arrays.asList(source, target)));
-    source.getRootNode().initializeCaches(new BasicEList<HGNode>(Arrays.asList(source, target)));
+    if (reinitializeCaches) {
+      source.getRootNode().invalidateCaches(new BasicEList<HGNode>(Arrays.asList(source, target)));
+      source.getRootNode().initializeCaches(new BasicEList<HGNode>(Arrays.asList(source, target)));
+    }
 
     //
     return dependency;

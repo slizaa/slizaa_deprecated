@@ -73,14 +73,14 @@ public class GraphFactoryFunctions {
    * @param dependencySourceCreator
    */
   public static void createDependencies(JsonArray asJsonArray, HGRootNode rootElement,
-      BiFunction<Long, String, HGDependencySource> dependencySourceCreator) {
+      BiFunction<Long, String, HGDependencySource> dependencySourceCreator, boolean reinitializeCaches) {
     asJsonArray.forEach((element) -> {
       JsonArray row = element.getAsJsonArray();
       long idStart = row.get(0).getAsLong();
       long idTarget = row.get(1).getAsLong();
       long idRel = row.get(2).getAsLong();
       String type = row.get(3).getAsString();
-      createDependency(idStart, idTarget, idRel, type, rootElement, dependencySourceCreator);
+      createDependency(idStart, idTarget, idRel, type, rootElement, dependencySourceCreator, reinitializeCaches);
     });
   }
 
@@ -94,7 +94,7 @@ public class GraphFactoryFunctions {
    * @return
    */
   public static HGCoreDependency createDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
-      BiFunction<Long, String, HGDependencySource> dependencySourceCreator) {
+      BiFunction<Long, String, HGDependencySource> dependencySourceCreator, boolean reinitializeCaches) {
 
     // get the from...
     HGNode fromElement = ((ExtendedHGRootNodeImpl) rootElement).getIdToNodeMap().get(from);
@@ -111,7 +111,9 @@ public class GraphFactoryFunctions {
     //
     HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement, type, () -> {
       return dependencySourceCreator.apply(idRel, type);
-    });
+    }, reinitializeCaches);
+    
+    hgDependency.setAggregatedCoreDependency(true);
 
     //
     return hgDependency;

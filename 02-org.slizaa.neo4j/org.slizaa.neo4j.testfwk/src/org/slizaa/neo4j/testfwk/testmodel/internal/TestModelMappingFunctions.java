@@ -105,7 +105,7 @@ public class TestModelMappingFunctions {
     //
     HGCoreDependency hgDependency = createNewCoreDependency(fromElement, toElement, type, () -> {
       return dependencySourceCreator.apply(idRel, type);
-    });
+    }, false);
 
     //
     return hgDependency;
