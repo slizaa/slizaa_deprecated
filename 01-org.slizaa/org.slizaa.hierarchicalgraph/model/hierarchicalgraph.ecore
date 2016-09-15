@@ -80,6 +80,9 @@
     <eOperations name="invalidateCaches">
       <eParameters name="modifiedNodes" upperBound="-1" eType="#//HGNode"/>
     </eOperations>
+    <eOperations name="initializeCaches">
+      <eParameters name="modifiedNodes" upperBound="-1" eType="#//HGNode"/>
+    </eOperations>
     <eOperations name="lookupNode" eType="#//HGNode">
       <eParameters name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     </eOperations>

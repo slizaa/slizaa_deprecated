@@ -3,9 +3,11 @@ package org.slizaa.hierarchicalgraph;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Supplier;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 
 /**
@@ -84,6 +86,10 @@ public class HierarchicalgraphFactoryMethods {
       target.getIncomingCoreDependenciesMap().put(source, new BasicEList<>());
     }
     target.getIncomingCoreDependenciesMap().get(source).add(dependency);
+    
+    //
+    source.getRootNode().invalidateCaches(new BasicEList<HGNode>(Arrays.asList(source, target)));
+    source.getRootNode().initializeCaches(new BasicEList<HGNode>(Arrays.asList(source, target)));
 
     //
     return dependency;

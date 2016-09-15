@@ -2,10 +2,11 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -52,40 +53,29 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    */
   @Override
   public void invalidateAllCaches() {
-    this.invalidateLocalCaches();
+    _trait.invalidateLocalCaches();
     EcoreUtil.getAllContents(this, false).forEachRemaining((c) -> {
-      if (c instanceof ExtendedHGNodeImpl) {
-        ((ExtendedHGNodeImpl) c).invalidateLocalCaches();
-      }
+      ExtendedHGNodeTrait.getTrait(c).ifPresent((trait) -> trait.invalidateLocalCaches());
     });
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void invalidateCaches(EList<HGNode> modifiedNodes) {
-
-    checkNotNull(modifiedNodes);
-
-    //
-    EList<HGNode> selfAndParentNodes = new BasicEList<HGNode>();
-
-    //
-    for (HGNode hgNode : modifiedNodes) {
-      if (hgNode instanceof ExtendedHGNodeImpl) {
-        ExtendedHGNodeImpl extendedHGNode = (ExtendedHGNodeImpl) hgNode;
-        selfAndParentNodes.add(extendedHGNode);
-        selfAndParentNodes.addAll(extendedHGNode.getPredecessors());
-      }
+    for (HGNode hgNode : getSelfAndParentNodes(checkNotNull(modifiedNodes))) {
+      ExtendedHGNodeTrait.getTrait(hgNode).ifPresent((trait) -> trait.invalidateLocalCaches());
     }
+  }
 
-    //
-    for (HGNode hgNode : selfAndParentNodes) {
-      if (hgNode instanceof ExtendedHGNodeImpl) {
-        ExtendedHGNodeImpl extendedHGNode = (ExtendedHGNodeImpl) hgNode;
-        extendedHGNode.invalidateLocalCaches();
-      } else if (hgNode instanceof ExtendedHGRootNodeImpl) {
-        ExtendedHGRootNodeImpl extendedHGNode = (ExtendedHGRootNodeImpl) hgNode;
-        extendedHGNode.invalidateLocalCaches();
-      }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void initializeCaches(EList<HGNode> modifiedNodes) {
+    for (HGNode hgNode : getSelfAndParentNodes(checkNotNull(modifiedNodes))) {
+      ExtendedHGNodeTrait.getTrait(hgNode).ifPresent((trait) -> trait.initializeLocalCaches());
     }
   }
 
@@ -94,7 +84,6 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    */
   @Override
   public HGNode lookupNode(Object identifier) {
-
     if (_idToNodeMap == null) {
       EcoreUtil.getAllContents(this, false).forEachRemaining((c) -> {
         if (HierarchicalgraphPackage.eINSTANCE.getHGNode().isInstance(c)) {
@@ -203,8 +192,17 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     return _trait;
   }
 
-  public void invalidateLocalCaches() {
-    _trait.invalidateLocalCaches();
+  private List<HGNode> getSelfAndParentNodes(EList<HGNode> modifiedNodes) {
+    //
+    List<HGNode> selfAndParentNodes = new ArrayList<HGNode>();
+    for (HGNode hgNode : modifiedNodes) {
+      if (hgNode instanceof ExtendedHGNodeImpl) {
+        ExtendedHGNodeImpl extendedHGNode = (ExtendedHGNodeImpl) hgNode;
+        selfAndParentNodes.add(extendedHGNode);
+        selfAndParentNodes.addAll(extendedHGNode.getPredecessors());
+      }
+    }
+    return selfAndParentNodes;
   }
 
   /**

@@ -30,9 +30,9 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
    */
   public void invalidate() {
 
-    // clear the core dependencies
-    if (coreDependencies != null) {
-      coreDependencies.clear();
+    // return immediately if this dependency already has been uninitialized
+    if (!initialized) {
+      return;
     }
 
     // set initialized to false
@@ -58,6 +58,7 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
 
     //
     ExtendedHierarchicalGraphHelper.getTrait(to).ifPresent((trait) -> {
+
       List<HGCoreDependency> prototypeList = trait.getIncomingCoreDependencies(true).stream()
           .filter((dep) -> from.equals(dep.getFrom()) || from.isPredecessorOf(dep.getFrom()))
           .collect(Collectors.toList());
@@ -77,7 +78,7 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
             newAggregatedWeight));
       }
     }
-    
+
     //
     initialized = true;
   }

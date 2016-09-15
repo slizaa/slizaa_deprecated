@@ -173,6 +173,17 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
    * <!-- end-user-doc -->
    * @generated
    */
+  public void initializeCaches(EList<HGNode> modifiedNodes) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getName() {
     return name;
   }
@@ -291,6 +302,9 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
         return null;
       case HierarchicalgraphPackage.HG_ROOT_NODE___INVALIDATE_CACHES__ELIST:
         invalidateCaches((EList<HGNode>)arguments.get(0));
+        return null;
+      case HierarchicalgraphPackage.HG_ROOT_NODE___INITIALIZE_CACHES__ELIST:
+        initializeCaches((EList<HGNode>)arguments.get(0));
         return null;
       case HierarchicalgraphPackage.HG_ROOT_NODE___LOOKUP_NODE__OBJECT:
         return lookupNode(arguments.get(0));

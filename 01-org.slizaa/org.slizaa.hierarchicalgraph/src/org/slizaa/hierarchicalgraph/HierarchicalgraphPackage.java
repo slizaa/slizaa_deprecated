@@ -594,13 +594,22 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE___INVALIDATE_CACHES__ELIST = HG_NODE_OPERATION_COUNT + 1;
 
   /**
+   * The operation id for the '<em>Initialize Caches</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___INITIALIZE_CACHES__ELIST = HG_NODE_OPERATION_COUNT + 2;
+
+  /**
    * The operation id for the '<em>Lookup Node</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___LOOKUP_NODE__OBJECT = HG_NODE_OPERATION_COUNT + 2;
+  int HG_ROOT_NODE___LOOKUP_NODE__OBJECT = HG_NODE_OPERATION_COUNT + 3;
 
   /**
    * The number of operations of the '<em>HG Root Node</em>' class.
@@ -609,7 +618,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE_OPERATION_COUNT = HG_NODE_OPERATION_COUNT + 3;
+  int HG_ROOT_NODE_OPERATION_COUNT = HG_NODE_OPERATION_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultHGNodeSourceImpl <em>Default HG Node Source</em>}' class.
@@ -1564,6 +1573,16 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGRootNode__InvalidateCaches__EList();
 
   /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#initializeCaches(org.eclipse.emf.common.util.EList) <em>Initialize Caches</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Initialize Caches</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#initializeCaches(org.eclipse.emf.common.util.EList)
+   * @generated
+   */
+  EOperation getHGRootNode__InitializeCaches__EList();
+
+  /**
    * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGRootNode#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2238,6 +2257,14 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EOperation HG_ROOT_NODE___INVALIDATE_CACHES__ELIST = eINSTANCE.getHGRootNode__InvalidateCaches__EList();
+
+    /**
+     * The meta object literal for the '<em><b>Initialize Caches</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_ROOT_NODE___INITIALIZE_CACHES__ELIST = eINSTANCE.getHGRootNode__InitializeCaches__EList();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

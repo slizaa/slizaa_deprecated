@@ -3,6 +3,7 @@ package org.slizaa.hierarchicalgraph.impl;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -23,6 +24,30 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class ExtendedHGNodeTrait {
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @param o
+   * @return
+   */
+  public static Optional<ExtendedHGNodeTrait> getTrait(Object o) {
+
+    //
+    if (o instanceof ExtendedHGNodeImpl) {
+      return Optional.of(((ExtendedHGNodeImpl) o).getTrait());
+    }
+
+    //
+    if (o instanceof ExtendedHGRootNodeImpl) {
+      return Optional.of(((ExtendedHGRootNodeImpl) o).getTrait());
+    }
+
+    //
+    return Optional.empty();
+  }
+  
 
   /** - */
   private HGNodeImpl                             _hgNode;
@@ -356,6 +381,20 @@ public class ExtendedHGNodeTrait {
     if (_cachedAggregatedIncomingDependenciesMap != null) {
       _cachedAggregatedIncomingDependenciesMap.values()
           .forEach((dep) -> ((ExtendedHGAggregatedDependencyImpl) dep).invalidate());
+    }
+  }
+
+  public void initializeLocalCaches() {
+    cachedParents();
+    cachedOutgoingSelfAndSubTreeCoreDependencies();
+    cachedIncomingSelfAndSubTreeCoreDependencies();
+    if (_cachedAggregatedOutgoingDependenciesMap != null) {
+      _cachedAggregatedOutgoingDependenciesMap.values()
+          .forEach((dep) -> ((ExtendedHGAggregatedDependencyImpl) dep).initialize());
+    }
+    if (_cachedAggregatedIncomingDependenciesMap != null) {
+      _cachedAggregatedIncomingDependenciesMap.values()
+          .forEach((dep) -> ((ExtendedHGAggregatedDependencyImpl) dep).initialize());
     }
   }
 

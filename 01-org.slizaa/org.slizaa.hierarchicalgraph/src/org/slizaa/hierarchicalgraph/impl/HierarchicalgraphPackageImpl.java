@@ -508,6 +508,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public EOperation getHGRootNode__InitializeCaches__EList() {
+    return hgRootNodeEClass.getEOperations().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getHGRootNode_Name() {
     return (EAttribute)hgRootNodeEClass.getEStructuralFeatures().get(0);
   }
@@ -518,7 +527,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * @generated
    */
   public EOperation getHGRootNode__LookupNode__Object() {
-    return hgRootNodeEClass.getEOperations().get(2);
+    return hgRootNodeEClass.getEOperations().get(3);
   }
 
   /**
@@ -883,6 +892,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__AGGREGATED_CORE_DEPENDENCY_RESOLVER);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_ALL_CACHES);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_CACHES__ELIST);
+    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INITIALIZE_CACHES__ELIST);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___LOOKUP_NODE__OBJECT);
 
     defaultHGNodeSourceEClass = createEClass(DEFAULT_HG_NODE_SOURCE);
@@ -1029,6 +1039,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEOperation(getHGRootNode__InvalidateAllCaches(), null, "invalidateAllCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     op = initEOperation(getHGRootNode__InvalidateCaches__EList(), null, "invalidateCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
+    addEParameter(op, this.getHGNode(), "modifiedNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+    op = initEOperation(getHGRootNode__InitializeCaches__EList(), null, "initializeCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, this.getHGNode(), "modifiedNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
     op = initEOperation(getHGRootNode__LookupNode__Object(), this.getHGNode(), "lookupNode", 0, 1, IS_UNIQUE, IS_ORDERED);

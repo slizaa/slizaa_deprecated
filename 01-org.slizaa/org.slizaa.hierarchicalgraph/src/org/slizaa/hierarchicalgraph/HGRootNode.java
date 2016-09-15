@@ -94,6 +94,14 @@ public interface HGRootNode extends HGNode {
   void invalidateCaches(EList<HGNode> modifiedNodes);
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model modifiedNodesMany="true"
+   * @generated
+   */
+  void initializeCaches(EList<HGNode> modifiedNodes);
+
+  /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
