@@ -71,6 +71,18 @@ public class DefaultDependencySelector implements IDependencySelector {
   private Set<HGNode>                                        _filteredTargetNodesWithParents;
 
   /** - */
+  private Set<HGNode>                                        _filteredSourceNodesWithParentsAndChildren;
+
+  /** - */
+  private Set<HGNode>                                        _filteredTargetNodesWithParentsAndChildren;
+
+  /** - */
+  private Set<HGNode>                                        _unfilteredSourceNodesWithParentsAndChildren;
+
+  /** - */
+  private Set<HGNode>                                        _unfilteredTargetNodesWithParentsAndChildren;
+
+  /** - */
   private final LoadingCache<HGNode, List<HGCoreDependency>> _sourceNode2CoreDependenciesMap;
 
   /** - */
@@ -89,12 +101,10 @@ public class DefaultDependencySelector implements IDependencySelector {
    * 
    * @param dependencies
    */
-  public DefaultDependencySelector(Collection<HGCoreDependency> dependencies) {
+  public DefaultDependencySelector() {
 
     //
-    _unfilteredCoreDependencies = checkNotNull(dependencies);
-
-    //
+    _unfilteredCoreDependencies = Collections.emptySet();
     _filteredCoreDependencies = new HashSet<>();
     _unfilteredSourceNodes = new HashSet<>();
     _unfilteredTargetNodes = new HashSet<>();
@@ -104,6 +114,10 @@ public class DefaultDependencySelector implements IDependencySelector {
     _filteredTargetNodesWithParents = new HashSet<HGNode>();
     _unfilteredSourceNodesWithParents = new HashSet<HGNode>();
     _unfilteredTargetNodesWithParents = new HashSet<HGNode>();
+    _filteredSourceNodesWithParentsAndChildren = new HashSet<HGNode>();
+    _filteredTargetNodesWithParentsAndChildren = new HashSet<HGNode>();
+    _unfilteredSourceNodesWithParentsAndChildren = new HashSet<HGNode>();
+    _unfilteredTargetNodesWithParentsAndChildren = new HashSet<HGNode>();
     _selectedNodes = new HashSet<HGNode>();
 
     //
@@ -127,6 +141,37 @@ public class DefaultDependencySelector implements IDependencySelector {
    * {@inheritDoc}
    */
   @Override
+  public void setDependencies(Collection<HGCoreDependency> dependencies) {
+
+    _unfilteredCoreDependencies = checkNotNull(dependencies);
+
+    //
+    _filteredCoreDependencies.clear();
+    _unfilteredSourceNodes.clear();
+    _unfilteredTargetNodes.clear();
+    _filteredSourceNodes.clear();
+    _filteredTargetNodes.clear();
+    _filteredSourceNodesWithParents.clear();
+    _filteredTargetNodesWithParents.clear();
+    _unfilteredSourceNodesWithParents.clear();
+    _unfilteredTargetNodesWithParents.clear();
+    _filteredSourceNodesWithParentsAndChildren.clear();
+    _filteredTargetNodesWithParentsAndChildren.clear();
+    _unfilteredSourceNodesWithParentsAndChildren.clear();
+    _unfilteredTargetNodesWithParentsAndChildren.clear();
+
+    _selectedNodes.clear();
+    _sourceNode2CoreDependenciesMap.invalidateAll();
+    _targetNode2CoreDependenciesMap.invalidateAll();
+
+    //
+    _initialized = false;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public Collection<HGCoreDependency> getUnfilteredCoreDependencies() {
     init();
     return Collections.unmodifiableCollection(_unfilteredCoreDependencies);
@@ -141,6 +186,9 @@ public class DefaultDependencySelector implements IDependencySelector {
     return _filteredCoreDependencies;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Set<HGNode> getUnfilteredNodes(NodeType type) {
     init();
@@ -160,7 +208,7 @@ public class DefaultDependencySelector implements IDependencySelector {
    * {@inheritDoc}
    */
   @Override
-  public Set<HGNode> getFilteredNodesWithParents(NodeType type) {
+  public Set<HGNode> getFilteredNodesWithPredecessors(NodeType type) {
     init();
     return checkNotNull(type).equals(NodeType.SOURCE) ? _filteredSourceNodesWithParents
         : _filteredTargetNodesWithParents;
@@ -170,10 +218,30 @@ public class DefaultDependencySelector implements IDependencySelector {
    * {@inheritDoc}
    */
   @Override
-  public Set<HGNode> getUnfilteredNodesWithParents(NodeType type) {
+  public Set<HGNode> getUnfilteredNodesWithPredecessors(NodeType type) {
     init();
     return checkNotNull(type).equals(NodeType.SOURCE) ? _unfilteredSourceNodesWithParents
         : _unfilteredTargetNodesWithParents;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Set<HGNode> getFilteredNodesWithPredecessorsAndSuccessors(NodeType type) {
+    init();
+    return checkNotNull(type).equals(NodeType.SOURCE) ? _filteredSourceNodesWithParentsAndChildren
+        : _filteredTargetNodesWithParentsAndChildren;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Set<HGNode> getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType type) {
+    init();
+    return checkNotNull(type).equals(NodeType.SOURCE) ? _unfilteredSourceNodesWithParentsAndChildren
+        : _unfilteredTargetNodesWithParentsAndChildren;
   }
 
   /**
@@ -224,6 +292,8 @@ public class DefaultDependencySelector implements IDependencySelector {
       _unfilteredTargetNodes = unfilteredTargetNodes;
       _unfilteredSourceNodesWithParents = computeNodesWithParents(unfilteredSourceNodes, false);
       _unfilteredTargetNodesWithParents = computeNodesWithParents(unfilteredTargetNodes, false);
+      _unfilteredSourceNodesWithParentsAndChildren = computeNodesWithParents(unfilteredSourceNodes, true);
+      _unfilteredTargetNodesWithParentsAndChildren = computeNodesWithParents(unfilteredTargetNodes, true);
 
       //
       recomputeFilter();
@@ -279,6 +349,9 @@ public class DefaultDependencySelector implements IDependencySelector {
     }
     _filteredSourceNodesWithParents = computeNodesWithParents(_filteredSourceNodes, false);
     _filteredTargetNodesWithParents = computeNodesWithParents(_filteredTargetNodes, false);
+    _filteredSourceNodesWithParentsAndChildren = computeNodesWithParents(_filteredSourceNodes, true);
+    _filteredTargetNodesWithParentsAndChildren = computeNodesWithParents(_filteredSourceNodes, true);
+
   }
 
   /**

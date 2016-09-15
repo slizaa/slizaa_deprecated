@@ -71,6 +71,7 @@ public class DependencyTreeComposite extends Composite {
   /** - */
   private boolean                            _showReferenceCount;
 
+  /** - */
   private IHierarchicalGraphSelectionService _selectionService;
 
   /**
@@ -90,6 +91,7 @@ public class DependencyTreeComposite extends Composite {
     _toExpandStrategy = checkNotNull(toExpandStrategy);
     _showReferenceCount = showReferenceCount;
     _selectionService = selectionService;
+    _selector = new DefaultDependencySelector();
 
     init();
   }
@@ -103,7 +105,7 @@ public class DependencyTreeComposite extends Composite {
   public void setDependencies(Collection<HGCoreDependency> dependencies) {
 
     //
-    _selector = new DefaultDependencySelector(dependencies);
+    _selector.setDependencies(dependencies);
 
     // set the root if necessary...
     if (dependencies.size() > 0) {
@@ -125,16 +127,16 @@ public class DependencyTreeComposite extends Composite {
 
     // update 'from' and 'to' tree, no filtering
     VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-        _selector.getUnfilteredNodesWithParents(NodeType.SOURCE));
+        _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.SOURCE));
     VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-        _selector.getUnfilteredNodesWithParents(NodeType.TARGET));
+        _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.TARGET));
 
     //
     _fromTreeViewer.setSelection(null);
     _toTreeViewer.setSelection(null);
 
-    expandArtifacts(_fromTreeViewer, _selector.getUnfilteredNodesWithParents(NodeType.SOURCE));
-    expandArtifacts(_toTreeViewer, _selector.getUnfilteredNodesWithParents(NodeType.TARGET));
+    expandArtifacts(_fromTreeViewer, _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.SOURCE));
+    expandArtifacts(_toTreeViewer, _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.TARGET));
   }
 
   /**
@@ -253,11 +255,11 @@ public class DependencyTreeComposite extends Composite {
         //
         _selector.setSelectedNodes(NodeType.SOURCE, SelectionUtil.toArtifactList(structuredSelection));
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-            _selector.getFilteredNodesWithParents(NodeType.TARGET));
+            _selector.getFilteredNodesWithPredecessors(NodeType.TARGET));
         setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         //
-        expandArtifacts(_toTreeViewer, _selector.getFilteredNodesWithParents(NodeType.TARGET));
+        expandArtifacts(_toTreeViewer, _selector.getFilteredNodesWithPredecessorsAndSuccessors(NodeType.TARGET));
 
         // set the top item again
         if (treeItem != null && !treeItem.isDisposed()) {
@@ -268,7 +270,7 @@ public class DependencyTreeComposite extends Composite {
 
       } else {
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-            _selector.getUnfilteredNodesWithParents(NodeType.TARGET));
+            _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.TARGET));
         setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
     }
@@ -314,11 +316,11 @@ public class DependencyTreeComposite extends Composite {
         //
         _selector.setSelectedNodes(NodeType.TARGET, SelectionUtil.toArtifactList(structuredSelection));
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-            _selector.getFilteredNodesWithParents(NodeType.SOURCE));
+            _selector.getFilteredNodesWithPredecessorsAndSuccessors(NodeType.SOURCE));
         setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         //
-        expandArtifacts(_fromTreeViewer, _selector.getFilteredNodesWithParents(NodeType.SOURCE));
+        expandArtifacts(_fromTreeViewer, _selector.getFilteredNodesWithPredecessorsAndSuccessors(NodeType.SOURCE));
 
         // set the top item again
         try {
@@ -328,7 +330,7 @@ public class DependencyTreeComposite extends Composite {
         }
       } else {
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-            _selector.getUnfilteredNodesWithParents(NodeType.SOURCE));
+            _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.SOURCE));
         setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
     }

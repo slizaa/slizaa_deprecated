@@ -25,7 +25,7 @@ public interface IDependencySelector {
    * @return
    */
   Collection<HGCoreDependency> getUnfilteredCoreDependencies();
-  
+
   /**
    * <p>
    * </p>
@@ -33,9 +33,17 @@ public interface IDependencySelector {
    * @param type
    * @return
    */
-  Set<HGNode> getUnfilteredNodesWithParents(NodeType type);
+  Set<HGNode> getUnfilteredNodesWithPredecessors(NodeType type);
 
-  
+  /**
+   * <p>
+   * </p>
+   *
+   * @param type
+   * @return
+   */
+  Set<HGNode> getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType type);
+
   /**
    * <p>
    * </p>
@@ -43,7 +51,6 @@ public interface IDependencySelector {
    * @return the filteredSourceNodes
    */
   Set<HGNode> getUnfilteredNodes(NodeType type);
-
 
   /**
    * <p>
@@ -67,7 +74,16 @@ public interface IDependencySelector {
    *
    * @return
    */
-  Set<HGNode> getFilteredNodesWithParents(NodeType type);
+  Set<HGNode> getFilteredNodesWithPredecessors(NodeType type);
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param type
+   * @return
+   */
+  Set<HGNode> getFilteredNodesWithPredecessorsAndSuccessors(NodeType type);
 
   /**
    * <p>
@@ -84,5 +100,7 @@ public interface IDependencySelector {
    * @param selectedNodes
    */
   void setSelectedNodes(NodeType type, Collection<HGNode> selectedNodes);
+
+  void setDependencies(Collection<HGCoreDependency> dependencies);
 
 }
