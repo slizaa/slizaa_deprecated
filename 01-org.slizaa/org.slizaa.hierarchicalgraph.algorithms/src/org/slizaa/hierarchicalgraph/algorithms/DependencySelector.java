@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.impl.ExtendedHGNodeImpl;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -307,6 +308,11 @@ public class DependencySelector {
         result.add(parent);
         parent = parent.getParent();
       }
+      EcoreUtil.getAllContents(element, false).forEachRemaining((c) -> {
+        if (c instanceof ExtendedHGNodeImpl) {
+          result.add((ExtendedHGNodeImpl) c);
+        }
+      });
     }
 
     //

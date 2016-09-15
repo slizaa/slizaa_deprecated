@@ -2,8 +2,6 @@
  */
 package org.slizaa.hierarchicalgraph.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
@@ -23,7 +21,7 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
  * </p>
  * <ul>
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedDependencyImpl#getCoreDependencies <em>Core Dependencies</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedDependencyImpl#isInitialized <em>Initialized</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedDependencyImpl#getAggregatedWeight <em>Aggregated Weight</em>}</li>
  * </ul>
  *
  * @generated
@@ -39,23 +37,23 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    */
   protected EList<HGCoreDependency> coreDependencies;
   /**
-   * The default value of the '{@link #isInitialized() <em>Initialized</em>}' attribute.
+   * The default value of the '{@link #getAggregatedWeight() <em>Aggregated Weight</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isInitialized()
+   * @see #getAggregatedWeight()
    * @generated
    * @ordered
    */
-  protected static final boolean INITIALIZED_EDEFAULT = false;
+  protected static final int AGGREGATED_WEIGHT_EDEFAULT = 0;
   /**
-   * The cached value of the '{@link #isInitialized() <em>Initialized</em>}' attribute.
+   * The cached value of the '{@link #getAggregatedWeight() <em>Aggregated Weight</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isInitialized()
+   * @see #getAggregatedWeight()
    * @generated
    * @ordered
    */
-  protected boolean initialized = INITIALIZED_EDEFAULT;
+  protected int aggregatedWeight = AGGREGATED_WEIGHT_EDEFAULT;
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -92,19 +90,8 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isInitialized() {
-    return initialized;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public int getAggregatedWeight() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    return aggregatedWeight;
   }
 
   /**
@@ -117,8 +104,8 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
     switch (featureID) {
       case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES:
         return getCoreDependencies();
-      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__INITIALIZED:
-        return isInitialized();
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT:
+        return getAggregatedWeight();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -165,24 +152,10 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
     switch (featureID) {
       case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES:
         return coreDependencies != null && !coreDependencies.isEmpty();
-      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__INITIALIZED:
-        return initialized != INITIALIZED_EDEFAULT;
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT:
+        return aggregatedWeight != AGGREGATED_WEIGHT_EDEFAULT;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-    switch (operationID) {
-      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY___GET_AGGREGATED_WEIGHT:
-        return getAggregatedWeight();
-    }
-    return super.eInvoke(operationID, arguments);
   }
 
   /**
@@ -195,8 +168,8 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (initialized: ");
-    result.append(initialized);
+    result.append(" (aggregatedWeight: ");
+    result.append(aggregatedWeight);
     result.append(')');
     return result.toString();
   }

@@ -1,8 +1,12 @@
 package org.slizaa.hierarchicalgraph.impl;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
@@ -15,6 +19,9 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyImpl {
+
+  /** - */
+  private boolean initialized = false;
 
   /**
    * <p>
@@ -50,14 +57,27 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
     }
 
     //
-    ExtendedHierarchicalGraphHelper.getTrait(to).ifPresent((t) -> {
+    ExtendedHierarchicalGraphHelper.getTrait(to).ifPresent((trait) -> {
+      List<HGCoreDependency> prototypeList = trait.getIncomingCoreDependencies(true).stream()
+          .filter((dep) -> from.equals(dep.getFrom()) || from.isPredecessorOf(dep.getFrom()))
+          .collect(Collectors.toList());
 
       // add all incoming dependencies from successors of the specified node
-      coreDependencies.addAll(t.getIncomingCoreDependencies(true).stream()
-          .filter((dep) -> from.equals(dep.getFrom()) || from.isPredecessorOf(dep.getFrom()))
-          .collect(Collectors.toList()));
+      ECollections.setEList(coreDependencies, prototypeList);
     });
 
+    // compute the aggregated weight
+    int newAggregatedWeight = this.coreDependencies.stream().mapToInt(i -> i.getWeight()).sum();
+    if (newAggregatedWeight != aggregatedWeight) {
+      int oldAggregatedWeight = aggregatedWeight;
+      aggregatedWeight = newAggregatedWeight;
+      if (eNotificationRequired()) {
+        eNotify(new ENotificationImpl(this, Notification.SET,
+            HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT, oldAggregatedWeight,
+            newAggregatedWeight));
+      }
+    }
+    
     //
     initialized = true;
   }
@@ -91,7 +111,7 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
     initialize();
 
     //
-    return this.coreDependencies.stream().mapToInt(i -> i.getWeight()).sum();
+    return aggregatedWeight;
   }
 
   /**

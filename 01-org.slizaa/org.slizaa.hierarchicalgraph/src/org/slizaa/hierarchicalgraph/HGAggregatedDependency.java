@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#getCoreDependencies <em>Core Dependencies</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#isInitialized <em>Initialized</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#getAggregatedWeight <em>Aggregated Weight</em>}</li>
  * </ul>
  *
  * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGAggregatedDependency()
@@ -35,24 +35,12 @@ public interface HGAggregatedDependency extends AbstractHGDependency {
   EList<HGCoreDependency> getCoreDependencies();
 
   /**
-   * Returns the value of the '<em><b>Initialized</b></em>' attribute.
+   * Returns the value of the '<em><b>Aggregated Weight</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Initialized</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Initialized</em>' attribute.
-   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGAggregatedDependency_Initialized()
+   * @return the value of the '<em>Aggregated Weight</em>' attribute.
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGAggregatedDependency_AggregatedWeight()
    * @model changeable="false"
-   * @generated
-   */
-  boolean isInitialized();
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
    * @generated
    */
   int getAggregatedWeight();

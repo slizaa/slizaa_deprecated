@@ -850,13 +850,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 0;
 
     /**
-   * The feature id for the '<em><b>Initialized</b></em>' attribute.
+   * The feature id for the '<em><b>Aggregated Weight</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_DEPENDENCY__INITIALIZED = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 1;
+  int HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 1;
 
     /**
    * The number of structural features of the '<em>HG Aggregated Dependency</em>' class.
@@ -886,22 +886,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_AGGREGATED_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES;
 
     /**
-   * The operation id for the '<em>Get Aggregated Weight</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_AGGREGATED_DEPENDENCY___GET_AGGREGATED_WEIGHT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 0;
-
-    /**
    * The number of operations of the '<em>HG Aggregated Dependency</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_DEPENDENCY_OPERATION_COUNT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 1;
+  int HG_AGGREGATED_DEPENDENCY_OPERATION_COUNT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 0;
 
     /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl <em>HG Core Dependency</em>}' class.
@@ -1709,25 +1700,15 @@ public interface HierarchicalgraphPackage extends EPackage {
   EReference getHGAggregatedDependency_CoreDependencies();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#isInitialized <em>Initialized</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#getAggregatedWeight <em>Aggregated Weight</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Initialized</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGAggregatedDependency#isInitialized()
+   * @return the meta object for the attribute '<em>Aggregated Weight</em>'.
+   * @see org.slizaa.hierarchicalgraph.HGAggregatedDependency#getAggregatedWeight()
    * @see #getHGAggregatedDependency()
    * @generated
    */
-  EAttribute getHGAggregatedDependency_Initialized();
-
-  /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#getAggregatedWeight() <em>Get Aggregated Weight</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Aggregated Weight</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGAggregatedDependency#getAggregatedWeight()
-   * @generated
-   */
-  EOperation getHGAggregatedDependency__GetAggregatedWeight();
+  EAttribute getHGAggregatedDependency_AggregatedWeight();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGCoreDependency <em>HG Core Dependency</em>}'.
@@ -2371,20 +2352,12 @@ public interface HierarchicalgraphPackage extends EPackage {
     EReference HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES = eINSTANCE.getHGAggregatedDependency_CoreDependencies();
 
     /**
-     * The meta object literal for the '<em><b>Initialized</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Aggregated Weight</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute HG_AGGREGATED_DEPENDENCY__INITIALIZED = eINSTANCE.getHGAggregatedDependency_Initialized();
-
-    /**
-     * The meta object literal for the '<em><b>Get Aggregated Weight</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation HG_AGGREGATED_DEPENDENCY___GET_AGGREGATED_WEIGHT = eINSTANCE.getHGAggregatedDependency__GetAggregatedWeight();
+    EAttribute HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT = eINSTANCE.getHGAggregatedDependency_AggregatedWeight();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl <em>HG Core Dependency</em>}' class.

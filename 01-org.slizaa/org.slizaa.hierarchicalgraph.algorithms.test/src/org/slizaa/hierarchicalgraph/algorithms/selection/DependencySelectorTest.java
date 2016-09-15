@@ -1,15 +1,18 @@
-package org.slizaa.hierarchicalgraph.algorithms;
+package org.slizaa.hierarchicalgraph.algorithms.selection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.algorithms.AbstractXmiBasedTest;
+import org.slizaa.hierarchicalgraph.algorithms.selection.DefaultDependencySelector;
+import org.slizaa.hierarchicalgraph.algorithms.selection.IDependencySelector.NodeType;
 
 public class DependencySelectorTest extends AbstractXmiBasedTest {
 
   /** - */
-  private AggregatedDependencyDetailSelector _dependencySelector;
+  private DefaultDependencySelector _dependencySelector;
 
   /** - */
   private HGAggregatedDependency             _aggregatedDependency;
@@ -31,7 +34,7 @@ public class DependencySelectorTest extends AbstractXmiBasedTest {
     assertThat(_aggregatedDependency).isNotNull();
     assertThat(node(1063).getOutgoingDependenciesTo(node(5922)).getAggregatedWeight()).isEqualTo(50);
 
-    _dependencySelector = new AggregatedDependencyDetailSelector(_aggregatedDependency);
+    _dependencySelector = new DefaultDependencySelector(_aggregatedDependency.getCoreDependencies());
   }
 
   @Test
@@ -41,33 +44,33 @@ public class DependencySelectorTest extends AbstractXmiBasedTest {
 
   @Test
   public void testGetUnfilteredSourceNodes() {
-    assertThat(_dependencySelector.getUnfilteredSourceNodes()).hasSize(22);
+    assertThat(_dependencySelector.getUnfilteredNodes(NodeType.SOURCE)).hasSize(50);
   }
 
   @Test
   public void testGetUnfilteredTargetNodes() {
-    assertThat(_dependencySelector.getUnfilteredTargetNodes()).hasSize(6);
+    assertThat(_dependencySelector.getUnfilteredNodes(NodeType.TARGET)).hasSize(50);
   }
 
   @Test
   public void testSetSelectedSourceElements() {
 
     // EnumMappingMethod$Builder
-    _dependencySelector.setSelectedSourceElements(node(2280));
+    _dependencySelector.setSelectedNodes(NodeType.SOURCE, node(2280));
 
     assertThat(_dependencySelector.getFilteredCoreDependencies()).hasSize(4);
-    assertThat(_dependencySelector.getFilteredTargetNodes()).hasSize(4);
-    assertThat(_dependencySelector.getFilteredSourceNodes()).hasSize(0);
+    assertThat(_dependencySelector.getFilteredNodes(NodeType.TARGET)).hasSize(4);
+    assertThat(_dependencySelector.getFilteredNodes(NodeType.SOURCE)).hasSize(0);
   }
 
   @Test
   public void testSetSelectedTargetElements() {
 
     // Message
-    _dependencySelector.setSelectedTargetElements(node(1383));
+    _dependencySelector.setSelectedNodes(NodeType.TARGET, node(1383));
 
     assertThat(_dependencySelector.getFilteredCoreDependencies()).hasSize(7);
-    assertThat(_dependencySelector.getFilteredTargetNodes()).hasSize(0);
-    assertThat(_dependencySelector.getFilteredSourceNodes()).hasSize(7);
+    assertThat(_dependencySelector.getFilteredNodes(NodeType.TARGET)).hasSize(0);
+    assertThat(_dependencySelector.getFilteredNodes(NodeType.SOURCE)).hasSize(7);
   }
 }

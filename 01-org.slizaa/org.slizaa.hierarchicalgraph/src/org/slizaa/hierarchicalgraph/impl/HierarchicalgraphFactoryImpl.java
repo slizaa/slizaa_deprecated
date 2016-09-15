@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
-import org.slizaa.hierarchicalgraph.*;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 import org.slizaa.hierarchicalgraph.DefaultHGDependencySource;
 import org.slizaa.hierarchicalgraph.DefaultHGNodeSource;
