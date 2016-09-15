@@ -15,7 +15,7 @@ public class DependencySelectorTest extends AbstractXmiBasedTest {
   private DefaultDependencySelector _dependencySelector;
 
   /** - */
-  private HGAggregatedDependency             _aggregatedDependency;
+  private HGAggregatedDependency    _aggregatedDependency;
 
   /**
    * <p>
@@ -34,7 +34,9 @@ public class DependencySelectorTest extends AbstractXmiBasedTest {
     assertThat(_aggregatedDependency).isNotNull();
     assertThat(node(1063).getOutgoingDependenciesTo(node(5922)).getAggregatedWeight()).isEqualTo(50);
 
-    _dependencySelector = new DefaultDependencySelector(_aggregatedDependency.getCoreDependencies());
+    //
+    _dependencySelector = new DefaultDependencySelector();
+    _dependencySelector.setDependencies(_aggregatedDependency.getCoreDependencies());
   }
 
   @Test
@@ -44,12 +46,12 @@ public class DependencySelectorTest extends AbstractXmiBasedTest {
 
   @Test
   public void testGetUnfilteredSourceNodes() {
-    assertThat(_dependencySelector.getUnfilteredNodes(NodeType.SOURCE)).hasSize(50);
+    assertThat(_dependencySelector.getUnfilteredNodes(NodeType.SOURCE)).hasSize(22);
   }
 
   @Test
   public void testGetUnfilteredTargetNodes() {
-    assertThat(_dependencySelector.getUnfilteredNodes(NodeType.TARGET)).hasSize(50);
+    assertThat(_dependencySelector.getUnfilteredNodes(NodeType.TARGET)).hasSize(6);
   }
 
   @Test
