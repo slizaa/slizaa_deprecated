@@ -32,8 +32,9 @@ import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.hierarchicalgraph.algorithms.DependencySelector;
-import org.slizaa.hierarchicalgraph.algorithms.DependencySelector.SourceOrTarget;
+import org.slizaa.hierarchicalgraph.algorithms.selection.DefaultDependencySelector;
+import org.slizaa.hierarchicalgraph.algorithms.selection.IDependencySelector;
+import org.slizaa.hierarchicalgraph.algorithms.selection.IDependencySelector.NodeType;
 import org.slizaa.selection.IHierarchicalGraphSelectionService;
 import org.slizaa.ui.dependencytree.internal.expand.IExpandStrategy;
 import org.slizaa.ui.tree.SlizaaTreeFactory;
@@ -59,7 +60,7 @@ public class DependencyTreeComposite extends Composite {
   private TreeViewer                         _currentlySelectedTreeViewer;
 
   /** - */
-  private DependencySelector                 _selector;
+  private IDependencySelector                _selector;
 
   /** - */
   private IExpandStrategy                    _fromExpandStrategy;
@@ -102,7 +103,7 @@ public class DependencyTreeComposite extends Composite {
   public void setDependencies(Collection<HGCoreDependency> dependencies) {
 
     //
-    _selector = new DependencySelector(dependencies);
+    _selector = new DefaultDependencySelector(dependencies);
 
     // set the root if necessary...
     if (dependencies.size() > 0) {
@@ -124,16 +125,16 @@ public class DependencyTreeComposite extends Composite {
 
     // update 'from' and 'to' tree, no filtering
     VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-        _selector.getUnfilteredElementsWithParents(SourceOrTarget.SOURCE));
+        _selector.getUnfilteredNodesWithParents(NodeType.SOURCE));
     VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-        _selector.getUnfilteredElementsWithParents(SourceOrTarget.TARGET));
+        _selector.getUnfilteredNodesWithParents(NodeType.TARGET));
 
     //
     _fromTreeViewer.setSelection(null);
     _toTreeViewer.setSelection(null);
 
-    expandArtifacts(_fromTreeViewer, _selector.getUnfilteredElementsWithParents(SourceOrTarget.SOURCE));
-    expandArtifacts(_toTreeViewer, _selector.getUnfilteredElementsWithParents(SourceOrTarget.TARGET));
+    expandArtifacts(_fromTreeViewer, _selector.getUnfilteredNodesWithParents(NodeType.SOURCE));
+    expandArtifacts(_toTreeViewer, _selector.getUnfilteredNodesWithParents(NodeType.TARGET));
   }
 
   /**
@@ -143,7 +144,7 @@ public class DependencyTreeComposite extends Composite {
    * @return
    */
   public final Set<HGCoreDependency> getSelectedDetailDependencies() {
-    return _selector != null ? _selector.getFilteredDependencies() : EMPTY_DEPENDENCY_SET;
+    return _selector != null ? _selector.getFilteredCoreDependencies() : EMPTY_DEPENDENCY_SET;
   }
 
   /**
@@ -196,11 +197,12 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @param selectedDetailDependencies
    */
-  private void setSelectedDetailDependencies(Set<HGCoreDependency> dependencies) {
+  private void setSelectedDetailDependencies(Collection<HGCoreDependency> dependencies) {
 
     //
     if (propagateSelectedDetailDependencies() && !dependencies.isEmpty()) {
-      _selectionService.setCurrentDependencySelection(DependencyTreePart.ID, dependencies.toArray(new HGCoreDependency[0]));
+      _selectionService.setCurrentDependencySelection(DependencyTreePart.ID,
+          dependencies.toArray(new HGCoreDependency[0]));
     }
   }
 
@@ -249,13 +251,13 @@ public class DependencyTreeComposite extends Composite {
         TreeItem treeItem = _toTreeViewer.getTree().getTopItem();
 
         //
-        _selector.setSelectedElements(SourceOrTarget.SOURCE, SelectionUtil.toArtifactList(structuredSelection));
+        _selector.setSelectedNodes(NodeType.SOURCE, SelectionUtil.toArtifactList(structuredSelection));
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-            _selector.getFilteredElementsWithParents(SourceOrTarget.TARGET));
-        setSelectedDetailDependencies(_selector.getFilteredDependencies());
+            _selector.getFilteredNodesWithParents(NodeType.TARGET));
+        setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         //
-        expandArtifacts(_toTreeViewer, _selector.getFilteredElementsWithParents(SourceOrTarget.TARGET));
+        expandArtifacts(_toTreeViewer, _selector.getFilteredNodesWithParents(NodeType.TARGET));
 
         // set the top item again
         if (treeItem != null && !treeItem.isDisposed()) {
@@ -266,8 +268,8 @@ public class DependencyTreeComposite extends Composite {
 
       } else {
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-            _selector.getUnfilteredElementsWithParents(SourceOrTarget.TARGET));
-        setSelectedDetailDependencies(_selector.getUnfilteredDependencies());
+            _selector.getUnfilteredNodesWithParents(NodeType.TARGET));
+        setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
     }
   }
@@ -310,13 +312,13 @@ public class DependencyTreeComposite extends Composite {
         TreeItem treeItem = _fromTreeViewer.getTree().getTopItem();
 
         //
-        _selector.setSelectedElements(SourceOrTarget.TARGET, SelectionUtil.toArtifactList(structuredSelection));
+        _selector.setSelectedNodes(NodeType.TARGET, SelectionUtil.toArtifactList(structuredSelection));
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-            _selector.getFilteredElementsWithParents(SourceOrTarget.SOURCE));
-        setSelectedDetailDependencies(_selector.getFilteredDependencies());
+            _selector.getFilteredNodesWithParents(NodeType.SOURCE));
+        setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         //
-        expandArtifacts(_fromTreeViewer, _selector.getFilteredElementsWithParents(SourceOrTarget.SOURCE));
+        expandArtifacts(_fromTreeViewer, _selector.getFilteredNodesWithParents(NodeType.SOURCE));
 
         // set the top item again
         try {
@@ -326,8 +328,8 @@ public class DependencyTreeComposite extends Composite {
         }
       } else {
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-            _selector.getUnfilteredElementsWithParents(SourceOrTarget.SOURCE));
-        setSelectedDetailDependencies(_selector.getUnfilteredDependencies());
+            _selector.getUnfilteredNodesWithParents(NodeType.SOURCE));
+        setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
     }
 

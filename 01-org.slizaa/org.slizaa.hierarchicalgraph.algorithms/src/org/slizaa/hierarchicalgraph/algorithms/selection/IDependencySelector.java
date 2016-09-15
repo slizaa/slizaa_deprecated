@@ -1,8 +1,8 @@
 package org.slizaa.hierarchicalgraph.algorithms.selection;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 
@@ -24,7 +24,17 @@ public interface IDependencySelector {
    * 
    * @return
    */
-  EList<HGCoreDependency> getUnfilteredCoreDependencies();
+  Collection<HGCoreDependency> getUnfilteredCoreDependencies();
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @param type
+   * @return
+   */
+  Set<HGNode> getUnfilteredNodesWithParents(NodeType type);
+
   
   /**
    * <p>
@@ -32,7 +42,7 @@ public interface IDependencySelector {
    *
    * @return the filteredSourceNodes
    */
-  EList<HGNode> getUnfilteredNodes(NodeType type);
+  Set<HGNode> getUnfilteredNodes(NodeType type);
 
 
   /**
@@ -41,7 +51,7 @@ public interface IDependencySelector {
    * 
    * @return
    */
-  EList<HGCoreDependency> getFilteredCoreDependencies();
+  Set<HGCoreDependency> getFilteredCoreDependencies();
 
   /**
    * <p>
@@ -49,7 +59,7 @@ public interface IDependencySelector {
    *
    * @return the filteredSourceNodes
    */
-  EList<HGNode> getFilteredNodes(NodeType type);
+  Set<HGNode> getFilteredNodes(NodeType type);
 
   /**
    * <p>
@@ -57,7 +67,7 @@ public interface IDependencySelector {
    *
    * @return
    */
-  EList<HGNode> getFilteredNodesWithParents(NodeType type);
+  Set<HGNode> getFilteredNodesWithParents(NodeType type);
 
   /**
    * <p>
@@ -73,6 +83,6 @@ public interface IDependencySelector {
    *
    * @param selectedNodes
    */
-  void setSelectedNodes(NodeType type, List<HGNode> selectedNodes);
+  void setSelectedNodes(NodeType type, Collection<HGNode> selectedNodes);
 
 }

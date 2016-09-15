@@ -12,18 +12,15 @@ package org.slizaa.hierarchicalgraph.algorithms.selection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.ECollections;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
@@ -41,31 +38,37 @@ import com.google.common.cache.LoadingCache;
 public class DefaultDependencySelector implements IDependencySelector {
 
   /** - */
-  private final EList<HGCoreDependency>                      _unfilteredCoreDependencies;
+  private Collection<HGCoreDependency>                       _unfilteredCoreDependencies;
 
   /** - */
-  private final EList<HGNode>                                _unfilteredSourceNodes;
+  private Collection<HGNode>                                 _selectedNodes;
 
   /** - */
-  private final EList<HGNode>                                _unfilteredTargetNodes;
+  private Set<HGNode>                                        _unfilteredSourceNodes;
 
   /** - */
-  private final EList<HGCoreDependency>                      _filteredCoreDependencies;
+  private Set<HGNode>                                        _unfilteredTargetNodes;
 
   /** - */
-  private final EList<HGNode>                                _filteredSourceNodes;
+  private Set<HGNode>                                        _unfilteredSourceNodesWithParents;
 
   /** - */
-  private final EList<HGNode>                                _filteredTargetNodes;
+  private Set<HGNode>                                        _unfilteredTargetNodesWithParents;
 
   /** - */
-  private final EList<HGNode>                                _filteredSourceNodesWithParents;
+  private Set<HGCoreDependency>                              _filteredCoreDependencies;
 
   /** - */
-  private final EList<HGNode>                                _filteredTargetNodesWithParents;
+  private Set<HGNode>                                        _filteredSourceNodes;
 
   /** - */
-  private final EList<HGNode>                                _selectedNodes;
+  private Set<HGNode>                                        _filteredTargetNodes;
+
+  /** - */
+  private Set<HGNode>                                        _filteredSourceNodesWithParents;
+
+  /** - */
+  private Set<HGNode>                                        _filteredTargetNodesWithParents;
 
   /** - */
   private final LoadingCache<HGNode, List<HGCoreDependency>> _sourceNode2CoreDependenciesMap;
@@ -86,20 +89,22 @@ public class DefaultDependencySelector implements IDependencySelector {
    * 
    * @param dependencies
    */
-  public DefaultDependencySelector(EList<HGCoreDependency> dependencies) {
+  public DefaultDependencySelector(Collection<HGCoreDependency> dependencies) {
 
     //
     _unfilteredCoreDependencies = checkNotNull(dependencies);
 
     //
-    _filteredCoreDependencies = new BasicEList<>();
-    _unfilteredSourceNodes = new BasicEList<>();
-    _unfilteredTargetNodes = new BasicEList<>();
-    _filteredSourceNodes = new BasicEList<>();
-    _filteredTargetNodes = new BasicEList<>();
-    _filteredSourceNodesWithParents = new BasicEList<HGNode>();
-    _filteredTargetNodesWithParents = new BasicEList<HGNode>();
-    _selectedNodes = new BasicEList<HGNode>();
+    _filteredCoreDependencies = new HashSet<>();
+    _unfilteredSourceNodes = new HashSet<>();
+    _unfilteredTargetNodes = new HashSet<>();
+    _filteredSourceNodes = new HashSet<>();
+    _filteredTargetNodes = new HashSet<>();
+    _filteredSourceNodesWithParents = new HashSet<HGNode>();
+    _filteredTargetNodesWithParents = new HashSet<HGNode>();
+    _unfilteredSourceNodesWithParents = new HashSet<HGNode>();
+    _unfilteredTargetNodesWithParents = new HashSet<HGNode>();
+    _selectedNodes = new HashSet<HGNode>();
 
     //
     _sourceNode2CoreDependenciesMap = CacheBuilder.newBuilder()
@@ -122,22 +127,22 @@ public class DefaultDependencySelector implements IDependencySelector {
    * {@inheritDoc}
    */
   @Override
-  public EList<HGCoreDependency> getUnfilteredCoreDependencies() {
+  public Collection<HGCoreDependency> getUnfilteredCoreDependencies() {
     init();
-    return ECollections.unmodifiableEList(_unfilteredCoreDependencies);
+    return Collections.unmodifiableCollection(_unfilteredCoreDependencies);
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public EList<HGCoreDependency> getFilteredCoreDependencies() {
+  public Set<HGCoreDependency> getFilteredCoreDependencies() {
     init();
     return _filteredCoreDependencies;
   }
 
   @Override
-  public EList<HGNode> getUnfilteredNodes(NodeType type) {
+  public Set<HGNode> getUnfilteredNodes(NodeType type) {
     init();
     return checkNotNull(type).equals(NodeType.SOURCE) ? _unfilteredSourceNodes : _unfilteredTargetNodes;
   }
@@ -146,7 +151,7 @@ public class DefaultDependencySelector implements IDependencySelector {
    * {@inheritDoc}
    */
   @Override
-  public EList<HGNode> getFilteredNodes(NodeType type) {
+  public Set<HGNode> getFilteredNodes(NodeType type) {
     init();
     return checkNotNull(type).equals(NodeType.SOURCE) ? _filteredSourceNodes : _filteredTargetNodes;
   }
@@ -155,10 +160,20 @@ public class DefaultDependencySelector implements IDependencySelector {
    * {@inheritDoc}
    */
   @Override
-  public EList<HGNode> getFilteredNodesWithParents(NodeType type) {
+  public Set<HGNode> getFilteredNodesWithParents(NodeType type) {
     init();
     return checkNotNull(type).equals(NodeType.SOURCE) ? _filteredSourceNodesWithParents
         : _filteredTargetNodesWithParents;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Set<HGNode> getUnfilteredNodesWithParents(NodeType type) {
+    init();
+    return checkNotNull(type).equals(NodeType.SOURCE) ? _unfilteredSourceNodesWithParents
+        : _unfilteredTargetNodesWithParents;
   }
 
   /**
@@ -173,8 +188,8 @@ public class DefaultDependencySelector implements IDependencySelector {
    * {@inheritDoc}
    */
   @Override
-  public void setSelectedNodes(NodeType type, List<HGNode> selectedNodes) {
-    ECollections.setEList(_selectedNodes, checkNotNull(selectedNodes));
+  public void setSelectedNodes(NodeType type, Collection<HGNode> selectedNodes) {
+    _selectedNodes = checkNotNull(selectedNodes);
     _selectedNodesType = checkNotNull(type);
     _initialized = false;
     init();
@@ -193,8 +208,8 @@ public class DefaultDependencySelector implements IDependencySelector {
       _sourceNode2CoreDependenciesMap.invalidateAll();
       _targetNode2CoreDependenciesMap.invalidateAll();
 
-      List<HGNode> unfilteredSourceNodes = new LinkedList<HGNode>();
-      List<HGNode> unfilteredTargetNodes = new LinkedList<HGNode>();
+      Set<HGNode> unfilteredSourceNodes = new HashSet<HGNode>();
+      Set<HGNode> unfilteredTargetNodes = new HashSet<HGNode>();
 
       //
       _unfilteredCoreDependencies.forEach(dep -> {
@@ -205,8 +220,10 @@ public class DefaultDependencySelector implements IDependencySelector {
       });
 
       //
-      ECollections.setEList(_unfilteredSourceNodes, unfilteredSourceNodes);
-      ECollections.setEList(_unfilteredTargetNodes, unfilteredTargetNodes);
+      _unfilteredSourceNodes = unfilteredSourceNodes;
+      _unfilteredTargetNodes = unfilteredTargetNodes;
+      _unfilteredSourceNodesWithParents = computeNodesWithParents(unfilteredSourceNodes, false);
+      _unfilteredTargetNodesWithParents = computeNodesWithParents(unfilteredTargetNodes, false);
 
       //
       recomputeFilter();
@@ -223,8 +240,8 @@ public class DefaultDependencySelector implements IDependencySelector {
   private void recomputeFilter() {
 
     // clear filtered dependencies
-    List<HGCoreDependency> filteredCoreDependencies = new LinkedList<HGCoreDependency>();
-    List<HGNode> filteredNodes = new LinkedList<HGNode>();
+    Set<HGCoreDependency> filteredCoreDependencies = new HashSet<HGCoreDependency>();
+    Set<HGNode> filteredNodes = new HashSet<HGNode>();
 
     //
     Map<HGNode, List<HGCoreDependency>> node2DependenciesMap = _selectedNodesType == NodeType.SOURCE
@@ -250,18 +267,18 @@ public class DefaultDependencySelector implements IDependencySelector {
     }
 
     //
-    ECollections.setEList(_filteredCoreDependencies, filteredCoreDependencies);
+    _filteredCoreDependencies = filteredCoreDependencies;
 
     //
     if (_selectedNodesType == NodeType.SOURCE) {
       _filteredSourceNodes.clear();
-      ECollections.setEList(_filteredTargetNodes, filteredNodes);
+      _filteredTargetNodes = filteredNodes;
     } else {
-      ECollections.setEList(_filteredSourceNodes, filteredNodes);
+      _filteredSourceNodes = filteredNodes;
       _filteredTargetNodes.clear();
     }
-    ECollections.setEList(_filteredSourceNodesWithParents, computeNodesWithParents(_filteredSourceNodes, false));
-    ECollections.setEList(_filteredTargetNodesWithParents, computeNodesWithParents(_filteredTargetNodes, false));
+    _filteredSourceNodesWithParents = computeNodesWithParents(_filteredSourceNodes, false);
+    _filteredTargetNodesWithParents = computeNodesWithParents(_filteredTargetNodes, false);
   }
 
   /**
@@ -289,7 +306,7 @@ public class DefaultDependencySelector implements IDependencySelector {
    * @param elements
    * @return
    */
-  private static List<HGNode> computeNodesWithParents(Collection<HGNode> nodes, boolean includeChildren) {
+  private static Set<HGNode> computeNodesWithParents(Collection<HGNode> nodes, boolean includeChildren) {
     // TODO rework
     Set<HGNode> result = new HashSet<>(checkNotNull(nodes));
     nodes.forEach((n) -> {
@@ -302,6 +319,6 @@ public class DefaultDependencySelector implements IDependencySelector {
         });
       }
     });
-    return new ArrayList<HGNode>(result);
+    return result;
   }
 }
