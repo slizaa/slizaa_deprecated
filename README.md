@@ -1,7 +1,7 @@
 ## Slizaa
 
 ### Website
-https://slizaa.github.io/slizaa/
+http://www.slizaa.org
 
 ### Continuous Build
 [![Build Status](https://travis-ci.org/slizaa/slizaa.svg?branch=master)](https://travis-ci.org/slizaa/slizaa)
