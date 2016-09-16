@@ -127,16 +127,16 @@ public class DependencyTreeComposite extends Composite {
 
     // update 'from' and 'to' tree, no filtering
     VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-        _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.SOURCE));
+        _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
     VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-        _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.TARGET));
+        _selector.getRootLeafPathNodes(NodeType.TARGET, false));
 
     //
     _fromTreeViewer.setSelection(null);
     _toTreeViewer.setSelection(null);
 
-    expandArtifacts(_fromTreeViewer, _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.SOURCE));
-    expandArtifacts(_toTreeViewer, _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.TARGET));
+    expandArtifacts(_fromTreeViewer, _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
+    expandArtifacts(_toTreeViewer, _selector.getRootLeafPathNodes(NodeType.TARGET, false));
   }
 
   /**
@@ -255,11 +255,11 @@ public class DependencyTreeComposite extends Composite {
         //
         _selector.setSelectedNodes(NodeType.SOURCE, SelectionUtil.toArtifactList(structuredSelection));
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-            _selector.getFilteredNodesWithPredecessors(NodeType.TARGET));
+            _selector.getRootLeafPathNodes(NodeType.TARGET, true));
         setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         //
-        expandArtifacts(_toTreeViewer, _selector.getFilteredNodesWithPredecessorsAndSuccessors(NodeType.TARGET));
+        expandArtifacts(_toTreeViewer, _selector.getRootLeafPathNodes(NodeType.TARGET, true));
 
         // set the top item again
         if (treeItem != null && !treeItem.isDisposed()) {
@@ -270,7 +270,7 @@ public class DependencyTreeComposite extends Composite {
 
       } else {
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-            _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.TARGET));
+            _selector.getRootLeafPathNodes(NodeType.TARGET, false));
         setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
     }
@@ -316,11 +316,11 @@ public class DependencyTreeComposite extends Composite {
         //
         _selector.setSelectedNodes(NodeType.TARGET, SelectionUtil.toArtifactList(structuredSelection));
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-            _selector.getFilteredNodesWithPredecessorsAndSuccessors(NodeType.SOURCE));
+            _selector.getRootLeafPathNodes(NodeType.SOURCE, true));
         setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         //
-        expandArtifacts(_fromTreeViewer, _selector.getFilteredNodesWithPredecessorsAndSuccessors(NodeType.SOURCE));
+        expandArtifacts(_fromTreeViewer, _selector.getRootLeafPathNodes(NodeType.SOURCE, true));
 
         // set the top item again
         try {
@@ -330,7 +330,7 @@ public class DependencyTreeComposite extends Composite {
         }
       } else {
         VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-            _selector.getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType.SOURCE));
+            _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
         setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
     }

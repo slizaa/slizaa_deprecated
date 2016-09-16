@@ -21,7 +21,7 @@ public interface IDependencySelector {
   /**
    * <p>
    * </p>
-   * 
+   *
    * @return
    */
   Collection<HGCoreDependency> getUnfilteredCoreDependencies();
@@ -33,29 +33,12 @@ public interface IDependencySelector {
    * @param type
    * @return
    */
-  Set<HGNode> getUnfilteredNodesWithPredecessors(NodeType type);
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param type
-   * @return
-   */
-  Set<HGNode> getUnfilteredNodesWithPredecessorsAndSuccessors(NodeType type);
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return the filteredSourceNodes
-   */
   Set<HGNode> getUnfilteredNodes(NodeType type);
 
   /**
    * <p>
    * </p>
-   * 
+   *
    * @return
    */
   Set<HGCoreDependency> getFilteredCoreDependencies();
@@ -64,7 +47,8 @@ public interface IDependencySelector {
    * <p>
    * </p>
    *
-   * @return the filteredSourceNodes
+   * @param type
+   * @return
    */
   Set<HGNode> getFilteredNodes(NodeType type);
 
@@ -72,23 +56,17 @@ public interface IDependencySelector {
    * <p>
    * </p>
    *
+   * @param type
+   * @param filtered
    * @return
    */
-  Set<HGNode> getFilteredNodesWithPredecessors(NodeType type);
+  Set<HGNode> getRootLeafPathNodes(NodeType type, boolean filtered);
 
   /**
    * <p>
    * </p>
    *
    * @param type
-   * @return
-   */
-  Set<HGNode> getFilteredNodesWithPredecessorsAndSuccessors(NodeType type);
-
-  /**
-   * <p>
-   * </p>
-   *
    * @param selectedNodes
    */
   void setSelectedNodes(NodeType type, HGNode... selectedNodes);
@@ -97,10 +75,16 @@ public interface IDependencySelector {
    * <p>
    * </p>
    *
+   * @param type
    * @param selectedNodes
    */
   void setSelectedNodes(NodeType type, Collection<HGNode> selectedNodes);
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @param dependencies
+   */
   void setDependencies(Collection<HGCoreDependency> dependencies);
-
 }
