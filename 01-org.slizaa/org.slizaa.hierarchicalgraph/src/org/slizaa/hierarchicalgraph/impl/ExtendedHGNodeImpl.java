@@ -1,7 +1,5 @@
 package org.slizaa.hierarchicalgraph.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;

@@ -421,6 +421,7 @@ public class ExtendedHGNodeTrait {
    * @param result
    * @return
    */
+   // TODO: !!
   private EList<HGCoreDependency> filterCoreDependencies(EList<HGCoreDependency> dependencies) {
     checkNotNull(dependencies);
 
@@ -506,7 +507,7 @@ public class ExtendedHGNodeTrait {
    *
    * @return
    */
-  private EList<HGCoreDependency> cachedOutgoingSelfAndSubTreeCoreDependencies() {
+  EList<HGCoreDependency> cachedOutgoingSelfAndSubTreeCoreDependencies() {
 
     // lazy init
     if (!_cachedOutgoingSelfAndSubTreeCoreDependenciesInitialized
@@ -545,7 +546,7 @@ public class ExtendedHGNodeTrait {
    *
    * @return
    */
-  private EList<HGCoreDependency> cachedIncomingSelfAndSubTreeCoreDependencies() {
+  EList<HGCoreDependency> cachedIncomingSelfAndSubTreeCoreDependencies() {
 
     //
     if (!_cachedIncomingSelfAndSubTreeCoreDependenciesInitialized
