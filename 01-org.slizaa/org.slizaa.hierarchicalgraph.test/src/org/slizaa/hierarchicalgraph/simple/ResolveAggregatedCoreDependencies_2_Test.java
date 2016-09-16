@@ -50,9 +50,10 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
 
     //
     HGAggregatedDependency aggregatedDependency = model().a1().getOutgoingDependenciesTo(model().b1());
+    assertThat(aggregatedDependency).isNotNull();
 
     //
-    assertThat(aggregatedDependency).isNotNull();
+    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(4);
     assertThat(aggregatedDependency.getCoreDependencies()).isNotNull();
     assertThat(aggregatedDependency.getCoreDependencies()).hasSize(4).contains(model().a1_b1_core1(),
         model().a1_b1_core2(), model().a2_b2_core1(), model().a3_b3_core1());
@@ -61,6 +62,8 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
     aggregatedDependency.resolveAggregatedCoreDependencies();
 
     //
+    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(4);
+    assertThat(aggregatedDependency.getCoreDependencies()).isNotNull();
     assertThat(aggregatedDependency.getCoreDependencies()).hasSize(5).contains(model().a1_b1_core1(),
         model().a1_b1_core2(), model().a2_b2_core1(), _newDependency_1, _newDependency_2);
   }

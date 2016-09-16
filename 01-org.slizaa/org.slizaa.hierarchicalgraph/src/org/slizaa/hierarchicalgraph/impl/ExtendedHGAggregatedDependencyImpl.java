@@ -63,21 +63,20 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
           .filter((dep) -> from.equals(dep.getFrom()) || from.isPredecessorOf(dep.getFrom()))
           .collect(Collectors.toList());
 
-      // add all incoming dependencies from successors of the specified node
-      ECollections.setEList(coreDependencies, prototypeList);
-    });
+      List<HGCoreDependency> newCoreDependencies = prototypeList.stream()
+          .filter(ExtendedHierarchicalGraphHelper.FILTER_REMOVE_RESOLVED_AGGREGATED_CORE_DEPENDENCIES)
+          .collect(Collectors.toList());
 
-    // compute the aggregated weight
-    int newAggregatedWeight = this.coreDependencies.stream().mapToInt(i -> i.getWeight()).sum();
-    if (newAggregatedWeight != aggregatedWeight) {
-      int oldAggregatedWeight = aggregatedWeight;
-      aggregatedWeight = newAggregatedWeight;
-      if (eNotificationRequired()) {
-        eNotify(new ENotificationImpl(this, Notification.SET,
-            HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT, oldAggregatedWeight,
-            newAggregatedWeight));
-      }
-    }
+      // add all incoming dependencies from successors of the specified node
+      ECollections.setEList(coreDependencies, newCoreDependencies);
+
+      // compute the aggregated weight
+      int newAggregatedWeight = prototypeList.stream()
+          .filter(ExtendedHierarchicalGraphHelper.FILTER_REMOVE_CORE_DEPENDENCIES_FROM_AGGREGATED_CORE_DEPENDENCIES)
+          .mapToInt(coreDep -> coreDep.getWeight()).sum();
+
+      setNewAggregatedWeight(newAggregatedWeight);
+    });
 
     //
     initialized = true;
@@ -127,4 +126,23 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
     //
     ExtendedHierarchicalGraphHelper.resolveAggregatedCoreDependencies(this.coreDependencies);
   }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param newAggregatedWeight
+   */
+  private void setNewAggregatedWeight(int newAggregatedWeight) {
+    if (newAggregatedWeight != aggregatedWeight) {
+      int oldAggregatedWeight = aggregatedWeight;
+      aggregatedWeight = newAggregatedWeight;
+      if (eNotificationRequired()) {
+        eNotify(new ENotificationImpl(this, Notification.SET,
+            HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT, oldAggregatedWeight,
+            newAggregatedWeight));
+      }
+    }
+  }
+
 }

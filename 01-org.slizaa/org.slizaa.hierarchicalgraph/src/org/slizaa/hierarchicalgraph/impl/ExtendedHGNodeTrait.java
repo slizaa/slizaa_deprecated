@@ -427,7 +427,7 @@ public class ExtendedHGNodeTrait {
 
     //
     EList<HGCoreDependency> filteredDependencies = new BasicEList<HGCoreDependency>(dependencies.stream()
-        .filter(ExtendedHierarchicalGraphHelper.FILTER_AGGREGATED_CORE_DEPENDENCIES).collect(Collectors.toList()));
+        .filter(ExtendedHierarchicalGraphHelper.FILTER_REMOVE_RESOLVED_AGGREGATED_CORE_DEPENDENCIES).collect(Collectors.toList()));
 
     //
     return filteredDependencies;

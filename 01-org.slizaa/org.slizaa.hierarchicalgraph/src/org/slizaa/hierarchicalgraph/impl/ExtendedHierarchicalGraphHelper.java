@@ -27,9 +27,20 @@ import org.slizaa.hierarchicalgraph.HGNode;
 public class ExtendedHierarchicalGraphHelper {
 
   /** - */
-  public static final Predicate<HGCoreDependency> FILTER_AGGREGATED_CORE_DEPENDENCIES = (dep) -> {
-    return !(dep instanceof HGAggregatedCoreDependency) || !(((HGAggregatedCoreDependency) dep).isResolved());
-  };
+  public static final Predicate<HGCoreDependency> FILTER_REMOVE_RESOLVED_AGGREGATED_CORE_DEPENDENCIES               = (
+      dep) -> {
+                                                                                                                      return !(dep instanceof HGAggregatedCoreDependency)
+                                                                                                                          || !(((HGAggregatedCoreDependency) dep)
+                                                                                                                              .isResolved());
+                                                                                                                    };
+
+  /** - */
+  public static final Predicate<HGCoreDependency> FILTER_REMOVE_CORE_DEPENDENCIES_FROM_AGGREGATED_CORE_DEPENDENCIES = (
+      dep) -> {
+                                                                                                                      return (dep instanceof HGAggregatedCoreDependency
+                                                                                                                          || dep
+                                                                                                                              .getAggregatedCoreDependencyParent() == null);
+                                                                                                                    };
 
   /**
    * <p>
@@ -50,14 +61,15 @@ public class ExtendedHierarchicalGraphHelper {
 
     //
     for (HGCoreDependency coreDependency : coreDependencies) {
-        if (coreDependency instanceof ExtendedHGAggregatedCoreDependencyImpl) {
+      if (coreDependency instanceof ExtendedHGAggregatedCoreDependencyImpl) {
 
-          // get the future
-          Future<?> future = ((ExtendedHGAggregatedCoreDependencyImpl) coreDependency).onResolveAggregatedCoreDependency();
-          if (future != null) {
-            futures.add(future);
-          }
+        // get the future
+        Future<?> future = ((ExtendedHGAggregatedCoreDependencyImpl) coreDependency)
+            .onResolveAggregatedCoreDependency();
+        if (future != null) {
+          futures.add(future);
         }
+      }
     }
 
     // wait for completion the result
@@ -92,7 +104,8 @@ public class ExtendedHierarchicalGraphHelper {
   public static List<HGCoreDependency> filterAggregatedCoreDependencies(List<HGCoreDependency> dependencies) {
     checkNotNull(dependencies);
 
-    return dependencies.stream().filter(FILTER_AGGREGATED_CORE_DEPENDENCIES).collect(Collectors.toList());
+    return dependencies.stream().filter(FILTER_REMOVE_RESOLVED_AGGREGATED_CORE_DEPENDENCIES)
+        .collect(Collectors.toList());
   }
 
   /**
