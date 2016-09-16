@@ -3,29 +3,35 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>String To String Map</b></em>'.
+ * An implementation of the model object '<em><b>Identifier To Node Map</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.StringToStringMapImpl#getTypedKey <em>Key</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.StringToStringMapImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.IdentifierToNodeMapImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.IdentifierToNodeMapImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class StringToStringMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,String> {
+public class IdentifierToNodeMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<Object,HGNode> {
   /**
    * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -34,7 +40,7 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    * @ordered
    */
-  protected static final String KEY_EDEFAULT = null;
+  protected static final Object KEY_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
@@ -44,34 +50,24 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    * @ordered
    */
-  protected String key = KEY_EDEFAULT;
+  protected Object key = KEY_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
+   * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTypedValue()
    * @generated
    * @ordered
    */
-  protected static final String VALUE_EDEFAULT = "";
-
-  /**
-   * The cached value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTypedValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
+  protected HGNode value;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected StringToStringMapImpl() {
+  protected IdentifierToNodeMapImpl() {
     super();
   }
 
@@ -82,7 +78,7 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    */
   @Override
   protected EClass eStaticClass() {
-    return HierarchicalgraphPackage.Literals.STRING_TO_STRING_MAP;
+    return HierarchicalgraphPackage.Literals.IDENTIFIER_TO_NODE_MAP;
   }
 
   /**
@@ -90,7 +86,7 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getTypedKey() {
+  public Object getTypedKey() {
     return key;
   }
 
@@ -99,11 +95,11 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTypedKey(String newKey) {
-    String oldKey = key;
+  public void setTypedKey(Object newKey) {
+    Object oldKey = key;
     key = newKey;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.STRING_TO_STRING_MAP__KEY, oldKey, key));
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP__KEY, oldKey, key));
   }
 
   /**
@@ -111,7 +107,15 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getTypedValue() {
+  public HGNode getTypedValue() {
+    if (value != null && value.eIsProxy()) {
+      InternalEObject oldValue = (InternalEObject)value;
+      value = (HGNode)eResolveProxy(oldValue);
+      if (value != oldValue) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP__VALUE, oldValue, value));
+      }
+    }
     return value;
   }
 
@@ -120,11 +124,20 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTypedValue(String newValue) {
-    String oldValue = value;
+  public HGNode basicGetTypedValue() {
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTypedValue(HGNode newValue) {
+    HGNode oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.STRING_TO_STRING_MAP__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP__VALUE, oldValue, value));
   }
 
   /**
@@ -135,10 +148,11 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__KEY:
+      case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP__KEY:
         return getTypedKey();
-      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__VALUE:
-        return getTypedValue();
+      case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP__VALUE:
+        if (resolve) return getTypedValue();
+        return basicGetTypedValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -151,11 +165,11 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__KEY:
-        setTypedKey((String)newValue);
+      case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP__KEY:
+        setTypedKey(newValue);
         return;
-      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__VALUE:
-        setTypedValue((String)newValue);
+      case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP__VALUE:
+        setTypedValue((HGNode)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,11 +183,11 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__KEY:
+      case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP__KEY:
         setTypedKey(KEY_EDEFAULT);
         return;
-      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__VALUE:
-        setTypedValue(VALUE_EDEFAULT);
+      case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP__VALUE:
+        setTypedValue((HGNode)null);
         return;
     }
     super.eUnset(featureID);
@@ -187,10 +201,10 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__KEY:
+      case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP__KEY:
         return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+      case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP__VALUE:
+        return value != null;
     }
     return super.eIsSet(featureID);
   }
@@ -207,8 +221,6 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (key: ");
     result.append(key);
-    result.append(", value: ");
-    result.append(value);
     result.append(')');
     return result.toString();
   }
@@ -247,7 +259,7 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getKey() {
+  public Object getKey() {
     return getTypedKey();
   }
 
@@ -256,7 +268,7 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setKey(String key) {
+  public void setKey(Object key) {
     setTypedKey(key);
   }
 
@@ -265,7 +277,7 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getValue() {
+  public HGNode getValue() {
     return getTypedValue();
   }
 
@@ -274,8 +286,8 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public String setValue(String value) {
-    String oldValue = getValue();
+  public HGNode setValue(HGNode value) {
+    HGNode oldValue = getValue();
     setTypedValue(value);
     return oldValue;
   }
@@ -286,9 +298,9 @@ public class StringToStringMapImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    */
   @SuppressWarnings("unchecked")
-  public EMap<String, String> getEMap() {
+  public EMap<Object, HGNode> getEMap() {
     EObject container = eContainer();
-    return container == null ? null : (EMap<String, String>)container.eGet(eContainmentFeature());
+    return container == null ? null : (EMap<Object, HGNode>)container.eGet(eContainmentFeature());
   }
 
-} //StringToStringMapImpl
+} //IdentifierToNodeMapImpl

@@ -2,67 +2,80 @@
  */
 package org.slizaa.hierarchicalgraph.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.BasicEMap;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Node To Core Dependencies Map</b></em>'.
+ * An implementation of the model object '<em><b>String To String Map</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.NodeToCoreDependenciesMapImpl#getTypedKey <em>Key</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.NodeToCoreDependenciesMapImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.StringToStringMapImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.StringToStringMapImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<HGNode,EList<HGCoreDependency>> {
+public class StringToStringMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,String> {
   /**
-   * The cached value of the '{@link #getTypedKey() <em>Key</em>}' reference.
+   * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTypedKey()
    * @generated
    * @ordered
    */
-  protected HGNode key;
+  protected static final String KEY_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference list.
+   * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTypedKey()
+   * @generated
+   * @ordered
+   */
+  protected String key = KEY_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTypedValue()
    * @generated
    * @ordered
    */
-  protected EList<HGCoreDependency> value;
+  protected static final String VALUE_EDEFAULT = "";
+
+  /**
+   * The cached value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTypedValue()
+   * @generated
+   * @ordered
+   */
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected NodeToCoreDependenciesMapImpl() {
+  protected StringToStringMapImpl() {
     super();
   }
 
@@ -73,7 +86,7 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    */
   @Override
   protected EClass eStaticClass() {
-    return HierarchicalgraphPackage.Literals.NODE_TO_CORE_DEPENDENCIES_MAP;
+    return HierarchicalgraphPackage.Literals.STRING_TO_STRING_MAP;
   }
 
   /**
@@ -81,15 +94,7 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGNode getTypedKey() {
-    if (key != null && key.eIsProxy()) {
-      InternalEObject oldKey = (InternalEObject)key;
-      key = (HGNode)eResolveProxy(oldKey);
-      if (key != oldKey) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY, oldKey, key));
-      }
-    }
+  public String getTypedKey() {
     return key;
   }
 
@@ -98,20 +103,11 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGNode basicGetTypedKey() {
-    return key;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setTypedKey(HGNode newKey) {
-    HGNode oldKey = key;
+  public void setTypedKey(String newKey) {
+    String oldKey = key;
     key = newKey;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY, oldKey, key));
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.STRING_TO_STRING_MAP__KEY, oldKey, key));
   }
 
   /**
@@ -119,11 +115,20 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> getTypedValue() {
-    if (value == null) {
-      value = new EObjectResolvingEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__VALUE);
-    }
+  public String getTypedValue() {
     return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTypedValue(String newValue) {
+    String oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.STRING_TO_STRING_MAP__VALUE, oldValue, value));
   }
 
   /**
@@ -134,10 +139,9 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY:
-        if (resolve) return getTypedKey();
-        return basicGetTypedKey();
-      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__VALUE:
+      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__KEY:
+        return getTypedKey();
+      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__VALUE:
         return getTypedValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -148,16 +152,14 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY:
-        setTypedKey((HGNode)newValue);
+      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__KEY:
+        setTypedKey((String)newValue);
         return;
-      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__VALUE:
-        getTypedValue().clear();
-        getTypedValue().addAll((Collection<? extends HGCoreDependency>)newValue);
+      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__VALUE:
+        setTypedValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -171,11 +173,11 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY:
-        setTypedKey((HGNode)null);
+      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__KEY:
+        setTypedKey(KEY_EDEFAULT);
         return;
-      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__VALUE:
-        getTypedValue().clear();
+      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__VALUE:
+        setTypedValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -189,12 +191,30 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__KEY:
-        return key != null;
-      case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__VALUE:
-        return value != null && !value.isEmpty();
+      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__KEY:
+        return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
+      case HierarchicalgraphPackage.STRING_TO_STRING_MAP__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString() {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (key: ");
+    result.append(key);
+    result.append(", value: ");
+    result.append(value);
+    result.append(')');
+    return result.toString();
   }
 
   /**
@@ -231,7 +251,7 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGNode getKey() {
+  public String getKey() {
     return getTypedKey();
   }
 
@@ -240,7 +260,7 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setKey(HGNode key) {
+  public void setKey(String key) {
     setTypedKey(key);
   }
 
@@ -249,7 +269,7 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> getValue() {
+  public String getValue() {
     return getTypedValue();
   }
 
@@ -258,10 +278,9 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> setValue(EList<HGCoreDependency> value) {
-    EList<HGCoreDependency> oldValue = getValue();
-    getTypedValue().clear();
-    getTypedValue().addAll(value);
+  public String setValue(String value) {
+    String oldValue = getValue();
+    setTypedValue(value);
     return oldValue;
   }
 
@@ -271,9 +290,9 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * @generated
    */
   @SuppressWarnings("unchecked")
-  public EMap<HGNode, EList<HGCoreDependency>> getEMap() {
+  public EMap<String, String> getEMap() {
     EObject container = eContainer();
-    return container == null ? null : (EMap<HGNode, EList<HGCoreDependency>>)container.eGet(eContainmentFeature());
+    return container == null ? null : (EMap<String, String>)container.eGet(eContainmentFeature());
   }
 
-} //NodeToCoreDependenciesMapImpl
+} //StringToStringMapImpl

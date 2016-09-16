@@ -3,27 +3,37 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.Map;
+
 import java.util.concurrent.Future;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+
 import org.slizaa.hierarchicalgraph.*;
+
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements HierarchicalgraphFactory {
   /**
    * Creates the default factory implementation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public static HierarchicalgraphFactory init() {
@@ -41,7 +51,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
 
   /**
    * Creates an instance of the factory.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public HierarchicalgraphFactoryImpl() {
@@ -49,7 +60,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -72,7 +84,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -92,7 +105,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -112,18 +126,18 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated NOT
    */
   public HGNode createHGNode() {
-    ExtendedHGNodeImpl hgNode = new ExtendedHGNodeImpl();
+    HGNodeImpl hgNode = new ExtendedHGNodeImpl();
     return hgNode;
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated NOT
    */
   public HGRootNode createHGRootNode() {
@@ -152,8 +166,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated NOT
    */
   public HGAggregatedDependency createHGAggregatedDependency() {
@@ -162,8 +176,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated NOT
    */
   public HGCoreDependency createHGCoreDependency() {
@@ -174,15 +188,16 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public HGAggregatedCoreDependency createHGAggregatedCoreDependency() {
-    HGAggregatedCoreDependencyImpl hgAggregatedCoreDependency = new HGAggregatedCoreDependencyImpl();
+    HGAggregatedCoreDependencyImpl hgAggregatedCoreDependency = new ExtendedHGAggregatedCoreDependencyImpl();
     return hgAggregatedCoreDependency;
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public Map.Entry<HGNode, HGCoreDependency> createNodeToCoreDependencyMap() {
@@ -191,7 +206,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public Map.Entry<String, String> createStringToStringMap() {
@@ -200,7 +216,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public Map.Entry<Object, HGNode> createIdentifierToNodeMap() {
@@ -209,7 +226,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public Map.Entry<HGNode, EList<HGCoreDependency>> createNodeToCoreDependenciesMap() {
@@ -238,7 +256,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public IItemLabelProvider createIItemLabelProviderFromString(EDataType eDataType, String initialValue) {
@@ -246,7 +265,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public String convertIItemLabelProviderToString(EDataType eDataType, Object instanceValue) {
@@ -254,7 +274,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public Future<?> createFutureFromString(EDataType eDataType, String initialValue) {
@@ -262,7 +283,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public String convertFutureToString(EDataType eDataType, Object instanceValue) {
@@ -288,7 +310,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public HierarchicalgraphPackage getHierarchicalgraphPackage() {
@@ -296,7 +319,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @deprecated
    * @generated
    */
@@ -305,4 +329,4 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
     return HierarchicalgraphPackage.eINSTANCE;
   }
 
-} // HierarchicalgraphFactoryImpl
+} //HierarchicalgraphFactoryImpl

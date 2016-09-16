@@ -4,6 +4,7 @@ package org.slizaa.hierarchicalgraph;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -29,11 +30,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface HGNode extends EObject {
   /**
+   * Returns the value of the '<em><b>Root Node</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Root Node</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Root Node</em>' reference.
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_RootNode()
+   * @model resolveProxies="false" transient="true" changeable="false" derived="true"
+   * @generated
+   */
+  HGRootNode getRootNode();
+
+  /**
    * Returns the value of the '<em><b>Parent</b></em>' container reference.
    * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGNode#getChildren <em>Children</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Parent</em>' reference isn't clear,
+   * If the meaning of the '<em>Parent</em>' container reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
@@ -62,7 +78,7 @@ public interface HGNode extends EObject {
    * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGNode#getParent <em>Parent</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Children</em>' reference list isn't clear,
+   * If the meaning of the '<em>Children</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
@@ -79,7 +95,7 @@ public interface HGNode extends EObject {
    * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.INodeSource#getNode <em>Node</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Node Source</em>' reference isn't clear,
+   * If the meaning of the '<em>Node Source</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
@@ -137,21 +153,6 @@ public interface HGNode extends EObject {
   EMap<HGNode, EList<HGCoreDependency>> getOutgoingCoreDependenciesMap();
 
   /**
-   * Returns the value of the '<em><b>Root Node</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Root Node</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Root Node</em>' reference.
-   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_RootNode()
-   * @model resolveProxies="false" transient="true" changeable="false" derived="true"
-   * @generated
-   */
-  HGRootNode getRootNode();
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * <!-- begin-model-doc -->
@@ -161,6 +162,46 @@ public interface HGNode extends EObject {
    * @generated
    */
   Object getIdentifier();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model required="true" nodeRequired="true"
+   * @generated
+   */
+  boolean isPredecessorOf(HGNode node);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model required="true" nodeRequired="true"
+   * @generated
+   */
+  boolean isSuccessorOf(HGNode node);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  EList<HGNode> getPredecessors();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren);
 
   /**
    * <!-- begin-user-doc -->
@@ -219,43 +260,4 @@ public interface HGNode extends EObject {
    */
   void resolveOutgoingAggregatedCoreDependencies(boolean includeChildren);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
-  EList<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
-  EList<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
-  EList<HGNode> getPredecessors();
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model required="true" nodeRequired="true"
-   * @generated
-   */
-  boolean isPredecessorOf(HGNode node);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model required="true" nodeRequired="true"
-   * @generated
-   */
-  boolean isSuccessorOf(HGNode node);
 } // HGNode

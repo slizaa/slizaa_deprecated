@@ -5,6 +5,7 @@ package org.slizaa.hierarchicalgraph.impl;
 import java.util.Map;
 
 import java.util.concurrent.Future;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -12,8 +13,11 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.DefaultDependencySource;
 import org.slizaa.hierarchicalgraph.DefaultNodeSource;
@@ -28,6 +32,7 @@ import org.slizaa.hierarchicalgraph.ICoreDependenciesList;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.SourceOrTarget;
+
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
@@ -245,6 +250,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getHGNode_RootNode() {
+    return (EReference)hgNodeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getHGNode_Parent() {
     return (EReference)hgNodeEClass.getEStructuralFeatures().get(1);
   }
@@ -290,8 +304,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getHGNode_RootNode() {
-    return (EReference)hgNodeEClass.getEStructuralFeatures().get(0);
+  public EOperation getHGNode__GetIdentifier() {
+    return hgNodeEClass.getEOperations().get(0);
   }
 
   /**
@@ -299,8 +313,44 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGNode__GetIdentifier() {
-    return hgNodeEClass.getEOperations().get(0);
+  public EOperation getHGNode__IsPredecessorOf__HGNode() {
+    return hgNodeEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getHGNode__IsSuccessorOf__HGNode() {
+    return hgNodeEClass.getEOperations().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getHGNode__GetPredecessors() {
+    return hgNodeEClass.getEOperations().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getHGNode__GetOutgoingCoreDependencies__boolean() {
+    return hgNodeEClass.getEOperations().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getHGNode__GetIncomingCoreDependencies__boolean() {
+    return hgNodeEClass.getEOperations().get(5);
   }
 
   /**
@@ -443,53 +493,17 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGNode__GetOutgoingCoreDependencies__boolean() {
-    return hgNodeEClass.getEOperations().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getHGNode__GetIncomingCoreDependencies__boolean() {
-    return hgNodeEClass.getEOperations().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getHGNode__GetPredecessors() {
-    return hgNodeEClass.getEOperations().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getHGNode__IsPredecessorOf__HGNode() {
-    return hgNodeEClass.getEOperations().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getHGNode__IsSuccessorOf__HGNode() {
-    return hgNodeEClass.getEOperations().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getHGRootNode() {
     return hgRootNodeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getHGRootNode_Name() {
+    return (EAttribute)hgRootNodeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -535,15 +549,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    */
   public EOperation getHGRootNode__InitializeCaches__EList() {
     return hgRootNodeEClass.getEOperations().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getHGRootNode_Name() {
-    return (EAttribute)hgRootNodeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -695,6 +700,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getHGCoreDependency_DependencySource() {
+    return (EReference)hgCoreDependencyEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getHGCoreDependency_AggregatedCoreDependency() {
     return (EReference)hgCoreDependencyEClass.getEStructuralFeatures().get(3);
   }
@@ -724,15 +738,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    */
   public EReference getHGAggregatedCoreDependency_ResolvedCoreDependencies() {
     return (EReference)hgAggregatedCoreDependencyEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getHGCoreDependency_DependencySource() {
-    return (EReference)hgCoreDependencyEClass.getEStructuralFeatures().get(2);
   }
 
   /**

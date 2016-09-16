@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.slizaa.hierarchicalgraph/src" creationCommands="false"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.slizaa.hierarchicalgraph/src-gen" creationCommands="false"
     creationIcons="false" modelPluginID="org.slizaa.hierarchicalgraph" modelName="Hierarchicalgraph"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true"
@@ -8,6 +8,10 @@
   <foreignModel>hierarchicalgraph.ecore</foreignModel>
   <genPackages prefix="Hierarchicalgraph" basePackage="org.slizaa" disposableProviderFactory="true"
       ecorePackage="hierarchicalgraph.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="hierarchicalgraph.ecore#//SourceOrTarget">
+      <genEnumLiterals ecoreEnumLiteral="hierarchicalgraph.ecore#//SourceOrTarget/SOURCE"/>
+      <genEnumLiterals ecoreEnumLiteral="hierarchicalgraph.ecore#//SourceOrTarget/TARGET"/>
+    </genEnums>
     <genDataTypes ecoreDataType="hierarchicalgraph.ecore#//IItemLabelProvider"/>
     <genDataTypes ecoreDataType="hierarchicalgraph.ecore#//Future">
       <genTypeParameters ecoreTypeParameter="hierarchicalgraph.ecore#//Future/T"/>
@@ -57,16 +61,16 @@
         <genParameters ecoreParameter="hierarchicalgraph.ecore#//HGNode/resolveOutgoingAggregatedCoreDependencies/includeChildren"/>
       </genOperations>
     </genClasses>
-    <genClasses provider="None" image="false" ecoreClass="hierarchicalgraph.ecore#//HGNodeSource">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//HGNodeSource/identifier"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//HGNodeSource/node"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//HGNodeSource/autoExpand"/>
-      <genOperations ecoreOperation="hierarchicalgraph.ecore#//HGNodeSource/onExpand"/>
-      <genOperations ecoreOperation="hierarchicalgraph.ecore#//HGNodeSource/onCollapse"/>
+    <genClasses image="false" ecoreClass="hierarchicalgraph.ecore#//INodeSource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//INodeSource/identifier"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//INodeSource/node"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//INodeSource/autoExpand"/>
+      <genOperations ecoreOperation="hierarchicalgraph.ecore#//INodeSource/onExpand"/>
+      <genOperations ecoreOperation="hierarchicalgraph.ecore#//INodeSource/onCollapse"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="hierarchicalgraph.ecore#//HGDependencySource">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//HGDependencySource/identifier"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//HGDependencySource/dependency"/>
+    <genClasses image="false" ecoreClass="hierarchicalgraph.ecore#//IDependencySource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//IDependencySource/identifier"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//IDependencySource/dependency"/>
     </genClasses>
     <genClasses ecoreClass="hierarchicalgraph.ecore#//HGRootNode">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//HGRootNode/name"/>
@@ -76,15 +80,18 @@
       <genOperations ecoreOperation="hierarchicalgraph.ecore#//HGRootNode/invalidateCaches">
         <genParameters ecoreParameter="hierarchicalgraph.ecore#//HGRootNode/invalidateCaches/modifiedNodes"/>
       </genOperations>
+      <genOperations ecoreOperation="hierarchicalgraph.ecore#//HGRootNode/initializeCaches">
+        <genParameters ecoreParameter="hierarchicalgraph.ecore#//HGRootNode/initializeCaches/modifiedNodes"/>
+      </genOperations>
       <genOperations ecoreOperation="hierarchicalgraph.ecore#//HGRootNode/lookupNode">
         <genParameters ecoreParameter="hierarchicalgraph.ecore#//HGRootNode/lookupNode/identifier"/>
       </genOperations>
     </genClasses>
-    <genClasses provider="None" image="false" ecoreClass="hierarchicalgraph.ecore#//DefaultHGNodeSource">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//DefaultHGNodeSource/properties"/>
+    <genClasses ecoreClass="hierarchicalgraph.ecore#//DefaultNodeSource">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//DefaultNodeSource/properties"/>
     </genClasses>
-    <genClasses ecoreClass="hierarchicalgraph.ecore#//DefaultHGDependencySource">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//DefaultHGDependencySource/properties"/>
+    <genClasses ecoreClass="hierarchicalgraph.ecore#//DefaultDependencySource">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//DefaultDependencySource/properties"/>
     </genClasses>
     <genClasses image="false" ecoreClass="hierarchicalgraph.ecore#//AbstractHGDependency">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//AbstractHGDependency/from"/>
@@ -94,15 +101,17 @@
     </genClasses>
     <genClasses ecoreClass="hierarchicalgraph.ecore#//HGAggregatedDependency">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//HGAggregatedDependency/coreDependencies"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//HGAggregatedDependency/initialized"/>
-      <genOperations ecoreOperation="hierarchicalgraph.ecore#//HGAggregatedDependency/getAggregatedWeight"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//HGAggregatedDependency/aggregatedWeight"/>
     </genClasses>
     <genClasses ecoreClass="hierarchicalgraph.ecore#//HGCoreDependency">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//HGCoreDependency/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//HGCoreDependency/weight"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//HGCoreDependency/dependencySource"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//HGCoreDependency/aggregatedCoreDependency"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//HGCoreDependency/aggregatedCoreDependencyResolved"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//HGCoreDependency/aggregatedCoreDependency"/>
+    </genClasses>
+    <genClasses ecoreClass="hierarchicalgraph.ecore#//HGAggregatedCoreDependency">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph.ecore#//HGAggregatedCoreDependency/resolved"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//HGAggregatedCoreDependency/resolvedCoreDependencies"/>
     </genClasses>
     <genClasses ecoreClass="hierarchicalgraph.ecore#//NodeToCoreDependencyMap">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//NodeToCoreDependencyMap/key"/>
@@ -119,6 +128,9 @@
     <genClasses ecoreClass="hierarchicalgraph.ecore#//NodeToCoreDependenciesMap">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//NodeToCoreDependenciesMap/key"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//NodeToCoreDependenciesMap/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="hierarchicalgraph.ecore#//ICoreDependenciesList">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hierarchicalgraph.ecore#//ICoreDependenciesList/coreDependencies"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

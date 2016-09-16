@@ -3,9 +3,11 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
@@ -36,6 +38,7 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * @ordered
    */
   protected EList<HGCoreDependency> coreDependencies;
+
   /**
    * The default value of the '{@link #getAggregatedWeight() <em>Aggregated Weight</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -45,6 +48,7 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * @ordered
    */
   protected static final int AGGREGATED_WEIGHT_EDEFAULT = 0;
+
   /**
    * The cached value of the '{@link #getAggregatedWeight() <em>Aggregated Weight</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -54,6 +58,7 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * @ordered
    */
   protected int aggregatedWeight = AGGREGATED_WEIGHT_EDEFAULT;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

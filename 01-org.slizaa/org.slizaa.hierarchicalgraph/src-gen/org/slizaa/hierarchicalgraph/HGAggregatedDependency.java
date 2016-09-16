@@ -26,6 +26,10 @@ public interface HGAggregatedDependency extends AbstractHGDependency {
    * Returns the value of the '<em><b>Core Dependencies</b></em>' reference list.
    * The list contents are of type {@link org.slizaa.hierarchicalgraph.HGCoreDependency}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Core Dependencies</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Core Dependencies</em>' reference list.
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGAggregatedDependency_CoreDependencies()
@@ -37,6 +41,10 @@ public interface HGAggregatedDependency extends AbstractHGDependency {
   /**
    * Returns the value of the '<em><b>Aggregated Weight</b></em>' attribute.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Aggregated Weight</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Aggregated Weight</em>' attribute.
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGAggregatedDependency_AggregatedWeight()

@@ -3,18 +3,27 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>HG Root Node</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>HG Root Node</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -88,7 +97,8 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
   protected IAggregatedCoreDependencyResolver aggregatedCoreDependencyResolver = AGGREGATED_CORE_DEPENDENCY_RESOLVER_EDEFAULT;
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   protected HGRootNodeImpl() {
@@ -96,12 +106,34 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
   protected EClass eStaticClass() {
     return HierarchicalgraphPackage.Literals.HG_ROOT_NODE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName) {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_ROOT_NODE__NAME, oldName, name));
   }
 
   /**
@@ -177,27 +209,6 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName) {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_ROOT_NODE__NAME, oldName, name));
   }
 
   /**
@@ -290,7 +301,8 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -332,4 +344,4 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
     return result.toString();
   }
 
-} // HGRootNodeImpl
+} //HGRootNodeImpl
