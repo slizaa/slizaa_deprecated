@@ -637,15 +637,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getAbstractHGDependency__ResolveAggregatedCoreDependencies() {
-    return abstractHGDependencyEClass.getEOperations().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getHGAggregatedDependency() {
     return hgAggregatedDependencyEClass;
   }
@@ -666,6 +657,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    */
   public EAttribute getHGAggregatedDependency_AggregatedWeight() {
     return (EAttribute)hgAggregatedDependencyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getHGAggregatedDependency__ResolveAggregatedCoreDependencies() {
+    return hgAggregatedDependencyEClass.getEOperations().get(0);
   }
 
   /**
@@ -738,6 +738,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    */
   public EReference getHGAggregatedCoreDependency_ResolvedCoreDependencies() {
     return (EReference)hgAggregatedCoreDependencyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getHGAggregatedCoreDependency__ResolveAggregatedCoreDependencies() {
+    return hgAggregatedCoreDependencyEClass.getEOperations().get(0);
   }
 
   /**
@@ -980,11 +989,11 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEReference(abstractHGDependencyEClass, ABSTRACT_HG_DEPENDENCY__FROM);
     createEReference(abstractHGDependencyEClass, ABSTRACT_HG_DEPENDENCY__TO);
     createEOperation(abstractHGDependencyEClass, ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE);
-    createEOperation(abstractHGDependencyEClass, ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES);
 
     hgAggregatedDependencyEClass = createEClass(HG_AGGREGATED_DEPENDENCY);
     createEReference(hgAggregatedDependencyEClass, HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES);
     createEAttribute(hgAggregatedDependencyEClass, HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT);
+    createEOperation(hgAggregatedDependencyEClass, HG_AGGREGATED_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES);
 
     hgCoreDependencyEClass = createEClass(HG_CORE_DEPENDENCY);
     createEAttribute(hgCoreDependencyEClass, HG_CORE_DEPENDENCY__TYPE);
@@ -995,6 +1004,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     hgAggregatedCoreDependencyEClass = createEClass(HG_AGGREGATED_CORE_DEPENDENCY);
     createEAttribute(hgAggregatedCoreDependencyEClass, HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED);
     createEReference(hgAggregatedCoreDependencyEClass, HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES);
+    createEOperation(hgAggregatedCoreDependencyEClass, HG_AGGREGATED_CORE_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES);
 
     nodeToCoreDependencyMapEClass = createEClass(NODE_TO_CORE_DEPENDENCY_MAP);
     createEReference(nodeToCoreDependencyMapEClass, NODE_TO_CORE_DEPENDENCY_MAP__KEY);
@@ -1144,11 +1154,11 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     initEOperation(getAbstractHGDependency__GetRootNode(), this.getHGRootNode(), "getRootNode", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    initEOperation(getAbstractHGDependency__ResolveAggregatedCoreDependencies(), null, "resolveAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
-
     initEClass(hgAggregatedDependencyEClass, HGAggregatedDependency.class, "HGAggregatedDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getHGAggregatedDependency_CoreDependencies(), this.getHGCoreDependency(), null, "coreDependencies", null, 0, -1, HGAggregatedDependency.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
     initEAttribute(getHGAggregatedDependency_AggregatedWeight(), ecorePackage.getEInt(), "aggregatedWeight", null, 0, 1, HGAggregatedDependency.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEOperation(getHGAggregatedDependency__ResolveAggregatedCoreDependencies(), null, "resolveAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(hgCoreDependencyEClass, HGCoreDependency.class, "HGCoreDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHGCoreDependency_Type(), ecorePackage.getEString(), "type", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1159,6 +1169,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEClass(hgAggregatedCoreDependencyEClass, HGAggregatedCoreDependency.class, "HGAggregatedCoreDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHGAggregatedCoreDependency_Resolved(), ecorePackage.getEBoolean(), "resolved", null, 0, 1, HGAggregatedCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGAggregatedCoreDependency_ResolvedCoreDependencies(), this.getHGCoreDependency(), this.getHGCoreDependency_AggregatedCoreDependencyParent(), "resolvedCoreDependencies", null, 0, -1, HGAggregatedCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEOperation(getHGAggregatedCoreDependency__ResolveAggregatedCoreDependencies(), null, "resolveAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(nodeToCoreDependencyMapEClass, Map.Entry.class, "NodeToCoreDependencyMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNodeToCoreDependencyMap_Key(), this.getHGNode(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

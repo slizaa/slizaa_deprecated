@@ -82,7 +82,9 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
 
     //
     for (HGCoreDependency outgoingDependency : outgoingDependencies) {
-      outgoingDependency.resolveAggregatedCoreDependencies();
+      if (outgoingDependency instanceof HGAggregatedCoreDependency) {
+        ((HGAggregatedCoreDependency) outgoingDependency).resolveAggregatedCoreDependencies();
+      }
     }
 
     // we have to re-read the aggregated dependency
@@ -136,7 +138,7 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
 
     _newDependency_2 = createNewCoreDependency(dependencyToResolve.getFrom(), dependencyToResolve.getTo(), "NEW_USAGE",
         () -> HierarchicalgraphFactory.eINSTANCE.createDefaultDependencySource(), false);
-    
+
     dependencyToResolve.getResolvedCoreDependencies().add(_newDependency_1);
     dependencyToResolve.getResolvedCoreDependencies().add(_newDependency_2);
 

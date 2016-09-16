@@ -2,6 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -108,6 +109,17 @@ public class HGAggregatedCoreDependencyImpl extends HGCoreDependencyImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
+  public void resolveAggregatedCoreDependencies() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -194,6 +206,21 @@ public class HGAggregatedCoreDependencyImpl extends HGCoreDependencyImpl impleme
         return resolvedCoreDependencies != null && !resolvedCoreDependencies.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+      case HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES:
+        resolveAggregatedCoreDependencies();
+        return null;
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**

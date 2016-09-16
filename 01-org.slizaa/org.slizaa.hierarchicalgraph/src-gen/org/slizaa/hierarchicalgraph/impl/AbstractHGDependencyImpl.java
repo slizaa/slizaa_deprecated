@@ -165,17 +165,6 @@ public abstract class AbstractHGDependencyImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public void resolveAggregatedCoreDependencies() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
@@ -251,9 +240,6 @@ public abstract class AbstractHGDependencyImpl extends MinimalEObjectImpl.Contai
     switch (operationID) {
       case HierarchicalgraphPackage.ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE:
         return getRootNode();
-      case HierarchicalgraphPackage.ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES:
-        resolveAggregatedCoreDependencies();
-        return null;
     }
     return super.eInvoke(operationID, arguments);
   }

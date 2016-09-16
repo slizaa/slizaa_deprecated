@@ -2,6 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
@@ -104,6 +105,17 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
+  public void resolveAggregatedCoreDependencies() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
@@ -161,6 +173,21 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
         return aggregatedWeight != AGGREGATED_WEIGHT_EDEFAULT;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES:
+        resolveAggregatedCoreDependencies();
+        return null;
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**

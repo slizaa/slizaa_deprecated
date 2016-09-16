@@ -101,11 +101,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractHGDependency" abstract="true">
     <eOperations name="getRootNode" eType="#//HGRootNode"/>
-    <eOperations name="resolveAggregatedCoreDependencies"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1" eType="#//HGNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//HGNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HGAggregatedDependency" eSuperTypes="#//AbstractHGDependency">
+    <eOperations name="resolveAggregatedCoreDependencies"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="coreDependencies" upperBound="-1"
         eType="#//HGCoreDependency" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedWeight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
@@ -121,6 +121,7 @@
         eType="#//HGAggregatedCoreDependency" eOpposite="#//HGAggregatedCoreDependency/resolvedCoreDependencies"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HGAggregatedCoreDependency" eSuperTypes="#//HGCoreDependency">
+    <eOperations name="resolveAggregatedCoreDependencies"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolved" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         changeable="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resolvedCoreDependencies"

@@ -1,8 +1,9 @@
 package org.slizaa.hierarchicalgraph.mapstruct;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
-import org.slizaa.hierarchicalgraph.AbstractXmiBasedTest;
+import org.slizaa.testfwk.AbstractXmiBasedTest;
 
 /**
  * <p>
@@ -25,7 +26,7 @@ public class DependencyTest extends AbstractXmiBasedTest {
    *
    */
   public DependencyTest() {
-    super("org/slizaa/hierarchicalgraph/mapstruct/mapstruct_1-1-0-Beta2.hggraph");
+    super("mapstruct_1-1-0-Beta2.hggraph");
   }
 
   /**

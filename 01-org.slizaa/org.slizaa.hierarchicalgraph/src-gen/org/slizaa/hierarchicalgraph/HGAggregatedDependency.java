@@ -53,4 +53,12 @@ public interface HGAggregatedDependency extends AbstractHGDependency {
    */
   int getAggregatedWeight();
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  void resolveAggregatedCoreDependencies();
+
 } // HGAggregatedDependency

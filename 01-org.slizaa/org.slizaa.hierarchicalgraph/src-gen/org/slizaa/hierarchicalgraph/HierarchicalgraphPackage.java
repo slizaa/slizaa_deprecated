@@ -805,22 +805,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE = 0;
 
   /**
-   * The operation id for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = 1;
-
-  /**
    * The number of operations of the '<em>Abstract HG Dependency</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT = 2;
+  int ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedDependencyImpl <em>HG Aggregated Dependency</em>}' class.
@@ -893,7 +884,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES;
+  int HG_AGGREGATED_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 0;
 
   /**
    * The number of operations of the '<em>HG Aggregated Dependency</em>' class.
@@ -902,7 +893,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_DEPENDENCY_OPERATION_COUNT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 0;
+  int HG_AGGREGATED_DEPENDENCY_OPERATION_COUNT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl <em>HG Core Dependency</em>}' class.
@@ -985,15 +976,6 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @ordered
    */
   int HG_CORE_DEPENDENCY___GET_ROOT_NODE = ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE;
-
-  /**
-   * The operation id for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_CORE_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES;
 
   /**
    * The number of operations of the '<em>HG Core Dependency</em>' class.
@@ -1111,7 +1093,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = HG_CORE_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES;
+  int HG_AGGREGATED_CORE_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = HG_CORE_DEPENDENCY_OPERATION_COUNT + 0;
 
   /**
    * The number of operations of the '<em>HG Aggregated Core Dependency</em>' class.
@@ -1120,7 +1102,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY_OPERATION_COUNT = HG_CORE_DEPENDENCY_OPERATION_COUNT + 0;
+  int HG_AGGREGATED_CORE_DEPENDENCY_OPERATION_COUNT = HG_CORE_DEPENDENCY_OPERATION_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.NodeToCoreDependencyMapImpl <em>Node To Core Dependency Map</em>}' class.
@@ -1843,16 +1825,6 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getAbstractHGDependency__GetRootNode();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.AbstractHGDependency#resolveAggregatedCoreDependencies() <em>Resolve Aggregated Core Dependencies</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.AbstractHGDependency#resolveAggregatedCoreDependencies()
-   * @generated
-   */
-  EOperation getAbstractHGDependency__ResolveAggregatedCoreDependencies();
-
-  /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency <em>HG Aggregated Dependency</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1883,6 +1855,16 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    */
   EAttribute getHGAggregatedDependency_AggregatedWeight();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#resolveAggregatedCoreDependencies() <em>Resolve Aggregated Core Dependencies</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGAggregatedDependency#resolveAggregatedCoreDependencies()
+   * @generated
+   */
+  EOperation getHGAggregatedDependency__ResolveAggregatedCoreDependencies();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGCoreDependency <em>HG Core Dependency</em>}'.
@@ -1969,6 +1951,16 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    */
   EReference getHGAggregatedCoreDependency_ResolvedCoreDependencies();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#resolveAggregatedCoreDependencies() <em>Resolve Aggregated Core Dependencies</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#resolveAggregatedCoreDependencies()
+   * @generated
+   */
+  EOperation getHGAggregatedCoreDependency__ResolveAggregatedCoreDependencies();
 
   /**
    * Returns the meta object for class '{@link java.util.Map.Entry <em>Node To Core Dependency Map</em>}'.
@@ -2560,14 +2552,6 @@ public interface HierarchicalgraphPackage extends EPackage {
     EOperation ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE = eINSTANCE.getAbstractHGDependency__GetRootNode();
 
     /**
-     * The meta object literal for the '<em><b>Resolve Aggregated Core Dependencies</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation ABSTRACT_HG_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = eINSTANCE.getAbstractHGDependency__ResolveAggregatedCoreDependencies();
-
-    /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedDependencyImpl <em>HG Aggregated Dependency</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2592,6 +2576,14 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EAttribute HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT = eINSTANCE.getHGAggregatedDependency_AggregatedWeight();
+
+    /**
+     * The meta object literal for the '<em><b>Resolve Aggregated Core Dependencies</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_AGGREGATED_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = eINSTANCE.getHGAggregatedDependency__ResolveAggregatedCoreDependencies();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl <em>HG Core Dependency</em>}' class.
@@ -2660,6 +2652,14 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EReference HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES = eINSTANCE.getHGAggregatedCoreDependency_ResolvedCoreDependencies();
+
+    /**
+     * The meta object literal for the '<em><b>Resolve Aggregated Core Dependencies</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_AGGREGATED_CORE_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = eINSTANCE.getHGAggregatedCoreDependency__ResolveAggregatedCoreDependencies();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.NodeToCoreDependencyMapImpl <em>Node To Core Dependency Map</em>}' class.

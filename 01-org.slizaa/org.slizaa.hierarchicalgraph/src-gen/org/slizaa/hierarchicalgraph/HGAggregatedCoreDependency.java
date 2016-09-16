@@ -55,4 +55,12 @@ public interface HGAggregatedCoreDependency extends HGCoreDependency {
    */
   EList<HGCoreDependency> getResolvedCoreDependencies();
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  void resolveAggregatedCoreDependencies();
+
 } // HGAggregatedCoreDependency

@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+import org.slizaa.testfwk.AbstractXmiBasedTest;
 
 @RunWith(Parameterized.class)
 public class ParentChildTest extends AbstractXmiBasedTest {
@@ -86,6 +87,6 @@ public class ParentChildTest extends AbstractXmiBasedTest {
    */
   @Parameters
   public static Collection<Object[]> data() {
-    return Arrays.asList(new Object[][] { { "org/slizaa/hierarchicalgraph/mapstruct/mapstruct_1-1-0-Beta2.hggraph" } });
+    return Arrays.asList(new Object[][] { { "mapstruct_1-1-0-Beta2.hggraph" } });
   }
 }
