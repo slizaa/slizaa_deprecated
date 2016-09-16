@@ -9,11 +9,11 @@ import java.util.function.Supplier;
 import org.junit.After;
 import org.junit.Before;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.HGNodeSource;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
+import org.slizaa.hierarchicalgraph.IDependencySource;
+import org.slizaa.hierarchicalgraph.INodeSource;
 
 /**
  * <p>
@@ -81,9 +81,9 @@ public class AbstractSimpleModelTest {
     public SimpleModel() {
 
       //
-      Supplier<HGNodeSource> nodeSourceSupplier = () -> HierarchicalgraphFactory.eINSTANCE.createDefaultHGNodeSource();
-      Supplier<HGDependencySource> dependencySourceSupplier = () -> HierarchicalgraphFactory.eINSTANCE
-          .createDefaultHGDependencySource();
+      Supplier<INodeSource> nodeSourceSupplier = () -> HierarchicalgraphFactory.eINSTANCE.createDefaultNodeSource();
+      Supplier<IDependencySource> dependencySourceSupplier = () -> HierarchicalgraphFactory.eINSTANCE
+          .createDefaultDependencySource();
 
       _rootNode = createNewRootNode(nodeSourceSupplier);
 

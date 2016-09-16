@@ -120,7 +120,7 @@ public interface HGCoreDependency extends AbstractHGDependency {
 
   /**
    * Returns the value of the '<em><b>Dependency Source</b></em>' containment reference.
-   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGDependencySource#getDependency <em>Dependency</em>}'.
+   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.IDependencySource#getDependency <em>Dependency</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Dependency Source</em>' containment reference isn't clear,
@@ -128,13 +128,13 @@ public interface HGCoreDependency extends AbstractHGDependency {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Dependency Source</em>' containment reference.
-   * @see #setDependencySource(HGDependencySource)
+   * @see #setDependencySource(IDependencySource)
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGCoreDependency_DependencySource()
-   * @see org.slizaa.hierarchicalgraph.HGDependencySource#getDependency
+   * @see org.slizaa.hierarchicalgraph.IDependencySource#getDependency
    * @model opposite="dependency" containment="true"
    * @generated
    */
-  HGDependencySource getDependencySource();
+  IDependencySource getDependencySource();
 
   /**
    * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getDependencySource <em>Dependency Source</em>}' containment reference.
@@ -144,6 +144,6 @@ public interface HGCoreDependency extends AbstractHGDependency {
    * @see #getDependencySource()
    * @generated
    */
-  void setDependencySource(HGDependencySource value);
+  void setDependencySource(IDependencySource value);
 
 } // HGCoreDependency

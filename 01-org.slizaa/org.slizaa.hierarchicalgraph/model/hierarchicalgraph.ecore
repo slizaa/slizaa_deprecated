@@ -51,8 +51,8 @@
         resolveProxies="false" eOpposite="#//HGNode/children"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
         eType="#//HGNode" containment="true" resolveProxies="false" eOpposite="#//HGNode/parent"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nodeSource" eType="#//HGNodeSource"
-        containment="true" resolveProxies="false" eOpposite="#//HGNodeSource/node"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodeSource" eType="#//INodeSource"
+        containment="true" resolveProxies="false" eOpposite="#//INodeSource/node"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingCoreDependenciesMap"
         ordered="false" upperBound="-1" eType="#//NodeToCoreDependenciesMap" containment="true"
         resolveProxies="false"/>
@@ -60,7 +60,7 @@
         ordered="false" upperBound="-1" eType="#//NodeToCoreDependenciesMap" containment="true"
         resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HGNodeSource" abstract="true" interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="INodeSource" abstract="true" interface="true">
     <eOperations name="onExpand"/>
     <eOperations name="onCollapse"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
@@ -69,8 +69,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="autoExpand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HGDependencySource" abstract="true"
-      interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="IDependencySource" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependency" lowerBound="1"
         eType="#//HGCoreDependency" eOpposite="#//HGCoreDependency/dependencySource"/>
@@ -92,11 +91,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedCoreDependencyResolver"
         eType="#//IAggregatedCoreDependencyResolver"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DefaultHGNodeSource" eSuperTypes="#//HGNodeSource">
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultNodeSource" eSuperTypes="#//INodeSource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//StringToStringMap" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DefaultHGDependencySource" eSuperTypes="#//HGDependencySource">
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultDependencySource" eSuperTypes="#//IDependencySource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//StringToStringMap" containment="true"/>
   </eClassifiers>
@@ -116,8 +115,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="weight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencySource" eType="#//HGDependencySource"
-        containment="true" eOpposite="#//HGDependencySource/dependency"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencySource" eType="#//IDependencySource"
+        containment="true" eOpposite="#//IDependencySource/dependency"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedCoreDependency"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedCoreDependencyResolved"
@@ -150,5 +149,10 @@
   <eClassifiers xsi:type="ecore:EEnum" name="SourceOrTarget">
     <eLiterals name="SOURCE"/>
     <eLiterals name="TARGET"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ICoreDependenciesList" abstract="true"
+      interface="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coreDependencies" upperBound="-1"
+        eType="#//HGCoreDependency" transient="true" derived="true"/>
   </eClassifiers>
 </ecore:EPackage>

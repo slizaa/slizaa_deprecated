@@ -3,8 +3,7 @@
 package org.slizaa.neo4j.hierarchicalgraph;
 
 import org.eclipse.emf.common.util.EMap;
-
-import org.slizaa.hierarchicalgraph.HGDependencySource;
+import org.slizaa.hierarchicalgraph.IDependencySource;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +22,7 @@ import org.slizaa.hierarchicalgraph.HGDependencySource;
  * @model
  * @generated
  */
-public interface Neo4JBackedDependencySource extends HGDependencySource {
+public interface Neo4JBackedDependencySource extends IDependencySource {
   /**
    * Returns the value of the '<em><b>Properties</b></em>' map.
    * The key is of type {@link java.lang.String},

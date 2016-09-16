@@ -4,8 +4,7 @@ package org.slizaa.neo4j.hierarchicalgraph;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-
-import org.slizaa.hierarchicalgraph.HGNodeSource;
+import org.slizaa.hierarchicalgraph.INodeSource;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +23,7 @@ import org.slizaa.hierarchicalgraph.HGNodeSource;
  * @model
  * @generated
  */
-public interface Neo4JBackedNodeSource extends HGNodeSource {
+public interface Neo4JBackedNodeSource extends INodeSource {
 	/**
    * Returns the value of the '<em><b>Properties</b></em>' map.
    * The key is of type {@link java.lang.String},

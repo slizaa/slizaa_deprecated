@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EMap;
  * @model
  * @generated
  */
-public interface DefaultHGDependencySource extends HGDependencySource {
+public interface DefaultHGDependencySource extends IDependencySource {
   /**
    * Returns the value of the '<em><b>Properties</b></em>' map.
    * The key is of type {@link java.lang.String},

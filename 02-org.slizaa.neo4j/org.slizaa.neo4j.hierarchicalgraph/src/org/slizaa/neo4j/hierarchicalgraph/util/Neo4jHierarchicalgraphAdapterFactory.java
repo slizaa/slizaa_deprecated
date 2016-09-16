@@ -8,10 +8,8 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.slizaa.hierarchicalgraph.HGDependencySource;
-import org.slizaa.hierarchicalgraph.HGNodeSource;
-
+import org.slizaa.hierarchicalgraph.IDependencySource;
+import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.*;
 
 /**
@@ -91,12 +89,12 @@ public class Neo4jHierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
         return createNeo4JRemoteRepositoryAdapter();
       }
       @Override
-      public Adapter caseHGNodeSource(HGNodeSource object) {
-        return createHGNodeSourceAdapter();
+      public Adapter caseINodeSource(INodeSource object) {
+        return createINodeSourceAdapter();
       }
       @Override
-      public Adapter caseHGDependencySource(HGDependencySource object) {
-        return createHGDependencySourceAdapter();
+      public Adapter caseIDependencySource(IDependencySource object) {
+        return createIDependencySourceAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -175,6 +173,34 @@ public class Neo4jHierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.INodeSource <em>INode Source</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.hierarchicalgraph.INodeSource
+   * @generated
+   */
+  public Adapter createINodeSourceAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.IDependencySource <em>IDependency Source</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.hierarchicalgraph.IDependencySource
+   * @generated
+   */
+  public Adapter createIDependencySourceAdapter() {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource <em>Neo4 JBacked Dependency Source</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -185,34 +211,6 @@ public class Neo4jHierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createNeo4JBackedDependencySourceAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.HGNodeSource <em>HG Node Source</em>}'.
-   * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.slizaa.hierarchicalgraph.HGNodeSource
-   * @generated
-   */
-	public Adapter createHGNodeSourceAdapter() {
-    return null;
-  }
-
-	/**
-   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.HGDependencySource <em>HG Dependency Source</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.slizaa.hierarchicalgraph.HGDependencySource
-   * @generated
-   */
-  public Adapter createHGDependencySourceAdapter() {
     return null;
   }
 

@@ -3,7 +3,6 @@ package org.slizaa.neo4j.hierarchicalgraph;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.slizaa.neo4j.testfwk.testmodel.TestModelFactory.createGraphFromDefaultMapping;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +11,7 @@ import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
+import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
 
 /**
  * <p>
@@ -22,7 +22,7 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRepositoryTest {
 
   /** - */
-  private HGRootNode                    _rootNode;
+  private HGRootNode                        _rootNode;
 
   /** - */
   private IAggregatedCoreDependencyResolver _aggregatedDependencyResolver;
@@ -56,21 +56,22 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
     HGNode pkg_omaimodelcommon = _rootNode.lookupNode(new Long(1634));
 
     //
-    HGAggregatedDependency hgDependency = pkg_omaiconversion.getOutgoingDependenciesTo(pkg_omaimodelcommon);
-    assertThat(hgDependency).isNotNull();
-    assertThat(hgDependency.getAggregatedWeight()).isEqualTo(59);
-    assertThat(hgDependency.getCoreDependencies().size()).isEqualTo(59);
+    HGAggregatedDependency aggregatedDependency = pkg_omaiconversion.getOutgoingDependenciesTo(pkg_omaimodelcommon);
+    assertThat(aggregatedDependency).isNotNull();
+    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(59);
+    assertThat(aggregatedDependency.getCoreDependencies().size()).isEqualTo(59);
 
     // resolve the dependency
-    hgDependency.resolveAggregatedCoreDependencies();
+    aggregatedDependency.resolveAggregatedCoreDependencies();
+    assertThat(aggregatedDependency.getCoreDependencies().size()).isEqualTo(59);
 
     //
-    for (HGCoreDependency dependency : hgDependency.getCoreDependencies()) {
+    for (HGCoreDependency dependency : aggregatedDependency.getCoreDependencies()) {
       verify(_aggregatedDependencyResolver).resolveAggregatedDependency(dependency);
     }
 
     //
-    assertThat(hgDependency.getAggregatedWeight()).isEqualTo(59);
-    assertThat(hgDependency.getCoreDependencies().size()).isEqualTo(59);
+    assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(59);
+    assertThat(aggregatedDependency.getCoreDependencies().size()).isEqualTo(59);
   }
 }

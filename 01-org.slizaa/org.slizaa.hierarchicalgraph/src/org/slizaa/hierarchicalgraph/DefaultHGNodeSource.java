@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EMap;
  * @model
  * @generated
  */
-public interface DefaultHGNodeSource extends HGNodeSource {
+public interface DefaultHGNodeSource extends INodeSource {
   /**
    * Returns the value of the '<em><b>Properties</b></em>' map.
    * The key is of type {@link java.lang.String},

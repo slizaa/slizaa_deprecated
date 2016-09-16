@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hierarchicalgraph" nsURI="http://org/slizaa/neo4j/hierarchicalgraph"
     nsPrefix="org.slizaa.neo4j.hierarchicalgraph">
-  <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedNodeSource" eSuperTypes="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGNodeSource">
+  <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedNodeSource" eSuperTypes="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//INodeSource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//StringToStringMap"
         changeable="false" containment="true" resolveProxies="false"/>
@@ -13,7 +13,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="repository" lowerBound="1"
         eType="#//INeo4JRepository"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedDependencySource" eSuperTypes="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGDependencySource">
+  <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedDependencySource" eSuperTypes="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//IDependencySource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//StringToStringMap"
         changeable="false" containment="true" resolveProxies="false"/>

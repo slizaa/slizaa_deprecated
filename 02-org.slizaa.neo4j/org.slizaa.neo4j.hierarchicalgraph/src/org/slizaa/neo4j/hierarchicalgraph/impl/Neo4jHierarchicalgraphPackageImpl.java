@@ -500,9 +500,9 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    neo4JBackedNodeSourceEClass.getESuperTypes().add(theHierarchicalgraphPackage.getHGNodeSource());
+    neo4JBackedNodeSourceEClass.getESuperTypes().add(theHierarchicalgraphPackage.getINodeSource());
     neo4JBackedRootNodeSourceEClass.getESuperTypes().add(this.getNeo4JBackedNodeSource());
-    neo4JBackedDependencySourceEClass.getESuperTypes().add(theHierarchicalgraphPackage.getHGDependencySource());
+    neo4JBackedDependencySourceEClass.getESuperTypes().add(theHierarchicalgraphPackage.getIDependencySource());
     neo4JRemoteRepositoryEClass.getESuperTypes().add(this.getINeo4JRepository());
 
     // Initialize classes, features, and operations; add parameters

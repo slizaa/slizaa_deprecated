@@ -4,6 +4,7 @@ package org.slizaa.hierarchicalgraph.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -21,8 +22,8 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.HGNodeSource;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.hierarchicalgraph.INodeSource;
 
 /**
  * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.HGNode} object.
@@ -64,7 +65,7 @@ public class HGNodeItemProvider extends ItemProviderAdapter
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
 
 		// get the node source
-		HGNodeSource hgNodeSource = (HGNodeSource) ((HGNode) object).getNodeSource();
+		INodeSource hgNodeSource = (INodeSource) ((HGNode) object).getNodeSource();
 
 		// return the property descriptors
 		return _adapterFactoryItemDelegatorInstance.getPropertyDescriptors(hgNodeSource);

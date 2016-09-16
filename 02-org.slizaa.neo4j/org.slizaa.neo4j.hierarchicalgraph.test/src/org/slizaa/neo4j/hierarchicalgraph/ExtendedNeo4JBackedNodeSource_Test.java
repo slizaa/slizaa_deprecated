@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
 
 /**
  * <p>

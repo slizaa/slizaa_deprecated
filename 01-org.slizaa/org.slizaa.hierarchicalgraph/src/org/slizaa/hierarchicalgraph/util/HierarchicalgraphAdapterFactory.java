@@ -73,24 +73,24 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
         return createHGNodeAdapter();
       }
       @Override
-      public Adapter caseHGNodeSource(HGNodeSource object) {
-        return createHGNodeSourceAdapter();
+      public Adapter caseINodeSource(INodeSource object) {
+        return createINodeSourceAdapter();
       }
       @Override
-      public Adapter caseHGDependencySource(HGDependencySource object) {
-        return createHGDependencySourceAdapter();
+      public Adapter caseIDependencySource(IDependencySource object) {
+        return createIDependencySourceAdapter();
       }
       @Override
       public Adapter caseHGRootNode(HGRootNode object) {
         return createHGRootNodeAdapter();
       }
       @Override
-      public Adapter caseDefaultHGNodeSource(DefaultHGNodeSource object) {
-        return createDefaultHGNodeSourceAdapter();
+      public Adapter caseDefaultNodeSource(DefaultNodeSource object) {
+        return createDefaultNodeSourceAdapter();
       }
       @Override
-      public Adapter caseDefaultHGDependencySource(DefaultHGDependencySource object) {
-        return createDefaultHGDependencySourceAdapter();
+      public Adapter caseDefaultDependencySource(DefaultDependencySource object) {
+        return createDefaultDependencySourceAdapter();
       }
       @Override
       public Adapter caseAbstractHGDependency(AbstractHGDependency object) {
@@ -119,6 +119,10 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter caseNodeToCoreDependenciesMap(Map.Entry<HGNode, EList<HGCoreDependency>> object) {
         return createNodeToCoreDependenciesMapAdapter();
+      }
+      @Override
+      public Adapter caseICoreDependenciesList(ICoreDependenciesList object) {
+        return createICoreDependenciesListAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -155,30 +159,30 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.HGNodeSource <em>HG Node Source</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.INodeSource <em>INode Source</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.slizaa.hierarchicalgraph.HGNodeSource
+   * @see org.slizaa.hierarchicalgraph.INodeSource
    * @generated
    */
-  public Adapter createHGNodeSourceAdapter() {
+  public Adapter createINodeSourceAdapter() {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.HGDependencySource <em>HG Dependency Source</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.IDependencySource <em>IDependency Source</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.slizaa.hierarchicalgraph.HGDependencySource
+   * @see org.slizaa.hierarchicalgraph.IDependencySource
    * @generated
    */
-  public Adapter createHGDependencySourceAdapter() {
+  public Adapter createIDependencySourceAdapter() {
     return null;
   }
 
@@ -197,30 +201,30 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.DefaultHGNodeSource <em>Default HG Node Source</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.DefaultNodeSource <em>Default Node Source</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.slizaa.hierarchicalgraph.DefaultHGNodeSource
+   * @see org.slizaa.hierarchicalgraph.DefaultNodeSource
    * @generated
    */
-  public Adapter createDefaultHGNodeSourceAdapter() {
+  public Adapter createDefaultNodeSourceAdapter() {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.DefaultHGDependencySource <em>Default HG Dependency Source</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.DefaultDependencySource <em>Default Dependency Source</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.slizaa.hierarchicalgraph.DefaultHGDependencySource
+   * @see org.slizaa.hierarchicalgraph.DefaultDependencySource
    * @generated
    */
-  public Adapter createDefaultHGDependencySourceAdapter() {
+  public Adapter createDefaultDependencySourceAdapter() {
     return null;
   }
 
@@ -319,6 +323,20 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createNodeToCoreDependenciesMapAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.ICoreDependenciesList <em>ICore Dependencies List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.hierarchicalgraph.ICoreDependenciesList
+   * @generated
+   */
+  public Adapter createICoreDependenciesListAdapter() {
     return null;
   }
 

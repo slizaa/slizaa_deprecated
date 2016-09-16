@@ -40,22 +40,22 @@ public interface HierarchicalgraphFactory extends EFactory {
   HGRootNode createHGRootNode();
 
   /**
-   * Returns a new object of class '<em>Default HG Node Source</em>'.
+   * Returns a new object of class '<em>Default Node Source</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Default HG Node Source</em>'.
+   * @return a new object of class '<em>Default Node Source</em>'.
    * @generated
    */
-  DefaultHGNodeSource createDefaultHGNodeSource();
+  DefaultNodeSource createDefaultNodeSource();
 
   /**
-   * Returns a new object of class '<em>Default HG Dependency Source</em>'.
+   * Returns a new object of class '<em>Default Dependency Source</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Default HG Dependency Source</em>'.
+   * @return a new object of class '<em>Default Dependency Source</em>'.
    * @generated
    */
-  DefaultHGDependencySource createDefaultHGDependencySource();
+  DefaultDependencySource createDefaultDependencySource();
 
   /**
    * Returns a new object of class '<em>HG Aggregated Dependency</em>'.

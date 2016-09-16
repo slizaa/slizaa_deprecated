@@ -73,15 +73,15 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HierarchicalgraphPackage.HG_NODE_SOURCE: {
-        HGNodeSource hgNodeSource = (HGNodeSource)theEObject;
-        T result = caseHGNodeSource(hgNodeSource);
+      case HierarchicalgraphPackage.INODE_SOURCE: {
+        INodeSource iNodeSource = (INodeSource)theEObject;
+        T result = caseINodeSource(iNodeSource);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE: {
-        HGDependencySource hgDependencySource = (HGDependencySource)theEObject;
-        T result = caseHGDependencySource(hgDependencySource);
+      case HierarchicalgraphPackage.IDEPENDENCY_SOURCE: {
+        IDependencySource iDependencySource = (IDependencySource)theEObject;
+        T result = caseIDependencySource(iDependencySource);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -92,17 +92,17 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HierarchicalgraphPackage.DEFAULT_HG_NODE_SOURCE: {
-        DefaultHGNodeSource defaultHGNodeSource = (DefaultHGNodeSource)theEObject;
-        T result = caseDefaultHGNodeSource(defaultHGNodeSource);
-        if (result == null) result = caseHGNodeSource(defaultHGNodeSource);
+      case HierarchicalgraphPackage.DEFAULT_NODE_SOURCE: {
+        DefaultNodeSource defaultNodeSource = (DefaultNodeSource)theEObject;
+        T result = caseDefaultNodeSource(defaultNodeSource);
+        if (result == null) result = caseINodeSource(defaultNodeSource);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HierarchicalgraphPackage.DEFAULT_HG_DEPENDENCY_SOURCE: {
-        DefaultHGDependencySource defaultHGDependencySource = (DefaultHGDependencySource)theEObject;
-        T result = caseDefaultHGDependencySource(defaultHGDependencySource);
-        if (result == null) result = caseHGDependencySource(defaultHGDependencySource);
+      case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE: {
+        DefaultDependencySource defaultDependencySource = (DefaultDependencySource)theEObject;
+        T result = caseDefaultDependencySource(defaultDependencySource);
+        if (result == null) result = caseIDependencySource(defaultDependencySource);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -150,6 +150,12 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case HierarchicalgraphPackage.ICORE_DEPENDENCIES_LIST: {
+        ICoreDependenciesList iCoreDependenciesList = (ICoreDependenciesList)theEObject;
+        T result = caseICoreDependenciesList(iCoreDependenciesList);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -170,32 +176,32 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>HG Node Source</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>INode Source</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>HG Node Source</em>'.
+   * @return the result of interpreting the object as an instance of '<em>INode Source</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseHGNodeSource(HGNodeSource object) {
+  public T caseINodeSource(INodeSource object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>HG Dependency Source</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>IDependency Source</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>HG Dependency Source</em>'.
+   * @return the result of interpreting the object as an instance of '<em>IDependency Source</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseHGDependencySource(HGDependencySource object) {
+  public T caseIDependencySource(IDependencySource object) {
     return null;
   }
 
@@ -215,32 +221,32 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Default HG Node Source</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Default Node Source</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Default HG Node Source</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Default Node Source</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDefaultHGNodeSource(DefaultHGNodeSource object) {
+  public T caseDefaultNodeSource(DefaultNodeSource object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Default HG Dependency Source</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Default Dependency Source</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Default HG Dependency Source</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Default Dependency Source</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDefaultHGDependencySource(DefaultHGDependencySource object) {
+  public T caseDefaultDependencySource(DefaultDependencySource object) {
     return null;
   }
 
@@ -346,6 +352,21 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseNodeToCoreDependenciesMap(Map.Entry<HGNode, EList<HGCoreDependency>> object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>ICore Dependencies List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>ICore Dependencies List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseICoreDependenciesList(ICoreDependenciesList object) {
     return null;
   }
 

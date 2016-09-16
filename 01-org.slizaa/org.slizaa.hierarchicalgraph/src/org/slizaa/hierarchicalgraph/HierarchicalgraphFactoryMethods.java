@@ -2,12 +2,10 @@ package org.slizaa.hierarchicalgraph;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 
 /**
@@ -26,7 +24,7 @@ public class HierarchicalgraphFactoryMethods {
    * @param nodeSource
    * @return
    */
-  public static HGRootNode createNewRootNode(Supplier<HGNodeSource> nodeSourceSupplier) {
+  public static HGRootNode createNewRootNode(Supplier<INodeSource> nodeSourceSupplier) {
 
     //
     HGRootNode result = HierarchicalgraphFactory.eINSTANCE.createHGRootNode();
@@ -44,7 +42,7 @@ public class HierarchicalgraphFactoryMethods {
    * @param nodeSource
    * @return
    */
-  public static HGNode createNewNode(HGRootNode rootNode, HGNode parent, Supplier<HGNodeSource> nodeSourceSupplier) {
+  public static HGNode createNewNode(HGRootNode rootNode, HGNode parent, Supplier<INodeSource> nodeSourceSupplier) {
 
     //
     HGNode result = HierarchicalgraphFactory.eINSTANCE.createHGNode();
@@ -67,7 +65,7 @@ public class HierarchicalgraphFactoryMethods {
    * @return
    */
   public static HGCoreDependency createNewCoreDependency(HGNode source, HGNode target, String type,
-      Supplier<HGDependencySource> dependencySourceSupplier, boolean reinitializeCaches) {
+      Supplier<IDependencySource> dependencySourceSupplier, boolean reinitializeCaches) {
 
     //
     HGCoreDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGCoreDependency();

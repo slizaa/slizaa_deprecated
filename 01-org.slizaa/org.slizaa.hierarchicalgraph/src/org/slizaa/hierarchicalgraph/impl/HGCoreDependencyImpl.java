@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.hierarchicalgraph.IDependencySource;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,7 +80,7 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * @generated
    * @ordered
    */
-  protected HGDependencySource dependencySource;
+  protected IDependencySource dependencySource;
 
   /**
    * The default value of the '{@link #isAggregatedCoreDependency() <em>Aggregated Core Dependency</em>}' attribute.
@@ -218,7 +218,7 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGDependencySource getDependencySource() {
+  public IDependencySource getDependencySource() {
     return dependencySource;
   }
 
@@ -227,8 +227,8 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDependencySource(HGDependencySource newDependencySource, NotificationChain msgs) {
-    HGDependencySource oldDependencySource = dependencySource;
+  public NotificationChain basicSetDependencySource(IDependencySource newDependencySource, NotificationChain msgs) {
+    IDependencySource oldDependencySource = dependencySource;
     dependencySource = newDependencySource;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE, oldDependencySource, newDependencySource);
@@ -242,13 +242,13 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDependencySource(HGDependencySource newDependencySource) {
+  public void setDependencySource(IDependencySource newDependencySource) {
     if (newDependencySource != dependencySource) {
       NotificationChain msgs = null;
       if (dependencySource != null)
-        msgs = ((InternalEObject)dependencySource).eInverseRemove(this, HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY, HGDependencySource.class, msgs);
+        msgs = ((InternalEObject)dependencySource).eInverseRemove(this, HierarchicalgraphPackage.IDEPENDENCY_SOURCE__DEPENDENCY, IDependencySource.class, msgs);
       if (newDependencySource != null)
-        msgs = ((InternalEObject)newDependencySource).eInverseAdd(this, HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY, HGDependencySource.class, msgs);
+        msgs = ((InternalEObject)newDependencySource).eInverseAdd(this, HierarchicalgraphPackage.IDEPENDENCY_SOURCE__DEPENDENCY, IDependencySource.class, msgs);
       msgs = basicSetDependencySource(newDependencySource, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -267,7 +267,7 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
         if (dependencySource != null)
           msgs = ((InternalEObject)dependencySource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE, null, msgs);
-        return basicSetDependencySource((HGDependencySource)otherEnd, msgs);
+        return basicSetDependencySource((IDependencySource)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -323,7 +323,7 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
         setWeight((Integer)newValue);
         return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
-        setDependencySource((HGDependencySource)newValue);
+        setDependencySource((IDependencySource)newValue);
         return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
         setAggregatedCoreDependency((Boolean)newValue);
@@ -347,7 +347,7 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
         setWeight(WEIGHT_EDEFAULT);
         return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
-        setDependencySource((HGDependencySource)null);
+        setDependencySource((IDependencySource)null);
         return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
         setAggregatedCoreDependency(AGGREGATED_CORE_DEPENDENCY_EDEFAULT);

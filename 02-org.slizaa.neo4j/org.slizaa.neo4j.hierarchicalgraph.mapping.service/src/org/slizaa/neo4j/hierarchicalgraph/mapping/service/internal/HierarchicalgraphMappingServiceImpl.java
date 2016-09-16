@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.osgi.service.component.annotations.Component;
-import org.slizaa.hierarchicalgraph.HGDependencySource;
-import org.slizaa.hierarchicalgraph.HGNodeSource;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
+import org.slizaa.hierarchicalgraph.IDependencySource;
+import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
@@ -45,10 +45,10 @@ import com.google.gson.JsonObject;
 public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMappingService {
 
   /** create the node source creator function */
-  private Function<Long, HGNodeSource>                 createNodeSourceFunction       = (id) -> {
+  private Function<Long, INodeSource>                 createNodeSourceFunction       = (id) -> {
 
                                                                                         // create the node source
-                                                                                        HGNodeSource nodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE
+                                                                                        INodeSource nodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE
                                                                                             .createNeo4JBackedNodeSource();
                                                                                         nodeSource.setIdentifier(id);
 
@@ -57,7 +57,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
                                                                                       };
 
   /** the node source creator function */
-  private BiFunction<Long, String, HGDependencySource> createDependencySourceFunction = (id, type) -> {
+  private BiFunction<Long, String, IDependencySource> createDependencySourceFunction = (id, type) -> {
 
                                                                                         // create the dependency source
                                                                                         Neo4JBackedDependencySource dependencySource = Neo4jHierarchicalgraphFactory.eINSTANCE

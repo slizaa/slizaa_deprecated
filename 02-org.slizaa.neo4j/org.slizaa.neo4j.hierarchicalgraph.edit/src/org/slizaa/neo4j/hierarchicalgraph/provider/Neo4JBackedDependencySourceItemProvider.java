@@ -73,9 +73,9 @@ public class Neo4JBackedDependencySourceItemProvider extends ItemProviderAdapter
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGDependencySource_identifier_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGDependencySource_identifier_feature", "_UI_HGDependencySource_type"),
-         HierarchicalgraphPackage.Literals.HG_DEPENDENCY_SOURCE__IDENTIFIER,
+         getString("_UI_IDependencySource_identifier_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_IDependencySource_identifier_feature", "_UI_IDependencySource_type"),
+         HierarchicalgraphPackage.Literals.IDEPENDENCY_SOURCE__IDENTIFIER,
          true,
          false,
          false,

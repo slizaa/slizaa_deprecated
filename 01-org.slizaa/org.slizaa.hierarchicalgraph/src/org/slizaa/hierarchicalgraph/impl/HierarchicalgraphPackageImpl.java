@@ -15,16 +15,17 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
-import org.slizaa.hierarchicalgraph.DefaultHGDependencySource;
-import org.slizaa.hierarchicalgraph.DefaultHGNodeSource;
+import org.slizaa.hierarchicalgraph.DefaultDependencySource;
+import org.slizaa.hierarchicalgraph.DefaultNodeSource;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.HGNodeSource;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.hierarchicalgraph.ICoreDependenciesList;
+import org.slizaa.hierarchicalgraph.IDependencySource;
+import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.SourceOrTarget;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
@@ -47,14 +48,14 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass hgNodeSourceEClass = null;
+  private EClass iNodeSourceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass hgDependencySourceEClass = null;
+  private EClass iDependencySourceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -68,14 +69,14 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass defaultHGNodeSourceEClass = null;
+  private EClass defaultNodeSourceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass defaultHGDependencySourceEClass = null;
+  private EClass defaultDependencySourceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -125,6 +126,13 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * @generated
    */
   private EClass nodeToCoreDependenciesMapEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass iCoreDependenciesListEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -346,6 +354,87 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getINodeSource() {
+    return iNodeSourceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getINodeSource_Identifier() {
+    return (EAttribute)iNodeSourceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getINodeSource_Node() {
+    return (EReference)iNodeSourceEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getINodeSource_AutoExpand() {
+    return (EAttribute)iNodeSourceEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getINodeSource__OnExpand() {
+    return iNodeSourceEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getINodeSource__OnCollapse() {
+    return iNodeSourceEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIDependencySource() {
+    return iDependencySourceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIDependencySource_Identifier() {
+    return (EAttribute)iDependencySourceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIDependencySource_Dependency() {
+    return (EReference)iDependencySourceEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EOperation getHGNode__GetOutgoingCoreDependencies__boolean() {
     return hgNodeEClass.getEOperations().get(4);
   }
@@ -387,87 +476,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getHGNodeSource() {
-    return hgNodeSourceEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getHGNodeSource_Identifier() {
-    return (EAttribute)hgNodeSourceEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getHGNodeSource_Node() {
-    return (EReference)hgNodeSourceEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getHGNodeSource_AutoExpand() {
-    return (EAttribute)hgNodeSourceEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EOperation getHGNodeSource__OnExpand() {
-    return hgNodeSourceEClass.getEOperations().get(0);
-  }
-
-		/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EOperation getHGNodeSource__OnCollapse() {
-    return hgNodeSourceEClass.getEOperations().get(1);
-  }
-
-		/**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getHGDependencySource() {
-    return hgDependencySourceEClass;
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getHGDependencySource_Identifier() {
-    return (EAttribute)hgDependencySourceEClass.getEStructuralFeatures().get(0);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getHGDependencySource_Dependency() {
-    return (EReference)hgDependencySourceEClass.getEStructuralFeatures().get(1);
-  }
-
-    /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -544,8 +552,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDefaultHGNodeSource() {
-    return defaultHGNodeSourceEClass;
+  public EClass getDefaultNodeSource() {
+    return defaultNodeSourceEClass;
   }
 
   /**
@@ -553,8 +561,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDefaultHGNodeSource_Properties() {
-    return (EReference)defaultHGNodeSourceEClass.getEStructuralFeatures().get(0);
+  public EReference getDefaultNodeSource_Properties() {
+    return (EReference)defaultNodeSourceEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -562,8 +570,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDefaultHGDependencySource() {
-    return defaultHGDependencySourceEClass;
+  public EClass getDefaultDependencySource() {
+    return defaultDependencySourceEClass;
   }
 
   /**
@@ -571,8 +579,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDefaultHGDependencySource_Properties() {
-    return (EReference)defaultHGDependencySourceEClass.getEStructuralFeatures().get(0);
+  public EReference getDefaultDependencySource_Properties() {
+    return (EReference)defaultDependencySourceEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -814,6 +822,24 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getICoreDependenciesList() {
+    return iCoreDependenciesListEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getICoreDependenciesList_CoreDependencies() {
+    return (EReference)iCoreDependenciesListEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EEnum getSourceOrTarget() {
     return sourceOrTargetEEnum;
   }
@@ -893,16 +919,16 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEOperation(hgNodeEClass, HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN);
     createEOperation(hgNodeEClass, HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN);
 
-    hgNodeSourceEClass = createEClass(HG_NODE_SOURCE);
-    createEAttribute(hgNodeSourceEClass, HG_NODE_SOURCE__IDENTIFIER);
-    createEReference(hgNodeSourceEClass, HG_NODE_SOURCE__NODE);
-    createEAttribute(hgNodeSourceEClass, HG_NODE_SOURCE__AUTO_EXPAND);
-    createEOperation(hgNodeSourceEClass, HG_NODE_SOURCE___ON_EXPAND);
-    createEOperation(hgNodeSourceEClass, HG_NODE_SOURCE___ON_COLLAPSE);
+    iNodeSourceEClass = createEClass(INODE_SOURCE);
+    createEAttribute(iNodeSourceEClass, INODE_SOURCE__IDENTIFIER);
+    createEReference(iNodeSourceEClass, INODE_SOURCE__NODE);
+    createEAttribute(iNodeSourceEClass, INODE_SOURCE__AUTO_EXPAND);
+    createEOperation(iNodeSourceEClass, INODE_SOURCE___ON_EXPAND);
+    createEOperation(iNodeSourceEClass, INODE_SOURCE___ON_COLLAPSE);
 
-    hgDependencySourceEClass = createEClass(HG_DEPENDENCY_SOURCE);
-    createEAttribute(hgDependencySourceEClass, HG_DEPENDENCY_SOURCE__IDENTIFIER);
-    createEReference(hgDependencySourceEClass, HG_DEPENDENCY_SOURCE__DEPENDENCY);
+    iDependencySourceEClass = createEClass(IDEPENDENCY_SOURCE);
+    createEAttribute(iDependencySourceEClass, IDEPENDENCY_SOURCE__IDENTIFIER);
+    createEReference(iDependencySourceEClass, IDEPENDENCY_SOURCE__DEPENDENCY);
 
     hgRootNodeEClass = createEClass(HG_ROOT_NODE);
     createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__NAME);
@@ -913,11 +939,11 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INITIALIZE_CACHES__ELIST);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___LOOKUP_NODE__OBJECT);
 
-    defaultHGNodeSourceEClass = createEClass(DEFAULT_HG_NODE_SOURCE);
-    createEReference(defaultHGNodeSourceEClass, DEFAULT_HG_NODE_SOURCE__PROPERTIES);
+    defaultNodeSourceEClass = createEClass(DEFAULT_NODE_SOURCE);
+    createEReference(defaultNodeSourceEClass, DEFAULT_NODE_SOURCE__PROPERTIES);
 
-    defaultHGDependencySourceEClass = createEClass(DEFAULT_HG_DEPENDENCY_SOURCE);
-    createEReference(defaultHGDependencySourceEClass, DEFAULT_HG_DEPENDENCY_SOURCE__PROPERTIES);
+    defaultDependencySourceEClass = createEClass(DEFAULT_DEPENDENCY_SOURCE);
+    createEReference(defaultDependencySourceEClass, DEFAULT_DEPENDENCY_SOURCE__PROPERTIES);
 
     abstractHGDependencyEClass = createEClass(ABSTRACT_HG_DEPENDENCY);
     createEReference(abstractHGDependencyEClass, ABSTRACT_HG_DEPENDENCY__FROM);
@@ -951,6 +977,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     nodeToCoreDependenciesMapEClass = createEClass(NODE_TO_CORE_DEPENDENCIES_MAP);
     createEReference(nodeToCoreDependenciesMapEClass, NODE_TO_CORE_DEPENDENCIES_MAP__KEY);
     createEReference(nodeToCoreDependenciesMapEClass, NODE_TO_CORE_DEPENDENCIES_MAP__VALUE);
+
+    iCoreDependenciesListEClass = createEClass(ICORE_DEPENDENCIES_LIST);
+    createEReference(iCoreDependenciesListEClass, ICORE_DEPENDENCIES_LIST__CORE_DEPENDENCIES);
 
     // Create enums
     sourceOrTargetEEnum = createEEnum(SOURCE_OR_TARGET);
@@ -991,8 +1020,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     // Add supertypes to classes
     hgRootNodeEClass.getESuperTypes().add(this.getHGNode());
-    defaultHGNodeSourceEClass.getESuperTypes().add(this.getHGNodeSource());
-    defaultHGDependencySourceEClass.getESuperTypes().add(this.getHGDependencySource());
+    defaultNodeSourceEClass.getESuperTypes().add(this.getINodeSource());
+    defaultDependencySourceEClass.getESuperTypes().add(this.getIDependencySource());
     hgAggregatedDependencyEClass.getESuperTypes().add(this.getAbstractHGDependency());
     hgCoreDependencyEClass.getESuperTypes().add(this.getAbstractHGDependency());
 
@@ -1001,7 +1030,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEReference(getHGNode_RootNode(), this.getHGRootNode(), null, "rootNode", null, 0, 1, HGNode.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
     initEReference(getHGNode_Parent(), this.getHGNode(), this.getHGNode_Children(), "parent", null, 0, 1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGNode_Children(), this.getHGNode(), this.getHGNode_Parent(), "children", null, 0, -1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getHGNode_NodeSource(), this.getHGNodeSource(), this.getHGNodeSource_Node(), "nodeSource", null, 0, 1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getHGNode_NodeSource(), this.getINodeSource(), this.getINodeSource_Node(), "nodeSource", null, 0, 1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGNode_IncomingCoreDependenciesMap(), this.getNodeToCoreDependenciesMap(), null, "incomingCoreDependenciesMap", null, 0, -1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
     initEReference(getHGNode_OutgoingCoreDependenciesMap(), this.getNodeToCoreDependenciesMap(), null, "outgoingCoreDependenciesMap", null, 0, -1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
@@ -1039,18 +1068,18 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     op = initEOperation(getHGNode__ResolveOutgoingAggregatedCoreDependencies__boolean(), null, "resolveOutgoingAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEBoolean(), "includeChildren", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    initEClass(hgNodeSourceEClass, HGNodeSource.class, "HGNodeSource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getHGNodeSource_Identifier(), ecorePackage.getEJavaObject(), "identifier", null, 0, 1, HGNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getHGNodeSource_Node(), this.getHGNode(), this.getHGNode_NodeSource(), "node", null, 0, 1, HGNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getHGNodeSource_AutoExpand(), ecorePackage.getEBoolean(), "autoExpand", null, 0, 1, HGNodeSource.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEClass(iNodeSourceEClass, INodeSource.class, "INodeSource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getINodeSource_Identifier(), ecorePackage.getEJavaObject(), "identifier", null, 0, 1, INodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getINodeSource_Node(), this.getHGNode(), this.getHGNode_NodeSource(), "node", null, 0, 1, INodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getINodeSource_AutoExpand(), ecorePackage.getEBoolean(), "autoExpand", null, 0, 1, INodeSource.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-    initEOperation(getHGNodeSource__OnExpand(), null, "onExpand", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getINodeSource__OnExpand(), null, "onExpand", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    initEOperation(getHGNodeSource__OnCollapse(), null, "onCollapse", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getINodeSource__OnCollapse(), null, "onCollapse", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    initEClass(hgDependencySourceEClass, HGDependencySource.class, "HGDependencySource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getHGDependencySource_Identifier(), ecorePackage.getEJavaObject(), "identifier", null, 0, 1, HGDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getHGDependencySource_Dependency(), this.getHGCoreDependency(), this.getHGCoreDependency_DependencySource(), "dependency", null, 1, 1, HGDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(iDependencySourceEClass, IDependencySource.class, "IDependencySource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIDependencySource_Identifier(), ecorePackage.getEJavaObject(), "identifier", null, 0, 1, IDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIDependencySource_Dependency(), this.getHGCoreDependency(), this.getHGCoreDependency_DependencySource(), "dependency", null, 1, 1, IDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(hgRootNodeEClass, HGRootNode.class, "HGRootNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHGRootNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, HGRootNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1068,11 +1097,11 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     op = initEOperation(getHGRootNode__LookupNode__Object(), this.getHGNode(), "lookupNode", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEJavaObject(), "identifier", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    initEClass(defaultHGNodeSourceEClass, DefaultHGNodeSource.class, "DefaultHGNodeSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDefaultHGNodeSource_Properties(), this.getStringToStringMap(), null, "properties", null, 0, -1, DefaultHGNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(defaultNodeSourceEClass, DefaultNodeSource.class, "DefaultNodeSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDefaultNodeSource_Properties(), this.getStringToStringMap(), null, "properties", null, 0, -1, DefaultNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(defaultHGDependencySourceEClass, DefaultHGDependencySource.class, "DefaultHGDependencySource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDefaultHGDependencySource_Properties(), this.getStringToStringMap(), null, "properties", null, 0, -1, DefaultHGDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(defaultDependencySourceEClass, DefaultDependencySource.class, "DefaultDependencySource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDefaultDependencySource_Properties(), this.getStringToStringMap(), null, "properties", null, 0, -1, DefaultDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(abstractHGDependencyEClass, AbstractHGDependency.class, "AbstractHGDependency", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAbstractHGDependency_From(), this.getHGNode(), null, "from", null, 1, 1, AbstractHGDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1089,7 +1118,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEClass(hgCoreDependencyEClass, HGCoreDependency.class, "HGCoreDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHGCoreDependency_Type(), ecorePackage.getEString(), "type", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getHGCoreDependency_Weight(), ecorePackage.getEInt(), "weight", "1", 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getHGCoreDependency_DependencySource(), this.getHGDependencySource(), this.getHGDependencySource_Dependency(), "dependencySource", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getHGCoreDependency_DependencySource(), this.getIDependencySource(), this.getIDependencySource_Dependency(), "dependencySource", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getHGCoreDependency_AggregatedCoreDependency(), ecorePackage.getEBoolean(), "aggregatedCoreDependency", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getHGCoreDependency_AggregatedCoreDependencyResolved(), ecorePackage.getEBoolean(), "aggregatedCoreDependencyResolved", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1108,6 +1137,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEClass(nodeToCoreDependenciesMapEClass, Map.Entry.class, "NodeToCoreDependenciesMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNodeToCoreDependenciesMap_Key(), this.getHGNode(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNodeToCoreDependenciesMap_Value(), this.getHGCoreDependency(), null, "value", null, 0, -1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(iCoreDependenciesListEClass, ICoreDependenciesList.class, "ICoreDependenciesList", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getICoreDependenciesList_CoreDependencies(), this.getHGCoreDependency(), null, "coreDependencies", null, 0, -1, ICoreDependenciesList.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(sourceOrTargetEEnum, SourceOrTarget.class, "SourceOrTarget");

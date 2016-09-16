@@ -13,10 +13,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.junit.Before;
-import org.slizaa.hierarchicalgraph.DefaultHGNodeSource;
-import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.HGNodeSource;
-import org.slizaa.hierarchicalgraph.HGRootNode;
 
 /**
  * <p>
@@ -90,7 +86,7 @@ public abstract class AbstractXmiBasedTest {
   public Map<String, String> getProperties(HGNode node) {
 
     //
-    HGNodeSource nodeSource = (HGNodeSource) node.getNodeSource();
+    INodeSource nodeSource = node.getNodeSource();
 
     //
     if (nodeSource instanceof DefaultHGNodeSource) {

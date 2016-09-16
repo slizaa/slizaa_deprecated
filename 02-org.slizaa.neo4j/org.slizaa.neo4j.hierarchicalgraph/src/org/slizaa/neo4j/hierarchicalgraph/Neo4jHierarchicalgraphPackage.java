@@ -77,7 +77,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int NEO4_JBACKED_NODE_SOURCE__IDENTIFIER = HierarchicalgraphPackage.HG_NODE_SOURCE__IDENTIFIER;
+	int NEO4_JBACKED_NODE_SOURCE__IDENTIFIER = HierarchicalgraphPackage.INODE_SOURCE__IDENTIFIER;
 
 	/**
    * The feature id for the '<em><b>Node</b></em>' container reference.
@@ -86,7 +86,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int NEO4_JBACKED_NODE_SOURCE__NODE = HierarchicalgraphPackage.HG_NODE_SOURCE__NODE;
+	int NEO4_JBACKED_NODE_SOURCE__NODE = HierarchicalgraphPackage.INODE_SOURCE__NODE;
 
 	/**
    * The feature id for the '<em><b>Auto Expand</b></em>' attribute.
@@ -95,7 +95,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE__AUTO_EXPAND = HierarchicalgraphPackage.HG_NODE_SOURCE__AUTO_EXPAND;
+  int NEO4_JBACKED_NODE_SOURCE__AUTO_EXPAND = HierarchicalgraphPackage.INODE_SOURCE__AUTO_EXPAND;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' map.
@@ -104,7 +104,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int NEO4_JBACKED_NODE_SOURCE__PROPERTIES = HierarchicalgraphPackage.HG_NODE_SOURCE_FEATURE_COUNT + 0;
+	int NEO4_JBACKED_NODE_SOURCE__PROPERTIES = HierarchicalgraphPackage.INODE_SOURCE_FEATURE_COUNT + 0;
 
 	/**
    * The feature id for the '<em><b>Labels</b></em>' attribute list.
@@ -113,7 +113,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int NEO4_JBACKED_NODE_SOURCE__LABELS = HierarchicalgraphPackage.HG_NODE_SOURCE_FEATURE_COUNT + 1;
+	int NEO4_JBACKED_NODE_SOURCE__LABELS = HierarchicalgraphPackage.INODE_SOURCE_FEATURE_COUNT + 1;
 
 	/**
    * The number of structural features of the '<em>Neo4 JBacked Node Source</em>' class.
@@ -122,7 +122,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.HG_NODE_SOURCE_FEATURE_COUNT + 2;
+	int NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.INODE_SOURCE_FEATURE_COUNT + 2;
 
 	/**
    * The operation id for the '<em>On Expand</em>' operation.
@@ -131,7 +131,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE___ON_EXPAND = HierarchicalgraphPackage.HG_NODE_SOURCE___ON_EXPAND;
+  int NEO4_JBACKED_NODE_SOURCE___ON_EXPAND = HierarchicalgraphPackage.INODE_SOURCE___ON_EXPAND;
 
   /**
    * The operation id for the '<em>On Collapse</em>' operation.
@@ -140,7 +140,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE___ON_COLLAPSE = HierarchicalgraphPackage.HG_NODE_SOURCE___ON_COLLAPSE;
+  int NEO4_JBACKED_NODE_SOURCE___ON_COLLAPSE = HierarchicalgraphPackage.INODE_SOURCE___ON_COLLAPSE;
 
   /**
    * The number of operations of the '<em>Neo4 JBacked Node Source</em>' class.
@@ -149,7 +149,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int NEO4_JBACKED_NODE_SOURCE_OPERATION_COUNT = HierarchicalgraphPackage.HG_NODE_SOURCE_OPERATION_COUNT + 0;
+	int NEO4_JBACKED_NODE_SOURCE_OPERATION_COUNT = HierarchicalgraphPackage.INODE_SOURCE_OPERATION_COUNT + 0;
 
 	/**
    * The meta object id for the '{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedRootNodeSourceImpl <em>Neo4 JBacked Root Node Source</em>}' class.
@@ -288,7 +288,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE__IDENTIFIER = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__IDENTIFIER;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE__IDENTIFIER = HierarchicalgraphPackage.IDEPENDENCY_SOURCE__IDENTIFIER;
 
   /**
    * The feature id for the '<em><b>Dependency</b></em>' container reference.
@@ -297,7 +297,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE__DEPENDENCY = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE__DEPENDENCY;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE__DEPENDENCY = HierarchicalgraphPackage.IDEPENDENCY_SOURCE__DEPENDENCY;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' map.
@@ -306,7 +306,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE__PROPERTIES = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 0;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE__PROPERTIES = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -315,7 +315,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 1;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Neo4 JBacked Dependency Source</em>' class.
@@ -324,7 +324,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 2;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Neo4 JBacked Dependency Source</em>' class.
@@ -333,7 +333,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE_OPERATION_COUNT = HierarchicalgraphPackage.HG_DEPENDENCY_SOURCE_OPERATION_COUNT + 0;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE_OPERATION_COUNT = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_OPERATION_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Hierarchical Graphs</b></em>' reference list.

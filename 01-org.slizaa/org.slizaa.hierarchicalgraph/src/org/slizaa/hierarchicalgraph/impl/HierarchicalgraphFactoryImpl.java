@@ -15,14 +15,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.slizaa.hierarchicalgraph.*;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
-import org.slizaa.hierarchicalgraph.DefaultHGDependencySource;
-import org.slizaa.hierarchicalgraph.DefaultHGNodeSource;
-import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
-import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
-import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -65,8 +57,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
     switch (eClass.getClassifierID()) {
       case HierarchicalgraphPackage.HG_NODE: return createHGNode();
       case HierarchicalgraphPackage.HG_ROOT_NODE: return createHGRootNode();
-      case HierarchicalgraphPackage.DEFAULT_HG_NODE_SOURCE: return createDefaultHGNodeSource();
-      case HierarchicalgraphPackage.DEFAULT_HG_DEPENDENCY_SOURCE: return createDefaultHGDependencySource();
+      case HierarchicalgraphPackage.DEFAULT_NODE_SOURCE: return createDefaultNodeSource();
+      case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE: return createDefaultDependencySource();
       case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY: return createHGAggregatedDependency();
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY: return createHGCoreDependency();
       case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP: return (EObject)createNodeToCoreDependencyMap();
@@ -139,22 +131,23 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  public DefaultHGNodeSource createDefaultHGNodeSource() {
-    DefaultHGNodeSourceImpl defaultHGNodeSource = new DefaultHGNodeSourceImpl();
-    return defaultHGNodeSource;
+  public DefaultNodeSource createDefaultNodeSource() {
+    DefaultNodeSourceImpl defaultNodeSource = new DefaultNodeSourceImpl();
+    return defaultNodeSource;
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
    */
-  public DefaultHGDependencySource createDefaultHGDependencySource() {
-    DefaultHGDependencySourceImpl defaultHGDependencySource = new DefaultHGDependencySourceImpl();
-    return defaultHGDependencySource;
+  public DefaultDependencySource createDefaultDependencySource() {
+    DefaultDependencySourceImpl defaultDependencySource = new DefaultDependencySourceImpl();
+    return defaultDependencySource;
   }
 
   /**

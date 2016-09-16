@@ -126,10 +126,10 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
   public Future<?> resolveAggregatedDependency(HGCoreDependency dependencyToResolve) {
 
     _newDependency_1 = createNewCoreDependency(dependencyToResolve.getFrom(), dependencyToResolve.getTo(), "NEW_USAGE",
-        () -> HierarchicalgraphFactory.eINSTANCE.createDefaultHGDependencySource(), false);
+        () -> HierarchicalgraphFactory.eINSTANCE.createDefaultDependencySource(), false);
 
     _newDependency_2 = createNewCoreDependency(dependencyToResolve.getFrom(), dependencyToResolve.getTo(), "NEW_USAGE",
-        () -> HierarchicalgraphFactory.eINSTANCE.createDefaultHGDependencySource(), false);
+        () -> HierarchicalgraphFactory.eINSTANCE.createDefaultDependencySource(), false);
 
     dependencyToResolve.getRootNode()
         .invalidateCaches(new BasicEList<HGNode>(asList(dependencyToResolve.getFrom(), dependencyToResolve.getTo())));

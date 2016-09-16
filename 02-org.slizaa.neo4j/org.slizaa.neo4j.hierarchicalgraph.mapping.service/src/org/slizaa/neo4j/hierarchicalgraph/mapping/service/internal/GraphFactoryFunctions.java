@@ -5,13 +5,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.HGDependencySource;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.HGNodeSource;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
+import org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods;
+import org.slizaa.hierarchicalgraph.IDependencySource;
+import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 
 import com.google.gson.JsonArray;
@@ -34,7 +34,7 @@ public class GraphFactoryFunctions {
    * @param nodeSourceCreator
    */
   public static void createFirstLevelElements(JsonArray hierachyResult, HGRootNode rootElement,
-      final Function<Long, HGNodeSource> nodeSourceCreator) {
+      final Function<Long, INodeSource> nodeSourceCreator) {
 
     checkNotNull(hierachyResult);
     checkNotNull(rootElement);
@@ -54,7 +54,7 @@ public class GraphFactoryFunctions {
    * @param creator
    */
   public static void createHierarchy(JsonArray hierachyResult, HGRootNode rootElement,
-      final Function<Long, HGNodeSource> nodeSourceCreator) {
+      final Function<Long, INodeSource> nodeSourceCreator) {
 
     //
     for (int i = 0; i < hierachyResult.size(); i++) {
@@ -73,7 +73,7 @@ public class GraphFactoryFunctions {
    * @param dependencySourceCreator
    */
   public static void createDependencies(JsonArray asJsonArray, HGRootNode rootElement,
-      BiFunction<Long, String, HGDependencySource> dependencySourceCreator, boolean reinitializeCaches) {
+      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean reinitializeCaches) {
     asJsonArray.forEach((element) -> {
       JsonArray row = element.getAsJsonArray();
       long idStart = row.get(0).getAsLong();
@@ -94,7 +94,7 @@ public class GraphFactoryFunctions {
    * @return
    */
   public static HGCoreDependency createDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
-      BiFunction<Long, String, HGDependencySource> dependencySourceCreator, boolean reinitializeCaches) {
+      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean reinitializeCaches) {
 
     // get the from...
     HGNode fromElement = ((ExtendedHGRootNodeImpl) rootElement).getIdToNodeMap().get(from);
@@ -129,7 +129,7 @@ public class GraphFactoryFunctions {
    * @return
    */
   private static HGNode createNodeIfAbsent(final Long identifier, final HGNode rootNode, final HGNode parent,
-      final Function<Long, HGNodeSource> nodeSourceCreator) {
+      final Function<Long, INodeSource> nodeSourceCreator) {
 
     checkNotNull(identifier);
 

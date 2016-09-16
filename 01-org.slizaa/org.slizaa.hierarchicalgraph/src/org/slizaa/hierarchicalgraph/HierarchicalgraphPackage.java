@@ -250,14 +250,14 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_NODE_OPERATION_COUNT = 12;
 
   /**
-   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.HGNodeSource <em>HG Node Source</em>}' class.
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.INodeSource <em>INode Source</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.hierarchicalgraph.HGNodeSource
-   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getHGNodeSource()
+   * @see org.slizaa.hierarchicalgraph.INodeSource
+   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getINodeSource()
    * @generated
    */
-  int HG_NODE_SOURCE = 1;
+  int INODE_SOURCE = 1;
 
   /**
    * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -266,7 +266,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE_SOURCE__IDENTIFIER = 0;
+  int INODE_SOURCE__IDENTIFIER = 0;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' container reference.
@@ -275,7 +275,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE_SOURCE__NODE = 1;
+  int INODE_SOURCE__NODE = 1;
 
   /**
    * The feature id for the '<em><b>Auto Expand</b></em>' attribute.
@@ -284,89 +284,89 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE_SOURCE__AUTO_EXPAND = 2;
+  int INODE_SOURCE__AUTO_EXPAND = 2;
 
   /**
-   * The number of structural features of the '<em>HG Node Source</em>' class.
+   * The number of structural features of the '<em>INode Source</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_NODE_SOURCE_FEATURE_COUNT = 3;
+  int INODE_SOURCE_FEATURE_COUNT = 3;
 
   /**
    * The operation id for the '<em>On Expand</em>' operation.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int HG_NODE_SOURCE___ON_EXPAND = 0;
-
-		/**
-   * The operation id for the '<em>On Collapse</em>' operation.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int HG_NODE_SOURCE___ON_COLLAPSE = 1;
-
-		/**
-   * The number of operations of the '<em>HG Node Source</em>' class.
-   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_NODE_SOURCE_OPERATION_COUNT = 2;
+  int INODE_SOURCE___ON_EXPAND = 0;
 
   /**
-   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.HGDependencySource <em>HG Dependency Source</em>}' class.
+   * The operation id for the '<em>On Collapse</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.hierarchicalgraph.HGDependencySource
-   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getHGDependencySource()
+   * @generated
+   * @ordered
+   */
+  int INODE_SOURCE___ON_COLLAPSE = 1;
+
+  /**
+   * The number of operations of the '<em>INode Source</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INODE_SOURCE_OPERATION_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.IDependencySource <em>IDependency Source</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.hierarchicalgraph.IDependencySource
+   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIDependencySource()
    * @generated
    */
-  int HG_DEPENDENCY_SOURCE = 2;
+  int IDEPENDENCY_SOURCE = 2;
 
-    /**
+  /**
    * The feature id for the '<em><b>Identifier</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_DEPENDENCY_SOURCE__IDENTIFIER = 0;
+  int IDEPENDENCY_SOURCE__IDENTIFIER = 0;
 
-    /**
+  /**
    * The feature id for the '<em><b>Dependency</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_DEPENDENCY_SOURCE__DEPENDENCY = 1;
+  int IDEPENDENCY_SOURCE__DEPENDENCY = 1;
 
-    /**
-   * The number of structural features of the '<em>HG Dependency Source</em>' class.
+  /**
+   * The number of structural features of the '<em>IDependency Source</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_DEPENDENCY_SOURCE_FEATURE_COUNT = 2;
+  int IDEPENDENCY_SOURCE_FEATURE_COUNT = 2;
 
-    /**
-   * The number of operations of the '<em>HG Dependency Source</em>' class.
+  /**
+   * The number of operations of the '<em>IDependency Source</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_DEPENDENCY_SOURCE_OPERATION_COUNT = 0;
+  int IDEPENDENCY_SOURCE_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.HGRootNodeImpl <em>HG Root Node</em>}' class.
@@ -622,14 +622,14 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE_OPERATION_COUNT = HG_NODE_OPERATION_COUNT + 4;
 
   /**
-   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultHGNodeSourceImpl <em>Default HG Node Source</em>}' class.
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultNodeSourceImpl <em>Default Node Source</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.hierarchicalgraph.impl.DefaultHGNodeSourceImpl
-   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getDefaultHGNodeSource()
+   * @see org.slizaa.hierarchicalgraph.impl.DefaultNodeSourceImpl
+   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getDefaultNodeSource()
    * @generated
    */
-  int DEFAULT_HG_NODE_SOURCE = 4;
+  int DEFAULT_NODE_SOURCE = 4;
 
   /**
    * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -638,7 +638,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DEFAULT_HG_NODE_SOURCE__IDENTIFIER = HG_NODE_SOURCE__IDENTIFIER;
+  int DEFAULT_NODE_SOURCE__IDENTIFIER = INODE_SOURCE__IDENTIFIER;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' container reference.
@@ -647,7 +647,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DEFAULT_HG_NODE_SOURCE__NODE = HG_NODE_SOURCE__NODE;
+  int DEFAULT_NODE_SOURCE__NODE = INODE_SOURCE__NODE;
 
   /**
    * The feature id for the '<em><b>Auto Expand</b></em>' attribute.
@@ -656,7 +656,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DEFAULT_HG_NODE_SOURCE__AUTO_EXPAND = HG_NODE_SOURCE__AUTO_EXPAND;
+  int DEFAULT_NODE_SOURCE__AUTO_EXPAND = INODE_SOURCE__AUTO_EXPAND;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' map.
@@ -665,98 +665,98 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DEFAULT_HG_NODE_SOURCE__PROPERTIES = HG_NODE_SOURCE_FEATURE_COUNT + 0;
+  int DEFAULT_NODE_SOURCE__PROPERTIES = INODE_SOURCE_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Default HG Node Source</em>' class.
+   * The number of structural features of the '<em>Default Node Source</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEFAULT_HG_NODE_SOURCE_FEATURE_COUNT = HG_NODE_SOURCE_FEATURE_COUNT + 1;
+  int DEFAULT_NODE_SOURCE_FEATURE_COUNT = INODE_SOURCE_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>On Expand</em>' operation.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int DEFAULT_HG_NODE_SOURCE___ON_EXPAND = HG_NODE_SOURCE___ON_EXPAND;
-
-		/**
-   * The operation id for the '<em>On Collapse</em>' operation.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int DEFAULT_HG_NODE_SOURCE___ON_COLLAPSE = HG_NODE_SOURCE___ON_COLLAPSE;
-
-		/**
-   * The number of operations of the '<em>Default HG Node Source</em>' class.
-   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEFAULT_HG_NODE_SOURCE_OPERATION_COUNT = HG_NODE_SOURCE_OPERATION_COUNT + 0;
+  int DEFAULT_NODE_SOURCE___ON_EXPAND = INODE_SOURCE___ON_EXPAND;
 
   /**
-   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultHGDependencySourceImpl <em>Default HG Dependency Source</em>}' class.
+   * The operation id for the '<em>On Collapse</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.hierarchicalgraph.impl.DefaultHGDependencySourceImpl
-   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getDefaultHGDependencySource()
+   * @generated
+   * @ordered
+   */
+  int DEFAULT_NODE_SOURCE___ON_COLLAPSE = INODE_SOURCE___ON_COLLAPSE;
+
+  /**
+   * The number of operations of the '<em>Default Node Source</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFAULT_NODE_SOURCE_OPERATION_COUNT = INODE_SOURCE_OPERATION_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultDependencySourceImpl <em>Default Dependency Source</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.hierarchicalgraph.impl.DefaultDependencySourceImpl
+   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getDefaultDependencySource()
    * @generated
    */
-  int DEFAULT_HG_DEPENDENCY_SOURCE = 5;
+  int DEFAULT_DEPENDENCY_SOURCE = 5;
 
-    /**
+  /**
    * The feature id for the '<em><b>Identifier</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEFAULT_HG_DEPENDENCY_SOURCE__IDENTIFIER = HG_DEPENDENCY_SOURCE__IDENTIFIER;
+  int DEFAULT_DEPENDENCY_SOURCE__IDENTIFIER = IDEPENDENCY_SOURCE__IDENTIFIER;
 
-    /**
+  /**
    * The feature id for the '<em><b>Dependency</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEFAULT_HG_DEPENDENCY_SOURCE__DEPENDENCY = HG_DEPENDENCY_SOURCE__DEPENDENCY;
+  int DEFAULT_DEPENDENCY_SOURCE__DEPENDENCY = IDEPENDENCY_SOURCE__DEPENDENCY;
 
-    /**
+  /**
    * The feature id for the '<em><b>Properties</b></em>' map.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEFAULT_HG_DEPENDENCY_SOURCE__PROPERTIES = HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 0;
+  int DEFAULT_DEPENDENCY_SOURCE__PROPERTIES = IDEPENDENCY_SOURCE_FEATURE_COUNT + 0;
 
-    /**
-   * The number of structural features of the '<em>Default HG Dependency Source</em>' class.
+  /**
+   * The number of structural features of the '<em>Default Dependency Source</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEFAULT_HG_DEPENDENCY_SOURCE_FEATURE_COUNT = HG_DEPENDENCY_SOURCE_FEATURE_COUNT + 1;
+  int DEFAULT_DEPENDENCY_SOURCE_FEATURE_COUNT = IDEPENDENCY_SOURCE_FEATURE_COUNT + 1;
 
-    /**
-   * The number of operations of the '<em>Default HG Dependency Source</em>' class.
+  /**
+   * The number of operations of the '<em>Default Dependency Source</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEFAULT_HG_DEPENDENCY_SOURCE_OPERATION_COUNT = HG_DEPENDENCY_SOURCE_OPERATION_COUNT + 0;
+  int DEFAULT_DEPENDENCY_SOURCE_OPERATION_COUNT = IDEPENDENCY_SOURCE_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.AbstractHGDependencyImpl <em>Abstract HG Dependency</em>}' class.
@@ -1198,6 +1198,43 @@ public interface HierarchicalgraphPackage extends EPackage {
   int NODE_TO_CORE_DEPENDENCIES_MAP_OPERATION_COUNT = 0;
 
   /**
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.ICoreDependenciesList <em>ICore Dependencies List</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.hierarchicalgraph.ICoreDependenciesList
+   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getICoreDependenciesList()
+   * @generated
+   */
+  int ICORE_DEPENDENCIES_LIST = 13;
+
+  /**
+   * The feature id for the '<em><b>Core Dependencies</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ICORE_DEPENDENCIES_LIST__CORE_DEPENDENCIES = 0;
+
+  /**
+   * The number of structural features of the '<em>ICore Dependencies List</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ICORE_DEPENDENCIES_LIST_FEATURE_COUNT = 1;
+
+  /**
+   * The number of operations of the '<em>ICore Dependencies List</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ICORE_DEPENDENCIES_LIST_OPERATION_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1205,7 +1242,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getSourceOrTarget()
    * @generated
    */
-  int SOURCE_OR_TARGET = 13;
+  int SOURCE_OR_TARGET = 14;
 
   /**
    * The meta object id for the '<em>IItem Label Provider</em>' data type.
@@ -1215,7 +1252,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIItemLabelProvider()
    * @generated
    */
-  int IITEM_LABEL_PROVIDER = 14;
+  int IITEM_LABEL_PROVIDER = 15;
 
 
   /**
@@ -1226,7 +1263,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getFuture()
    * @generated
    */
-  int FUTURE = 15;
+  int FUTURE = 16;
 
 
   /**
@@ -1237,7 +1274,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIAggregatedCoreDependencyResolver()
    * @generated
    */
-  int IAGGREGATED_CORE_DEPENDENCY_RESOLVER = 16;
+  int IAGGREGATED_CORE_DEPENDENCY_RESOLVER = 17;
 
 
   /**
@@ -1387,6 +1424,101 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGNode__ResolveOutgoingAggregatedCoreDependencies__boolean();
 
   /**
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.INodeSource <em>INode Source</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>INode Source</em>'.
+   * @see org.slizaa.hierarchicalgraph.INodeSource
+   * @generated
+   */
+  EClass getINodeSource();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.INodeSource#getIdentifier <em>Identifier</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Identifier</em>'.
+   * @see org.slizaa.hierarchicalgraph.INodeSource#getIdentifier()
+   * @see #getINodeSource()
+   * @generated
+   */
+  EAttribute getINodeSource_Identifier();
+
+  /**
+   * Returns the meta object for the container reference '{@link org.slizaa.hierarchicalgraph.INodeSource#getNode <em>Node</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the container reference '<em>Node</em>'.
+   * @see org.slizaa.hierarchicalgraph.INodeSource#getNode()
+   * @see #getINodeSource()
+   * @generated
+   */
+  EReference getINodeSource_Node();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.INodeSource#isAutoExpand <em>Auto Expand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Auto Expand</em>'.
+   * @see org.slizaa.hierarchicalgraph.INodeSource#isAutoExpand()
+   * @see #getINodeSource()
+   * @generated
+   */
+  EAttribute getINodeSource_AutoExpand();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.INodeSource#onExpand() <em>On Expand</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>On Expand</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.INodeSource#onExpand()
+   * @generated
+   */
+  EOperation getINodeSource__OnExpand();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.INodeSource#onCollapse() <em>On Collapse</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>On Collapse</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.INodeSource#onCollapse()
+   * @generated
+   */
+  EOperation getINodeSource__OnCollapse();
+
+  /**
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.IDependencySource <em>IDependency Source</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>IDependency Source</em>'.
+   * @see org.slizaa.hierarchicalgraph.IDependencySource
+   * @generated
+   */
+  EClass getIDependencySource();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.IDependencySource#getIdentifier <em>Identifier</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Identifier</em>'.
+   * @see org.slizaa.hierarchicalgraph.IDependencySource#getIdentifier()
+   * @see #getIDependencySource()
+   * @generated
+   */
+  EAttribute getIDependencySource_Identifier();
+
+  /**
+   * Returns the meta object for the container reference '{@link org.slizaa.hierarchicalgraph.IDependencySource#getDependency <em>Dependency</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the container reference '<em>Dependency</em>'.
+   * @see org.slizaa.hierarchicalgraph.IDependencySource#getDependency()
+   * @see #getIDependencySource()
+   * @generated
+   */
+  EReference getIDependencySource_Dependency();
+
+  /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingCoreDependencies(boolean) <em>Get Outgoing Core Dependencies</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1437,101 +1569,6 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGNode__IsSuccessorOf__HGNode();
 
   /**
-   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGNodeSource <em>HG Node Source</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>HG Node Source</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGNodeSource
-   * @generated
-   */
-  EClass getHGNodeSource();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGNodeSource#getIdentifier <em>Identifier</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Identifier</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGNodeSource#getIdentifier()
-   * @see #getHGNodeSource()
-   * @generated
-   */
-  EAttribute getHGNodeSource_Identifier();
-
-  /**
-   * Returns the meta object for the container reference '{@link org.slizaa.hierarchicalgraph.HGNodeSource#getNode <em>Node</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Node</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGNodeSource#getNode()
-   * @see #getHGNodeSource()
-   * @generated
-   */
-  EReference getHGNodeSource_Node();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGNodeSource#isAutoExpand <em>Auto Expand</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Auto Expand</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGNodeSource#isAutoExpand()
-   * @see #getHGNodeSource()
-   * @generated
-   */
-  EAttribute getHGNodeSource_AutoExpand();
-
-  /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNodeSource#onExpand() <em>On Expand</em>}' operation.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the '<em>On Expand</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGNodeSource#onExpand()
-   * @generated
-   */
-	EOperation getHGNodeSource__OnExpand();
-
-		/**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNodeSource#onCollapse() <em>On Collapse</em>}' operation.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the '<em>On Collapse</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGNodeSource#onCollapse()
-   * @generated
-   */
-	EOperation getHGNodeSource__OnCollapse();
-
-		/**
-   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGDependencySource <em>HG Dependency Source</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>HG Dependency Source</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGDependencySource
-   * @generated
-   */
-  EClass getHGDependencySource();
-
-    /**
-   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGDependencySource#getIdentifier <em>Identifier</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Identifier</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGDependencySource#getIdentifier()
-   * @see #getHGDependencySource()
-   * @generated
-   */
-  EAttribute getHGDependencySource_Identifier();
-
-    /**
-   * Returns the meta object for the container reference '{@link org.slizaa.hierarchicalgraph.HGDependencySource#getDependency <em>Dependency</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Dependency</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGDependencySource#getDependency()
-   * @see #getHGDependencySource()
-   * @generated
-   */
-  EReference getHGDependencySource_Dependency();
-
-    /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGRootNode <em>HG Root Node</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1615,46 +1652,46 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGRootNode__LookupNode__Object();
 
   /**
-   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.DefaultHGNodeSource <em>Default HG Node Source</em>}'.
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.DefaultNodeSource <em>Default Node Source</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Default HG Node Source</em>'.
-   * @see org.slizaa.hierarchicalgraph.DefaultHGNodeSource
+   * @return the meta object for class '<em>Default Node Source</em>'.
+   * @see org.slizaa.hierarchicalgraph.DefaultNodeSource
    * @generated
    */
-  EClass getDefaultHGNodeSource();
+  EClass getDefaultNodeSource();
 
   /**
-   * Returns the meta object for the map '{@link org.slizaa.hierarchicalgraph.DefaultHGNodeSource#getProperties <em>Properties</em>}'.
+   * Returns the meta object for the map '{@link org.slizaa.hierarchicalgraph.DefaultNodeSource#getProperties <em>Properties</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the map '<em>Properties</em>'.
-   * @see org.slizaa.hierarchicalgraph.DefaultHGNodeSource#getProperties()
-   * @see #getDefaultHGNodeSource()
+   * @see org.slizaa.hierarchicalgraph.DefaultNodeSource#getProperties()
+   * @see #getDefaultNodeSource()
    * @generated
    */
-  EReference getDefaultHGNodeSource_Properties();
+  EReference getDefaultNodeSource_Properties();
 
   /**
-   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.DefaultHGDependencySource <em>Default HG Dependency Source</em>}'.
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.DefaultDependencySource <em>Default Dependency Source</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Default HG Dependency Source</em>'.
-   * @see org.slizaa.hierarchicalgraph.DefaultHGDependencySource
+   * @return the meta object for class '<em>Default Dependency Source</em>'.
+   * @see org.slizaa.hierarchicalgraph.DefaultDependencySource
    * @generated
    */
-  EClass getDefaultHGDependencySource();
+  EClass getDefaultDependencySource();
 
   /**
-   * Returns the meta object for the map '{@link org.slizaa.hierarchicalgraph.DefaultHGDependencySource#getProperties <em>Properties</em>}'.
+   * Returns the meta object for the map '{@link org.slizaa.hierarchicalgraph.DefaultDependencySource#getProperties <em>Properties</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the map '<em>Properties</em>'.
-   * @see org.slizaa.hierarchicalgraph.DefaultHGDependencySource#getProperties()
-   * @see #getDefaultHGDependencySource()
+   * @see org.slizaa.hierarchicalgraph.DefaultDependencySource#getProperties()
+   * @see #getDefaultDependencySource()
    * @generated
    */
-  EReference getDefaultHGDependencySource_Properties();
+  EReference getDefaultDependencySource_Properties();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.AbstractHGDependency <em>Abstract HG Dependency</em>}'.
@@ -1942,6 +1979,27 @@ public interface HierarchicalgraphPackage extends EPackage {
   EReference getNodeToCoreDependenciesMap_Value();
 
   /**
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.ICoreDependenciesList <em>ICore Dependencies List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>ICore Dependencies List</em>'.
+   * @see org.slizaa.hierarchicalgraph.ICoreDependenciesList
+   * @generated
+   */
+  EClass getICoreDependenciesList();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.ICoreDependenciesList#getCoreDependencies <em>Core Dependencies</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Core Dependencies</em>'.
+   * @see org.slizaa.hierarchicalgraph.ICoreDependenciesList#getCoreDependencies()
+   * @see #getICoreDependenciesList()
+   * @generated
+   */
+  EReference getICoreDependenciesList_CoreDependencies();
+
+  /**
    * Returns the meta object for enum '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2122,6 +2180,82 @@ public interface HierarchicalgraphPackage extends EPackage {
     EOperation HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = eINSTANCE.getHGNode__ResolveOutgoingAggregatedCoreDependencies__boolean();
 
     /**
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.INodeSource <em>INode Source</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.hierarchicalgraph.INodeSource
+     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getINodeSource()
+     * @generated
+     */
+    EClass INODE_SOURCE = eINSTANCE.getINodeSource();
+
+    /**
+     * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INODE_SOURCE__IDENTIFIER = eINSTANCE.getINodeSource_Identifier();
+
+    /**
+     * The meta object literal for the '<em><b>Node</b></em>' container reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INODE_SOURCE__NODE = eINSTANCE.getINodeSource_Node();
+
+    /**
+     * The meta object literal for the '<em><b>Auto Expand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INODE_SOURCE__AUTO_EXPAND = eINSTANCE.getINodeSource_AutoExpand();
+
+    /**
+     * The meta object literal for the '<em><b>On Expand</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation INODE_SOURCE___ON_EXPAND = eINSTANCE.getINodeSource__OnExpand();
+
+    /**
+     * The meta object literal for the '<em><b>On Collapse</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation INODE_SOURCE___ON_COLLAPSE = eINSTANCE.getINodeSource__OnCollapse();
+
+    /**
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.IDependencySource <em>IDependency Source</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.hierarchicalgraph.IDependencySource
+     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIDependencySource()
+     * @generated
+     */
+    EClass IDEPENDENCY_SOURCE = eINSTANCE.getIDependencySource();
+
+    /**
+     * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IDEPENDENCY_SOURCE__IDENTIFIER = eINSTANCE.getIDependencySource_Identifier();
+
+    /**
+     * The meta object literal for the '<em><b>Dependency</b></em>' container reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IDEPENDENCY_SOURCE__DEPENDENCY = eINSTANCE.getIDependencySource_Dependency();
+
+    /**
      * The meta object literal for the '<em><b>Get Outgoing Core Dependencies</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2162,82 +2296,6 @@ public interface HierarchicalgraphPackage extends EPackage {
     EOperation HG_NODE___IS_SUCCESSOR_OF__HGNODE = eINSTANCE.getHGNode__IsSuccessorOf__HGNode();
 
     /**
-     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.HGNodeSource <em>HG Node Source</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.slizaa.hierarchicalgraph.HGNodeSource
-     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getHGNodeSource()
-     * @generated
-     */
-    EClass HG_NODE_SOURCE = eINSTANCE.getHGNodeSource();
-
-    /**
-     * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute HG_NODE_SOURCE__IDENTIFIER = eINSTANCE.getHGNodeSource_Identifier();
-
-    /**
-     * The meta object literal for the '<em><b>Node</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference HG_NODE_SOURCE__NODE = eINSTANCE.getHGNodeSource_Node();
-
-    /**
-     * The meta object literal for the '<em><b>Auto Expand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute HG_NODE_SOURCE__AUTO_EXPAND = eINSTANCE.getHGNodeSource_AutoExpand();
-
-    /**
-     * The meta object literal for the '<em><b>On Expand</b></em>' operation.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EOperation HG_NODE_SOURCE___ON_EXPAND = eINSTANCE.getHGNodeSource__OnExpand();
-
-				/**
-     * The meta object literal for the '<em><b>On Collapse</b></em>' operation.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EOperation HG_NODE_SOURCE___ON_COLLAPSE = eINSTANCE.getHGNodeSource__OnCollapse();
-
-				/**
-     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.HGDependencySource <em>HG Dependency Source</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.slizaa.hierarchicalgraph.HGDependencySource
-     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getHGDependencySource()
-     * @generated
-     */
-    EClass HG_DEPENDENCY_SOURCE = eINSTANCE.getHGDependencySource();
-
-        /**
-     * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute HG_DEPENDENCY_SOURCE__IDENTIFIER = eINSTANCE.getHGDependencySource_Identifier();
-
-        /**
-     * The meta object literal for the '<em><b>Dependency</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference HG_DEPENDENCY_SOURCE__DEPENDENCY = eINSTANCE.getHGDependencySource_Dependency();
-
-        /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.HGRootNodeImpl <em>HG Root Node</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2304,14 +2362,14 @@ public interface HierarchicalgraphPackage extends EPackage {
     EOperation HG_ROOT_NODE___LOOKUP_NODE__OBJECT = eINSTANCE.getHGRootNode__LookupNode__Object();
 
     /**
-     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultHGNodeSourceImpl <em>Default HG Node Source</em>}' class.
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultNodeSourceImpl <em>Default Node Source</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.slizaa.hierarchicalgraph.impl.DefaultHGNodeSourceImpl
-     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getDefaultHGNodeSource()
+     * @see org.slizaa.hierarchicalgraph.impl.DefaultNodeSourceImpl
+     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getDefaultNodeSource()
      * @generated
      */
-    EClass DEFAULT_HG_NODE_SOURCE = eINSTANCE.getDefaultHGNodeSource();
+    EClass DEFAULT_NODE_SOURCE = eINSTANCE.getDefaultNodeSource();
 
     /**
      * The meta object literal for the '<em><b>Properties</b></em>' map feature.
@@ -2319,17 +2377,17 @@ public interface HierarchicalgraphPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DEFAULT_HG_NODE_SOURCE__PROPERTIES = eINSTANCE.getDefaultHGNodeSource_Properties();
+    EReference DEFAULT_NODE_SOURCE__PROPERTIES = eINSTANCE.getDefaultNodeSource_Properties();
 
     /**
-     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultHGDependencySourceImpl <em>Default HG Dependency Source</em>}' class.
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultDependencySourceImpl <em>Default Dependency Source</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.slizaa.hierarchicalgraph.impl.DefaultHGDependencySourceImpl
-     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getDefaultHGDependencySource()
+     * @see org.slizaa.hierarchicalgraph.impl.DefaultDependencySourceImpl
+     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getDefaultDependencySource()
      * @generated
      */
-    EClass DEFAULT_HG_DEPENDENCY_SOURCE = eINSTANCE.getDefaultHGDependencySource();
+    EClass DEFAULT_DEPENDENCY_SOURCE = eINSTANCE.getDefaultDependencySource();
 
     /**
      * The meta object literal for the '<em><b>Properties</b></em>' map feature.
@@ -2337,7 +2395,7 @@ public interface HierarchicalgraphPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DEFAULT_HG_DEPENDENCY_SOURCE__PROPERTIES = eINSTANCE.getDefaultHGDependencySource_Properties();
+    EReference DEFAULT_DEPENDENCY_SOURCE__PROPERTIES = eINSTANCE.getDefaultDependencySource_Properties();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.AbstractHGDependencyImpl <em>Abstract HG Dependency</em>}' class.
@@ -2560,6 +2618,24 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EReference NODE_TO_CORE_DEPENDENCIES_MAP__VALUE = eINSTANCE.getNodeToCoreDependenciesMap_Value();
+
+    /**
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.ICoreDependenciesList <em>ICore Dependencies List</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.hierarchicalgraph.ICoreDependenciesList
+     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getICoreDependenciesList()
+     * @generated
+     */
+    EClass ICORE_DEPENDENCIES_LIST = eINSTANCE.getICoreDependenciesList();
+
+    /**
+     * The meta object literal for the '<em><b>Core Dependencies</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ICORE_DEPENDENCIES_LIST__CORE_DEPENDENCIES = eINSTANCE.getICoreDependenciesList_CoreDependencies();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}' enum.

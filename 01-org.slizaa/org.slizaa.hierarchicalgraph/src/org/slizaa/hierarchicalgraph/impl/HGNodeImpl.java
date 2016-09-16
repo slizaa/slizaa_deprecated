@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.HGNodeSource;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.hierarchicalgraph.INodeSource;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,7 +71,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * @generated
    * @ordered
    */
-  protected HGNodeSource nodeSource;
+  protected INodeSource nodeSource;
 
   /**
    * The cached value of the '{@link #getIncomingCoreDependenciesMap() <em>Incoming Core Dependencies Map</em>}' map.
@@ -179,7 +179,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGNodeSource getNodeSource() {
+  public INodeSource getNodeSource() {
     return nodeSource;
   }
 
@@ -188,8 +188,8 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetNodeSource(HGNodeSource newNodeSource, NotificationChain msgs) {
-    HGNodeSource oldNodeSource = nodeSource;
+  public NotificationChain basicSetNodeSource(INodeSource newNodeSource, NotificationChain msgs) {
+    INodeSource oldNodeSource = nodeSource;
     nodeSource = newNodeSource;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_NODE__NODE_SOURCE, oldNodeSource, newNodeSource);
@@ -203,13 +203,13 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setNodeSource(HGNodeSource newNodeSource) {
+  public void setNodeSource(INodeSource newNodeSource) {
     if (newNodeSource != nodeSource) {
       NotificationChain msgs = null;
       if (nodeSource != null)
-        msgs = ((InternalEObject)nodeSource).eInverseRemove(this, HierarchicalgraphPackage.HG_NODE_SOURCE__NODE, HGNodeSource.class, msgs);
+        msgs = ((InternalEObject)nodeSource).eInverseRemove(this, HierarchicalgraphPackage.INODE_SOURCE__NODE, INodeSource.class, msgs);
       if (newNodeSource != null)
-        msgs = ((InternalEObject)newNodeSource).eInverseAdd(this, HierarchicalgraphPackage.HG_NODE_SOURCE__NODE, HGNodeSource.class, msgs);
+        msgs = ((InternalEObject)newNodeSource).eInverseAdd(this, HierarchicalgraphPackage.INODE_SOURCE__NODE, INodeSource.class, msgs);
       msgs = basicSetNodeSource(newNodeSource, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -391,7 +391,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
       case HierarchicalgraphPackage.HG_NODE__NODE_SOURCE:
         if (nodeSource != null)
           msgs = ((InternalEObject)nodeSource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HierarchicalgraphPackage.HG_NODE__NODE_SOURCE, null, msgs);
-        return basicSetNodeSource((HGNodeSource)otherEnd, msgs);
+        return basicSetNodeSource((INodeSource)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -475,7 +475,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
         getChildren().addAll((Collection<? extends HGNode>)newValue);
         return;
       case HierarchicalgraphPackage.HG_NODE__NODE_SOURCE:
-        setNodeSource((HGNodeSource)newValue);
+        setNodeSource((INodeSource)newValue);
         return;
       case HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES_MAP:
         ((EStructuralFeature.Setting)getIncomingCoreDependenciesMap()).set(newValue);
@@ -502,7 +502,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
         getChildren().clear();
         return;
       case HierarchicalgraphPackage.HG_NODE__NODE_SOURCE:
-        setNodeSource((HGNodeSource)null);
+        setNodeSource((INodeSource)null);
         return;
       case HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES_MAP:
         getIncomingCoreDependenciesMap().clear();

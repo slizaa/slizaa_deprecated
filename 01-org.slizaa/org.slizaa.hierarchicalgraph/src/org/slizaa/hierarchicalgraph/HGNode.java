@@ -76,7 +76,7 @@ public interface HGNode extends EObject {
 
   /**
    * Returns the value of the '<em><b>Node Source</b></em>' containment reference.
-   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGNodeSource#getNode <em>Node</em>}'.
+   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.INodeSource#getNode <em>Node</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Node Source</em>' reference isn't clear,
@@ -84,13 +84,13 @@ public interface HGNode extends EObject {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Node Source</em>' containment reference.
-   * @see #setNodeSource(HGNodeSource)
+   * @see #setNodeSource(INodeSource)
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_NodeSource()
-   * @see org.slizaa.hierarchicalgraph.HGNodeSource#getNode
+   * @see org.slizaa.hierarchicalgraph.INodeSource#getNode
    * @model opposite="node" containment="true"
    * @generated
    */
-  HGNodeSource getNodeSource();
+  INodeSource getNodeSource();
 
   /**
    * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGNode#getNodeSource <em>Node Source</em>}' containment reference.
@@ -100,7 +100,7 @@ public interface HGNode extends EObject {
    * @see #getNodeSource()
    * @generated
    */
-  void setNodeSource(HGNodeSource value);
+  void setNodeSource(INodeSource value);
 
   /**
    * Returns the value of the '<em><b>Incoming Core Dependencies Map</b></em>' map.
