@@ -101,7 +101,6 @@ public class AbstractSimpleModelTest {
       _dep_a2_b2_core1 = createNewCoreDependency(_a2, _b2, "USES", dependencySourceSupplier, false);
 
       _dep_a3_b3_core1 = createNewCoreDependency(_a3, _b3, "DEPENDS_ON", dependencySourceSupplier, false);
-      _dep_a3_b3_core1.setAggregatedCoreDependency(true);
     }
 
     /**

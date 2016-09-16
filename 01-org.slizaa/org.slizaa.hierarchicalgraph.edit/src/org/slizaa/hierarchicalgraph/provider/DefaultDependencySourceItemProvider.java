@@ -38,8 +38,8 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
     implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
     IItemPropertySource, IItemStyledLabelProvider {
   /**
-   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public DefaultDependencySourceItemProvider(AdapterFactory adapterFactory) {
@@ -47,8 +47,8 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
   }
 
   /**
-   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -62,26 +62,32 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
   }
 
   /**
-   * This adds a property descriptor for the Identifier feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds a property descriptor for the Identifier feature.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected void addIdentifierPropertyDescriptor(Object object) {
-    itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(), getString("_UI_IDependencySource_identifier_feature"),
-            getString("_UI_PropertyDescriptor_description", "_UI_IDependencySource_identifier_feature",
-                "_UI_IDependencySource_type"),
-            HierarchicalgraphPackage.Literals.IDEPENDENCY_SOURCE__IDENTIFIER, true, false, false,
-            ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_IDependencySource_identifier_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_IDependencySource_identifier_feature", "_UI_IDependencySource_type"),
+         HierarchicalgraphPackage.Literals.IDEPENDENCY_SOURCE__IDENTIFIER,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
    * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
    * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -95,7 +101,6 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -107,8 +112,8 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
   }
 
   /**
-   * This returns DefaultDependencySource.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns DefaultDependencySource.gif.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -118,7 +123,6 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -127,38 +131,37 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
   }
 
   /**
-   * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
   public String getText(Object object) {
-    return ((StyledString) getStyledText(object)).getString();
+    return ((StyledString)getStyledText(object)).getString();
   }
 
   /**
-   * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns the label styled text for the adapted class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getStyledText(Object object) {
-    Object labelValue = ((DefaultDependencySource) object).getIdentifier();
+    Object labelValue = ((DefaultDependencySource)object).getIdentifier();
     String label = labelValue == null ? null : labelValue.toString();
-    StyledString styledLabel = new StyledString();
+    	StyledString styledLabel = new StyledString();
     if (label == null || label.length() == 0) {
-      styledLabel.append(getString("_UI_DefaultDependencySource_type"), StyledString.Style.QUALIFIER_STYLER);
+      styledLabel.append(getString("_UI_DefaultDependencySource_type"), StyledString.Style.QUALIFIER_STYLER); 
     } else {
-      styledLabel.append(getString("_UI_DefaultDependencySource_type"), StyledString.Style.QUALIFIER_STYLER)
-          .append(" " + label);
+      styledLabel.append(getString("_UI_DefaultDependencySource_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
     }
     return styledLabel;
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a
-   * viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -166,19 +169,19 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
     updateChildren(notification);
 
     switch (notification.getFeatureID(DefaultDependencySource.class)) {
-    case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE__IDENTIFIER:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
-    case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE__PROPERTIES:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-      return;
+      case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE__IDENTIFIER:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
+      case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE__PROPERTIES:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+        return;
     }
     super.notifyChanged(notification);
   }
 
   /**
-   * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Return the resource locator for this item provider's resources.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override

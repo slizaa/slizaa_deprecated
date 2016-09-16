@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 
@@ -27,7 +28,7 @@ public class ExtendedHierarchicalGraphHelper {
 
   /** - */
   public static final Predicate<HGCoreDependency> FILTER_AGGREGATED_CORE_DEPENDENCIES = (dep) -> {
-    return !dep.isAggregatedCoreDependency() || !dep.isAggregatedCoreDependencyResolved();
+    return !(dep instanceof HGAggregatedCoreDependency) || !(((HGAggregatedCoreDependency) dep).isResolved());
   };
 
   /**
@@ -49,19 +50,14 @@ public class ExtendedHierarchicalGraphHelper {
 
     //
     for (HGCoreDependency coreDependency : coreDependencies) {
-      if (coreDependency instanceof ExtendedHGCoreDependencyImpl) {
-        if (coreDependency.isAggregatedCoreDependency()) {
+        if (coreDependency instanceof ExtendedHGAggregatedCoreDependencyImpl) {
 
           // get the future
-          Future<?> future = ((ExtendedHGCoreDependencyImpl) coreDependency).onResolveAggregatedCoreDependency();
+          Future<?> future = ((ExtendedHGAggregatedCoreDependencyImpl) coreDependency).onResolveAggregatedCoreDependency();
           if (future != null) {
             futures.add(future);
           }
         }
-      } else {
-        // should not happen here...
-        throw new RuntimeException("Wrong subclass!");
-      }
     }
 
     // wait for completion the result

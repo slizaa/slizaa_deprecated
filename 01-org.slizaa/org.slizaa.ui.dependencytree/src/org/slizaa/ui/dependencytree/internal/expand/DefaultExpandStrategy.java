@@ -16,6 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.SourceOrTarget;
@@ -156,7 +157,8 @@ public class DefaultExpandStrategy extends AbstractExpandStrategy implements IEx
 
     //
     for (HGCoreDependency coreDependency : coreDependencies) {
-      if (coreDependency.isAggregatedCoreDependency() && !coreDependency.isAggregatedCoreDependencyResolved()) {
+      if (coreDependency instanceof HGAggregatedCoreDependency
+          && !((HGAggregatedCoreDependency) coreDependency).isResolved()) {
         return true;
       }
     }

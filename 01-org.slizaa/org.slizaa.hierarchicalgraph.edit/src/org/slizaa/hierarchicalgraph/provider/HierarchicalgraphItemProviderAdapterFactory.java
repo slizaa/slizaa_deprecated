@@ -211,6 +211,29 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected HGAggregatedCoreDependencyItemProvider hgAggregatedCoreDependencyItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createHGAggregatedCoreDependencyAdapter() {
+    if (hgAggregatedCoreDependencyItemProvider == null) {
+      hgAggregatedCoreDependencyItemProvider = new HGAggregatedCoreDependencyItemProvider(this);
+    }
+
+    return hgAggregatedCoreDependencyItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -361,6 +384,7 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
     if (defaultDependencySourceItemProvider != null) defaultDependencySourceItemProvider.dispose();
     if (hgAggregatedDependencyItemProvider != null) hgAggregatedDependencyItemProvider.dispose();
     if (hgCoreDependencyItemProvider != null) hgCoreDependencyItemProvider.dispose();
+    if (hgAggregatedCoreDependencyItemProvider != null) hgAggregatedCoreDependencyItemProvider.dispose();
     if (nodeToCoreDependencyMapItemProvider != null) nodeToCoreDependencyMapItemProvider.dispose();
     if (nodeToCoreDependenciesMapItemProvider != null) nodeToCoreDependenciesMapItemProvider.dispose();
   }

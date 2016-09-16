@@ -61,6 +61,7 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
       case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE: return createDefaultDependencySource();
       case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY: return createHGAggregatedDependency();
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY: return createHGCoreDependency();
+      case HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY: return createHGAggregatedCoreDependency();
       case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP: return (EObject)createNodeToCoreDependencyMap();
       case HierarchicalgraphPackage.STRING_TO_STRING_MAP: return (EObject)createStringToStringMap();
       case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP: return (EObject)createIdentifierToNodeMap();
@@ -168,6 +169,16 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   public HGCoreDependency createHGCoreDependency() {
     HGCoreDependencyImpl hgCoreDependency = new ExtendedHGCoreDependencyImpl();
     return hgCoreDependency;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public HGAggregatedCoreDependency createHGAggregatedCoreDependency() {
+    HGAggregatedCoreDependencyImpl hgAggregatedCoreDependency = new HGAggregatedCoreDependencyImpl();
+    return hgAggregatedCoreDependency;
   }
 
   /**

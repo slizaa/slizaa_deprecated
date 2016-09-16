@@ -112,8 +112,6 @@ public class GraphFactoryFunctions {
     HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement, type, () -> {
       return dependencySourceCreator.apply(idRel, type);
     }, reinitializeCaches);
-    
-    hgDependency.setAggregatedCoreDependency(true);
 
     //
     return hgDependency;
