@@ -12,6 +12,7 @@
 	<modules>
 		<module>org.slizaa.hierarchicalgraph</module>
 		<module>org.slizaa.hierarchicalgraph.algorithms</module>
+		<module>org.slizaa.hierarchicalgraph.algorithms.test</module>
 		<module>org.slizaa.hierarchicalgraph.edit</module>
 		<module>org.slizaa.hierarchicalgraph.test</module>
 		<module>org.slizaa.selection</module>
@@ -22,6 +23,7 @@
 		<module>org.slizaa.ui.klighd.synthesis</module>
 		<module>org.slizaa.ui.tree</module>
 		<module>org.slizaa.ui.widget.dsm</module>
+		<module>org.slizaa.testfwk</module>
 	</modules>
 
 </project>

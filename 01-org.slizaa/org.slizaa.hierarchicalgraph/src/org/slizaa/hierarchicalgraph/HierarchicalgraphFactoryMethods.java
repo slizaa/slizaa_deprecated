@@ -64,11 +64,49 @@ public class HierarchicalgraphFactoryMethods {
    * @param target
    * @return
    */
+  public static HGCoreDependency createNewAggregatedCoreDependency(HGNode source, HGNode target, String type,
+      Supplier<IDependencySource> dependencySourceSupplier, boolean reinitializeCaches) {
+
+    //
+    return _initializeDependency(HierarchicalgraphFactory.eINSTANCE.createHGAggregatedCoreDependency(), source, target,
+        type, dependencySourceSupplier, reinitializeCaches);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param source
+   * @param target
+   * @param type
+   * @param dependencySourceSupplier
+   * @param reinitializeCaches
+   * @return
+   */
   public static HGCoreDependency createNewCoreDependency(HGNode source, HGNode target, String type,
       Supplier<IDependencySource> dependencySourceSupplier, boolean reinitializeCaches) {
 
     //
-    HGCoreDependency dependency = HierarchicalgraphFactory.eINSTANCE.createHGCoreDependency();
+    return _initializeDependency(HierarchicalgraphFactory.eINSTANCE.createHGCoreDependency(), source, target, type,
+        dependencySourceSupplier, reinitializeCaches);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param dependency
+   * @param source
+   * @param target
+   * @param type
+   * @param dependencySourceSupplier
+   * @param reinitializeCaches
+   * @return
+   */
+  private static HGCoreDependency _initializeDependency(HGCoreDependency dependency, HGNode source, HGNode target,
+      String type, Supplier<IDependencySource> dependencySourceSupplier, boolean reinitializeCaches) {
+
+    //
     dependency.setFrom(checkNotNull(source));
     dependency.setTo(checkNotNull(target));
     dependency.setType(checkNotNull(type));

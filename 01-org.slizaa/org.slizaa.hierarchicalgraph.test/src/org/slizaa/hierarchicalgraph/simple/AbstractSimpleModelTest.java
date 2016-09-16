@@ -1,5 +1,6 @@
 package org.slizaa.hierarchicalgraph.simple;
 
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewAggregatedCoreDependency;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewNode;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewRootNode;
@@ -100,7 +101,7 @@ public class AbstractSimpleModelTest {
       _dep_a1_b1_core2 = createNewCoreDependency(_a1, _b1, "DEPENDS_ON", dependencySourceSupplier, false);
       _dep_a2_b2_core1 = createNewCoreDependency(_a2, _b2, "USES", dependencySourceSupplier, false);
 
-      _dep_a3_b3_core1 = createNewCoreDependency(_a3, _b3, "DEPENDS_ON", dependencySourceSupplier, false);
+      _dep_a3_b3_core1 = createNewAggregatedCoreDependency(_a3, _b3, "DEPENDS_ON", dependencySourceSupplier, false);
     }
 
     /**

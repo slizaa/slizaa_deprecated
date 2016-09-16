@@ -89,8 +89,8 @@ public abstract class AbstractXmiBasedTest {
     INodeSource nodeSource = node.getNodeSource();
 
     //
-    if (nodeSource instanceof DefaultHGNodeSource) {
-      return ((DefaultHGNodeSource) nodeSource).getProperties().map();
+    if (nodeSource instanceof DefaultNodeSource) {
+      return ((DefaultNodeSource) nodeSource).getProperties().map();
     }
 
     //

@@ -5,9 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
-import org.slizaa.hierarchicalgraph.algorithms.AbstractXmiBasedTest;
-import org.slizaa.hierarchicalgraph.algorithms.selection.DefaultDependencySelector;
 import org.slizaa.hierarchicalgraph.algorithms.selection.IDependencySelector.NodeType;
+import org.slizaa.testfwk.AbstractXmiBasedTest;
 
 public class DependencySelectorTest extends AbstractXmiBasedTest {
 
@@ -23,7 +22,7 @@ public class DependencySelectorTest extends AbstractXmiBasedTest {
    * </p>
    */
   public DependencySelectorTest() {
-    super("org/slizaa/hierarchicalgraph/algorithms/mapstruct_1-1-0-Beta2.hggraph");
+    super("mapstruct_1-1-0-Beta2.hggraph");
   }
 
   @Before

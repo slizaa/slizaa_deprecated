@@ -5,10 +5,11 @@ Bundle-SymbolicName: org.slizaa.hierarchicalgraph.algorithms.test
 Fragment-Host: org.slizaa.hierarchicalgraph.algorithms
 Bundle-Version: 0.0.3.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.core.runtime,
+Require-Bundle: org.slizaa.hierarchicalgraph,
+ org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.junit;visibility:=reexport,
  com.google.guava;bundle-version="15.0.0",
  org.assertj.core;bundle-version="3.3.0",
- org.mockito;bundle-version="1.9.5"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+ org.mockito;bundle-version="1.9.5",
+ org.slizaa.testfwk;bundle-version="0.0.3"
