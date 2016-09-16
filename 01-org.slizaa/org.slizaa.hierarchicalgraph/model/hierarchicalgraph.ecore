@@ -117,14 +117,14 @@
         defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencySource" eType="#//IDependencySource"
         containment="true" eOpposite="#//IDependencySource/dependency"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="aggregatedCoreDependency"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aggregatedCoreDependencyParent"
         eType="#//HGAggregatedCoreDependency" eOpposite="#//HGAggregatedCoreDependency/resolvedCoreDependencies"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HGAggregatedCoreDependency" eSuperTypes="#//HGCoreDependency">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolved" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         changeable="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resolvedCoreDependencies"
-        upperBound="-1" eType="#//HGCoreDependency" eOpposite="#//HGCoreDependency/aggregatedCoreDependency"/>
+        upperBound="-1" eType="#//HGCoreDependency" eOpposite="#//HGCoreDependency/aggregatedCoreDependencyParent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NodeToCoreDependencyMap" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//HGNode"/>

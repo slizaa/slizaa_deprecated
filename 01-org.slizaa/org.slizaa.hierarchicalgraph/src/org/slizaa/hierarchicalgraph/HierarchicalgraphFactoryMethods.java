@@ -64,7 +64,7 @@ public class HierarchicalgraphFactoryMethods {
    * @param target
    * @return
    */
-  public static HGCoreDependency createNewAggregatedCoreDependency(HGNode source, HGNode target, String type,
+  public static HGAggregatedCoreDependency createNewAggregatedCoreDependency(HGNode source, HGNode target, String type,
       Supplier<IDependencySource> dependencySourceSupplier, boolean reinitializeCaches) {
 
     //
@@ -103,7 +103,7 @@ public class HierarchicalgraphFactoryMethods {
    * @param reinitializeCaches
    * @return
    */
-  private static HGCoreDependency _initializeDependency(HGCoreDependency dependency, HGNode source, HGNode target,
+  private static <T extends HGCoreDependency> T _initializeDependency(T dependency, HGNode source, HGNode target,
       String type, Supplier<IDependencySource> dependencySourceSupplier, boolean reinitializeCaches) {
 
     //

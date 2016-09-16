@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
@@ -67,7 +68,9 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
 
     //
     for (HGCoreDependency dependency : aggregatedDependency.getCoreDependencies()) {
-      verify(_aggregatedDependencyResolver).resolveAggregatedDependency(dependency);
+      if (dependency instanceof HGAggregatedCoreDependency) {
+        verify(_aggregatedDependencyResolver).resolveAggregatedDependency((HGAggregatedCoreDependency) dependency);
+      }
     }
 
     //

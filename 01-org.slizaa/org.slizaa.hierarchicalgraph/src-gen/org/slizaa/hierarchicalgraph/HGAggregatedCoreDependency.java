@@ -40,7 +40,7 @@ public interface HGAggregatedCoreDependency extends HGCoreDependency {
   /**
    * Returns the value of the '<em><b>Resolved Core Dependencies</b></em>' reference list.
    * The list contents are of type {@link org.slizaa.hierarchicalgraph.HGCoreDependency}.
-   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependency <em>Aggregated Core Dependency</em>}'.
+   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependencyParent <em>Aggregated Core Dependency Parent</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Resolved Core Dependencies</em>' reference list isn't clear,
@@ -49,8 +49,8 @@ public interface HGAggregatedCoreDependency extends HGCoreDependency {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Resolved Core Dependencies</em>' reference list.
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGAggregatedCoreDependency_ResolvedCoreDependencies()
-   * @see org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependency
-   * @model opposite="aggregatedCoreDependency"
+   * @see org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependencyParent
+   * @model opposite="aggregatedCoreDependencyParent"
    * @generated
    */
   EList<HGCoreDependency> getResolvedCoreDependencies();

@@ -960,13 +960,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>Aggregated Core Dependency</b></em>' reference.
+   * The feature id for the '<em><b>Aggregated Core Dependency Parent</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 3;
+  int HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>HG Core Dependency</em>' class.
@@ -1060,13 +1060,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_AGGREGATED_CORE_DEPENDENCY__DEPENDENCY_SOURCE = HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE;
 
   /**
-   * The feature id for the '<em><b>Aggregated Core Dependency</b></em>' reference.
+   * The feature id for the '<em><b>Aggregated Core Dependency Parent</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY = HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY;
+  int HG_AGGREGATED_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT = HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT;
 
   /**
    * The feature id for the '<em><b>Resolved</b></em>' attribute.
@@ -1928,15 +1928,15 @@ public interface HierarchicalgraphPackage extends EPackage {
   EReference getHGCoreDependency_DependencySource();
 
   /**
-   * Returns the meta object for the reference '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependency <em>Aggregated Core Dependency</em>}'.
+   * Returns the meta object for the reference '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependencyParent <em>Aggregated Core Dependency Parent</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Aggregated Core Dependency</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependency()
+   * @return the meta object for the reference '<em>Aggregated Core Dependency Parent</em>'.
+   * @see org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependencyParent()
    * @see #getHGCoreDependency()
    * @generated
    */
-  EReference getHGCoreDependency_AggregatedCoreDependency();
+  EReference getHGCoreDependency_AggregatedCoreDependencyParent();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency <em>HG Aggregated Core Dependency</em>}'.
@@ -2628,12 +2628,12 @@ public interface HierarchicalgraphPackage extends EPackage {
     EReference HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE = eINSTANCE.getHGCoreDependency_DependencySource();
 
     /**
-     * The meta object literal for the '<em><b>Aggregated Core Dependency</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Aggregated Core Dependency Parent</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY = eINSTANCE.getHGCoreDependency_AggregatedCoreDependency();
+    EReference HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT = eINSTANCE.getHGCoreDependency_AggregatedCoreDependencyParent();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedCoreDependencyImpl <em>HG Aggregated Core Dependency</em>}' class.

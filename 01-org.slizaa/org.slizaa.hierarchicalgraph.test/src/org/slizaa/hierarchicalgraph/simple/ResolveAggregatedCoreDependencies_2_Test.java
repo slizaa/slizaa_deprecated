@@ -10,6 +10,7 @@ import java.util.concurrent.Future;
 import org.eclipse.emf.common.util.BasicEList;
 import org.junit.Before;
 import org.junit.Test;
+import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
@@ -125,13 +126,16 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
    * {@inheritDoc}
    */
   @Override
-  public Future<?> resolveAggregatedDependency(HGCoreDependency dependencyToResolve) {
+  public Future<?> resolveAggregatedDependency(HGAggregatedCoreDependency dependencyToResolve) {
 
     _newDependency_1 = createNewCoreDependency(dependencyToResolve.getFrom(), dependencyToResolve.getTo(), "NEW_USAGE",
         () -> HierarchicalgraphFactory.eINSTANCE.createDefaultDependencySource(), false);
 
     _newDependency_2 = createNewCoreDependency(dependencyToResolve.getFrom(), dependencyToResolve.getTo(), "NEW_USAGE",
         () -> HierarchicalgraphFactory.eINSTANCE.createDefaultDependencySource(), false);
+    
+    dependencyToResolve.getResolvedCoreDependencies().add(_newDependency_1);
+    dependencyToResolve.getResolvedCoreDependencies().add(_newDependency_2);
 
     dependencyToResolve.getRootNode()
         .invalidateCaches(new BasicEList<HGNode>(asList(dependencyToResolve.getFrom(), dependencyToResolve.getTo())));

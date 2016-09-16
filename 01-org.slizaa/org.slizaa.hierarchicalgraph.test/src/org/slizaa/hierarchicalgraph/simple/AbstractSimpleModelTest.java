@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 
 import org.junit.After;
 import org.junit.Before;
+import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
@@ -57,27 +58,27 @@ public class AbstractSimpleModelTest {
 
   public class SimpleModel {
 
-    private HGNode           _a1;
+    private HGNode                     _a1;
 
-    private HGNode           _b1;
+    private HGNode                     _b1;
 
-    private HGNode           _b2;
+    private HGNode                     _b2;
 
-    private HGNode           _a2;
+    private HGNode                     _a2;
 
-    private HGNode           _a3;
+    private HGNode                     _a3;
 
-    private HGNode           _b3;
+    private HGNode                     _b3;
 
-    private HGCoreDependency _dep_a1_b1_core1;
+    private HGCoreDependency           _dep_a1_b1_core1;
 
-    private HGCoreDependency _dep_a1_b1_core2;
+    private HGCoreDependency           _dep_a1_b1_core2;
 
-    private HGCoreDependency _dep_a2_b2_core1;
+    private HGCoreDependency           _dep_a2_b2_core1;
 
-    private HGCoreDependency _dep_a3_b3_core1;
+    private HGAggregatedCoreDependency _dep_a3_b3_core1;
 
-    private HGRootNode       _rootNode;
+    private HGRootNode                 _rootNode;
 
     public SimpleModel() {
 
@@ -210,7 +211,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the dep_a3_b3_core1
      */
-    public HGCoreDependency a3_b3_core1() {
+    public HGAggregatedCoreDependency a3_b3_core1() {
       return _dep_a3_b3_core1;
     }
   }

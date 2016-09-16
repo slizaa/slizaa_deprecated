@@ -2,7 +2,7 @@ package org.slizaa.hierarchicalgraph.spi;
 
 import java.util.concurrent.Future;
 
-import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 
 /**
  * <p>
@@ -18,5 +18,5 @@ public interface IAggregatedCoreDependencyResolver {
    *
    * @param dependencyToResolve
    */
-  Future<?> resolveAggregatedDependency(HGCoreDependency dependencyToResolve);
+  Future<?> resolveAggregatedDependency(HGAggregatedCoreDependency dependencyToResolve);
 }

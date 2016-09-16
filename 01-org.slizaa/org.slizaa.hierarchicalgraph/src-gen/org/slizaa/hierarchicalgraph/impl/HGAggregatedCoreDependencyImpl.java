@@ -98,7 +98,7 @@ public class HGAggregatedCoreDependencyImpl extends HGCoreDependencyImpl impleme
    */
   public EList<HGCoreDependency> getResolvedCoreDependencies() {
     if (resolvedCoreDependencies == null) {
-      resolvedCoreDependencies = new EObjectWithInverseResolvingEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY);
+      resolvedCoreDependencies = new EObjectWithInverseResolvingEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT);
     }
     return resolvedCoreDependencies;
   }

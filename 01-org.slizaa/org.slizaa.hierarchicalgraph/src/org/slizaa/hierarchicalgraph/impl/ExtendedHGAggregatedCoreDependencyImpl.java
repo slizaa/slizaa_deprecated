@@ -3,7 +3,10 @@ package org.slizaa.hierarchicalgraph.impl;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
@@ -61,17 +64,30 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
     }
 
     //
-    this.resolved = true;
+    Future<?> result = null;
 
     //
     IAggregatedCoreDependencyResolver resolver = getFrom().getRootNode().getAggregatedCoreDependencyResolver();
-
-    //
-    if (resolver == null) {
-      return null;
+    if (resolver != null) {
+      result = resolver.resolveAggregatedDependency(this);
     }
+    setResolved(true);
 
     //
-    return resolver.resolveAggregatedDependency(this);
+    return result;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param newResolved
+   */
+  private void setResolved(boolean newResolved) {
+    boolean oldResolved = resolved;
+    resolved = newResolved;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET,
+          HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED, oldResolved, resolved));
   }
 }

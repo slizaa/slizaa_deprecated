@@ -50,7 +50,7 @@ public class HGCoreDependencyItemProvider extends AbstractHGDependencyItemProvid
 
       addTypePropertyDescriptor(object);
       addWeightPropertyDescriptor(object);
-      addAggregatedCoreDependencyPropertyDescriptor(object);
+      addAggregatedCoreDependencyParentPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -100,22 +100,22 @@ public class HGCoreDependencyItemProvider extends AbstractHGDependencyItemProvid
   }
 
   /**
-   * This adds a property descriptor for the Aggregated Core Dependency feature.
+   * This adds a property descriptor for the Aggregated Core Dependency Parent feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addAggregatedCoreDependencyPropertyDescriptor(Object object) {
+  protected void addAggregatedCoreDependencyParentPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGCoreDependency_aggregatedCoreDependency_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGCoreDependency_aggregatedCoreDependency_feature", "_UI_HGCoreDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY,
+         getString("_UI_HGCoreDependency_aggregatedCoreDependencyParent_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGCoreDependency_aggregatedCoreDependencyParent_feature", "_UI_HGCoreDependency_type"),
+         HierarchicalgraphPackage.Literals.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT,
          true,
          false,
-         false,
+         true,
          null,
          null,
          null));
@@ -215,7 +215,6 @@ public class HGCoreDependencyItemProvider extends AbstractHGDependencyItemProvid
     switch (notification.getFeatureID(HGCoreDependency.class)) {
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__TYPE:
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__WEIGHT:
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:

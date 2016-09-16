@@ -15,7 +15,7 @@ package org.slizaa.hierarchicalgraph;
  *   <li>{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getType <em>Type</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getWeight <em>Weight</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getDependencySource <em>Dependency Source</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependency <em>Aggregated Core Dependency</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependencyParent <em>Aggregated Core Dependency Parent</em>}</li>
  * </ul>
  *
  * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGCoreDependency()
@@ -105,31 +105,31 @@ public interface HGCoreDependency extends AbstractHGDependency {
   void setDependencySource(IDependencySource value);
 
   /**
-   * Returns the value of the '<em><b>Aggregated Core Dependency</b></em>' reference.
+   * Returns the value of the '<em><b>Aggregated Core Dependency Parent</b></em>' reference.
    * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#getResolvedCoreDependencies <em>Resolved Core Dependencies</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Aggregated Core Dependency</em>' reference isn't clear,
+   * If the meaning of the '<em>Aggregated Core Dependency Parent</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Aggregated Core Dependency</em>' reference.
-   * @see #setAggregatedCoreDependency(HGAggregatedCoreDependency)
-   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGCoreDependency_AggregatedCoreDependency()
+   * @return the value of the '<em>Aggregated Core Dependency Parent</em>' reference.
+   * @see #setAggregatedCoreDependencyParent(HGAggregatedCoreDependency)
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGCoreDependency_AggregatedCoreDependencyParent()
    * @see org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#getResolvedCoreDependencies
    * @model opposite="resolvedCoreDependencies"
    * @generated
    */
-  HGAggregatedCoreDependency getAggregatedCoreDependency();
+  HGAggregatedCoreDependency getAggregatedCoreDependencyParent();
 
   /**
-   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependency <em>Aggregated Core Dependency</em>}' reference.
+   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependencyParent <em>Aggregated Core Dependency Parent</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Aggregated Core Dependency</em>' reference.
-   * @see #getAggregatedCoreDependency()
+   * @param value the new value of the '<em>Aggregated Core Dependency Parent</em>' reference.
+   * @see #getAggregatedCoreDependencyParent()
    * @generated
    */
-  void setAggregatedCoreDependency(HGAggregatedCoreDependency value);
+  void setAggregatedCoreDependencyParent(HGAggregatedCoreDependency value);
 
 } // HGCoreDependency
