@@ -139,10 +139,6 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
 
   public void onExpand() {
     loadPropertiesAndLabelsForChildren();
-    
-    // TODO
-    System.out.println(_nodeSource.getNode().getOutgoingCoreDependencies(false));
-    System.out.println(_nodeSource.getNode().getIncomingCoreDependencies(false));
   }
 
   public void onCollapse() {

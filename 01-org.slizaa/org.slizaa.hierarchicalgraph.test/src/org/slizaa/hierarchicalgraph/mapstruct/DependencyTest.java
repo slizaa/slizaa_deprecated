@@ -37,9 +37,9 @@ public class DependencyTest extends AbstractXmiBasedTest {
   public void testOutgoingCoreDependencies() {
 
     // 'mapstruct-1.1.0.Beta2.jar'
-    assertThat(node(1).getOutgoingCoreDependencies(false)).hasSize(0);
+    assertThat(node(1).getOutgoingCoreDependencies()).hasSize(0);
     assertThat(node(ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER).getOutgoingCoreDependencies(false)).hasSize(0);
-    assertThat(node(ID_TYPE_MODEL_WRITER).getOutgoingCoreDependencies(false)).hasSize(11);
+    assertThat(node(ID_TYPE_MODEL_WRITER).getOutgoingCoreDependencies()).hasSize(11);
 
     // 'mapstruct--processor-1.1.0.Beta2.jar'
     assertThat(node(577).getOutgoingCoreDependencies(true)).hasSize(4983);

@@ -47,8 +47,8 @@ public class Notification_HGNodeTest extends AbstractSimpleModelTest {
     //
     _node = model().a2();
     assertThat(_node).isNotNull();
-    assertThat(_node.getOutgoingCoreDependencies(false)).isNotNull();
-    assertThat(_node.getOutgoingCoreDependencies(false)).hasSize(1).containsOnly(model().a2_b2_core1());
+    assertThat(_node.getOutgoingCoreDependencies()).isNotNull();
+    assertThat(_node.getOutgoingCoreDependencies()).hasSize(1).containsOnly(model().a2_b2_core1());
 
     //
     _adapter = new AdapterImpl() {
@@ -88,7 +88,7 @@ public class Notification_HGNodeTest extends AbstractSimpleModelTest {
     assertThat(_notifications).hasSize(1);
 
     //
-    assertThat(_node.getOutgoingCoreDependencies(false)).hasSize(2).containsOnly(model().a2_b2_core1(),
+    assertThat(_node.getOutgoingCoreDependencies()).hasSize(2).containsOnly(model().a2_b2_core1(),
         newCoreDependency);
   }
 }

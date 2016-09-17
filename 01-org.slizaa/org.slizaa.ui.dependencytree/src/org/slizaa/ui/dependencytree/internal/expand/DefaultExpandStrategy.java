@@ -153,7 +153,7 @@ public class DefaultExpandStrategy extends AbstractExpandStrategy implements IEx
 
     //
     EList<HGCoreDependency> coreDependencies = checkNotNull(sourceOrTarget).equals(SourceOrTarget.SOURCE)
-        ? checkNotNull(child).getOutgoingCoreDependencies(false) : child.getOutgoingCoreDependencies(false);
+        ? checkNotNull(child).getOutgoingCoreDependencies() : child.getOutgoingCoreDependencies();
 
     //
     for (HGCoreDependency coreDependency : coreDependencies) {

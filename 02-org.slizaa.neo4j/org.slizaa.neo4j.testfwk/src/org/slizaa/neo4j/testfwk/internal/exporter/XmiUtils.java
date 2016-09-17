@@ -67,7 +67,7 @@ public class XmiUtils {
       //
       if (containedElement instanceof HGNode) {
         HGNode node = (HGNode) containedElement;
-        resource.getContents().addAll(node.getOutgoingCoreDependencies(false));
+        resource.getContents().addAll(node.getOutgoingCoreDependencies());
       }
     }
 

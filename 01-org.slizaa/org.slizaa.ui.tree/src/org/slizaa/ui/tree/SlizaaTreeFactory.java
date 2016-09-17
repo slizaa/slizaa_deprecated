@@ -35,10 +35,6 @@ public class SlizaaTreeFactory {
                 if (event.item.getData() instanceof ExtendedHGNodeImpl) {
                   ExtendedHGNodeImpl hgNode = (ExtendedHGNodeImpl) event.item.getData();
                   hgNode.onExpand();
-                  
-                  //
-                  System.out.println(hgNode.getOutgoingCoreDependencies(false));
-                  System.out.println(hgNode.getIncomingCoreDependencies(false));
                 }
                 super.handleTreeExpand(event);
               }
