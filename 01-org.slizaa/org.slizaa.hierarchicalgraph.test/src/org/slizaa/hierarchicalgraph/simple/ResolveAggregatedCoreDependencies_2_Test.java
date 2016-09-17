@@ -9,6 +9,7 @@ import java.util.concurrent.Future;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
@@ -23,6 +24,7 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
+@Ignore
 public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleModelTest
     implements IAggregatedCoreDependencyResolver {
 

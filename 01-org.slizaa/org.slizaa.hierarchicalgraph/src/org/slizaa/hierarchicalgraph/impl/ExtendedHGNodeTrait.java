@@ -3,7 +3,6 @@ package org.slizaa.hierarchicalgraph.impl;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.BasicEMap;
@@ -48,7 +47,7 @@ public class ExtendedHGNodeTrait {
   }
 
   /** - */
-  protected HGNodeImpl                             _hgNode;
+  protected HGNodeImpl                           _hgNode;
 
   /** - */
   protected boolean                              _cachedParentsInitialized;
@@ -212,13 +211,7 @@ public class ExtendedHGNodeTrait {
    * @return
    */
   public EList<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
-
-    //
-    EList<HGCoreDependency> result = includeChildren ? cachedOutgoingSelfAndSubTreeCoreDependencies()
-        : _hgNode.getOutgoingCoreDependencies();
-
-    //
-    return filterCoreDependencies(result);
+    return includeChildren ? cachedOutgoingSelfAndSubTreeCoreDependencies() : _hgNode.getOutgoingCoreDependencies();
   }
 
   /**
@@ -229,13 +222,7 @@ public class ExtendedHGNodeTrait {
    * @return
    */
   public EList<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
-
-    //
-    EList<HGCoreDependency> result = includeChildren ? cachedIncomingSelfAndSubTreeCoreDependencies()
-        : _hgNode.getIncomingCoreDependencies();
-
-    //
-    return filterCoreDependencies(result);
+    return includeChildren ? cachedIncomingSelfAndSubTreeCoreDependencies() : _hgNode.getIncomingCoreDependencies();
   }
 
   /**
@@ -404,26 +391,6 @@ public class ExtendedHGNodeTrait {
    */
   void onCollapse() {
     _hgNode.getNodeSource().onCollapse();
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param result
-   * @return
-   */
-  // TODO: !!
-  private EList<HGCoreDependency> filterCoreDependencies(EList<HGCoreDependency> dependencies) {
-    checkNotNull(dependencies);
-
-    //
-    EList<HGCoreDependency> filteredDependencies = new BasicEList<HGCoreDependency>(dependencies.stream()
-        .filter(ExtendedHierarchicalGraphHelper.FILTER_REMOVE_RESOLVED_AGGREGATED_CORE_DEPENDENCIES)
-        .collect(Collectors.toList()));
-
-    //
-    return filteredDependencies;
   }
 
   /**
