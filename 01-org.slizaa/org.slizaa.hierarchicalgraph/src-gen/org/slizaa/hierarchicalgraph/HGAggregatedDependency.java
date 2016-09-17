@@ -33,7 +33,7 @@ public interface HGAggregatedDependency extends AbstractHGDependency {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Core Dependencies</em>' reference list.
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGAggregatedDependency_CoreDependencies()
-   * @model transient="true" derived="true"
+   * @model transient="true" volatile="true" derived="true"
    * @generated
    */
   EList<HGCoreDependency> getCoreDependencies();

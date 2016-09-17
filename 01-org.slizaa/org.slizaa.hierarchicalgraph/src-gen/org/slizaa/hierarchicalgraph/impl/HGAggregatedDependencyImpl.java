@@ -8,9 +8,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
@@ -30,16 +27,6 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
  * @generated
  */
 public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl implements HGAggregatedDependency {
-  /**
-   * The cached value of the '{@link #getCoreDependencies() <em>Core Dependencies</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCoreDependencies()
-   * @generated
-   * @ordered
-   */
-  protected EList<HGCoreDependency> coreDependencies;
-
   /**
    * The default value of the '{@link #getAggregatedWeight() <em>Aggregated Weight</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -85,10 +72,11 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * @generated
    */
   public EList<HGCoreDependency> getCoreDependencies() {
-    if (coreDependencies == null) {
-      coreDependencies = new EObjectResolvingEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES);
-    }
-    return coreDependencies;
+    // TODO: implement this method to return the 'Core Dependencies' reference list
+    // Ensure that you remove @generated or mark it @generated NOT
+    // The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
+    // so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
+    throw new UnsupportedOperationException();
   }
 
   /**
@@ -168,7 +156,7 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES:
-        return coreDependencies != null && !coreDependencies.isEmpty();
+        return !getCoreDependencies().isEmpty();
       case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT:
         return aggregatedWeight != AGGREGATED_WEIGHT_EDEFAULT;
     }

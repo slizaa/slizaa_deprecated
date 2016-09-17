@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
-import org.slizaa.neo4j.testfwk.internal.TestModelFactory;
 
 /**
  * <p>

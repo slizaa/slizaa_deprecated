@@ -7,7 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
@@ -21,7 +21,10 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyImpl {
 
   /** - */
-  private boolean initialized = false;
+  private boolean                 initialized = false;
+
+  /** - */
+  private EList<HGCoreDependency> coreDependencies;
 
   /**
    * <p>
@@ -52,7 +55,7 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
 
     // lazy create the core dependencies list
     if (coreDependencies == null) {
-      coreDependencies = new EObjectResolvingEList<HGCoreDependency>(HGCoreDependency.class, this,
+      coreDependencies = new EObjectEList<HGCoreDependency>(HGCoreDependency.class, this,
           HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES);
     }
 

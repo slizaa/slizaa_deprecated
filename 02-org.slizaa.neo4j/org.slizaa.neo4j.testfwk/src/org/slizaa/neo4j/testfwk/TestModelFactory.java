@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.testfwk.internal;
+package org.slizaa.neo4j.testfwk;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewRootNode;

@@ -1155,7 +1155,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEOperation(getAbstractHGDependency__GetRootNode(), this.getHGRootNode(), "getRootNode", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(hgAggregatedDependencyEClass, HGAggregatedDependency.class, "HGAggregatedDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getHGAggregatedDependency_CoreDependencies(), this.getHGCoreDependency(), null, "coreDependencies", null, 0, -1, HGAggregatedDependency.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEReference(getHGAggregatedDependency_CoreDependencies(), this.getHGCoreDependency(), null, "coreDependencies", null, 0, -1, HGAggregatedDependency.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
     initEAttribute(getHGAggregatedDependency_AggregatedWeight(), ecorePackage.getEInt(), "aggregatedWeight", null, 0, 1, HGAggregatedDependency.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEOperation(getHGAggregatedDependency__ResolveAggregatedCoreDependencies(), null, "resolveAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
