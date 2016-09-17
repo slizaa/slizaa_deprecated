@@ -113,15 +113,8 @@ public class HierarchicalgraphFactoryMethods {
     dependency.setDependencySource(checkNotNull(checkNotNull(dependencySourceSupplier)).get());
 
     //
-    if (!source.getOutgoingCoreDependenciesMap().containsKey(target)) {
-      source.getOutgoingCoreDependenciesMap().put(target, new BasicEList<>());
-    }
-    source.getOutgoingCoreDependenciesMap().get(target).add(dependency);
-
-    if (!target.getIncomingCoreDependenciesMap().containsKey(source)) {
-      target.getIncomingCoreDependenciesMap().put(source, new BasicEList<>());
-    }
-    target.getIncomingCoreDependenciesMap().get(source).add(dependency);
+    source.getOutgoingCoreDependencies().add(dependency);
+    target.getIncomingCoreDependencies().add(dependency);
 
     //
     if (reinitializeCaches) {

@@ -2,7 +2,6 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -24,7 +23,7 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class ExtendedHGNodeTrait {
-  
+
   /**
    * <p>
    * </p>
@@ -47,10 +46,9 @@ public class ExtendedHGNodeTrait {
     //
     return Optional.empty();
   }
-  
 
   /** - */
-  private HGNodeImpl                             _hgNode;
+  protected HGNodeImpl                             _hgNode;
 
   /** - */
   protected boolean                              _cachedParentsInitialized;
@@ -59,22 +57,16 @@ public class ExtendedHGNodeTrait {
   protected EList<HGNode>                        _cachedParents;
 
   /** - */
-  protected boolean                              _cachedOutgoingSelfAndSubTreeCoreDependenciesInitialized;
-
-  /** - */
-  protected EList<HGCoreDependency>              _cachedOutgoingSelfAndSubTreeCoreDependencies;
-
-  /** - */
-  protected boolean                              _cachedIncomingSelfAndSubTreeCoreDependenciesInitialized;
-
-  /** - */
-  protected EList<HGCoreDependency>              _cachedIncomingSelfAndSubTreeCoreDependencies;
-
-  /** - */
   protected EMap<HGNode, HGAggregatedDependency> _cachedAggregatedOutgoingDependenciesMap;
 
   /** - */
   protected EMap<HGNode, HGAggregatedDependency> _cachedAggregatedIncomingDependenciesMap;
+
+  /** - */
+  protected boolean                              _cachedOutgoingSelfAndSubTreeCoreDependenciesInitialized;
+
+  /** - */
+  protected boolean                              _cachedIncomingSelfAndSubTreeCoreDependenciesInitialized;
 
   /**
    * <p>
@@ -223,7 +215,7 @@ public class ExtendedHGNodeTrait {
 
     //
     EList<HGCoreDependency> result = includeChildren ? cachedOutgoingSelfAndSubTreeCoreDependencies()
-        : ExtendedHierarchicalGraphHelper.flattenCoreDependencies(_hgNode.outgoingCoreDependenciesMap);
+        : _hgNode.getOutgoingCoreDependencies();
 
     //
     return filterCoreDependencies(result);
@@ -240,7 +232,7 @@ public class ExtendedHGNodeTrait {
 
     //
     EList<HGCoreDependency> result = includeChildren ? cachedIncomingSelfAndSubTreeCoreDependencies()
-        : ExtendedHierarchicalGraphHelper.flattenCoreDependencies(_hgNode.incomingCoreDependenciesMap);
+        : _hgNode.getIncomingCoreDependencies();
 
     //
     return filterCoreDependencies(result);
@@ -368,11 +360,11 @@ public class ExtendedHGNodeTrait {
     if (_cachedParents != null) {
       _cachedParents.clear();
     }
-    if (_cachedOutgoingSelfAndSubTreeCoreDependencies != null) {
-      _cachedOutgoingSelfAndSubTreeCoreDependencies.clear();
+    if (_hgNode.outgoingAccumulatedCoreDependencies != null) {
+      _hgNode.outgoingAccumulatedCoreDependencies.clear();
     }
-    if (_cachedIncomingSelfAndSubTreeCoreDependencies != null) {
-      _cachedIncomingSelfAndSubTreeCoreDependencies.clear();
+    if (_hgNode.incomingAccumulatedCoreDependencies != null) {
+      _hgNode.incomingAccumulatedCoreDependencies.clear();
     }
     if (_cachedAggregatedOutgoingDependenciesMap != null) {
       _cachedAggregatedOutgoingDependenciesMap.values()
@@ -421,13 +413,14 @@ public class ExtendedHGNodeTrait {
    * @param result
    * @return
    */
-   // TODO: !!
+  // TODO: !!
   private EList<HGCoreDependency> filterCoreDependencies(EList<HGCoreDependency> dependencies) {
     checkNotNull(dependencies);
 
     //
     EList<HGCoreDependency> filteredDependencies = new BasicEList<HGCoreDependency>(dependencies.stream()
-        .filter(ExtendedHierarchicalGraphHelper.FILTER_REMOVE_RESOLVED_AGGREGATED_CORE_DEPENDENCIES).collect(Collectors.toList()));
+        .filter(ExtendedHierarchicalGraphHelper.FILTER_REMOVE_RESOLVED_AGGREGATED_CORE_DEPENDENCIES)
+        .collect(Collectors.toList()));
 
     //
     return filteredDependencies;
@@ -511,24 +504,22 @@ public class ExtendedHGNodeTrait {
 
     // lazy init
     if (!_cachedOutgoingSelfAndSubTreeCoreDependenciesInitialized
-        || _cachedOutgoingSelfAndSubTreeCoreDependencies == null) {
+        || _hgNode.outgoingAccumulatedCoreDependencies == null) {
 
       //
-      if (_cachedOutgoingSelfAndSubTreeCoreDependencies == null) {
-        _cachedOutgoingSelfAndSubTreeCoreDependencies = new BasicEList<>();
+      if (_hgNode.outgoingAccumulatedCoreDependencies == null) {
+        _hgNode.outgoingAccumulatedCoreDependencies = new BasicEList<>();
       } else {
-        _cachedOutgoingSelfAndSubTreeCoreDependencies.clear();
+        _hgNode.outgoingAccumulatedCoreDependencies.clear();
       }
 
       // add all direct dependencies
-      for (Map.Entry<HGNode, EList<HGCoreDependency>> entry : _hgNode.getOutgoingCoreDependenciesMap()) {
-        _cachedOutgoingSelfAndSubTreeCoreDependencies.addAll(entry.getValue());
-      }
+      _hgNode.outgoingAccumulatedCoreDependencies.addAll(_hgNode.getOutgoingCoreDependencies());
 
       // add children
       if (_hgNode.children != null) {
         for (HGNode child : _hgNode.children) {
-          ExtendedHierarchicalGraphHelper.getTrait(child).ifPresent((t) -> _cachedOutgoingSelfAndSubTreeCoreDependencies
+          ExtendedHierarchicalGraphHelper.getTrait(child).ifPresent((t) -> _hgNode.outgoingAccumulatedCoreDependencies
               .addAll(t.cachedOutgoingSelfAndSubTreeCoreDependencies()));
         }
       }
@@ -537,7 +528,7 @@ public class ExtendedHGNodeTrait {
     }
 
     //
-    return ECollections.unmodifiableEList(_cachedOutgoingSelfAndSubTreeCoreDependencies);
+    return _hgNode.outgoingAccumulatedCoreDependencies;
   }
 
   /**
@@ -550,24 +541,23 @@ public class ExtendedHGNodeTrait {
 
     //
     if (!_cachedIncomingSelfAndSubTreeCoreDependenciesInitialized
-        || _cachedIncomingSelfAndSubTreeCoreDependencies == null) {
+        || _hgNode.incomingAccumulatedCoreDependencies == null) {
 
       //
-      if (_cachedIncomingSelfAndSubTreeCoreDependencies == null) {
-        _cachedIncomingSelfAndSubTreeCoreDependencies = new BasicEList<>();
+      if (_hgNode.incomingAccumulatedCoreDependencies == null) {
+        // TODO
+        _hgNode.incomingAccumulatedCoreDependencies = new BasicEList<>();
       } else {
-        _cachedIncomingSelfAndSubTreeCoreDependencies.clear();
+        _hgNode.incomingAccumulatedCoreDependencies.clear();
       }
 
       // add all direct dependencies
-      for (Map.Entry<HGNode, EList<HGCoreDependency>> entry : _hgNode.getIncomingCoreDependenciesMap()) {
-        _cachedIncomingSelfAndSubTreeCoreDependencies.addAll(entry.getValue());
-      }
+      _hgNode.incomingAccumulatedCoreDependencies.addAll(_hgNode.getIncomingCoreDependencies());
 
       // and children
       if (_hgNode.children != null) {
         for (HGNode child : _hgNode.children) {
-          ExtendedHierarchicalGraphHelper.getTrait(child).ifPresent((t) -> _cachedIncomingSelfAndSubTreeCoreDependencies
+          ExtendedHierarchicalGraphHelper.getTrait(child).ifPresent((t) -> _hgNode.incomingAccumulatedCoreDependencies
               .addAll(t.cachedIncomingSelfAndSubTreeCoreDependencies()));
         }
       }
@@ -576,6 +566,6 @@ public class ExtendedHGNodeTrait {
     }
 
     //
-    return ECollections.unmodifiableEList(_cachedIncomingSelfAndSubTreeCoreDependencies);
+    return _hgNode.incomingAccumulatedCoreDependencies;
   }
 }

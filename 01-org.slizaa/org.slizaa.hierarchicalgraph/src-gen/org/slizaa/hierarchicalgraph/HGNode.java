@@ -3,8 +3,6 @@
 package org.slizaa.hierarchicalgraph;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -20,8 +18,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getParent <em>Parent</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getChildren <em>Children</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getNodeSource <em>Node Source</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingCoreDependenciesMap <em>Incoming Core Dependencies Map</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingCoreDependenciesMap <em>Outgoing Core Dependencies Map</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingCoreDependencies <em>Outgoing Core Dependencies</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingAccumulatedCoreDependencies <em>Outgoing Accumulated Core Dependencies</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingCoreDependencies <em>Incoming Core Dependencies</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingAccumulatedCoreDependencies <em>Incoming Accumulated Core Dependencies</em>}</li>
  * </ul>
  *
  * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode()
@@ -119,38 +119,68 @@ public interface HGNode extends EObject {
   void setNodeSource(INodeSource value);
 
   /**
-   * Returns the value of the '<em><b>Incoming Core Dependencies Map</b></em>' map.
-   * The key is of type {@link org.slizaa.hierarchicalgraph.HGNode},
-   * and the value is of type list of {@link org.slizaa.hierarchicalgraph.HGCoreDependency},
+   * Returns the value of the '<em><b>Outgoing Core Dependencies</b></em>' reference list.
+   * The list contents are of type {@link org.slizaa.hierarchicalgraph.HGCoreDependency}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Incoming Core Dependencies Map</em>' map isn't clear,
+   * If the meaning of the '<em>Outgoing Core Dependencies</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Incoming Core Dependencies Map</em>' map.
-   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_IncomingCoreDependenciesMap()
-   * @model mapType="org.slizaa.hierarchicalgraph.NodeToCoreDependenciesMap<org.slizaa.hierarchicalgraph.HGNode, org.slizaa.hierarchicalgraph.HGCoreDependency>" ordered="false"
+   * @return the value of the '<em>Outgoing Core Dependencies</em>' reference list.
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_OutgoingCoreDependencies()
+   * @model resolveProxies="false" ordered="false"
    * @generated
    */
-  EMap<HGNode, EList<HGCoreDependency>> getIncomingCoreDependenciesMap();
+  EList<HGCoreDependency> getOutgoingCoreDependencies();
 
   /**
-   * Returns the value of the '<em><b>Outgoing Core Dependencies Map</b></em>' map.
-   * The key is of type {@link org.slizaa.hierarchicalgraph.HGNode},
-   * and the value is of type list of {@link org.slizaa.hierarchicalgraph.HGCoreDependency},
+   * Returns the value of the '<em><b>Outgoing Accumulated Core Dependencies</b></em>' reference list.
+   * The list contents are of type {@link org.slizaa.hierarchicalgraph.HGCoreDependency}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Outgoing Core Dependencies Map</em>' map isn't clear,
+   * If the meaning of the '<em>Outgoing Accumulated Core Dependencies</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Outgoing Core Dependencies Map</em>' map.
-   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_OutgoingCoreDependenciesMap()
-   * @model mapType="org.slizaa.hierarchicalgraph.NodeToCoreDependenciesMap<org.slizaa.hierarchicalgraph.HGNode, org.slizaa.hierarchicalgraph.HGCoreDependency>" ordered="false"
+   * @return the value of the '<em>Outgoing Accumulated Core Dependencies</em>' reference list.
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_OutgoingAccumulatedCoreDependencies()
+   * @model resolveProxies="false" ordered="false"
    * @generated
    */
-  EMap<HGNode, EList<HGCoreDependency>> getOutgoingCoreDependenciesMap();
+  EList<HGCoreDependency> getOutgoingAccumulatedCoreDependencies();
+
+  /**
+   * Returns the value of the '<em><b>Incoming Core Dependencies</b></em>' reference list.
+   * The list contents are of type {@link org.slizaa.hierarchicalgraph.HGCoreDependency}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Incoming Core Dependencies</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Incoming Core Dependencies</em>' reference list.
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_IncomingCoreDependencies()
+   * @model resolveProxies="false" ordered="false"
+   * @generated
+   */
+  EList<HGCoreDependency> getIncomingCoreDependencies();
+
+  /**
+   * Returns the value of the '<em><b>Incoming Accumulated Core Dependencies</b></em>' reference list.
+   * The list contents are of type {@link org.slizaa.hierarchicalgraph.HGCoreDependency}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Incoming Accumulated Core Dependencies</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Incoming Accumulated Core Dependencies</em>' reference list.
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_IncomingAccumulatedCoreDependencies()
+   * @model resolveProxies="false" ordered="false"
+   * @generated
+   */
+  EList<HGCoreDependency> getIncomingAccumulatedCoreDependencies();
 
   /**
    * <!-- begin-user-doc -->

@@ -85,7 +85,7 @@ public class Notification_HGNodeTest extends AbstractSimpleModelTest {
         () -> HierarchicalgraphFactory.eINSTANCE.createDefaultDependencySource(), true);
 
     //
-    assertThat(_notifications).hasSize(2);
+    assertThat(_notifications).hasSize(1);
 
     //
     assertThat(_node.getOutgoingCoreDependencies(false)).hasSize(2).containsOnly(model().a2_b2_core1(),

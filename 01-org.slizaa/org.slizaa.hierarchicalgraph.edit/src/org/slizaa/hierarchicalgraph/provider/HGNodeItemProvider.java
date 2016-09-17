@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -72,6 +73,94 @@ public class HGNodeItemProvider extends ItemProviderAdapter
 	}
 
 	/**
+   * This adds a property descriptor for the Outgoing Core Dependencies feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addOutgoingCoreDependenciesPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_HGNode_outgoingCoreDependencies_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_outgoingCoreDependencies_feature", "_UI_HGNode_type"),
+         HierarchicalgraphPackage.Literals.HG_NODE__OUTGOING_CORE_DEPENDENCIES,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Outgoing Accumulated Core Dependencies feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addOutgoingAccumulatedCoreDependenciesPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_HGNode_outgoingAccumulatedCoreDependencies_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_outgoingAccumulatedCoreDependencies_feature", "_UI_HGNode_type"),
+         HierarchicalgraphPackage.Literals.HG_NODE__OUTGOING_ACCUMULATED_CORE_DEPENDENCIES,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Incoming Core Dependencies feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addIncomingCoreDependenciesPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_HGNode_incomingCoreDependencies_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_incomingCoreDependencies_feature", "_UI_HGNode_type"),
+         HierarchicalgraphPackage.Literals.HG_NODE__INCOMING_CORE_DEPENDENCIES,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Incoming Accumulated Core Dependencies feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addIncomingAccumulatedCoreDependenciesPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_HGNode_incomingAccumulatedCoreDependencies_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_incomingAccumulatedCoreDependencies_feature", "_UI_HGNode_type"),
+         HierarchicalgraphPackage.Literals.HG_NODE__INCOMING_ACCUMULATED_CORE_DEPENDENCIES,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
+  }
+
+  /**
    * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
    * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -162,10 +251,6 @@ public class HGNodeItemProvider extends ItemProviderAdapter
     updateChildren(notification);
 
     switch (notification.getFeatureID(HGNode.class)) {
-      case HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES_MAP:
-      case HierarchicalgraphPackage.HG_NODE__OUTGOING_CORE_DEPENDENCIES_MAP:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
       case HierarchicalgraphPackage.HG_NODE__CHILDREN:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;

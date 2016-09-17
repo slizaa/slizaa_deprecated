@@ -11,9 +11,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
@@ -128,27 +126,27 @@ public class ExtendedHierarchicalGraphHelper {
     return Optional.empty();
   }
 
-  /**
-   * <p>
-   * </p>
-   *
-   * @param map
-   * @return
-   */
-  public static EList<HGCoreDependency> flattenCoreDependencies(EMap<?, EList<HGCoreDependency>> map) {
-
-    //
-    if (map == null) {
-      return ECollections.emptyEList();
-    }
-
-    //
-    List<HGCoreDependency> result = new ArrayList<>();
-    for (List<HGCoreDependency> dependencies : map.values()) {
-      result.addAll(dependencies);
-    }
-
-    //
-    return ECollections.unmodifiableEList(result);
-  }
+//  /**
+//   * <p>
+//   * </p>
+//   *
+//   * @param map
+//   * @return
+//   */
+//  public static EList<HGCoreDependency> flattenCoreDependencies(EMap<?, EList<HGCoreDependency>> map) {
+//
+//    //
+//    if (map == null) {
+//      return ECollections.emptyEList();
+//    }
+//
+//    //
+//    List<HGCoreDependency> result = new ArrayList<>();
+//    for (List<HGCoreDependency> dependencies : map.values()) {
+//      result.addAll(dependencies);
+//    }
+//
+//    //
+//    return ECollections.unmodifiableEList(result);
+//  }
 }

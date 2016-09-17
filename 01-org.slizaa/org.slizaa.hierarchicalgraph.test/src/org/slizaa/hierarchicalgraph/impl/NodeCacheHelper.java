@@ -23,11 +23,11 @@ public class NodeCacheHelper {
   }
 
   public static Optional<EList<HGCoreDependency>> cachedIncomingSelfAndSubTreeCoreDependencies(Object c) {
-    return getTrait(c).map(trait -> trait._cachedIncomingSelfAndSubTreeCoreDependencies);
+    return getTrait(c).map(trait -> trait._hgNode.incomingAccumulatedCoreDependencies);
   }
 
   public static Optional<EList<HGCoreDependency>> cachedOutgoingSelfAndSubTreeCoreDependencies(Object c) {
-    return getTrait(c).map(trait -> trait._cachedOutgoingSelfAndSubTreeCoreDependencies);
+    return getTrait(c).map(trait -> trait._hgNode.outgoingAccumulatedCoreDependencies);
   }
 
   public static void populateCaches(Object c) {

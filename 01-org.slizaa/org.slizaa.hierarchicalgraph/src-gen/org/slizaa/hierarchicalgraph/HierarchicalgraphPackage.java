@@ -106,22 +106,40 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_NODE__NODE_SOURCE = 3;
 
   /**
-   * The feature id for the '<em><b>Incoming Core Dependencies Map</b></em>' map.
+   * The feature id for the '<em><b>Outgoing Core Dependencies</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_NODE__INCOMING_CORE_DEPENDENCIES_MAP = 4;
+  int HG_NODE__OUTGOING_CORE_DEPENDENCIES = 4;
 
   /**
-   * The feature id for the '<em><b>Outgoing Core Dependencies Map</b></em>' map.
+   * The feature id for the '<em><b>Outgoing Accumulated Core Dependencies</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_NODE__OUTGOING_CORE_DEPENDENCIES_MAP = 5;
+  int HG_NODE__OUTGOING_ACCUMULATED_CORE_DEPENDENCIES = 5;
+
+  /**
+   * The feature id for the '<em><b>Incoming Core Dependencies</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_NODE__INCOMING_CORE_DEPENDENCIES = 6;
+
+  /**
+   * The feature id for the '<em><b>Incoming Accumulated Core Dependencies</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_NODE__INCOMING_ACCUMULATED_CORE_DEPENDENCIES = 7;
 
   /**
    * The number of structural features of the '<em>HG Node</em>' class.
@@ -130,7 +148,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE_FEATURE_COUNT = 6;
+  int HG_NODE_FEATURE_COUNT = 8;
 
   /**
    * The operation id for the '<em>Get Identifier</em>' operation.
@@ -415,22 +433,40 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE__NODE_SOURCE = HG_NODE__NODE_SOURCE;
 
   /**
-   * The feature id for the '<em><b>Incoming Core Dependencies Map</b></em>' map.
+   * The feature id for the '<em><b>Outgoing Core Dependencies</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE__INCOMING_CORE_DEPENDENCIES_MAP = HG_NODE__INCOMING_CORE_DEPENDENCIES_MAP;
+  int HG_ROOT_NODE__OUTGOING_CORE_DEPENDENCIES = HG_NODE__OUTGOING_CORE_DEPENDENCIES;
 
   /**
-   * The feature id for the '<em><b>Outgoing Core Dependencies Map</b></em>' map.
+   * The feature id for the '<em><b>Outgoing Accumulated Core Dependencies</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE__OUTGOING_CORE_DEPENDENCIES_MAP = HG_NODE__OUTGOING_CORE_DEPENDENCIES_MAP;
+  int HG_ROOT_NODE__OUTGOING_ACCUMULATED_CORE_DEPENDENCIES = HG_NODE__OUTGOING_ACCUMULATED_CORE_DEPENDENCIES;
+
+  /**
+   * The feature id for the '<em><b>Incoming Core Dependencies</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE__INCOMING_CORE_DEPENDENCIES = HG_NODE__INCOMING_CORE_DEPENDENCIES;
+
+  /**
+   * The feature id for the '<em><b>Incoming Accumulated Core Dependencies</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE__INCOMING_ACCUMULATED_CORE_DEPENDENCIES = HG_NODE__INCOMING_ACCUMULATED_CORE_DEPENDENCIES;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1421,26 +1457,48 @@ public interface HierarchicalgraphPackage extends EPackage {
   EReference getHGNode_NodeSource();
 
   /**
-   * Returns the meta object for the map '{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingCoreDependenciesMap <em>Incoming Core Dependencies Map</em>}'.
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingCoreDependencies <em>Outgoing Core Dependencies</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the map '<em>Incoming Core Dependencies Map</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGNode#getIncomingCoreDependenciesMap()
+   * @return the meta object for the reference list '<em>Outgoing Core Dependencies</em>'.
+   * @see org.slizaa.hierarchicalgraph.HGNode#getOutgoingCoreDependencies()
    * @see #getHGNode()
    * @generated
    */
-  EReference getHGNode_IncomingCoreDependenciesMap();
+  EReference getHGNode_OutgoingCoreDependencies();
 
   /**
-   * Returns the meta object for the map '{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingCoreDependenciesMap <em>Outgoing Core Dependencies Map</em>}'.
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingAccumulatedCoreDependencies <em>Outgoing Accumulated Core Dependencies</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the map '<em>Outgoing Core Dependencies Map</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGNode#getOutgoingCoreDependenciesMap()
+   * @return the meta object for the reference list '<em>Outgoing Accumulated Core Dependencies</em>'.
+   * @see org.slizaa.hierarchicalgraph.HGNode#getOutgoingAccumulatedCoreDependencies()
    * @see #getHGNode()
    * @generated
    */
-  EReference getHGNode_OutgoingCoreDependenciesMap();
+  EReference getHGNode_OutgoingAccumulatedCoreDependencies();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingCoreDependencies <em>Incoming Core Dependencies</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Incoming Core Dependencies</em>'.
+   * @see org.slizaa.hierarchicalgraph.HGNode#getIncomingCoreDependencies()
+   * @see #getHGNode()
+   * @generated
+   */
+  EReference getHGNode_IncomingCoreDependencies();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingAccumulatedCoreDependencies <em>Incoming Accumulated Core Dependencies</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Incoming Accumulated Core Dependencies</em>'.
+   * @see org.slizaa.hierarchicalgraph.HGNode#getIncomingAccumulatedCoreDependencies()
+   * @see #getHGNode()
+   * @generated
+   */
+  EReference getHGNode_IncomingAccumulatedCoreDependencies();
 
   /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getIdentifier() <em>Get Identifier</em>}' operation.
@@ -2228,20 +2286,36 @@ public interface HierarchicalgraphPackage extends EPackage {
     EReference HG_NODE__NODE_SOURCE = eINSTANCE.getHGNode_NodeSource();
 
     /**
-     * The meta object literal for the '<em><b>Incoming Core Dependencies Map</b></em>' map feature.
+     * The meta object literal for the '<em><b>Outgoing Core Dependencies</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference HG_NODE__INCOMING_CORE_DEPENDENCIES_MAP = eINSTANCE.getHGNode_IncomingCoreDependenciesMap();
+    EReference HG_NODE__OUTGOING_CORE_DEPENDENCIES = eINSTANCE.getHGNode_OutgoingCoreDependencies();
 
     /**
-     * The meta object literal for the '<em><b>Outgoing Core Dependencies Map</b></em>' map feature.
+     * The meta object literal for the '<em><b>Outgoing Accumulated Core Dependencies</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference HG_NODE__OUTGOING_CORE_DEPENDENCIES_MAP = eINSTANCE.getHGNode_OutgoingCoreDependenciesMap();
+    EReference HG_NODE__OUTGOING_ACCUMULATED_CORE_DEPENDENCIES = eINSTANCE.getHGNode_OutgoingAccumulatedCoreDependencies();
+
+    /**
+     * The meta object literal for the '<em><b>Incoming Core Dependencies</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference HG_NODE__INCOMING_CORE_DEPENDENCIES = eINSTANCE.getHGNode_IncomingCoreDependencies();
+
+    /**
+     * The meta object literal for the '<em><b>Incoming Accumulated Core Dependencies</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference HG_NODE__INCOMING_ACCUMULATED_CORE_DEPENDENCIES = eINSTANCE.getHGNode_IncomingAccumulatedCoreDependencies();
 
     /**
      * The meta object literal for the '<em><b>Get Identifier</b></em>' operation.
