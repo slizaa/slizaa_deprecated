@@ -56,6 +56,19 @@ public class HierarchicalgraphFactoryMethods {
     return result;
   }
 
+  public static <T extends HGCoreDependency> void removeDependency(T dependency, boolean reinitializeCaches) {
+
+    //
+    checkNotNull(dependency).getFrom().getOutgoingCoreDependencies().remove(dependency);
+    dependency.getTo().getIncomingCoreDependencies().remove(dependency);
+
+    //
+    if (reinitializeCaches) {
+      dependency.getFrom().getRootNode()
+          .invalidateCaches(new BasicEList<HGNode>(Arrays.asList(dependency.getFrom(), dependency.getTo())));
+    }
+  }
+
   /**
    * <p>
    * </p>

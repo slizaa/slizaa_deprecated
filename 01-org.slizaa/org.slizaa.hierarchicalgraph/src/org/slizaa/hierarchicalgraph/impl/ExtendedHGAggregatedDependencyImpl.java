@@ -62,7 +62,7 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
     //
     ExtendedHierarchicalGraphHelper.getTrait(to).ifPresent((trait) -> {
 
-      List<HGCoreDependency> prototypeList = trait.cachedIncomingSelfAndSubTreeCoreDependencies().stream()
+      List<HGCoreDependency> prototypeList = trait.getAccumulatedIncomingCoreDependencies().stream()
           .filter((dep) -> from.equals(dep.getFrom()) || from.isPredecessorOf(dep.getFrom()))
           .collect(Collectors.toList());
 

@@ -187,22 +187,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_NODE___GET_PREDECESSORS = 3;
 
   /**
-   * The operation id for the '<em>Get Outgoing Core Dependencies</em>' operation.
+   * The operation id for the '<em>Get Incoming Dependencies From</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN = 4;
-
-  /**
-   * The operation id for the '<em>Get Incoming Core Dependencies</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN = 5;
+  int HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__HGNODE = 4;
 
   /**
    * The operation id for the '<em>Get Incoming Dependencies From</em>' operation.
@@ -211,16 +202,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__HGNODE = 6;
-
-  /**
-   * The operation id for the '<em>Get Incoming Dependencies From</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__ELIST = 7;
+  int HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__ELIST = 5;
 
   /**
    * The operation id for the '<em>Get Outgoing Dependencies To</em>' operation.
@@ -229,7 +211,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__HGNODE = 8;
+  int HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__HGNODE = 6;
 
   /**
    * The operation id for the '<em>Get Outgoing Dependencies To</em>' operation.
@@ -238,7 +220,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__ELIST = 9;
+  int HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__ELIST = 7;
 
   /**
    * The operation id for the '<em>Resolve Incoming Aggregated Core Dependencies</em>' operation.
@@ -247,7 +229,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = 10;
+  int HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = 8;
 
   /**
    * The operation id for the '<em>Resolve Outgoing Aggregated Core Dependencies</em>' operation.
@@ -256,7 +238,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = 11;
+  int HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = 9;
 
   /**
    * The number of operations of the '<em>HG Node</em>' class.
@@ -265,7 +247,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE_OPERATION_COUNT = 12;
+  int HG_NODE_OPERATION_COUNT = 10;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.INodeSource <em>INode Source</em>}' class.
@@ -539,24 +521,6 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @ordered
    */
   int HG_ROOT_NODE___GET_PREDECESSORS = HG_NODE___GET_PREDECESSORS;
-
-  /**
-   * The operation id for the '<em>Get Outgoing Core Dependencies</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_ROOT_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN = HG_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN;
-
-  /**
-   * The operation id for the '<em>Get Incoming Core Dependencies</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_ROOT_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN = HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN;
 
   /**
    * The operation id for the '<em>Get Incoming Dependencies From</em>' operation.
@@ -1541,26 +1505,6 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGNode__GetPredecessors();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingCoreDependencies(boolean) <em>Get Outgoing Core Dependencies</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Outgoing Core Dependencies</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGNode#getOutgoingCoreDependencies(boolean)
-   * @generated
-   */
-  EOperation getHGNode__GetOutgoingCoreDependencies__boolean();
-
-  /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingCoreDependencies(boolean) <em>Get Incoming Core Dependencies</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Incoming Core Dependencies</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGNode#getIncomingCoreDependencies(boolean)
-   * @generated
-   */
-  EOperation getHGNode__GetIncomingCoreDependencies__boolean();
-
-  /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingDependenciesFrom(org.slizaa.hierarchicalgraph.HGNode) <em>Get Incoming Dependencies From</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2348,22 +2292,6 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EOperation HG_NODE___GET_PREDECESSORS = eINSTANCE.getHGNode__GetPredecessors();
-
-    /**
-     * The meta object literal for the '<em><b>Get Outgoing Core Dependencies</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation HG_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN = eINSTANCE.getHGNode__GetOutgoingCoreDependencies__boolean();
-
-    /**
-     * The meta object literal for the '<em><b>Get Incoming Core Dependencies</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN = eINSTANCE.getHGNode__GetIncomingCoreDependencies__boolean();
 
     /**
      * The meta object literal for the '<em><b>Get Incoming Dependencies From</b></em>' operation.

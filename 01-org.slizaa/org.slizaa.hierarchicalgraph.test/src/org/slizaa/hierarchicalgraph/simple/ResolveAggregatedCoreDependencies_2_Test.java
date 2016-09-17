@@ -2,8 +2,9 @@ package org.slizaa.hierarchicalgraph.simple;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -24,7 +25,6 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-@Ignore
 public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleModelTest
     implements IAggregatedCoreDependencyResolver {
 
@@ -48,6 +48,7 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
    * </p>
    */
   @Test
+  @Ignore
   public void testResolveAggregatedCoreDependencies_AggregatedDependency() {
 
     //
@@ -78,19 +79,19 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
   public void testResolveAggregatedCoreDependencies_CoreDependency() {
 
     //
-    List<HGCoreDependency> outgoingDependencies = model().a1().getOutgoingCoreDependencies(true);
+    List<HGCoreDependency> outgoingDependencies = model().a1().getAccumulatedOutgoingCoreDependencies();
     assertThat(outgoingDependencies).hasSize(4).contains(model().a1_b1_core1(), model().a1_b1_core2(),
         model().a2_b2_core1(), model().a3_b3_core1());
 
     //
-    for (HGCoreDependency outgoingDependency : outgoingDependencies) {
+    for (HGCoreDependency outgoingDependency : new ArrayList<>(outgoingDependencies)) {
       if (outgoingDependency instanceof HGAggregatedCoreDependency) {
         ((HGAggregatedCoreDependency) outgoingDependency).resolveAggregatedCoreDependencies();
       }
     }
 
     // we have to re-read the aggregated dependency
-    outgoingDependencies = model().a1().getOutgoingCoreDependencies(true);
+    outgoingDependencies = model().a1().getAccumulatedOutgoingCoreDependencies();
     assertThat(outgoingDependencies).hasSize(5).contains(model().a1_b1_core1(), model().a1_b1_core2(),
         model().a2_b2_core1(), _newDependency_1, _newDependency_2);
   }
@@ -99,7 +100,7 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
   public void testResolveOutgoingAggregatedCoreDependencies() {
 
     //
-    List<HGCoreDependency> outgoingDependencies = model().a1().getOutgoingCoreDependencies(true);
+    List<HGCoreDependency> outgoingDependencies = model().a1().getAccumulatedOutgoingCoreDependencies();
     assertThat(outgoingDependencies).hasSize(4).contains(model().a1_b1_core1(), model().a1_b1_core2(),
         model().a2_b2_core1(), model().a3_b3_core1());
 
@@ -107,7 +108,7 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
     model().a1().resolveOutgoingAggregatedCoreDependencies(true);
 
     // we have to re-read the aggregated dependency
-    outgoingDependencies = model().a1().getOutgoingCoreDependencies(true);
+    outgoingDependencies = model().a1().getAccumulatedOutgoingCoreDependencies();
     assertThat(outgoingDependencies).hasSize(5).contains(model().a1_b1_core1(), model().a1_b1_core2(),
         model().a2_b2_core1(), _newDependency_1, _newDependency_2);
   }
@@ -116,7 +117,7 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
   public void resolveIncomingAggregatedCoreDependencies() {
 
     //
-    List<HGCoreDependency> incomingDependencies = model().b1().getIncomingCoreDependencies(true);
+    List<HGCoreDependency> incomingDependencies = model().b1().getAccumulatedIncomingCoreDependencies();
     assertThat(incomingDependencies).hasSize(4).contains(model().a1_b1_core1(), model().a1_b1_core2(),
         model().a2_b2_core1(), model().a3_b3_core1());
 
@@ -124,7 +125,7 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
     model().b1().resolveIncomingAggregatedCoreDependencies(true);
 
     // we have to re-read the aggregated dependency
-    incomingDependencies = model().b1().getIncomingCoreDependencies(true);
+    incomingDependencies = model().b1().getAccumulatedIncomingCoreDependencies();
     assertThat(incomingDependencies).hasSize(5).contains(model().a1_b1_core1(), model().a1_b1_core2(),
         model().a2_b2_core1(), _newDependency_1, _newDependency_2);
   }
@@ -143,6 +144,8 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
 
     dependencyToResolve.getResolvedCoreDependencies().add(_newDependency_1);
     dependencyToResolve.getResolvedCoreDependencies().add(_newDependency_2);
+
+    removeDependency(dependencyToResolve, false);
 
     dependencyToResolve.getRootNode()
         .invalidateCaches(new BasicEList<HGNode>(asList(dependencyToResolve.getFrom(), dependencyToResolve.getTo())));

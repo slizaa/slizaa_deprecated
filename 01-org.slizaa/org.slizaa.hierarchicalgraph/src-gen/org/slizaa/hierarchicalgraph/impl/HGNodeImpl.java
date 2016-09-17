@@ -322,28 +322,6 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public HGAggregatedDependency getIncomingDependenciesFrom(HGNode node) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
@@ -605,10 +583,6 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
         return isSuccessorOf((HGNode)arguments.get(0));
       case HierarchicalgraphPackage.HG_NODE___GET_PREDECESSORS:
         return getPredecessors();
-      case HierarchicalgraphPackage.HG_NODE___GET_OUTGOING_CORE_DEPENDENCIES__BOOLEAN:
-        return getOutgoingCoreDependencies((Boolean)arguments.get(0));
-      case HierarchicalgraphPackage.HG_NODE___GET_INCOMING_CORE_DEPENDENCIES__BOOLEAN:
-        return getIncomingCoreDependencies((Boolean)arguments.get(0));
       case HierarchicalgraphPackage.HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__HGNODE:
         return getIncomingDependenciesFrom((HGNode)arguments.get(0));
       case HierarchicalgraphPackage.HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__ELIST:

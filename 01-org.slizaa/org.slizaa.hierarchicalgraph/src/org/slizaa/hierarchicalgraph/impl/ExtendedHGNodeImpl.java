@@ -31,6 +31,16 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
   }
 
   @Override
+  public EList<HGCoreDependency> getAccumulatedOutgoingCoreDependencies() {
+    return _trait.getAccumulatedOutgoingCoreDependencies();
+  }
+
+  @Override
+  public EList<HGCoreDependency> getAccumulatedIncomingCoreDependencies() {
+    return _trait.getAccumulatedIncomingCoreDependencies();
+  }
+
+  @Override
   public HGAggregatedDependency getIncomingDependenciesFrom(HGNode node) {
     return _trait.getIncomingDependenciesFrom(node);
   }
@@ -48,16 +58,6 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
   @Override
   public EList<HGAggregatedDependency> getOutgoingDependenciesTo(EList<HGNode> nodes) {
     return _trait.getOutgoingDependenciesTo(nodes);
-  }
-
-  @Override
-  public EList<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren) {
-    return _trait.getOutgoingCoreDependencies(includeChildren);
-  }
-
-  @Override
-  public EList<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren) {
-    return _trait.getIncomingCoreDependencies(includeChildren);
   }
 
   /**

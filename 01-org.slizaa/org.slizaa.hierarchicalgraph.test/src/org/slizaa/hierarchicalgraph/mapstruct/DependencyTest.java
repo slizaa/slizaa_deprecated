@@ -38,27 +38,27 @@ public class DependencyTest extends AbstractXmiBasedTest {
 
     // 'mapstruct-1.1.0.Beta2.jar'
     assertThat(node(1).getOutgoingCoreDependencies()).hasSize(0);
-    assertThat(node(ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER).getOutgoingCoreDependencies(false)).hasSize(0);
+    assertThat(node(ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER).getOutgoingCoreDependencies()).hasSize(0);
     assertThat(node(ID_TYPE_MODEL_WRITER).getOutgoingCoreDependencies()).hasSize(11);
 
     // 'mapstruct--processor-1.1.0.Beta2.jar'
-    assertThat(node(577).getOutgoingCoreDependencies(true)).hasSize(4983);
-    assertThat(node(ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER).getOutgoingCoreDependencies(true)).hasSize(75);
-    assertThat(node(ID_TYPE_MODEL_WRITER).getOutgoingCoreDependencies(true)).hasSize(11);
+    assertThat(node(577).getAccumulatedOutgoingCoreDependencies()).hasSize(4983);
+    assertThat(node(ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER).getAccumulatedOutgoingCoreDependencies()).hasSize(75);
+    assertThat(node(ID_TYPE_MODEL_WRITER).getAccumulatedOutgoingCoreDependencies()).hasSize(11);
   }
 
   @Test
   public void testIncomingCoreDependencies() {
 
     // 'mapstruct--processor-1.1.0.Beta2.jar'
-    assertThat(node(577).getIncomingCoreDependencies(false)).hasSize(0);
-    assertThat(node(ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER).getIncomingCoreDependencies(false)).hasSize(0);
-    assertThat(node(ID_TYPE_MODEL_WRITER).getIncomingCoreDependencies(false)).hasSize(3);
+    assertThat(node(577).getIncomingCoreDependencies()).hasSize(0);
+    assertThat(node(ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER).getIncomingCoreDependencies()).hasSize(0);
+    assertThat(node(ID_TYPE_MODEL_WRITER).getIncomingCoreDependencies()).hasSize(3);
 
     // 'mapstruct--processor-1.1.0.Beta2.jar'
-    assertThat(node(577).getIncomingCoreDependencies(true)).hasSize(4983);
-    assertThat(node(ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER).getIncomingCoreDependencies(true)).hasSize(58);
-    assertThat(node(ID_TYPE_MODEL_WRITER).getIncomingCoreDependencies(true)).hasSize(3);
+    assertThat(node(577).getAccumulatedIncomingCoreDependencies()).hasSize(4983);
+    assertThat(node(ID_PKG_ORG_MAPSTRUCT_AP_INTERNAL_WRITER).getAccumulatedIncomingCoreDependencies()).hasSize(58);
+    assertThat(node(ID_TYPE_MODEL_WRITER).getAccumulatedIncomingCoreDependencies()).hasSize(3);
   }
 
   @Test

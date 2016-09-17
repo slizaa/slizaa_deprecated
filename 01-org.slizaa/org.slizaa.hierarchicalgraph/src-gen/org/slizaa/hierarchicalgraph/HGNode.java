@@ -223,22 +223,6 @@ public interface HGNode extends EObject {
    * @model
    * @generated
    */
-  EList<HGCoreDependency> getOutgoingCoreDependencies(boolean includeChildren);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
-  EList<HGCoreDependency> getIncomingCoreDependencies(boolean includeChildren);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
   HGAggregatedDependency getIncomingDependenciesFrom(HGNode node);
 
   /**

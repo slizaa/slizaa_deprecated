@@ -116,7 +116,7 @@ public class CycleDetector {
 
     // hack: un-cycled artifacts without dependencies first
     for (List<HGNode> artifactList : _cycles) {
-      if (artifactList.size() == 1 && artifactList.get(0).getOutgoingCoreDependencies(true).size() == 0) {
+      if (artifactList.size() == 1 && artifactList.get(0).getAccumulatedOutgoingCoreDependencies().size() == 0) {
         orderedArtifacts.add(artifactList.get(0));
       }
     }

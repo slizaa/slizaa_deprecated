@@ -15,12 +15,6 @@
       <eParameters name="node" lowerBound="1" eType="#//HGNode"/>
     </eOperations>
     <eOperations name="getPredecessors" upperBound="-1" eType="#//HGNode"/>
-    <eOperations name="getOutgoingCoreDependencies" upperBound="-1" eType="#//HGCoreDependency">
-      <eParameters name="includeChildren" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eOperations>
-    <eOperations name="getIncomingCoreDependencies" upperBound="-1" eType="#//HGCoreDependency">
-      <eParameters name="includeChildren" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eOperations>
     <eOperations name="getIncomingDependenciesFrom" eType="#//HGAggregatedDependency">
       <eParameters name="node" eType="#//HGNode"/>
     </eOperations>
