@@ -95,19 +95,19 @@ public class HGNodeItemProvider extends ItemProviderAdapter
   }
 
   /**
-   * This adds a property descriptor for the Outgoing Accumulated Core Dependencies feature.
+   * This adds a property descriptor for the Accumulated Outgoing Core Dependencies feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addOutgoingAccumulatedCoreDependenciesPropertyDescriptor(Object object) {
+  protected void addAccumulatedOutgoingCoreDependenciesPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGNode_outgoingAccumulatedCoreDependencies_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_outgoingAccumulatedCoreDependencies_feature", "_UI_HGNode_type"),
-         HierarchicalgraphPackage.Literals.HG_NODE__OUTGOING_ACCUMULATED_CORE_DEPENDENCIES,
+         getString("_UI_HGNode_accumulatedOutgoingCoreDependencies_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_accumulatedOutgoingCoreDependencies_feature", "_UI_HGNode_type"),
+         HierarchicalgraphPackage.Literals.HG_NODE__ACCUMULATED_OUTGOING_CORE_DEPENDENCIES,
          true,
          false,
          true,
@@ -139,19 +139,19 @@ public class HGNodeItemProvider extends ItemProviderAdapter
   }
 
   /**
-   * This adds a property descriptor for the Incoming Accumulated Core Dependencies feature.
+   * This adds a property descriptor for the Accumulated Incoming Core Dependencies feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addIncomingAccumulatedCoreDependenciesPropertyDescriptor(Object object) {
+  protected void addAccumulatedIncomingCoreDependenciesPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGNode_incomingAccumulatedCoreDependencies_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_incomingAccumulatedCoreDependencies_feature", "_UI_HGNode_type"),
-         HierarchicalgraphPackage.Literals.HG_NODE__INCOMING_ACCUMULATED_CORE_DEPENDENCIES,
+         getString("_UI_HGNode_accumulatedIncomingCoreDependencies_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_accumulatedIncomingCoreDependencies_feature", "_UI_HGNode_type"),
+         HierarchicalgraphPackage.Literals.HG_NODE__ACCUMULATED_INCOMING_CORE_DEPENDENCIES,
          true,
          false,
          true,

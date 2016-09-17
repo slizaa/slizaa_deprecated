@@ -295,7 +295,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getHGNode_OutgoingAccumulatedCoreDependencies() {
+  public EReference getHGNode_AccumulatedOutgoingCoreDependencies() {
     return (EReference)hgNodeEClass.getEStructuralFeatures().get(5);
   }
 
@@ -313,7 +313,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getHGNode_IncomingAccumulatedCoreDependencies() {
+  public EReference getHGNode_AccumulatedIncomingCoreDependencies() {
     return (EReference)hgNodeEClass.getEStructuralFeatures().get(7);
   }
 
@@ -963,9 +963,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEReference(hgNodeEClass, HG_NODE__CHILDREN);
     createEReference(hgNodeEClass, HG_NODE__NODE_SOURCE);
     createEReference(hgNodeEClass, HG_NODE__OUTGOING_CORE_DEPENDENCIES);
-    createEReference(hgNodeEClass, HG_NODE__OUTGOING_ACCUMULATED_CORE_DEPENDENCIES);
+    createEReference(hgNodeEClass, HG_NODE__ACCUMULATED_OUTGOING_CORE_DEPENDENCIES);
     createEReference(hgNodeEClass, HG_NODE__INCOMING_CORE_DEPENDENCIES);
-    createEReference(hgNodeEClass, HG_NODE__INCOMING_ACCUMULATED_CORE_DEPENDENCIES);
+    createEReference(hgNodeEClass, HG_NODE__ACCUMULATED_INCOMING_CORE_DEPENDENCIES);
     createEOperation(hgNodeEClass, HG_NODE___GET_IDENTIFIER);
     createEOperation(hgNodeEClass, HG_NODE___IS_PREDECESSOR_OF__HGNODE);
     createEOperation(hgNodeEClass, HG_NODE___IS_SUCCESSOR_OF__HGNODE);
@@ -1097,9 +1097,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEReference(getHGNode_Children(), this.getHGNode(), this.getHGNode_Parent(), "children", null, 0, -1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGNode_NodeSource(), this.getINodeSource(), this.getINodeSource_Node(), "nodeSource", null, 0, 1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGNode_OutgoingCoreDependencies(), this.getHGCoreDependency(), null, "outgoingCoreDependencies", null, 0, -1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-    initEReference(getHGNode_OutgoingAccumulatedCoreDependencies(), this.getHGCoreDependency(), null, "outgoingAccumulatedCoreDependencies", null, 0, -1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+    initEReference(getHGNode_AccumulatedOutgoingCoreDependencies(), this.getHGCoreDependency(), null, "accumulatedOutgoingCoreDependencies", null, 0, -1, HGNode.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
     initEReference(getHGNode_IncomingCoreDependencies(), this.getHGCoreDependency(), null, "incomingCoreDependencies", null, 0, -1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-    initEReference(getHGNode_IncomingAccumulatedCoreDependencies(), this.getHGCoreDependency(), null, "incomingAccumulatedCoreDependencies", null, 0, -1, HGNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+    initEReference(getHGNode_AccumulatedIncomingCoreDependencies(), this.getHGCoreDependency(), null, "accumulatedIncomingCoreDependencies", null, 0, -1, HGNode.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
     initEOperation(getHGNode__GetIdentifier(), ecorePackage.getEJavaObject(), "getIdentifier", 0, 1, IS_UNIQUE, IS_ORDERED);
 

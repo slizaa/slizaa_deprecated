@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getChildren <em>Children</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getNodeSource <em>Node Source</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingCoreDependencies <em>Outgoing Core Dependencies</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getOutgoingAccumulatedCoreDependencies <em>Outgoing Accumulated Core Dependencies</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getAccumulatedOutgoingCoreDependencies <em>Accumulated Outgoing Core Dependencies</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingCoreDependencies <em>Incoming Core Dependencies</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getIncomingAccumulatedCoreDependencies <em>Incoming Accumulated Core Dependencies</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGNode#getAccumulatedIncomingCoreDependencies <em>Accumulated Incoming Core Dependencies</em>}</li>
  * </ul>
  *
  * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode()
@@ -135,20 +135,20 @@ public interface HGNode extends EObject {
   EList<HGCoreDependency> getOutgoingCoreDependencies();
 
   /**
-   * Returns the value of the '<em><b>Outgoing Accumulated Core Dependencies</b></em>' reference list.
+   * Returns the value of the '<em><b>Accumulated Outgoing Core Dependencies</b></em>' reference list.
    * The list contents are of type {@link org.slizaa.hierarchicalgraph.HGCoreDependency}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Outgoing Accumulated Core Dependencies</em>' reference list isn't clear,
+   * If the meaning of the '<em>Accumulated Outgoing Core Dependencies</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Outgoing Accumulated Core Dependencies</em>' reference list.
-   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_OutgoingAccumulatedCoreDependencies()
-   * @model resolveProxies="false" ordered="false"
+   * @return the value of the '<em>Accumulated Outgoing Core Dependencies</em>' reference list.
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_AccumulatedOutgoingCoreDependencies()
+   * @model resolveProxies="false" volatile="true" ordered="false"
    * @generated
    */
-  EList<HGCoreDependency> getOutgoingAccumulatedCoreDependencies();
+  EList<HGCoreDependency> getAccumulatedOutgoingCoreDependencies();
 
   /**
    * Returns the value of the '<em><b>Incoming Core Dependencies</b></em>' reference list.
@@ -167,20 +167,20 @@ public interface HGNode extends EObject {
   EList<HGCoreDependency> getIncomingCoreDependencies();
 
   /**
-   * Returns the value of the '<em><b>Incoming Accumulated Core Dependencies</b></em>' reference list.
+   * Returns the value of the '<em><b>Accumulated Incoming Core Dependencies</b></em>' reference list.
    * The list contents are of type {@link org.slizaa.hierarchicalgraph.HGCoreDependency}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Incoming Accumulated Core Dependencies</em>' reference list isn't clear,
+   * If the meaning of the '<em>Accumulated Incoming Core Dependencies</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Incoming Accumulated Core Dependencies</em>' reference list.
-   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_IncomingAccumulatedCoreDependencies()
-   * @model resolveProxies="false" ordered="false"
+   * @return the value of the '<em>Accumulated Incoming Core Dependencies</em>' reference list.
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_AccumulatedIncomingCoreDependencies()
+   * @model resolveProxies="false" volatile="true" ordered="false"
    * @generated
    */
-  EList<HGCoreDependency> getIncomingAccumulatedCoreDependencies();
+  EList<HGCoreDependency> getAccumulatedIncomingCoreDependencies();
 
   /**
    * <!-- begin-user-doc -->

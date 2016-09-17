@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
@@ -85,7 +84,7 @@ public class Notification_HGNodeTest extends AbstractSimpleModelTest {
         () -> HierarchicalgraphFactory.eINSTANCE.createDefaultDependencySource(), true);
 
     //
-    assertThat(_notifications).hasSize(1);
+    assertThat(_notifications).hasSize(3);
 
     //
     assertThat(_node.getOutgoingCoreDependencies()).hasSize(2).containsOnly(model().a2_b2_core1(),

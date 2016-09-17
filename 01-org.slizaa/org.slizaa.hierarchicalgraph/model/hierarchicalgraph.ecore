@@ -55,12 +55,14 @@
         containment="true" resolveProxies="false" eOpposite="#//INodeSource/node"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingCoreDependencies"
         ordered="false" upperBound="-1" eType="#//HGCoreDependency" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAccumulatedCoreDependencies"
-        ordered="false" upperBound="-1" eType="#//HGCoreDependency" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accumulatedOutgoingCoreDependencies"
+        ordered="false" upperBound="-1" eType="#//HGCoreDependency" volatile="true"
+        resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingCoreDependencies"
         ordered="false" upperBound="-1" eType="#//HGCoreDependency" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingAccumulatedCoreDependencies"
-        ordered="false" upperBound="-1" eType="#//HGCoreDependency" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accumulatedIncomingCoreDependencies"
+        ordered="false" upperBound="-1" eType="#//HGCoreDependency" volatile="true"
+        resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="INodeSource" abstract="true" interface="true">
     <eOperations name="onExpand"/>
