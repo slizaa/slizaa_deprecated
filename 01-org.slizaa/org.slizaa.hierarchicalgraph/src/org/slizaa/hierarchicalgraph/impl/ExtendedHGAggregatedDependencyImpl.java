@@ -66,12 +66,8 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
           .filter((dep) -> from.equals(dep.getFrom()) || from.isPredecessorOf(dep.getFrom()))
           .collect(Collectors.toList());
 
-      List<HGCoreDependency> newCoreDependencies = prototypeList.stream()
-          .filter(ExtendedHierarchicalGraphHelper.FILTER_REMOVE_RESOLVED_AGGREGATED_CORE_DEPENDENCIES)
-          .collect(Collectors.toList());
-
       // add all incoming dependencies from successors of the specified node
-      ECollections.setEList(coreDependencies, newCoreDependencies);
+      ECollections.setEList(coreDependencies, prototypeList);
 
       // compute the aggregated weight
       int newAggregatedWeight = prototypeList.stream()

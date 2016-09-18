@@ -1,14 +1,11 @@
 package org.slizaa.hierarchicalgraph.impl;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -25,20 +22,10 @@ import org.slizaa.hierarchicalgraph.HGNode;
 public class ExtendedHierarchicalGraphHelper {
 
   /** - */
-  public static final Predicate<HGCoreDependency> FILTER_REMOVE_RESOLVED_AGGREGATED_CORE_DEPENDENCIES               = (
-      dep) -> {
-                                                                                                                      return !(dep instanceof HGAggregatedCoreDependency)
-                                                                                                                          || !(((HGAggregatedCoreDependency) dep)
-                                                                                                                              .isResolved());
-                                                                                                                    };
-
-  /** - */
   public static final Predicate<HGCoreDependency> FILTER_REMOVE_CORE_DEPENDENCIES_FROM_AGGREGATED_CORE_DEPENDENCIES = (
       dep) -> {
-                                                                                                                      return (dep instanceof HGAggregatedCoreDependency
-                                                                                                                          || dep
-                                                                                                                              .getAggregatedCoreDependencyParent() == null);
-                                                                                                                    };
+    return (dep instanceof HGAggregatedCoreDependency || dep.getAggregatedCoreDependencyParent() == null);
+  };
 
   /**
    * <p>
@@ -96,20 +83,6 @@ public class ExtendedHierarchicalGraphHelper {
    * <p>
    * </p>
    *
-   * @param dependencies
-   * @return
-   */
-  public static List<HGCoreDependency> filterAggregatedCoreDependencies(List<HGCoreDependency> dependencies) {
-    checkNotNull(dependencies);
-
-    return dependencies.stream().filter(FILTER_REMOVE_RESOLVED_AGGREGATED_CORE_DEPENDENCIES)
-        .collect(Collectors.toList());
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
    * @return
    */
   public static Optional<ExtendedHGNodeTrait> getTrait(HGNode hgNode) {
@@ -125,28 +98,4 @@ public class ExtendedHierarchicalGraphHelper {
     // should not happen
     return Optional.empty();
   }
-
-//  /**
-//   * <p>
-//   * </p>
-//   *
-//   * @param map
-//   * @return
-//   */
-//  public static EList<HGCoreDependency> flattenCoreDependencies(EMap<?, EList<HGCoreDependency>> map) {
-//
-//    //
-//    if (map == null) {
-//      return ECollections.emptyEList();
-//    }
-//
-//    //
-//    List<HGCoreDependency> result = new ArrayList<>();
-//    for (List<HGCoreDependency> dependencies : map.values()) {
-//      result.addAll(dependencies);
-//    }
-//
-//    //
-//    return ECollections.unmodifiableEList(result);
-//  }
 }

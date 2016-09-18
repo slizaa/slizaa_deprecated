@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.BasicEMap;
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.util.EObjectEList;
@@ -403,16 +402,14 @@ public class ExtendedHGNodeTrait {
       if (_hgNode.getParent() != null) {
         HGNode parent = _hgNode.getParent();
         this._cachedParents.add(parent);
-        if (parent instanceof ExtendedHGNodeImpl) {
-          this._cachedParents.addAll(((ExtendedHGNodeImpl) _hgNode.getParent()).getTrait().cachedParents());
-        }
+        this._cachedParents.addAll(parent.getPredecessors());
       }
 
       _cachedParentsInitialized = true;
     }
 
     //
-    return ECollections.unmodifiableEList(this._cachedParents);
+    return this._cachedParents;
   }
 
   /**
