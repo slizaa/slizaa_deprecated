@@ -8,7 +8,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
@@ -459,8 +458,8 @@ public class ExtendedHGNodeTrait {
 
       //
       if (_accumulatedOutgoingCoreDependencies == null) {
-        _accumulatedOutgoingCoreDependencies = new EObjectEList<HGCoreDependency>(HGCoreDependency.class, _hgNode,
-            HierarchicalgraphPackage.HG_NODE__ACCUMULATED_OUTGOING_CORE_DEPENDENCIES);
+        _accumulatedOutgoingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(
+            HGCoreDependency.class, _hgNode, HierarchicalgraphPackage.HG_NODE__ACCUMULATED_OUTGOING_CORE_DEPENDENCIES);
       } else {
         _accumulatedOutgoingCoreDependencies.clear();
       }
@@ -496,8 +495,8 @@ public class ExtendedHGNodeTrait {
 
       //
       if (_accumulatedIncomingCoreDependencies == null) {
-        _accumulatedIncomingCoreDependencies = new EObjectEList<HGCoreDependency>(HGCoreDependency.class, _hgNode,
-            HierarchicalgraphPackage.HG_NODE__ACCUMULATED_INCOMING_CORE_DEPENDENCIES);
+        _accumulatedIncomingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(
+            HGCoreDependency.class, _hgNode, HierarchicalgraphPackage.HG_NODE__ACCUMULATED_INCOMING_CORE_DEPENDENCIES);
       } else {
         _accumulatedIncomingCoreDependencies.clear();
       }
