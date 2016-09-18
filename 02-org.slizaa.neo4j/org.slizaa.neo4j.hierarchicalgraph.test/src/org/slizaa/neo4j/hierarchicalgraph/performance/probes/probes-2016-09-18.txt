@@ -1,0 +1,68 @@
+Before refactoring (commit id 6dfcd7b5df32d6c90fd2876dd87fd9e5b466ada8):
+
+Start
+Create graph from default mapping: 8024
+Get incoming dependencies matrix: 2626
+Invalidate caches: 154
+Get incoming dependencies matrix: 2041
+----------------------------
+Start
+Create graph from default mapping: 7554
+Get incoming dependencies matrix: 2690
+Invalidate caches: 146
+Get incoming dependencies matrix: 1982
+----------------------------
+Start
+Create graph from default mapping: 7803
+Get incoming dependencies matrix: 2298
+Invalidate caches: 133
+Get incoming dependencies matrix: 1761
+
+===================================================
+After refactoring (commit id 3b059345f1775cf4e7e9f9f7be064c369d5fbf56):
+
+Start
+Create graph from default mapping: 6739
+Get incoming dependencies matrix: 3928
+Invalidate caches: 176
+Get incoming dependencies matrix: 3302
+
+Start
+Create graph from default mapping: 6684
+Get incoming dependencies matrix: 4218
+Invalidate caches: 184
+Get incoming dependencies matrix: 3490
+
+Start
+Create graph from default mapping: 6598
+Get incoming dependencies matrix: 3861
+Invalidate caches: 158
+Get incoming dependencies matrix: 3368
+
+==========================================
+Profiled and fixed (commit id 482a6806098903f48ea77408cef48fc45392ffb5):
+
+Start
+Create graph from default mapping: 6948
+Get incoming dependencies matrix: 1916
+Invalidate caches: 163
+Get incoming dependencies matrix: 1446
+
+Start
+Create graph from default mapping: 6823
+Get incoming dependencies matrix: 1928
+Invalidate caches: 151
+Get incoming dependencies matrix: 1532
+
+Start
+Create graph from default mapping: 6731
+Get incoming dependencies matrix: 1883
+Invalidate caches: 157
+Get incoming dependencies matrix: 1539
+
+Start
+Create graph from default mapping: 6777
+Get incoming dependencies matrix: 1889
+Invalidate caches: 145
+Get incoming dependencies matrix: 1454
+
