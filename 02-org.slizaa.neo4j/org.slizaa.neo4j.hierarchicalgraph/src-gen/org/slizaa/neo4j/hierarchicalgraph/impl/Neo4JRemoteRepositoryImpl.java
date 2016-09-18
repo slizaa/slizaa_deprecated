@@ -4,6 +4,7 @@ package org.slizaa.neo4j.hierarchicalgraph.impl;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
 import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
@@ -12,6 +13,7 @@ import java.util.Map;
 import java.util.concurrent.Future;
 
 import java.util.function.Consumer;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
@@ -22,7 +24,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.slizaa.hierarchicalgraph.HGRootNode;
+
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
 

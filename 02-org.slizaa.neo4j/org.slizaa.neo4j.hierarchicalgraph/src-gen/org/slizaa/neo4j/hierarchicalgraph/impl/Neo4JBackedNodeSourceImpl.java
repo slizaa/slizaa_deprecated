@@ -3,6 +3,7 @@
 package org.slizaa.neo4j.hierarchicalgraph.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -19,15 +20,19 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+
 import org.slizaa.hierarchicalgraph.impl.StringToStringMapImpl;
+
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Neo4 JBacked Node Source</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Neo4 JBacked Node Source</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -44,28 +49,28 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
 public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container implements Neo4JBackedNodeSource {
   /**
    * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getIdentifier()
    * @generated
    * @ordered
    */
-  protected static final Object  IDENTIFIER_EDEFAULT  = null;
+  protected static final Object IDENTIFIER_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getIdentifier()
    * @generated
    * @ordered
    */
-  protected Object               identifier           = IDENTIFIER_EDEFAULT;
+  protected Object identifier = IDENTIFIER_EDEFAULT;
 
   /**
    * The default value of the '{@link #isAutoExpand() <em>Auto Expand</em>}' attribute.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @see #isAutoExpand()
    * @generated
    * @ordered
@@ -73,27 +78,28 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   protected static final boolean AUTO_EXPAND_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #getProperties() <em>Properties</em>}' map. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * 
+   * The cached value of the '{@link #getProperties() <em>Properties</em>}' map.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getProperties()
-   * @generated NOT
+   * @generated
    * @ordered
    */
-  public EMap<String, String> properties;
+  protected EMap<String, String> properties;
 
   /**
-   * The cached value of the '{@link #getLabels() <em>Labels</em>}' attribute list. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * 
+   * The cached value of the '{@link #getLabels() <em>Labels</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getLabels()
-   * @generated NOT
+   * @generated
    * @ordered
    */
-  public EList<String>        labels;
+  protected EList<String> labels;
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   protected Neo4JBackedNodeSourceImpl() {
@@ -101,7 +107,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -110,7 +117,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public Object getIdentifier() {
@@ -118,7 +126,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public void setIdentifier(Object newIdentifier) {
@@ -129,7 +138,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public HGNode getNode() {
@@ -138,7 +148,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public NotificationChain basicSetNode(HGNode newNode, NotificationChain msgs) {
@@ -147,7 +158,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public void setNode(HGNode newNode) {
@@ -167,7 +179,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public boolean isAutoExpand() {
@@ -177,7 +190,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public EMap<String, String> getProperties() {
@@ -188,7 +202,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public EList<String> getLabels() {
@@ -199,7 +214,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public void onExpand() {
@@ -209,7 +225,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public void onCollapse() {
@@ -219,7 +236,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -234,7 +252,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -249,7 +268,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -262,7 +282,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -284,7 +305,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -301,7 +323,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -318,7 +341,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -339,7 +363,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -356,7 +381,8 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -372,4 +398,4 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
     return result.toString();
   }
 
-} // Neo4JBackedNodeSourceImpl
+} //Neo4JBackedNodeSourceImpl

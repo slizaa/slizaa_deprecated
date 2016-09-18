@@ -6,8 +6,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
+
 import org.slizaa.neo4j.hierarchicalgraph.*;
 
 /**
@@ -24,48 +26,48 @@ import org.slizaa.neo4j.hierarchicalgraph.*;
  * @generated
  */
 public class Neo4jHierarchicalgraphSwitch<T> extends Switch<T> {
-	/**
+  /**
    * The cached model package
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected static Neo4jHierarchicalgraphPackage modelPackage;
+  protected static Neo4jHierarchicalgraphPackage modelPackage;
 
-	/**
+  /**
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Neo4jHierarchicalgraphSwitch() {
+  public Neo4jHierarchicalgraphSwitch() {
     if (modelPackage == null) {
       modelPackage = Neo4jHierarchicalgraphPackage.eINSTANCE;
     }
   }
 
-	/**
+  /**
    * Checks whether this is a switch for the given package.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @param ePackage the package in question.
    * @return whether this is a switch for the given package.
    * @generated
    */
-	@Override
-	protected boolean isSwitchFor(EPackage ePackage) {
+  @Override
+  protected boolean isSwitchFor(EPackage ePackage) {
     return ePackage == modelPackage;
   }
 
-	/**
+  /**
    * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-	@Override
-	protected T doSwitch(int classifierID, EObject theEObject) {
+  @Override
+  protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE: {
         Neo4JBackedNodeSource neo4JBackedNodeSource = (Neo4JBackedNodeSource)theEObject;
@@ -106,67 +108,82 @@ public class Neo4jHierarchicalgraphSwitch<T> extends Switch<T> {
     }
   }
 
-	/**
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Neo4 JBacked Node Source</em>'.
    * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Neo4 JBacked Node Source</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T caseNeo4JBackedNodeSource(Neo4JBackedNodeSource object) {
+  public T caseNeo4JBackedNodeSource(Neo4JBackedNodeSource object) {
     return null;
   }
 
-	/**
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Neo4 JBacked Root Node Source</em>'.
    * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Neo4 JBacked Root Node Source</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T caseNeo4JBackedRootNodeSource(Neo4JBackedRootNodeSource object) {
+  public T caseNeo4JBackedRootNodeSource(Neo4JBackedRootNodeSource object) {
     return null;
   }
 
-	/**
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Neo4 JBacked Dependency Source</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Neo4 JBacked Dependency Source</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNeo4JBackedDependencySource(Neo4JBackedDependencySource object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>INeo4 JRepository</em>'.
    * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>INeo4 JRepository</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T caseINeo4JRepository(INeo4JRepository object) {
+  public T caseINeo4JRepository(INeo4JRepository object) {
     return null;
   }
 
-	/**
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Neo4 JRemote Repository</em>'.
    * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Neo4 JRemote Repository</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T caseNeo4JRemoteRepository(Neo4JRemoteRepository object) {
+  public T caseNeo4JRemoteRepository(Neo4JRemoteRepository object) {
     return null;
   }
 
-	/**
+  /**
    * Returns the result of interpreting the object as an instance of '<em>INode Source</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -197,33 +214,18 @@ public class Neo4jHierarchicalgraphSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Neo4 JBacked Dependency Source</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Neo4 JBacked Dependency Source</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNeo4JBackedDependencySource(Neo4JBackedDependencySource object) {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
    * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch, but this is the last case anyway.
-	 * <!-- end-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch, but this is the last case anyway.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject)
    * @generated
    */
-	@Override
-	public T defaultCase(EObject object) {
+  @Override
+  public T defaultCase(EObject object) {
     return null;
   }
 

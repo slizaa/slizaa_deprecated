@@ -4,6 +4,7 @@ package org.slizaa.neo4j.hierarchicalgraph.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EMap;
 
 import org.eclipse.emf.ecore.EClass;
@@ -11,12 +12,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+
 import org.slizaa.hierarchicalgraph.impl.StringToStringMapImpl;
 
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
@@ -78,6 +81,7 @@ public class Neo4JBackedDependencySourceImpl extends MinimalEObjectImpl.Containe
    * @ordered
    */
   protected static final String TYPE_EDEFAULT = null;
+
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->

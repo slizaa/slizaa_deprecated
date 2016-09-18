@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph.internal;
+package org.slizaa.neo4j.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

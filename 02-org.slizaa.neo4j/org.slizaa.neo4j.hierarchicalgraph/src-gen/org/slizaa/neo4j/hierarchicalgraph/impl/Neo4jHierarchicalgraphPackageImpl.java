@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import java.util.concurrent.Future;
 
 import java.util.function.Consumer;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+
 import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
@@ -34,35 +36,21 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
  * @generated
  */
 public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements Neo4jHierarchicalgraphPackage {
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EClass neo4JBackedNodeSourceEClass = null;
+  private EClass neo4JBackedNodeSourceEClass = null;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EClass neo4JBackedRootNodeSourceEClass = null;
+  private EClass neo4JBackedRootNodeSourceEClass = null;
 
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	private EClass iNeo4JRepositoryEClass = null;
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	private EClass neo4JRemoteRepositoryEClass = null;
-
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -71,12 +59,26 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EDataType futureEDataType = null;
+  private EClass iNeo4JRepositoryEClass = null;
 
-	/**
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass neo4JRemoteRepositoryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType futureEDataType = null;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -85,19 +87,19 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EDataType jsonArrayEDataType = null;
+  private EDataType jsonArrayEDataType = null;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EDataType jsonObjectEDataType = null;
+  private EDataType jsonObjectEDataType = null;
 
-	/**
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -106,36 +108,36 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
    * initialization of the package, or returns the registered package,
    * if one already exists.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see org.eclipse.emf.ecore.EPackage.Registry
    * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#eNS_URI
    * @see #init()
    * @generated
    */
-	private Neo4jHierarchicalgraphPackageImpl() {
+  private Neo4jHierarchicalgraphPackageImpl() {
     super(eNS_URI, Neo4jHierarchicalgraphFactory.eINSTANCE);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private static boolean isInited = false;
+  private static boolean isInited = false;
 
-	/**
+  /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
    * 
    * <p>This method is used to initialize {@link Neo4jHierarchicalgraphPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #eNS_URI
    * @see #createPackageContents()
    * @see #initializePackageContents()
    * @generated
    */
-	public static Neo4jHierarchicalgraphPackage init() {
+  public static Neo4jHierarchicalgraphPackage init() {
     if (isInited) return (Neo4jHierarchicalgraphPackage)EPackage.Registry.INSTANCE.getEPackage(Neo4jHierarchicalgraphPackage.eNS_URI);
 
     // Obtain or create and register package
@@ -161,187 +163,52 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     return theNeo4jHierarchicalgraphPackage;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getNeo4JBackedNodeSource() {
+  public EClass getNeo4JBackedNodeSource() {
     return neo4JBackedNodeSourceEClass;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getNeo4JBackedNodeSource_Properties() {
+  public EReference getNeo4JBackedNodeSource_Properties() {
     return (EReference)neo4JBackedNodeSourceEClass.getEStructuralFeatures().get(0);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getNeo4JBackedNodeSource_Labels() {
+  public EAttribute getNeo4JBackedNodeSource_Labels() {
     return (EAttribute)neo4JBackedNodeSourceEClass.getEStructuralFeatures().get(1);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getNeo4JBackedRootNodeSource() {
+  public EClass getNeo4JBackedRootNodeSource() {
     return neo4JBackedRootNodeSourceEClass;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getNeo4JBackedRootNodeSource_Repository() {
+  public EReference getNeo4JBackedRootNodeSource_Repository() {
     return (EReference)neo4JBackedRootNodeSourceEClass.getEStructuralFeatures().get(0);
   }
 
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EClass getINeo4JRepository() {
-    return iNeo4JRepositoryEClass;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EReference getINeo4JRepository_HierarchicalGraphs() {
-    return (EReference)iNeo4JRepositoryEClass.getEStructuralFeatures().get(0);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EOperation getINeo4JRepository__GetNodeLabels__long() {
-    return iNeo4JRepositoryEClass.getEOperations().get(0);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EOperation getINeo4JRepository__GetNodeProperties__long() {
-    return iNeo4JRepositoryEClass.getEOperations().get(1);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getINeo4JRepository__GetRelationshipProperties__long() {
-    return iNeo4JRepositoryEClass.getEOperations().get(2);
-  }
-
   /**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EOperation getINeo4JRepository__ExecuteCypherQuery__String() {
-    return iNeo4JRepositoryEClass.getEOperations().get(3);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EOperation getINeo4JRepository__ExecuteCypherQuery__String_Map() {
-    return iNeo4JRepositoryEClass.getEOperations().get(4);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getINeo4JRepository__ExecuteCypherQuery__String_Consumer() {
-    return iNeo4JRepositoryEClass.getEOperations().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getINeo4JRepository__ExecuteCypherQuery__String_Map_Consumer() {
-    return iNeo4JRepositoryEClass.getEOperations().get(6);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EClass getNeo4JRemoteRepository() {
-    return neo4JRemoteRepositoryEClass;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EAttribute getNeo4JRemoteRepository_Name() {
-    return (EAttribute)neo4JRemoteRepositoryEClass.getEStructuralFeatures().get(0);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EAttribute getNeo4JRemoteRepository_BaseURI() {
-    return (EAttribute)neo4JRemoteRepositoryEClass.getEStructuralFeatures().get(1);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EAttribute getNeo4JRemoteRepository_ThreadPoolSize() {
-    return (EAttribute)neo4JRemoteRepositoryEClass.getEStructuralFeatures().get(2);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EOperation getNeo4JRemoteRepository__Init() {
-    return neo4JRemoteRepositoryEClass.getEOperations().get(0);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EOperation getNeo4JRemoteRepository__Dispose() {
-    return neo4JRemoteRepositoryEClass.getEOperations().get(1);
-  }
-
-	/**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -370,14 +237,149 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EDataType getFuture() {
+  public EClass getINeo4JRepository() {
+    return iNeo4JRepositoryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getINeo4JRepository_HierarchicalGraphs() {
+    return (EReference)iNeo4JRepositoryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getINeo4JRepository__GetNodeLabels__long() {
+    return iNeo4JRepositoryEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getINeo4JRepository__GetNodeProperties__long() {
+    return iNeo4JRepositoryEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getINeo4JRepository__GetRelationshipProperties__long() {
+    return iNeo4JRepositoryEClass.getEOperations().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getINeo4JRepository__ExecuteCypherQuery__String() {
+    return iNeo4JRepositoryEClass.getEOperations().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getINeo4JRepository__ExecuteCypherQuery__String_Map() {
+    return iNeo4JRepositoryEClass.getEOperations().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getINeo4JRepository__ExecuteCypherQuery__String_Consumer() {
+    return iNeo4JRepositoryEClass.getEOperations().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getINeo4JRepository__ExecuteCypherQuery__String_Map_Consumer() {
+    return iNeo4JRepositoryEClass.getEOperations().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNeo4JRemoteRepository() {
+    return neo4JRemoteRepositoryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNeo4JRemoteRepository_Name() {
+    return (EAttribute)neo4JRemoteRepositoryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNeo4JRemoteRepository_BaseURI() {
+    return (EAttribute)neo4JRemoteRepositoryEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNeo4JRemoteRepository_ThreadPoolSize() {
+    return (EAttribute)neo4JRemoteRepositoryEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getNeo4JRemoteRepository__Init() {
+    return neo4JRemoteRepositoryEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getNeo4JRemoteRepository__Dispose() {
+    return neo4JRemoteRepositoryEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EDataType getFuture() {
     return futureEDataType;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -388,46 +390,46 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EDataType getJsonArray() {
+  public EDataType getJsonArray() {
     return jsonArrayEDataType;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EDataType getJsonObject() {
+  public EDataType getJsonObject() {
     return jsonObjectEDataType;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Neo4jHierarchicalgraphFactory getNeo4jHierarchicalgraphFactory() {
+  public Neo4jHierarchicalgraphFactory getNeo4jHierarchicalgraphFactory() {
     return (Neo4jHierarchicalgraphFactory)getEFactoryInstance();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private boolean isCreated = false;
+  private boolean isCreated = false;
 
-	/**
+  /**
    * Creates the meta-model objects for the package.  This method is
    * guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void createPackageContents() {
+  public void createPackageContents() {
     if (isCreated) return;
     isCreated = true;
 
@@ -467,21 +469,21 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     jsonObjectEDataType = createEDataType(JSON_OBJECT);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private boolean isInitialized = false;
+  private boolean isInitialized = false;
 
-	/**
+  /**
    * Complete the initialization of the package and its meta-model.  This
    * method is guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void initializePackageContents() {
+  public void initializePackageContents() {
     if (isInitialized) return;
     isInitialized = true;
 

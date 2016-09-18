@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph.internal;
+package org.slizaa.neo4j.hierarchicalgraph.impl;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.util.EcoreEMap;

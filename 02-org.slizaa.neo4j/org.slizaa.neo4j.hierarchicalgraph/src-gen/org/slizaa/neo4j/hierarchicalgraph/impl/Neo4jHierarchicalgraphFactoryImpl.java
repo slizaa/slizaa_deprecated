@@ -2,28 +2,27 @@
  */
 package org.slizaa.neo4j.hierarchicalgraph.impl;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import java.util.concurrent.Future;
 
 import java.util.function.Consumer;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.impl.EFactoryImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.slizaa.neo4j.hierarchicalgraph.*;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
-import org.slizaa.neo4j.hierarchicalgraph.internal.ExtendedNeo4JBackedDependencySourceImpl;
-import org.slizaa.neo4j.hierarchicalgraph.internal.ExtendedNeo4JBackedNodeSourceImpl;
-import org.slizaa.neo4j.hierarchicalgraph.internal.ExtendedNeo4JBackedRootNodeSourceImpl;
-import org.slizaa.neo4j.hierarchicalgraph.internal.ExtendedNeo4JRemoteRepositoryImpl;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.slizaa.neo4j.hierarchicalgraph.*;
+import org.slizaa.neo4j.hierarchicalgraph.impl.ExtendedNeo4JBackedDependencySourceImpl;
+import org.slizaa.neo4j.hierarchicalgraph.impl.ExtendedNeo4JBackedNodeSourceImpl;
+import org.slizaa.neo4j.hierarchicalgraph.impl.ExtendedNeo4JBackedRootNodeSourceImpl;
+import org.slizaa.neo4j.hierarchicalgraph.impl.ExtendedNeo4JRemoteRepositoryImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,13 +31,13 @@ import com.google.gson.JsonObject;
  * @generated
  */
 public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements Neo4jHierarchicalgraphFactory {
-	/**
+  /**
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public static Neo4jHierarchicalgraphFactory init() {
+  public static Neo4jHierarchicalgraphFactory init() {
     try {
       Neo4jHierarchicalgraphFactory theNeo4jHierarchicalgraphFactory = (Neo4jHierarchicalgraphFactory)EPackage.Registry.INSTANCE.getEFactory(Neo4jHierarchicalgraphPackage.eNS_URI);
       if (theNeo4jHierarchicalgraphFactory != null) {
@@ -51,23 +50,23 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
     return new Neo4jHierarchicalgraphFactoryImpl();
   }
 
-	/**
+  /**
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Neo4jHierarchicalgraphFactoryImpl() {
+  public Neo4jHierarchicalgraphFactoryImpl() {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public EObject create(EClass eClass) {
+  @Override
+  public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE: return createNeo4JBackedNodeSource();
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE: return createNeo4JBackedRootNodeSource();
@@ -78,13 +77,13 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
     }
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID()) {
       case Neo4jHierarchicalgraphPackage.FUTURE:
         return createFutureFromString(eDataType, initialValue);
@@ -99,13 +98,13 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
     }
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID()) {
       case Neo4jHierarchicalgraphPackage.FUTURE:
         return convertFutureToString(eDataType, instanceValue);
@@ -120,37 +119,37 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
     }
   }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Neo4JBackedNodeSource createNeo4JBackedNodeSource() {
-		Neo4JBackedNodeSourceImpl neo4JBackedNodeSource = new ExtendedNeo4JBackedNodeSourceImpl();
-		return neo4JBackedNodeSource;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  public Neo4JBackedNodeSource createNeo4JBackedNodeSource() {
+    Neo4JBackedNodeSourceImpl neo4JBackedNodeSource = new ExtendedNeo4JBackedNodeSourceImpl();
+    return neo4JBackedNodeSource;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Neo4JBackedRootNodeSource createNeo4JBackedRootNodeSource() {
-		Neo4JBackedRootNodeSourceImpl neo4JBackedRootNodeSource = new ExtendedNeo4JBackedRootNodeSourceImpl();
-		return neo4JBackedRootNodeSource;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  public Neo4JBackedRootNodeSource createNeo4JBackedRootNodeSource() {
+    Neo4JBackedRootNodeSourceImpl neo4JBackedRootNodeSource = new ExtendedNeo4JBackedRootNodeSourceImpl();
+    return neo4JBackedRootNodeSource;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Neo4JRemoteRepository createNeo4JRemoteRepository() {
-		Neo4JRemoteRepositoryImpl neo4JRemoteRepository = new ExtendedNeo4JRemoteRepositoryImpl();
-		return neo4JRemoteRepository;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  public Neo4JRemoteRepository createNeo4JRemoteRepository() {
+    Neo4JRemoteRepositoryImpl neo4JRemoteRepository = new ExtendedNeo4JRemoteRepositoryImpl();
+    return neo4JRemoteRepository;
+  }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated NOT
@@ -162,23 +161,23 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Future<?> createFutureFromString(EDataType eDataType, String initialValue) {
+  public Future<?> createFutureFromString(EDataType eDataType, String initialValue) {
     return (Future<?>)super.createFromString(initialValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertFutureToString(EDataType eDataType, Object instanceValue) {
+  public String convertFutureToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(instanceValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -198,57 +197,57 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public JsonArray createJsonArrayFromString(EDataType eDataType, String initialValue) {
+  public JsonArray createJsonArrayFromString(EDataType eDataType, String initialValue) {
     return (JsonArray)super.createFromString(eDataType, initialValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertJsonArrayToString(EDataType eDataType, Object instanceValue) {
+  public String convertJsonArrayToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public JsonObject createJsonObjectFromString(EDataType eDataType, String initialValue) {
+  public JsonObject createJsonObjectFromString(EDataType eDataType, String initialValue) {
     return (JsonObject)super.createFromString(eDataType, initialValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertJsonObjectToString(EDataType eDataType, Object instanceValue) {
+  public String convertJsonObjectToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Neo4jHierarchicalgraphPackage getNeo4jHierarchicalgraphPackage() {
+  public Neo4jHierarchicalgraphPackage getNeo4jHierarchicalgraphPackage() {
     return (Neo4jHierarchicalgraphPackage)getEPackage();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @deprecated
    * @generated
    */
-	@Deprecated
-	public static Neo4jHierarchicalgraphPackage getPackage() {
+  @Deprecated
+  public static Neo4jHierarchicalgraphPackage getPackage() {
     return Neo4jHierarchicalgraphPackage.eINSTANCE;
   }
 

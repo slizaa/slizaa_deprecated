@@ -3,6 +3,7 @@
 package org.slizaa.neo4j.hierarchicalgraph;
 
 import org.eclipse.emf.common.util.EMap;
+
 import org.slizaa.hierarchicalgraph.IDependencySource;
 
 /**

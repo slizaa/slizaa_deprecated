@@ -2,6 +2,7 @@
  */
 package org.slizaa.neo4j.hierarchicalgraph;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Neo4 JBacked Root Node Source</b></em>'.
@@ -19,23 +20,23 @@ package org.slizaa.neo4j.hierarchicalgraph;
  * @generated
  */
 public interface Neo4JBackedRootNodeSource extends Neo4JBackedNodeSource {
-	/**
+  /**
    * Returns the value of the '<em><b>Repository</b></em>' reference.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Repository</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Repository</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @return the value of the '<em>Repository</em>' reference.
    * @see #setRepository(INeo4JRepository)
    * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedRootNodeSource_Repository()
    * @model required="true"
    * @generated
    */
-	INeo4JRepository getRepository();
+  INeo4JRepository getRepository();
 
-	/**
+  /**
    * Sets the value of the '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getRepository <em>Repository</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
