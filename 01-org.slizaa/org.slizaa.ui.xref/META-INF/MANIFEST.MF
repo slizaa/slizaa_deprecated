@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.slizaa.ui.xref
+Bundle-SymbolicName: org.slizaa.ui.xref
+Bundle-Version: 0.0.3.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.ui.workbench;bundle-version="3.108.0",
+ org.eclipse.core.runtime;bundle-version="3.12.0",
+ org.slizaa.hierarchicalgraph;bundle-version="0.0.3",
+ org.slizaa.selection;bundle-version="0.0.3",
+ org.eclipse.swt;bundle-version="3.105.0",
+ org.eclipse.jface;bundle-version="3.12.0",
+ org.slizaa.ui.tree;bundle-version="0.0.3",
+ org.eclipse.emfforms.swt.treemasterdetail;bundle-version="1.8.0"

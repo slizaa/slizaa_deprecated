@@ -24,7 +24,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.osgi.services;bundle-version="3.5.100",
  org.slizaa.ui.klighd;bundle-version="0.0.3",
  org.slizaa.neo4j.graphdb.ui;bundle-version="0.0.3",
- org.slizaa.neo4j.hierarchicalgraph.ui;bundle-version="0.0.3"
+ org.slizaa.neo4j.hierarchicalgraph.ui;bundle-version="0.0.3",
+ org.slizaa.ui.xref;bundle-version="0.0.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Activator: org.slizaa.neo4j.jqassistant.application.Activator
 Bundle-ActivationPolicy: lazy
