@@ -33,8 +33,13 @@ public class OverlayImageRegistry {
     _imageRegistry = checkNotNull(imageRegistry);
   }
 
+  /**
+   * <p>
+   * Creates a new instance of type {@link OverlayImageRegistry}.
+   * </p>
+   */
   public OverlayImageRegistry() {
-    _imageRegistry = new ImageRegistry();
+    _imageRegistry = Activator.getDefault().getImageRegistry();
   }
 
   /**
@@ -152,18 +157,9 @@ public class OverlayImageRegistry {
    */
   private ImageRegistry getImageRegistry() {
 
-    // lazy init
+    //
     if (_imageRegistry == null) {
-
-      // //
-      // if (Activator.getDefault() != null) {
-      // _imageRegistry = Activator.getDefault().getImageRegistry();
-      // }
-
-      // //
-      // else {
       throw new RuntimeException();
-      // }
     }
 
     // return result

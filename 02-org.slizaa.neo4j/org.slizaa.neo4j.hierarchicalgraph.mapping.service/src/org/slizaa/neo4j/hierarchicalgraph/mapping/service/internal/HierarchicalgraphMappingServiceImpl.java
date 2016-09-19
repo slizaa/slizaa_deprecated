@@ -8,11 +8,11 @@ import static org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.GraphF
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -32,7 +32,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescri
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.HierarchicalGraphMappingException;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 
-import com.google.common.base.Stopwatch;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 /**
@@ -47,30 +47,30 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
   /** create the node source creator function */
   private Function<Long, INodeSource>                 createNodeSourceFunction       = (id) -> {
 
-                                                                                        // create the node source
-                                                                                        INodeSource nodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE
-                                                                                            .createNeo4JBackedNodeSource();
-                                                                                        nodeSource.setIdentifier(id);
+                                                                                       // create the node source
+                                                                                       INodeSource nodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE
+                                                                                           .createNeo4JBackedNodeSource();
+                                                                                       nodeSource.setIdentifier(id);
 
-                                                                                        // return the result
-                                                                                        return nodeSource;
-                                                                                      };
+                                                                                       // return the result
+                                                                                       return nodeSource;
+                                                                                     };
 
   /** the node source creator function */
   private BiFunction<Long, String, IDependencySource> createDependencySourceFunction = (id, type) -> {
 
-                                                                                        // create the dependency source
-                                                                                        Neo4JBackedDependencySource dependencySource = Neo4jHierarchicalgraphFactory.eINSTANCE
-                                                                                            .createNeo4JBackedDependencySource();
-                                                                                        dependencySource
-                                                                                            .setIdentifier(id);
+                                                                                       // create the dependency source
+                                                                                       Neo4JBackedDependencySource dependencySource = Neo4jHierarchicalgraphFactory.eINSTANCE
+                                                                                           .createNeo4JBackedDependencySource();
+                                                                                       dependencySource
+                                                                                           .setIdentifier(id);
 
-                                                                                        // set the type
-                                                                                        dependencySource.setType(type);
+                                                                                       // set the type
+                                                                                       dependencySource.setType(type);
 
-                                                                                        // return the result
-                                                                                        return dependencySource;
-                                                                                      };
+                                                                                       // return the result
+                                                                                       return dependencySource;
+                                                                                     };
 
   @Override
   public HGRootNode convert(HierarchicalGraphMappingDescriptor mappingDescriptor,
@@ -80,6 +80,9 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     checkNotNull(mappingDescriptor);
     checkNotNull(remoteRepository);
 
+    // create the sub monitor
+    SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, 100) : null;
+
     // create the root element
     final HGRootNode rootNode = HierarchicalgraphFactory.eINSTANCE.createHGRootNode();
     Neo4JBackedRootNodeSource rootNodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE
@@ -88,71 +91,68 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     rootNodeSource.setRepository(remoteRepository);
     rootNode.setNodeSource(rootNodeSource);
 
-    //
-    Stopwatch stopwatch = Stopwatch.createStarted();
-
     // create the future lists
     List<Future<JsonObject>> rootQueries = new LinkedList<Future<JsonObject>>();
     List<Future<JsonObject>> hierachyQueries = new LinkedList<Future<JsonObject>>();
     List<Future<JsonObject>> dependencyQueries = new LinkedList<Future<JsonObject>>();
 
-    // process the root queries
+    // process root, hierarchy and dependency queries
     mappingDescriptor.getRootMappings().forEach((cypherQuery) -> {
       rootQueries.add(remoteRepository.executeCypherQuery(cypherQuery));
     });
-
-    // process the hierarchy queries
     mappingDescriptor.getHierarchyMappings().forEach((cypherQuery) -> {
       hierachyQueries.add(remoteRepository.executeCypherQuery(cypherQuery));
     });
-
-    // process the dependency queries
     mappingDescriptor.getDependencyMappings().forEach((dependencyMapping) -> {
-
-      // TODO: DETAILS
       dependencyQueries.add(remoteRepository.executeCypherQuery(dependencyMapping.getMainQuery()));
     });
 
-    System.out.println("Compute root queries " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    //
+    SubMonitor rootLoopMonitor = subMonitor != null ? subMonitor.split(33).setWorkRemaining(rootQueries.size()) : null;
 
-    // create the hierarchy
     rootQueries.forEach((f) -> {
       try {
-        System.out.println("Compute root queries " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
-        createFirstLevelElements(f.get().getAsJsonArray("data"), rootNode, createNodeSourceFunction);
-        System.out.println("Done " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
-      } catch (Exception e) {
-        throw new HierarchicalGraphMappingException(e);
-      }
-    });
-
-    System.out.println("Compute hierarchies queries " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
-
-    hierachyQueries.forEach((f) -> {
-      try {
-        System.out.println("Compute hierarchies queries " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
-        createHierarchy(f.get().getAsJsonArray("data"), rootNode, createNodeSourceFunction);
-        System.out.println("Done " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
-      } catch (Exception e) {
-        throw new HierarchicalGraphMappingException(e);
-      }
-    });
-
-    System.out.println("Compute dependencies " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
-
-    dependencyQueries.forEach((f) -> {
-      try {
-        System.out.println("Create dependencies " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
-        createDependencies(f.get().getAsJsonArray("data"), rootNode, createDependencySourceFunction, false);
-        System.out.println("Done " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
+        SubMonitor iterationMonitor = rootLoopMonitor != null ? rootLoopMonitor.split(1) : null;
+        iterationMonitor.setTaskName("Requesting root nodes...");
+        JsonArray jsonArray = f.get().getAsJsonArray("data");
+        iterationMonitor.setTaskName("Creating root nodes...");
+        createFirstLevelElements(jsonArray, rootNode, createNodeSourceFunction, iterationMonitor);
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
       }
     });
 
     //
-    stopwatch.stop();
-    System.out.println("Model created in " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    SubMonitor hierarchyLoopMonitor = subMonitor != null ? subMonitor.split(33).setWorkRemaining(hierachyQueries.size())
+        : null;
+
+    hierachyQueries.forEach((f) -> {
+      try {
+        SubMonitor iterationMonitor = hierarchyLoopMonitor != null ? hierarchyLoopMonitor.split(1) : null;
+        iterationMonitor.setTaskName("Requesting nodes...");
+        JsonArray jsonArray = f.get().getAsJsonArray("data");
+        iterationMonitor.setTaskName("Creating nodes...");
+        createHierarchy(jsonArray, rootNode, createNodeSourceFunction, iterationMonitor);
+      } catch (Exception e) {
+        throw new HierarchicalGraphMappingException(e);
+      }
+    });
+
+    //
+    SubMonitor dependencyLoopMonitor = subMonitor != null
+        ? subMonitor.split(33).setWorkRemaining(dependencyQueries.size()) : null;
+
+    dependencyQueries.forEach((f) -> {
+      try {
+        SubMonitor iterationMonitor = hierarchyLoopMonitor != null ? dependencyLoopMonitor.split(1) : null;
+        iterationMonitor.setTaskName("Requesting dependencies...");
+        JsonArray jsonArray = f.get().getAsJsonArray("data");
+        iterationMonitor.setTaskName("Creating dependencies...");
+        createDependencies(jsonArray, rootNode, createDependencySourceFunction, false, iterationMonitor);
+      } catch (Exception e) {
+        throw new HierarchicalGraphMappingException(e);
+      }
+    });
 
     // set label provider
     rootNode.setItemLabelProvider(new MappingDescriptorBasedItemLabelProviderImpl(mappingDescriptor));

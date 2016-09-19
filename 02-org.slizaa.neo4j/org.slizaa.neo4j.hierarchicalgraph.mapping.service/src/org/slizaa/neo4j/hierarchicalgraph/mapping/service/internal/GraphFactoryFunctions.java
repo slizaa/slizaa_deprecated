@@ -5,6 +5,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
@@ -34,13 +36,23 @@ public class GraphFactoryFunctions {
    * @param nodeSourceCreator
    */
   public static void createFirstLevelElements(JsonArray hierachyResult, HGRootNode rootElement,
-      final Function<Long, INodeSource> nodeSourceCreator) {
+      final Function<Long, INodeSource> nodeSourceCreator, IProgressMonitor progressMonitor) {
 
     checkNotNull(hierachyResult);
     checkNotNull(rootElement);
     checkNotNull(nodeSourceCreator);
 
+    // create sub monitor
+    final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, hierachyResult.size())
+        : null;
+
     for (int i = 0; i < hierachyResult.size(); i++) {
+
+      // increase sub monitor
+      if (subMonitor != null) {
+        subMonitor.split(1);
+      }
+
       createNodeIfAbsent(asLong(hierachyResult.get(i).getAsJsonArray(), 0), rootElement, rootElement,
           nodeSourceCreator);
     }
@@ -54,10 +66,20 @@ public class GraphFactoryFunctions {
    * @param creator
    */
   public static void createHierarchy(JsonArray hierachyResult, HGRootNode rootElement,
-      final Function<Long, INodeSource> nodeSourceCreator) {
+      final Function<Long, INodeSource> nodeSourceCreator, IProgressMonitor progressMonitor) {
+
+    // create sub monitor
+    final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, hierachyResult.size())
+        : null;
 
     //
     for (int i = 0; i < hierachyResult.size(); i++) {
+
+      // increase sub monitor
+      if (subMonitor != null) {
+        subMonitor.split(1);
+      }
+
       JsonArray row = hierachyResult.get(i).getAsJsonArray();
       HGNode moduleNode = createNodeIfAbsent(asLong(row, 0), rootElement, null, nodeSourceCreator);
       createNodeIfAbsent(asLong(row, 1), rootElement, moduleNode, nodeSourceCreator);
@@ -73,8 +95,20 @@ public class GraphFactoryFunctions {
    * @param dependencySourceCreator
    */
   public static void createDependencies(JsonArray asJsonArray, HGRootNode rootElement,
-      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean reinitializeCaches) {
+      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean reinitializeCaches,
+      IProgressMonitor progressMonitor) {
+
+    // create sub monitor
+    final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, asJsonArray.size())
+        : null;
+
     asJsonArray.forEach((element) -> {
+
+      // increase sub monitor
+      if (subMonitor != null) {
+        subMonitor.split(1);
+      }
+
       JsonArray row = element.getAsJsonArray();
       long idStart = row.get(0).getAsLong();
       long idTarget = row.get(1).getAsLong();
@@ -109,9 +143,10 @@ public class GraphFactoryFunctions {
     }
 
     //
-    HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement, type, () -> {
-      return dependencySourceCreator.apply(idRel, type);
-    }, reinitializeCaches);
+    HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement,
+        type, () -> {
+          return dependencySourceCreator.apply(idRel, type);
+        }, reinitializeCaches);
 
     //
     return hgDependency;
