@@ -91,7 +91,7 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
      * @param remoteRepository
      */
     public LoadModelFromGraphDatabaseJob(Neo4JRemoteRepository remoteRepository) {
-      super("Create hierarchical graph...");
+      super("Creating hierarchical graph");
       setUser(true);
       _remoteRepository = remoteRepository;
     }
