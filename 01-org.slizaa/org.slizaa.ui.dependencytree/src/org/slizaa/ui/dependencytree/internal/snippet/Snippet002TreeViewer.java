@@ -1,4 +1,4 @@
-package org.slizaa.ui.dependencytree.internal;
+package org.slizaa.ui.dependencytree.internal.snippet;
 
 import java.util.ArrayList;
 import java.util.List;
