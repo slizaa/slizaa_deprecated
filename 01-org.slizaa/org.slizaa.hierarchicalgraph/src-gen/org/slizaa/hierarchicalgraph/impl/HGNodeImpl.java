@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -78,26 +77,6 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * @ordered
    */
   protected INodeSource nodeSource;
-
-  /**
-   * The cached value of the '{@link #getOutgoingCoreDependencies() <em>Outgoing Core Dependencies</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOutgoingCoreDependencies()
-   * @generated
-   * @ordered
-   */
-  protected EList<HGCoreDependency> outgoingCoreDependencies;
-
-  /**
-   * The cached value of the '{@link #getIncomingCoreDependencies() <em>Incoming Core Dependencies</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getIncomingCoreDependencies()
-   * @generated
-   * @ordered
-   */
-  protected EList<HGCoreDependency> incomingCoreDependencies;
 
   /**
    * <!-- begin-user-doc -->
@@ -229,10 +208,11 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * @generated
    */
   public EList<HGCoreDependency> getOutgoingCoreDependencies() {
-    if (outgoingCoreDependencies == null) {
-      outgoingCoreDependencies = new EObjectEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.HG_NODE__OUTGOING_CORE_DEPENDENCIES);
-    }
-    return outgoingCoreDependencies;
+    // TODO: implement this method to return the 'Outgoing Core Dependencies' reference list
+    // Ensure that you remove @generated or mark it @generated NOT
+    // The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
+    // so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
+    throw new UnsupportedOperationException();
   }
 
   /**
@@ -254,10 +234,11 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * @generated
    */
   public EList<HGCoreDependency> getIncomingCoreDependencies() {
-    if (incomingCoreDependencies == null) {
-      incomingCoreDependencies = new EObjectEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES);
-    }
-    return incomingCoreDependencies;
+    // TODO: implement this method to return the 'Incoming Core Dependencies' reference list
+    // Ensure that you remove @generated or mark it @generated NOT
+    // The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
+    // so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
+    throw new UnsupportedOperationException();
   }
 
   /**
@@ -555,11 +536,11 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
       case HierarchicalgraphPackage.HG_NODE__NODE_SOURCE:
         return nodeSource != null;
       case HierarchicalgraphPackage.HG_NODE__OUTGOING_CORE_DEPENDENCIES:
-        return outgoingCoreDependencies != null && !outgoingCoreDependencies.isEmpty();
+        return !getOutgoingCoreDependencies().isEmpty();
       case HierarchicalgraphPackage.HG_NODE__ACCUMULATED_OUTGOING_CORE_DEPENDENCIES:
         return !getAccumulatedOutgoingCoreDependencies().isEmpty();
       case HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES:
-        return incomingCoreDependencies != null && !incomingCoreDependencies.isEmpty();
+        return !getIncomingCoreDependencies().isEmpty();
       case HierarchicalgraphPackage.HG_NODE__ACCUMULATED_INCOMING_CORE_DEPENDENCIES:
         return !getAccumulatedIncomingCoreDependencies().isEmpty();
     }

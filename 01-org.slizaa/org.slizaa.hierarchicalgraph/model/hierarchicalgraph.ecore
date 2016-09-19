@@ -48,12 +48,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodeSource" eType="#//INodeSource"
         containment="true" resolveProxies="false" eOpposite="#//INodeSource/node"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingCoreDependencies"
-        ordered="false" upperBound="-1" eType="#//HGCoreDependency" resolveProxies="false"/>
+        ordered="false" unique="false" upperBound="-1" eType="#//HGCoreDependency"
+        volatile="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="accumulatedOutgoingCoreDependencies"
         ordered="false" upperBound="-1" eType="#//HGCoreDependency" volatile="true"
         resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingCoreDependencies"
-        ordered="false" upperBound="-1" eType="#//HGCoreDependency" resolveProxies="false"/>
+        ordered="false" unique="false" upperBound="-1" eType="#//HGCoreDependency"
+        volatile="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="accumulatedIncomingCoreDependencies"
         ordered="false" upperBound="-1" eType="#//HGCoreDependency" volatile="true"
         resolveProxies="false"/>

@@ -73,6 +73,13 @@ public class ExtendedHGNodeTrait {
   /** - */
   protected EList<HGCoreDependency>              _accumulatedIncomingCoreDependencies;
 
+  /** - */
+  protected EList<HGCoreDependency>              _incomingCoreDependencies;
+
+  /** - */
+  protected EList<HGCoreDependency>              _outgoingCoreDependencies;
+
+  
   /**
    * <p>
    * Creates a new instance of type {@link ExtendedHGNodeTrait}.
@@ -445,6 +452,33 @@ public class ExtendedHGNodeTrait {
     return this._cachedAggregatedIncomingDependenciesMap;
   }
 
+  /**
+   */
+  public EList<HGCoreDependency> getIncomingCoreDependencies() {
+    
+    //
+    if (_incomingCoreDependencies == null) {
+      _incomingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(HGCoreDependency.class, _hgNode, HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES);
+    }
+    
+    //
+    return _incomingCoreDependencies;
+  }
+  
+  
+  /**
+   */
+  public EList<HGCoreDependency> getOutgoingCoreDependencies() {
+    
+    //
+    if (_outgoingCoreDependencies == null) {
+      _outgoingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(HGCoreDependency.class, _hgNode, HierarchicalgraphPackage.HG_NODE__OUTGOING_CORE_DEPENDENCIES);
+    }
+    
+    //
+    return _outgoingCoreDependencies;
+  }
+  
   /**
    * <p>
    * </p>

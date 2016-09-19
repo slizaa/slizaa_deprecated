@@ -129,7 +129,7 @@ public interface HGNode extends EObject {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Outgoing Core Dependencies</em>' reference list.
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_OutgoingCoreDependencies()
-   * @model resolveProxies="false" ordered="false"
+   * @model resolveProxies="false" volatile="true" ordered="false"
    * @generated
    */
   EList<HGCoreDependency> getOutgoingCoreDependencies();
@@ -161,7 +161,7 @@ public interface HGNode extends EObject {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Incoming Core Dependencies</em>' reference list.
    * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGNode_IncomingCoreDependencies()
-   * @model resolveProxies="false" ordered="false"
+   * @model resolveProxies="false" volatile="true" ordered="false"
    * @generated
    */
   EList<HGCoreDependency> getIncomingCoreDependencies();

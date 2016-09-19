@@ -101,4 +101,12 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
   public void invalidateLocalCaches() {
     _trait.invalidateLocalCaches();
   }
+
+  public EList<HGCoreDependency> getIncomingCoreDependencies() {
+    return _trait.getIncomingCoreDependencies();
+  }
+
+  public EList<HGCoreDependency> getOutgoingCoreDependencies() {
+    return _trait.getOutgoingCoreDependencies();
+  }
 }

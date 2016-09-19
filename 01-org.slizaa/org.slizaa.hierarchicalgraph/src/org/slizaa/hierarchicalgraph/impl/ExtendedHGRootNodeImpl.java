@@ -211,4 +211,12 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     }
     return _idToNodeMap;
   }
+
+  public EList<HGCoreDependency> getIncomingCoreDependencies() {
+    return _trait.getIncomingCoreDependencies();
+  }
+
+  public EList<HGCoreDependency> getOutgoingCoreDependencies() {
+    return _trait.getOutgoingCoreDependencies();
+  }
 }
