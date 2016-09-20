@@ -22,6 +22,7 @@
 		<module>org.slizaa.ui.klighd</module>
 		<module>org.slizaa.ui.klighd.synthesis</module>
 		<module>org.slizaa.ui.tree</module>
+		<module>org.slizaa.ui.xref</module>		
 		<module>org.slizaa.ui.widget.dsm</module>
 		<module>org.slizaa.testfwk</module>
 	</modules>
