@@ -116,7 +116,7 @@ public class DsmPart implements IHierarchicalGraphSelectionListener {
 
           HGAggregatedDependency dependency = (HGAggregatedDependency) _dsmContentProvider.getDependency(event.getX(),
               event.getY());
-          
+
           if (dependency != null) {
             _detailComposite.setLabel(Integer.toString(dependency.getAggregatedWeight()),
                 getName(_dsmContentProvider.getNodes()[event.getY()]),
@@ -148,7 +148,8 @@ public class DsmPart implements IHierarchicalGraphSelectionListener {
 
           _selectedCell = new int[] { event.getX(), event.getY() };
 
-          HGAggregatedDependency dependency = (HGAggregatedDependency) _dsmContentProvider.getDependency(event.getX(), event.getY());
+          HGAggregatedDependency dependency = (HGAggregatedDependency) _dsmContentProvider.getDependency(event.getX(),
+              event.getY());
 
           final List<HGAggregatedDependency> dependencies = new LinkedList<>();
           if (dependency != null) {
@@ -216,7 +217,7 @@ public class DsmPart implements IHierarchicalGraphSelectionListener {
 
         //
         IItemLabelProvider itemLabelProvider = nodeSelection.getSelectedNodes().get(0).getRootNode()
-            .getItemLabelProvider();
+            .getExtension(IItemLabelProvider.class);
         _labelProvider.setItemLabelProvider(itemLabelProvider);
 
       } else {
@@ -268,7 +269,8 @@ public class DsmPart implements IHierarchicalGraphSelectionListener {
       //
       _selectedCell = new int[] { artifacts.indexOf(_fromArtifact), artifacts.indexOf(_toArtifact) };
 
-      HGAggregatedDependency dependency = (HGAggregatedDependency) _dsmContentProvider.getDependency(_selectedCell[0], _selectedCell[1]);
+      HGAggregatedDependency dependency = (HGAggregatedDependency) _dsmContentProvider.getDependency(_selectedCell[0],
+          _selectedCell[1]);
 
       // Selection.instance().getDependencySelectionService().setSelection(Selection.MAIN_DEPENDENCY_SELECTION_ID,
       // DsmPart.DSM_EDITOR_ID, dependency);

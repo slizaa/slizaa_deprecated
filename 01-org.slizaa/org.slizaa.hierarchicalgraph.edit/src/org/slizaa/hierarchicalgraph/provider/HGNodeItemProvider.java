@@ -212,7 +212,7 @@ public class HGNodeItemProvider extends ItemProviderAdapter
 	public Object getImage(Object object) {
 		if (object instanceof HGNode) {
 			HGNode hgNode = (HGNode) object;
-			IItemLabelProvider itemLabelProvider = hgNode.getRootNode().getItemLabelProvider();
+			IItemLabelProvider itemLabelProvider = hgNode.getRootNode().getExtension(IItemLabelProvider.class);
 			return itemLabelProvider.getImage(object);
 		}
 		return null;
@@ -229,7 +229,7 @@ public class HGNodeItemProvider extends ItemProviderAdapter
 
 		if (object instanceof HGNode) {
 			HGNode hgNode = (HGNode) object;
-			IItemLabelProvider itemLabelProvider = hgNode.getRootNode().getItemLabelProvider();
+			IItemLabelProvider itemLabelProvider = hgNode.getRootNode().getExtension(IItemLabelProvider.class);
 			if (itemLabelProvider instanceof IItemStyledLabelProvider) {
 				IItemStyledLabelProvider styledLabelProvider = (IItemStyledLabelProvider) itemLabelProvider;
 				return styledLabelProvider.getStyledText(object);

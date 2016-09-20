@@ -513,15 +513,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getHGRootNode_ItemLabelProvider() {
-    return (EAttribute)hgRootNodeEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EOperation getHGRootNode__InvalidateAllCaches() {
     return hgRootNodeEClass.getEOperations().get(0);
   }
@@ -992,7 +983,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     hgRootNodeEClass = createEClass(HG_ROOT_NODE);
     createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__NAME);
-    createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__ITEM_LABEL_PROVIDER);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_ALL_CACHES);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_CACHES__ELIST);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INITIALIZE_CACHES__ELIST);
@@ -1146,7 +1136,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     initEClass(hgRootNodeEClass, HGRootNode.class, "HGRootNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHGRootNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, HGRootNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getHGRootNode_ItemLabelProvider(), this.getIItemLabelProvider(), "itemLabelProvider", null, 1, 1, HGRootNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEOperation(getHGRootNode__InvalidateAllCaches(), null, "invalidateAllCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
 

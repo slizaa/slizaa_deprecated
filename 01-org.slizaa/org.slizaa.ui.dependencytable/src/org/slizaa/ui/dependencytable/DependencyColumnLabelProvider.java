@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.slizaa.ui.dependencytable;
 
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
@@ -52,7 +53,7 @@ public abstract class DependencyColumnLabelProvider extends ColumnLabelProvider 
 
 			//
 			HGRootNode rootNode = ((HGNode) element).getRootNode();
-			return (Image) rootNode.getItemLabelProvider().getImage(element);
+			return (Image) rootNode.getExtension(IItemLabelProvider.class).getImage(element);
 		}
 
 		//
@@ -102,7 +103,7 @@ public abstract class DependencyColumnLabelProvider extends ColumnLabelProvider 
 
 			//
 			HGRootNode rootNode = ((HGNode) element).getRootNode();
-			return rootNode.getItemLabelProvider().getText(element);
+			return rootNode.getExtension(IItemLabelProvider.class).getText(element);
 		}
 
 		//

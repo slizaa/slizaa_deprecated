@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
@@ -155,7 +156,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     });
 
     // set label provider
-    rootNode.setItemLabelProvider(new MappingDescriptorBasedItemLabelProviderImpl(mappingDescriptor));
+    rootNode.registerExtension(IItemLabelProvider.class, new MappingDescriptorBasedItemLabelProviderImpl(mappingDescriptor));
 
     //
     return addEditingDomain(rootNode);

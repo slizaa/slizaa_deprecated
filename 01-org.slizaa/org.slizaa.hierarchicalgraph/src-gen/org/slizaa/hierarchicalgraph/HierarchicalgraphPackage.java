@@ -460,22 +460,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE__NAME = HG_NODE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Item Label Provider</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_ROOT_NODE__ITEM_LABEL_PROVIDER = HG_NODE_FEATURE_COUNT + 1;
-
-  /**
    * The number of structural features of the '<em>HG Root Node</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE_FEATURE_COUNT = HG_NODE_FEATURE_COUNT + 2;
+  int HG_ROOT_NODE_FEATURE_COUNT = HG_NODE_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Get Identifier</em>' operation.
@@ -1699,17 +1690,6 @@ public interface HierarchicalgraphPackage extends EPackage {
   EAttribute getHGRootNode_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGRootNode#getItemLabelProvider <em>Item Label Provider</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Item Label Provider</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGRootNode#getItemLabelProvider()
-   * @see #getHGRootNode()
-   * @generated
-   */
-  EAttribute getHGRootNode_ItemLabelProvider();
-
-  /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#invalidateAllCaches() <em>Invalidate All Caches</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2471,14 +2451,6 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EAttribute HG_ROOT_NODE__NAME = eINSTANCE.getHGRootNode_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Item Label Provider</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute HG_ROOT_NODE__ITEM_LABEL_PROVIDER = eINSTANCE.getHGRootNode_ItemLabelProvider();
 
     /**
      * The meta object literal for the '<em><b>Invalidate All Caches</b></em>' operation.

@@ -93,7 +93,7 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INode
 				it.setGridPlacement(2);
 
 				// SHOW IMAGE
-				val IItemLabelProvider itemLabelProvider = object.rootNode.itemLabelProvider;
+				val IItemLabelProvider itemLabelProvider = object.rootNode.getExtension(IItemLabelProvider);
 				val Image original = itemLabelProvider.getImage(object) as Image;
 
 				// upper part is icon
@@ -113,7 +113,7 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INode
 						]
 				}
 
-				it.addText(object.rootNode.itemLabelProvider.getText(object)).associateWith(object) => [
+				it.addText(object.rootNode.getExtension(IItemLabelProvider).getText(object)).associateWith(object) => [
 					it.fontSize = 10;
 					it.setFontBold(false);
 					it.setGridPlacementData().from(LEFT, 0, 0, TOP, 8, 0).to(RIGHT, 16, 0, BOTTOM, 8, 0);

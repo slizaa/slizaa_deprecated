@@ -10,8 +10,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
@@ -25,7 +23,6 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
  * </p>
  * <ul>
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGRootNodeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGRootNodeImpl#getItemLabelProvider <em>Item Label Provider</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,26 +47,6 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getItemLabelProvider() <em>Item Label Provider</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getItemLabelProvider()
-   * @generated
-   * @ordered
-   */
-  protected static final IItemLabelProvider ITEM_LABEL_PROVIDER_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getItemLabelProvider() <em>Item Label Provider</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getItemLabelProvider()
-   * @generated
-   * @ordered
-   */
-  protected IItemLabelProvider itemLabelProvider = ITEM_LABEL_PROVIDER_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -109,27 +86,6 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_ROOT_NODE__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public IItemLabelProvider getItemLabelProvider() {
-    return itemLabelProvider;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setItemLabelProvider(IItemLabelProvider newItemLabelProvider) {
-    IItemLabelProvider oldItemLabelProvider = itemLabelProvider;
-    itemLabelProvider = newItemLabelProvider;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_ROOT_NODE__ITEM_LABEL_PROVIDER, oldItemLabelProvider, itemLabelProvider));
   }
 
   /**
@@ -219,8 +175,6 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
     switch (featureID) {
       case HierarchicalgraphPackage.HG_ROOT_NODE__NAME:
         return getName();
-      case HierarchicalgraphPackage.HG_ROOT_NODE__ITEM_LABEL_PROVIDER:
-        return getItemLabelProvider();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -235,9 +189,6 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
     switch (featureID) {
       case HierarchicalgraphPackage.HG_ROOT_NODE__NAME:
         setName((String)newValue);
-        return;
-      case HierarchicalgraphPackage.HG_ROOT_NODE__ITEM_LABEL_PROVIDER:
-        setItemLabelProvider((IItemLabelProvider)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -254,9 +205,6 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
       case HierarchicalgraphPackage.HG_ROOT_NODE__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case HierarchicalgraphPackage.HG_ROOT_NODE__ITEM_LABEL_PROVIDER:
-        setItemLabelProvider(ITEM_LABEL_PROVIDER_EDEFAULT);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -271,8 +219,6 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
     switch (featureID) {
       case HierarchicalgraphPackage.HG_ROOT_NODE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case HierarchicalgraphPackage.HG_ROOT_NODE__ITEM_LABEL_PROVIDER:
-        return ITEM_LABEL_PROVIDER_EDEFAULT == null ? itemLabelProvider != null : !ITEM_LABEL_PROVIDER_EDEFAULT.equals(itemLabelProvider);
     }
     return super.eIsSet(featureID);
   }
@@ -320,8 +266,6 @@ public class HGRootNodeImpl extends HGNodeImpl implements HGRootNode {
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", itemLabelProvider: ");
-    result.append(itemLabelProvider);
     result.append(')');
     return result.toString();
   }
