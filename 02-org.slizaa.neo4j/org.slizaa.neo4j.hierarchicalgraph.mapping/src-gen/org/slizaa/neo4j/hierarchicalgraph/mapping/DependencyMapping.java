@@ -66,4 +66,12 @@ public interface DependencyMapping extends EObject {
    */
   EList<String> getDetailQueries();
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  boolean isAggregatedCoreDependency();
+
 } // DependencyMapping

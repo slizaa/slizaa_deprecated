@@ -13,24 +13,24 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface Neo4jHierarchicalGraphMappingFactory extends EFactory {
-	/**
+  /**
    * The singleton instance of the factory.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	Neo4jHierarchicalGraphMappingFactory eINSTANCE = org.slizaa.neo4j.hierarchicalgraph.mapping.impl.Neo4jHierarchicalGraphMappingFactoryImpl.init();
+  Neo4jHierarchicalGraphMappingFactory eINSTANCE = org.slizaa.neo4j.hierarchicalgraph.mapping.impl.Neo4jHierarchicalGraphMappingFactoryImpl.init();
 
-	/**
+  /**
    * Returns a new object of class '<em>Hierarchical Graph Mapping Descriptor</em>'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @return a new object of class '<em>Hierarchical Graph Mapping Descriptor</em>'.
    * @generated
    */
-	HierarchicalGraphMappingDescriptor createHierarchicalGraphMappingDescriptor();
+  HierarchicalGraphMappingDescriptor createHierarchicalGraphMappingDescriptor();
 
-	/**
+  /**
    * Returns a new object of class '<em>Dependency Mapping</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -42,28 +42,28 @@ public interface Neo4jHierarchicalGraphMappingFactory extends EFactory {
   /**
    * Returns a new object of class '<em>Node Label Mapper</em>'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @return a new object of class '<em>Node Label Mapper</em>'.
    * @generated
    */
-	NodeLabelMapper createNodeLabelMapper();
+  NodeLabelMapper createNodeLabelMapper();
 
-	/**
+  /**
    * Returns a new object of class '<em>Property Based Image Mapper</em>'.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @return a new object of class '<em>Property Based Image Mapper</em>'.
    * @generated
    */
-	PropertyBasedImageMapper createPropertyBasedImageMapper();
+  PropertyBasedImageMapper createPropertyBasedImageMapper();
 
-	/**
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @return the package supported by this factory.
    * @generated
    */
-	Neo4jHierarchicalGraphMappingPackage getNeo4jHierarchicalGraphMappingPackage();
+  Neo4jHierarchicalGraphMappingPackage getNeo4jHierarchicalGraphMappingPackage();
 
 } //Neo4jHierarchicalGraphMappingFactory

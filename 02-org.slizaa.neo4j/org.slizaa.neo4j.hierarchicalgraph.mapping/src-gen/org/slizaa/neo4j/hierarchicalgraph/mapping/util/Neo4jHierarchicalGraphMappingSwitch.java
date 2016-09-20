@@ -23,48 +23,48 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.*;
  * @generated
  */
 public class Neo4jHierarchicalGraphMappingSwitch<T> extends Switch<T> {
-	/**
+  /**
    * The cached model package
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected static Neo4jHierarchicalGraphMappingPackage modelPackage;
+  protected static Neo4jHierarchicalGraphMappingPackage modelPackage;
 
-	/**
+  /**
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Neo4jHierarchicalGraphMappingSwitch() {
+  public Neo4jHierarchicalGraphMappingSwitch() {
     if (modelPackage == null) {
       modelPackage = Neo4jHierarchicalGraphMappingPackage.eINSTANCE;
     }
   }
 
-	/**
+  /**
    * Checks whether this is a switch for the given package.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @param ePackage the package in question.
    * @return whether this is a switch for the given package.
    * @generated
    */
-	@Override
-	protected boolean isSwitchFor(EPackage ePackage) {
+  @Override
+  protected boolean isSwitchFor(EPackage ePackage) {
     return ePackage == modelPackage;
   }
 
-	/**
+  /**
    * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-	@Override
-	protected T doSwitch(int classifierID, EObject theEObject) {
+  @Override
+  protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
       case Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR: {
         HierarchicalGraphMappingDescriptor hierarchicalGraphMappingDescriptor = (HierarchicalGraphMappingDescriptor)theEObject;
@@ -94,22 +94,22 @@ public class Neo4jHierarchicalGraphMappingSwitch<T> extends Switch<T> {
     }
   }
 
-	/**
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Hierarchical Graph Mapping Descriptor</em>'.
    * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Hierarchical Graph Mapping Descriptor</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T caseHierarchicalGraphMappingDescriptor(HierarchicalGraphMappingDescriptor object) {
+  public T caseHierarchicalGraphMappingDescriptor(HierarchicalGraphMappingDescriptor object) {
     return null;
   }
 
-	/**
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Dependency Mapping</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -127,46 +127,46 @@ public class Neo4jHierarchicalGraphMappingSwitch<T> extends Switch<T> {
   /**
    * Returns the result of interpreting the object as an instance of '<em>Node Label Mapper</em>'.
    * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Node Label Mapper</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T caseNodeLabelMapper(NodeLabelMapper object) {
+  public T caseNodeLabelMapper(NodeLabelMapper object) {
     return null;
   }
 
-	/**
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Property Based Image Mapper</em>'.
    * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Property Based Image Mapper</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T casePropertyBasedImageMapper(PropertyBasedImageMapper object) {
+  public T casePropertyBasedImageMapper(PropertyBasedImageMapper object) {
     return null;
   }
 
-	/**
+  /**
    * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
    * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch, but this is the last case anyway.
-	 * <!-- end-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch, but this is the last case anyway.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject)
    * @generated
    */
-	@Override
-	public T defaultCase(EObject object) {
+  @Override
+  public T defaultCase(EObject object) {
     return null;
   }
 

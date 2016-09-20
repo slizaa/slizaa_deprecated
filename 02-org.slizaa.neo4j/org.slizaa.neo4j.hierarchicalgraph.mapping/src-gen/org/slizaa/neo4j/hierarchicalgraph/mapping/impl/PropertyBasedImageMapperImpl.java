@@ -30,196 +30,196 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.PropertyBasedImageMapper;
  * @generated
  */
 public class PropertyBasedImageMapperImpl extends MinimalEObjectImpl.Container implements PropertyBasedImageMapper {
-	/**
+  /**
    * The default value of the '{@link #getPosition() <em>Position</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getPosition()
    * @generated
    * @ordered
    */
-	protected static final ImagePosition POSITION_EDEFAULT = ImagePosition.BASE;
+  protected static final ImagePosition POSITION_EDEFAULT = ImagePosition.BASE;
 
-	/**
+  /**
    * The cached value of the '{@link #getPosition() <em>Position</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getPosition()
    * @generated
    * @ordered
    */
-	protected ImagePosition position = POSITION_EDEFAULT;
+  protected ImagePosition position = POSITION_EDEFAULT;
 
-	/**
+  /**
    * The default value of the '{@link #getPropertyName() <em>Property Name</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getPropertyName()
    * @generated
    * @ordered
    */
-	protected static final String PROPERTY_NAME_EDEFAULT = null;
+  protected static final String PROPERTY_NAME_EDEFAULT = null;
 
-	/**
+  /**
    * The cached value of the '{@link #getPropertyName() <em>Property Name</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getPropertyName()
    * @generated
    * @ordered
    */
-	protected String propertyName = PROPERTY_NAME_EDEFAULT;
+  protected String propertyName = PROPERTY_NAME_EDEFAULT;
 
-	/**
+  /**
    * The default value of the '{@link #getPropertyValue() <em>Property Value</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getPropertyValue()
    * @generated
    * @ordered
    */
-	protected static final String PROPERTY_VALUE_EDEFAULT = null;
+  protected static final String PROPERTY_VALUE_EDEFAULT = null;
 
-	/**
+  /**
    * The cached value of the '{@link #getPropertyValue() <em>Property Value</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getPropertyValue()
    * @generated
    * @ordered
    */
-	protected String propertyValue = PROPERTY_VALUE_EDEFAULT;
+  protected String propertyValue = PROPERTY_VALUE_EDEFAULT;
 
-	/**
+  /**
    * The default value of the '{@link #getImage() <em>Image</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getImage()
    * @generated
    * @ordered
    */
-	protected static final String IMAGE_EDEFAULT = null;
+  protected static final String IMAGE_EDEFAULT = null;
 
-	/**
+  /**
    * The cached value of the '{@link #getImage() <em>Image</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getImage()
    * @generated
    * @ordered
    */
-	protected String image = IMAGE_EDEFAULT;
+  protected String image = IMAGE_EDEFAULT;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected PropertyBasedImageMapperImpl() {
+  protected PropertyBasedImageMapperImpl() {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass() {
     return Neo4jHierarchicalGraphMappingPackage.Literals.PROPERTY_BASED_IMAGE_MAPPER;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ImagePosition getPosition() {
+  public ImagePosition getPosition() {
     return position;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setPosition(ImagePosition newPosition) {
+  public void setPosition(ImagePosition newPosition) {
     ImagePosition oldPosition = position;
     position = newPosition == null ? POSITION_EDEFAULT : newPosition;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__POSITION, oldPosition, position));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getPropertyName() {
+  public String getPropertyName() {
     return propertyName;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setPropertyName(String newPropertyName) {
+  public void setPropertyName(String newPropertyName) {
     String oldPropertyName = propertyName;
     propertyName = newPropertyName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__PROPERTY_NAME, oldPropertyName, propertyName));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getPropertyValue() {
+  public String getPropertyValue() {
     return propertyValue;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setPropertyValue(String newPropertyValue) {
+  public void setPropertyValue(String newPropertyValue) {
     String oldPropertyValue = propertyValue;
     propertyValue = newPropertyValue;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__PROPERTY_VALUE, oldPropertyValue, propertyValue));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getImage() {
+  public String getImage() {
     return image;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setImage(String newImage) {
+  public void setImage(String newImage) {
     String oldImage = image;
     image = newImage;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__IMAGE, oldImage, image));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__POSITION:
         return getPosition();
@@ -233,13 +233,13 @@ public class PropertyBasedImageMapperImpl extends MinimalEObjectImpl.Container i
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__POSITION:
         setPosition((ImagePosition)newValue);
@@ -257,13 +257,13 @@ public class PropertyBasedImageMapperImpl extends MinimalEObjectImpl.Container i
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__POSITION:
         setPosition(POSITION_EDEFAULT);
@@ -281,13 +281,13 @@ public class PropertyBasedImageMapperImpl extends MinimalEObjectImpl.Container i
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__POSITION:
         return position != POSITION_EDEFAULT;
@@ -301,13 +301,13 @@ public class PropertyBasedImageMapperImpl extends MinimalEObjectImpl.Container i
     return super.eIsSet(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+  @Override
+  public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

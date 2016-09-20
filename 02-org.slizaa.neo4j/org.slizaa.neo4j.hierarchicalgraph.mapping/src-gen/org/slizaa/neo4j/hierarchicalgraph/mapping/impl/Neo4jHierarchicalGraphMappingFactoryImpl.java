@@ -20,13 +20,13 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.*;
  * @generated
  */
 public class Neo4jHierarchicalGraphMappingFactoryImpl extends EFactoryImpl implements Neo4jHierarchicalGraphMappingFactory {
-	/**
+  /**
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public static Neo4jHierarchicalGraphMappingFactory init() {
+  public static Neo4jHierarchicalGraphMappingFactory init() {
     try {
       Neo4jHierarchicalGraphMappingFactory theNeo4jHierarchicalGraphMappingFactory = (Neo4jHierarchicalGraphMappingFactory)EPackage.Registry.INSTANCE.getEFactory(Neo4jHierarchicalGraphMappingPackage.eNS_URI);
       if (theNeo4jHierarchicalGraphMappingFactory != null) {
@@ -39,23 +39,23 @@ public class Neo4jHierarchicalGraphMappingFactoryImpl extends EFactoryImpl imple
     return new Neo4jHierarchicalGraphMappingFactoryImpl();
   }
 
-	/**
+  /**
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Neo4jHierarchicalGraphMappingFactoryImpl() {
+  public Neo4jHierarchicalGraphMappingFactoryImpl() {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public EObject create(EClass eClass) {
+  @Override
+  public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
       case Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR: return createHierarchicalGraphMappingDescriptor();
       case Neo4jHierarchicalGraphMappingPackage.DEPENDENCY_MAPPING: return createDependencyMapping();
@@ -66,13 +66,13 @@ public class Neo4jHierarchicalGraphMappingFactoryImpl extends EFactoryImpl imple
     }
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID()) {
       case Neo4jHierarchicalGraphMappingPackage.IMAGE_POSITION:
         return createImagePositionFromString(eDataType, initialValue);
@@ -83,13 +83,13 @@ public class Neo4jHierarchicalGraphMappingFactoryImpl extends EFactoryImpl imple
     }
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID()) {
       case Neo4jHierarchicalGraphMappingPackage.IMAGE_POSITION:
         return convertImagePositionToString(eDataType, instanceValue);
@@ -100,67 +100,67 @@ public class Neo4jHierarchicalGraphMappingFactoryImpl extends EFactoryImpl imple
     }
   }
 
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public HierarchicalGraphMappingDescriptor createHierarchicalGraphMappingDescriptor() {
-    HierarchicalGraphMappingDescriptorImpl hierarchicalGraphMappingDescriptor = new HierarchicalGraphMappingDescriptorImpl();
-    return hierarchicalGraphMappingDescriptor;
-  }
-
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
+  public HierarchicalGraphMappingDescriptor createHierarchicalGraphMappingDescriptor() {
+    HierarchicalGraphMappingDescriptorImpl hierarchicalGraphMappingDescriptor = new HierarchicalGraphMappingDescriptorImpl();
+    return hierarchicalGraphMappingDescriptor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
   public DependencyMapping createDependencyMapping() {
-    DependencyMappingImpl dependencyMapping = new DependencyMappingImpl();
+    DependencyMappingImpl dependencyMapping = new ExtendedDependencyMappingImpl();
     return dependencyMapping;
   }
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NodeLabelMapper createNodeLabelMapper() {
+  public NodeLabelMapper createNodeLabelMapper() {
     NodeLabelMapperImpl nodeLabelMapper = new NodeLabelMapperImpl();
     return nodeLabelMapper;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public PropertyBasedImageMapper createPropertyBasedImageMapper() {
+  public PropertyBasedImageMapper createPropertyBasedImageMapper() {
     PropertyBasedImageMapperImpl propertyBasedImageMapper = new PropertyBasedImageMapperImpl();
     return propertyBasedImageMapper;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ImagePosition createImagePositionFromString(EDataType eDataType, String initialValue) {
+  public ImagePosition createImagePositionFromString(EDataType eDataType, String initialValue) {
     ImagePosition result = ImagePosition.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertImagePositionToString(EDataType eDataType, Object instanceValue) {
+  public String convertImagePositionToString(EDataType eDataType, Object instanceValue) {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -180,21 +180,21 @@ public class Neo4jHierarchicalGraphMappingFactoryImpl extends EFactoryImpl imple
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Neo4jHierarchicalGraphMappingPackage getNeo4jHierarchicalGraphMappingPackage() {
+  public Neo4jHierarchicalGraphMappingPackage getNeo4jHierarchicalGraphMappingPackage() {
     return (Neo4jHierarchicalGraphMappingPackage)getEPackage();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @deprecated
    * @generated
    */
-	@Deprecated
-	public static Neo4jHierarchicalGraphMappingPackage getPackage() {
+  @Deprecated
+  public static Neo4jHierarchicalGraphMappingPackage getPackage() {
     return Neo4jHierarchicalGraphMappingPackage.eINSTANCE;
   }
 

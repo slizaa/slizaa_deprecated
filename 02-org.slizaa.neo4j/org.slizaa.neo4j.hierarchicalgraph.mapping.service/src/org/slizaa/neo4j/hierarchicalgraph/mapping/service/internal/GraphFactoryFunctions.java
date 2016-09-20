@@ -142,9 +142,9 @@ public class GraphFactoryFunctions {
       return null;
     }
 
-    //
-    HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement,
-        type, () -> {
+    // TODO!!
+    HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewAggregatedCoreDependency(fromElement,
+        toElement, type, () -> {
           return dependencySourceCreator.apply(idRel, type);
         }, reinitializeCaches);
 

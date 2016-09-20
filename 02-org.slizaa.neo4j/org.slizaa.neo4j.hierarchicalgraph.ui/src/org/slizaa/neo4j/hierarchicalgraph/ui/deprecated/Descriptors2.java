@@ -58,6 +58,13 @@ public class Descriptors2 {
   // 98365,98868,98870,98887,98865]
   // RETURN id(n1), id(n2), id(rel), "HAS_PARAMETER_OF_TYPE"
 
+  public static final String DETAIL_QUERY                          = "MATCH (n1)-[rel]->(n2) "
+      + "WHERE id(n1) in {from} " + "AND id(n2) in {to} " + "AND ( "
+      + "(n1:Type)-[rel:EXTENDS|:IMPLEMENTS]->(n2:Type) OR " + "(n1:Method)-[rel:INVOKES]->(n2:Method) OR "
+      + "(n1:Method)-[rel:READS|:WRITES]->(n2:Field) OR " + "(n1:Field)-[rel:OF_TYPE]->(n2:Type) OR "
+      + "(n1:Method)-[rel:THROWS]->(n2:Type) OR " + "(n1:Method)-[rel:RETURNS]->(n2:Type) OR "
+      + "(n1:Method)-[rel:RETURNS]->(n2:Type) " + ") " + "RETURN id(n1), id(n2), id(rel), type(rel)";
+
   /**
    * <p>
    * </p>
@@ -79,9 +86,10 @@ public class Descriptors2 {
 
     DependencyMapping dependencyMapping = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createDependencyMapping();
     dependencyMapping.setMainQuery(QUERY_SIMPLE_DEPENDENCIES);
+    dependencyMapping.getDetailQueries().add(DETAIL_QUERY);
     graphProviderDescriptor.getDependencyMappings().add(dependencyMapping);
-    
-    //********************/
+
+    // ********************/
     // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_EXTENDS_IMPLEMENTS);
     // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_INVOKE);
     // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_READS_WRITES);

@@ -14,9 +14,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.slizaa.neo4j.hierarchicalgraph.mapping.DependencyMapping;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.Neo4jHierarchicalGraphMappingPackage;
@@ -41,67 +43,67 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.NodeLabelMapper;
  * @generated
  */
 public class HierarchicalGraphMappingDescriptorImpl extends MinimalEObjectImpl.Container implements HierarchicalGraphMappingDescriptor {
-	/**
+  /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-	protected static final String NAME_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
-	/**
+  /**
    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-	protected String name = NAME_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
-	/**
+  /**
    * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getDescription()
    * @generated
    * @ordered
    */
-	protected static final String DESCRIPTION_EDEFAULT = null;
+  protected static final String DESCRIPTION_EDEFAULT = null;
 
-	/**
+  /**
    * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getDescription()
    * @generated
    * @ordered
    */
-	protected String description = DESCRIPTION_EDEFAULT;
+  protected String description = DESCRIPTION_EDEFAULT;
 
-	/**
+  /**
    * The cached value of the '{@link #getRootMappings() <em>Root Mappings</em>}' attribute list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getRootMappings()
    * @generated
    * @ordered
    */
-	protected EList<String> rootMappings;
+  protected EList<String> rootMappings;
 
-	/**
+  /**
    * The cached value of the '{@link #getHierarchyMappings() <em>Hierarchy Mappings</em>}' attribute list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getHierarchyMappings()
    * @generated
    * @ordered
    */
-	protected EList<String> hierarchyMappings;
+  protected EList<String> hierarchyMappings;
 
-	/**
+  /**
    * The cached value of the '{@link #getDependencyMappings() <em>Dependency Mappings</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -114,99 +116,99 @@ public class HierarchicalGraphMappingDescriptorImpl extends MinimalEObjectImpl.C
   /**
    * The cached value of the '{@link #getLabelMappers() <em>Label Mappers</em>}' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getLabelMappers()
    * @generated
    * @ordered
    */
-	protected EList<NodeLabelMapper> labelMappers;
+  protected EList<NodeLabelMapper> labelMappers;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected HierarchicalGraphMappingDescriptorImpl() {
+  protected HierarchicalGraphMappingDescriptorImpl() {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass() {
     return Neo4jHierarchicalGraphMappingPackage.Literals.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getName() {
+  public String getName() {
     return name;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setName(String newName) {
+  public void setName(String newName) {
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR__NAME, oldName, name));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getDescription() {
+  public String getDescription() {
     return description;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setDescription(String newDescription) {
+  public void setDescription(String newDescription) {
     String oldDescription = description;
     description = newDescription;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR__DESCRIPTION, oldDescription, description));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EList<String> getRootMappings() {
+  public EList<String> getRootMappings() {
     if (rootMappings == null) {
       rootMappings = new EDataTypeUniqueEList<String>(String.class, this, Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR__ROOT_MAPPINGS);
     }
     return rootMappings;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EList<String> getHierarchyMappings() {
+  public EList<String> getHierarchyMappings() {
     if (hierarchyMappings == null) {
       hierarchyMappings = new EDataTypeUniqueEList<String>(String.class, this, Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR__HIERARCHY_MAPPINGS);
     }
     return hierarchyMappings;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -220,23 +222,23 @@ public class HierarchicalGraphMappingDescriptorImpl extends MinimalEObjectImpl.C
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EList<NodeLabelMapper> getLabelMappers() {
+  public EList<NodeLabelMapper> getLabelMappers() {
     if (labelMappers == null) {
       labelMappers = new EObjectContainmentEList<NodeLabelMapper>(NodeLabelMapper.class, this, Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR__LABEL_MAPPERS);
     }
     return labelMappers;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR__DEPENDENCY_MAPPINGS:
         return ((InternalEList<?>)getDependencyMappings()).basicRemove(otherEnd, msgs);
@@ -246,13 +248,13 @@ public class HierarchicalGraphMappingDescriptorImpl extends MinimalEObjectImpl.C
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR__NAME:
         return getName();
@@ -270,14 +272,14 @@ public class HierarchicalGraphMappingDescriptorImpl extends MinimalEObjectImpl.C
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR__NAME:
         setName((String)newValue);
@@ -305,13 +307,13 @@ public class HierarchicalGraphMappingDescriptorImpl extends MinimalEObjectImpl.C
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR__NAME:
         setName(NAME_EDEFAULT);
@@ -335,13 +337,13 @@ public class HierarchicalGraphMappingDescriptorImpl extends MinimalEObjectImpl.C
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.HIERARCHICAL_GRAPH_MAPPING_DESCRIPTOR__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
@@ -359,13 +361,13 @@ public class HierarchicalGraphMappingDescriptorImpl extends MinimalEObjectImpl.C
     return super.eIsSet(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+  @Override
+  public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

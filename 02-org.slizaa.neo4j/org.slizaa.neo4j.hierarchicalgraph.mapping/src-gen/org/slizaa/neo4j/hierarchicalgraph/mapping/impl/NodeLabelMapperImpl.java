@@ -40,158 +40,158 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.PropertyBasedImageMapper;
  * @generated
  */
 public class NodeLabelMapperImpl extends MinimalEObjectImpl.Container implements NodeLabelMapper {
-	/**
+  /**
    * The cached value of the '{@link #getRequiredNeo4jLabel() <em>Required Neo4j Label</em>}' attribute list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getRequiredNeo4jLabel()
    * @generated
    * @ordered
    */
-	protected EList<String> requiredNeo4jLabel;
+  protected EList<String> requiredNeo4jLabel;
 
-	/**
+  /**
    * The default value of the '{@link #getDefaultImage() <em>Default Image</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getDefaultImage()
    * @generated
    * @ordered
    */
-	protected static final String DEFAULT_IMAGE_EDEFAULT = "";
+  protected static final String DEFAULT_IMAGE_EDEFAULT = "";
 
-	/**
+  /**
    * The cached value of the '{@link #getDefaultImage() <em>Default Image</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getDefaultImage()
    * @generated
    * @ordered
    */
-	protected String defaultImage = DEFAULT_IMAGE_EDEFAULT;
+  protected String defaultImage = DEFAULT_IMAGE_EDEFAULT;
 
-	/**
+  /**
    * The default value of the '{@link #getTextPropertyName() <em>Text Property Name</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getTextPropertyName()
    * @generated
    * @ordered
    */
-	protected static final String TEXT_PROPERTY_NAME_EDEFAULT = null;
+  protected static final String TEXT_PROPERTY_NAME_EDEFAULT = null;
 
-	/**
+  /**
    * The cached value of the '{@link #getTextPropertyName() <em>Text Property Name</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getTextPropertyName()
    * @generated
    * @ordered
    */
-	protected String textPropertyName = TEXT_PROPERTY_NAME_EDEFAULT;
+  protected String textPropertyName = TEXT_PROPERTY_NAME_EDEFAULT;
 
-	/**
+  /**
    * The cached value of the '{@link #getPropertyBasedImages() <em>Property Based Images</em>}' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getPropertyBasedImages()
    * @generated
    * @ordered
    */
-	protected EList<PropertyBasedImageMapper> propertyBasedImages;
+  protected EList<PropertyBasedImageMapper> propertyBasedImages;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected NodeLabelMapperImpl() {
+  protected NodeLabelMapperImpl() {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass() {
     return Neo4jHierarchicalGraphMappingPackage.Literals.NODE_LABEL_MAPPER;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EList<String> getRequiredNeo4jLabel() {
+  public EList<String> getRequiredNeo4jLabel() {
     if (requiredNeo4jLabel == null) {
       requiredNeo4jLabel = new EDataTypeUniqueEList<String>(String.class, this, Neo4jHierarchicalGraphMappingPackage.NODE_LABEL_MAPPER__REQUIRED_NEO4J_LABEL);
     }
     return requiredNeo4jLabel;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getDefaultImage() {
+  public String getDefaultImage() {
     return defaultImage;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setDefaultImage(String newDefaultImage) {
+  public void setDefaultImage(String newDefaultImage) {
     String oldDefaultImage = defaultImage;
     defaultImage = newDefaultImage;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalGraphMappingPackage.NODE_LABEL_MAPPER__DEFAULT_IMAGE, oldDefaultImage, defaultImage));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getTextPropertyName() {
+  public String getTextPropertyName() {
     return textPropertyName;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setTextPropertyName(String newTextPropertyName) {
+  public void setTextPropertyName(String newTextPropertyName) {
     String oldTextPropertyName = textPropertyName;
     textPropertyName = newTextPropertyName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalGraphMappingPackage.NODE_LABEL_MAPPER__TEXT_PROPERTY_NAME, oldTextPropertyName, textPropertyName));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EList<PropertyBasedImageMapper> getPropertyBasedImages() {
+  public EList<PropertyBasedImageMapper> getPropertyBasedImages() {
     if (propertyBasedImages == null) {
       propertyBasedImages = new EObjectContainmentEList<PropertyBasedImageMapper>(PropertyBasedImageMapper.class, this, Neo4jHierarchicalGraphMappingPackage.NODE_LABEL_MAPPER__PROPERTY_BASED_IMAGES);
     }
     return propertyBasedImages;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.NODE_LABEL_MAPPER__PROPERTY_BASED_IMAGES:
         return ((InternalEList<?>)getPropertyBasedImages()).basicRemove(otherEnd, msgs);
@@ -199,13 +199,13 @@ public class NodeLabelMapperImpl extends MinimalEObjectImpl.Container implements
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.NODE_LABEL_MAPPER__REQUIRED_NEO4J_LABEL:
         return getRequiredNeo4jLabel();
@@ -219,14 +219,14 @@ public class NodeLabelMapperImpl extends MinimalEObjectImpl.Container implements
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.NODE_LABEL_MAPPER__REQUIRED_NEO4J_LABEL:
         getRequiredNeo4jLabel().clear();
@@ -246,13 +246,13 @@ public class NodeLabelMapperImpl extends MinimalEObjectImpl.Container implements
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.NODE_LABEL_MAPPER__REQUIRED_NEO4J_LABEL:
         getRequiredNeo4jLabel().clear();
@@ -270,13 +270,13 @@ public class NodeLabelMapperImpl extends MinimalEObjectImpl.Container implements
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID) {
     switch (featureID) {
       case Neo4jHierarchicalGraphMappingPackage.NODE_LABEL_MAPPER__REQUIRED_NEO4J_LABEL:
         return requiredNeo4jLabel != null && !requiredNeo4jLabel.isEmpty();
@@ -290,13 +290,13 @@ public class NodeLabelMapperImpl extends MinimalEObjectImpl.Container implements
     return super.eIsSet(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+  @Override
+  public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

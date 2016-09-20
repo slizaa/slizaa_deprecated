@@ -6,10 +6,12 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.slizaa.neo4j.hierarchicalgraph.mapping.DependencyMapping;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.ImagePosition;
@@ -25,14 +27,14 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.PropertyBasedImageMapper;
  * @generated
  */
 public class Neo4jHierarchicalGraphMappingPackageImpl extends EPackageImpl implements Neo4jHierarchicalGraphMappingPackage {
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EClass hierarchicalGraphMappingDescriptorEClass = null;
+  private EClass hierarchicalGraphMappingDescriptorEClass = null;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -41,26 +43,26 @@ public class Neo4jHierarchicalGraphMappingPackageImpl extends EPackageImpl imple
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EClass nodeLabelMapperEClass = null;
+  private EClass nodeLabelMapperEClass = null;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EClass propertyBasedImageMapperEClass = null;
+  private EClass propertyBasedImageMapperEClass = null;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private EEnum imagePositionEEnum = null;
+  private EEnum imagePositionEEnum = null;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -76,36 +78,36 @@ public class Neo4jHierarchicalGraphMappingPackageImpl extends EPackageImpl imple
    * initialization of the package, or returns the registered package,
    * if one already exists.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see org.eclipse.emf.ecore.EPackage.Registry
    * @see org.slizaa.neo4j.hierarchicalgraph.mapping.Neo4jHierarchicalGraphMappingPackage#eNS_URI
    * @see #init()
    * @generated
    */
-	private Neo4jHierarchicalGraphMappingPackageImpl() {
+  private Neo4jHierarchicalGraphMappingPackageImpl() {
     super(eNS_URI, Neo4jHierarchicalGraphMappingFactory.eINSTANCE);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private static boolean isInited = false;
+  private static boolean isInited = false;
 
-	/**
+  /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
    * 
    * <p>This method is used to initialize {@link Neo4jHierarchicalGraphMappingPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #eNS_URI
    * @see #createPackageContents()
    * @see #initializePackageContents()
    * @generated
    */
-	public static Neo4jHierarchicalGraphMappingPackage init() {
+  public static Neo4jHierarchicalGraphMappingPackage init() {
     if (isInited) return (Neo4jHierarchicalGraphMappingPackage)EPackage.Registry.INSTANCE.getEPackage(Neo4jHierarchicalGraphMappingPackage.eNS_URI);
 
     // Obtain or create and register package
@@ -128,52 +130,52 @@ public class Neo4jHierarchicalGraphMappingPackageImpl extends EPackageImpl imple
     return theNeo4jHierarchicalGraphMappingPackage;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getHierarchicalGraphMappingDescriptor() {
+  public EClass getHierarchicalGraphMappingDescriptor() {
     return hierarchicalGraphMappingDescriptorEClass;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getHierarchicalGraphMappingDescriptor_Name() {
+  public EAttribute getHierarchicalGraphMappingDescriptor_Name() {
     return (EAttribute)hierarchicalGraphMappingDescriptorEClass.getEStructuralFeatures().get(0);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getHierarchicalGraphMappingDescriptor_Description() {
+  public EAttribute getHierarchicalGraphMappingDescriptor_Description() {
     return (EAttribute)hierarchicalGraphMappingDescriptorEClass.getEStructuralFeatures().get(1);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getHierarchicalGraphMappingDescriptor_RootMappings() {
+  public EAttribute getHierarchicalGraphMappingDescriptor_RootMappings() {
     return (EAttribute)hierarchicalGraphMappingDescriptorEClass.getEStructuralFeatures().get(2);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getHierarchicalGraphMappingDescriptor_HierarchyMappings() {
+  public EAttribute getHierarchicalGraphMappingDescriptor_HierarchyMappings() {
     return (EAttribute)hierarchicalGraphMappingDescriptorEClass.getEStructuralFeatures().get(3);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -184,14 +186,14 @@ public class Neo4jHierarchicalGraphMappingPackageImpl extends EPackageImpl imple
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getHierarchicalGraphMappingDescriptor_LabelMappers() {
+  public EReference getHierarchicalGraphMappingDescriptor_LabelMappers() {
     return (EReference)hierarchicalGraphMappingDescriptorEClass.getEStructuralFeatures().get(5);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -220,104 +222,113 @@ public class Neo4jHierarchicalGraphMappingPackageImpl extends EPackageImpl imple
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getNodeLabelMapper() {
+  public EOperation getDependencyMapping__IsAggregatedCoreDependency() {
+    return dependencyMappingEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNodeLabelMapper() {
     return nodeLabelMapperEClass;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getNodeLabelMapper_RequiredNeo4jLabel() {
+  public EAttribute getNodeLabelMapper_RequiredNeo4jLabel() {
     return (EAttribute)nodeLabelMapperEClass.getEStructuralFeatures().get(0);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getNodeLabelMapper_DefaultImage() {
+  public EAttribute getNodeLabelMapper_DefaultImage() {
     return (EAttribute)nodeLabelMapperEClass.getEStructuralFeatures().get(1);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getNodeLabelMapper_TextPropertyName() {
+  public EAttribute getNodeLabelMapper_TextPropertyName() {
     return (EAttribute)nodeLabelMapperEClass.getEStructuralFeatures().get(2);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getNodeLabelMapper_PropertyBasedImages() {
+  public EReference getNodeLabelMapper_PropertyBasedImages() {
     return (EReference)nodeLabelMapperEClass.getEStructuralFeatures().get(3);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getPropertyBasedImageMapper() {
+  public EClass getPropertyBasedImageMapper() {
     return propertyBasedImageMapperEClass;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getPropertyBasedImageMapper_Position() {
+  public EAttribute getPropertyBasedImageMapper_Position() {
     return (EAttribute)propertyBasedImageMapperEClass.getEStructuralFeatures().get(0);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getPropertyBasedImageMapper_PropertyName() {
+  public EAttribute getPropertyBasedImageMapper_PropertyName() {
     return (EAttribute)propertyBasedImageMapperEClass.getEStructuralFeatures().get(1);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getPropertyBasedImageMapper_PropertyValue() {
+  public EAttribute getPropertyBasedImageMapper_PropertyValue() {
     return (EAttribute)propertyBasedImageMapperEClass.getEStructuralFeatures().get(2);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getPropertyBasedImageMapper_Image() {
+  public EAttribute getPropertyBasedImageMapper_Image() {
     return (EAttribute)propertyBasedImageMapperEClass.getEStructuralFeatures().get(3);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EEnum getImagePosition() {
+  public EEnum getImagePosition() {
     return imagePositionEEnum;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -328,28 +339,28 @@ public class Neo4jHierarchicalGraphMappingPackageImpl extends EPackageImpl imple
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Neo4jHierarchicalGraphMappingFactory getNeo4jHierarchicalGraphMappingFactory() {
+  public Neo4jHierarchicalGraphMappingFactory getNeo4jHierarchicalGraphMappingFactory() {
     return (Neo4jHierarchicalGraphMappingFactory)getEFactoryInstance();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private boolean isCreated = false;
+  private boolean isCreated = false;
 
-	/**
+  /**
    * Creates the meta-model objects for the package.  This method is
    * guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void createPackageContents() {
+  public void createPackageContents() {
     if (isCreated) return;
     isCreated = true;
 
@@ -365,6 +376,7 @@ public class Neo4jHierarchicalGraphMappingPackageImpl extends EPackageImpl imple
     dependencyMappingEClass = createEClass(DEPENDENCY_MAPPING);
     createEAttribute(dependencyMappingEClass, DEPENDENCY_MAPPING__MAIN_QUERY);
     createEAttribute(dependencyMappingEClass, DEPENDENCY_MAPPING__DETAIL_QUERIES);
+    createEOperation(dependencyMappingEClass, DEPENDENCY_MAPPING___IS_AGGREGATED_CORE_DEPENDENCY);
 
     nodeLabelMapperEClass = createEClass(NODE_LABEL_MAPPER);
     createEAttribute(nodeLabelMapperEClass, NODE_LABEL_MAPPER__REQUIRED_NEO4J_LABEL);
@@ -385,21 +397,21 @@ public class Neo4jHierarchicalGraphMappingPackageImpl extends EPackageImpl imple
     cyperQueryEDataType = createEDataType(CYPER_QUERY);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private boolean isInitialized = false;
+  private boolean isInitialized = false;
 
-	/**
+  /**
    * Complete the initialization of the package and its meta-model.  This
    * method is guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void initializePackageContents() {
+  public void initializePackageContents() {
     if (isInitialized) return;
     isInitialized = true;
 
@@ -426,6 +438,8 @@ public class Neo4jHierarchicalGraphMappingPackageImpl extends EPackageImpl imple
     initEClass(dependencyMappingEClass, DependencyMapping.class, "DependencyMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDependencyMapping_MainQuery(), this.getCyperQuery(), "mainQuery", null, 1, 1, DependencyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDependencyMapping_DetailQueries(), this.getCyperQuery(), "detailQueries", null, 0, -1, DependencyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEOperation(getDependencyMapping__IsAggregatedCoreDependency(), ecorePackage.getEBoolean(), "isAggregatedCoreDependency", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(nodeLabelMapperEClass, NodeLabelMapper.class, "NodeLabelMapper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNodeLabelMapper_RequiredNeo4jLabel(), ecorePackage.getEString(), "requiredNeo4jLabel", null, 0, -1, NodeLabelMapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
