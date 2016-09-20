@@ -38,7 +38,7 @@ public class ResolveAggregatedDependenciesResolver_Test extends AbstractRemoteRe
     _aggregatedDependencyResolver = null;
 
     //
-    _rootNode.setAggregatedCoreDependencyResolver(_aggregatedDependencyResolver);
+    _rootNode.registerExtension(IAggregatedCoreDependencyResolver.class, _aggregatedDependencyResolver);
   }
 
   /**

@@ -31,6 +31,9 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
   /** - */
   protected Map<Object, HGNode> _idToNodeMap;
 
+  /** - */
+  private Map<Class<?>, Object> _registry;
+
   /**
    * <p>
    * Creates a new instance of type {@link ExtendedHGRootNodeImpl}.
@@ -38,6 +41,23 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    */
   public ExtendedHGRootNodeImpl() {
     _trait = new ExtendedHGNodeTrait(this);
+    _registry = new HashMap<>();
+  }
+  
+  @SuppressWarnings("unchecked")
+  @Override
+  public <T> T getExtension(Class<T> clazz) {
+    return (T) _registry.get(checkNotNull(clazz));
+  }
+
+  @Override
+  public <T> void registerExtension(Class<T> clazz, T extension) {
+    _registry.put(checkNotNull(clazz), extension);
+  }
+
+  @Override
+  public <T> boolean hasExtension(Class<T> key) {
+    return _registry.containsKey(key);
   }
 
   /**

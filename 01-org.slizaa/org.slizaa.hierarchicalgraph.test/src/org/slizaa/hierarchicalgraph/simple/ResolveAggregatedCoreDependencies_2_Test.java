@@ -40,7 +40,7 @@ public class ResolveAggregatedCoreDependencies_2_Test extends AbstractSimpleMode
     super.before();
 
     //
-    model().root().setAggregatedCoreDependencyResolver(this);
+    model().root().registerExtension(IAggregatedCoreDependencyResolver.class, this);
   }
 
   /**

@@ -469,22 +469,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE__ITEM_LABEL_PROVIDER = HG_NODE_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Aggregated Core Dependency Resolver</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HG_ROOT_NODE__AGGREGATED_CORE_DEPENDENCY_RESOLVER = HG_NODE_FEATURE_COUNT + 2;
-
-  /**
    * The number of structural features of the '<em>HG Root Node</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE_FEATURE_COUNT = HG_NODE_FEATURE_COUNT + 3;
+  int HG_ROOT_NODE_FEATURE_COUNT = HG_NODE_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Get Identifier</em>' operation.
@@ -613,13 +604,40 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE___LOOKUP_NODE__OBJECT = HG_NODE_OPERATION_COUNT + 3;
 
   /**
+   * The operation id for the '<em>Get Extension</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___GET_EXTENSION__CLASS = HG_NODE_OPERATION_COUNT + 4;
+
+  /**
+   * The operation id for the '<em>Register Extension</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___REGISTER_EXTENSION__CLASS_OBJECT = HG_NODE_OPERATION_COUNT + 5;
+
+  /**
+   * The operation id for the '<em>Has Extension</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___HAS_EXTENSION__CLASS = HG_NODE_OPERATION_COUNT + 6;
+
+  /**
    * The number of operations of the '<em>HG Root Node</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE_OPERATION_COUNT = HG_NODE_OPERATION_COUNT + 4;
+  int HG_ROOT_NODE_OPERATION_COUNT = HG_NODE_OPERATION_COUNT + 7;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultNodeSourceImpl <em>Default Node Source</em>}' class.
@@ -1692,17 +1710,6 @@ public interface HierarchicalgraphPackage extends EPackage {
   EAttribute getHGRootNode_ItemLabelProvider();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGRootNode#getAggregatedCoreDependencyResolver <em>Aggregated Core Dependency Resolver</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Aggregated Core Dependency Resolver</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGRootNode#getAggregatedCoreDependencyResolver()
-   * @see #getHGRootNode()
-   * @generated
-   */
-  EAttribute getHGRootNode_AggregatedCoreDependencyResolver();
-
-  /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#invalidateAllCaches() <em>Invalidate All Caches</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1741,6 +1748,36 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    */
   EOperation getHGRootNode__LookupNode__Object();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#getExtension(java.lang.Class) <em>Get Extension</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Extension</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#getExtension(java.lang.Class)
+   * @generated
+   */
+  EOperation getHGRootNode__GetExtension__Class();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#registerExtension(java.lang.Class, java.lang.Object) <em>Register Extension</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Register Extension</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#registerExtension(java.lang.Class, java.lang.Object)
+   * @generated
+   */
+  EOperation getHGRootNode__RegisterExtension__Class_Object();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#hasExtension(java.lang.Class) <em>Has Extension</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Has Extension</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#hasExtension(java.lang.Class)
+   * @generated
+   */
+  EOperation getHGRootNode__HasExtension__Class();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.DefaultNodeSource <em>Default Node Source</em>}'.
@@ -2444,14 +2481,6 @@ public interface HierarchicalgraphPackage extends EPackage {
     EAttribute HG_ROOT_NODE__ITEM_LABEL_PROVIDER = eINSTANCE.getHGRootNode_ItemLabelProvider();
 
     /**
-     * The meta object literal for the '<em><b>Aggregated Core Dependency Resolver</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute HG_ROOT_NODE__AGGREGATED_CORE_DEPENDENCY_RESOLVER = eINSTANCE.getHGRootNode_AggregatedCoreDependencyResolver();
-
-    /**
      * The meta object literal for the '<em><b>Invalidate All Caches</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2482,6 +2511,30 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EOperation HG_ROOT_NODE___LOOKUP_NODE__OBJECT = eINSTANCE.getHGRootNode__LookupNode__Object();
+
+    /**
+     * The meta object literal for the '<em><b>Get Extension</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_ROOT_NODE___GET_EXTENSION__CLASS = eINSTANCE.getHGRootNode__GetExtension__Class();
+
+    /**
+     * The meta object literal for the '<em><b>Register Extension</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_ROOT_NODE___REGISTER_EXTENSION__CLASS_OBJECT = eINSTANCE.getHGRootNode__RegisterExtension__Class_Object();
+
+    /**
+     * The meta object literal for the '<em><b>Has Extension</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_ROOT_NODE___HAS_EXTENSION__CLASS = eINSTANCE.getHGRootNode__HasExtension__Class();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultNodeSourceImpl <em>Default Node Source</em>}' class.

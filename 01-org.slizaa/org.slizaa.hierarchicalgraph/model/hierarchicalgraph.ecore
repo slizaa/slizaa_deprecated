@@ -85,11 +85,37 @@
     <eOperations name="lookupNode" eType="#//HGNode">
       <eParameters name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     </eOperations>
+    <eOperations name="getExtension">
+      <eGenericType eTypeParameter="#//HGRootNode/getExtension/T"/>
+      <eTypeParameters name="T"/>
+      <eParameters name="clazz">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments eTypeParameter="#//HGRootNode/getExtension/T"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="registerExtension">
+      <eTypeParameters name="T"/>
+      <eParameters name="clazz">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments eTypeParameter="#//HGRootNode/registerExtension/T"/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="extension">
+        <eGenericType eTypeParameter="#//HGRootNode/registerExtension/T"/>
+      </eParameters>
+    </eOperations>
+    <eOperations name="hasExtension" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eTypeParameters name="T"/>
+      <eParameters name="key">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments eTypeParameter="#//HGRootNode/hasExtension/T"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemLabelProvider" lowerBound="1"
         eType="#//IItemLabelProvider" transient="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregatedCoreDependencyResolver"
-        eType="#//IAggregatedCoreDependencyResolver"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DefaultNodeSource" eSuperTypes="#//INodeSource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"

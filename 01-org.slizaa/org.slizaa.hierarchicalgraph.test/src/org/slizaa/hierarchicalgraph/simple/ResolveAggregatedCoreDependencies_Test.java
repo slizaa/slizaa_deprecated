@@ -35,7 +35,7 @@ public class ResolveAggregatedCoreDependencies_Test extends AbstractSimpleModelT
 
     //
     _resolver = mock(IAggregatedCoreDependencyResolver.class);
-    model().root().setAggregatedCoreDependencyResolver(_resolver);
+    model().root().registerExtension(IAggregatedCoreDependencyResolver.class, _resolver);
 
     // get the aggregated dependency
     _aggregatedDependency = model().a1().getOutgoingDependenciesTo(model().b1());

@@ -10,10 +10,12 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -520,15 +522,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getHGRootNode_AggregatedCoreDependencyResolver() {
-    return (EAttribute)hgRootNodeEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EOperation getHGRootNode__InvalidateAllCaches() {
     return hgRootNodeEClass.getEOperations().get(0);
   }
@@ -558,6 +551,33 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    */
   public EOperation getHGRootNode__LookupNode__Object() {
     return hgRootNodeEClass.getEOperations().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getHGRootNode__GetExtension__Class() {
+    return hgRootNodeEClass.getEOperations().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getHGRootNode__RegisterExtension__Class_Object() {
+    return hgRootNodeEClass.getEOperations().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getHGRootNode__HasExtension__Class() {
+    return hgRootNodeEClass.getEOperations().get(6);
   }
 
   /**
@@ -973,11 +993,13 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     hgRootNodeEClass = createEClass(HG_ROOT_NODE);
     createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__NAME);
     createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__ITEM_LABEL_PROVIDER);
-    createEAttribute(hgRootNodeEClass, HG_ROOT_NODE__AGGREGATED_CORE_DEPENDENCY_RESOLVER);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_ALL_CACHES);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INVALIDATE_CACHES__ELIST);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___INITIALIZE_CACHES__ELIST);
     createEOperation(hgRootNodeEClass, HG_ROOT_NODE___LOOKUP_NODE__OBJECT);
+    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___GET_EXTENSION__CLASS);
+    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___REGISTER_EXTENSION__CLASS_OBJECT);
+    createEOperation(hgRootNodeEClass, HG_ROOT_NODE___HAS_EXTENSION__CLASS);
 
     defaultNodeSourceEClass = createEClass(DEFAULT_NODE_SOURCE);
     createEReference(defaultNodeSourceEClass, DEFAULT_NODE_SOURCE__PROPERTIES);
@@ -1125,7 +1147,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEClass(hgRootNodeEClass, HGRootNode.class, "HGRootNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHGRootNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, HGRootNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getHGRootNode_ItemLabelProvider(), this.getIItemLabelProvider(), "itemLabelProvider", null, 1, 1, HGRootNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getHGRootNode_AggregatedCoreDependencyResolver(), this.getIAggregatedCoreDependencyResolver(), "aggregatedCoreDependencyResolver", null, 0, 1, HGRootNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEOperation(getHGRootNode__InvalidateAllCaches(), null, "invalidateAllCaches", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1137,6 +1158,31 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     op = initEOperation(getHGRootNode__LookupNode__Object(), this.getHGNode(), "lookupNode", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEJavaObject(), "identifier", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+    op = initEOperation(getHGRootNode__GetExtension__Class(), null, "getExtension", 0, 1, IS_UNIQUE, IS_ORDERED);
+    ETypeParameter t1 = addETypeParameter(op, "T");
+    EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
+    EGenericType g2 = createEGenericType(t1);
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "clazz", 0, 1, IS_UNIQUE, IS_ORDERED);
+    g1 = createEGenericType(t1);
+    initEOperation(op, g1);
+
+    op = initEOperation(getHGRootNode__RegisterExtension__Class_Object(), null, "registerExtension", 0, 1, IS_UNIQUE, IS_ORDERED);
+    t1 = addETypeParameter(op, "T");
+    g1 = createEGenericType(ecorePackage.getEJavaClass());
+    g2 = createEGenericType(t1);
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "clazz", 0, 1, IS_UNIQUE, IS_ORDERED);
+    g1 = createEGenericType(t1);
+    addEParameter(op, g1, "extension", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+    op = initEOperation(getHGRootNode__HasExtension__Class(), ecorePackage.getEBoolean(), "hasExtension", 0, 1, IS_UNIQUE, IS_ORDERED);
+    t1 = addETypeParameter(op, "T");
+    g1 = createEGenericType(ecorePackage.getEJavaClass());
+    g2 = createEGenericType(t1);
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "key", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(defaultNodeSourceEClass, DefaultNodeSource.class, "DefaultNodeSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDefaultNodeSource_Properties(), this.getStringToStringMap(), null, "properties", null, 0, -1, DefaultNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

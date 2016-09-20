@@ -67,7 +67,9 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
     Future<?> result = null;
 
     //
-    IAggregatedCoreDependencyResolver resolver = getFrom().getRootNode().getAggregatedCoreDependencyResolver();
+    IAggregatedCoreDependencyResolver resolver = getFrom().getRootNode()
+        .getExtension(IAggregatedCoreDependencyResolver.class);
+    
     if (resolver != null) {
       result = resolver.resolveAggregatedDependency(this);
     }

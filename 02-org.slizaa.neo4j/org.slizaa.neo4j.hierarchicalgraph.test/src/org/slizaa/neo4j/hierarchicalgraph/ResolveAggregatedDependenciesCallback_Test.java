@@ -42,7 +42,7 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
     _aggregatedDependencyResolver = mock(IAggregatedCoreDependencyResolver.class);
 
     //
-    _rootNode.setAggregatedCoreDependencyResolver(_aggregatedDependencyResolver);
+    _rootNode.registerExtension(IAggregatedCoreDependencyResolver.class, _aggregatedDependencyResolver);
   }
 
   /**
