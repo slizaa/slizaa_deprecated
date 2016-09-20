@@ -1,4 +1,4 @@
-package org.bundlemaker.core.ui.editor.xref3.schrott;
+package org.bundlemaker.core.ui.editor.xref3;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -17,12 +17,6 @@ import org.bundlemaker.core.ui.artifact.tree.ArtifactTreeContentProvider;
 import org.bundlemaker.core.ui.artifact.tree.ArtifactTreeLabelProvider;
 import org.bundlemaker.core.ui.artifact.tree.ArtifactTreeViewerFactory;
 import org.bundlemaker.core.ui.artifact.tree.VisibleArtifactsFilter;
-import org.bundlemaker.core.ui.editor.xref3.internal.XRefTreeArtifactLabelProvider;
-import org.bundlemaker.core.ui.editor.xref3.schrott.CreateModuleFromReferencedArtifactsAction;
-import org.bundlemaker.core.ui.editor.xref3.schrott.ExpandStrategyActionGroup;
-import org.bundlemaker.core.ui.editor.xref3.schrott.MoveReferencedArtifactsAction;
-import org.bundlemaker.core.ui.editor.xref3.schrott.TreeSelectionSnapshot;
-import org.bundlemaker.core.ui.editor.xref3.schrott.XRefViewImages;
 import org.bundlemaker.core.ui.view.dependencytree.DefaultExpandStrategy;
 import org.bundlemaker.core.ui.view.dependencytree.Helper;
 import org.eclipse.core.runtime.Assert;
@@ -40,7 +34,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -49,7 +42,6 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPartSite;
-import org.slizaa.ui.tree.SlizaaTreeFactory;
 
 /**
  * <p>
@@ -71,15 +63,17 @@ public class XRefComposite extends Composite {
   /** Label that displays details about the current selection */
   private Label                         _detailsLabel;
 
-//  /** - */
-//  private String                        _providerId;
-//
-//  /** - */
-//  private DefaultExpandStrategy         _expandStrategy;
-//
-//  private XRefTreeArtifactLabelProvider _artifactLabelProvider;
-//
-//  private SelectionHistory              _selectionHistory;
+  /** - */
+  private String                        _providerId;
+
+  /** - */
+  private DefaultExpandStrategy         _expandStrategy;
+
+  private XRefTreeArtifactLabelProvider _artifactLabelProvider;
+
+  private IWorkbenchPartSite            _site;
+
+  private SelectionHistory              _selectionHistory;
 
   /**
    * <p>
@@ -89,78 +83,78 @@ public class XRefComposite extends Composite {
    * @param parent
    * @param iWorkbenchPartSite
    */
-  public XRefComposite(Composite parent, String providerId) {
+  public XRefComposite(Composite parent, String providerId, IWorkbenchPartSite iWorkbenchPartSite) {
     super(parent, SWT.NONE);
 
     Assert.isNotNull(providerId);
 
-//    _providerId = providerId;
+    _providerId = providerId;
+    _site = iWorkbenchPartSite;
 
     init();
   }
 
-//  public void setSelectedArtifacts(List<IBundleMakerArtifact> artifacts) {
-//    if (artifacts.isEmpty()) {
-//      return;
-//    }
-//
-//    IRootArtifact rootArtifact = artifacts.get(0).getRoot();
-//
-//    // Set Tree Viewer input
-//    _fromTreeViewer.setInput(rootArtifact);
-//    _centerViewer.setInput(rootArtifact);
-//    _toTreeViewer.setInput(rootArtifact);
-//
-//    IBundleMakerArtifact[] selectedArtifacts = new IBundleMakerArtifact[artifacts.size()];
-//    for (int i = 0; i < artifacts.size(); i++) {
-//      IBundleMakerArtifact artifact = artifacts.get(i);
-//
-//      if (artifact.isInstanceOf(IRootArtifact.class)) {
-//        artifact = ((ArtifactTreeContentProvider) _centerViewer.getContentProvider()).getVirtualRoot();
-//      }
-//
-//      selectedArtifacts[i] = artifact;
-//
-//    }
-//    StructuredSelection selection = new StructuredSelection(selectedArtifacts);
-//
-//    // (Re-)Expand Tree Viewer according to User settings
-//    _expandStrategy.exandTreeViewer();
-//
-//    // Make sure selected Artifacts are visible in Center Tree Viewer
-//    _centerViewer.setSelection(selection, true);
-//
-//    _fromTreeViewer.setSelection(new StructuredSelection());
-//    _toTreeViewer.setSelection(new StructuredSelection());
-//
-//    // _fromTreeViewer.setSelection(
-//    // new StructuredSelection(((ArtifactTreeContentProvider) _fromTreeViewer.getContentProvider()).getVirtualRoot()),
-//    // true);
-//
-//    // expand at least to level two, to make sure that more than the root artifact is visible
-//    _centerViewer.expandToLevel(2);
-//    if (selectedArtifacts.length == 1) {
-//      _centerViewer.expandToLevel(selectedArtifacts[0], 1);
-//    }
-//    _centerViewer.getTree().setFocus();
-//  }
-//
-//  /*
-//   * (non-Javadoc)
-//   * 
-//   * @see org.eclipse.swt.widgets.Composite#setFocus()
-//   */
-//  @Override
-//  public boolean setFocus() {
-//    return _centerViewer.getTree().setFocus();
-//  }
-//
-////  protected IRootArtifact getVirtualRoot(TreeViewer treeViewer) {
-////    ArtifactTreeContentProvider artifactTreeContentProvider = (ArtifactTreeContentProvider) treeViewer
-////        .getContentProvider();
-////    return artifactTreeContentProvider.getVirtualRoot();
-////  }
-//
+  public void setSelectedArtifacts(List<IBundleMakerArtifact> artifacts) {
+    if (artifacts.isEmpty()) {
+      return;
+    }
+
+    IRootArtifact rootArtifact = artifacts.get(0).getRoot();
+
+    // Set Tree Viewer input
+    _fromTreeViewer.setInput(rootArtifact);
+    _centerViewer.setInput(rootArtifact);
+    _toTreeViewer.setInput(rootArtifact);
+
+    IBundleMakerArtifact[] selectedArtifacts = new IBundleMakerArtifact[artifacts.size()];
+    for (int i = 0; i < artifacts.size(); i++) {
+      IBundleMakerArtifact artifact = artifacts.get(i);
+
+      if (artifact.isInstanceOf(IRootArtifact.class)) {
+        artifact = ((ArtifactTreeContentProvider) _centerViewer.getContentProvider()).getVirtualRoot();
+      }
+
+      selectedArtifacts[i] = artifact;
+
+    }
+    StructuredSelection selection = new StructuredSelection(selectedArtifacts);
+
+    // (Re-)Expand Tree Viewer according to User settings
+    _expandStrategy.exandTreeViewer();
+
+    // Make sure selected Artifacts are visible in Center Tree Viewer
+    _centerViewer.setSelection(selection, true);
+
+    _fromTreeViewer.setSelection(new StructuredSelection());
+    _toTreeViewer.setSelection(new StructuredSelection());
+
+    // _fromTreeViewer.setSelection(
+    // new StructuredSelection(((ArtifactTreeContentProvider) _fromTreeViewer.getContentProvider()).getVirtualRoot()),
+    // true);
+
+    // expand at least to level two, to make sure that more than the root artifact is visible
+    _centerViewer.expandToLevel(2);
+    if (selectedArtifacts.length == 1) {
+      _centerViewer.expandToLevel(selectedArtifacts[0], 1);
+    }
+    _centerViewer.getTree().setFocus();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.eclipse.swt.widgets.Composite#setFocus()
+   */
+  @Override
+  public boolean setFocus() {
+    return _centerViewer.getTree().setFocus();
+  }
+
+  protected IRootArtifact getVirtualRoot(TreeViewer treeViewer) {
+    ArtifactTreeContentProvider artifactTreeContentProvider = (ArtifactTreeContentProvider) treeViewer
+        .getContentProvider();
+    return artifactTreeContentProvider.getVirtualRoot();
+  }
 
   private Composite createToolBarComposite() {
     Composite fromToolbar = new Composite(this, SWT.BORDER_SOLID);
@@ -171,7 +165,9 @@ public class XRefComposite extends Composite {
     gridData.grabExcessVerticalSpace = false;
     fromToolbar.setLayoutData(gridData);
     fromToolbar.setLayout(new GridLayout(1, false));
+
     return fromToolbar;
+
   }
 
   /**
@@ -192,84 +188,79 @@ public class XRefComposite extends Composite {
     Composite toToolBarComposite = createToolBarComposite();
 
     //
-    SashForm sashForm = new SashForm(this, SWT.HORIZONTAL);
-    GridData data = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
-    sashForm.setLayoutData(data);
+    _fromTreeViewer = ArtifactTreeViewerFactory.createDefaultArtifactTreeViewer(this);
+    _centerViewer = ArtifactTreeViewerFactory.createDefaultArtifactTreeViewer(this);
+    _toTreeViewer = ArtifactTreeViewerFactory.createDefaultArtifactTreeViewer(this);
 
-    //
-    _fromTreeViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI);
-    _centerViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI);
-    _toTreeViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI);
+    _selectionHistory = new SelectionHistory(_fromTreeViewer, _centerViewer, _toTreeViewer);
 
-//    _selectionHistory = new SelectionHistory(_fromTreeViewer, _centerViewer, _toTreeViewer);
-//
-//    _expandStrategy = new DefaultExpandStrategy();
-//    _expandStrategy.init(_fromTreeViewer, _toTreeViewer);
+    _expandStrategy = new DefaultExpandStrategy();
+    _expandStrategy.init(_fromTreeViewer, _toTreeViewer);
 
     _detailsLabel = new Label(this, SWT.NONE);
     GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, false, 3, 1);
     _detailsLabel.setLayoutData(gridData);
 
     //
-    // _fromTreeViewer.setLabelProvider(new ArtifactTreeLabelProvider());
-    // _artifactLabelProvider = new XRefTreeArtifactLabelProvider();
-    // _centerViewer.setLabelProvider(_artifactLabelProvider);
-    // _toTreeViewer.setLabelProvider(new ArtifactTreeLabelProvider());
+    _fromTreeViewer.setLabelProvider(new ArtifactTreeLabelProvider());
+    _artifactLabelProvider = new XRefTreeArtifactLabelProvider();
+    _centerViewer.setLabelProvider(_artifactLabelProvider);
+    _toTreeViewer.setLabelProvider(new ArtifactTreeLabelProvider());
 
     // add SelectionListeners
     _fromTreeViewer.addSelectionChangedListener(new FromArtifactsSelectionChangedListener());
     _centerViewer.addSelectionChangedListener(new CenterArtifactsSelectionChangedListener());
     _toTreeViewer.addSelectionChangedListener(new ToArtifactSelectionChangedListener());
 
-//    // === Context-Menu Center Viewer ===
-//    MenuManager menuMgr = new MenuManager();
-//    menuMgr.setRemoveAllWhenShown(true);
-//    menuMgr.addMenuListener(new IMenuListener() {
-//      @Override
-//      public void menuAboutToShow(IMenuManager mgr) {
-//        fillContextMenu(mgr);
-//      }
-//    });
-//    // menuMgr.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
-//    Menu menu = menuMgr.createContextMenu(_centerViewer.getControl());
-//    _centerViewer.getControl().setMenu(menu);
-//    _site.registerContextMenu(menuMgr, _centerViewer);
-//    _site.setSelectionProvider(_centerViewer);
-//
-//    // === Toolbar =====
-//    ToolBarManager mgr1 = new ToolBarManager();
-//
-//    ExpandStrategyActionGroup fromGroup = new ExpandStrategyActionGroup(_expandStrategy, false);
-//    fromGroup.fill(mgr1);
-//
-//    mgr1.createControl(fromToolBarComposite);
-//
-//    ToolBarManager mgr2 = new ToolBarManager();
-//    mgr2.add(new BackInHistoryAction(_selectionHistory));
-//    // mgr2.add(new ResetHistoryAction(_selectionHistory));
-//    mgr2.add(new ForwadInHistoryAction(_selectionHistory));
-//    mgr2.createControl(centerToolBarComposite);
-//
-//    ToolBarManager mgr3 = new ToolBarManager();
-//    ExpandStrategyActionGroup toGroup = new ExpandStrategyActionGroup(_expandStrategy, true);
-//    toGroup.fill(mgr3);
-//    mgr3.createControl(toToolBarComposite);
+    // === Context-Menu Center Viewer ===
+    MenuManager menuMgr = new MenuManager();
+    menuMgr.setRemoveAllWhenShown(true);
+    menuMgr.addMenuListener(new IMenuListener() {
+      @Override
+      public void menuAboutToShow(IMenuManager mgr) {
+        fillContextMenu(mgr);
+      }
+    });
+    // menuMgr.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
+    Menu menu = menuMgr.createContextMenu(_centerViewer.getControl());
+    _centerViewer.getControl().setMenu(menu);
+    _site.registerContextMenu(menuMgr, _centerViewer);
+    _site.setSelectionProvider(_centerViewer);
+
+    // === Toolbar =====
+    ToolBarManager mgr1 = new ToolBarManager();
+
+    ExpandStrategyActionGroup fromGroup = new ExpandStrategyActionGroup(_expandStrategy, false);
+    fromGroup.fill(mgr1);
+
+    mgr1.createControl(fromToolBarComposite);
+
+    ToolBarManager mgr2 = new ToolBarManager();
+    mgr2.add(new BackInHistoryAction(_selectionHistory));
+    // mgr2.add(new ResetHistoryAction(_selectionHistory));
+    mgr2.add(new ForwadInHistoryAction(_selectionHistory));
+    mgr2.createControl(centerToolBarComposite);
+
+    ToolBarManager mgr3 = new ToolBarManager();
+    ExpandStrategyActionGroup toGroup = new ExpandStrategyActionGroup(_expandStrategy, true);
+    toGroup.fill(mgr3);
+    mgr3.createControl(toToolBarComposite);
 
   }
 
-//  private void fillContextMenu(IMenuManager manager) {
-//
-//    manager.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
-//    CreateModuleFromReferencedArtifactsAction action = new CreateModuleFromReferencedArtifactsAction(
-//        _artifactLabelProvider.getBundleMakerArtifacts());
-//    MoveReferencedArtifactsAction moveReferencedArtifactsAction = new MoveReferencedArtifactsAction(
-//        _artifactLabelProvider.getBundleMakerArtifacts());
-//
-//    manager.add(new Separator("artifactsGroup"));
-//    manager.appendToGroup("artifactsGroup", action);
-//    manager.appendToGroup("artifactsGroup", moveReferencedArtifactsAction);
-//
-//  }
+  private void fillContextMenu(IMenuManager manager) {
+
+    manager.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+    CreateModuleFromReferencedArtifactsAction action = new CreateModuleFromReferencedArtifactsAction(
+        _artifactLabelProvider.getBundleMakerArtifacts());
+    MoveReferencedArtifactsAction moveReferencedArtifactsAction = new MoveReferencedArtifactsAction(
+        _artifactLabelProvider.getBundleMakerArtifacts());
+
+    manager.add(new Separator("artifactsGroup"));
+    manager.appendToGroup("artifactsGroup", action);
+    manager.appendToGroup("artifactsGroup", moveReferencedArtifactsAction);
+
+  }
 
   /**
    * <p>
@@ -300,73 +291,73 @@ public class XRefComposite extends Composite {
     return result;
   }
 
-//  protected void setSelectedCenterArtifacts(Collection<IBundleMakerArtifact> selectedArtifacts) {
-//
-//    // store the top item
-//    TreeItem toTreeTopItem = _toTreeViewer.getTree().getTopItem();
-//    TreeItem fromTreeTopItem = _fromTreeViewer.getTree().getTopItem();
-//
-//    //
-//    Set<IBundleMakerArtifact> fromArtifacts = new HashSet<IBundleMakerArtifact>();
-//    for (IBundleMakerArtifact artifact : selectedArtifacts) {
-//
-//      if ("<< Missing Types >>".equals(artifact.getName())) {
-//        // TODO WORKAROUND!!! BM-374
-//        Collection<IDependency> missingTypesDependencies = artifact.getRoot().getDependenciesTo(artifact);
-//        for (IDependency iDependency : missingTypesDependencies) {
-//          Collection<IDependency> coreDependencies = iDependency.getCoreDependencies();
-//          for (IDependency coreDependency : coreDependencies) {
-//            fromArtifacts.add(coreDependency.getFrom());
-//          }
-//        }
-//      } else {
-//        Collection<IDependency> fromDependencies = artifact.getDependenciesFrom();
-//        for (IDependency dep : fromDependencies) {
-//          fromArtifacts.add(dep.getFrom());
-//        }
-//      }
-//    }
-//
-//    //
-//    Set<IBundleMakerArtifact> toArtifacts = new HashSet<IBundleMakerArtifact>();
-//    for (IBundleMakerArtifact artifact : selectedArtifacts) {
-//      Collection<IDependency> toDependencies = artifact.getDependenciesTo();
-//      for (IDependency dep : toDependencies) {
-//        toArtifacts.add(dep.getTo());
-//      }
-//    }
-//
-//    //
-//    setVisibleArtifacts(_toTreeViewer, toArtifacts);
-//    setVisibleArtifacts(_fromTreeViewer, fromArtifacts);
-//
-//    _expandStrategy.exandTreeViewer();
-//
-//    // Update Details Label
-//    String detailsString = (selectedArtifacts.size() > 1 ? selectedArtifacts.size() + " Artifacts" : selectedArtifacts
-//        .iterator().next().getName());
-//    int fromSize = fromArtifacts.size();
-//    detailsString += ", Referenced By: " + fromSize + " " + (fromSize > 1 ? "Artifacts" : "Artifact");
-//    int toSize = toArtifacts.size();
-//    detailsString += ", Referencing: " + toSize + " " + (toSize > 1 ? "Artifacts" : "Artifact");
-//
-//    _detailsLabel.setText(detailsString);
-//
-//    setSelectedDependencies(null);
-//
-//    // set the top item again
-//    if (toTreeTopItem != null && !toTreeTopItem.isDisposed()) {
-//      _toTreeViewer.getTree().setTopItem(toTreeTopItem);
-//    } else if (_toTreeViewer.getTree().getItemCount() > 0) {
-//      _toTreeViewer.getTree().setTopItem(_toTreeViewer.getTree().getItem(0));
-//    }
-//
-//    if (fromTreeTopItem != null && !fromTreeTopItem.isDisposed()) {
-//      _fromTreeViewer.getTree().setTopItem(fromTreeTopItem);
-//    } else if (_fromTreeViewer.getTree().getItemCount() > 0) {
-//      _fromTreeViewer.getTree().setTopItem(_fromTreeViewer.getTree().getItem(0));
-//    }
-//  }
+  protected void setSelectedCenterArtifacts(Collection<IBundleMakerArtifact> selectedArtifacts) {
+
+    // store the top item
+    TreeItem toTreeTopItem = _toTreeViewer.getTree().getTopItem();
+    TreeItem fromTreeTopItem = _fromTreeViewer.getTree().getTopItem();
+
+    //
+    Set<IBundleMakerArtifact> fromArtifacts = new HashSet<IBundleMakerArtifact>();
+    for (IBundleMakerArtifact artifact : selectedArtifacts) {
+
+      if ("<< Missing Types >>".equals(artifact.getName())) {
+        // TODO WORKAROUND!!! BM-374
+        Collection<IDependency> missingTypesDependencies = artifact.getRoot().getDependenciesTo(artifact);
+        for (IDependency iDependency : missingTypesDependencies) {
+          Collection<IDependency> coreDependencies = iDependency.getCoreDependencies();
+          for (IDependency coreDependency : coreDependencies) {
+            fromArtifacts.add(coreDependency.getFrom());
+          }
+        }
+      } else {
+        Collection<IDependency> fromDependencies = artifact.getDependenciesFrom();
+        for (IDependency dep : fromDependencies) {
+          fromArtifacts.add(dep.getFrom());
+        }
+      }
+    }
+
+    //
+    Set<IBundleMakerArtifact> toArtifacts = new HashSet<IBundleMakerArtifact>();
+    for (IBundleMakerArtifact artifact : selectedArtifacts) {
+      Collection<IDependency> toDependencies = artifact.getDependenciesTo();
+      for (IDependency dep : toDependencies) {
+        toArtifacts.add(dep.getTo());
+      }
+    }
+
+    //
+    setVisibleArtifacts(_toTreeViewer, toArtifacts);
+    setVisibleArtifacts(_fromTreeViewer, fromArtifacts);
+
+    _expandStrategy.exandTreeViewer();
+
+    // Update Details Label
+    String detailsString = (selectedArtifacts.size() > 1 ? selectedArtifacts.size() + " Artifacts" : selectedArtifacts
+        .iterator().next().getName());
+    int fromSize = fromArtifacts.size();
+    detailsString += ", Referenced By: " + fromSize + " " + (fromSize > 1 ? "Artifacts" : "Artifact");
+    int toSize = toArtifacts.size();
+    detailsString += ", Referencing: " + toSize + " " + (toSize > 1 ? "Artifacts" : "Artifact");
+
+    _detailsLabel.setText(detailsString);
+
+    setSelectedDependencies(null);
+
+    // set the top item again
+    if (toTreeTopItem != null && !toTreeTopItem.isDisposed()) {
+      _toTreeViewer.getTree().setTopItem(toTreeTopItem);
+    } else if (_toTreeViewer.getTree().getItemCount() > 0) {
+      _toTreeViewer.getTree().setTopItem(_toTreeViewer.getTree().getItem(0));
+    }
+
+    if (fromTreeTopItem != null && !fromTreeTopItem.isDisposed()) {
+      _fromTreeViewer.getTree().setTopItem(fromTreeTopItem);
+    } else if (_fromTreeViewer.getTree().getItemCount() > 0) {
+      _fromTreeViewer.getTree().setTopItem(_fromTreeViewer.getTree().getItem(0));
+    }
+  }
 
   /**
    * <p>
@@ -696,4 +687,25 @@ public class XRefComposite extends Composite {
     _fromTreeViewer.refresh();
     _toTreeViewer.refresh();
   }
+
+  // class ResetHistoryAction extends Action implements ISelectionHistoryChangedListener {
+  // private final SelectionHistory _history;
+  //
+  // public ResetHistoryAction(SelectionHistory history) {
+  // super("Reset");
+  // _history = history;
+  //
+  // history.addSelectionHistoryChangedListener(this);
+  // }
+  //
+  // @Override
+  // public void run() {
+  // _history.reset();
+  // }
+  //
+  // @Override
+  // public void historyChanged(SelectionHistory history) {
+  // setEnabled(history.canReset());
+  // }
+  // }
 }

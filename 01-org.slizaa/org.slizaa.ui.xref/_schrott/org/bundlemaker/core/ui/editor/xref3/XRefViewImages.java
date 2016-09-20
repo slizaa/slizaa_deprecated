@@ -1,4 +1,4 @@
-package org.bundlemaker.core.ui.editor.xref3.schrott;
+package org.bundlemaker.core.ui.editor.xref3;
 
 import org.bundlemaker.core.ui.editor.xref3.internal.Activator;
 import org.eclipse.jface.resource.ImageDescriptor;

@@ -1,4 +1,4 @@
-package org.bundlemaker.core.ui.editor.xref3;
+package org.slizaa.ui.xref;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;

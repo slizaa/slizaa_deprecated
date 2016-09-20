@@ -9,7 +9,7 @@
  *     Bundlemaker project team - initial API and implementation
  ******************************************************************************/
 
-package org.bundlemaker.core.ui.editor.xref3.schrott;
+package org.bundlemaker.core.ui.editor.xref3;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.Set;
 
 import org.bundlemaker.core.analysis.IBundleMakerArtifact;
 import org.bundlemaker.core.analysis.IResourceArtifact;
-import org.bundlemaker.core.ui.operations.MoveArtifactsOperation;
+import org.bundlemaker.core.ui.operations.CreateModuleWithArtifactsOperation;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.Display;
 
@@ -25,18 +25,19 @@ import org.eclipse.swt.widgets.Display;
  * @author Nils Hartmann (nils@nilshartmann.net)
  * 
  */
-public class MoveReferencedArtifactsAction extends Action {
+public class CreateModuleFromReferencedArtifactsAction extends Action {
 
   private final Set<IBundleMakerArtifact> _referencedArtifacts;
 
-  public MoveReferencedArtifactsAction(Set<IBundleMakerArtifact> set) {
-    super("Move referenced Artifacts");
+  public CreateModuleFromReferencedArtifactsAction(Set<IBundleMakerArtifact> set) {
+    super("Create Module from referenced Artifacts");
     _referencedArtifacts = set;
     setEnabled(_referencedArtifacts != null && !_referencedArtifacts.isEmpty());
   }
 
   @Override
   public void run() {
+    System.out.println(_referencedArtifacts.size() + " referenced Artifacts");
     List<IBundleMakerArtifact> resources = new LinkedList<IBundleMakerArtifact>();
     for (IBundleMakerArtifact artifact : _referencedArtifacts) {
       if (artifact.isInstanceOf(IResourceArtifact.class)) {
@@ -44,9 +45,9 @@ public class MoveReferencedArtifactsAction extends Action {
       }
     }
 
-    MoveArtifactsOperation moveArtifactsOperation = new MoveArtifactsOperation(Display.getCurrent().getActiveShell(),
-        resources);
-    moveArtifactsOperation.run();
+    CreateModuleWithArtifactsOperation operation = new CreateModuleWithArtifactsOperation(Display.getCurrent()
+        .getActiveShell(), resources);
+    operation.run();
 
   }
 }

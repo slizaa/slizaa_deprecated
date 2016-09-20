@@ -1,4 +1,4 @@
-package org.bundlemaker.core.ui.editor.xref3.internal;
+package org.bundlemaker.core.ui.editor.xref3;
 
 import java.util.HashSet;
 import java.util.Set;

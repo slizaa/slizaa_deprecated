@@ -7,13 +7,12 @@
  * Contributors:
  *     Bundlemaker project team - initial API and implementation
  ******************************************************************************/
-package org.bundlemaker.core.ui.editor.xref3.schrott;
+package org.bundlemaker.core.ui.editor.xref3;
 
 import java.util.List;
 
 import org.bundlemaker.core.analysis.IBundleMakerArtifact;
 import org.bundlemaker.core.selection.Selection;
-import org.bundlemaker.core.ui.editor.xref3.XRefComposite;
 import org.bundlemaker.core.ui.event.selection.workbench.editor.AbstractArtifactSelectionAwareEditorPart;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
