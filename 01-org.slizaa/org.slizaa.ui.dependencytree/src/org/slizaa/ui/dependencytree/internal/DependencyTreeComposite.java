@@ -107,6 +107,16 @@ public class DependencyTreeComposite extends Composite {
     //
     _selector.setDependencies(dependencies);
 
+    // update 'from' and 'to' tree, no filtering
+    VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
+        _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
+    VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
+        _selector.getRootLeafPathNodes(NodeType.TARGET, false));
+    
+    //
+    _fromTreeViewer.collapseAll();
+    _toTreeViewer.collapseAll();
+    
     // set the root if necessary...
     if (dependencies.size() > 0) {
       HGRootNode rootNode = dependencies.toArray(new AbstractHGDependency[0])[0].getFrom().getRootNode();
@@ -121,15 +131,7 @@ public class DependencyTreeComposite extends Composite {
       _toTreeViewer.setInput(null);
     }
 
-    //
-    _fromTreeViewer.collapseAll();
-    _toTreeViewer.collapseAll();
 
-    // update 'from' and 'to' tree, no filtering
-    VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-        _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
-    VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-        _selector.getRootLeafPathNodes(NodeType.TARGET, false));
 
     //
     _fromTreeViewer.setSelection(null);
