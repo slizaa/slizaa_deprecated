@@ -2,6 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -29,17 +30,24 @@ import org.slizaa.hierarchicalgraph.DefaultDependencySource;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
- * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.DefaultDependencySource} object. <!--
- * begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.DefaultDependencySource} object.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
-public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
-    implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
-    IItemPropertySource, IItemStyledLabelProvider {
+public class DefaultDependencySourceItemProvider 
+  extends ItemProviderAdapter
+  implements
+    IEditingDomainItemProvider,
+    IStructuredItemContentProvider,
+    ITreeItemContentProvider,
+    IItemLabelProvider,
+    IItemPropertySource,
+    IItemStyledLabelProvider {
   /**
    * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public DefaultDependencySourceItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +56,8 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
 
   /**
    * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -63,7 +72,8 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
 
   /**
    * This adds a property descriptor for the Identifier feature.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   protected void addIdentifierPropertyDescriptor(Object object) {
@@ -86,8 +96,8 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
    * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
    * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -100,7 +110,8 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -113,7 +124,8 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
 
   /**
    * This returns DefaultDependencySource.gif.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -122,7 +134,8 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -132,17 +145,19 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
 
   /**
    * This returns the label text for the adapted class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public String getText(Object object) {
     return ((StyledString)getStyledText(object)).getString();
   }
-
+  
   /**
    * This returns the label styled text for the adapted class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -156,12 +171,13 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
       styledLabel.append(getString("_UI_DefaultDependencySource_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
     }
     return styledLabel;
-  }
+  }	
 
   /**
    * This handles model notifications by calling {@link #updateChildren} to update any cached
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -181,7 +197,8 @@ public class DefaultDependencySourceItemProvider extends ItemProviderAdapter
 
   /**
    * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override

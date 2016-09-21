@@ -13,68 +13,97 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.slizaa.hierarchicalgraph.HGRootNode;
+
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
- * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.HGRootNode} object.
+ * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.HGAggregatedDependency} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class HGRootNodeItemProvider extends HGNodeItemProvider {
+public class HGAggregatedDependencyItemProvider extends AbstractHGDependencyItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGRootNodeItemProvider(AdapterFactory adapterFactory) {
+  public HGAggregatedDependencyItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
   /**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		return super.getPropertyDescriptors(object);
-	}
-
-  /**
-   * This adds a property descriptor for the Name feature.
+   * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addNamePropertyDescriptor(Object object) {
+  @Override
+  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+    if (itemPropertyDescriptors == null) {
+      super.getPropertyDescriptors(object);
+
+      addCoreDependenciesPropertyDescriptor(object);
+      addAggregatedWeightPropertyDescriptor(object);
+    }
+    return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Core Dependencies feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addCoreDependenciesPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGRootNode_name_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGRootNode_name_feature", "_UI_HGRootNode_type"),
-         HierarchicalgraphPackage.Literals.HG_ROOT_NODE__NAME,
+         getString("_UI_HGAggregatedDependency_coreDependencies_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGAggregatedDependency_coreDependencies_feature", "_UI_HGAggregatedDependency_type"),
+         HierarchicalgraphPackage.Literals.HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES,
          true,
          false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         true,
+         null,
          null,
          null));
   }
 
   /**
-   * This returns HGRootNode.gif.
+   * This adds a property descriptor for the Aggregated Weight feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addAggregatedWeightPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_HGAggregatedDependency_aggregatedWeight_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGAggregatedDependency_aggregatedWeight_feature", "_UI_HGAggregatedDependency_type"),
+         HierarchicalgraphPackage.Literals.HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT,
+         false,
+         false,
+         false,
+         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This returns HGAggregatedDependency.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/HGRootNode"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/HGAggregatedDependency"));
   }
 
   /**
@@ -106,14 +135,8 @@ public class HGRootNodeItemProvider extends HGNodeItemProvider {
    */
   @Override
   public Object getStyledText(Object object) {
-    String label = ((HGRootNode)object).getName();
-    	StyledString styledLabel = new StyledString();
-    if (label == null || label.length() == 0) {
-      styledLabel.append(getString("_UI_HGRootNode_type"), StyledString.Style.QUALIFIER_STYLER); 
-    } else {
-      styledLabel.append(getString("_UI_HGRootNode_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-    }
-    return styledLabel;
+    HGAggregatedDependency hgAggregatedDependency = (HGAggregatedDependency)object;
+    return new StyledString(getString("_UI_HGAggregatedDependency_type"), StyledString.Style.QUALIFIER_STYLER).append(" ").append(Integer.toString(hgAggregatedDependency.getAggregatedWeight()));
   }	
 
   /**
@@ -127,8 +150,8 @@ public class HGRootNodeItemProvider extends HGNodeItemProvider {
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(HGRootNode.class)) {
-      case HierarchicalgraphPackage.HG_ROOT_NODE__NAME:
+    switch (notification.getFeatureID(HGAggregatedDependency.class)) {
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

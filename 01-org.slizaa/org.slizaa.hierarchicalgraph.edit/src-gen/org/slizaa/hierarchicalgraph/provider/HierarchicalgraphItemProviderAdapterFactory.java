@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.slizaa.hierarchicalgraph.util.HierarchicalgraphAdapterFactory;
 
 /**
@@ -84,12 +85,12 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
    * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.HGNode}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public Adapter createHGNodeAdapter() {
     if (hgNodeItemProvider == null) {
-      hgNodeItemProvider = new HGNodeItemProvider(this);
+      hgNodeItemProvider = new ExtendedHGNodeItemProvider(this);
     }
 
     return hgNodeItemProvider;

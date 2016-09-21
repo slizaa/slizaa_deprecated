@@ -2,16 +2,18 @@
  */
 package org.slizaa.hierarchicalgraph.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,9 +24,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-import org.slizaa.hierarchicalgraph.INodeSource;
 
 /**
  * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.HGNode} object.
@@ -32,47 +34,45 @@ import org.slizaa.hierarchicalgraph.INodeSource;
  * <!-- end-user-doc -->
  * @generated
  */
-public class HGNodeItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
+public class HGNodeItemProvider 
+  extends ItemProviderAdapter
+  implements
+    IEditingDomainItemProvider,
+    IStructuredItemContentProvider,
+    ITreeItemContentProvider,
+    IItemLabelProvider,
+    IItemPropertySource,
+    IItemStyledLabelProvider {
+  /**
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public HGNodeItemProvider(AdapterFactory adapterFactory) {
+    super(adapterFactory);
+  }
 
-	/** the AdapterFactoryItemDelegator */
-	private AdapterFactoryItemDelegator _adapterFactoryItemDelegatorInstance;
+  /**
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+    if (itemPropertyDescriptors == null) {
+      super.getPropertyDescriptors(object);
 
-	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public HGNodeItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
+      addOutgoingCoreDependenciesPropertyDescriptor(object);
+      addAccumulatedOutgoingCoreDependenciesPropertyDescriptor(object);
+      addIncomingCoreDependenciesPropertyDescriptor(object);
+      addAccumulatedIncomingCoreDependenciesPropertyDescriptor(object);
+    }
+    return itemPropertyDescriptors;
+  }
 
-		// create the composed adapter factory (based on the registry instance)
-		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-
-		// create the AdapterFactoryItemDelegator
-		_adapterFactoryItemDelegatorInstance = new AdapterFactoryItemDelegator(composedAdapterFactory);
-	}
-
-	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
-		// get the node source
-		INodeSource hgNodeSource = (INodeSource) ((HGNode) object).getNodeSource();
-
-		// return the property descriptors
-		return _adapterFactoryItemDelegatorInstance.getPropertyDescriptors(hgNodeSource);
-	}
-
-	/**
+  /**
    * This adds a property descriptor for the Outgoing Core Dependencies feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -164,11 +164,12 @@ public class HGNodeItemProvider extends ItemProviderAdapter
    * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
    * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+  @Override
+  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
       childrenFeatures.add(HierarchicalgraphPackage.Literals.HG_NODE__CHILDREN);
@@ -176,78 +177,60 @@ public class HGNodeItemProvider extends ItemProviderAdapter
     return childrenFeatures;
   }
 
-	/**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
+  @Override
+  protected EStructuralFeature getChildFeature(Object object, Object child) {
     // Check the type of the specified child object and return the proper feature to use for
     // adding (see {@link AddCommand}) it as a child.
 
     return super.getChildFeature(object, child);
   }
 
-	/**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected boolean shouldComposeCreationImage() {
+  @Override
+  protected boolean shouldComposeCreationImage() {
     return true;
   }
 
-	/**
+  /**
    * This returns the label text for the adapted class.
-   * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String getText(Object object) {
+  @Override
+  public String getText(Object object) {
     return ((StyledString)getStyledText(object)).getString();
   }
-
-	@Override
-	public Object getImage(Object object) {
-		if (object instanceof HGNode) {
-			HGNode hgNode = (HGNode) object;
-			IItemLabelProvider itemLabelProvider = hgNode.getRootNode().getExtension(IItemLabelProvider.class);
-			return itemLabelProvider.getImage(object);
-		}
-		return null;
-	}
-
-	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public Object getStyledText(Object object) {
-
-		if (object instanceof HGNode) {
-			HGNode hgNode = (HGNode) object;
-			IItemLabelProvider itemLabelProvider = hgNode.getRootNode().getExtension(IItemLabelProvider.class);
-			if (itemLabelProvider instanceof IItemStyledLabelProvider) {
-				IItemStyledLabelProvider styledLabelProvider = (IItemStyledLabelProvider) itemLabelProvider;
-				return styledLabelProvider.getStyledText(object);
-			}
-		}
-
-		return new StyledString(getString("_UI_HGNode_type"));
-	}
-
-	/**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+  
+  /**
+   * This returns the label styled text for the adapted class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void notifyChanged(Notification notification) {
+  @Override
+  public Object getStyledText(Object object) {
+    return new StyledString(getString("_UI_HGNode_type"));
+  }	
+
+  /**
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
     switch (notification.getFeatureID(HGNode.class)) {
@@ -258,14 +241,14 @@ public class HGNodeItemProvider extends ItemProviderAdapter
     super.notifyChanged(notification);
   }
 
-	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
+  /**
+   * Return the resource locator for this item provider's resources.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ResourceLocator getResourceLocator() {
     return HierarchicalgraphEditPlugin.INSTANCE;
   }
 
