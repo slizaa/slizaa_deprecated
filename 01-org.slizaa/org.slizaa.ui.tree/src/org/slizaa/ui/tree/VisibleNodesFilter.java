@@ -8,10 +8,11 @@
  * Contributors:
  *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.ui.dependencytree.internal;
+package org.slizaa.ui.tree;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 
@@ -30,7 +31,7 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
  * 
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class VisibleAnalysisModelElementsFilter extends ViewerFilter {
+public class VisibleNodesFilter extends ViewerFilter {
 
   /**
    * <p>
@@ -40,21 +41,20 @@ public class VisibleAnalysisModelElementsFilter extends ViewerFilter {
    * @param visibleArtifacts
    * @return
    */
-  public static VisibleAnalysisModelElementsFilter setVisibleArtifacts(TreeViewer treeViewer,
-      Set<HGNode> visibleArtifacts) {
+  public static VisibleNodesFilter setVisibleArtifacts(TreeViewer treeViewer, Set<HGNode> visibleNodes) {
     Assert.isNotNull(treeViewer);
 
     //
-    VisibleAnalysisModelElementsFilter result = null;
+    VisibleNodesFilter result = null;
 
     // set redraw to false
     treeViewer.getTree().setRedraw(false);
 
-    if (visibleArtifacts == null) {
+    if (visibleNodes == null) {
       treeViewer.resetFilters();
     } else {
       // set the filter
-      result = new VisibleAnalysisModelElementsFilter(visibleArtifacts);
+      result = new VisibleNodesFilter(visibleNodes);
       treeViewer.setFilters(new ViewerFilter[] { result });
     }
 
@@ -66,17 +66,17 @@ public class VisibleAnalysisModelElementsFilter extends ViewerFilter {
   }
 
   /** - */
-  private Set<HGNode> _artifacts;
+  private Collection<HGNode> _nodes;
 
   /**
    * <p>
-   * Creates a new instance of type {@link VisibleAnalysisModelElementsFilter} .
+   * Creates a new instance of type {@link VisibleNodesFilter} .
    * </p>
    * 
    * @param visibleArtifacts
    */
-  public VisibleAnalysisModelElementsFilter(Set<HGNode> visibleArtifacts) {
-    _artifacts = checkNotNull(visibleArtifacts);
+  public VisibleNodesFilter(Collection<HGNode> visibleArtifacts) {
+    _nodes = checkNotNull(visibleArtifacts);
   }
 
   /**
@@ -85,8 +85,8 @@ public class VisibleAnalysisModelElementsFilter extends ViewerFilter {
    * 
    * @return
    */
-  public Set<HGNode> getArtifacts() {
-    return Collections.unmodifiableSet(_artifacts);
+  public Collection<HGNode> getArtifacts() {
+    return Collections.unmodifiableCollection(_nodes);
   }
 
   /**
@@ -98,7 +98,7 @@ public class VisibleAnalysisModelElementsFilter extends ViewerFilter {
     //
     if (element instanceof HGRootNode) {
       return true;
-    } else if (_artifacts.contains(element)) {
+    } else if (_nodes.contains(element)) {
       return true;
     } else {
       return false;
