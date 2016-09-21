@@ -36,7 +36,7 @@
       <children xsi:type="advanced:Perspective" xmi:id="_EsvzIH6dEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.perspective.xref" label="Cross-Referencer">
         <children xsi:type="basic:PartSashContainer" xmi:id="_mqNXIH6dEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.partsashcontainer.1">
           <children xsi:type="basic:PartStack" xmi:id="_rapOAH6iEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.partstack.3" containerData="60">
-            <children xsi:type="basic:Part" xmi:id="_zdtFgH6iEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.part.xref" contributionURI="bundleclass://org.slizaa.ui.xref/org.slizaa.ui.xref.XRefPart" label="Cross-Referencer"/>
+            <children xsi:type="basic:Part" xmi:id="_zdtFgH6iEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.part.xref" contributionURI="bundleclass://org.slizaa.ui.xref/org.slizaa.ui.xref.internal.XRefPart" label="Cross-Referencer"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_mW0u0H6iEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.partstack.2" containerData="40">
             <children xsi:type="basic:Part" xmi:id="_mW0u0X6iEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.part.dependencytree2" contributionURI="bundleclass://org.slizaa.ui.dependencytree/org.slizaa.ui.dependencytree.internal.DependencyTreePart" label="Dependency Tree" iconURI="platform:/plugin/org.slizaa.ui.dependencytree/icons/dependency-tree-small.png"/>

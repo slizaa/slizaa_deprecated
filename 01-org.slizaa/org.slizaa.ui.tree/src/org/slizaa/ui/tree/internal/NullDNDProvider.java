@@ -1,4 +1,4 @@
-package org.slizaa.ui.tree;
+package org.slizaa.ui.tree.internal;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.DNDProvider;
@@ -7,7 +7,7 @@ import org.eclipse.swt.dnd.DragSourceListener;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
 
-public class DefaultDNDProvider implements DNDProvider {
+public class NullDNDProvider implements DNDProvider {
 
   @Override
   public boolean hasDND() {

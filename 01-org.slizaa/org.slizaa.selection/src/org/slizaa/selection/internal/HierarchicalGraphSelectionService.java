@@ -26,6 +26,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.selection.IHierarchicalGraphSelection;
 import org.slizaa.selection.IHierarchicalGraphSelectionListener;
 import org.slizaa.selection.IHierarchicalGraphSelectionService;
@@ -47,6 +48,8 @@ public class HierarchicalGraphSelectionService implements IHierarchicalGraphSele
 
   /** - */
   private Map<String, AbstractHierarchicalGraphSelection>           _lastDeliveredGraphSelection;
+
+  private HGRootNode                                                _hgRootNode;
 
   /**
    * <p>
@@ -70,6 +73,16 @@ public class HierarchicalGraphSelectionService implements IHierarchicalGraphSele
 
     _listener.add(checkNotNull(listener));
     _notifyListener(listener);
+  }
+
+  @Override
+  public HGRootNode getCurrentRoot() {
+    return _hgRootNode;
+  }
+
+  @Override
+  public void setCurrentRoot(HGRootNode rootNode) {
+    _hgRootNode = rootNode;
   }
 
   /**

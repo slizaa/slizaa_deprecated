@@ -1,9 +1,13 @@
-package org.slizaa.ui.tree;
+package org.slizaa.ui.tree.internal;
 
 import org.eclipse.e4.ui.workbench.IWorkbench;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecp.view.model.common.edit.provider.CustomReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.osgi.util.tracker.ServiceTracker;
+import org.slizaa.ui.tree.SlizaaTreeAction;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -20,6 +24,8 @@ public class Activator extends AbstractUIPlugin {
   private ServiceTracker<SlizaaTreeAction, SlizaaTreeAction> _slizaaTreeActionTracker;
 
   private ServiceTracker<IWorkbench, IWorkbench>             _workBenchServiceTracker;
+  
+  private ComposedAdapterFactory      _adapterFactory;
 
   /**
    * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
@@ -76,5 +82,19 @@ public class Activator extends AbstractUIPlugin {
    */
   public static Activator getDefault() {
     return plugin;
+  }
+  
+  /**
+   * Gives access to the composed adapter factory.
+   *
+   * @return the adapter factory
+   */
+  public ComposedAdapterFactory getComposedAdapterFactory() {
+    if (_adapterFactory == null) {
+      _adapterFactory = new ComposedAdapterFactory(
+          new AdapterFactory[] { new CustomReflectiveItemProviderAdapterFactory(),
+              new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE) });
+    }
+    return _adapterFactory;
   }
 }

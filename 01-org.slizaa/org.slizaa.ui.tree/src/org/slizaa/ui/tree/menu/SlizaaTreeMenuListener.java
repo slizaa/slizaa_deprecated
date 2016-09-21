@@ -22,8 +22,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.osgi.framework.FrameworkUtil;
-import org.slizaa.ui.tree.Activator;
 import org.slizaa.ui.tree.SlizaaTreeAction;
+import org.slizaa.ui.tree.internal.Activator;
 
 /**
  * {@link IMenuListener Menu listener} added on the tree master detail.

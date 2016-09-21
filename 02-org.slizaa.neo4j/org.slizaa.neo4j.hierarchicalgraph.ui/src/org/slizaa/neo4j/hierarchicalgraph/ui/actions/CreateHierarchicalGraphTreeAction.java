@@ -6,12 +6,15 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.HierarchicalGraphContextIdentifier;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
@@ -31,6 +34,9 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
 
   @Inject
   private EPartService                     _partService;
+
+  @Inject
+  private MApplication                     _mApplication;
 
   @Override
   public boolean shouldShow(EObject eObject) {
@@ -105,9 +111,15 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
         HierarchicalGraphMappingDescriptor mappingDescriptor = Descriptors2.createHierarchicalGraphMappingDescriptor();
 
         // convert the model
-        HGRootNode rootElement = _mappingService.convert(mappingDescriptor, _remoteRepository, monitor);
-        _remoteRepository.getHierarchicalGraphs().add(rootElement);
-        _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().add(rootElement);
+        HGRootNode rootNode = _mappingService.convert(mappingDescriptor, _remoteRepository, monitor);
+        _remoteRepository.getHierarchicalGraphs().add(rootNode);
+        _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().add(rootNode);
+
+        //
+        IEclipseContext eclipseContext = _mApplication.getContext();
+        eclipseContext.declareModifiable(HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE);
+        Display.getDefault()
+            .syncExec(() -> eclipseContext.set(HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE, rootNode));
 
       } catch (Exception e) {
         e.printStackTrace();

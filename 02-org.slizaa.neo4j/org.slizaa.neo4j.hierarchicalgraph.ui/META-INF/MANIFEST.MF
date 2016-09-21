@@ -11,15 +11,15 @@ Service-Component: OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.ui.actions.Dispos
  OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.ui.actions.CreateHierarchicalGraphTreeAction.xml
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.slizaa.ui.tree;bundle-version="0.0.3",
- org.slizaa.neo4j.hierarchicalgraph.mapping.service;bundle-version="0.0.3",
  org.eclipse.emf.ecore;bundle-version="2.12.0",
  org.slizaa.neo4j.hierarchicalgraph;bundle-version="0.0.3",
+ org.slizaa.neo4j.hierarchicalgraph.mapping.service;bundle-version="0.0.3",
  org.eclipse.swt;bundle-version="3.105.0",
  org.eclipse.jface;bundle-version="3.12.0",
  org.eclipse.equinox.common;bundle-version="3.8.0",
  org.slizaa.neo4j.hierarchicalgraph.mapping;bundle-version="0.0.3",
- org.slizaa.selection;bundle-version="0.0.3",
  org.eclipse.e4.ui.workbench;bundle-version="1.4.0",
  org.slizaa.neo4j.workbenchmodel;bundle-version="0.0.3",
  org.eclipse.e4.ui.model.workbench;bundle-version="1.2.0",
- org.eclipse.core.jobs;bundle-version="3.8.0"
+ org.eclipse.core.jobs;bundle-version="3.8.0",
+ org.eclipse.e4.core.contexts;bundle-version="1.5.0"

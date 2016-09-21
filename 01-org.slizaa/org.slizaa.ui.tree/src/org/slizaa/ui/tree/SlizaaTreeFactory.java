@@ -8,10 +8,15 @@ import org.eclipse.swt.events.TreeEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGNodeImpl;
+import org.slizaa.ui.tree.internal.Activator;
+import org.slizaa.ui.tree.internal.InterceptableAdapterFactoryLabelProvider;
+import org.slizaa.ui.tree.internal.NullDNDProvider;
 import org.slizaa.ui.tree.menu.SlizaaMenuProvider;
 
 public class SlizaaTreeFactory {
 
+
+  
   public static TreeViewer createTreeViewer(Composite parent, Object input) {
     return createTreeViewer(parent, input, SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI);
   }
@@ -52,92 +57,15 @@ public class SlizaaTreeFactory {
             treeViewer.setUseHashlookup(true);
             return treeViewer;
           }
-        }).customizeMenu(new SlizaaMenuProvider()).customizeDragAndDrop(new DefaultDNDProvider())
-        // .customizeContentProvider(createAdapterFactoryContentProvider())
-        .create();
+        }).customizeMenu(new SlizaaMenuProvider()).customizeDragAndDrop(new NullDNDProvider()).create();
+    
+    //
+    result.setLabelProvider(new InterceptableAdapterFactoryLabelProvider(Activator.getDefault().getComposedAdapterFactory(), result));
 
     // set the layout data
     result.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-    // set sorter
-    // TODO
-    // result.setSorter(new CustomViewerSorter());
-
-    //
-    // TODO
-    // result.addSelectionChangedListener(new ISelectionChangedListener() {
-    //
-    // @Override
-    // public void selectionChanged(SelectionChangedEvent event) {
-    //
-    // //
-    // IStructuredSelection selection = (IStructuredSelection)
-    // event.getSelection();
-    // _selectionService.setSelection(selection.size() == 1 ?
-    // selection.getFirstElement() : selection.toArray());
-    //
-    // //
-    // // MOVE TO SELECTION SERVICE!!
-    // if (selection.getFirstElement() instanceof HGNode) {
-    //
-    // // TODO MULTISELECT
-    // HGNode hgNode = (HGNode) selection.getFirstElement();
-    // if (hgNode.getNodeSource() instanceof
-    // ExtendedNeo4JBackedNodeSourceImpl) {
-    //
-    // // TODO
-    // List<?> sel = selection.toList();
-    // List<HGNode> rep = new LinkedList<>();
-    // for (Object s : sel) {
-    // if (!(s instanceof HGNode)) {
-    // return;
-    // } else {
-    // rep.add((HGNode) s);
-    // }
-    // }
-    //
-    // _hierarchicalGraphSelectionService.setCurrentNodeSelection(PART_ID,
-    // rep);
-    // }
-    // }
-    // }
-    // });
-
     // return result
     return result;
   }
-
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @return
-  // */
-  // private static IContentProvider createAdapterFactoryContentProvider() {
-  //
-  // //
-  // ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
-  // new AdapterFactory[] { new CustomReflectiveItemProviderAdapterFactory(),
-  // new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE) });
-  //
-  // AdapterFactoryContentProvider adapterFactoryContentProvider = new AdapterFactoryContentProvider(adapterFactory) {
-  //
-  // @Override
-  // public Object[] getElements(Object object) {
-  // if (RootObject.class.isInstance(object)) {
-  // return new Object[] { RootObject.class.cast(object).getRoot() };
-  // }
-  // if (EListRootObject.class.isInstance(object)) {
-  // return EListRootObject.class.cast(object).getEList().toArray();
-  // }
-  // return super.getElements(object);
-  // }
-  //
-  // @Override
-  // public boolean hasChildren(Object object) {
-  // return getChildren(object).length > 0;
-  // }
-  // };
-  // return adapterFactoryContentProvider;
-  // }
 }

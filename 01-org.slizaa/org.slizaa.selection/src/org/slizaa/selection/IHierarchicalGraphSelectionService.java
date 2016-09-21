@@ -14,9 +14,15 @@ import java.util.List;
 
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGRootNode;
 
 public interface IHierarchicalGraphSelectionService {
+  
 
+  HGRootNode getCurrentRoot();
+  
+  void setCurrentRoot(HGRootNode rootNode);
+  
   /**
    * <p>
    * </p>

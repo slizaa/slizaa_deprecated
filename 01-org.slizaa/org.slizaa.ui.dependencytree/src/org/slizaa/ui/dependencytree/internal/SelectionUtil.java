@@ -10,9 +10,6 @@
  ******************************************************************************/
 package org.slizaa.ui.dependencytree.internal;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,29 +20,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.slizaa.hierarchicalgraph.HGNode;
 
 public class SelectionUtil {
-
-  // public static List<HGNode> computeArtifactsWithParents(ISelection selection) {
-  // return computeArtifactsWithParents(toArtifactList(selection));
-  // }
-
-  public static List<HGNode> computeArtifactsWithParents(
-      Collection<HGNode> visibleArtifacts) {
-
-    // add all visible artifacts
-    List<HGNode> result = new LinkedList<>(checkNotNull(visibleArtifacts));
-
-    // add the parent nodes as well
-    for (HGNode element : visibleArtifacts) {
-      HGNode parent = element.getParent();
-      while (parent != null) {
-        result.add(parent);
-        parent = parent.getParent();
-      }
-    }
-
-    //
-    return result;
-  }
 
   /**
    * <p>
