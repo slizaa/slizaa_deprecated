@@ -5,6 +5,7 @@ package org.slizaa.hierarchicalgraph.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -71,7 +72,7 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> getCoreDependencies() {
+  public List<HGCoreDependency> getCoreDependencies() {
     // TODO: implement this method to return the 'Core Dependencies' reference list
     // Ensure that you remove @generated or mark it @generated NOT
     // The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting

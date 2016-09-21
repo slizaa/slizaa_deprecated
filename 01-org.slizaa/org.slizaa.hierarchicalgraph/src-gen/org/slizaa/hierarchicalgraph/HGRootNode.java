@@ -2,7 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>HG Root Node</b></em>'. <!-- end-user-doc -->
@@ -53,18 +53,20 @@ public interface HGRootNode extends HGNode {
   void invalidateAllCaches();
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @model modifiedNodesMany="true"
    * @generated
    */
-  void invalidateCaches(EList<HGNode> modifiedNodes);
+  void invalidateCaches(List<HGNode> modifiedNodes);
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @model modifiedNodesMany="true"
    * @generated
    */
-  void initializeCaches(EList<HGNode> modifiedNodes);
+  void initializeCaches(List<HGNode> modifiedNodes);
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->

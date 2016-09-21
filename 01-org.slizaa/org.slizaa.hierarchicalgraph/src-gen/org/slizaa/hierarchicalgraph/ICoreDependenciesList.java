@@ -2,8 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph;
 
-import org.eclipse.emf.common.util.EList;
-
+import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -37,6 +36,6 @@ public interface ICoreDependenciesList extends EObject {
    * @model transient="true" derived="true"
    * @generated
    */
-  EList<HGCoreDependency> getCoreDependencies();
+  List<HGCoreDependency> getCoreDependencies();
 
 } // ICoreDependenciesList

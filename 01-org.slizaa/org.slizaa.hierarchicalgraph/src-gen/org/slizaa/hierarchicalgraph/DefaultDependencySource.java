@@ -2,7 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph;
 
-import org.eclipse.emf.common.util.EMap;
+import java.util.Map;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +36,6 @@ public interface DefaultDependencySource extends IDependencySource {
    * @model mapType="org.slizaa.hierarchicalgraph.StringToStringMap<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>"
    * @generated
    */
-  EMap<String, String> getProperties();
+  Map<String, String> getProperties();
 
 } // DefaultDependencySource

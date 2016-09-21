@@ -2,12 +2,10 @@
  */
 package org.slizaa.hierarchicalgraph.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import java.util.concurrent.Future;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -230,7 +228,7 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public Map.Entry<HGNode, EList<HGCoreDependency>> createNodeToCoreDependenciesMap() {
+  public Map.Entry<HGNode, List<HGCoreDependency>> createNodeToCoreDependenciesMap() {
     NodeToCoreDependenciesMapImpl nodeToCoreDependenciesMap = new NodeToCoreDependenciesMapImpl();
     return nodeToCoreDependenciesMap;
   }

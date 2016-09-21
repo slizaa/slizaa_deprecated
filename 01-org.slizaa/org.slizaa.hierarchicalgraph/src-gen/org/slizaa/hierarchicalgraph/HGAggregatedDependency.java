@@ -2,7 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ public interface HGAggregatedDependency extends AbstractHGDependency {
    * @model transient="true" volatile="true" derived="true"
    * @generated
    */
-  EList<HGCoreDependency> getCoreDependencies();
+  List<HGCoreDependency> getCoreDependencies();
 
   /**
    * Returns the value of the '<em><b>Aggregated Weight</b></em>' attribute.

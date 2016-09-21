@@ -4,6 +4,7 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.BasicEMap;
@@ -37,7 +38,7 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
  *
  * @generated
  */
-public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<HGNode,EList<HGCoreDependency>> {
+public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<HGNode,List<HGCoreDependency>> {
   /**
    * The cached value of the '{@link #getTypedKey() <em>Key</em>}' reference.
    * <!-- begin-user-doc -->
@@ -120,7 +121,7 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> getTypedValue() {
+  public List<HGCoreDependency> getTypedValue() {
     if (value == null) {
       value = new EObjectResolvingEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP__VALUE);
     }
@@ -250,7 +251,7 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> getValue() {
+  public List<HGCoreDependency> getValue() {
     return getTypedValue();
   }
 
@@ -259,8 +260,8 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> setValue(EList<HGCoreDependency> value) {
-    EList<HGCoreDependency> oldValue = getValue();
+  public List<HGCoreDependency> setValue(List<HGCoreDependency> value) {
+    List<HGCoreDependency> oldValue = getValue();
     getTypedValue().clear();
     getTypedValue().addAll(value);
     return oldValue;
@@ -272,9 +273,9 @@ public class NodeToCoreDependenciesMapImpl extends MinimalEObjectImpl.Container 
    * @generated
    */
   @SuppressWarnings("unchecked")
-  public EMap<HGNode, EList<HGCoreDependency>> getEMap() {
+  public EMap<HGNode, List<HGCoreDependency>> getEMap() {
     EObject container = eContainer();
-    return container == null ? null : (EMap<HGNode, EList<HGCoreDependency>>)container.eGet(eContainmentFeature());
+    return container == null ? null : (EMap<HGNode, List<HGCoreDependency>>)container.eGet(eContainmentFeature());
   }
 
 } //NodeToCoreDependenciesMapImpl

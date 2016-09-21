@@ -2,6 +2,7 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -135,7 +136,7 @@ public class ExtendedHGNodeTrait {
    * @param nodes
    * @return
    */
-  public EList<HGAggregatedDependency> getIncomingDependenciesFrom(EList<HGNode> nodes) {
+  public List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
 
     //
     EList<HGAggregatedDependency> result = new BasicEList<HGAggregatedDependency>();
@@ -199,7 +200,7 @@ public class ExtendedHGNodeTrait {
    * @param nodes
    * @return
    */
-  public EList<HGAggregatedDependency> getOutgoingDependenciesTo(EList<HGNode> nodes) {
+  public EList<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
 
     //
     EList<HGAggregatedDependency> result = new BasicEList<>();

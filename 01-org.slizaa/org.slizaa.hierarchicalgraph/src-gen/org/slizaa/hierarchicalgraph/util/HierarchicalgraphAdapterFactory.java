@@ -2,15 +2,13 @@
  */
 package org.slizaa.hierarchicalgraph.util;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 import org.slizaa.hierarchicalgraph.*;
@@ -124,7 +122,7 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
         return createIdentifierToNodeMapAdapter();
       }
       @Override
-      public Adapter caseNodeToCoreDependenciesMap(Map.Entry<HGNode, EList<HGCoreDependency>> object) {
+      public Adapter caseNodeToCoreDependenciesMap(Map.Entry<HGNode, List<HGCoreDependency>> object) {
         return createNodeToCoreDependenciesMapAdapter();
       }
       @Override

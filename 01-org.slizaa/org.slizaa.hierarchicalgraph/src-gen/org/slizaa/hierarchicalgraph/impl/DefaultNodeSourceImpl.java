@@ -4,6 +4,7 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -179,11 +180,11 @@ public class DefaultNodeSourceImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EMap<String, String> getProperties() {
+  public Map<String, String> getProperties() {
     if (properties == null) {
       properties = new EcoreEMap<String,String>(HierarchicalgraphPackage.Literals.STRING_TO_STRING_MAP, StringToStringMapImpl.class, this, HierarchicalgraphPackage.DEFAULT_NODE_SOURCE__PROPERTIES);
     }
-    return properties;
+    return properties.map();
   }
 
   /**
@@ -235,7 +236,7 @@ public class DefaultNodeSourceImpl extends MinimalEObjectImpl.Container implemen
       case HierarchicalgraphPackage.DEFAULT_NODE_SOURCE__NODE:
         return basicSetNode(null, msgs);
       case HierarchicalgraphPackage.DEFAULT_NODE_SOURCE__PROPERTIES:
-        return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>)((EMap.InternalMapView<String, String>)getProperties()).eMap()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -269,8 +270,8 @@ public class DefaultNodeSourceImpl extends MinimalEObjectImpl.Container implemen
       case HierarchicalgraphPackage.DEFAULT_NODE_SOURCE__AUTO_EXPAND:
         return isAutoExpand();
       case HierarchicalgraphPackage.DEFAULT_NODE_SOURCE__PROPERTIES:
-        if (coreType) return getProperties();
-        else return getProperties().map();
+        if (coreType) return ((EMap.InternalMapView<String, String>)getProperties()).eMap();
+        else return getProperties();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -290,7 +291,7 @@ public class DefaultNodeSourceImpl extends MinimalEObjectImpl.Container implemen
         setNode((HGNode)newValue);
         return;
       case HierarchicalgraphPackage.DEFAULT_NODE_SOURCE__PROPERTIES:
-        ((EStructuralFeature.Setting)getProperties()).set(newValue);
+        ((EStructuralFeature.Setting)((EMap.InternalMapView<String, String>)getProperties()).eMap()).set(newValue);
         return;
     }
     super.eSet(featureID, newValue);

@@ -5,6 +5,7 @@ package org.slizaa.hierarchicalgraph.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -97,7 +98,7 @@ public class HGAggregatedCoreDependencyImpl extends HGCoreDependencyImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> getResolvedCoreDependencies() {
+  public List<HGCoreDependency> getResolvedCoreDependencies() {
     if (resolvedCoreDependencies == null) {
       resolvedCoreDependencies = new EObjectWithInverseResolvingEList<HGCoreDependency>(HGCoreDependency.class, this, HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT);
     }

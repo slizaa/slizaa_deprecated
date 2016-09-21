@@ -83,7 +83,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    * {@inheritDoc}
    */
   @Override
-  public void invalidateCaches(EList<HGNode> modifiedNodes) {
+  public void invalidateCaches(List<HGNode> modifiedNodes) {
     for (HGNode hgNode : getSelfAndParentNodes(checkNotNull(modifiedNodes))) {
       ExtendedHGNodeTrait.getTrait(hgNode).ifPresent((trait) -> trait.invalidateLocalCaches());
     }
@@ -93,7 +93,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    * {@inheritDoc}
    */
   @Override
-  public void initializeCaches(EList<HGNode> modifiedNodes) {
+  public void initializeCaches(List<HGNode> modifiedNodes) {
     for (HGNode hgNode : getSelfAndParentNodes(checkNotNull(modifiedNodes))) {
       ExtendedHGNodeTrait.getTrait(hgNode).ifPresent((trait) -> trait.initializeLocalCaches());
     }
@@ -154,7 +154,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    * {@inheritDoc}
    */
   @Override
-  public EList<HGAggregatedDependency> getIncomingDependenciesFrom(EList<HGNode> nodes) {
+  public List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
     return _trait.getIncomingDependenciesFrom(nodes);
   }
 
@@ -170,7 +170,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    * {@inheritDoc}
    */
   @Override
-  public EList<HGAggregatedDependency> getOutgoingDependenciesTo(EList<HGNode> nodes) {
+  public List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
     return _trait.getOutgoingDependenciesTo(nodes);
   }
 
@@ -206,7 +206,7 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
     return _trait;
   }
 
-  private List<HGNode> getSelfAndParentNodes(EList<HGNode> modifiedNodes) {
+  private List<HGNode> getSelfAndParentNodes(List<HGNode> modifiedNodes) {
     //
     List<HGNode> selfAndParentNodes = new ArrayList<HGNode>();
     for (HGNode hgNode : modifiedNodes) {

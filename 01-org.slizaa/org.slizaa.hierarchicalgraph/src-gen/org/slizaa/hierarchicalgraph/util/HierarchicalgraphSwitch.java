@@ -2,10 +2,8 @@
  */
 package org.slizaa.hierarchicalgraph.util;
 
+import java.util.List;
 import java.util.Map;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -156,7 +154,7 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
         return result;
       }
       case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP: {
-        @SuppressWarnings("unchecked") Map.Entry<HGNode, EList<HGCoreDependency>> nodeToCoreDependenciesMap = (Map.Entry<HGNode, EList<HGCoreDependency>>)theEObject;
+        @SuppressWarnings("unchecked") Map.Entry<HGNode, List<HGCoreDependency>> nodeToCoreDependenciesMap = (Map.Entry<HGNode, List<HGCoreDependency>>)theEObject;
         T result = caseNodeToCoreDependenciesMap(nodeToCoreDependenciesMap);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -377,7 +375,7 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseNodeToCoreDependenciesMap(Map.Entry<HGNode, EList<HGCoreDependency>> object) {
+  public T caseNodeToCoreDependenciesMap(Map.Entry<HGNode, List<HGCoreDependency>> object) {
     return null;
   }
 

@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -152,7 +153,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGNode> getChildren() {
+  public List<HGNode> getChildren() {
     if (children == null) {
       children = new EObjectContainmentWithInverseEList<HGNode>(HGNode.class, this, HierarchicalgraphPackage.HG_NODE__CHILDREN, HierarchicalgraphPackage.HG_NODE__PARENT);
     }
@@ -207,7 +208,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> getOutgoingCoreDependencies() {
+  public List<HGCoreDependency> getOutgoingCoreDependencies() {
     // TODO: implement this method to return the 'Outgoing Core Dependencies' reference list
     // Ensure that you remove @generated or mark it @generated NOT
     // The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
@@ -220,7 +221,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> getAccumulatedOutgoingCoreDependencies() {
+  public List<HGCoreDependency> getAccumulatedOutgoingCoreDependencies() {
     // TODO: implement this method to return the 'Accumulated Outgoing Core Dependencies' reference list
     // Ensure that you remove @generated or mark it @generated NOT
     // The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
@@ -233,7 +234,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> getIncomingCoreDependencies() {
+  public List<HGCoreDependency> getIncomingCoreDependencies() {
     // TODO: implement this method to return the 'Incoming Core Dependencies' reference list
     // Ensure that you remove @generated or mark it @generated NOT
     // The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
@@ -246,7 +247,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGCoreDependency> getAccumulatedIncomingCoreDependencies() {
+  public List<HGCoreDependency> getAccumulatedIncomingCoreDependencies() {
     // TODO: implement this method to return the 'Accumulated Incoming Core Dependencies' reference list
     // Ensure that you remove @generated or mark it @generated NOT
     // The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
@@ -292,7 +293,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGNode> getPredecessors() {
+  public List<HGNode> getPredecessors() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -314,7 +315,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGAggregatedDependency> getIncomingDependenciesFrom(EList<HGNode> nodes) {
+  public List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -336,7 +337,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<HGAggregatedDependency> getOutgoingDependenciesTo(EList<HGNode> targetNodes) {
+  public List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> targetNodes) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -566,12 +567,12 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
         return getPredecessors();
       case HierarchicalgraphPackage.HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__HGNODE:
         return getIncomingDependenciesFrom((HGNode)arguments.get(0));
-      case HierarchicalgraphPackage.HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__ELIST:
-        return getIncomingDependenciesFrom((EList<HGNode>)arguments.get(0));
+      case HierarchicalgraphPackage.HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__LIST:
+        return getIncomingDependenciesFrom((List<HGNode>)arguments.get(0));
       case HierarchicalgraphPackage.HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__HGNODE:
         return getOutgoingDependenciesTo((HGNode)arguments.get(0));
-      case HierarchicalgraphPackage.HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__ELIST:
-        return getOutgoingDependenciesTo((EList<HGNode>)arguments.get(0));
+      case HierarchicalgraphPackage.HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST:
+        return getOutgoingDependenciesTo((List<HGNode>)arguments.get(0));
       case HierarchicalgraphPackage.HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN:
         resolveIncomingAggregatedCoreDependencies((Boolean)arguments.get(0));
         return null;

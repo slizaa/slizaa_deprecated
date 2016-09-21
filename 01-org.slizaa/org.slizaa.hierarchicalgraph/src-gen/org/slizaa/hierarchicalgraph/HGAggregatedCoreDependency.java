@@ -2,7 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public interface HGAggregatedCoreDependency extends HGCoreDependency {
    * @model opposite="aggregatedCoreDependencyParent"
    * @generated
    */
-  EList<HGCoreDependency> getResolvedCoreDependencies();
+  List<HGCoreDependency> getResolvedCoreDependencies();
 
   /**
    * <!-- begin-user-doc -->

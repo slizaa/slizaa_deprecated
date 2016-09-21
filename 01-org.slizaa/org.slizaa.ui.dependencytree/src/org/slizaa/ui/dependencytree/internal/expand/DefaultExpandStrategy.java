@@ -15,7 +15,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
@@ -152,7 +151,7 @@ public class DefaultExpandStrategy extends AbstractExpandStrategy implements IEx
   private boolean hasUnresolvedAggregatedCoreDependencies(HGNode child, SourceOrTarget sourceOrTarget) {
 
     //
-    EList<HGCoreDependency> coreDependencies = checkNotNull(sourceOrTarget).equals(SourceOrTarget.SOURCE)
+    List<HGCoreDependency> coreDependencies = checkNotNull(sourceOrTarget).equals(SourceOrTarget.SOURCE)
         ? checkNotNull(child).getOutgoingCoreDependencies() : child.getOutgoingCoreDependencies();
 
     //

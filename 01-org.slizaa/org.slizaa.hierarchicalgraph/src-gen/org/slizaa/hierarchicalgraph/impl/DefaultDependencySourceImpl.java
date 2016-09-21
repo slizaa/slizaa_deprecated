@@ -2,6 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -154,11 +155,11 @@ public class DefaultDependencySourceImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  public EMap<String, String> getProperties() {
+  public Map<String, String> getProperties() {
     if (properties == null) {
       properties = new EcoreEMap<String,String>(HierarchicalgraphPackage.Literals.STRING_TO_STRING_MAP, StringToStringMapImpl.class, this, HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE__PROPERTIES);
     }
-    return properties;
+    return properties.map();
   }
 
   /**
@@ -188,7 +189,7 @@ public class DefaultDependencySourceImpl extends MinimalEObjectImpl.Container im
       case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE__DEPENDENCY:
         return basicSetDependency(null, msgs);
       case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE__PROPERTIES:
-        return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>)((EMap.InternalMapView<String, String>)getProperties()).eMap()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -220,8 +221,8 @@ public class DefaultDependencySourceImpl extends MinimalEObjectImpl.Container im
       case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE__DEPENDENCY:
         return getDependency();
       case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE__PROPERTIES:
-        if (coreType) return getProperties();
-        else return getProperties().map();
+        if (coreType) return ((EMap.InternalMapView<String, String>)getProperties()).eMap();
+        else return getProperties();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -241,7 +242,7 @@ public class DefaultDependencySourceImpl extends MinimalEObjectImpl.Container im
         setDependency((HGCoreDependency)newValue);
         return;
       case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE__PROPERTIES:
-        ((EStructuralFeature.Setting)getProperties()).set(newValue);
+        ((EStructuralFeature.Setting)((EMap.InternalMapView<String, String>)getProperties()).eMap()).set(newValue);
         return;
     }
     super.eSet(featureID, newValue);
