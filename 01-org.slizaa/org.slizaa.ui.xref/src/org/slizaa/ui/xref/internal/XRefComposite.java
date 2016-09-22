@@ -29,7 +29,8 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.hierarchicalgraph.HierarchicalGraphContextIdentifier;
+import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 import org.slizaa.ui.tree.IInterceptableLabelProvider;
 import org.slizaa.ui.tree.SlizaaTreeFactory;
 import org.slizaa.ui.tree.VisibleNodesFilter;
@@ -219,9 +220,8 @@ public class XRefComposite extends Composite {
           XRefComposite.this.setCursor(cursor);
 
           //
-          _eclipseContext.declareModifiable(HierarchicalGraphContextIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION);
-          Display.getDefault().syncExec(() -> _eclipseContext
-              .set(HierarchicalGraphContextIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies));
+          ContextHelper.setValueInContext(_eclipseContext,
+              HierarchicalGraphContextIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
 
         } finally {
           XRefComposite.this.setCursor(null);

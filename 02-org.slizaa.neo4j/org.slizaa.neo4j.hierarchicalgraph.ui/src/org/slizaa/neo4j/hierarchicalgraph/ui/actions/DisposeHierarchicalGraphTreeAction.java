@@ -8,9 +8,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.hierarchicalgraph.HierarchicalGraphContextIdentifier;
 import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
+import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 import org.slizaa.ui.tree.SlizaaTreeAction;
 
 @Component
@@ -59,10 +60,8 @@ public class DisposeHierarchicalGraphTreeAction implements SlizaaTreeAction {
     }
 
     //
-    IEclipseContext eclipseContext = _mApplication.getContext();
-    eclipseContext.declareModifiable(HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE);
-    Display.getDefault()
-        .syncExec(() -> eclipseContext.set(HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE, null));
+    ContextHelper.setValueInContext(_mApplication.getContext(), HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE,
+        null);
   }
 
   /**

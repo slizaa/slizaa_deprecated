@@ -28,9 +28,10 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.HierarchicalGraphContextIdentifier;
 import org.slizaa.neo4j.workbenchmodel.MappedGraphs;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
+import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 import org.slizaa.ui.tree.SlizaaTreeFactory;
 
 public class HierarchicalGraphViewPart {
@@ -103,10 +104,8 @@ public class HierarchicalGraphViewPart {
         }
 
         //
-        IEclipseContext eclipseContext = _mApplication.getContext();
-        eclipseContext.declareModifiable(HierarchicalGraphContextIdentifier.CURRENT_MAIN_NODE_SELECTION);
-        Display.getDefault()
-            .syncExec(() -> eclipseContext.set(HierarchicalGraphContextIdentifier.CURRENT_MAIN_NODE_SELECTION, rep));
+        ContextHelper.setValueInContext(_mApplication.getContext(),
+            HierarchicalGraphContextIdentifier.CURRENT_MAIN_NODE_SELECTION, rep);
       }
     });
 

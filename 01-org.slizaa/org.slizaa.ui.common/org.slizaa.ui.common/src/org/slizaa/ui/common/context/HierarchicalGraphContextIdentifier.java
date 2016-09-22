@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph;
+package org.slizaa.ui.common.context;
 
 public interface HierarchicalGraphContextIdentifier {
 

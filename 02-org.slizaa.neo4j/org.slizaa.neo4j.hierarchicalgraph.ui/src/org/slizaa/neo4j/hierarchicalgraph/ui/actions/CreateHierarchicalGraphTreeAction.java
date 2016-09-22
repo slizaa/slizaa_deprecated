@@ -14,13 +14,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.hierarchicalgraph.HierarchicalGraphContextIdentifier;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart;
 import org.slizaa.neo4j.hierarchicalgraph.ui.deprecated.Descriptors2;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
+import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 import org.slizaa.ui.tree.SlizaaTreeAction;
 
 @Component
@@ -116,10 +117,8 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
         _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().add(rootNode);
 
         //
-        IEclipseContext eclipseContext = _mApplication.getContext();
-        eclipseContext.declareModifiable(HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE);
-        Display.getDefault()
-            .syncExec(() -> eclipseContext.set(HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE, rootNode));
+        ContextHelper.setValueInContext(_mApplication.getContext(), HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE,
+            rootNode);
 
       } catch (Exception e) {
         e.printStackTrace();
