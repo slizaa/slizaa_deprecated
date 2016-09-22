@@ -1,16 +1,8 @@
 package org.slizaa.ui.klighd;
 
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.e4.core.contexts.ContextInjectionFactory;
-import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.elk.graph.KNode;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
@@ -22,17 +14,13 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.internal.PartSite;
 import org.eclipse.ui.progress.UIJob;
 import org.eclipse.ui.statushandlers.StatusManager;
-import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 import org.slizaa.ui.klighd.nullmodel.NullModel;
 
 import de.cau.cs.kieler.klighd.KlighdPlugin;
 import de.cau.cs.kieler.klighd.LightDiagramServices;
 import de.cau.cs.kieler.klighd.ViewContext;
-import de.cau.cs.kieler.klighd.ui.DiagramViewManager;
 import de.cau.cs.kieler.klighd.ui.parts.DiagramViewPart;
 import de.cau.cs.kieler.klighd.ui.view.KlighdViewPlugin;
 import de.cau.cs.kieler.klighd.ui.view.model.ErrorModel;
@@ -49,8 +37,6 @@ public class SlizaaDiagramViewPart extends DiagramViewPart {
   private static final String           UPDATE_JOB               = "Updating Diagram";
 
   private static final String           UPDATE_DIAGRAM_EXCEPTION = "Displaying diagram failed!";
-
-  private static final String           DIAGRAM_IS_NULL          = "Diagram is null or empty. Inernal KLighD error.";
 
   // -- Icons --
   /** The icon for refreshing view content. */
@@ -111,34 +97,11 @@ public class SlizaaDiagramViewPart extends DiagramViewPart {
     layoutAction.setImageDescriptor(ARRANGE_ICON);
   }
 
-  @Inject
-  public void initSelection(
-      @Optional @Named(HierarchicalGraphContextIdentifier.CURRENT_MAIN_NODE_SELECTION) List<HGNode> selectedNodes) {
-    System.out.println("HURRAY");
-    System.out.println(selectedNodes);
-    
-    // TODO selectedNodes
-    
-    // Start update job
-    new UIJob(UPDATE_JOB) {
-
-      @Override
-      public IStatus runInUIThread(final IProgressMonitor monitor) {
-        DiagramViewManager.updateView("org.slizaa.ui.klighd.SlizaaDiagramViewPart", null, selectedNodes, null);
-        return Status.OK_STATUS;
-      }
-    }.schedule();
-  }
-
   @Override
   public void init(IViewSite site) throws PartInitException {
     super.init(site);
 
     //
-
-    IEclipseContext context = ((PartSite) site.getPart().getSite()).getContext();
-    ContextInjectionFactory.inject(this, context.getParent());
-
     _partListener.activate();
   }
 

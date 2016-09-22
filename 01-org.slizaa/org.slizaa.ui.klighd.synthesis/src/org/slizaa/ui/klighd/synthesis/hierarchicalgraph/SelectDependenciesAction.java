@@ -3,8 +3,12 @@ package org.slizaa.ui.klighd.synthesis.hierarchicalgraph;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.elk.graph.KGraphElement;
+import org.eclipse.ui.internal.PartSite;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 
 import de.cau.cs.kieler.klighd.IAction;
 
@@ -30,8 +34,13 @@ public class SelectDependenciesAction implements IAction {
         if (dependency != null) {
           dependencies.add(dependency);
         }
-        Activator.getDefault().getHierarchicalGraphSelectionService().setCurrentDependencySelection("TODO",
-            dependencies);
+
+        // fetch the perspective context
+        IEclipseContext eclipseContext = ((PartSite) context.getViewContext().getDiagramWorkbenchPart().getSite())
+            .getContext().getParent();
+
+        ContextHelper.setValueInContext(eclipseContext,
+            HierarchicalGraphContextIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
       }
     }
 

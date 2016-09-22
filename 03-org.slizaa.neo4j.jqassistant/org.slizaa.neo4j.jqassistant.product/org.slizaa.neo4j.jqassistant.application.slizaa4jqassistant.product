@@ -202,7 +202,6 @@
       <plugin id="org.slizaa.neo4j.jqassistant.application"/>
       <plugin id="org.slizaa.neo4j.workbenchmodel"/>
       <plugin id="org.slizaa.neo4j.workbenchmodel.edit"/>
-      <plugin id="org.slizaa.selection"/>
       <plugin id="org.slizaa.ui.dependencytable"/>
       <plugin id="org.slizaa.ui.dependencytree"/>
       <plugin id="org.slizaa.ui.dsm"/>

@@ -107,13 +107,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.slizaa.selection"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.slizaa.ui.dependencytable"
          download-size="0"
          install-size="0"

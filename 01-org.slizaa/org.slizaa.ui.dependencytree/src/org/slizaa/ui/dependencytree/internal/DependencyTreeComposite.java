@@ -12,6 +12,7 @@ package org.slizaa.ui.dependencytree.internal;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
@@ -201,7 +202,7 @@ public class DependencyTreeComposite extends Composite {
    * @param selectedDetailDependencies
    */
   private void setSelectedDetailDependencies(Collection<HGCoreDependency> dependencies) {
-    ContextHelper.setValueInContext(_eclipseContext, HierarchicalGraphContextIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION, dependencies);
+    ContextHelper.setValueInContext(_eclipseContext, HierarchicalGraphContextIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION, new ArrayList<>(dependencies));
   }
 
   /**

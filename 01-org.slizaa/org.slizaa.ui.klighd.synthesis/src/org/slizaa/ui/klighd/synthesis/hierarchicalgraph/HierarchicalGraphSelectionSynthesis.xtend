@@ -21,9 +21,9 @@ import org.eclipse.swt.SWT
 import org.eclipse.swt.graphics.Image
 import org.eclipse.swt.widgets.Display
 import org.slizaa.hierarchicalgraph.HGNode
-import org.slizaa.selection.INodeSelection
+import java.util.List
 
-class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INodeSelection> {
+class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<List<HGNode>> {
 
 	@Inject extension KNodeExtensions
 	@Inject extension KEdgeExtensions
@@ -34,7 +34,7 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INode
 	
 	val float LINE_WIDTH = 1.5f;
 
-	override KNode transform(INodeSelection nodeSelection) {
+	override KNode transform(List<HGNode> nodeSelection) {
 		val rootNode = nodeSelection.createNode().associateWith(nodeSelection);
 
 		//
@@ -45,16 +45,16 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<INode
 		// nice one!
 		rootNode.addLayoutParam(LayeredOptions::FEEDBACK_EDGES, false);
 		rootNode.addLayoutParam(LayeredOptions::NODE_PLACEMENT_STRATEGY, NodePlacementStrategy.BRANDES_KOEPF);
-		rootNode.children += nodeSelection.getSelectedNodes().map [
+		rootNode.children += nodeSelection.map [
 			val child = (it as HGNode).translateNode;
 			return child;
 		];
 
 		//
-		for (sourceElement : nodeSelection.getSelectedNodes()) {
+		for (sourceElement : nodeSelection) {
 
 			// set the ypos to influence the order: sourceElement.node.getData(KShapeLayout).ypos = virtualY;
-			for (targetElement : nodeSelection.getSelectedNodes()) {
+			for (targetElement : nodeSelection) {
 
 				if (sourceElement != targetElement) {
 
