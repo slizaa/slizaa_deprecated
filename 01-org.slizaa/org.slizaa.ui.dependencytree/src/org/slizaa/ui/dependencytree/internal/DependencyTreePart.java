@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -26,19 +27,18 @@ import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.util.HierarchicalGraphUtils;
-import org.slizaa.selection.IHierarchicalGraphSelectionService;
 import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 
 public class DependencyTreePart {
 
   /** - */
-  public static final String                 ID = DependencyTreePart.class.getName();
+  public static final String              ID = DependencyTreePart.class.getName();
 
   /** - */
-  private CropableDependencyTreeComposite    _composite;
+  private CropableDependencyTreeComposite _composite;
 
   @Inject
-  private IHierarchicalGraphSelectionService _selectionService;
+  private MPerspective                    _mPerspective;
 
   @PostConstruct
   public void createComposite(Composite parent) {
@@ -50,7 +50,7 @@ public class DependencyTreePart {
     parent.setLayout(layout);
 
     //
-    _composite = new CropableDependencyTreeComposite(parent, ID, false, true, _selectionService);
+    _composite = new CropableDependencyTreeComposite(parent, ID, false, true, _mPerspective.getContext());
     _composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
   }
 
@@ -63,7 +63,7 @@ public class DependencyTreePart {
     Set<HGCoreDependency> coreDependencies = dependencies != null
         ? HierarchicalGraphUtils.getCoreDependencies(dependencies) : Collections.emptySet();
 
-    if (_composite != null) {
+    if (_composite != null  && !_composite.isDisposed()) {
       _composite.setDependencies(coreDependencies);
     }
   }

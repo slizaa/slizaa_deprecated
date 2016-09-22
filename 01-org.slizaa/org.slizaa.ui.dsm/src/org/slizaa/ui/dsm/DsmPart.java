@@ -192,7 +192,7 @@ public class DsmPart {
 
     _selectedNodes = selectedNodes;
 
-    if (_viewWidget != null && _detailComposite != null) {
+    if (_viewWidget != null && _detailComposite != null && !_viewWidget.isDisposed()) {
 
       if (selectedNodes != null && !selectedNodes.isEmpty()) {
         _dsmContentProvider = new DefaultAnalysisModelElementDsmContentProvider(selectedNodes);
@@ -206,7 +206,7 @@ public class DsmPart {
       //
       _viewWidget.setModel(_dsmContentProvider);
 
-      // clear the dependency selection
+        // clear the dependency selection
       resetDependencySelection();
 
       setDefaultDependencyDescription();

@@ -10,12 +10,17 @@
  ******************************************************************************/
 package org.slizaa.ui.dependencytree.internal;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -33,7 +38,6 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Widget;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.SourceOrTarget;
-import org.slizaa.selection.IHierarchicalGraphSelectionService;
 import org.slizaa.ui.dependencytree.internal.expand.DefaultExpandStrategy;
 import org.slizaa.ui.dependencytree.internal.expand.IExpandStrategy;
 
@@ -58,7 +62,7 @@ public class CropableDependencyTreeComposite extends Composite {
   private int                                _currentPosition = -1;
 
   /** - */
-  private List<Collection<HGCoreDependency>>      _dependencySelectionList;
+  private List<Collection<HGCoreDependency>> _dependencySelectionList;
 
   /** - */
   private String                             _detailDependencyProviderId;
@@ -69,7 +73,8 @@ public class CropableDependencyTreeComposite extends Composite {
   /** - */
   private IExpandStrategy                    _toExpandStrategy;
 
-  private IHierarchicalGraphSelectionService _selectionService;
+  /** - */
+  private IEclipseContext                    _eclipseContext;
 
   /**
    * <p>
@@ -79,11 +84,12 @@ public class CropableDependencyTreeComposite extends Composite {
    * @param parent
    */
   public CropableDependencyTreeComposite(Composite parent, String detailDependencyProviderId, boolean showReferences,
-      final boolean propagateSelectedDetailDependencies, IHierarchicalGraphSelectionService selectionService) {
+      final boolean propagateSelectedDetailDependencies, IEclipseContext context) {
     super(parent, SWT.NONE);
 
     //
     Assert.isNotNull(detailDependencyProviderId);
+    _eclipseContext = checkNotNull(context);
 
     //
     _detailDependencyProviderId = detailDependencyProviderId;
@@ -94,12 +100,9 @@ public class CropableDependencyTreeComposite extends Composite {
     _toExpandStrategy = new DefaultExpandStrategy(SourceOrTarget.TARGET);
 
     //
-    _selectionService = selectionService;
-
-    //
     GridLayout gridLayout = new GridLayout();
-    gridLayout.marginHeight=0;
-    gridLayout.marginWidth=0;
+    gridLayout.marginHeight = 0;
+    gridLayout.marginWidth = 0;
     this.setLayout(gridLayout);
 
     //
@@ -107,7 +110,7 @@ public class CropableDependencyTreeComposite extends Composite {
 
     // the dependency tree composite
     _dependencyTreeComposite = new DependencyTreeComposite(this, _detailDependencyProviderId, _fromExpandStrategy,
-        _toExpandStrategy, showReferences, _selectionService) {
+        _toExpandStrategy, showReferences, _eclipseContext) {
 
       @Override
       protected boolean propagateSelectedDetailDependencies() {
@@ -118,18 +121,18 @@ public class CropableDependencyTreeComposite extends Composite {
     createCropButtons(toolbar);
     new ToolItem(toolbar, SWT.SEPARATOR);
 
-//    _dependencySelectionListener = new IDependencySelectionListener() {
-//      @Override
-//      public void dependencySelectionChanged(IDependencySelectionChangedEvent event) {
-//        if (event.getProviderId().equals(DependencyTreePart.ID)) {
-//          enableButtons();
-//        }
-//      }
-//    };
-//
-//    //
-//    Selection.instance().getDependencySelectionService()
-//        .addDependencySelectionListener(Selection.DETAIL_DEPENDENCY_SELECTION_ID, _dependencySelectionListener);
+    // _dependencySelectionListener = new IDependencySelectionListener() {
+    // @Override
+    // public void dependencySelectionChanged(IDependencySelectionChangedEvent event) {
+    // if (event.getProviderId().equals(DependencyTreePart.ID)) {
+    // enableButtons();
+    // }
+    // }
+    // };
+    //
+    // //
+    // Selection.instance().getDependencySelectionService()
+    // .addDependencySelectionListener(Selection.DETAIL_DEPENDENCY_SELECTION_ID, _dependencySelectionListener);
   }
 
   // /**
@@ -396,9 +399,9 @@ public class CropableDependencyTreeComposite extends Composite {
   @Override
   public void dispose() {
 
-//    // dispose
-//    Selection.instance().getDependencySelectionService()
-//        .removeDependencySelectionListener(_dependencySelectionListener);
+    // // dispose
+    // Selection.instance().getDependencySelectionService()
+    // .removeDependencySelectionListener(_dependencySelectionListener);
 
     //
     super.dispose();

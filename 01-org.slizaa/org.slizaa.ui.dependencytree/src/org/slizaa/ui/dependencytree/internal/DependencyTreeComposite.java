@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.RootObject;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -35,7 +36,8 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.algorithms.selection.DefaultDependencySelector;
 import org.slizaa.hierarchicalgraph.algorithms.selection.IDependencySelector;
 import org.slizaa.hierarchicalgraph.algorithms.selection.IDependencySelector.NodeType;
-import org.slizaa.selection.IHierarchicalGraphSelectionService;
+import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 import org.slizaa.ui.dependencytree.internal.expand.IExpandStrategy;
 import org.slizaa.ui.tree.SlizaaTreeFactory;
 import org.slizaa.ui.tree.VisibleNodesFilter;
@@ -73,7 +75,7 @@ public class DependencyTreeComposite extends Composite {
   private boolean                            _showReferenceCount;
 
   /** - */
-  private IHierarchicalGraphSelectionService _selectionService;
+  private IEclipseContext                    _eclipseContext;
 
   /**
    * <p>
@@ -84,14 +86,14 @@ public class DependencyTreeComposite extends Composite {
    */
   public DependencyTreeComposite(Composite parent, String providerId, IExpandStrategy fromExpandStrategy,
       IExpandStrategy toExpandStrategy, boolean showReferenceCount,
-      IHierarchicalGraphSelectionService selectionService) {
+      IEclipseContext eclipseContext) {
     super(parent, SWT.NONE);
 
     // _providerId = checkNotNull(providerId);
     _fromExpandStrategy = checkNotNull(fromExpandStrategy);
     _toExpandStrategy = checkNotNull(toExpandStrategy);
     _showReferenceCount = showReferenceCount;
-    _selectionService = selectionService;
+    _eclipseContext = eclipseContext;
     _selector = new DefaultDependencySelector();
 
     init();
@@ -109,15 +111,13 @@ public class DependencyTreeComposite extends Composite {
     _selector.setDependencies(dependencies);
 
     // update 'from' and 'to' tree, no filtering
-    VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer,
-        _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
-    VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer,
-        _selector.getRootLeafPathNodes(NodeType.TARGET, false));
-    
+    VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
+    VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getRootLeafPathNodes(NodeType.TARGET, false));
+
     //
     _fromTreeViewer.collapseAll();
     _toTreeViewer.collapseAll();
-    
+
     // set the root if necessary...
     if (dependencies.size() > 0) {
       HGRootNode rootNode = dependencies.toArray(new AbstractHGDependency[0])[0].getFrom().getRootNode();
@@ -131,8 +131,6 @@ public class DependencyTreeComposite extends Composite {
       _fromTreeViewer.setInput(null);
       _toTreeViewer.setInput(null);
     }
-
-
 
     //
     _fromTreeViewer.setSelection(null);
@@ -203,12 +201,7 @@ public class DependencyTreeComposite extends Composite {
    * @param selectedDetailDependencies
    */
   private void setSelectedDetailDependencies(Collection<HGCoreDependency> dependencies) {
-
-    //
-    if (propagateSelectedDetailDependencies() && !dependencies.isEmpty()) {
-      _selectionService.setCurrentDependencySelection(DependencyTreePart.ID,
-          dependencies.toArray(new HGCoreDependency[0]));
-    }
+    ContextHelper.setValueInContext(_eclipseContext, HierarchicalGraphContextIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION, dependencies);
   }
 
   /**
@@ -257,8 +250,7 @@ public class DependencyTreeComposite extends Composite {
 
         //
         _selector.setSelectedNodes(NodeType.SOURCE, SelectionUtil.toArtifactList(structuredSelection));
-        VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer,
-            _selector.getRootLeafPathNodes(NodeType.TARGET, true));
+        VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getRootLeafPathNodes(NodeType.TARGET, true));
         setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         //
@@ -272,8 +264,7 @@ public class DependencyTreeComposite extends Composite {
         }
 
       } else {
-        VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer,
-            _selector.getRootLeafPathNodes(NodeType.TARGET, false));
+        VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getRootLeafPathNodes(NodeType.TARGET, false));
         setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
     }
@@ -318,8 +309,7 @@ public class DependencyTreeComposite extends Composite {
 
         //
         _selector.setSelectedNodes(NodeType.TARGET, SelectionUtil.toArtifactList(structuredSelection));
-        VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer,
-            _selector.getRootLeafPathNodes(NodeType.SOURCE, true));
+        VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getRootLeafPathNodes(NodeType.SOURCE, true));
         setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         //
@@ -332,8 +322,7 @@ public class DependencyTreeComposite extends Composite {
           //
         }
       } else {
-        VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer,
-            _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
+        VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
         setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
     }

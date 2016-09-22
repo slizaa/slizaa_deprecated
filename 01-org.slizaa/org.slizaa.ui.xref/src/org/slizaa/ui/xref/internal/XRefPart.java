@@ -11,6 +11,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 
 /**
  * <p>
@@ -53,14 +54,14 @@ public class XRefPart {
 
   @Inject
   public void handleChangedDependencies(@Optional
-  @Named("slizaa.current_rootnode")
+  @Named(HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE)
   final HGRootNode rootNode) {
 
     // store the root node
     _rootNode = rootNode;
 
     // immediately set if composite is already created
-    if (_composite != null) {
+    if (_composite != null && !_composite.isDisposed()) {
       _composite.setRootNode(_rootNode);
     }
   }
