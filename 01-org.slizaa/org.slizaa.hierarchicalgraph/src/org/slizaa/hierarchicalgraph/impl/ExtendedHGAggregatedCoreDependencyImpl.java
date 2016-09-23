@@ -1,5 +1,8 @@
 package org.slizaa.hierarchicalgraph.impl;
 
+import static java.util.Arrays.asList;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.removeDependency;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -69,9 +72,14 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
     //
     IAggregatedCoreDependencyResolver resolver = getFrom().getRootNode()
         .getExtension(IAggregatedCoreDependencyResolver.class);
-    
+
     if (resolver != null) {
       result = resolver.resolveAggregatedDependency(this);
+      
+      //
+      if (result == null) {
+        removeDependency(this, true);
+      }
     }
     setResolved(true);
 

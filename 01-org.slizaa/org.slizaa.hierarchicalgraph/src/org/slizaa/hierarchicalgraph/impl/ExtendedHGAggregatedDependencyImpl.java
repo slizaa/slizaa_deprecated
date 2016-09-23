@@ -1,6 +1,10 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -18,6 +22,18 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyImpl {
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param keyExtractor
+   * @return
+   */
+  public static <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor) {
+    Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+    return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
+  }
 
   /** - */
   private boolean                 initialized = false;
@@ -69,11 +85,16 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
       ECollections.setEList(coreDependencies, prototypeList);
 
       // compute the aggregated weight
-      int newAggregatedWeight = prototypeList.stream()
-          .filter(ExtendedHierarchicalGraphHelper.FILTER_REMOVE_CORE_DEPENDENCIES_FROM_AGGREGATED_CORE_DEPENDENCIES)
+      int weightOfSimpleDependencies = prototypeList.stream()
+          .filter((dep) -> (dep.getAggregatedCoreDependencyParent() == null)).mapToInt(coreDep -> coreDep.getWeight())
+          .sum();
+
+      // weightOfResovedCoreDependencies
+      int weightOfResovedCoreDependencies = prototypeList.stream().filter((dep) -> (dep.getAggregatedCoreDependencyParent() != null))
+          .map(coreDep -> coreDep.getAggregatedCoreDependencyParent()).distinct()
           .mapToInt(coreDep -> coreDep.getWeight()).sum();
 
-      setNewAggregatedWeight(newAggregatedWeight);
+      setNewAggregatedWeight(weightOfSimpleDependencies + weightOfResovedCoreDependencies);
     });
 
     //

@@ -348,7 +348,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void resolveIncomingAggregatedCoreDependencies(boolean includeChildren) {
+  public void resolveIncomingAggregatedCoreDependencies() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -359,7 +359,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void resolveOutgoingAggregatedCoreDependencies(boolean includeChildren) {
+  public void resolveOutgoingAggregatedCoreDependencies() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -573,11 +573,11 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
         return getOutgoingDependenciesTo((HGNode)arguments.get(0));
       case HierarchicalgraphPackage.HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST:
         return getOutgoingDependenciesTo((List<HGNode>)arguments.get(0));
-      case HierarchicalgraphPackage.HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN:
-        resolveIncomingAggregatedCoreDependencies((Boolean)arguments.get(0));
+      case HierarchicalgraphPackage.HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES:
+        resolveIncomingAggregatedCoreDependencies();
         return null;
-      case HierarchicalgraphPackage.HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN:
-        resolveOutgoingAggregatedCoreDependencies((Boolean)arguments.get(0));
+      case HierarchicalgraphPackage.HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES:
+        resolveOutgoingAggregatedCoreDependencies();
         return null;
     }
     return super.eInvoke(operationID, arguments);

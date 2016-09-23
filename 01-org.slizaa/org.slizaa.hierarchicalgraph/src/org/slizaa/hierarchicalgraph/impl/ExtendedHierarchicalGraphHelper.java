@@ -1,15 +1,15 @@
 package org.slizaa.hierarchicalgraph.impl;
 
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.removeDependency;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import java.util.function.Predicate;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 
@@ -20,12 +20,6 @@ import org.slizaa.hierarchicalgraph.HGNode;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class ExtendedHierarchicalGraphHelper {
-
-  /** - */
-  public static final Predicate<HGCoreDependency> FILTER_REMOVE_CORE_DEPENDENCIES_FROM_AGGREGATED_CORE_DEPENDENCIES = (
-      dep) -> {
-    return (dep instanceof HGAggregatedCoreDependency || dep.getAggregatedCoreDependencyParent() == null);
-  };
 
   /**
    * <p>
@@ -70,9 +64,10 @@ public class ExtendedHierarchicalGraphHelper {
 
     //
     EList<HGNode> nodesToInvalidate = new BasicEList<HGNode>();
-    for (HGCoreDependency hgCoreDependency : coreDependencies) {
-      nodesToInvalidate.add(hgCoreDependency.getFrom());
-      nodesToInvalidate.add(hgCoreDependency.getTo());
+    for (HGCoreDependency coreDependency : coreDependencies) {
+      if (coreDependency instanceof ExtendedHGAggregatedCoreDependencyImpl) {
+        removeDependency(coreDependency, true);
+      }
     }
 
     //

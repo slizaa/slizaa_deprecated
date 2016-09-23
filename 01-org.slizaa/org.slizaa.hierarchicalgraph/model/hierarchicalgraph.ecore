@@ -33,12 +33,8 @@
       </eAnnotations>
       <eParameters name="targetNodes" upperBound="-1" eType="#//HGNode"/>
     </eOperations>
-    <eOperations name="resolveIncomingAggregatedCoreDependencies">
-      <eParameters name="includeChildren" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eOperations>
-    <eOperations name="resolveOutgoingAggregatedCoreDependencies">
-      <eParameters name="includeChildren" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eOperations>
+    <eOperations name="resolveIncomingAggregatedCoreDependencies"/>
+    <eOperations name="resolveOutgoingAggregatedCoreDependencies"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rootNode" eType="#//HGRootNode"
         changeable="false" transient="true" derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//HGNode"
@@ -179,9 +175,10 @@
     <eLiterals name="SOURCE"/>
     <eLiterals name="TARGET"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ICoreDependenciesList" abstract="true"
-      interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="DependenciesSelection">
     <eStructuralFeatures xsi:type="ecore:EReference" name="coreDependencies" upperBound="-1"
         eType="#//HGCoreDependency" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
+        eType="#//AbstractHGDependency" transient="true" derived="true"/>
   </eClassifiers>
 </ecore:EPackage>

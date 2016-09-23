@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph.simple;
+package org.slizaa.hierarchicalgraph.simple.resolvedeps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -10,6 +10,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.simple.AbstractSimpleModelTest;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
@@ -18,7 +19,7 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class ResolveAggregatedCoreDependencies_Test extends AbstractSimpleModelTest {
+public class CallResolver_Test extends AbstractSimpleModelTest {
 
   /** - */
   private IAggregatedCoreDependencyResolver _resolver;

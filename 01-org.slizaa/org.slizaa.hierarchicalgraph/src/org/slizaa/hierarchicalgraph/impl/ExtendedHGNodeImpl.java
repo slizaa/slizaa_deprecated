@@ -66,16 +66,16 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
    * {@inheritDoc}
    */
   @Override
-  public void resolveIncomingAggregatedCoreDependencies(boolean includeChildren) {
-    _trait.resolveIncomingAggregatedCoreDependencies(includeChildren);
+  public void resolveIncomingAggregatedCoreDependencies() {
+    _trait.resolveIncomingAggregatedCoreDependencies();
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public void resolveOutgoingAggregatedCoreDependencies(boolean includeChildren) {
-    _trait.resolveOutgoingAggregatedCoreDependencies(includeChildren);
+  public void resolveOutgoingAggregatedCoreDependencies() {
+    _trait.resolveOutgoingAggregatedCoreDependencies();
   }
 
   @Override

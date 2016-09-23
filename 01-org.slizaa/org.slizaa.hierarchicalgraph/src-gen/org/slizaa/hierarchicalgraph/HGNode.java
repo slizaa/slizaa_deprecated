@@ -264,7 +264,7 @@ public interface HGNode extends EObject {
    * @model
    * @generated
    */
-  void resolveIncomingAggregatedCoreDependencies(boolean includeChildren);
+  void resolveIncomingAggregatedCoreDependencies();
 
   /**
    * <!-- begin-user-doc -->
@@ -272,6 +272,6 @@ public interface HGNode extends EObject {
    * @model
    * @generated
    */
-  void resolveOutgoingAggregatedCoreDependencies(boolean includeChildren);
+  void resolveOutgoingAggregatedCoreDependencies();
 
 } // HGNode

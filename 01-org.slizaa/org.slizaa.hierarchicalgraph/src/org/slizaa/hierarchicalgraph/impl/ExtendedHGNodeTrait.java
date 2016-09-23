@@ -80,7 +80,6 @@ public class ExtendedHGNodeTrait {
   /** - */
   protected EList<HGCoreDependency>              _outgoingCoreDependencies;
 
-  
   /**
    * <p>
    * Creates a new instance of type {@link ExtendedHGNodeTrait}.
@@ -223,9 +222,8 @@ public class ExtendedHGNodeTrait {
    *
    * @param includeChildren
    */
-  public void resolveIncomingAggregatedCoreDependencies(boolean includeChildren) {
-    ExtendedHierarchicalGraphHelper.resolveAggregatedCoreDependencies(
-        includeChildren ? getAccumulatedIncomingCoreDependencies() : _hgNode.getIncomingCoreDependencies());
+  public void resolveIncomingAggregatedCoreDependencies() {
+    ExtendedHierarchicalGraphHelper.resolveAggregatedCoreDependencies(getAccumulatedIncomingCoreDependencies());
   }
 
   /**
@@ -234,9 +232,8 @@ public class ExtendedHGNodeTrait {
    *
    * @param includeChildren
    */
-  public void resolveOutgoingAggregatedCoreDependencies(boolean includeChildren) {
-    ExtendedHierarchicalGraphHelper.resolveAggregatedCoreDependencies(
-        includeChildren ? getAccumulatedOutgoingCoreDependencies() : _hgNode.getOutgoingCoreDependencies());
+  public void resolveOutgoingAggregatedCoreDependencies() {
+    ExtendedHierarchicalGraphHelper.resolveAggregatedCoreDependencies(getAccumulatedOutgoingCoreDependencies());
   }
 
   /**
@@ -456,30 +453,31 @@ public class ExtendedHGNodeTrait {
   /**
    */
   public EList<HGCoreDependency> getIncomingCoreDependencies() {
-    
+
     //
     if (_incomingCoreDependencies == null) {
-      _incomingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(HGCoreDependency.class, _hgNode, HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES);
+      _incomingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(HGCoreDependency.class, _hgNode,
+          HierarchicalgraphPackage.HG_NODE__INCOMING_CORE_DEPENDENCIES);
     }
-    
+
     //
     return _incomingCoreDependencies;
   }
-  
-  
+
   /**
    */
   public EList<HGCoreDependency> getOutgoingCoreDependencies() {
-    
+
     //
     if (_outgoingCoreDependencies == null) {
-      _outgoingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(HGCoreDependency.class, _hgNode, HierarchicalgraphPackage.HG_NODE__OUTGOING_CORE_DEPENDENCIES);
+      _outgoingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(HGCoreDependency.class, _hgNode,
+          HierarchicalgraphPackage.HG_NODE__OUTGOING_CORE_DEPENDENCIES);
     }
-    
+
     //
     return _outgoingCoreDependencies;
   }
-  
+
   /**
    * <p>
    * </p>

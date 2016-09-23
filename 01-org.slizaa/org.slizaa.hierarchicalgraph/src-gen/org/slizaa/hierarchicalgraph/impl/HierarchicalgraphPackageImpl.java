@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.DefaultDependencySource;
 import org.slizaa.hierarchicalgraph.DefaultNodeSource;
+import org.slizaa.hierarchicalgraph.DependenciesSelection;
 import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
@@ -30,7 +31,6 @@ import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-import org.slizaa.hierarchicalgraph.ICoreDependenciesList;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.SourceOrTarget;
@@ -147,7 +147,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass iCoreDependenciesListEClass = null;
+  private EClass dependenciesSelectionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -396,7 +396,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGNode__ResolveIncomingAggregatedCoreDependencies__boolean() {
+  public EOperation getHGNode__ResolveIncomingAggregatedCoreDependencies() {
     return hgNodeEClass.getEOperations().get(8);
   }
 
@@ -405,7 +405,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGNode__ResolveOutgoingAggregatedCoreDependencies__boolean() {
+  public EOperation getHGNode__ResolveOutgoingAggregatedCoreDependencies() {
     return hgNodeEClass.getEOperations().get(9);
   }
 
@@ -873,8 +873,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getICoreDependenciesList() {
-    return iCoreDependenciesListEClass;
+  public EClass getDependenciesSelection() {
+    return dependenciesSelectionEClass;
   }
 
   /**
@@ -882,8 +882,17 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getICoreDependenciesList_CoreDependencies() {
-    return (EReference)iCoreDependenciesListEClass.getEStructuralFeatures().get(0);
+  public EReference getDependenciesSelection_CoreDependencies() {
+    return (EReference)dependenciesSelectionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDependenciesSelection_Dependencies() {
+    return (EReference)dependenciesSelectionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -967,8 +976,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEOperation(hgNodeEClass, HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__LIST);
     createEOperation(hgNodeEClass, HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__HGNODE);
     createEOperation(hgNodeEClass, HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST);
-    createEOperation(hgNodeEClass, HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN);
-    createEOperation(hgNodeEClass, HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN);
+    createEOperation(hgNodeEClass, HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES);
+    createEOperation(hgNodeEClass, HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES);
 
     iNodeSourceEClass = createEClass(INODE_SOURCE);
     createEAttribute(iNodeSourceEClass, INODE_SOURCE__IDENTIFIER);
@@ -1034,8 +1043,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEReference(nodeToCoreDependenciesMapEClass, NODE_TO_CORE_DEPENDENCIES_MAP__KEY);
     createEReference(nodeToCoreDependenciesMapEClass, NODE_TO_CORE_DEPENDENCIES_MAP__VALUE);
 
-    iCoreDependenciesListEClass = createEClass(ICORE_DEPENDENCIES_LIST);
-    createEReference(iCoreDependenciesListEClass, ICORE_DEPENDENCIES_LIST__CORE_DEPENDENCIES);
+    dependenciesSelectionEClass = createEClass(DEPENDENCIES_SELECTION);
+    createEReference(dependenciesSelectionEClass, DEPENDENCIES_SELECTION__CORE_DEPENDENCIES);
+    createEReference(dependenciesSelectionEClass, DEPENDENCIES_SELECTION__DEPENDENCIES);
 
     // Create enums
     sourceOrTargetEEnum = createEEnum(SOURCE_OR_TARGET);
@@ -1115,11 +1125,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     op = initEOperation(getHGNode__GetOutgoingDependenciesTo__List(), this.getHGAggregatedDependency(), "getOutgoingDependenciesTo", 0, -1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, this.getHGNode(), "targetNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-    op = initEOperation(getHGNode__ResolveIncomingAggregatedCoreDependencies__boolean(), null, "resolveIncomingAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, ecorePackage.getEBoolean(), "includeChildren", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getHGNode__ResolveIncomingAggregatedCoreDependencies(), null, "resolveIncomingAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    op = initEOperation(getHGNode__ResolveOutgoingAggregatedCoreDependencies__boolean(), null, "resolveOutgoingAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, ecorePackage.getEBoolean(), "includeChildren", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getHGNode__ResolveOutgoingAggregatedCoreDependencies(), null, "resolveOutgoingAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(iNodeSourceEClass, INodeSource.class, "INodeSource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getINodeSource_Identifier(), ecorePackage.getEJavaObject(), "identifier", null, 0, 1, INodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1219,8 +1227,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEReference(getNodeToCoreDependenciesMap_Key(), this.getHGNode(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNodeToCoreDependenciesMap_Value(), this.getHGCoreDependency(), null, "value", null, 0, -1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(iCoreDependenciesListEClass, ICoreDependenciesList.class, "ICoreDependenciesList", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getICoreDependenciesList_CoreDependencies(), this.getHGCoreDependency(), null, "coreDependencies", null, 0, -1, ICoreDependenciesList.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEClass(dependenciesSelectionEClass, DependenciesSelection.class, "DependenciesSelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDependenciesSelection_CoreDependencies(), this.getHGCoreDependency(), null, "coreDependencies", null, 0, -1, DependenciesSelection.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEReference(getDependenciesSelection_Dependencies(), this.getAbstractHGDependency(), null, "dependencies", null, 0, -1, DependenciesSelection.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(sourceOrTargetEEnum, SourceOrTarget.class, "SourceOrTarget");

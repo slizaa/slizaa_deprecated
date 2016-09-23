@@ -229,7 +229,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = 8;
+  int HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES = 8;
 
   /**
    * The operation id for the '<em>Resolve Outgoing Aggregated Core Dependencies</em>' operation.
@@ -238,7 +238,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = 9;
+  int HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES = 9;
 
   /**
    * The number of operations of the '<em>HG Node</em>' class.
@@ -547,7 +547,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN;
+  int HG_ROOT_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES = HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES;
 
   /**
    * The operation id for the '<em>Resolve Outgoing Aggregated Core Dependencies</em>' operation.
@@ -556,7 +556,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN;
+  int HG_ROOT_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES = HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES;
 
   /**
    * The operation id for the '<em>Invalidate All Caches</em>' operation.
@@ -1298,14 +1298,14 @@ public interface HierarchicalgraphPackage extends EPackage {
   int NODE_TO_CORE_DEPENDENCIES_MAP_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.ICoreDependenciesList <em>ICore Dependencies List</em>}' class.
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.DependenciesSelectionImpl <em>Dependencies Selection</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.hierarchicalgraph.ICoreDependenciesList
-   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getICoreDependenciesList()
+   * @see org.slizaa.hierarchicalgraph.impl.DependenciesSelectionImpl
+   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getDependenciesSelection()
    * @generated
    */
-  int ICORE_DEPENDENCIES_LIST = 14;
+  int DEPENDENCIES_SELECTION = 14;
 
   /**
    * The feature id for the '<em><b>Core Dependencies</b></em>' reference list.
@@ -1314,25 +1314,34 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ICORE_DEPENDENCIES_LIST__CORE_DEPENDENCIES = 0;
+  int DEPENDENCIES_SELECTION__CORE_DEPENDENCIES = 0;
 
   /**
-   * The number of structural features of the '<em>ICore Dependencies List</em>' class.
+   * The feature id for the '<em><b>Dependencies</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ICORE_DEPENDENCIES_LIST_FEATURE_COUNT = 1;
+  int DEPENDENCIES_SELECTION__DEPENDENCIES = 1;
 
   /**
-   * The number of operations of the '<em>ICore Dependencies List</em>' class.
+   * The number of structural features of the '<em>Dependencies Selection</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ICORE_DEPENDENCIES_LIST_OPERATION_COUNT = 0;
+  int DEPENDENCIES_SELECTION_FEATURE_COUNT = 2;
+
+  /**
+   * The number of operations of the '<em>Dependencies Selection</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEPENDENCIES_SELECTION_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}' enum.
@@ -1554,24 +1563,24 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGNode__GetOutgoingDependenciesTo__List();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#resolveIncomingAggregatedCoreDependencies(boolean) <em>Resolve Incoming Aggregated Core Dependencies</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#resolveIncomingAggregatedCoreDependencies() <em>Resolve Incoming Aggregated Core Dependencies</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Resolve Incoming Aggregated Core Dependencies</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGNode#resolveIncomingAggregatedCoreDependencies(boolean)
+   * @see org.slizaa.hierarchicalgraph.HGNode#resolveIncomingAggregatedCoreDependencies()
    * @generated
    */
-  EOperation getHGNode__ResolveIncomingAggregatedCoreDependencies__boolean();
+  EOperation getHGNode__ResolveIncomingAggregatedCoreDependencies();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#resolveOutgoingAggregatedCoreDependencies(boolean) <em>Resolve Outgoing Aggregated Core Dependencies</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#resolveOutgoingAggregatedCoreDependencies() <em>Resolve Outgoing Aggregated Core Dependencies</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Resolve Outgoing Aggregated Core Dependencies</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGNode#resolveOutgoingAggregatedCoreDependencies(boolean)
+   * @see org.slizaa.hierarchicalgraph.HGNode#resolveOutgoingAggregatedCoreDependencies()
    * @generated
    */
-  EOperation getHGNode__ResolveOutgoingAggregatedCoreDependencies__boolean();
+  EOperation getHGNode__ResolveOutgoingAggregatedCoreDependencies();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.INodeSource <em>INode Source</em>}'.
@@ -2118,25 +2127,36 @@ public interface HierarchicalgraphPackage extends EPackage {
   EReference getNodeToCoreDependenciesMap_Value();
 
   /**
-   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.ICoreDependenciesList <em>ICore Dependencies List</em>}'.
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.DependenciesSelection <em>Dependencies Selection</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>ICore Dependencies List</em>'.
-   * @see org.slizaa.hierarchicalgraph.ICoreDependenciesList
+   * @return the meta object for class '<em>Dependencies Selection</em>'.
+   * @see org.slizaa.hierarchicalgraph.DependenciesSelection
    * @generated
    */
-  EClass getICoreDependenciesList();
+  EClass getDependenciesSelection();
 
   /**
-   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.ICoreDependenciesList#getCoreDependencies <em>Core Dependencies</em>}'.
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.DependenciesSelection#getCoreDependencies <em>Core Dependencies</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference list '<em>Core Dependencies</em>'.
-   * @see org.slizaa.hierarchicalgraph.ICoreDependenciesList#getCoreDependencies()
-   * @see #getICoreDependenciesList()
+   * @see org.slizaa.hierarchicalgraph.DependenciesSelection#getCoreDependencies()
+   * @see #getDependenciesSelection()
    * @generated
    */
-  EReference getICoreDependenciesList_CoreDependencies();
+  EReference getDependenciesSelection_CoreDependencies();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.DependenciesSelection#getDependencies <em>Dependencies</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Dependencies</em>'.
+   * @see org.slizaa.hierarchicalgraph.DependenciesSelection#getDependencies()
+   * @see #getDependenciesSelection()
+   * @generated
+   */
+  EReference getDependenciesSelection_Dependencies();
 
   /**
    * Returns the meta object for enum '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}'.
@@ -2348,7 +2368,7 @@ public interface HierarchicalgraphPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = eINSTANCE.getHGNode__ResolveIncomingAggregatedCoreDependencies__boolean();
+    EOperation HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES = eINSTANCE.getHGNode__ResolveIncomingAggregatedCoreDependencies();
 
     /**
      * The meta object literal for the '<em><b>Resolve Outgoing Aggregated Core Dependencies</b></em>' operation.
@@ -2356,7 +2376,7 @@ public interface HierarchicalgraphPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES__BOOLEAN = eINSTANCE.getHGNode__ResolveOutgoingAggregatedCoreDependencies__boolean();
+    EOperation HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES = eINSTANCE.getHGNode__ResolveOutgoingAggregatedCoreDependencies();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.INodeSource <em>INode Source</em>}' class.
@@ -2793,14 +2813,14 @@ public interface HierarchicalgraphPackage extends EPackage {
     EReference NODE_TO_CORE_DEPENDENCIES_MAP__VALUE = eINSTANCE.getNodeToCoreDependenciesMap_Value();
 
     /**
-     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.ICoreDependenciesList <em>ICore Dependencies List</em>}' class.
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.DependenciesSelectionImpl <em>Dependencies Selection</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.slizaa.hierarchicalgraph.ICoreDependenciesList
-     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getICoreDependenciesList()
+     * @see org.slizaa.hierarchicalgraph.impl.DependenciesSelectionImpl
+     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getDependenciesSelection()
      * @generated
      */
-    EClass ICORE_DEPENDENCIES_LIST = eINSTANCE.getICoreDependenciesList();
+    EClass DEPENDENCIES_SELECTION = eINSTANCE.getDependenciesSelection();
 
     /**
      * The meta object literal for the '<em><b>Core Dependencies</b></em>' reference list feature.
@@ -2808,7 +2828,15 @@ public interface HierarchicalgraphPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ICORE_DEPENDENCIES_LIST__CORE_DEPENDENCIES = eINSTANCE.getICoreDependenciesList_CoreDependencies();
+    EReference DEPENDENCIES_SELECTION__CORE_DEPENDENCIES = eINSTANCE.getDependenciesSelection_CoreDependencies();
+
+    /**
+     * The meta object literal for the '<em><b>Dependencies</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DEPENDENCIES_SELECTION__DEPENDENCIES = eINSTANCE.getDependenciesSelection_Dependencies();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}' enum.
