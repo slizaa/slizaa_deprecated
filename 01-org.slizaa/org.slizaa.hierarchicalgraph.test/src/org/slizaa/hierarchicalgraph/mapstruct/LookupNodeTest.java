@@ -1,15 +1,9 @@
-package org.slizaa.hierarchicalgraph.multi;
+package org.slizaa.hierarchicalgraph.mapstruct;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.testfwk.AbstractXmiBasedTest;
@@ -20,7 +14,6 @@ import org.slizaa.testfwk.AbstractXmiBasedTest;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-@RunWith(Parameterized.class)
 public class LookupNodeTest extends AbstractXmiBasedTest {
 
   /**
@@ -28,8 +21,8 @@ public class LookupNodeTest extends AbstractXmiBasedTest {
    * Creates a new instance of type {@link LookupNodeTest}.
    * </p>
    */
-  public LookupNodeTest(String xmiModelPath) {
-    super(xmiModelPath);
+  public LookupNodeTest() {
+    super("mapstruct_1-1-0-Beta2.hggraph");
   }
 
   /**
@@ -45,16 +38,5 @@ public class LookupNodeTest extends AbstractXmiBasedTest {
         assertThat(rootNode().lookupNode(node.getIdentifier())).isEqualTo(node);
       }
     });
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  @Parameters
-  public static Collection<Object[]> data() {
-    return Arrays.asList(new Object[][] { { "mapstruct_1-1-0-Beta2.hggraph" } });
   }
 }
