@@ -4,6 +4,7 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.Map;
 
+import java.util.Optional;
 import java.util.concurrent.Future;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -169,6 +170,13 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * @generated
    */
   private EDataType futureEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType optionalEDataType = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -407,6 +415,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    */
   public EOperation getHGNode__ResolveOutgoingAggregatedCoreDependencies() {
     return hgNodeEClass.getEOperations().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getHGNode__GetNodeSource__Class() {
+    return hgNodeEClass.getEOperations().get(10);
   }
 
   /**
@@ -729,6 +746,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public EOperation getHGCoreDependency__GetDependencySource__Class() {
+    return hgCoreDependencyEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getHGAggregatedCoreDependency() {
     return hgAggregatedCoreDependencyEClass;
   }
@@ -927,6 +953,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public EDataType getOptional() {
+    return optionalEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EDataType getIAggregatedCoreDependencyResolver() {
     return iAggregatedCoreDependencyResolverEDataType;
   }
@@ -978,6 +1013,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEOperation(hgNodeEClass, HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST);
     createEOperation(hgNodeEClass, HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES);
     createEOperation(hgNodeEClass, HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES);
+    createEOperation(hgNodeEClass, HG_NODE___GET_NODE_SOURCE__CLASS);
 
     iNodeSourceEClass = createEClass(INODE_SOURCE);
     createEAttribute(iNodeSourceEClass, INODE_SOURCE__IDENTIFIER);
@@ -1021,6 +1057,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEAttribute(hgCoreDependencyEClass, HG_CORE_DEPENDENCY__WEIGHT);
     createEReference(hgCoreDependencyEClass, HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE);
     createEReference(hgCoreDependencyEClass, HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT);
+    createEOperation(hgCoreDependencyEClass, HG_CORE_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS);
 
     hgAggregatedCoreDependencyEClass = createEClass(HG_AGGREGATED_CORE_DEPENDENCY);
     createEAttribute(hgAggregatedCoreDependencyEClass, HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED);
@@ -1053,6 +1090,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     // Create data types
     iItemLabelProviderEDataType = createEDataType(IITEM_LABEL_PROVIDER);
     futureEDataType = createEDataType(FUTURE);
+    optionalEDataType = createEDataType(OPTIONAL);
     iAggregatedCoreDependencyResolverEDataType = createEDataType(IAGGREGATED_CORE_DEPENDENCY_RESOLVER);
   }
 
@@ -1081,6 +1119,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     // Create type parameters
     addETypeParameter(futureEDataType, "T");
+    addETypeParameter(optionalEDataType, "T");
 
     // Set bounds for type parameters
 
@@ -1129,6 +1168,17 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
 
     initEOperation(getHGNode__ResolveOutgoingAggregatedCoreDependencies(), null, "resolveOutgoingAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+    op = initEOperation(getHGNode__GetNodeSource__Class(), null, "getNodeSource", 1, 1, IS_UNIQUE, IS_ORDERED);
+    ETypeParameter t1 = addETypeParameter(op, "T");
+    EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
+    EGenericType g2 = createEGenericType(t1);
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "clazz", 0, 1, IS_UNIQUE, IS_ORDERED);
+    g1 = createEGenericType(this.getOptional());
+    g2 = createEGenericType(t1);
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
     initEClass(iNodeSourceEClass, INodeSource.class, "INodeSource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getINodeSource_Identifier(), ecorePackage.getEJavaObject(), "identifier", null, 0, 1, INodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getINodeSource_Node(), this.getHGNode(), this.getHGNode_NodeSource(), "node", null, 0, 1, INodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1157,9 +1207,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     addEParameter(op, ecorePackage.getEJavaObject(), "identifier", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     op = initEOperation(getHGRootNode__GetExtension__Class(), null, "getExtension", 0, 1, IS_UNIQUE, IS_ORDERED);
-    ETypeParameter t1 = addETypeParameter(op, "T");
-    EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
-    EGenericType g2 = createEGenericType(t1);
+    t1 = addETypeParameter(op, "T");
+    g1 = createEGenericType(ecorePackage.getEJavaClass());
+    g2 = createEGenericType(t1);
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "clazz", 0, 1, IS_UNIQUE, IS_ORDERED);
     g1 = createEGenericType(t1);
@@ -1205,6 +1255,17 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEReference(getHGCoreDependency_DependencySource(), this.getIDependencySource(), this.getIDependencySource_Dependency(), "dependencySource", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGCoreDependency_AggregatedCoreDependencyParent(), this.getHGAggregatedCoreDependency(), this.getHGAggregatedCoreDependency_ResolvedCoreDependencies(), "aggregatedCoreDependencyParent", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    op = initEOperation(getHGCoreDependency__GetDependencySource__Class(), null, "getDependencySource", 1, 1, IS_UNIQUE, IS_ORDERED);
+    t1 = addETypeParameter(op, "T");
+    g1 = createEGenericType(ecorePackage.getEJavaClass());
+    g2 = createEGenericType(t1);
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "clazz", 0, 1, IS_UNIQUE, IS_ORDERED);
+    g1 = createEGenericType(this.getOptional());
+    g2 = createEGenericType(t1);
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
     initEClass(hgAggregatedCoreDependencyEClass, HGAggregatedCoreDependency.class, "HGAggregatedCoreDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHGAggregatedCoreDependency_Resolved(), ecorePackage.getEBoolean(), "resolved", null, 0, 1, HGAggregatedCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGAggregatedCoreDependency_ResolvedCoreDependencies(), this.getHGCoreDependency(), this.getHGCoreDependency_AggregatedCoreDependencyParent(), "resolvedCoreDependencies", null, 0, -1, HGAggregatedCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1239,6 +1300,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     // Initialize data types
     initEDataType(iItemLabelProviderEDataType, IItemLabelProvider.class, "IItemLabelProvider", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(futureEDataType, Future.class, "Future", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(optionalEDataType, Optional.class, "Optional", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(iAggregatedCoreDependencyResolverEDataType, IAggregatedCoreDependencyResolver.class, "IAggregatedCoreDependencyResolver", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource

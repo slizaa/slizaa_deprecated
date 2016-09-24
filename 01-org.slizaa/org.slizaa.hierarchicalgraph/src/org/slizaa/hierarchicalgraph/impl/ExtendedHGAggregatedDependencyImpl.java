@@ -90,7 +90,8 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
           .sum();
 
       // weightOfResovedCoreDependencies
-      int weightOfResovedCoreDependencies = prototypeList.stream().filter((dep) -> (dep.getAggregatedCoreDependencyParent() != null))
+      int weightOfResovedCoreDependencies = prototypeList.stream()
+          .filter((dep) -> (dep.getAggregatedCoreDependencyParent() != null))
           .map(coreDep -> coreDep.getAggregatedCoreDependencyParent()).distinct()
           .mapToInt(coreDep -> coreDep.getWeight()).sum();
 

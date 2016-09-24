@@ -35,6 +35,17 @@
     </eOperations>
     <eOperations name="resolveIncomingAggregatedCoreDependencies"/>
     <eOperations name="resolveOutgoingAggregatedCoreDependencies"/>
+    <eOperations name="getNodeSource" lowerBound="1">
+      <eGenericType eClassifier="#//Optional">
+        <eTypeArguments eTypeParameter="#//HGNode/getNodeSource/T"/>
+      </eGenericType>
+      <eTypeParameters name="T"/>
+      <eParameters name="clazz">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments eTypeParameter="#//HGNode/getNodeSource/T"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rootNode" eType="#//HGRootNode"
         changeable="false" transient="true" derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//HGNode"
@@ -132,6 +143,17 @@
         changeable="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HGCoreDependency" eSuperTypes="#//AbstractHGDependency">
+    <eOperations name="getDependencySource" lowerBound="1">
+      <eGenericType eClassifier="#//Optional">
+        <eTypeArguments eTypeParameter="#//HGCoreDependency/getDependencySource/T"/>
+      </eGenericType>
+      <eTypeParameters name="T"/>
+      <eParameters name="clazz">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments eTypeParameter="#//HGCoreDependency/getDependencySource/T"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="weight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>
@@ -167,6 +189,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IItemLabelProvider" instanceClassName="org.eclipse.emf.edit.provider.IItemLabelProvider"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Future" instanceClassName="java.util.concurrent.Future">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Optional" instanceClassName="java.util.Optional">
     <eTypeParameters name="T"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IAggregatedCoreDependencyResolver"

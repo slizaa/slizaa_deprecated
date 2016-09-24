@@ -551,4 +551,21 @@ public class ExtendedHGNodeTrait {
     //
     return _accumulatedIncomingCoreDependencies;
   }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param clazz
+   * @return
+   */
+  public <T> Optional<T> getNodeSource(Class<T> clazz) {
+    
+    //
+    if (checkNotNull(clazz).isInstance(_hgNode.nodeSource)) {
+      return Optional.of(clazz.cast(_hgNode.nodeSource));
+    }
+    
+    return Optional.empty();
+  }
 }

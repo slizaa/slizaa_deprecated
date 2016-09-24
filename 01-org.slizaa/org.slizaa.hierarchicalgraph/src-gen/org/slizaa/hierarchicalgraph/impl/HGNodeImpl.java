@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import java.util.List;
+import java.util.Optional;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -370,6 +371,17 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
+  public <T> Optional<T> getNodeSource(Class<T> clazz) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -579,6 +591,8 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
       case HierarchicalgraphPackage.HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES:
         resolveOutgoingAggregatedCoreDependencies();
         return null;
+      case HierarchicalgraphPackage.HG_NODE___GET_NODE_SOURCE__CLASS:
+        return getNodeSource((Class)arguments.get(0));
     }
     return super.eInvoke(operationID, arguments);
   }

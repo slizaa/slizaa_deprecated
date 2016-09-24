@@ -3,7 +3,6 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
@@ -236,6 +235,7 @@ public abstract class AbstractHGDependencyImpl extends MinimalEObjectImpl.Contai
    * @generated
    */
   @Override
+  @SuppressWarnings({"rawtypes", "unchecked" })
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
       case HierarchicalgraphPackage.ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE:

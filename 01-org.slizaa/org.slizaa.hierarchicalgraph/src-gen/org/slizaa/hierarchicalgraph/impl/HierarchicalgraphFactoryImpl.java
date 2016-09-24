@@ -5,6 +5,7 @@ package org.slizaa.hierarchicalgraph.impl;
 import java.util.List;
 import java.util.Map;
 
+import java.util.Optional;
 import java.util.concurrent.Future;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -96,6 +97,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
         return createIItemLabelProviderFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.FUTURE:
         return createFutureFromString(eDataType, initialValue);
+      case HierarchicalgraphPackage.OPTIONAL:
+        return createOptionalFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.IAGGREGATED_CORE_DEPENDENCY_RESOLVER:
         return createIAggregatedCoreDependencyResolverFromString(eDataType, initialValue);
       default:
@@ -117,6 +120,8 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
         return convertIItemLabelProviderToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.FUTURE:
         return convertFutureToString(eDataType, instanceValue);
+      case HierarchicalgraphPackage.OPTIONAL:
+        return convertOptionalToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.IAGGREGATED_CORE_DEPENDENCY_RESOLVER:
         return convertIAggregatedCoreDependencyResolverToString(eDataType, instanceValue);
       default:
@@ -297,6 +302,24 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
    * @generated
    */
   public String convertFutureToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Optional<?> createOptionalFromString(EDataType eDataType, String initialValue) {
+    return (Optional<?>)super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertOptionalToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(instanceValue);
   }
 

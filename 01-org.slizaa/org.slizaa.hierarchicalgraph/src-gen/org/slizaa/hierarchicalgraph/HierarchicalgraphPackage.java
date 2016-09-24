@@ -241,13 +241,22 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES = 9;
 
   /**
+   * The operation id for the '<em>Get Node Source</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_NODE___GET_NODE_SOURCE__CLASS = 10;
+
+  /**
    * The number of operations of the '<em>HG Node</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_NODE_OPERATION_COUNT = 10;
+  int HG_NODE_OPERATION_COUNT = 11;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.INodeSource <em>INode Source</em>}' class.
@@ -557,6 +566,15 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @ordered
    */
   int HG_ROOT_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES = HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES;
+
+  /**
+   * The operation id for the '<em>Get Node Source</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___GET_NODE_SOURCE__CLASS = HG_NODE___GET_NODE_SOURCE__CLASS;
 
   /**
    * The operation id for the '<em>Invalidate All Caches</em>' operation.
@@ -987,13 +1005,22 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_CORE_DEPENDENCY___GET_ROOT_NODE = ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE;
 
   /**
+   * The operation id for the '<em>Get Dependency Source</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_CORE_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 0;
+
+  /**
    * The number of operations of the '<em>HG Core Dependency</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_CORE_DEPENDENCY_OPERATION_COUNT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 0;
+  int HG_CORE_DEPENDENCY_OPERATION_COUNT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedCoreDependencyImpl <em>HG Aggregated Core Dependency</em>}' class.
@@ -1094,6 +1121,15 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @ordered
    */
   int HG_AGGREGATED_CORE_DEPENDENCY___GET_ROOT_NODE = HG_CORE_DEPENDENCY___GET_ROOT_NODE;
+
+  /**
+   * The operation id for the '<em>Get Dependency Source</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_AGGREGATED_CORE_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS = HG_CORE_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS;
 
   /**
    * The operation id for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
@@ -1374,6 +1410,16 @@ public interface HierarchicalgraphPackage extends EPackage {
   int FUTURE = 17;
 
   /**
+   * The meta object id for the '<em>Optional</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see java.util.Optional
+   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getOptional()
+   * @generated
+   */
+  int OPTIONAL = 18;
+
+  /**
    * The meta object id for the '<em>IAggregated Core Dependency Resolver</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1381,7 +1427,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIAggregatedCoreDependencyResolver()
    * @generated
    */
-  int IAGGREGATED_CORE_DEPENDENCY_RESOLVER = 18;
+  int IAGGREGATED_CORE_DEPENDENCY_RESOLVER = 19;
 
 
   /**
@@ -1581,6 +1627,16 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    */
   EOperation getHGNode__ResolveOutgoingAggregatedCoreDependencies();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getNodeSource(java.lang.Class) <em>Get Node Source</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Node Source</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGNode#getNodeSource(java.lang.Class)
+   * @generated
+   */
+  EOperation getHGNode__GetNodeSource__Class();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.INodeSource <em>INode Source</em>}'.
@@ -1949,6 +2005,16 @@ public interface HierarchicalgraphPackage extends EPackage {
   EReference getHGCoreDependency_AggregatedCoreDependencyParent();
 
   /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getDependencySource(java.lang.Class) <em>Get Dependency Source</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Dependency Source</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGCoreDependency#getDependencySource(java.lang.Class)
+   * @generated
+   */
+  EOperation getHGCoreDependency__GetDependencySource__Class();
+
+  /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency <em>HG Aggregated Core Dependency</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2191,6 +2257,17 @@ public interface HierarchicalgraphPackage extends EPackage {
   EDataType getFuture();
 
   /**
+   * Returns the meta object for data type '{@link java.util.Optional <em>Optional</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>Optional</em>'.
+   * @see java.util.Optional
+   * @model instanceClass="java.util.Optional" typeParameters="T"
+   * @generated
+   */
+  EDataType getOptional();
+
+  /**
    * Returns the meta object for data type '{@link org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver <em>IAggregated Core Dependency Resolver</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2377,6 +2454,14 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EOperation HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES = eINSTANCE.getHGNode__ResolveOutgoingAggregatedCoreDependencies();
+
+    /**
+     * The meta object literal for the '<em><b>Get Node Source</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_NODE___GET_NODE_SOURCE__CLASS = eINSTANCE.getHGNode__GetNodeSource__Class();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.INodeSource <em>INode Source</em>}' class.
@@ -2675,6 +2760,14 @@ public interface HierarchicalgraphPackage extends EPackage {
     EReference HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT = eINSTANCE.getHGCoreDependency_AggregatedCoreDependencyParent();
 
     /**
+     * The meta object literal for the '<em><b>Get Dependency Source</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_CORE_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS = eINSTANCE.getHGCoreDependency__GetDependencySource__Class();
+
+    /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedCoreDependencyImpl <em>HG Aggregated Core Dependency</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2867,6 +2960,16 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EDataType FUTURE = eINSTANCE.getFuture();
+
+    /**
+     * The meta object literal for the '<em>Optional</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.util.Optional
+     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getOptional()
+     * @generated
+     */
+    EDataType OPTIONAL = eINSTANCE.getOptional();
 
     /**
      * The meta object literal for the '<em>IAggregated Core Dependency Resolver</em>' data type.

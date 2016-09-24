@@ -2,9 +2,12 @@
  */
 package org.slizaa.hierarchicalgraph.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Optional;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -261,6 +264,17 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * <!-- end-user-doc -->
    * @generated
    */
+  public <T> Optional<T> getDependencySource(Class<T> clazz) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -379,6 +393,21 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
         return aggregatedCoreDependencyParent != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  @SuppressWarnings({"rawtypes", "unchecked" })
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS:
+        return getDependencySource((Class)arguments.get(0));
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**

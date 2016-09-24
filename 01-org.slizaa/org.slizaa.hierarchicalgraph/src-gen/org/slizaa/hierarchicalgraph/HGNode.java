@@ -3,6 +3,7 @@
 package org.slizaa.hierarchicalgraph;
 
 import java.util.List;
+import java.util.Optional;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -273,5 +274,13 @@ public interface HGNode extends EObject {
    * @generated
    */
   void resolveOutgoingAggregatedCoreDependencies();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model dataType="org.slizaa.hierarchicalgraph.Optional<T>" required="true"
+   * @generated
+   */
+  <T> Optional<T> getNodeSource(Class<T> clazz);
 
 } // HGNode

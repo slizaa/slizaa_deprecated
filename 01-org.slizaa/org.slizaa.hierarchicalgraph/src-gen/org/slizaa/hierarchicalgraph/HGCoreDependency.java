@@ -2,6 +2,8 @@
  */
 package org.slizaa.hierarchicalgraph;
 
+import java.util.Optional;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -131,5 +133,13 @@ public interface HGCoreDependency extends AbstractHGDependency {
    * @generated
    */
   void setAggregatedCoreDependencyParent(HGAggregatedCoreDependency value);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model dataType="org.slizaa.hierarchicalgraph.Optional<T>" required="true"
+   * @generated
+   */
+  <T> Optional<T> getDependencySource(Class<T> clazz);
 
 } // HGCoreDependency

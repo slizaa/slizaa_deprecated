@@ -1,8 +1,9 @@
 package org.slizaa.hierarchicalgraph.impl;
 
-import static java.util.Arrays.asList;
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.removeDependency;
 
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -26,6 +27,20 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
   @Override
   public HGRootNode getRootNode() {
     return getFrom().getRootNode();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public <T> Optional<T> getDependencySource(Class<T> clazz) {
+
+    //
+    if (checkNotNull(clazz).isInstance(dependencySource)) {
+      return Optional.of(clazz.cast(dependencySource));
+    }
+    
+    return Optional.empty();
   }
 
   /**
@@ -75,7 +90,7 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
 
     if (resolver != null) {
       result = resolver.resolveAggregatedDependency(this);
-      
+
       //
       if (result == null) {
         removeDependency(this, true);

@@ -1,6 +1,7 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
@@ -110,5 +111,10 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
 
   public EList<HGCoreDependency> getOutgoingCoreDependencies() {
     return _trait.getOutgoingCoreDependencies();
+  }
+
+  @Override
+  public <T> Optional<T> getNodeSource(Class<T> clazz) {
+    return _trait.getNodeSource(clazz);
   }
 }
