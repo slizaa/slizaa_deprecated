@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph.simple;
+package org.slizaa.hierarchicalgraph.simple.notifications;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
+import org.slizaa.hierarchicalgraph.simple.AbstractSimpleModelTest;
 
 /**
  * <p>
@@ -22,7 +23,7 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class Notification_HGNodeTest extends AbstractSimpleModelTest {
+public class NodeAccumulatedOutgoingCoreDependencies_Test extends AbstractSimpleModelTest {
 
   /** - */
   private List<Notification> _notifications;
@@ -44,10 +45,11 @@ public class Notification_HGNodeTest extends AbstractSimpleModelTest {
     _notifications = new ArrayList<>();
 
     //
-    _node = model().a2();
+    _node = model().a1();
     assertThat(_node).isNotNull();
-    assertThat(_node.getOutgoingCoreDependencies()).isNotNull();
-    assertThat(_node.getOutgoingCoreDependencies()).hasSize(1).containsOnly(model().a2_b2_core1());
+    assertThat(_node.getAccumulatedOutgoingCoreDependencies()).isNotNull();
+    assertThat(_node.getAccumulatedOutgoingCoreDependencies()).hasSize(4);
+    assertThat(_node.getAccumulatedOutgoingCoreDependencies()).containsOnly(model().a1_b1_core1(), model().a1_b1_core2(), model().a2_b2_core1(), model().a3_b3_core1());
 
     //
     _adapter = new AdapterImpl() {
@@ -84,10 +86,11 @@ public class Notification_HGNodeTest extends AbstractSimpleModelTest {
         () -> HierarchicalgraphFactory.eINSTANCE.createDefaultDependencySource(), true);
 
     //
-    assertThat(_notifications).hasSize(3);
+    assertThat(_notifications).hasSize(1);
 
     //
-    assertThat(_node.getOutgoingCoreDependencies()).hasSize(2).containsOnly(model().a2_b2_core1(),
-        newCoreDependency);
+    assertThat(_node.getAccumulatedOutgoingCoreDependencies()).hasSize(5);
+    assertThat(_node.getAccumulatedOutgoingCoreDependencies()).containsOnly(model().a1_b1_core1(), model().a1_b1_core2(), model().a2_b2_core1(), model().a3_b3_core1(), newCoreDependency);
   }
+
 }

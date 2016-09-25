@@ -2,11 +2,13 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.BasicEMap;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
@@ -335,15 +337,6 @@ public class ExtendedHGNodeTrait {
     _accumulatedOutgoingCoreDependenciesInitialized = false;
     _cachedParentsInitialized = false;
 
-    if (_cachedParents != null) {
-      _cachedParents.clear();
-    }
-    if (_accumulatedOutgoingCoreDependencies != null) {
-      _accumulatedOutgoingCoreDependencies.clear();
-    }
-    if (_accumulatedIncomingCoreDependencies != null) {
-      _accumulatedIncomingCoreDependencies.clear();
-    }
     if (_cachedAggregatedOutgoingDependenciesMap != null) {
       _cachedAggregatedOutgoingDependenciesMap.values()
           .forEach((dep) -> ((ExtendedHGAggregatedDependencyImpl) dep).invalidate());
@@ -398,17 +391,21 @@ public class ExtendedHGNodeTrait {
       //
       if (this._cachedParents == null) {
         this._cachedParents = new BasicEList<HGNode>();
-      } else {
-        _cachedParents.clear();
       }
+      
+      // created temporary list
+      List<HGNode> temp = new ArrayList<>();
 
       //
       if (_hgNode.getParent() != null) {
         HGNode parent = _hgNode.getParent();
-        this._cachedParents.add(parent);
-        this._cachedParents.addAll(parent.getPredecessors());
+        temp.add(parent);
+        temp.addAll(parent.getPredecessors());
       }
 
+      // set EList
+      ECollections.setEList(_cachedParents, temp);
+      
       _cachedParentsInitialized = true;
     }
 
@@ -493,21 +490,26 @@ public class ExtendedHGNodeTrait {
       if (_accumulatedOutgoingCoreDependencies == null) {
         _accumulatedOutgoingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(
             HGCoreDependency.class, _hgNode, HierarchicalgraphPackage.HG_NODE__ACCUMULATED_OUTGOING_CORE_DEPENDENCIES);
-      } else {
-        _accumulatedOutgoingCoreDependencies.clear();
-      }
-
+      } 
+      
+      // created temporary list
+      List<HGCoreDependency> temp = new ArrayList<>();
+      
       // add all direct dependencies
-      _accumulatedOutgoingCoreDependencies.addAll(_hgNode.getOutgoingCoreDependencies());
+      temp.addAll(_hgNode.getOutgoingCoreDependencies());
 
       // add children
       if (_hgNode.children != null) {
         for (HGNode child : _hgNode.children) {
           ExtendedHierarchicalGraphHelper.getTrait(child).ifPresent(
-              (t) -> _accumulatedOutgoingCoreDependencies.addAll(t.getAccumulatedOutgoingCoreDependencies()));
+              (t) -> temp.addAll(t.getAccumulatedOutgoingCoreDependencies()));
         }
       }
 
+      // set EList
+      ECollections.setEList(_accumulatedOutgoingCoreDependencies, temp);
+      
+      // done
       _accumulatedOutgoingCoreDependenciesInitialized = true;
     }
 
@@ -530,25 +532,30 @@ public class ExtendedHGNodeTrait {
       if (_accumulatedIncomingCoreDependencies == null) {
         _accumulatedIncomingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(
             HGCoreDependency.class, _hgNode, HierarchicalgraphPackage.HG_NODE__ACCUMULATED_INCOMING_CORE_DEPENDENCIES);
-      } else {
-        _accumulatedIncomingCoreDependencies.clear();
-      }
+      } 
+      
+      // created temporary list
+      List<HGCoreDependency> temp = new ArrayList<>();
 
       // add all direct dependencies
-      _accumulatedIncomingCoreDependencies.addAll(_hgNode.getIncomingCoreDependencies());
+      temp.addAll(_hgNode.getIncomingCoreDependencies());
 
       // and children
       if (_hgNode.children != null) {
         for (HGNode child : _hgNode.children) {
           ExtendedHierarchicalGraphHelper.getTrait(child).ifPresent(
-              (t) -> _accumulatedIncomingCoreDependencies.addAll(t.getAccumulatedIncomingCoreDependencies()));
+              (t) -> temp.addAll(t.getAccumulatedIncomingCoreDependencies()));
         }
       }
-
+      
+      // set EList
+      ECollections.setEList(_accumulatedIncomingCoreDependencies, temp);
+      
+      // done
       _accumulatedIncomingCoreDependenciesInitialized = true;
     }
 
-    //
+
     return _accumulatedIncomingCoreDependencies;
   }
 
