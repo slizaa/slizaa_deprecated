@@ -159,12 +159,6 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HierarchicalgraphPackage.DEPENDENCIES_SELECTION: {
-        DependenciesSelection dependenciesSelection = (DependenciesSelection)theEObject;
-        T result = caseDependenciesSelection(dependenciesSelection);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       default: return defaultCase(theEObject);
     }
   }
@@ -376,21 +370,6 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseNodeToCoreDependenciesMap(Map.Entry<HGNode, List<HGCoreDependency>> object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Dependencies Selection</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Dependencies Selection</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDependenciesSelection(DependenciesSelection object) {
     return null;
   }
 

@@ -200,10 +200,4 @@
     <eLiterals name="SOURCE"/>
     <eLiterals name="TARGET"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DependenciesSelection">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="coreDependencies" upperBound="-1"
-        eType="#//HGCoreDependency" transient="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
-        eType="#//AbstractHGDependency" transient="true" derived="true"/>
-  </eClassifiers>
 </ecore:EPackage>

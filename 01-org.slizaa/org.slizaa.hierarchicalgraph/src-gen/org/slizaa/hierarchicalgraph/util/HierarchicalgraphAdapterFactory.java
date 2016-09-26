@@ -126,10 +126,6 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
         return createNodeToCoreDependenciesMapAdapter();
       }
       @Override
-      public Adapter caseDependenciesSelection(DependenciesSelection object) {
-        return createDependenciesSelectionAdapter();
-      }
-      @Override
       public Adapter defaultCase(EObject object) {
         return createEObjectAdapter();
       }
@@ -342,20 +338,6 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createNodeToCoreDependenciesMapAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.DependenciesSelection <em>Dependencies Selection</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.slizaa.hierarchicalgraph.DependenciesSelection
-   * @generated
-   */
-  public Adapter createDependenciesSelectionAdapter() {
     return null;
   }
 

@@ -24,7 +24,6 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.DefaultDependencySource;
 import org.slizaa.hierarchicalgraph.DefaultNodeSource;
-import org.slizaa.hierarchicalgraph.DependenciesSelection;
 import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
@@ -142,13 +141,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * @generated
    */
   private EClass nodeToCoreDependenciesMapEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass dependenciesSelectionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -899,33 +891,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDependenciesSelection() {
-    return dependenciesSelectionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDependenciesSelection_CoreDependencies() {
-    return (EReference)dependenciesSelectionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDependenciesSelection_Dependencies() {
-    return (EReference)dependenciesSelectionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EEnum getSourceOrTarget() {
     return sourceOrTargetEEnum;
   }
@@ -1079,10 +1044,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     nodeToCoreDependenciesMapEClass = createEClass(NODE_TO_CORE_DEPENDENCIES_MAP);
     createEReference(nodeToCoreDependenciesMapEClass, NODE_TO_CORE_DEPENDENCIES_MAP__KEY);
     createEReference(nodeToCoreDependenciesMapEClass, NODE_TO_CORE_DEPENDENCIES_MAP__VALUE);
-
-    dependenciesSelectionEClass = createEClass(DEPENDENCIES_SELECTION);
-    createEReference(dependenciesSelectionEClass, DEPENDENCIES_SELECTION__CORE_DEPENDENCIES);
-    createEReference(dependenciesSelectionEClass, DEPENDENCIES_SELECTION__DEPENDENCIES);
 
     // Create enums
     sourceOrTargetEEnum = createEEnum(SOURCE_OR_TARGET);
@@ -1287,10 +1248,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEClass(nodeToCoreDependenciesMapEClass, Map.Entry.class, "NodeToCoreDependenciesMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNodeToCoreDependenciesMap_Key(), this.getHGNode(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNodeToCoreDependenciesMap_Value(), this.getHGCoreDependency(), null, "value", null, 0, -1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(dependenciesSelectionEClass, DependenciesSelection.class, "DependenciesSelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDependenciesSelection_CoreDependencies(), this.getHGCoreDependency(), null, "coreDependencies", null, 0, -1, DependenciesSelection.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-    initEReference(getDependenciesSelection_Dependencies(), this.getAbstractHGDependency(), null, "dependencies", null, 0, -1, DependenciesSelection.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(sourceOrTargetEEnum, SourceOrTarget.class, "SourceOrTarget");
