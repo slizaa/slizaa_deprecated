@@ -143,6 +143,15 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
   int NEO4_JBACKED_NODE_SOURCE___ON_COLLAPSE = HierarchicalgraphPackage.INODE_SOURCE___ON_COLLAPSE;
 
   /**
+   * The operation id for the '<em>On Select</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4_JBACKED_NODE_SOURCE___ON_SELECT = HierarchicalgraphPackage.INODE_SOURCE___ON_SELECT;
+
+  /**
    * The number of operations of the '<em>Neo4 JBacked Node Source</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -241,6 +250,15 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @ordered
    */
   int NEO4_JBACKED_ROOT_NODE_SOURCE___ON_COLLAPSE = NEO4_JBACKED_NODE_SOURCE___ON_COLLAPSE;
+
+  /**
+   * The operation id for the '<em>On Select</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4_JBACKED_ROOT_NODE_SOURCE___ON_SELECT = NEO4_JBACKED_NODE_SOURCE___ON_SELECT;
 
   /**
    * The number of operations of the '<em>Neo4 JBacked Root Node Source</em>' class.

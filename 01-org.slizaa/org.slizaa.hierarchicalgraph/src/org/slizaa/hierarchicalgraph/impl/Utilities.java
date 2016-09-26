@@ -8,10 +8,9 @@ import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
  * <p>
@@ -19,7 +18,7 @@ import org.slizaa.hierarchicalgraph.HGNode;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class ExtendedHierarchicalGraphHelper {
+public class Utilities {
 
   /**
    * <p>
@@ -27,7 +26,7 @@ public class ExtendedHierarchicalGraphHelper {
    *
    * @param dependencies
    */
-  public static void resolveAggregatedCoreDependencies(List<HGCoreDependency> dependencies) {
+  public static void resolveAggregatedCoreDependencies(List<? extends HGCoreDependency> dependencies) {
 
     //
     if (dependencies == null || dependencies.isEmpty()) {
@@ -35,12 +34,22 @@ public class ExtendedHierarchicalGraphHelper {
     }
 
     //
+    if (!dependencies.get(0).getRootNode().hasExtension(IAggregatedCoreDependencyResolver.class)) {
+      return;
+    }
+
+    //
     List<Future<?>> futures = new ArrayList<>();
     List<HGCoreDependency> coreDependencies = new ArrayList<>(dependencies);
+    List<ExtendedHGAggregatedCoreDependencyImpl> newlyResolvedAggregatedCoreDependencies = new ArrayList<>();
 
     //
     for (HGCoreDependency coreDependency : coreDependencies) {
-      if (coreDependency instanceof ExtendedHGAggregatedCoreDependencyImpl) {
+      if (coreDependency instanceof ExtendedHGAggregatedCoreDependencyImpl
+          && !((ExtendedHGAggregatedCoreDependencyImpl) coreDependency).isResolved()) {
+
+        //
+        newlyResolvedAggregatedCoreDependencies.add((ExtendedHGAggregatedCoreDependencyImpl) coreDependency);
 
         // get the future
         Future<?> future = ((ExtendedHGAggregatedCoreDependencyImpl) coreDependency)
@@ -63,15 +72,20 @@ public class ExtendedHierarchicalGraphHelper {
     }
 
     //
-    EList<HGNode> nodesToInvalidate = new BasicEList<HGNode>();
-    for (HGCoreDependency coreDependency : coreDependencies) {
-      if (coreDependency instanceof ExtendedHGAggregatedCoreDependencyImpl) {
-        removeDependency(coreDependency, true);
+    for (ExtendedHGAggregatedCoreDependencyImpl dep : newlyResolvedAggregatedCoreDependencies) {
+
+      if (!dep.getResolvedCoreDependencies().isEmpty()) {
+        removeDependency(dep, true);
+      }
+
+      //
+      else {
+        System.out.println("*****************************************************************************************");
+        System.out.println("** WARNING: Aggregated Dependency has been resolved to ZERO core dependencies!         **");
+        System.out.println("** " + dep.getFrom().getIdentifier() + " : " + dep.getFrom().getIdentifier() + " **");
+        System.out.println("*****************************************************************************************");
       }
     }
-
-    //
-    coreDependencies.get(0).getRootNode().invalidateCaches(nodesToInvalidate);
   }
 
   /**

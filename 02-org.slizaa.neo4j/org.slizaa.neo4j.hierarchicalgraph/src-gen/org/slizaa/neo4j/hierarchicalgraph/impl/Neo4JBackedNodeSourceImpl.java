@@ -240,6 +240,17 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  public void onSelect() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -375,6 +386,9 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
         return null;
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE___ON_COLLAPSE:
         onCollapse();
+        return null;
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE___ON_SELECT:
+        onSelect();
         return null;
     }
     return super.eInvoke(operationID, arguments);

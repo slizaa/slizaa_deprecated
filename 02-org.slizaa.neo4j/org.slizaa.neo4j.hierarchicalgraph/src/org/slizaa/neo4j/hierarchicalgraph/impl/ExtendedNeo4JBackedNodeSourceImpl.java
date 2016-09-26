@@ -62,6 +62,11 @@ public class ExtendedNeo4JBackedNodeSourceImpl extends Neo4JBackedNodeSourceImpl
   }
   
   @Override
+  public void onSelect() {
+    _trait.onSelect();
+  }
+  
+  @Override
   public boolean isAutoExpand() {
     return _trait.isAutoExpand();
   }

@@ -323,13 +323,22 @@ public interface HierarchicalgraphPackage extends EPackage {
   int INODE_SOURCE___ON_COLLAPSE = 1;
 
   /**
+   * The operation id for the '<em>On Select</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INODE_SOURCE___ON_SELECT = 2;
+
+  /**
    * The number of operations of the '<em>INode Source</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INODE_SOURCE_OPERATION_COUNT = 2;
+  int INODE_SOURCE_OPERATION_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.IDependencySource <em>IDependency Source</em>}' class.
@@ -720,6 +729,15 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @ordered
    */
   int DEFAULT_NODE_SOURCE___ON_COLLAPSE = INODE_SOURCE___ON_COLLAPSE;
+
+  /**
+   * The operation id for the '<em>On Select</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFAULT_NODE_SOURCE___ON_SELECT = INODE_SOURCE___ON_SELECT;
 
   /**
    * The number of operations of the '<em>Default Node Source</em>' class.
@@ -1656,6 +1674,16 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getINodeSource__OnCollapse();
 
   /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.INodeSource#onSelect() <em>On Select</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>On Select</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.INodeSource#onSelect()
+   * @generated
+   */
+  EOperation getINodeSource__OnSelect();
+
+  /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.IDependencySource <em>IDependency Source</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2434,6 +2462,14 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EOperation INODE_SOURCE___ON_COLLAPSE = eINSTANCE.getINodeSource__OnCollapse();
+
+    /**
+     * The meta object literal for the '<em><b>On Select</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation INODE_SOURCE___ON_SELECT = eINSTANCE.getINodeSource__OnSelect();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.IDependencySource <em>IDependency Source</em>}' class.

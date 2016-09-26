@@ -4,10 +4,12 @@ import org.eclipse.emfforms.internal.swt.treemasterdetail.DefaultTreeViewerCusto
 import org.eclipse.emfforms.spi.swt.treemasterdetail.TreeViewerSWTFactory;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.TreeEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGNodeImpl;
+import org.slizaa.ui.common.context.BusyCursor;
 import org.slizaa.ui.tree.internal.Activator;
 import org.slizaa.ui.tree.internal.InterceptableAdapterFactoryLabelProvider;
 import org.slizaa.ui.tree.internal.NullDNDProvider;
@@ -15,8 +17,6 @@ import org.slizaa.ui.tree.menu.SlizaaMenuProvider;
 
 public class SlizaaTreeFactory {
 
-
-  
   public static TreeViewer createTreeViewer(Composite parent, Object input) {
     return createTreeViewer(parent, input, SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI);
   }
@@ -36,18 +36,40 @@ public class SlizaaTreeFactory {
             final TreeViewer treeViewer = new TreeViewer(parent, style) {
 
               @Override
+              protected void handleSelect(SelectionEvent event) {
+                if (event.item.getData() instanceof ExtendedHGNodeImpl) {
+
+                  //
+                  BusyCursor.execute(parent, () -> {
+                    ExtendedHGNodeImpl hgNode = (ExtendedHGNodeImpl) event.item.getData();
+                    hgNode.onSelect();
+                  });
+                }
+                super.handleSelect(event);
+              }
+
+              @Override
               protected void handleTreeExpand(TreeEvent event) {
                 if (event.item.getData() instanceof ExtendedHGNodeImpl) {
-                  ExtendedHGNodeImpl hgNode = (ExtendedHGNodeImpl) event.item.getData();
-                  hgNode.onExpand();
+
+                  //
+                  BusyCursor.execute(parent, () -> {
+                    ExtendedHGNodeImpl hgNode = (ExtendedHGNodeImpl) event.item.getData();
+                    hgNode.onExpand();
+                  });
                 }
                 super.handleTreeExpand(event);
               }
 
+              @Override
               protected void handleTreeCollapse(TreeEvent event) {
                 if (event.item.getData() instanceof ExtendedHGNodeImpl) {
-                  ExtendedHGNodeImpl hgNode = (ExtendedHGNodeImpl) event.item.getData();
-                  hgNode.onCollapse();
+
+                  //
+                  BusyCursor.execute(parent, () -> {
+                    ExtendedHGNodeImpl hgNode = (ExtendedHGNodeImpl) event.item.getData();
+                    hgNode.onCollapse();
+                  });
                 }
                 super.handleTreeCollapse(event);
               }
@@ -58,9 +80,10 @@ public class SlizaaTreeFactory {
             return treeViewer;
           }
         }).customizeMenu(new SlizaaMenuProvider()).customizeDragAndDrop(new NullDNDProvider()).create();
-    
+
     //
-    result.setLabelProvider(new InterceptableAdapterFactoryLabelProvider(Activator.getDefault().getComposedAdapterFactory(), result));
+    result.setLabelProvider(
+        new InterceptableAdapterFactoryLabelProvider(Activator.getDefault().getComposedAdapterFactory(), result));
 
     // set the layout data
     result.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));

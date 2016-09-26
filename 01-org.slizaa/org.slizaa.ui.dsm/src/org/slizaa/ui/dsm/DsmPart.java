@@ -25,13 +25,12 @@ import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.ui.common.context.BusyCursor;
 import org.slizaa.ui.widget.dsm.DsmViewWidget;
 import org.slizaa.ui.widget.dsm.IDsmContentProvider;
 import org.slizaa.ui.widget.dsm.IMatrixListener;
@@ -154,17 +153,10 @@ public class DsmPart {
             dependencies.add(dependency);
           }
 
-          Display.getDefault().syncExec(() -> {
-            try {
-              Cursor cursor = Display.getDefault().getSystemCursor(SWT.CURSOR_WAIT);
-              _viewWidget.setCursor(cursor);
-
-              IEclipseContext eclipseContext = _perspective.getContext();
-              eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_ROOTNODE);
-              eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
-            } finally {
-              _viewWidget.setCursor(null);
-            }
+          BusyCursor.execute(_viewWidget, () -> {
+            IEclipseContext eclipseContext = _perspective.getContext();
+            eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_ROOTNODE);
+            eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
           });
 
           _fromArtifact = (HGNode) _dsmContentProvider.getNodes()[event.getX()];
@@ -206,7 +198,7 @@ public class DsmPart {
       //
       _viewWidget.setModel(_dsmContentProvider);
 
-        // clear the dependency selection
+      // clear the dependency selection
       resetDependencySelection();
 
       setDefaultDependencyDescription();
@@ -256,7 +248,7 @@ public class DsmPart {
 
   private void clearDependencySelection() {
     _selectedCell = null;
-    
+
     IEclipseContext eclipseContext = _perspective.getContext();
     eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_ROOTNODE);
     eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, Collections.emptyList());

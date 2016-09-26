@@ -108,4 +108,12 @@ public interface INodeSource extends EObject {
    */
   void onCollapse();
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  void onSelect();
+
 } // INodeSource

@@ -101,6 +101,10 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
     _trait.onCollapse();
   }
 
+  public void onSelect() {
+    _trait.onSelect();
+  }
+  
   public void invalidateLocalCaches() {
     _trait.invalidateLocalCaches();
   }

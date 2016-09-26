@@ -70,6 +70,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="INodeSource" abstract="true" interface="true">
     <eOperations name="onExpand"/>
     <eOperations name="onCollapse"/>
+    <eOperations name="onSelect"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="#//HGNode"
         eOpposite="#//HGNode/nodeSource"/>

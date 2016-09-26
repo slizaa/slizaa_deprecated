@@ -75,7 +75,7 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
     }
 
     //
-    ExtendedHierarchicalGraphHelper.getTrait(to).ifPresent((trait) -> {
+    Utilities.getTrait(to).ifPresent((trait) -> {
 
       List<HGCoreDependency> prototypeList = trait.getAccumulatedIncomingCoreDependencies().stream()
           .filter((dep) -> from.equals(dep.getFrom()) || from.isPredecessorOf(dep.getFrom()))
@@ -144,7 +144,7 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
     initialize();
 
     //
-    ExtendedHierarchicalGraphHelper.resolveAggregatedCoreDependencies(this.coreDependencies);
+    Utilities.resolveAggregatedCoreDependencies(this.coreDependencies);
   }
 
   /**

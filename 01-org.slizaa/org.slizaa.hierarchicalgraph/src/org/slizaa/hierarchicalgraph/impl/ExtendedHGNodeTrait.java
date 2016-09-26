@@ -17,6 +17,7 @@ import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
  * <p>
@@ -115,8 +116,7 @@ public class ExtendedHGNodeTrait {
 
       // store dependency
       cachedAggregatedIncomingDependenciesMap().put(node, dependency);
-      ExtendedHierarchicalGraphHelper.getTrait(node)
-          .ifPresent((t) -> t.cachedAggregatedOutgoingDependenciesMap().put(_hgNode, dependency));
+      Utilities.getTrait(node).ifPresent((t) -> t.cachedAggregatedOutgoingDependenciesMap().put(_hgNode, dependency));
     }
 
     //
@@ -179,8 +179,7 @@ public class ExtendedHGNodeTrait {
 
       // store dependency
       cachedAggregatedOutgoingDependenciesMap().put(node, dependency);
-      ExtendedHierarchicalGraphHelper.getTrait(node)
-          .ifPresent((t) -> t.cachedAggregatedIncomingDependenciesMap().put(_hgNode, dependency));
+      Utilities.getTrait(node).ifPresent((t) -> t.cachedAggregatedIncomingDependenciesMap().put(_hgNode, dependency));
     }
 
     //
@@ -221,21 +220,41 @@ public class ExtendedHGNodeTrait {
   /**
    * <p>
    * </p>
-   *
-   * @param includeChildren
    */
-  public void resolveIncomingAggregatedCoreDependencies() {
-    ExtendedHierarchicalGraphHelper.resolveAggregatedCoreDependencies(getAccumulatedIncomingCoreDependencies());
+  public void resolveAggregatedCoreDependencies() {
+
+    //
+    if (_hgNode.getRootNode().hasExtension(IAggregatedCoreDependencyResolver.class)
+        && (_incomingCoreDependencies != null || _outgoingCoreDependencies != null)) {
+
+      //
+      List<HGCoreDependency> dependencies = new ArrayList<>();
+      if (_incomingCoreDependencies != null) {
+        dependencies.addAll(_incomingCoreDependencies);
+      }
+      if (_outgoingCoreDependencies != null) {
+        dependencies.addAll(_outgoingCoreDependencies);
+      }
+
+      //
+      Utilities.resolveAggregatedCoreDependencies(dependencies);
+    }
   }
 
   /**
    * <p>
    * </p>
-   *
-   * @param includeChildren
+   */
+  public void resolveIncomingAggregatedCoreDependencies() {
+    Utilities.resolveAggregatedCoreDependencies(getAccumulatedIncomingCoreDependencies());
+  }
+
+  /**
+   * <p>
+   * </p>
    */
   public void resolveOutgoingAggregatedCoreDependencies() {
-    ExtendedHierarchicalGraphHelper.resolveAggregatedCoreDependencies(getAccumulatedOutgoingCoreDependencies());
+    Utilities.resolveAggregatedCoreDependencies(getAccumulatedOutgoingCoreDependencies());
   }
 
   /**
@@ -366,7 +385,12 @@ public class ExtendedHGNodeTrait {
    * </p>
    */
   void onExpand() {
+
+    //
     _hgNode.getNodeSource().onExpand();
+
+    //
+    resolveAggregatedCoreDependencies();
   }
 
   /**
@@ -374,7 +398,22 @@ public class ExtendedHGNodeTrait {
    * </p>
    */
   void onCollapse() {
+    
+    //
     _hgNode.getNodeSource().onCollapse();
+  }
+
+  /**
+   * <p>
+   * </p>
+   */
+  public void onSelect() {
+
+    //
+    _hgNode.getNodeSource().onSelect();
+
+    //
+    resolveAggregatedCoreDependencies();
   }
 
   /**
@@ -392,7 +431,7 @@ public class ExtendedHGNodeTrait {
       if (this._cachedParents == null) {
         this._cachedParents = new BasicEList<HGNode>();
       }
-      
+
       // created temporary list
       List<HGNode> temp = new ArrayList<>();
 
@@ -405,7 +444,7 @@ public class ExtendedHGNodeTrait {
 
       // set EList
       ECollections.setEList(_cachedParents, temp);
-      
+
       _cachedParentsInitialized = true;
     }
 
@@ -490,25 +529,24 @@ public class ExtendedHGNodeTrait {
       if (_accumulatedOutgoingCoreDependencies == null) {
         _accumulatedOutgoingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(
             HGCoreDependency.class, _hgNode, HierarchicalgraphPackage.HG_NODE__ACCUMULATED_OUTGOING_CORE_DEPENDENCIES);
-      } 
-      
+      }
+
       // created temporary list
       List<HGCoreDependency> temp = new ArrayList<>();
-      
+
       // add all direct dependencies
       temp.addAll(_hgNode.getOutgoingCoreDependencies());
 
       // add children
       if (_hgNode.children != null) {
         for (HGNode child : _hgNode.children) {
-          ExtendedHierarchicalGraphHelper.getTrait(child).ifPresent(
-              (t) -> temp.addAll(t.getAccumulatedOutgoingCoreDependencies()));
+          Utilities.getTrait(child).ifPresent((t) -> temp.addAll(t.getAccumulatedOutgoingCoreDependencies()));
         }
       }
 
       // set EList
       ECollections.setEList(_accumulatedOutgoingCoreDependencies, temp);
-      
+
       // done
       _accumulatedOutgoingCoreDependenciesInitialized = true;
     }
@@ -532,8 +570,8 @@ public class ExtendedHGNodeTrait {
       if (_accumulatedIncomingCoreDependencies == null) {
         _accumulatedIncomingCoreDependencies = new EObjectEListWithoutUniqueCheck<HGCoreDependency>(
             HGCoreDependency.class, _hgNode, HierarchicalgraphPackage.HG_NODE__ACCUMULATED_INCOMING_CORE_DEPENDENCIES);
-      } 
-      
+      }
+
       // created temporary list
       List<HGCoreDependency> temp = new ArrayList<>();
 
@@ -543,18 +581,16 @@ public class ExtendedHGNodeTrait {
       // and children
       if (_hgNode.children != null) {
         for (HGNode child : _hgNode.children) {
-          ExtendedHierarchicalGraphHelper.getTrait(child).ifPresent(
-              (t) -> temp.addAll(t.getAccumulatedIncomingCoreDependencies()));
+          Utilities.getTrait(child).ifPresent((t) -> temp.addAll(t.getAccumulatedIncomingCoreDependencies()));
         }
       }
-      
+
       // set EList
       ECollections.setEList(_accumulatedIncomingCoreDependencies, temp);
-      
+
       // done
       _accumulatedIncomingCoreDependenciesInitialized = true;
     }
-
 
     return _accumulatedIncomingCoreDependencies;
   }
@@ -567,12 +603,12 @@ public class ExtendedHGNodeTrait {
    * @return
    */
   public <T> Optional<T> getNodeSource(Class<T> clazz) {
-    
+
     //
     if (checkNotNull(clazz).isInstance(_hgNode.nodeSource)) {
       return Optional.of(clazz.cast(_hgNode.nodeSource));
     }
-    
+
     return Optional.empty();
   }
 }

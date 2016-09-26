@@ -477,6 +477,15 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
+  public EOperation getINodeSource__OnSelect() {
+    return iNodeSourceEClass.getEOperations().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getIDependencySource() {
     return iDependencySourceEClass;
   }
@@ -986,6 +995,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEAttribute(iNodeSourceEClass, INODE_SOURCE__AUTO_EXPAND);
     createEOperation(iNodeSourceEClass, INODE_SOURCE___ON_EXPAND);
     createEOperation(iNodeSourceEClass, INODE_SOURCE___ON_COLLAPSE);
+    createEOperation(iNodeSourceEClass, INODE_SOURCE___ON_SELECT);
 
     iDependencySourceEClass = createEClass(IDEPENDENCY_SOURCE);
     createEAttribute(iDependencySourceEClass, IDEPENDENCY_SOURCE__IDENTIFIER);
@@ -1148,6 +1158,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEOperation(getINodeSource__OnExpand(), null, "onExpand", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEOperation(getINodeSource__OnCollapse(), null, "onCollapse", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+    initEOperation(getINodeSource__OnSelect(), null, "onSelect", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(iDependencySourceEClass, IDependencySource.class, "IDependencySource", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIDependencySource_Identifier(), ecorePackage.getEJavaObject(), "identifier", null, 0, 1, IDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

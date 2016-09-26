@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Display;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
@@ -112,6 +113,7 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
 
         // convert the model
         HGRootNode rootNode = _mappingService.convert(mappingDescriptor, _remoteRepository, monitor);
+        rootNode.registerExtension(INeo4JRepository.class, _remoteRepository);
         _remoteRepository.getHierarchicalGraphs().add(rootNode);
         _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().add(rootNode);
 

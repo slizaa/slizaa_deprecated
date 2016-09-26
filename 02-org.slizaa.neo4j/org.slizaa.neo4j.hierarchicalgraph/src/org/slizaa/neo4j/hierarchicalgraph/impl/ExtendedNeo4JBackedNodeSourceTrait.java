@@ -144,6 +144,10 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
   public void onCollapse() {
   }
 
+  public void onSelect() {
+
+  }
+
   /**
    * <p>
    * </p>

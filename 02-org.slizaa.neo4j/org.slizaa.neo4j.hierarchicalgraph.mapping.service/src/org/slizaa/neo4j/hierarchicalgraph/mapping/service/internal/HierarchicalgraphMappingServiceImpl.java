@@ -25,6 +25,7 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
+import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
@@ -156,7 +157,11 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     });
 
     // set label provider
-    rootNode.registerExtension(IItemLabelProvider.class, new MappingDescriptorBasedItemLabelProviderImpl(mappingDescriptor));
+    rootNode.registerExtension(IItemLabelProvider.class,
+        new MappingDescriptorBasedItemLabelProviderImpl(mappingDescriptor));
+
+    // set aggregated core dependency resolver
+    rootNode.registerExtension(IAggregatedCoreDependencyResolver.class, new CustomAggregatedDependencyResolver());
 
     //
     return addEditingDomain(rootNode);
