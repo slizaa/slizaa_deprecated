@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.selection.HierarchicalGraphUtils;
+import org.slizaa.hierarchicalgraph.selection.DependencySelections;
 
 /**
  * <p>
@@ -24,7 +24,7 @@ public class GetCoreDependencies_Test extends AbstractSimpleModelTest {
   public void testGetCoreDependencies() {
 
     //
-    Set<HGCoreDependency> coreDependencies = HierarchicalGraphUtils
+    Set<HGCoreDependency> coreDependencies = DependencySelections
         .getCoreDependencies(model().a1().getOutgoingDependenciesTo(model().b1()));
 
     //

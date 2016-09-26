@@ -10,11 +10,14 @@
  ******************************************************************************/
 package org.slizaa.hierarchicalgraph.selection;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
@@ -26,7 +29,31 @@ import org.slizaa.hierarchicalgraph.HGCoreDependency;
  * 
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class HierarchicalGraphUtils {
+public class DependencySelections {
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param dependencies
+   * @param adapter
+   */
+  public static void addAdapter(Collection<? extends AbstractHGDependency> dependencies, Adapter adapter) {
+    checkNotNull(adapter);
+    checkNotNull(dependencies).forEach((dep) -> dep.eAdapters().add(adapter));
+  }
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @param dependencies
+   * @param adapter
+   */
+  public static void removeAdapter(Collection<? extends AbstractHGDependency> dependencies, Adapter adapter) {
+    checkNotNull(adapter);
+    checkNotNull(dependencies).forEach((dep) -> dep.eAdapters().remove(adapter));
+  }
 
   /**
    * <p>

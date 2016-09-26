@@ -26,7 +26,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.selection.HierarchicalGraphUtils;
+import org.slizaa.hierarchicalgraph.selection.DependencySelections;
 import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 
 public class DependencyTreePart {
@@ -61,7 +61,7 @@ public class DependencyTreePart {
 
     // get the core dependencies
     Set<HGCoreDependency> coreDependencies = dependencies != null
-        ? HierarchicalGraphUtils.getCoreDependencies(dependencies) : Collections.emptySet();
+        ? DependencySelections.getCoreDependencies(dependencies) : Collections.emptySet();
 
     if (_composite != null  && !_composite.isDisposed()) {
       _composite.setDependencies(coreDependencies);

@@ -35,7 +35,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.selection.HierarchicalGraphUtils;
+import org.slizaa.hierarchicalgraph.selection.DependencySelections;
 import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 
 public class DependencyTablePart {
@@ -121,7 +121,7 @@ public class DependencyTablePart {
 
       setColumnTitles(fromColumnTitle, toColumnTitle);
 
-      Set<HGCoreDependency> leafDependencies = HierarchicalGraphUtils.getCoreDependencies(selectedDependencies);
+      Set<HGCoreDependency> leafDependencies = DependencySelections.getCoreDependencies(selectedDependencies);
 
       AbstractHGDependency[] dependencies = leafDependencies.toArray(new AbstractHGDependency[0]);
       setOrderedDependencies(dependencies);
