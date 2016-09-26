@@ -18,7 +18,7 @@ import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.internal.PartSite;
 import org.eclipse.ui.progress.UIJob;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 
 import de.cau.cs.kieler.klighd.ui.DiagramViewManager;
 
@@ -176,7 +176,7 @@ class SlizaaDiagramViewPartListener implements IPartListener2 {
 
   @Inject
   public void initSelection(
-      @Optional @Named(HierarchicalGraphContextIdentifier.CURRENT_MAIN_NODE_SELECTION) List<HGNode> selectedNodes) {
+      @Optional @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION) List<HGNode> selectedNodes) {
     
     //
     _currentNodeSelection = selectedNodes;

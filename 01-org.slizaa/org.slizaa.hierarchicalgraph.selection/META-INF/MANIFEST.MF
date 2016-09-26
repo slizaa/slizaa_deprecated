@@ -6,4 +6,5 @@ Bundle-Version: 0.0.3.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.slizaa.hierarchicalgraph;bundle-version="0.0.3",
  com.google.guava;bundle-version="15.0.0"
-Export-Package: org.slizaa.hierarchicalgraph.selection
+Export-Package: org.slizaa.hierarchicalgraph.selection,
+ org.slizaa.hierarchicalgraph.selection.selector

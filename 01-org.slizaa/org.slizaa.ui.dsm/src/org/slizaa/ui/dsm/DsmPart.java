@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.ui.widget.dsm.DsmViewWidget;
 import org.slizaa.ui.widget.dsm.IDsmContentProvider;
 import org.slizaa.ui.widget.dsm.IMatrixListener;
@@ -160,8 +160,8 @@ public class DsmPart {
               _viewWidget.setCursor(cursor);
 
               IEclipseContext eclipseContext = _perspective.getContext();
-              eclipseContext.declareModifiable(HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE);
-              eclipseContext.set(HierarchicalGraphContextIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
+              eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_ROOTNODE);
+              eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
             } finally {
               _viewWidget.setCursor(null);
             }
@@ -188,7 +188,7 @@ public class DsmPart {
 
   @Inject
   public void initSelection(
-      @Optional @Named(HierarchicalGraphContextIdentifier.CURRENT_MAIN_NODE_SELECTION) List<HGNode> selectedNodes) {
+      @Optional @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION) List<HGNode> selectedNodes) {
 
     _selectedNodes = selectedNodes;
 
@@ -258,7 +258,7 @@ public class DsmPart {
     _selectedCell = null;
     
     IEclipseContext eclipseContext = _perspective.getContext();
-    eclipseContext.declareModifiable(HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE);
-    eclipseContext.set(HierarchicalGraphContextIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, Collections.emptyList());
+    eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_ROOTNODE);
+    eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, Collections.emptyList());
   }
 }

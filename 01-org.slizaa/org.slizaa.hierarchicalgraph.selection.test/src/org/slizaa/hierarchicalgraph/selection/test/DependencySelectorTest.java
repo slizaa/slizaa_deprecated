@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
-import org.slizaa.hierarchicalgraph.selection.DefaultDependencySelector;
-import org.slizaa.hierarchicalgraph.selection.IDependencySelector.NodeType;
+import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector;
+import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
 import org.slizaa.testfwk.AbstractXmiBasedTest;
 
 public class DependencySelectorTest extends AbstractXmiBasedTest {

@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph.selection;
+package org.slizaa.hierarchicalgraph.selection.selector;
 
 import java.util.Collection;
 import java.util.Set;

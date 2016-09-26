@@ -34,11 +34,11 @@ import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.hierarchicalgraph.selection.DefaultDependencySelector;
-import org.slizaa.hierarchicalgraph.selection.IDependencySelector;
-import org.slizaa.hierarchicalgraph.selection.IDependencySelector.NodeType;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector;
+import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector;
+import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
 import org.slizaa.ui.common.context.ContextHelper;
-import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 import org.slizaa.ui.dependencytree.internal.expand.IExpandStrategy;
 import org.slizaa.ui.tree.SlizaaTreeFactory;
 import org.slizaa.ui.tree.VisibleNodesFilter;
@@ -202,7 +202,7 @@ public class DependencyTreeComposite extends Composite {
    * @param selectedDetailDependencies
    */
   private void setSelectedDetailDependencies(Collection<HGCoreDependency> dependencies) {
-    ContextHelper.setValueInContext(_eclipseContext, HierarchicalGraphContextIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION, new ArrayList<>(dependencies));
+    ContextHelper.setValueInContext(_eclipseContext, SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION, new ArrayList<>(dependencies));
   }
 
   /**

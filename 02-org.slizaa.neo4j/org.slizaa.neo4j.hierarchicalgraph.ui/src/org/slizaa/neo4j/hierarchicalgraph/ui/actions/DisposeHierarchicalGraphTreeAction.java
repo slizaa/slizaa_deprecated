@@ -2,16 +2,14 @@ package org.slizaa.neo4j.hierarchicalgraph.ui.actions;
 
 import javax.inject.Inject;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.swt.widgets.Display;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
-import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
 import org.slizaa.ui.tree.SlizaaTreeAction;
 
 @Component
@@ -60,7 +58,7 @@ public class DisposeHierarchicalGraphTreeAction implements SlizaaTreeAction {
     }
 
     //
-    ContextHelper.setValueInContext(_mApplication.getContext(), HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE,
+    ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE,
         null);
   }
 

@@ -36,7 +36,7 @@ import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.selection.DependencySelections;
-import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 
 public class DependencyTablePart {
 
@@ -86,7 +86,7 @@ public class DependencyTablePart {
 
   @Inject
   public void initSelection(
-      @Optional @Named(HierarchicalGraphContextIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION) List<AbstractHGDependency> selectedDependencies) {
+      @Optional @Named(SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION) List<AbstractHGDependency> selectedDependencies) {
 
     _selectedDependencies = selectedDependencies;
 

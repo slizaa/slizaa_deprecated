@@ -1,6 +1,6 @@
-package org.slizaa.ui.common.context;
+package org.slizaa.hierarchicalgraph.selection;
 
-public interface HierarchicalGraphContextIdentifier {
+public interface SelectionIdentifier {
 
   public static final String CURRENT_ROOTNODE                    = "slizaa.current_rootnode";
 

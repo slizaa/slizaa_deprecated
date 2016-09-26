@@ -11,7 +11,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 
 /**
  * <p>
@@ -54,7 +54,7 @@ public class XRefPart {
 
   @Inject
   public void handleChangedDependencies(@Optional
-  @Named(HierarchicalGraphContextIdentifier.CURRENT_ROOTNODE)
+  @Named(SelectionIdentifier.CURRENT_ROOTNODE)
   final HGRootNode rootNode) {
 
     // store the root node

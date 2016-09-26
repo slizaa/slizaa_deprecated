@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.selection.DependencySelections;
-import org.slizaa.ui.common.context.HierarchicalGraphContextIdentifier;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 
 public class DependencyTreePart {
 
@@ -56,7 +56,7 @@ public class DependencyTreePart {
 
   @Inject
   public void handleChangedDependencies(@Optional
-  @Named(HierarchicalGraphContextIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION)
+  @Named(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION)
   final List<AbstractHGDependency> dependencies) {
 
     // get the core dependencies
