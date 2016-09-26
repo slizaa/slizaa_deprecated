@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.util.HierarchicalGraphUtils;
+import org.slizaa.hierarchicalgraph.selection.HierarchicalGraphUtils;
 
 /**
  * <p>

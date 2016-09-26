@@ -8,7 +8,7 @@
  * Contributors:
  *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.hierarchicalgraph.util;
+package org.slizaa.hierarchicalgraph.selection;
 
 import java.util.Collection;
 import java.util.Collections;

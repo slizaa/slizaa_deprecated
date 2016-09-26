@@ -8,7 +8,7 @@
  * Contributors:
  *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.hierarchicalgraph.algorithms.selection;
+package org.slizaa.hierarchicalgraph.selection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

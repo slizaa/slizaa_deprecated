@@ -1,11 +1,12 @@
-package org.slizaa.hierarchicalgraph.algorithms.selection;
+package org.slizaa.hierarchicalgraph.selection.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
-import org.slizaa.hierarchicalgraph.algorithms.selection.IDependencySelector.NodeType;
+import org.slizaa.hierarchicalgraph.selection.DefaultDependencySelector;
+import org.slizaa.hierarchicalgraph.selection.IDependencySelector.NodeType;
 import org.slizaa.testfwk.AbstractXmiBasedTest;
 
 public class DependencySelectorTest extends AbstractXmiBasedTest {
