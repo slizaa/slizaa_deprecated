@@ -281,29 +281,6 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.slizaa.hierarchicalgraph.DependenciesSelection} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected DependenciesSelectionItemProvider dependenciesSelectionItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.slizaa.hierarchicalgraph.DependenciesSelection}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createDependenciesSelectionAdapter() {
-    if (dependenciesSelectionItemProvider == null) {
-      dependenciesSelectionItemProvider = new DependenciesSelectionItemProvider(this);
-    }
-
-    return dependenciesSelectionItemProvider;
-  }
-
-  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -411,7 +388,6 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
     if (hgAggregatedCoreDependencyItemProvider != null) hgAggregatedCoreDependencyItemProvider.dispose();
     if (nodeToCoreDependencyMapItemProvider != null) nodeToCoreDependencyMapItemProvider.dispose();
     if (nodeToCoreDependenciesMapItemProvider != null) nodeToCoreDependenciesMapItemProvider.dispose();
-    if (dependenciesSelectionItemProvider != null) dependenciesSelectionItemProvider.dispose();
   }
 
 }

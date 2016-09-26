@@ -23,7 +23,7 @@ import org.slizaa.hierarchicalgraph.simple.AbstractSimpleModelTest;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class Notification_HGAggregatedDependencyTest extends AbstractSimpleModelTest {
+public class HGAggregatedDependency_NotificationTest extends AbstractSimpleModelTest {
 
   /** - */
   private List<Notification>     _notifications;

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
-import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 
 /**
