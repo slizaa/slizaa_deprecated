@@ -47,32 +47,33 @@ import com.google.gson.JsonObject;
 public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMappingService {
 
   /** create the node source creator function */
-  private Function<Long, INodeSource>                 createNodeSourceFunction       = (id) -> {
+  static Function<Long, INodeSource>                 createNodeSourceFunction       = (id) -> {
 
-                                                                                       // create the node source
-                                                                                       INodeSource nodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE
-                                                                                           .createNeo4JBackedNodeSource();
-                                                                                       nodeSource.setIdentifier(id);
+                                                                                      // create the node source
+                                                                                      INodeSource nodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE
+                                                                                          .createNeo4JBackedNodeSource();
+                                                                                      nodeSource.setIdentifier(id);
 
-                                                                                       // return the result
-                                                                                       return nodeSource;
-                                                                                     };
+                                                                                      // return the result
+                                                                                      return nodeSource;
+                                                                                    };
 
   /** the node source creator function */
-  private BiFunction<Long, String, IDependencySource> createDependencySourceFunction = (id, type) -> {
+  static BiFunction<Long, String, IDependencySource> createDependencySourceFunction = (id, type) -> {
 
-                                                                                       // create the dependency source
-                                                                                       Neo4JBackedDependencySource dependencySource = Neo4jHierarchicalgraphFactory.eINSTANCE
-                                                                                           .createNeo4JBackedDependencySource();
-                                                                                       dependencySource
-                                                                                           .setIdentifier(id);
+                                                                                      // create the dependency
+                                                                                      // source
+                                                                                      Neo4JBackedDependencySource dependencySource = Neo4jHierarchicalgraphFactory.eINSTANCE
+                                                                                          .createNeo4JBackedDependencySource();
+                                                                                      dependencySource
+                                                                                          .setIdentifier(id);
 
-                                                                                       // set the type
-                                                                                       dependencySource.setType(type);
+                                                                                      // set the type
+                                                                                      dependencySource.setType(type);
 
-                                                                                       // return the result
-                                                                                       return dependencySource;
-                                                                                     };
+                                                                                      // return the result
+                                                                                      return dependencySource;
+                                                                                    };
 
   @Override
   public HGRootNode convert(HierarchicalGraphMappingDescriptor mappingDescriptor,
@@ -94,9 +95,9 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     rootNode.setNodeSource(rootNodeSource);
 
     // create the future lists
-    List<Future<JsonObject>> rootQueries = new LinkedList<Future<JsonObject>>();
-    List<Future<JsonObject>> hierachyQueries = new LinkedList<Future<JsonObject>>();
-    List<Future<JsonObject>> dependencyQueries = new LinkedList<Future<JsonObject>>();
+    List<Future<JsonObject>> rootQueries = new LinkedList<>();
+    List<Future<JsonObject>> hierachyQueries = new LinkedList<>();
+    List<DependencyQueryHolder> dependencyQueries = new LinkedList<>();
 
     // process root, hierarchy and dependency queries
     mappingDescriptor.getRootMappings().forEach((cypherQuery) -> {
@@ -106,7 +107,8 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
       hierachyQueries.add(remoteRepository.executeCypherQuery(cypherQuery));
     });
     mappingDescriptor.getDependencyMappings().forEach((dependencyMapping) -> {
-      dependencyQueries.add(remoteRepository.executeCypherQuery(dependencyMapping.getMainQuery()));
+      dependencyQueries.add(new DependencyQueryHolder(dependencyMapping,
+          remoteRepository.executeCypherQuery(dependencyMapping.getMainQuery())));
     });
 
     //
@@ -144,13 +146,14 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     SubMonitor dependencyLoopMonitor = subMonitor != null
         ? subMonitor.split(33).setWorkRemaining(dependencyQueries.size()) : null;
 
-    dependencyQueries.forEach((f) -> {
+    dependencyQueries.forEach((dependencyQuery) -> {
       try {
         SubMonitor iterationMonitor = hierarchyLoopMonitor != null ? dependencyLoopMonitor.split(1) : null;
         iterationMonitor.setTaskName("Requesting dependencies...");
-        JsonArray jsonArray = f.get().getAsJsonArray("data");
+        JsonArray jsonArray = dependencyQuery.getFuture().get().getAsJsonArray("data");
         iterationMonitor.setTaskName("Creating dependencies...");
-        createDependencies(jsonArray, rootNode, createDependencySourceFunction, false, iterationMonitor);
+        createDependencies(jsonArray, rootNode, createDependencySourceFunction,
+            dependencyQuery.getDepencyMapping().isAggregatedCoreDependency(), false, iterationMonitor);
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
       }

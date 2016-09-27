@@ -2,6 +2,8 @@ package org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -94,14 +96,18 @@ public class GraphFactoryFunctions {
    * @param rootElement
    * @param dependencySourceCreator
    */
-  public static void createDependencies(JsonArray asJsonArray, HGRootNode rootElement,
-      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean reinitializeCaches,
-      IProgressMonitor progressMonitor) {
+  public static List<HGCoreDependency> createDependencies(JsonArray asJsonArray, HGRootNode rootElement,
+      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean aggregatedCoreDependency,
+      boolean reinitializeCaches, IProgressMonitor progressMonitor) {
 
     // create sub monitor
     final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, asJsonArray.size())
         : null;
 
+    //
+    List<HGCoreDependency> result = new LinkedList<HGCoreDependency>();
+
+    //
     asJsonArray.forEach((element) -> {
 
       // increase sub monitor
@@ -114,8 +120,13 @@ public class GraphFactoryFunctions {
       long idTarget = row.get(1).getAsLong();
       long idRel = row.get(2).getAsLong();
       String type = row.get(3).getAsString();
-      createDependency(idStart, idTarget, idRel, type, rootElement, dependencySourceCreator, reinitializeCaches);
+
+      result.add(createDependency(idStart, idTarget, idRel, type, rootElement, dependencySourceCreator,
+          aggregatedCoreDependency, reinitializeCaches));
     });
+
+    //
+    return result;
   }
 
   /**
@@ -128,7 +139,8 @@ public class GraphFactoryFunctions {
    * @return
    */
   public static HGCoreDependency createDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
-      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean reinitializeCaches) {
+      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean aggregatedCoreDependency,
+      boolean reinitializeCaches) {
 
     // get the from...
     HGNode fromElement = ((ExtendedHGRootNodeImpl) rootElement).getIdToNodeMap().get(from);
@@ -142,14 +154,17 @@ public class GraphFactoryFunctions {
       return null;
     }
 
-    // TODO!!
-    HGCoreDependency hgDependency = HierarchicalgraphFactoryMethods.createNewAggregatedCoreDependency(fromElement,
-        toElement, type, () -> {
-          return dependencySourceCreator.apply(idRel, type);
-        }, reinitializeCaches);
+    //
+    if (aggregatedCoreDependency) {
+      return HierarchicalgraphFactoryMethods.createNewAggregatedCoreDependency(fromElement, toElement, type,
+          () -> dependencySourceCreator.apply(idRel, type), reinitializeCaches);
+    }
 
     //
-    return hgDependency;
+    else {
+      return HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement, type,
+          () -> dependencySourceCreator.apply(idRel, type), reinitializeCaches);
+    }
   }
 
   /**

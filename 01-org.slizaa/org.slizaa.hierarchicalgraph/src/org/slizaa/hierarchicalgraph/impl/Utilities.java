@@ -3,6 +3,7 @@ package org.slizaa.hierarchicalgraph.impl;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.removeDependency;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
@@ -19,6 +20,16 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class Utilities {
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param dependencies
+   */
+  public static void resolveAggregatedCoreDependencies(HGCoreDependency... dependencies) {
+    resolveAggregatedCoreDependencies(Arrays.asList(dependencies));
+  }
 
   /**
    * <p>
@@ -82,7 +93,7 @@ public class Utilities {
       else {
         System.out.println("*****************************************************************************************");
         System.out.println("** WARNING: Aggregated Dependency has been resolved to ZERO core dependencies!         **");
-        System.out.println("** " + dep.getFrom().getIdentifier() + " : " + dep.getFrom().getIdentifier() + " **");
+        System.out.println("** " + dep.getFrom().getIdentifier() + " : " + dep.getTo().getIdentifier() + " **");
         System.out.println("*****************************************************************************************");
       }
     }

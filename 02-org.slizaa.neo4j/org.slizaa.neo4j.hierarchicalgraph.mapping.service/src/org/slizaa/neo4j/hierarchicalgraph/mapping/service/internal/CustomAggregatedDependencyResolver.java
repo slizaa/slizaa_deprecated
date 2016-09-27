@@ -28,7 +28,7 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
    * {@inheritDoc}
    */
   @Override
-  public Future<?> resolveAggregatedDependency(HGAggregatedCoreDependency dependency) {
+  public Future<?> resolveAggregatedDependency(final HGAggregatedCoreDependency dependency) {
 
     Set<Object> fromNodes = new HashSet<>();
     Set<Object> toNodes = new HashSet<>();
@@ -55,10 +55,13 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
 
     //
     INeo4JRepository neo4jRepository = dependency.getRootNode().getExtension(INeo4JRepository.class);
-
     return neo4jRepository.executeCypherQuery(DETAIL_QUERY, params, (queryResult) -> {
-      // TODO
-      // System.out.println(queryResult);
+      // JsonArray jsonArray = queryResult.getAsJsonArray("data");
+      // if (jsonArray.size() > 0) {
+      // List<HGCoreDependency> coreDependencies = createDependencies(jsonArray, dependency.getRootNode(),
+      // HierarchicalgraphMappingServiceImpl.createDependencySourceFunction, false, false, null);
+      // dependency.getResolvedCoreDependencies().addAll(coreDependencies);
+      // }
     });
   }
 }

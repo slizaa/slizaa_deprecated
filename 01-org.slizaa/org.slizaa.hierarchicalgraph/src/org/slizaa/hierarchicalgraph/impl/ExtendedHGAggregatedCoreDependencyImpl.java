@@ -1,10 +1,8 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.removeDependency;
 
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -39,7 +37,7 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
     if (checkNotNull(clazz).isInstance(dependencySource)) {
       return Optional.of(clazz.cast(dependencySource));
     }
-    
+
     return Optional.empty();
   }
 
@@ -50,21 +48,8 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
   public void resolveAggregatedCoreDependencies() {
 
     //
-    if (this.resolved) {
-      return;
-    }
-
-    //
-    // get the future
-    Future<?> future = onResolveAggregatedCoreDependency();
-    if (future != null) {
-      try {
-        future.get();
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      } catch (ExecutionException e) {
-        throw new RuntimeException(e);
-      }
+    if (!resolved) {
+      Utilities.resolveAggregatedCoreDependencies(this);
     }
   }
 
@@ -77,29 +62,19 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
   public Future<?> onResolveAggregatedCoreDependency() {
 
     //
-    if (this.resolved) {
-      return null;
-    }
-
-    //
-    Future<?> result = null;
-
-    //
-    IAggregatedCoreDependencyResolver resolver = getFrom().getRootNode()
-        .getExtension(IAggregatedCoreDependencyResolver.class);
-
-    if (resolver != null) {
-      result = resolver.resolveAggregatedDependency(this);
+    if (!resolved) {
+      
+      //
+      setResolved(true);
 
       //
-      if (result == null) {
-        removeDependency(this, true);
+      if (getRootNode().hasExtension(IAggregatedCoreDependencyResolver.class)) {
+        return getRootNode().getExtension(IAggregatedCoreDependencyResolver.class).resolveAggregatedDependency(this);
       }
     }
-    setResolved(true);
 
     //
-    return result;
+    return null;
   }
 
   /**
