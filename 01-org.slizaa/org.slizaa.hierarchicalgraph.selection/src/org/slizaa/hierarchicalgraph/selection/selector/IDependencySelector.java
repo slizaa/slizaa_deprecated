@@ -51,7 +51,7 @@ public interface IDependencySelector {
    * @return
    */
   Set<HGNode> getFilteredNodes(NodeType type);
-
+  
   /**
    * <p>
    * </p>
@@ -60,7 +60,7 @@ public interface IDependencySelector {
    * @param filtered
    * @return
    */
-  Set<HGNode> getRootLeafPathNodes(NodeType type, boolean filtered);
+  Set<HGNode> getNodesWithParents(NodeType type, boolean filtered);
 
   /**
    * <p>

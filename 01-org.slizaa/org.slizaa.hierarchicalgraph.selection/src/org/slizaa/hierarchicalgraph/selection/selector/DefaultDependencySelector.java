@@ -49,11 +49,11 @@ public class DefaultDependencySelector implements IDependencySelector {
   /** - */
   private Set<HGNode>                                        _unfilteredTargetNodes;
 
-  // /** - */
-  // private Set<HGNode> _unfilteredSourceNodesWithParents;
-  //
-  // /** - */
-  // private Set<HGNode> _unfilteredTargetNodesWithParents;
+  /** - */
+  private Set<HGNode>                                        _unfilteredSourceNodesWithParents;
+
+  /** - */
+  private Set<HGNode>                                        _unfilteredTargetNodesWithParents;
 
   /** - */
   private Set<HGCoreDependency>                              _filteredCoreDependencies;
@@ -64,23 +64,11 @@ public class DefaultDependencySelector implements IDependencySelector {
   /** - */
   private Set<HGNode>                                        _filteredTargetNodes;
 
-  // /** - */
-  // private Set<HGNode> _filteredSourceNodesWithParents;
-  //
-  // /** - */
-  // private Set<HGNode> _filteredTargetNodesWithParents;
+  /** - */
+  private Set<HGNode>                                        _filteredSourceNodesWithParents;
 
   /** - */
-  private Set<HGNode>                                        _filteredSourceNodesWithParentsAndChildren;
-
-  /** - */
-  private Set<HGNode>                                        _filteredTargetNodesWithParentsAndChildren;
-
-  /** - */
-  private Set<HGNode>                                        _unfilteredSourceNodesWithParentsAndChildren;
-
-  /** - */
-  private Set<HGNode>                                        _unfilteredTargetNodesWithParentsAndChildren;
+  private Set<HGNode>                                        _filteredTargetNodesWithParents;
 
   /** - */
   private final LoadingCache<HGNode, List<HGCoreDependency>> _sourceNode2CoreDependenciesMap;
@@ -110,14 +98,10 @@ public class DefaultDependencySelector implements IDependencySelector {
     _unfilteredTargetNodes = new HashSet<>();
     _filteredSourceNodes = new HashSet<>();
     _filteredTargetNodes = new HashSet<>();
-    // _filteredSourceNodesWithParents = new HashSet<HGNode>();
-    // _filteredTargetNodesWithParents = new HashSet<HGNode>();
-    // _unfilteredSourceNodesWithParents = new HashSet<HGNode>();
-    // _unfilteredTargetNodesWithParents = new HashSet<HGNode>();
-    _filteredSourceNodesWithParentsAndChildren = new HashSet<HGNode>();
-    _filteredTargetNodesWithParentsAndChildren = new HashSet<HGNode>();
-    _unfilteredSourceNodesWithParentsAndChildren = new HashSet<HGNode>();
-    _unfilteredTargetNodesWithParentsAndChildren = new HashSet<HGNode>();
+    _filteredSourceNodesWithParents = new HashSet<HGNode>();
+    _filteredTargetNodesWithParents = new HashSet<HGNode>();
+    _unfilteredSourceNodesWithParents = new HashSet<HGNode>();
+    _unfilteredTargetNodesWithParents = new HashSet<HGNode>();
     _selectedNodes = new HashSet<HGNode>();
 
     //
@@ -148,17 +132,13 @@ public class DefaultDependencySelector implements IDependencySelector {
     //
     _filteredCoreDependencies.clear();
     _filteredSourceNodes.clear();
-    _filteredSourceNodesWithParentsAndChildren.clear();
     _filteredTargetNodes.clear();
-    _filteredTargetNodesWithParentsAndChildren.clear();
     _selectedNodes.clear();
     _selectedNodesType = null;
     _sourceNode2CoreDependenciesMap.invalidateAll();
     _targetNode2CoreDependenciesMap.invalidateAll();
     _unfilteredSourceNodes.clear();
-    _unfilteredSourceNodesWithParentsAndChildren.clear();
     _unfilteredTargetNodes.clear();
-    _unfilteredTargetNodesWithParentsAndChildren.clear();
 
     //
     _initialized = false;
@@ -200,11 +180,8 @@ public class DefaultDependencySelector implements IDependencySelector {
     return checkNotNull(type).equals(NodeType.SOURCE) ? _filteredSourceNodes : _filteredTargetNodes;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
-  public Set<HGNode> getRootLeafPathNodes(NodeType type, boolean filtered) {
+  public Set<HGNode> getNodesWithParents(NodeType type, boolean filtered) {
     init();
 
     switch (checkNotNull(type)) {
@@ -212,16 +189,16 @@ public class DefaultDependencySelector implements IDependencySelector {
     case SOURCE: {
 
       if (filtered) {
-        return _filteredSourceNodesWithParentsAndChildren;
+        return _filteredSourceNodesWithParents;
       } else {
-        return _unfilteredSourceNodesWithParentsAndChildren;
+        return _unfilteredSourceNodesWithParents;
       }
     }
     case TARGET: {
       if (filtered) {
-        return _filteredTargetNodesWithParentsAndChildren;
+        return _filteredTargetNodesWithParents;
       } else {
-        return _unfilteredTargetNodesWithParentsAndChildren;
+        return _unfilteredTargetNodesWithParents;
       }
     }
     }
@@ -275,10 +252,8 @@ public class DefaultDependencySelector implements IDependencySelector {
       //
       _unfilteredSourceNodes = unfilteredSourceNodes;
       _unfilteredTargetNodes = unfilteredTargetNodes;
-      // _unfilteredSourceNodesWithParents = computeNodesWithParents(unfilteredSourceNodes, false);
-      // _unfilteredTargetNodesWithParents = computeNodesWithParents(unfilteredTargetNodes, false);
-      _unfilteredSourceNodesWithParentsAndChildren = computeNodesWithParents(unfilteredSourceNodes, true);
-      _unfilteredTargetNodesWithParentsAndChildren = computeNodesWithParents(unfilteredTargetNodes, true);
+      _unfilteredSourceNodesWithParents = computeNodesWithParents(unfilteredSourceNodes, false);
+      _unfilteredTargetNodesWithParents = computeNodesWithParents(unfilteredTargetNodes, false);
 
       //
       recomputeFilter();
@@ -332,11 +307,8 @@ public class DefaultDependencySelector implements IDependencySelector {
       _filteredSourceNodes = filteredNodes;
       _filteredTargetNodes.clear();
     }
-    // _filteredSourceNodesWithParents = computeNodesWithParents(_filteredSourceNodes, false);
-    // _filteredTargetNodesWithParents = computeNodesWithParents(_filteredTargetNodes, false);
-    _filteredSourceNodesWithParentsAndChildren = computeNodesWithParents(_filteredSourceNodes, true);
-    _filteredTargetNodesWithParentsAndChildren = computeNodesWithParents(_filteredTargetNodes, true);
-
+    _filteredSourceNodesWithParents = computeNodesWithParents(_filteredSourceNodes, false);
+    _filteredTargetNodesWithParents = computeNodesWithParents(_filteredTargetNodes, false);
   }
 
   /**

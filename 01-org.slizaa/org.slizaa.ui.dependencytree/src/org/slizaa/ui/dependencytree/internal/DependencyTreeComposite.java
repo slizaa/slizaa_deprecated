@@ -112,8 +112,8 @@ public class DependencyTreeComposite extends Composite {
     _selector.setDependencies(dependencies);
 
     // update 'from' and 'to' tree, no filtering
-    VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
-    VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getRootLeafPathNodes(NodeType.TARGET, false));
+    VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getNodesWithParents(NodeType.SOURCE, false));
+    VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getNodesWithParents(NodeType.TARGET, false));
 
     //
     _fromTreeViewer.collapseAll();
@@ -137,8 +137,8 @@ public class DependencyTreeComposite extends Composite {
     _fromTreeViewer.setSelection(null);
     _toTreeViewer.setSelection(null);
 
-    expandArtifacts(_fromTreeViewer, _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
-    expandArtifacts(_toTreeViewer, _selector.getRootLeafPathNodes(NodeType.TARGET, false));
+    expandArtifacts(_fromTreeViewer, _selector.getNodesWithParents(NodeType.SOURCE, false));
+    expandArtifacts(_toTreeViewer, _selector.getNodesWithParents(NodeType.TARGET, false));
   }
 
   /**
@@ -251,11 +251,11 @@ public class DependencyTreeComposite extends Composite {
 
         //
         _selector.setSelectedNodes(NodeType.SOURCE, SelectionUtil.toArtifactList(structuredSelection));
-        VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getRootLeafPathNodes(NodeType.TARGET, true));
+        VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getNodesWithParents(NodeType.TARGET, true));
         setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         //
-        expandArtifacts(_toTreeViewer, _selector.getRootLeafPathNodes(NodeType.TARGET, true));
+        expandArtifacts(_toTreeViewer, _selector.getNodesWithParents(NodeType.TARGET, true));
 
         // set the top item again
         if (treeItem != null && !treeItem.isDisposed()) {
@@ -265,7 +265,7 @@ public class DependencyTreeComposite extends Composite {
         }
 
       } else {
-        VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getRootLeafPathNodes(NodeType.TARGET, false));
+        VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getNodesWithParents(NodeType.TARGET, false));
         setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
     }
@@ -310,11 +310,11 @@ public class DependencyTreeComposite extends Composite {
 
         //
         _selector.setSelectedNodes(NodeType.TARGET, SelectionUtil.toArtifactList(structuredSelection));
-        VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getRootLeafPathNodes(NodeType.SOURCE, true));
+        VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getNodesWithParents(NodeType.SOURCE, true));
         setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         //
-        expandArtifacts(_fromTreeViewer, _selector.getRootLeafPathNodes(NodeType.SOURCE, true));
+        expandArtifacts(_fromTreeViewer, _selector.getNodesWithParents(NodeType.SOURCE, true));
 
         // set the top item again
         try {
@@ -323,7 +323,7 @@ public class DependencyTreeComposite extends Composite {
           //
         }
       } else {
-        VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getRootLeafPathNodes(NodeType.SOURCE, false));
+        VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getNodesWithParents(NodeType.SOURCE, false));
         setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
     }

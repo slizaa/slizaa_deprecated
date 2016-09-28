@@ -143,7 +143,9 @@ public class DependencyTablePart {
       public String getText(Object element) {
         if (element instanceof AbstractHGDependency) {
           AbstractHGDependency dependency = (AbstractHGDependency) element;
-          // TODO
+          if (dependency instanceof HGCoreDependency) {
+            return ((HGCoreDependency) dependency).getType();
+          }
           // return String.valueOf(dependency.getDependencyKind()).toLowerCase();
           return "depends on";
         }
