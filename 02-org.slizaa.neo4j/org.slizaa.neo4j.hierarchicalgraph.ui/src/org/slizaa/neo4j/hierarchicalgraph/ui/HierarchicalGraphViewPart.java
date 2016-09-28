@@ -77,7 +77,7 @@ public class HierarchicalGraphViewPart {
   private TreeViewer createTreeViewer(Composite parent, MappedGraphs mappedGraphs) {
 
     TreeViewer treeViewer = SlizaaTreeFactory.createTreeViewer(parent, mappedGraphs,
-        SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI, 2);
+        SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI, 2, null);
 
     // TODO: MOVE SORTER TO Graph module!!!
     treeViewer.setSorter(new CustomViewerSorter());

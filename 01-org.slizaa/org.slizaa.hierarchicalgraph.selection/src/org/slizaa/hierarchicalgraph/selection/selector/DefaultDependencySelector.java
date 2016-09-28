@@ -201,6 +201,16 @@ public class DefaultDependencySelector implements IDependencySelector {
     _initialized = false;
   }
 
+  @Override
+  public List<HGCoreDependency> getDependenciesWithSourceNode(HGNode sourceNode) {
+    return _sourceNode2CoreDependenciesMap.getIfPresent(checkNotNull(sourceNode));
+  }
+
+  @Override
+  public List<HGCoreDependency> getDependenciesWithTargetNode(HGNode targetNode) {
+    return _targetNode2CoreDependenciesMap.getIfPresent(checkNotNull(targetNode));
+  }
+
   /**
    * {@inheritDoc}
    */
@@ -227,7 +237,7 @@ public class DefaultDependencySelector implements IDependencySelector {
     init();
     return checkNotNull(type).equals(NodeType.SOURCE) ? _unfilteredSourceNodes : _unfilteredTargetNodes;
   }
-  
+
   /**
    * {@inheritDoc}
    */

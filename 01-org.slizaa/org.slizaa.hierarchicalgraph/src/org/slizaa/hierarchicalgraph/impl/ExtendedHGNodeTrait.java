@@ -388,9 +388,6 @@ public class ExtendedHGNodeTrait {
 
     //
     _hgNode.getNodeSource().onExpand();
-    
-    //
-    resolveAggregatedCoreDependencies();
   }
 
   /**
@@ -411,9 +408,6 @@ public class ExtendedHGNodeTrait {
 
     //
     _hgNode.getNodeSource().onSelect();
-    
-    //
-    resolveAggregatedCoreDependencies();
   }
 
   /**

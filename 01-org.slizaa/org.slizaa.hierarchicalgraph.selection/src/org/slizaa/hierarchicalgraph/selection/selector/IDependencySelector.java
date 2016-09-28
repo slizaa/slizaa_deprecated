@@ -1,12 +1,13 @@
 package org.slizaa.hierarchicalgraph.selection.selector;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
 
+// TODO: API REVIEW!!
 public interface IDependencySelector {
 
   /**
@@ -52,7 +53,7 @@ public interface IDependencySelector {
    * @return
    */
   Set<HGNode> getFilteredNodes(NodeType type);
-  
+
   /**
    * <p>
    * </p>
@@ -80,6 +81,24 @@ public interface IDependencySelector {
    * @param selectedNodes
    */
   void setSelectedNodes(NodeType type, Collection<HGNode> selectedNodes);
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param fromNode
+   * @return
+   */
+  List<HGCoreDependency> getDependenciesWithSourceNode(HGNode fromNode);
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param toNode
+   * @return
+   */
+  List<HGCoreDependency> getDependenciesWithTargetNode(HGNode toNode);
 
   /**
    * <p>

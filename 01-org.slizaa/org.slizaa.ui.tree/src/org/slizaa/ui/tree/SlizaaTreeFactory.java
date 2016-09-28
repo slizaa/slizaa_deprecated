@@ -22,10 +22,11 @@ public class SlizaaTreeFactory {
   }
 
   public static TreeViewer createTreeViewer(Composite parent, Object input, int style) {
-    return createTreeViewer(parent, input, style, 3);
+    return createTreeViewer(parent, input, style, 3, null);
   }
 
-  public static TreeViewer createTreeViewer(Composite parent, Object input, int style, int autoExpandLevel) {
+  public static TreeViewer createTreeViewer(Composite parent, Object input, int style, int autoExpandLevel,
+      IEventInterceptor eventInterceptor) {
 
     // create the result
     TreeViewer result = TreeViewerSWTFactory.fillDefaults(parent, input)
@@ -40,6 +41,10 @@ public class SlizaaTreeFactory {
                 if (event.item.getData() instanceof ExtendedHGNodeImpl) {
 
                   //
+                  if (eventInterceptor != null) {
+                    eventInterceptor.handleSelect((ExtendedHGNodeImpl) event.item.getData());
+                  }
+
                   BusyCursor.execute(parent, () -> {
                     ExtendedHGNodeImpl hgNode = (ExtendedHGNodeImpl) event.item.getData();
                     hgNode.onSelect();
@@ -53,6 +58,10 @@ public class SlizaaTreeFactory {
                 if (event.item.getData() instanceof ExtendedHGNodeImpl) {
 
                   //
+                  if (eventInterceptor != null) {
+                    eventInterceptor.handleTreeExpand((ExtendedHGNodeImpl) event.item.getData());
+                  }
+
                   BusyCursor.execute(parent, () -> {
                     ExtendedHGNodeImpl hgNode = (ExtendedHGNodeImpl) event.item.getData();
                     hgNode.onExpand();
@@ -64,6 +73,11 @@ public class SlizaaTreeFactory {
               @Override
               protected void handleTreeCollapse(TreeEvent event) {
                 if (event.item.getData() instanceof ExtendedHGNodeImpl) {
+
+                  //
+                  if (eventInterceptor != null) {
+                    eventInterceptor.handleTreeCollapse((ExtendedHGNodeImpl) event.item.getData());
+                  }
 
                   //
                   BusyCursor.execute(parent, () -> {
