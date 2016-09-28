@@ -130,8 +130,8 @@ public class HierarchicalgraphFactoryMethods {
     target.getIncomingCoreDependencies().add(dependency);
 
     //
+    source.getRootNode().invalidateCaches(new BasicEList<HGNode>(Arrays.asList(source, target)));
     if (reinitializeCaches) {
-      source.getRootNode().invalidateCaches(new BasicEList<HGNode>(Arrays.asList(source, target)));
       source.getRootNode().initializeCaches(new BasicEList<HGNode>(Arrays.asList(source, target)));
     }
 
