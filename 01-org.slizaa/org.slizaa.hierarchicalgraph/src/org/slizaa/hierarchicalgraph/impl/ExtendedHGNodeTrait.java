@@ -388,9 +388,6 @@ public class ExtendedHGNodeTrait {
 
     //
     _hgNode.getNodeSource().onExpand();
-
-    //
-    resolveAggregatedCoreDependencies();
   }
 
   /**
@@ -398,7 +395,7 @@ public class ExtendedHGNodeTrait {
    * </p>
    */
   void onCollapse() {
-    
+
     //
     _hgNode.getNodeSource().onCollapse();
   }
@@ -411,9 +408,6 @@ public class ExtendedHGNodeTrait {
 
     //
     _hgNode.getNodeSource().onSelect();
-
-    //
-    resolveAggregatedCoreDependencies();
   }
 
   /**
@@ -535,7 +529,7 @@ public class ExtendedHGNodeTrait {
       List<HGCoreDependency> temp = new ArrayList<>();
 
       // add all direct dependencies
-      temp.addAll(_hgNode.getOutgoingCoreDependencies());
+      temp.addAll(getOutgoingCoreDependencies());
 
       // add children
       if (_hgNode.children != null) {
