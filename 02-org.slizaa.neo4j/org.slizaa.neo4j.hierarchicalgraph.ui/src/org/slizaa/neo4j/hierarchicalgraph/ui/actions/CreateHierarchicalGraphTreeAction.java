@@ -10,15 +10,16 @@ import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.swt.widgets.Display;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
-import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart;
+import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorBasedItemLabelProviderImpl;
 import org.slizaa.neo4j.hierarchicalgraph.ui.deprecated.Descriptors2;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
@@ -113,13 +114,14 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
 
         // convert the model
         HGRootNode rootNode = _mappingService.convert(mappingDescriptor, _remoteRepository, monitor);
-        rootNode.registerExtension(INeo4JRepository.class, _remoteRepository);
+        // set label provider
+        rootNode.registerExtension(IItemLabelProvider.class,
+            new MappingDescriptorBasedItemLabelProviderImpl(mappingDescriptor));
         _remoteRepository.getHierarchicalGraphs().add(rootNode);
         _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().add(rootNode);
 
         //
-        ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE,
-            rootNode);
+        ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE, rootNode);
 
       } catch (Exception e) {
         e.printStackTrace();

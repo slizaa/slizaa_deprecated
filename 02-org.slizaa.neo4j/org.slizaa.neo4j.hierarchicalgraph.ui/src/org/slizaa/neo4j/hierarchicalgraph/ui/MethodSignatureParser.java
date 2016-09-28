@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal;
+package org.slizaa.neo4j.hierarchicalgraph.ui;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

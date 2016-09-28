@@ -19,13 +19,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
+import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
@@ -117,9 +117,9 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     rootQueries.forEach((f) -> {
       try {
         SubMonitor iterationMonitor = rootLoopMonitor != null ? rootLoopMonitor.split(1) : null;
-        iterationMonitor.setTaskName("Requesting root nodes...");
+        report(iterationMonitor, "Requesting root nodes...");
         JsonArray jsonArray = f.get().getAsJsonArray("data");
-        iterationMonitor.setTaskName("Creating root nodes...");
+        report(iterationMonitor, "Creating root nodes...");
         createFirstLevelElements(jsonArray, rootNode, createNodeSourceFunction, iterationMonitor);
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
@@ -133,9 +133,9 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     hierachyQueries.forEach((f) -> {
       try {
         SubMonitor iterationMonitor = hierarchyLoopMonitor != null ? hierarchyLoopMonitor.split(1) : null;
-        iterationMonitor.setTaskName("Requesting nodes...");
+        report(iterationMonitor, "Requesting nodes...");
         JsonArray jsonArray = f.get().getAsJsonArray("data");
-        iterationMonitor.setTaskName("Creating nodes...");
+        report(iterationMonitor, "Creating nodes...");
         createHierarchy(jsonArray, rootNode, createNodeSourceFunction, iterationMonitor);
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
@@ -149,9 +149,9 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     dependencyQueries.forEach((dependencyQuery) -> {
       try {
         SubMonitor iterationMonitor = hierarchyLoopMonitor != null ? dependencyLoopMonitor.split(1) : null;
-        iterationMonitor.setTaskName("Requesting dependencies...");
+        report(iterationMonitor, "Requesting dependencies...");
         JsonArray jsonArray = dependencyQuery.getFuture().get().getAsJsonArray("data");
-        iterationMonitor.setTaskName("Creating dependencies...");
+        report(iterationMonitor, "Creating dependencies...");
         createDependencies(jsonArray, rootNode, createDependencySourceFunction,
             dependencyQuery.getDepencyMapping().isAggregatedCoreDependency(), false, iterationMonitor);
       } catch (Exception e) {
@@ -159,9 +159,8 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
       }
     });
 
-    // set label provider
-    rootNode.registerExtension(IItemLabelProvider.class,
-        new MappingDescriptorBasedItemLabelProviderImpl(mappingDescriptor));
+    //
+    rootNode.registerExtension(INeo4JRepository.class, remoteRepository);
 
     // set aggregated core dependency resolver
     rootNode.registerExtension(IAggregatedCoreDependencyResolver.class, new CustomAggregatedDependencyResolver());
@@ -193,5 +192,18 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
     //
     return rootNode;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param iterationMonitor
+   * @param taskName
+   */
+  private void report(SubMonitor iterationMonitor, String taskName) {
+    if (iterationMonitor != null) {
+      iterationMonitor.setTaskName(taskName);
+    }
   }
 }
