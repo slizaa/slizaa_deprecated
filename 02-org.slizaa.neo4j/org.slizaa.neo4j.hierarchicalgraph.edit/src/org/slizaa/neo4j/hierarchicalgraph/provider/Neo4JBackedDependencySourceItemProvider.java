@@ -58,6 +58,7 @@ public class Neo4JBackedDependencySourceItemProvider extends ItemProviderAdapter
 
       addIdentifierPropertyDescriptor(object);
       addTypePropertyDescriptor(object);
+      addUserObjectPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -98,6 +99,28 @@ public class Neo4JBackedDependencySourceItemProvider extends ItemProviderAdapter
          getString("_UI_Neo4JBackedDependencySource_type_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Neo4JBackedDependencySource_type_feature", "_UI_Neo4JBackedDependencySource_type"),
          Neo4jHierarchicalgraphPackage.Literals.NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the User Object feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addUserObjectPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Neo4JBackedDependencySource_userObject_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4JBackedDependencySource_userObject_feature", "_UI_Neo4JBackedDependencySource_type"),
+         Neo4jHierarchicalgraphPackage.Literals.NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT,
          true,
          false,
          false,
@@ -177,6 +200,7 @@ public class Neo4JBackedDependencySourceItemProvider extends ItemProviderAdapter
     switch (notification.getFeatureID(Neo4JBackedDependencySource.class)) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__IDENTIFIER:
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE:
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__PROPERTIES:
