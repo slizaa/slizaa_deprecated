@@ -16,7 +16,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DependencyMapping">
     <eOperations name="isAggregatedCoreDependency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mainQuery" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cypherQuery" lowerBound="1"
         eType="#//CyperQuery"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="detailQueries" upperBound="-1"
         eType="#//CyperQuery"/>
