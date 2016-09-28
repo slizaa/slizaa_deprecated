@@ -2,9 +2,12 @@
  */
 package org.slizaa.neo4j.hierarchicalgraph.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Optional;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
 import org.eclipse.emf.ecore.EClass;
@@ -37,6 +40,7 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedDependencySourceImpl#getDependency <em>Dependency</em>}</li>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedDependencySourceImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedDependencySourceImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedDependencySourceImpl#getUserObject <em>User Object</em>}</li>
  * </ul>
  *
  * @generated
@@ -91,6 +95,26 @@ public class Neo4JBackedDependencySourceImpl extends MinimalEObjectImpl.Containe
    * @ordered
    */
   protected String type = TYPE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getUserObject() <em>User Object</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getUserObject()
+   * @generated
+   * @ordered
+   */
+  protected static final Object USER_OBJECT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getUserObject() <em>User Object</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getUserObject()
+   * @generated
+   * @ordered
+   */
+  protected Object userObject = USER_OBJECT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -211,6 +235,38 @@ public class Neo4JBackedDependencySourceImpl extends MinimalEObjectImpl.Containe
    * <!-- end-user-doc -->
    * @generated
    */
+  public Object getUserObject() {
+    return userObject;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setUserObject(Object newUserObject) {
+    Object oldUserObject = userObject;
+    userObject = newUserObject;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT, oldUserObject, userObject));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public <T> Optional<T> getUserObject(Class<T> type) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -269,6 +325,8 @@ public class Neo4JBackedDependencySourceImpl extends MinimalEObjectImpl.Containe
         else return getProperties().map();
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE:
         return getType();
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT:
+        return getUserObject();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -289,6 +347,9 @@ public class Neo4JBackedDependencySourceImpl extends MinimalEObjectImpl.Containe
         return;
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE:
         setType((String)newValue);
+        return;
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT:
+        setUserObject(newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -311,6 +372,9 @@ public class Neo4JBackedDependencySourceImpl extends MinimalEObjectImpl.Containe
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE:
         setType(TYPE_EDEFAULT);
         return;
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT:
+        setUserObject(USER_OBJECT_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -331,8 +395,25 @@ public class Neo4JBackedDependencySourceImpl extends MinimalEObjectImpl.Containe
         return properties != null && !properties.isEmpty();
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT:
+        return USER_OBJECT_EDEFAULT == null ? userObject != null : !USER_OBJECT_EDEFAULT.equals(userObject);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  @SuppressWarnings({"rawtypes", "unchecked" })
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE___GET_USER_OBJECT__CLASS:
+        return getUserObject((Class)arguments.get(0));
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**
@@ -349,6 +430,8 @@ public class Neo4JBackedDependencySourceImpl extends MinimalEObjectImpl.Containe
     result.append(identifier);
     result.append(", type: ");
     result.append(type);
+    result.append(", userObject: ");
+    result.append(userObject);
     result.append(')');
     return result.toString();
   }

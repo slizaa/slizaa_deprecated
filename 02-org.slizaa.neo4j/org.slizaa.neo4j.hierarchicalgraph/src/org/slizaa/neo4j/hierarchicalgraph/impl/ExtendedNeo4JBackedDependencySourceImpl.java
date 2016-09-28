@@ -1,12 +1,15 @@
 package org.slizaa.neo4j.hierarchicalgraph.impl;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.Optional;
+
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
-import org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedDependencySourceImpl;
 
 import com.google.gson.JsonObject;
 
@@ -17,6 +20,12 @@ import com.google.gson.JsonObject;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependencySourceImpl {
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public <T> Optional<T> getUserObject(Class<T> type) {
+    return checkNotNull(type).isInstance(getUserObject()) ? Optional.of((T) getUserObject()) : Optional.empty();
+  }
 
   /**
    * {@inheritDoc}

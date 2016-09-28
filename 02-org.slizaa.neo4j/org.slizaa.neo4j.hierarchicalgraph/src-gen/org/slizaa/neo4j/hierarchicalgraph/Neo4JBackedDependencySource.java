@@ -2,8 +2,8 @@
  */
 package org.slizaa.neo4j.hierarchicalgraph;
 
+import java.util.Optional;
 import org.eclipse.emf.common.util.EMap;
-
 import org.slizaa.hierarchicalgraph.IDependencySource;
 
 /**
@@ -17,6 +17,7 @@ import org.slizaa.hierarchicalgraph.IDependencySource;
  * <ul>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#getType <em>Type</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#getUserObject <em>User Object</em>}</li>
  * </ul>
  *
  * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedDependencySource()
@@ -66,5 +67,39 @@ public interface Neo4JBackedDependencySource extends IDependencySource {
    * @generated
    */
   void setType(String value);
+
+  /**
+   * Returns the value of the '<em><b>User Object</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>User Object</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>User Object</em>' attribute.
+   * @see #setUserObject(Object)
+   * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedDependencySource_UserObject()
+   * @model
+   * @generated
+   */
+  Object getUserObject();
+
+  /**
+   * Sets the value of the '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#getUserObject <em>User Object</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>User Object</em>' attribute.
+   * @see #getUserObject()
+   * @generated
+   */
+  void setUserObject(Object value);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model dataType="org.slizaa.neo4j.hierarchicalgraph.Optional<T>" required="true" typeRequired="true"
+   * @generated
+   */
+  <T> Optional<T> getUserObject(Class<T> type);
 
 } // Neo4JBackedDependencySource

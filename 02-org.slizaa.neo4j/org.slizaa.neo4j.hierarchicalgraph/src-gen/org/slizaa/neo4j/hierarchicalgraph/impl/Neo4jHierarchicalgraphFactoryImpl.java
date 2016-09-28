@@ -5,6 +5,7 @@ package org.slizaa.neo4j.hierarchicalgraph.impl;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.util.Optional;
 import java.util.concurrent.Future;
 
 import java.util.function.Consumer;
@@ -93,6 +94,8 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
         return createJsonArrayFromString(eDataType, initialValue);
       case Neo4jHierarchicalgraphPackage.JSON_OBJECT:
         return createJsonObjectFromString(eDataType, initialValue);
+      case Neo4jHierarchicalgraphPackage.OPTIONAL:
+        return createOptionalFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -114,6 +117,8 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
         return convertJsonArrayToString(eDataType, instanceValue);
       case Neo4jHierarchicalgraphPackage.JSON_OBJECT:
         return convertJsonObjectToString(eDataType, instanceValue);
+      case Neo4jHierarchicalgraphPackage.OPTIONAL:
+        return convertOptionalToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -229,6 +234,24 @@ public class Neo4jHierarchicalgraphFactoryImpl extends EFactoryImpl implements N
    */
   public String convertJsonObjectToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Optional<?> createOptionalFromString(EDataType eDataType, String initialValue) {
+    return (Optional<?>)super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertOptionalToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(instanceValue);
   }
 
   /**

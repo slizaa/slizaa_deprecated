@@ -316,13 +316,31 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
   int NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>User Object</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Neo4 JBacked Dependency Source</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 2;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 3;
+
+  /**
+   * The operation id for the '<em>Get User Object</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4_JBACKED_DEPENDENCY_SOURCE___GET_USER_OBJECT__CLASS = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_OPERATION_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Neo4 JBacked Dependency Source</em>' class.
@@ -331,7 +349,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE_OPERATION_COUNT = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_OPERATION_COUNT + 0;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE_OPERATION_COUNT = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_OPERATION_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository <em>INeo4 JRepository</em>}' class.
@@ -620,6 +638,17 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
 
 
   /**
+   * The meta object id for the '<em>Optional</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see java.util.Optional
+   * @see org.slizaa.neo4j.hierarchicalgraph.impl.Neo4jHierarchicalgraphPackageImpl#getOptional()
+   * @generated
+   */
+  int OPTIONAL = 9;
+
+
+  /**
    * Returns the meta object for class '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource <em>Neo4 JBacked Node Source</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -703,6 +732,27 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    */
   EAttribute getNeo4JBackedDependencySource_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#getUserObject <em>User Object</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>User Object</em>'.
+   * @see org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#getUserObject()
+   * @see #getNeo4JBackedDependencySource()
+   * @generated
+   */
+  EAttribute getNeo4JBackedDependencySource_UserObject();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#getUserObject(java.lang.Class) <em>Get User Object</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get User Object</em>' operation.
+   * @see org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource#getUserObject(java.lang.Class)
+   * @generated
+   */
+  EOperation getNeo4JBackedDependencySource__GetUserObject__Class();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository <em>INeo4 JRepository</em>}'.
@@ -903,6 +953,17 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
   EDataType getJsonObject();
 
   /**
+   * Returns the meta object for data type '{@link java.util.Optional <em>Optional</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>Optional</em>'.
+   * @see java.util.Optional
+   * @model instanceClass="java.util.Optional" typeParameters="T"
+   * @generated
+   */
+  EDataType getOptional();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -994,6 +1055,22 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EAttribute NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE = eINSTANCE.getNeo4JBackedDependencySource_Type();
+
+    /**
+     * The meta object literal for the '<em><b>User Object</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT = eINSTANCE.getNeo4JBackedDependencySource_UserObject();
+
+    /**
+     * The meta object literal for the '<em><b>Get User Object</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation NEO4_JBACKED_DEPENDENCY_SOURCE___GET_USER_OBJECT__CLASS = eINSTANCE.getNeo4JBackedDependencySource__GetUserObject__Class();
 
     /**
      * The meta object literal for the '{@link org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository <em>INeo4 JRepository</em>}' class.
@@ -1158,6 +1235,16 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EDataType JSON_OBJECT = eINSTANCE.getJsonObject();
+
+    /**
+     * The meta object literal for the '<em>Optional</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.util.Optional
+     * @see org.slizaa.neo4j.hierarchicalgraph.impl.Neo4jHierarchicalgraphPackageImpl#getOptional()
+     * @generated
+     */
+    EDataType OPTIONAL = eINSTANCE.getOptional();
 
   }
 

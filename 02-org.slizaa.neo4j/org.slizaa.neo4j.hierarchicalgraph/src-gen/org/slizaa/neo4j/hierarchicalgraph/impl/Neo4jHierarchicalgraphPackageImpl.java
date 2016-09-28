@@ -5,6 +5,7 @@ package org.slizaa.neo4j.hierarchicalgraph.impl;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.util.Optional;
 import java.util.concurrent.Future;
 
 import java.util.function.Consumer;
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
@@ -98,6 +100,13 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
    * @generated
    */
   private EDataType jsonObjectEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType optionalEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -233,6 +242,24 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
    */
   public EAttribute getNeo4JBackedDependencySource_Type() {
     return (EAttribute)neo4JBackedDependencySourceEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNeo4JBackedDependencySource_UserObject() {
+    return (EAttribute)neo4JBackedDependencySourceEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getNeo4JBackedDependencySource__GetUserObject__Class() {
+    return neo4JBackedDependencySourceEClass.getEOperations().get(0);
   }
 
   /**
@@ -411,6 +438,15 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
    * <!-- end-user-doc -->
    * @generated
    */
+  public EDataType getOptional() {
+    return optionalEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Neo4jHierarchicalgraphFactory getNeo4jHierarchicalgraphFactory() {
     return (Neo4jHierarchicalgraphFactory)getEFactoryInstance();
   }
@@ -444,6 +480,8 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     neo4JBackedDependencySourceEClass = createEClass(NEO4_JBACKED_DEPENDENCY_SOURCE);
     createEReference(neo4JBackedDependencySourceEClass, NEO4_JBACKED_DEPENDENCY_SOURCE__PROPERTIES);
     createEAttribute(neo4JBackedDependencySourceEClass, NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE);
+    createEAttribute(neo4JBackedDependencySourceEClass, NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT);
+    createEOperation(neo4JBackedDependencySourceEClass, NEO4_JBACKED_DEPENDENCY_SOURCE___GET_USER_OBJECT__CLASS);
 
     iNeo4JRepositoryEClass = createEClass(INEO4_JREPOSITORY);
     createEReference(iNeo4JRepositoryEClass, INEO4_JREPOSITORY__HIERARCHICAL_GRAPHS);
@@ -467,6 +505,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     consumerEDataType = createEDataType(CONSUMER);
     jsonArrayEDataType = createEDataType(JSON_ARRAY);
     jsonObjectEDataType = createEDataType(JSON_OBJECT);
+    optionalEDataType = createEDataType(OPTIONAL);
   }
 
   /**
@@ -498,6 +537,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     // Create type parameters
     addETypeParameter(futureEDataType, "T");
     addETypeParameter(consumerEDataType, "T");
+    addETypeParameter(optionalEDataType, "T");
 
     // Set bounds for type parameters
 
@@ -518,11 +558,23 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     initEClass(neo4JBackedDependencySourceEClass, Neo4JBackedDependencySource.class, "Neo4JBackedDependencySource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNeo4JBackedDependencySource_Properties(), theHierarchicalgraphPackage.getStringToStringMap(), null, "properties", null, 0, -1, Neo4JBackedDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getNeo4JBackedDependencySource_Type(), ecorePackage.getEString(), "type", null, 1, 1, Neo4JBackedDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNeo4JBackedDependencySource_UserObject(), ecorePackage.getEJavaObject(), "userObject", null, 0, 1, Neo4JBackedDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    EOperation op = initEOperation(getNeo4JBackedDependencySource__GetUserObject__Class(), null, "getUserObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+    ETypeParameter t1 = addETypeParameter(op, "T");
+    EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
+    EGenericType g2 = createEGenericType(t1);
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "type", 1, 1, IS_UNIQUE, IS_ORDERED);
+    g1 = createEGenericType(this.getOptional());
+    g2 = createEGenericType(t1);
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
 
     initEClass(iNeo4JRepositoryEClass, INeo4JRepository.class, "INeo4JRepository", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getINeo4JRepository_HierarchicalGraphs(), theHierarchicalgraphPackage.getHGRootNode(), null, "hierarchicalGraphs", null, 0, -1, INeo4JRepository.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    EOperation op = initEOperation(getINeo4JRepository__GetNodeLabels__long(), this.getJsonArray(), "getNodeLabels", 0, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getINeo4JRepository__GetNodeLabels__long(), this.getJsonArray(), "getNodeLabels", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getELong(), "nodeId", 1, 1, IS_UNIQUE, IS_ORDERED);
 
     op = initEOperation(getINeo4JRepository__GetNodeProperties__long(), this.getJsonObject(), "getNodeProperties", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -533,8 +585,8 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
     op = initEOperation(getINeo4JRepository__ExecuteCypherQuery__String(), null, "executeCypherQuery", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEString(), "cypherQuery", 0, 1, IS_UNIQUE, IS_ORDERED);
-    EGenericType g1 = createEGenericType(this.getFuture());
-    EGenericType g2 = createEGenericType(this.getJsonObject());
+    g1 = createEGenericType(this.getFuture());
+    g2 = createEGenericType(this.getJsonObject());
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
 
@@ -593,6 +645,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     initEDataType(consumerEDataType, Consumer.class, "Consumer", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(jsonArrayEDataType, JsonArray.class, "JsonArray", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(jsonObjectEDataType, JsonObject.class, "JsonObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(optionalEDataType, Optional.class, "Optional", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

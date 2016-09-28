@@ -14,10 +14,22 @@
         eType="#//INeo4JRepository"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedDependencySource" eSuperTypes="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//IDependencySource">
+    <eOperations name="getUserObject" lowerBound="1">
+      <eGenericType eClassifier="#//Optional">
+        <eTypeArguments eTypeParameter="#//Neo4JBackedDependencySource/getUserObject/T"/>
+      </eGenericType>
+      <eTypeParameters name="T"/>
+      <eParameters name="type" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments eTypeParameter="#//Neo4JBackedDependencySource/getUserObject/T"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//StringToStringMap"
         changeable="false" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="userObject" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="INeo4JRepository" abstract="true" interface="true">
     <eOperations name="getNodeLabels" eType="#//JsonArray">
@@ -94,4 +106,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="JsonArray" instanceClassName="com.google.gson.JsonArray"/>
   <eClassifiers xsi:type="ecore:EDataType" name="JsonObject" instanceClassName="com.google.gson.JsonObject"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Optional" instanceClassName="java.util.Optional">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
 </ecore:EPackage>
