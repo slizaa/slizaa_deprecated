@@ -51,11 +51,13 @@ public class QueryConsumerCallable extends AbstractNeo4JCypherCallable implement
    */
   public Void call() throws Exception {
 
-    //
+    // execute the cypher call
     JsonObject jsonObject = neo4JRemoteServiceRestApi().executeCypherQuery(asQuery(query(), params()));
 
-    //
-    _consumer.accept(jsonObject);
+    // we have to synchronize the consumption to avoid race conditions
+    synchronized (neo4JRemoteServiceRestApi()) {
+      _consumer.accept(jsonObject);
+    }
 
     //
     return null;
