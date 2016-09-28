@@ -17,6 +17,8 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
+import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
+import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -28,6 +30,43 @@ import com.google.gson.JsonElement;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class GraphFactoryFunctions {
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param id
+   * @param type
+   * @return
+   */
+  public static Neo4JBackedDependencySource createDependencySource(Long id, String type) {
+    return createDependencySource(checkNotNull(id), checkNotNull(type), null);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param id
+   * @param type
+   * @param userObject
+   * @return
+   */
+  public static Neo4JBackedDependencySource createDependencySource(Long id, String type, Object userObject) {
+
+    checkNotNull(id);
+    checkNotNull(type);
+
+    // create the dependency source
+    Neo4JBackedDependencySource dependencySource = Neo4jHierarchicalgraphFactory.eINSTANCE
+        .createNeo4JBackedDependencySource();
+
+    dependencySource.setIdentifier(id);
+    dependencySource.setType(type);
+    dependencySource.setUserObject(userObject);
+
+    return dependencySource;
+  }
 
   /**
    * <p>
