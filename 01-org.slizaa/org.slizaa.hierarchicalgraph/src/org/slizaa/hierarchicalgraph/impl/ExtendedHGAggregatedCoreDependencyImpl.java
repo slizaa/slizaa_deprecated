@@ -2,6 +2,7 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Future;
 
@@ -49,7 +50,7 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
 
     //
     if (!resolved) {
-      Utilities.resolveAggregatedCoreDependencies(this);
+      Utilities.resolveAggregatedCoreDependencies(null, this);
     }
   }
 
@@ -59,13 +60,10 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
    *
    * @return
    */
-  public Future<?> onResolveAggregatedCoreDependency() {
+  public List<Future<?>> onResolveAggregatedCoreDependency() {
 
     //
     if (!resolved) {
-      
-      //
-      setResolved(true);
 
       //
       if (getRootNode().hasExtension(IAggregatedCoreDependencyResolver.class)) {
@@ -83,7 +81,7 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
    *
    * @param newResolved
    */
-  private void setResolved(boolean newResolved) {
+  void setResolved(boolean newResolved) {
     boolean oldResolved = resolved;
     resolved = newResolved;
     if (eNotificationRequired())

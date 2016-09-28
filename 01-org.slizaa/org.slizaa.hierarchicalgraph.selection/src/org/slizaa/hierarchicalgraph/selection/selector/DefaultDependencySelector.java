@@ -12,6 +12,9 @@ package org.slizaa.hierarchicalgraph.selection.selector;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,9 +24,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.hierarchicalgraph.HierarchicalgraphUtilityMethods;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -31,6 +40,7 @@ import com.google.common.cache.LoadingCache;
 
 /**
  * <p>
+ * TODO: EMF!!!
  * </p>
  * 
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
@@ -38,7 +48,7 @@ import com.google.common.cache.LoadingCache;
 public class DefaultDependencySelector implements IDependencySelector {
 
   /** - */
-  private Collection<HGCoreDependency>                       _unfilteredCoreDependencies;
+  private Collection<HGCoreDependency>                       _coreDependencies;
 
   /** - */
   private Collection<HGNode>                                 _selectedNodes;
@@ -82,6 +92,12 @@ public class DefaultDependencySelector implements IDependencySelector {
   /** - */
   private boolean                                            _initialized;
 
+  /** - */
+  private PropertyChangeSupport                              _propertyChangeSupport = new PropertyChangeSupport(this);
+
+  /** - */
+  private Adapter                                            _adapter;
+
   /**
    * <p>
    * Creates a new instance of type {@link DefaultDependencySelector}.
@@ -92,7 +108,7 @@ public class DefaultDependencySelector implements IDependencySelector {
   public DefaultDependencySelector() {
 
     //
-    _unfilteredCoreDependencies = Collections.emptySet();
+    _coreDependencies = Collections.emptySet();
     _filteredCoreDependencies = new HashSet<>();
     _unfilteredSourceNodes = new HashSet<>();
     _unfilteredTargetNodes = new HashSet<>();
@@ -119,6 +135,40 @@ public class DefaultDependencySelector implements IDependencySelector {
             return new LinkedList<>();
           }
         });
+
+    //
+    _adapter = new AdapterImpl() {
+      @Override
+      public void notifyChanged(Notification msg) {
+        if (msg.getFeatureID(
+            HGAggregatedCoreDependency.class) == HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED) {
+          handleNotify();
+        }
+      }
+    };
+  }
+
+  public void addPropertyChangeListener(PropertyChangeListener listener) {
+    this._propertyChangeSupport.addPropertyChangeListener(listener);
+  }
+
+  public void removePropertyChangeListener(PropertyChangeListener listener) {
+    this._propertyChangeSupport.removePropertyChangeListener(listener);
+  }
+
+  public void handleNotify() {
+    _filteredCoreDependencies.clear();
+    _filteredSourceNodes.clear();
+    _filteredTargetNodes.clear();
+    _sourceNode2CoreDependenciesMap.invalidateAll();
+    _targetNode2CoreDependenciesMap.invalidateAll();
+    _unfilteredSourceNodes.clear();
+    _unfilteredTargetNodes.clear();
+    _initialized = false;
+    init();
+
+    //
+    _propertyChangeSupport.firePropertyChange("coreDependencies", "TODO-old", "TODO-new");
   }
 
   /**
@@ -127,7 +177,14 @@ public class DefaultDependencySelector implements IDependencySelector {
   @Override
   public void setDependencies(Collection<HGCoreDependency> dependencies) {
 
-    _unfilteredCoreDependencies = checkNotNull(dependencies);
+    //
+    if (_coreDependencies != null) {
+      HierarchicalgraphUtilityMethods.removeAdapter(_coreDependencies, _adapter);
+    }
+
+    //
+    _coreDependencies = checkNotNull(dependencies);
+    HierarchicalgraphUtilityMethods.addAdapter(_coreDependencies, _adapter);
 
     //
     _filteredCoreDependencies.clear();
@@ -150,7 +207,7 @@ public class DefaultDependencySelector implements IDependencySelector {
   @Override
   public Collection<HGCoreDependency> getUnfilteredCoreDependencies() {
     init();
-    return Collections.unmodifiableCollection(_unfilteredCoreDependencies);
+    return Collections.unmodifiableCollection(getResolvedCoreDependencies());
   }
 
   /**
@@ -170,7 +227,7 @@ public class DefaultDependencySelector implements IDependencySelector {
     init();
     return checkNotNull(type).equals(NodeType.SOURCE) ? _unfilteredSourceNodes : _unfilteredTargetNodes;
   }
-
+  
   /**
    * {@inheritDoc}
    */
@@ -242,7 +299,7 @@ public class DefaultDependencySelector implements IDependencySelector {
       Set<HGNode> unfilteredTargetNodes = new HashSet<HGNode>();
 
       //
-      _unfilteredCoreDependencies.forEach(dep -> {
+      getResolvedCoreDependencies().forEach(dep -> {
         _sourceNode2CoreDependenciesMap.getUnchecked(dep.getFrom()).add(dep);
         _targetNode2CoreDependenciesMap.getUnchecked(dep.getTo()).add(dep);
         unfilteredSourceNodes.add(dep.getFrom());
@@ -350,5 +407,29 @@ public class DefaultDependencySelector implements IDependencySelector {
       }
     });
     return result;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  private Collection<HGCoreDependency> getResolvedCoreDependencies() {
+
+    //
+    List<HGCoreDependency> coreDependencies = new ArrayList<>();
+
+    _coreDependencies.forEach((c) -> {
+      if (c instanceof HGAggregatedCoreDependency && ((HGAggregatedCoreDependency) c).isResolved()
+          && ((HGAggregatedCoreDependency) c).getResolvedCoreDependencies().size() > 0) {
+        coreDependencies.addAll(((HGAggregatedCoreDependency) c).getResolvedCoreDependencies());
+      } else {
+        coreDependencies.add(c);
+      }
+    });
+
+    //
+    return coreDependencies;
   }
 }

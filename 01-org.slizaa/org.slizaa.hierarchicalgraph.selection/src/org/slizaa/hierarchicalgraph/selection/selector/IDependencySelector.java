@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
 
 public interface IDependencySelector {
 

@@ -237,7 +237,7 @@ public class ExtendedHGNodeTrait {
       }
 
       //
-      Utilities.resolveAggregatedCoreDependencies(dependencies);
+      Utilities.resolveAggregatedCoreDependencies(dependencies, null);
     }
   }
 
@@ -246,7 +246,7 @@ public class ExtendedHGNodeTrait {
    * </p>
    */
   public void resolveIncomingAggregatedCoreDependencies() {
-    Utilities.resolveAggregatedCoreDependencies(getAccumulatedIncomingCoreDependencies());
+    Utilities.resolveAggregatedCoreDependencies(getAccumulatedIncomingCoreDependencies(), null);
   }
 
   /**
@@ -254,7 +254,7 @@ public class ExtendedHGNodeTrait {
    * </p>
    */
   public void resolveOutgoingAggregatedCoreDependencies() {
-    Utilities.resolveAggregatedCoreDependencies(getAccumulatedOutgoingCoreDependencies());
+    Utilities.resolveAggregatedCoreDependencies(getAccumulatedOutgoingCoreDependencies(), null);
   }
 
   /**
@@ -388,6 +388,9 @@ public class ExtendedHGNodeTrait {
 
     //
     _hgNode.getNodeSource().onExpand();
+    
+    //
+    resolveAggregatedCoreDependencies();
   }
 
   /**
@@ -408,6 +411,9 @@ public class ExtendedHGNodeTrait {
 
     //
     _hgNode.getNodeSource().onSelect();
+    
+    //
+    resolveAggregatedCoreDependencies();
   }
 
   /**

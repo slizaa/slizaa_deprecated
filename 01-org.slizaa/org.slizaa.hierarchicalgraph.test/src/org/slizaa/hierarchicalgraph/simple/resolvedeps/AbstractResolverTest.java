@@ -62,7 +62,7 @@ public abstract class AbstractResolverTest extends AbstractSimpleModelTest
    * {@inheritDoc}
    */
   @Override
-  public Future<?> resolveAggregatedDependency(HGAggregatedCoreDependency dependencyToResolve) {
+  public List<Future<?>> resolveAggregatedDependency(HGAggregatedCoreDependency dependencyToResolve) {
 
     _newDependency_1 = createNewCoreDependency(dependencyToResolve.getFrom(), dependencyToResolve.getTo(), "NEW_USAGE",
         () -> HierarchicalgraphFactory.eINSTANCE.createDefaultDependencySource(), false);

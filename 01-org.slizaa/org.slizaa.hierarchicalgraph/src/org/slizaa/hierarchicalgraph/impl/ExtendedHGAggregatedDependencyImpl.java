@@ -144,7 +144,7 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
     initialize();
 
     //
-    Utilities.resolveAggregatedCoreDependencies(this.coreDependencies);
+    Utilities.resolveAggregatedCoreDependencies(this.coreDependencies, null);
   }
 
   /**

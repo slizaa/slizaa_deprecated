@@ -1,5 +1,6 @@
 package org.slizaa.hierarchicalgraph.spi;
 
+import java.util.List;
 import java.util.concurrent.Future;
 
 import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
@@ -18,5 +19,5 @@ public interface IAggregatedCoreDependencyResolver {
    *
    * @param dependencyToResolve
    */
-  Future<?> resolveAggregatedDependency(HGAggregatedCoreDependency dependencyToResolve);
+  List<Future<?>> resolveAggregatedDependency(HGAggregatedCoreDependency dependencyToResolve);
 }

@@ -12,6 +12,8 @@ package org.slizaa.ui.dependencytree.internal;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -20,6 +22,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.RootObject;
+import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -36,12 +39,11 @@ import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector;
-import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector;
 import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.dependencytree.internal.expand.IExpandStrategy;
+import org.slizaa.ui.tree.IInterceptableLabelProvider;
 import org.slizaa.ui.tree.SlizaaTreeFactory;
-import org.slizaa.ui.tree.VisibleNodesFilter;
 
 /**
  * <p>
@@ -60,11 +62,8 @@ public class DependencyTreeComposite extends Composite {
   /** the to tree viewer */
   private TreeViewer                         _toTreeViewer;
 
-  /** the to tree viewer */
-  private TreeViewer                         _currentlySelectedTreeViewer;
-
   /** - */
-  private IDependencySelector                _selector;
+  private DefaultDependencySelector          _selector;
 
   /** - */
   private IExpandStrategy                    _fromExpandStrategy;
@@ -73,10 +72,13 @@ public class DependencyTreeComposite extends Composite {
   private IExpandStrategy                    _toExpandStrategy;
 
   /** - */
-  private boolean                            _showReferenceCount;
+  private IEclipseContext                    _eclipseContext;
 
   /** - */
-  private IEclipseContext                    _eclipseContext;
+  private boolean                            _filterSource;
+
+  /** - */
+  private boolean                            _filterTarget;
 
   /**
    * <p>
@@ -86,16 +88,22 @@ public class DependencyTreeComposite extends Composite {
    * @param parent
    */
   public DependencyTreeComposite(Composite parent, String providerId, IExpandStrategy fromExpandStrategy,
-      IExpandStrategy toExpandStrategy, boolean showReferenceCount,
-      IEclipseContext eclipseContext) {
+      IExpandStrategy toExpandStrategy, IEclipseContext eclipseContext) {
     super(parent, SWT.NONE);
 
     // _providerId = checkNotNull(providerId);
     _fromExpandStrategy = checkNotNull(fromExpandStrategy);
     _toExpandStrategy = checkNotNull(toExpandStrategy);
-    _showReferenceCount = showReferenceCount;
     _eclipseContext = eclipseContext;
     _selector = new DefaultDependencySelector();
+
+    _selector.addPropertyChangeListener(new PropertyChangeListener() {
+      @Override
+      public void propertyChange(PropertyChangeEvent evt) {
+        _fromTreeViewer.refresh();
+        _toTreeViewer.refresh();
+      }
+    });
 
     init();
   }
@@ -110,10 +118,6 @@ public class DependencyTreeComposite extends Composite {
 
     //
     _selector.setDependencies(dependencies);
-
-    // update 'from' and 'to' tree, no filtering
-    VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getNodesWithParents(NodeType.SOURCE, false));
-    VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getNodesWithParents(NodeType.TARGET, false));
 
     //
     _fromTreeViewer.collapseAll();
@@ -152,20 +156,6 @@ public class DependencyTreeComposite extends Composite {
   }
 
   /**
-   * Set wether reference count should by displayed on nodes
-   * 
-   * @param showReferenceCount
-   */
-  public void setShowReferenceCount(boolean showReferenceCount) {
-    if (_showReferenceCount != showReferenceCount) {
-      _showReferenceCount = showReferenceCount;
-
-      _fromTreeViewer.refresh(true);
-      _toTreeViewer.refresh(true);
-    }
-  }
-
-  /**
    * <p>
    * </p>
    */
@@ -186,6 +176,31 @@ public class DependencyTreeComposite extends Composite {
     _fromTreeViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI);
     _toTreeViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI);
 
+    IBaseLabelProvider labelProvider = _fromTreeViewer.getLabelProvider();
+    if (labelProvider instanceof IInterceptableLabelProvider) {
+      ((IInterceptableLabelProvider) labelProvider)
+          .setLabelProviderInterceptor(new SelectedNodesLabelProviderInterceptor(() -> {
+            return _selector.getNodesWithParents(NodeType.SOURCE, _filterSource);
+          }));
+    }
+
+    labelProvider = _toTreeViewer.getLabelProvider();
+    if (labelProvider instanceof IInterceptableLabelProvider) {
+      ((IInterceptableLabelProvider) labelProvider)
+          .setLabelProviderInterceptor(new SelectedNodesLabelProviderInterceptor(() -> {
+            return _selector.getNodesWithParents(NodeType.TARGET, _filterTarget);
+          }));
+    }
+
+    //
+    _fromTreeViewer.setFilters(new VisibleNodesFilter(() -> {
+      return _selector.getNodesWithParents(NodeType.SOURCE, false);
+    }));
+
+    _toTreeViewer.setFilters(new VisibleNodesFilter(() -> {
+      return _selector.getNodesWithParents(NodeType.TARGET, false);
+    }));
+
     // add SelectionListeners
     _fromTreeViewer.addSelectionChangedListener(new FromArtifactsSelectionChangedListener());
     _toTreeViewer.addSelectionChangedListener(new ToArtifactSelectionChangedListener());
@@ -202,7 +217,8 @@ public class DependencyTreeComposite extends Composite {
    * @param selectedDetailDependencies
    */
   private void setSelectedDetailDependencies(Collection<HGCoreDependency> dependencies) {
-    ContextHelper.setValueInContext(_eclipseContext, SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION, new ArrayList<>(dependencies));
+    ContextHelper.setValueInContext(_eclipseContext, SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION,
+        new ArrayList<>(dependencies));
   }
 
   /**
@@ -229,12 +245,6 @@ public class DependencyTreeComposite extends Composite {
       //
       IStructuredSelection structuredSelection = (IStructuredSelection) event.getSelection();
 
-      //
-      if (!structuredSelection.isEmpty() && _currentlySelectedTreeViewer != _fromTreeViewer) {
-        fromViewerSelected(_fromTreeViewer, _toTreeViewer);
-        _currentlySelectedTreeViewer = _fromTreeViewer;
-      }
-
       // check for selected root element
       boolean containsRoot = false;
       for (Object object : structuredSelection.toList()) {
@@ -251,11 +261,9 @@ public class DependencyTreeComposite extends Composite {
 
         //
         _selector.setSelectedNodes(NodeType.SOURCE, SelectionUtil.toArtifactList(structuredSelection));
-        VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getNodesWithParents(NodeType.TARGET, true));
+        _filterSource = false;
+        _filterTarget = true;
         setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
-
-        //
-        expandArtifacts(_toTreeViewer, _selector.getNodesWithParents(NodeType.TARGET, true));
 
         // set the top item again
         if (treeItem != null && !treeItem.isDisposed()) {
@@ -265,9 +273,13 @@ public class DependencyTreeComposite extends Composite {
         }
 
       } else {
-        VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, _selector.getNodesWithParents(NodeType.TARGET, false));
+        _filterSource = false;
+        _filterTarget = false;
         setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
+
+      _fromTreeViewer.refresh(true);
+      _toTreeViewer.refresh(true);
     }
   }
 
@@ -288,12 +300,6 @@ public class DependencyTreeComposite extends Composite {
       //
       IStructuredSelection structuredSelection = (IStructuredSelection) event.getSelection();
 
-      //
-      if (!structuredSelection.isEmpty() && _currentlySelectedTreeViewer != _toTreeViewer) {
-        toViewerSelected(_fromTreeViewer, _toTreeViewer);
-        _currentlySelectedTreeViewer = _toTreeViewer;
-      }
-
       // check for selected root element
       boolean containsRoot = false;
       for (Object object : structuredSelection.toList()) {
@@ -310,11 +316,9 @@ public class DependencyTreeComposite extends Composite {
 
         //
         _selector.setSelectedNodes(NodeType.TARGET, SelectionUtil.toArtifactList(structuredSelection));
-        VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getNodesWithParents(NodeType.SOURCE, true));
+        _filterSource = true;
+        _filterTarget = false;
         setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
-
-        //
-        expandArtifacts(_fromTreeViewer, _selector.getNodesWithParents(NodeType.SOURCE, true));
 
         // set the top item again
         try {
@@ -323,32 +327,14 @@ public class DependencyTreeComposite extends Composite {
           //
         }
       } else {
-        VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, _selector.getNodesWithParents(NodeType.SOURCE, false));
+        _filterSource = false;
+        _filterTarget = false;
         setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
+
+      _fromTreeViewer.refresh(true);
+      _toTreeViewer.refresh(true);
     }
-
-  }
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @param toTreeViewer
-   * @param fromTreeViewer
-   */
-  protected void toViewerSelected(TreeViewer fromTreeViewer, TreeViewer toTreeViewer) {
-
-  }
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @param fromTreeViewer
-   * @param toTreeViewer
-   */
-  protected void fromViewerSelected(TreeViewer fromTreeViewer, TreeViewer toTreeViewer) {
 
   }
 

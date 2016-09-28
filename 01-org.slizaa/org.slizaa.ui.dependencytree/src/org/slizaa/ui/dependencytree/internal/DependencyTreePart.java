@@ -26,19 +26,21 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.SourceOrTarget;
 import org.slizaa.hierarchicalgraph.selection.DependencySelections;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.ui.dependencytree.internal.expand.DefaultExpandStrategy;
 
 public class DependencyTreePart {
 
   /** - */
-  public static final String              ID = DependencyTreePart.class.getName();
+  public static final String      ID = DependencyTreePart.class.getName();
 
   /** - */
-  private CropableDependencyTreeComposite _composite;
+  private DependencyTreeComposite _composite;
 
   @Inject
-  private MPerspective                    _mPerspective;
+  private MPerspective            _mPerspective;
 
   @PostConstruct
   public void createComposite(Composite parent) {
@@ -50,7 +52,8 @@ public class DependencyTreePart {
     parent.setLayout(layout);
 
     //
-    _composite = new CropableDependencyTreeComposite(parent, ID, false, true, _mPerspective.getContext());
+    _composite = new DependencyTreeComposite(parent, ID, new DefaultExpandStrategy(SourceOrTarget.SOURCE),
+        new DefaultExpandStrategy(SourceOrTarget.TARGET), _mPerspective.getContext());
     _composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
   }
 
@@ -63,7 +66,7 @@ public class DependencyTreePart {
     Set<HGCoreDependency> coreDependencies = dependencies != null
         ? DependencySelections.getCoreDependencies(dependencies) : Collections.emptySet();
 
-    if (_composite != null  && !_composite.isDisposed()) {
+    if (_composite != null && !_composite.isDisposed()) {
       _composite.setDependencies(coreDependencies);
     }
   }
