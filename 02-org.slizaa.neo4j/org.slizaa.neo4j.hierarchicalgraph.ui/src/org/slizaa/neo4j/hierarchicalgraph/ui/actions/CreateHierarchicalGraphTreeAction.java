@@ -20,6 +20,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescri
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorBasedItemLabelProviderImpl;
+import org.slizaa.neo4j.hierarchicalgraph.ui.deprecated.Descriptors;
 import org.slizaa.neo4j.hierarchicalgraph.ui.deprecated.Descriptors2;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
@@ -110,7 +111,7 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
       try {
 
         // create the default mapping descriptor
-        HierarchicalGraphMappingDescriptor mappingDescriptor = Descriptors2.createHierarchicalGraphMappingDescriptor();
+        HierarchicalGraphMappingDescriptor mappingDescriptor = Descriptors.createHierarchicalGraphMappingDescriptor();
 
         // convert the model
         HGRootNode rootNode = _mappingService.convert(mappingDescriptor, _remoteRepository, monitor);
