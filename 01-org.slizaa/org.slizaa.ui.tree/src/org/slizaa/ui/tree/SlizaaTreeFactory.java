@@ -1,5 +1,9 @@
 package org.slizaa.ui.tree;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecp.view.model.common.edit.provider.CustomReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emfforms.internal.swt.treemasterdetail.DefaultTreeViewerCustomization;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.TreeViewerSWTFactory;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -10,6 +14,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGNodeImpl;
 import org.slizaa.ui.common.context.BusyCursor;
+import org.slizaa.ui.common.context.RootObject;
 import org.slizaa.ui.tree.internal.Activator;
 import org.slizaa.ui.tree.internal.InterceptableAdapterFactoryLabelProvider;
 import org.slizaa.ui.tree.internal.NullDNDProvider;
@@ -93,7 +98,8 @@ public class SlizaaTreeFactory {
             treeViewer.setUseHashlookup(true);
             return treeViewer;
           }
-        }).customizeMenu(new SlizaaMenuProvider()).customizeDragAndDrop(new NullDNDProvider()).create();
+        }).customizeMenu(new SlizaaMenuProvider()).customizeDragAndDrop(new NullDNDProvider())
+        .customizeContentProvider(getAdapterFactoryContentProvider()).create();
 
     //
     result.setLabelProvider(
@@ -104,5 +110,39 @@ public class SlizaaTreeFactory {
 
     // return result
     return result;
+  }
+
+  /**
+   * Returns the {@link AdapterFactoryContentProvider}.
+   *
+   * @return the content provider
+   */
+  protected static AdapterFactoryContentProvider getAdapterFactoryContentProvider() {
+    final ComposedAdapterFactory adapterFactory = getComposedAdapterFactory();
+    return new AdapterFactoryContentProvider(adapterFactory) {
+
+      @Override
+      public Object[] getElements(Object object) {
+        if (RootObject.class.isInstance(object)) {
+          return new Object[] { RootObject.class.cast(object).getRoot() };
+        }
+        return super.getElements(object);
+      }
+
+      @Override
+      public boolean hasChildren(Object object) {
+        return getChildren(object).length > 0;
+      }
+    };
+  }
+
+  /**
+   * Gives access to the composed adapter factory.
+   *
+   * @return the adapter factory
+   */
+  protected static ComposedAdapterFactory getComposedAdapterFactory() {
+    return new ComposedAdapterFactory(new AdapterFactory[] { new CustomReflectiveItemProviderAdapterFactory(),
+        new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE) });
   }
 }

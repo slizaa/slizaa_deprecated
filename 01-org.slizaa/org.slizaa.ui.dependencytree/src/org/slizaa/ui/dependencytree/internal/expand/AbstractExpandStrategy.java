@@ -17,11 +17,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emfforms.spi.swt.treemasterdetail.util.RootObject;
 import org.eclipse.jface.viewers.ITreeViewerListener;
 import org.eclipse.jface.viewers.TreeExpansionEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.ui.common.context.RootObject;
 
 public abstract class AbstractExpandStrategy implements IExpandStrategy {
 

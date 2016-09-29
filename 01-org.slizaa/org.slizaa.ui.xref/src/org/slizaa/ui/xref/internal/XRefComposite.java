@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.emfforms.spi.swt.treemasterdetail.util.RootObject;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -31,6 +30,7 @@ import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.common.context.RootObject;
 import org.slizaa.ui.tree.IInterceptableLabelProvider;
 import org.slizaa.ui.tree.SlizaaTreeFactory;
 import org.slizaa.ui.tree.VisibleNodesFilter;
