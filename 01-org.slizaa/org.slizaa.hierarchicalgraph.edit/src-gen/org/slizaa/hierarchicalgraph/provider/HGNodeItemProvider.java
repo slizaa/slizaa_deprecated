@@ -12,8 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -64,100 +62,8 @@ public class HGNodeItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addOutgoingCoreDependenciesPropertyDescriptor(object);
-      addAccumulatedOutgoingCoreDependenciesPropertyDescriptor(object);
-      addIncomingCoreDependenciesPropertyDescriptor(object);
-      addAccumulatedIncomingCoreDependenciesPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the Outgoing Core Dependencies feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addOutgoingCoreDependenciesPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_HGNode_outgoingCoreDependencies_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_outgoingCoreDependencies_feature", "_UI_HGNode_type"),
-         HierarchicalgraphPackage.Literals.HG_NODE__OUTGOING_CORE_DEPENDENCIES,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Accumulated Outgoing Core Dependencies feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addAccumulatedOutgoingCoreDependenciesPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_HGNode_accumulatedOutgoingCoreDependencies_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_accumulatedOutgoingCoreDependencies_feature", "_UI_HGNode_type"),
-         HierarchicalgraphPackage.Literals.HG_NODE__ACCUMULATED_OUTGOING_CORE_DEPENDENCIES,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Incoming Core Dependencies feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addIncomingCoreDependenciesPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_HGNode_incomingCoreDependencies_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_incomingCoreDependencies_feature", "_UI_HGNode_type"),
-         HierarchicalgraphPackage.Literals.HG_NODE__INCOMING_CORE_DEPENDENCIES,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Accumulated Incoming Core Dependencies feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addAccumulatedIncomingCoreDependenciesPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_HGNode_accumulatedIncomingCoreDependencies_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGNode_accumulatedIncomingCoreDependencies_feature", "_UI_HGNode_type"),
-         HierarchicalgraphPackage.Literals.HG_NODE__ACCUMULATED_INCOMING_CORE_DEPENDENCIES,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
   }
 
   /**

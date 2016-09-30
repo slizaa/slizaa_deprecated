@@ -41,6 +41,7 @@ import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 import org.slizaa.ui.tree.VisibleNodesFilter;
 import org.slizaa.ui.tree.expand.DefaultExpandStrategy;
 import org.slizaa.ui.tree.expand.IExpandStrategy;
+import org.slizaa.ui.tree.expand.NullExpandStrategy;
 
 import com.google.common.collect.Iterables;
 
@@ -240,13 +241,15 @@ public class XRefComposite extends Composite {
       }
     });
 
-    _fromTreeExpandStrategy = new DefaultExpandStrategy(
-        (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getOutgoingCoreDependencies()));
+    _fromTreeExpandStrategy = new NullExpandStrategy();
+    // _fromTreeExpandStrategy = new DefaultExpandStrategy(
+    // (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getOutgoingCoreDependencies()));
     _centerTreeExpandStrategy = new DefaultExpandStrategy(
         (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(
             Iterables.concat(node.getOutgoingCoreDependencies(), node.getIncomingCoreDependencies())));
-    _toTreeExpandStrategy = new DefaultExpandStrategy(
-        (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getIncomingCoreDependencies()));
+    _toTreeExpandStrategy = new NullExpandStrategy();
+    // _toTreeExpandStrategy = new DefaultExpandStrategy(
+    // (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getIncomingCoreDependencies()));
 
     //
     _fromTreeExpandStrategy.init(_fromTreeViewer);

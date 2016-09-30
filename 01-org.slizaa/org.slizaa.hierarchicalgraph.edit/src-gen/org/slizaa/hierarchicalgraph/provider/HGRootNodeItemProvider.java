@@ -64,7 +64,7 @@ public class HGRootNodeItemProvider extends HGNodeItemProvider {
          getString("_UI_HGRootNode_name_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_HGRootNode_name_feature", "_UI_HGRootNode_type"),
          HierarchicalgraphPackage.Literals.HG_ROOT_NODE__NAME,
-         true,
+         false,
          false,
          false,
          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,

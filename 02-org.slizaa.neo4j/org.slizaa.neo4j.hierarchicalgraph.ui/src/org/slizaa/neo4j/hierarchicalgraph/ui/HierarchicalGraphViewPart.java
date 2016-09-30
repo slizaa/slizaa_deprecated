@@ -26,6 +26,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.neo4j.workbenchmodel.MappedGraphs;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
@@ -93,7 +94,7 @@ public class HierarchicalGraphViewPart {
         //
         List<HGNode> rep = new LinkedList<>();
         for (Object s : selection.toList()) {
-          if (!(s instanceof HGNode)) {
+          if (!(s instanceof HGNode) || s instanceof HGRootNode) {
             rep.clear();
             break;
           } else {
