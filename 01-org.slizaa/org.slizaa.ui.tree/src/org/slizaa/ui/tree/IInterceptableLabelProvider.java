@@ -1,5 +1,11 @@
 package org.slizaa.ui.tree;
 
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 public interface IInterceptableLabelProvider {
 
   /**
@@ -25,5 +31,4 @@ public interface IInterceptableLabelProvider {
    * @param labelProviderInterceptor
    */
   public void setLabelProviderInterceptor(ILabelProviderInterceptor labelProviderInterceptor);
-
 }

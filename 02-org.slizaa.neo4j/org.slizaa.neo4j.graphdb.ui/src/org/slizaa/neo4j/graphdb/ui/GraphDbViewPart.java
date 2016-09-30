@@ -19,7 +19,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchModel;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
-import org.slizaa.ui.tree.SlizaaTreeFactory;
+import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 
 public class GraphDbViewPart {
 
@@ -67,7 +67,7 @@ public class GraphDbViewPart {
   private TreeViewer createTreeViewer(Composite parent, WorkbenchModel workbenchModel) {
 
     // TODO!
-    TreeViewer treeViewer = SlizaaTreeFactory.createTreeViewer(parent,
+    TreeViewer treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent,
         workbenchModel.getDatabases());
 
     // treeViewer.addSelectionChangedListener(

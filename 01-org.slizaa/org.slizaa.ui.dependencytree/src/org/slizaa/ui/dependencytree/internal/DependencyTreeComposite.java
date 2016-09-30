@@ -44,9 +44,9 @@ import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeT
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.common.context.RootObject;
 import org.slizaa.ui.dependencytree.internal.expand.IExpandStrategy;
-import org.slizaa.ui.tree.IEventInterceptor;
+import org.slizaa.ui.tree.ITreeEventInterceptor;
 import org.slizaa.ui.tree.IInterceptableLabelProvider;
-import org.slizaa.ui.tree.SlizaaTreeFactory;
+import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 
 /**
  * <p>
@@ -176,8 +176,8 @@ public class DependencyTreeComposite extends Composite {
     sashForm.setLayoutData(data);
 
     //
-    _fromTreeViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 3,
-        new IEventInterceptor() {
+    _fromTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 3,
+        new ITreeEventInterceptor() {
           @Override
           public void handleSelect(HGNode node) {
             List<HGCoreDependency> dependencies = _selector.getDependenciesWithSourceNode(node);
@@ -202,8 +202,8 @@ public class DependencyTreeComposite extends Composite {
           }
         });
 
-    _toTreeViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 3,
-        new IEventInterceptor() {
+    _toTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 3,
+        new ITreeEventInterceptor() {
           @Override
           public void handleSelect(HGNode node) {
             List<HGCoreDependency> dependencies = _selector.getDependenciesWithTargetNode(node);

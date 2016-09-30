@@ -32,7 +32,7 @@ import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.common.context.RootObject;
 import org.slizaa.ui.tree.IInterceptableLabelProvider;
-import org.slizaa.ui.tree.SlizaaTreeFactory;
+import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 import org.slizaa.ui.tree.VisibleNodesFilter;
 
 /**
@@ -254,9 +254,9 @@ public class XRefComposite extends Composite {
     sashForm.setLayoutData(data);
 
     //
-    _fromTreeViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2, null);
-    _centerViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2, null);
-    _toTreeViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2, null);
+    _fromTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2, null);
+    _centerViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2, null);
+    _toTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2, null);
 
     //
     _labelProviderInterceptor = new XRefLabelProviderInterceptor();

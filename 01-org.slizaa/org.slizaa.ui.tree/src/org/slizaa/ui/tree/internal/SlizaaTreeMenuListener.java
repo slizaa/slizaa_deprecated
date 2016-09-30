@@ -1,4 +1,4 @@
-package org.slizaa.ui.tree.menu;
+package org.slizaa.ui.tree.internal;
 
 import java.util.Collection;
 import java.util.List;
@@ -7,12 +7,12 @@ import org.eclipse.e4.core.contexts.ContextInjectionFactory;
 import org.eclipse.e4.ui.workbench.IWorkbench;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.common.spi.ChildrenDescriptorCollector;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateChildAction;
-import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
+//import org.eclipse.emf.ecp.common.spi.ChildrenDescriptorCollector;
+//import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateChildAction;
+//import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -23,14 +23,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.osgi.framework.FrameworkUtil;
 import org.slizaa.ui.tree.SlizaaTreeAction;
-import org.slizaa.ui.tree.internal.Activator;
 
 /**
  * {@link IMenuListener Menu listener} added on the tree master detail.
  */
 public class SlizaaTreeMenuListener implements IMenuListener {
 
-  private final ChildrenDescriptorCollector childrenDescriptorCollector;
+//  private final ChildrenDescriptorCollector childrenDescriptorCollector;
 
   private final MenuManager                 menuMgr;
 
@@ -38,36 +37,19 @@ public class SlizaaTreeMenuListener implements IMenuListener {
 
   private final EditingDomain               editingDomain;
 
-  private final CreateElementCallback       createElementCallback;
+//  private final CreateElementCallback       createElementCallback;
 
   // private final SlizaaDeleteActionBuilder deleteActionBuilder;
 
-  /**
-   * Default constructor.
-   *
-   * @param childrenDescriptorCollector
-   *          the child description collector
-   * @param menuMgr
-   *          the menu manager
-   * @param treeViewer
-   *          the treeviewer
-   * @param editingDomain
-   *          the editing domain
-   * @param createElementCallback
-   *          the create element callback
-   * @param deleteActionBuilder
-   *          the delete action builder
-   * @since 1.8
-   */
-  public SlizaaTreeMenuListener(ChildrenDescriptorCollector childrenDescriptorCollector, MenuManager menuMgr,
-      TreeViewer treeViewer, EditingDomain editingDomain,
-      CreateElementCallback createElementCallback /* , SlizaaDeleteActionBuilder deleteActionBuilder */) {
+  public SlizaaTreeMenuListener(/* ChildrenDescriptorCollector childrenDescriptorCollector,*/ MenuManager menuMgr,
+      TreeViewer treeViewer, EditingDomain editingDomain /*,
+      CreateElementCallback createElementCallback  , SlizaaDeleteActionBuilder deleteActionBuilder */) {
 
-    this.childrenDescriptorCollector = childrenDescriptorCollector;
+//    this.childrenDescriptorCollector = childrenDescriptorCollector;
     this.menuMgr = menuMgr;
     this.treeViewer = treeViewer;
     this.editingDomain = editingDomain;
-    this.createElementCallback = createElementCallback;
+//    this.createElementCallback = createElementCallback;
     // this.deleteActionBuilder = deleteActionBuilder;
   }
 
@@ -89,10 +71,10 @@ public class SlizaaTreeMenuListener implements IMenuListener {
         if (domain == null) {
           return;
         }
-        final Collection<?> descriptors = childrenDescriptorCollector.getDescriptors(eObject);
-        fillContextMenu(manager, descriptors, editingDomain, eObject);
+//        final Collection<?> descriptors = childrenDescriptorCollector.getDescriptors(eObject);
+//        fillContextMenu(manager, descriptors, editingDomain, eObject);
       }
-      manager.add(new Separator());
+//      manager.add(new Separator());
 
       // addDeleteActionToContextMenu(editingDomain, menuMgr, selection);
 
@@ -155,44 +137,44 @@ public class SlizaaTreeMenuListener implements IMenuListener {
       }
     }
   }
-
-  /**
-   * Fill context menu.
-   *
-   * @param manager
-   *          The menu manager responsible for the context menu
-   * @param descriptors
-   *          The menu items to be added
-   * @param domain
-   *          The editing domain of the current EObject
-   * @param eObject
-   *          The model element
-   */
-  private void fillContextMenu(IMenuManager manager, Collection<?> descriptors, final EditingDomain domain,
-      final EObject eObject) {
-    for (final Object descriptor : descriptors) {
-
-      if (!CommandParameter.class.isInstance(descriptor)) {
-        continue;
-      }
-      final CommandParameter cp = (CommandParameter) descriptor;
-      if (cp.getEReference() == null) {
-        continue;
-      }
-      if (filterDescriptor(cp)) {
-        continue;
-      }
-      if (!cp.getEReference().isMany() && eObject.eIsSet(cp.getEStructuralFeature())) {
-        continue;
-      } else if (cp.getEReference().isMany() && cp.getEReference().getUpperBound() != -1
-          && cp.getEReference().getUpperBound() <= ((List<?>) eObject.eGet(cp.getEReference())).size()) {
-        continue;
-      }
-
-      manager.add(new CreateChildAction(eObject, domain, treeViewer, cp, createElementCallback));
-    }
-
-  }
+//
+//  /**
+//   * Fill context menu.
+//   *
+//   * @param manager
+//   *          The menu manager responsible for the context menu
+//   * @param descriptors
+//   *          The menu items to be added
+//   * @param domain
+//   *          The editing domain of the current EObject
+//   * @param eObject
+//   *          The model element
+//   */
+//  private void fillContextMenu(IMenuManager manager, Collection<?> descriptors, final EditingDomain domain,
+//      final EObject eObject) {
+//    for (final Object descriptor : descriptors) {
+//
+//      if (!CommandParameter.class.isInstance(descriptor)) {
+//        continue;
+//      }
+//      final CommandParameter cp = (CommandParameter) descriptor;
+//      if (cp.getEReference() == null) {
+//        continue;
+//      }
+//      if (filterDescriptor(cp)) {
+//        continue;
+//      }
+//      if (!cp.getEReference().isMany() && eObject.eIsSet(cp.getEStructuralFeature())) {
+//        continue;
+//      } else if (cp.getEReference().isMany() && cp.getEReference().getUpperBound() != -1
+//          && cp.getEReference().getUpperBound() <= ((List<?>) eObject.eGet(cp.getEReference())).size()) {
+//        continue;
+//      }
+//
+////      manager.add(new CreateChildAction(eObject, domain, treeViewer, cp, createElementCallback));
+//    }
+//
+//  }
 
   /**
    * Allows to prevent adding a create child action for the given {@link CommandParameter}.
