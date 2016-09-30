@@ -15,7 +15,6 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
@@ -31,17 +30,15 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TreeItem;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector;
 import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.common.context.RootObject;
+import org.slizaa.ui.tree.DependencyResolvingTreeEventInterceptor;
 import org.slizaa.ui.tree.IInterceptableLabelProvider;
-import org.slizaa.ui.tree.ITreeEventInterceptor;
 import org.slizaa.ui.tree.SelectedNodesLabelProviderInterceptor;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 import org.slizaa.ui.tree.VisibleNodesFilter;
@@ -183,56 +180,10 @@ public class DependencyTreeComposite extends Composite {
 
     //
     _fromTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 3,
-        new ITreeEventInterceptor() {
-          @Override
-          public void handleSelect(HGNode node) {
-            List<HGCoreDependency> dependencies = _selector.getDependenciesWithSourceNode(node);
-            if (dependencies != null) {
-              dependencies.stream().filter(dep -> dep instanceof HGAggregatedCoreDependency)
-                  .map(dep -> (HGAggregatedCoreDependency) dep).forEach(dep -> dep.resolveAggregatedCoreDependencies());
-            }
-          }
-
-          @Override
-          public void handleTreeExpand(HGNode node) {
-            List<HGCoreDependency> dependencies = _selector.getDependenciesWithSourceNode(node);
-            if (dependencies != null) {
-              dependencies.stream().filter(dep -> dep instanceof HGAggregatedCoreDependency)
-                  .map(dep -> (HGAggregatedCoreDependency) dep).forEach(dep -> dep.resolveAggregatedCoreDependencies());
-            }
-          }
-
-          @Override
-          public void handleTreeCollapse(HGNode node) {
-            // nothing
-          }
-        });
+        new DependencyResolvingTreeEventInterceptor((node) -> _selector.getDependenciesWithSourceNode(node)));
 
     _toTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 3,
-        new ITreeEventInterceptor() {
-          @Override
-          public void handleSelect(HGNode node) {
-            List<HGCoreDependency> dependencies = _selector.getDependenciesWithTargetNode(node);
-            if (dependencies != null) {
-              dependencies.stream().filter(dep -> dep instanceof HGAggregatedCoreDependency)
-                  .map(dep -> (HGAggregatedCoreDependency) dep).forEach(dep -> dep.resolveAggregatedCoreDependencies());
-            }
-          }
-
-          @Override
-          public void handleTreeExpand(HGNode node) {
-            List<HGCoreDependency> dependencies = _selector.getDependenciesWithTargetNode(node);
-            if (dependencies != null) {
-              dependencies.stream().filter(dep -> dep instanceof HGAggregatedCoreDependency)
-                  .map(dep -> (HGAggregatedCoreDependency) dep).forEach(dep -> dep.resolveAggregatedCoreDependencies());
-            }
-          }
-
-          @Override
-          public void handleTreeCollapse(HGNode node) {
-            // nothing
-          }
-        });
+        new DependencyResolvingTreeEventInterceptor((node) -> _selector.getDependenciesWithTargetNode(node)));
 
     IBaseLabelProvider labelProvider = _fromTreeViewer.getLabelProvider();
     if (labelProvider instanceof IInterceptableLabelProvider) {

@@ -1,5 +1,6 @@
 package org.slizaa.ui.klighd.synthesis.hierarchicalgraph;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class SelectDependenciesAction implements IAction {
 
       if (sourceElement instanceof HGAggregatedDependency) {
         HGAggregatedDependency dependency = (HGAggregatedDependency) sourceElement;
-        List<HGAggregatedDependency> dependencies = new LinkedList<>();
+        Collection<HGAggregatedDependency> dependencies = new LinkedList<>();
         if (dependency != null) {
           dependencies.add(dependency);
         }

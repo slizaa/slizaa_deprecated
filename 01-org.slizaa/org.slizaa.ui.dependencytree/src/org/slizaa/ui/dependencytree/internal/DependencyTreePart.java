@@ -10,8 +10,8 @@
  ******************************************************************************/
 package org.slizaa.ui.dependencytree.internal;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -75,7 +75,7 @@ public class DependencyTreePart {
   @Inject
   public void handleChangedDependencies(@Optional
   @Named(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION)
-  final List<AbstractHGDependency> dependencies) {
+  final Collection<AbstractHGDependency> dependencies) {
 
     // get the core dependencies
     Set<HGCoreDependency> coreDependencies = dependencies != null
