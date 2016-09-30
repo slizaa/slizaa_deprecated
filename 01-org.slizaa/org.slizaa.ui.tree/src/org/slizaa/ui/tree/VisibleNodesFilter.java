@@ -13,11 +13,8 @@ package org.slizaa.ui.tree;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
+import java.util.function.Supplier;
 
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.slizaa.hierarchicalgraph.HGNode;
@@ -25,68 +22,25 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 
 /**
  * <p>
- * Filter for IArtifact trees. This filter gets a white list of IArtifacts given in the constructor. Only these
- * artifacts and their parent nodes are displayed in the tree, everything else is hidden.
  * </p>
  * 
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class VisibleNodesFilter extends ViewerFilter {
 
-  /**
-   * <p>
-   * </p>
-   * 
-   * @param treeViewer
-   * @param visibleArtifacts
-   * @return
-   */
-  public static VisibleNodesFilter setVisibleArtifacts(TreeViewer treeViewer, Set<HGNode> visibleNodes) {
-    Assert.isNotNull(treeViewer);
-
-    //
-    VisibleNodesFilter result = null;
-
-    // set redraw to false
-    treeViewer.getTree().setRedraw(false);
-
-    if (visibleNodes == null) {
-      treeViewer.resetFilters();
-    } else {
-      // set the filter
-      result = new VisibleNodesFilter(visibleNodes);
-      treeViewer.setFilters(new ViewerFilter[] { result });
-    }
-
-    // redraw again
-    treeViewer.getTree().setRedraw(true);
-
-    //
-    return result;
-  }
 
   /** - */
-  private Collection<HGNode> _nodes;
+  private Supplier<Collection<HGNode>> _visibleNodesSupplier;
 
   /**
    * <p>
    * Creates a new instance of type {@link VisibleNodesFilter} .
    * </p>
    * 
-   * @param visibleArtifacts
+   * @param visibleNodesSupplier
    */
-  public VisibleNodesFilter(Collection<HGNode> visibleArtifacts) {
-    _nodes = checkNotNull(visibleArtifacts);
-  }
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @return
-   */
-  public Collection<HGNode> getArtifacts() {
-    return Collections.unmodifiableCollection(_nodes);
+  public VisibleNodesFilter(Supplier<Collection<HGNode>> visibleNodesSupplier) {
+    _visibleNodesSupplier = checkNotNull(visibleNodesSupplier);
   }
 
   /**
@@ -98,10 +52,15 @@ public class VisibleNodesFilter extends ViewerFilter {
     //
     if (element instanceof HGRootNode) {
       return true;
-    } else if (_nodes.contains(element)) {
+    } else if (visibleNodes().contains(element)) {
       return true;
     } else {
       return false;
     }
+  }
+  
+  /** - */
+  private Collection<HGNode> visibleNodes() {
+    return _visibleNodesSupplier.get();
   }
 }

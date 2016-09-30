@@ -8,17 +8,17 @@
  * Contributors:
  *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.ui.dependencytree.internal.expand;
+package org.slizaa.ui.tree.expand;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Function;
 
 import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.SourceOrTarget;
 
 /**
  * <p>
@@ -29,23 +29,23 @@ import org.slizaa.hierarchicalgraph.SourceOrTarget;
 public class DefaultExpandStrategy extends AbstractExpandStrategy implements IExpandStrategy {
 
   /** - */
-  private int            _maxExpanded       = 30;
+  private int                       _maxExpanded       = 30;
 
   /** - */
-  private int            _currentlyExpanded = 0;
+  private int                       _currentlyExpanded = 0;
 
   /** - */
-  private SourceOrTarget _sourceOrTarget;
+  private Function<HGNode, Boolean> _expansionRefusenik;
 
   /**
    * <p>
    * Creates a new instance of type {@link DefaultExpandStrategy}.
    * </p>
    *
-   * @param sourceOrTarget
+   * @param expansionRefusenik
    */
-  public DefaultExpandStrategy(SourceOrTarget sourceOrTarget) {
-    _sourceOrTarget = checkNotNull(sourceOrTarget);
+  public DefaultExpandStrategy(Function<HGNode, Boolean> expansionRefusenik) {
+    _expansionRefusenik = expansionRefusenik;
   }
 
   /**
@@ -103,7 +103,8 @@ public class DefaultExpandStrategy extends AbstractExpandStrategy implements IEx
         continue;
       }
 
-      if (hasUnresolvedAggregatedCoreDependencies(child, _sourceOrTarget)) {
+      //
+      if (_expansionRefusenik != null && _expansionRefusenik.apply(child)) {
         continue;
       }
 
@@ -148,11 +149,7 @@ public class DefaultExpandStrategy extends AbstractExpandStrategy implements IEx
     return result;
   }
 
-  private boolean hasUnresolvedAggregatedCoreDependencies(HGNode child, SourceOrTarget sourceOrTarget) {
-
-    //
-    List<HGCoreDependency> coreDependencies = checkNotNull(sourceOrTarget).equals(SourceOrTarget.SOURCE)
-        ? checkNotNull(child).getOutgoingCoreDependencies() : child.getOutgoingCoreDependencies();
+  public static boolean hasUnresolvedAggregatedCoreDependencies(Iterable<HGCoreDependency> coreDependencies) {
 
     //
     for (HGCoreDependency coreDependency : coreDependencies) {

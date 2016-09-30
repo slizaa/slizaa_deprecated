@@ -8,7 +8,7 @@
  * Contributors:
  *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.ui.dependencytree.internal.expand;
+package org.slizaa.ui.tree.expand;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -73,41 +73,49 @@ public abstract class AbstractExpandStrategy implements IExpandStrategy {
    * {@inheritDoc}
    */
   @Override
-  public void dispose(TreeViewer treeViewer) {
+  public void dispose() {
 
     //
-    treeViewer.remove(_treeViewerListener);
+    _treeViewer.remove(_treeViewerListener);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public TreeViewer getTreeViewer() {
+
+    //
+    return _treeViewer;
   }
 
   @Override
-  public void expandTreeViewer(Collection<HGNode> visibleElements) {
+  public final void expand(Collection<HGNode> visibleElements) {
 
     //
     _visibleElements = visibleElements;
 
+    // disable redraw (performance)
+    _treeViewer.getTree().setRedraw(false);
+    
     //
-    expandToTreeViewer(false);
+    _expand(false);
+    
+    // enable redraw (performance)
+    _treeViewer.getTree().setRedraw(true);
   }
 
   public Collection<HGNode> getVisibleElements() {
     return _visibleElements;
   }
 
-  private void expandToTreeViewer(boolean deleteManuallyExpandedElements) {
+  private void _expand(boolean deleteManuallyExpandedElements) {
 
     //
     if (deleteManuallyExpandedElements) {
       _manuallyExpandedElements.clear();
       _manuallyCollapsedElements.clear();
     }
-
-    //
-//    if (_treeViewer.getInput() instanceof VirtualRootNode) {
-//      VirtualRootNode node = (VirtualRootNode) _treeViewer.getInput();
-//      if (!_manuallyExpandedElements.contains(node.getRootElement())) {
-//        _manuallyExpandedElements.add(node.getRootElement());
-//      }
-//    }
 
     //
     Object input = _treeViewer.getInput();
@@ -118,15 +126,11 @@ public abstract class AbstractExpandStrategy implements IExpandStrategy {
     HGNode rootElement = null;
     if (input instanceof RootObject) {
       rootElement = (HGNode) ((RootObject) input).getRoot();
-    } else
-    	if (input instanceof HGNode) {
-    		rootElement = (HGNode) input;
-    } 
-		// else {
-		// rootElement = ((IJQAssistantRepository)
-		// input).getHierarchicalGraphs().get(0);
-		// }
+    } else if (input instanceof HGNode) {
+      rootElement = (HGNode) input;
+    }
 
+    //
     List<Object> expandedElements = computeExpandedArtifacts(rootElement);
 
     //

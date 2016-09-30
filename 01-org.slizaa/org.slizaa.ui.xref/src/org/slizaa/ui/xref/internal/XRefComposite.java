@@ -32,8 +32,14 @@ import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.common.context.RootObject;
 import org.slizaa.ui.tree.IInterceptableLabelProvider;
+import org.slizaa.ui.tree.ILabelProviderInterceptor;
+import org.slizaa.ui.tree.SelectedNodesLabelProviderInterceptor;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
-import org.slizaa.ui.tree.VisibleNodesFilter;
+import org.slizaa.ui.tree.VisibleNodesFilter_Deprecated;
+import org.slizaa.ui.tree.expand.DefaultExpandStrategy;
+import org.slizaa.ui.tree.expand.IExpandStrategy;
+
+import com.google.common.collect.Iterables;
 
 /**
  * <p>
@@ -43,22 +49,34 @@ import org.slizaa.ui.tree.VisibleNodesFilter;
  */
 public class XRefComposite extends Composite {
 
-  private HGRootNode                   _rootNode;
+  private HGRootNode                _rootNode;
 
   /** the from tree viewer */
-  private TreeViewer                   _fromTreeViewer;
+  private TreeViewer                _fromTreeViewer;
 
   /** the center tree viewer */
-  private TreeViewer                   _centerViewer;
+  private TreeViewer                _centerViewer;
 
   /** the to tree viewer */
-  private TreeViewer                   _toTreeViewer;
-
-  /** the label provider interceptor */
-  private XRefLabelProviderInterceptor _labelProviderInterceptor;
+  private TreeViewer                _toTreeViewer;
 
   /** - */
-  private IEclipseContext              _eclipseContext;
+  private IExpandStrategy           _fromTreeExpandStrategy;
+
+  /** - */
+  private IExpandStrategy           _centerTreeExpandStrategy;
+
+  /** - */
+  private IExpandStrategy           _toTreeExpandStrategy;
+
+  /** the label provider interceptor */
+  private ILabelProviderInterceptor _labelProviderInterceptor;
+
+  /** - */
+  private IEclipseContext           _eclipseContext;
+
+  /** - */
+  private Set<HGNode>               _backReferencedCenterNodes;
 
   /**
    * <p>
@@ -102,9 +120,9 @@ public class XRefComposite extends Composite {
     _toTreeViewer.setSelection(new StructuredSelection());
 
     // expand
-    _centerViewer.expandToLevel(1);
-    _fromTreeViewer.expandToLevel(1);
-    _toTreeViewer.expandToLevel(1);
+    _centerViewer.expandToLevel(2);
+    _fromTreeViewer.expandToLevel(2);
+    _toTreeViewer.expandToLevel(2);
 
     // set focus to center tree viewer
     _centerViewer.getTree().setFocus();
@@ -155,10 +173,14 @@ public class XRefComposite extends Composite {
     }
 
     //
-    VisibleNodesFilter.setVisibleArtifacts(_toTreeViewer, toArtifacts);
-    VisibleNodesFilter.setVisibleArtifacts(_fromTreeViewer, fromArtifacts);
+    _fromTreeExpandStrategy.expand(fromArtifacts);
+    _toTreeExpandStrategy.expand(toArtifacts);
+    
+    //
+    VisibleNodesFilter_Deprecated.setVisibleArtifacts(_toTreeViewer, toArtifacts);
+    VisibleNodesFilter_Deprecated.setVisibleArtifacts(_fromTreeViewer, fromArtifacts);
 
-    setSelectedDependencies(Collections.emptyList());
+    notifySelectedDependencies(Collections.emptyList());
 
     // set the top item again
     if (toTreeTopItem != null && !toTreeTopItem.isDisposed()) {
@@ -192,14 +214,12 @@ public class XRefComposite extends Composite {
         .collect(Collectors.toList());
 
     //
-    Set<HGNode> referencedNodes = selectedDependencies.stream().flatMap((dependency) -> {
+    notifySelectedDependencies(selectedDependencies);
+
+    _backReferencedCenterNodes = selectedDependencies.stream().flatMap((dependency) -> {
       HGNode node = to ? dependency.getTo() : dependency.getFrom();
       return Stream.concat(Stream.of(node), node.getPredecessors().stream());
     }).collect(Collectors.toSet());
-
-    //
-    _labelProviderInterceptor.setNodes(referencedNodes);
-    setSelectedDependencies(selectedDependencies);
 
     //
     _centerViewer.refresh();
@@ -211,7 +231,7 @@ public class XRefComposite extends Composite {
    * 
    * @param selectedDetailDependencies
    */
-  private void setSelectedDependencies(List<HGCoreDependency> dependencies) {
+  private void notifySelectedDependencies(List<HGCoreDependency> dependencies) {
     Display.getDefault().syncExec(new Runnable() {
       @Override
       public void run() {
@@ -220,8 +240,8 @@ public class XRefComposite extends Composite {
           XRefComposite.this.setCursor(cursor);
 
           //
-          ContextHelper.setValueInContext(_eclipseContext,
-              SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
+          ContextHelper.setValueInContext(_eclipseContext, SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION,
+              dependencies);
 
         } finally {
           XRefComposite.this.setCursor(null);
@@ -258,8 +278,21 @@ public class XRefComposite extends Composite {
     _centerViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2, null);
     _toTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2, null);
 
+    _fromTreeExpandStrategy = new DefaultExpandStrategy(
+        (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getOutgoingCoreDependencies()));
+    _centerTreeExpandStrategy = new DefaultExpandStrategy(
+        (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(
+            Iterables.concat(node.getOutgoingCoreDependencies(), node.getIncomingCoreDependencies())));
+    _toTreeExpandStrategy = new DefaultExpandStrategy(
+        (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getIncomingCoreDependencies()));
+
     //
-    _labelProviderInterceptor = new XRefLabelProviderInterceptor();
+    _fromTreeExpandStrategy.init(_fromTreeViewer);
+    _centerTreeExpandStrategy.init(_centerViewer);
+    _toTreeExpandStrategy.init(_toTreeViewer);
+
+    //
+    _labelProviderInterceptor = new SelectedNodesLabelProviderInterceptor(() -> _backReferencedCenterNodes);
     IBaseLabelProvider labelProvider = _centerViewer.getLabelProvider();
     if (labelProvider instanceof IInterceptableLabelProvider) {
       ((IInterceptableLabelProvider) labelProvider).setLabelProviderInterceptor(_labelProviderInterceptor);
@@ -291,15 +324,15 @@ public class XRefComposite extends Composite {
         return;
       }
 
-      // don't highlight anything
-      _labelProviderInterceptor.setNodes(null);
-
       // reset selections in from and to viewer
       _fromTreeViewer.setSelection(new StructuredSelection());
       _toTreeViewer.setSelection(new StructuredSelection());
 
       //
       setSelectedCenterNodes(selectedNodes(structuredSelection));
+
+      // don't highlight anything
+      _backReferencedCenterNodes = null;
 
       //
       _centerViewer.refresh();

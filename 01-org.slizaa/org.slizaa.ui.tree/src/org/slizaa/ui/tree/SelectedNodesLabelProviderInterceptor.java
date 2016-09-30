@@ -1,4 +1,4 @@
-package org.slizaa.ui.dependencytree.internal;
+package org.slizaa.ui.tree;
 
 import java.util.Collection;
 import java.util.function.Supplier;
@@ -9,7 +9,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.ui.tree.ILabelProviderInterceptor;
 
 /**
  * <p>

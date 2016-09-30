@@ -8,7 +8,7 @@
  * Contributors:
  *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.ui.dependencytree.internal.expand;
+package org.slizaa.ui.tree.expand;
 
 import java.util.Collection;
 
@@ -16,19 +16,28 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.slizaa.hierarchicalgraph.HGNode;
 
 public class NullExpandStrategy implements IExpandStrategy {
+  
+  private TreeViewer _treeviewer;
 
   @Override
-  public void init(TreeViewer fromTreeViewer) {
+  public void init(TreeViewer treeViewer) {
+    
+    //
+    _treeviewer = treeViewer;
+  }
+
+  @Override
+  public void dispose() {
+  }
+
+  @Override
+  public void expand(Collection<HGNode> visibleElements) {
+    
     //
   }
 
   @Override
-  public void dispose(TreeViewer treeViewer) {
-    //
-  }
-
-  @Override
-  public void expandTreeViewer(Collection<HGNode> visibleElements) {
-    //
+  public TreeViewer getTreeViewer() {
+    return _treeviewer;
   }
 }

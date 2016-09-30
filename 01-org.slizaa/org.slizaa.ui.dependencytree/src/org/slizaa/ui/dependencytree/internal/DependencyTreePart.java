@@ -26,11 +26,15 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.SourceOrTarget;
 import org.slizaa.hierarchicalgraph.selection.DependencySelections;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
-import org.slizaa.ui.dependencytree.internal.expand.DefaultExpandStrategy;
 
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 public class DependencyTreePart {
 
   /** - */
@@ -42,6 +46,12 @@ public class DependencyTreePart {
   @Inject
   private MPerspective            _mPerspective;
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @param parent
+   */
   @PostConstruct
   public void createComposite(Composite parent) {
 
@@ -52,11 +62,16 @@ public class DependencyTreePart {
     parent.setLayout(layout);
 
     //
-    _composite = new DependencyTreeComposite(parent, ID, new DefaultExpandStrategy(SourceOrTarget.SOURCE),
-        new DefaultExpandStrategy(SourceOrTarget.TARGET), _mPerspective.getContext());
+    _composite = new DependencyTreeComposite(parent, _mPerspective.getContext());
     _composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
   }
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @param dependencies
+   */
   @Inject
   public void handleChangedDependencies(@Optional
   @Named(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION)

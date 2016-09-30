@@ -8,7 +8,7 @@
  * Contributors:
  *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.ui.dependencytree.internal.expand;
+package org.slizaa.ui.tree.expand;
 
 import java.util.Collection;
 
@@ -38,7 +38,7 @@ public interface IExpandStrategy {
    *
    * @param treeViewer
    */
-  void dispose(TreeViewer treeViewer);
+  void dispose();
 
   /**
    * <p>
@@ -47,5 +47,13 @@ public interface IExpandStrategy {
    * @param treeViewer
    * @param visibleArtifacts
    */
-  void expandTreeViewer(Collection<HGNode> visibleArtifacts);
+  void expand(Collection<HGNode> visibleArtifacts);
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  TreeViewer getTreeViewer();
 }

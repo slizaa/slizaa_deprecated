@@ -10,8 +10,6 @@
  ******************************************************************************/
 package org.slizaa.ui.dependencytree.internal;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -20,7 +18,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -43,10 +40,13 @@ import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector
 import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.common.context.RootObject;
-import org.slizaa.ui.dependencytree.internal.expand.IExpandStrategy;
-import org.slizaa.ui.tree.ITreeEventInterceptor;
 import org.slizaa.ui.tree.IInterceptableLabelProvider;
+import org.slizaa.ui.tree.ITreeEventInterceptor;
+import org.slizaa.ui.tree.SelectedNodesLabelProviderInterceptor;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
+import org.slizaa.ui.tree.VisibleNodesFilter;
+import org.slizaa.ui.tree.expand.DefaultExpandStrategy;
+import org.slizaa.ui.tree.expand.IExpandStrategy;
 
 /**
  * <p>
@@ -90,16 +90,20 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @param parent
    */
-  public DependencyTreeComposite(Composite parent, String providerId, IExpandStrategy fromExpandStrategy,
-      IExpandStrategy toExpandStrategy, IEclipseContext eclipseContext) {
+  public DependencyTreeComposite(Composite parent, IEclipseContext eclipseContext) {
     super(parent, SWT.NONE);
 
-    // _providerId = checkNotNull(providerId);
-    _fromExpandStrategy = checkNotNull(fromExpandStrategy);
-    _toExpandStrategy = checkNotNull(toExpandStrategy);
+    // TODO
+    _fromExpandStrategy = new DefaultExpandStrategy(
+        (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getOutgoingCoreDependencies()));
+    _toExpandStrategy = new DefaultExpandStrategy(
+        (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getIncomingCoreDependencies()));
+
+    //
     _eclipseContext = eclipseContext;
     _selector = new DefaultDependencySelector();
 
+    // TODO
     _selector.addPropertyChangeListener(new PropertyChangeListener() {
       @Override
       public void propertyChange(PropertyChangeEvent evt) {
@@ -108,6 +112,7 @@ public class DependencyTreeComposite extends Composite {
       }
     });
 
+    //
     init();
   }
 
@@ -144,8 +149,9 @@ public class DependencyTreeComposite extends Composite {
     _fromTreeViewer.setSelection(null);
     _toTreeViewer.setSelection(null);
 
-    expandArtifacts(_fromTreeViewer, _selector.getNodesWithParents(NodeType.SOURCE, false));
-    expandArtifacts(_toTreeViewer, _selector.getNodesWithParents(NodeType.TARGET, false));
+    //
+    _fromExpandStrategy.expand(_selector.getNodesWithParents(NodeType.SOURCE, false));
+    _toExpandStrategy.expand(_selector.getNodesWithParents(NodeType.TARGET, false));
   }
 
   /**
@@ -332,6 +338,9 @@ public class DependencyTreeComposite extends Composite {
 
       _fromTreeViewer.refresh(true);
       _toTreeViewer.refresh(true);
+
+      //
+      _toExpandStrategy.expand(_selector.getNodesWithParents(NodeType.TARGET, _filterTarget));
     }
   }
 
@@ -386,41 +395,10 @@ public class DependencyTreeComposite extends Composite {
 
       _fromTreeViewer.refresh(true);
       _toTreeViewer.refresh(true);
+
+      //
+      _fromExpandStrategy.expand(_selector.getNodesWithParents(NodeType.SOURCE, _filterSource));
     }
 
-  }
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @param visibleArtifactsFilter
-   * 
-   */
-  private void expandArtifacts(final TreeViewer treeViewer, final Set<HGNode> visibleElements) {
-    Assert.isNotNull(treeViewer);
-
-    // return if no expand strategy has been set
-    if (treeViewer == _fromTreeViewer && _fromExpandStrategy == null) {
-      return;
-    }
-
-    //
-    if (treeViewer == _toTreeViewer && _toExpandStrategy == null) {
-      return;
-    }
-
-    // disable redraw (performance)
-    treeViewer.getTree().setRedraw(false);
-
-    //
-    if (treeViewer == _fromTreeViewer) {
-      _fromExpandStrategy.expandTreeViewer(visibleElements);
-    } else if (treeViewer == _toTreeViewer) {
-      _toExpandStrategy.expandTreeViewer(visibleElements);
-    }
-
-    // enable redraw (performance)
-    treeViewer.getTree().setRedraw(true);
   }
 }

@@ -17,4 +17,5 @@ Require-Bundle: org.eclipse.ui,
  org.slizaa.ui.common;bundle-version="0.0.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: org.slizaa.ui.tree
+Export-Package: org.slizaa.ui.tree,
+ org.slizaa.ui.tree.expand
