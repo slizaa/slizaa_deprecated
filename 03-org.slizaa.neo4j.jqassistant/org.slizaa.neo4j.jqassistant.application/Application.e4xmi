@@ -2,7 +2,7 @@
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_ZCnwYLRYEeWVj_GUPFMSKw" elementId="org.slizaa.neo4j.jqassistant.application">
   <children xsi:type="basic:TrimmedWindow" xmi:id="_LQqxgLRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.trimmedwindow.mymainwindow" label="Slizaa" iconURI="platform:/plugin/org.slizaa.neo4j.jqassistant.application/icons/slizaa_24.png">
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_VaObcLRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.perspectivestack.0" selectedElement="_XYjJULRaEeWVj_GUPFMSKw">
-      <children xsi:type="advanced:Perspective" xmi:id="_XYjJULRaEeWVj_GUPFMSKw" elementId="org.slizaa.neo4j.jqassistant.application.perspective.dependencies" label="Visualize Dependencies" iconURI="platform:/plugin/org.slizaa.ui.dsm/icons/DSM.png">
+      <children xsi:type="advanced:Perspective" xmi:id="_XYjJULRaEeWVj_GUPFMSKw" elementId="org.slizaa.neo4j.jqassistant.application.perspective.dependencies" label="Visualize Dependencies" iconURI="platform:/plugin/org.slizaa.ui.klighd/icons/full/etool16/diagrams_view.gif">
         <children xsi:type="basic:PartSashContainer" xmi:id="_cYZHcLRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.partsashcontainer.0" horizontal="true">
           <children xsi:type="basic:PartSashContainer" xmi:id="_jFEa0LRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.partsashcontainer.1" containerData="25">
             <children xsi:type="basic:PartStack" xmi:id="_VnnBgdSzEeGBn6dQ9VPexA" containerData="60">
@@ -33,10 +33,10 @@
           </children>
         </children>
       </children>
-      <children xsi:type="advanced:Perspective" xmi:id="_EsvzIH6dEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.perspective.xref" label="Cross-Referencer">
+      <children xsi:type="advanced:Perspective" xmi:id="_EsvzIH6dEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.perspective.xref" label="Cross-Referencer" iconURI="platform:/plugin/org.slizaa.ui.xref/icons/XRef.png">
         <children xsi:type="basic:PartSashContainer" xmi:id="_mqNXIH6dEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.partsashcontainer.1">
           <children xsi:type="basic:PartStack" xmi:id="_rapOAH6iEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.partstack.3" containerData="60">
-            <children xsi:type="basic:Part" xmi:id="_zdtFgH6iEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.part.xref" contributionURI="bundleclass://org.slizaa.ui.xref/org.slizaa.ui.xref.internal.XRefPart" label="Cross-Referencer"/>
+            <children xsi:type="basic:Part" xmi:id="_zdtFgH6iEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.part.xref" contributionURI="bundleclass://org.slizaa.ui.xref/org.slizaa.ui.xref.internal.XRefPart" label="Cross-Referencer" iconURI="platform:/plugin/org.slizaa.ui.xref/icons/XRef.png"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_mW0u0H6iEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.partstack.2" containerData="40">
             <children xsi:type="basic:Part" xmi:id="_mW0u0X6iEea_1_U2qH88_g" elementId="org.slizaa.neo4j.jqassistant.application.part.dependencytree2" contributionURI="bundleclass://org.slizaa.ui.dependencytree/org.slizaa.ui.dependencytree.internal.DependencyTreePart" label="Dependency Tree" iconURI="platform:/plugin/org.slizaa.ui.dependencytree/icons/dependency-tree-small.png"/>
@@ -59,7 +59,7 @@
       </menus>
       <toolbar xmi:id="_Hng-INSjEeGwXp2p959l3w" elementId="org.eclipse.ui.views.PropertySheet"/>
     </sharedElements>
-    <sharedElements xsi:type="basic:Part" xmi:id="_uIM2kELwEealhJdRRUyEZA" elementId="org.slizaa.ui.klighd.SlizaaDiagramViewPart" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Diagram" iconURI="platform:/plugin/org.slizaa.ui.klighd/icons/full/etool16/diagram_view.png">
+    <sharedElements xsi:type="basic:Part" xmi:id="_uIM2kELwEealhJdRRUyEZA" elementId="org.slizaa.ui.klighd.SlizaaDiagramViewPart" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Diagram" iconURI="platform:/plugin/org.slizaa.ui.klighd/icons/full/etool16/diagrams_view.gif">
       <tags>categoryTag:General</tags>
       <tags>View</tags>
     </sharedElements>
