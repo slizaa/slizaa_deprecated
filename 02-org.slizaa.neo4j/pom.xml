@@ -5,13 +5,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.slizaa</groupId>
 	<artifactId>org.slizaa.neo4j</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>org.slizaa.neo4j.testfwk</module>
 		<module>org.slizaa.neo4j.graphdb.ui</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.test</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.edit</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.mapping</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.edit</module>

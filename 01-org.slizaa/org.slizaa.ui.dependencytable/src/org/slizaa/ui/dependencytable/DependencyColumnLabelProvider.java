@@ -10,9 +10,10 @@
  ******************************************************************************/
 package org.slizaa.ui.dependencytable;
 
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 
@@ -22,9 +23,6 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
  */
 public abstract class DependencyColumnLabelProvider extends ColumnLabelProvider {
 
-	// private static final ILabelProvider _defaultArtifactLabelProvider =
-	// TreeFactory
-	// .createAnalysisModelTreeLabelProvider(DependencyTableView.ID);
 
 	private final ArtifactPathLabelGenerator _labelGenerator;
 
@@ -46,8 +44,8 @@ public abstract class DependencyColumnLabelProvider extends ColumnLabelProvider 
 	public Image getImage(Object element) {
 
 		//
-		if (element instanceof HGDependency) {
-			element = getArtifactElement((HGDependency) element);
+		if (element instanceof AbstractHGDependency) {
+			element = getNode((AbstractHGDependency) element);
 		}
 
 		//
@@ -55,7 +53,7 @@ public abstract class DependencyColumnLabelProvider extends ColumnLabelProvider 
 
 			//
 			HGRootNode rootNode = ((HGNode) element).getRootNode();
-			return (Image) rootNode.getItemLabelProvider().getImage(element);
+			return (Image) rootNode.getExtension(IItemLabelProvider.class).getImage(element);
 		}
 
 		//
@@ -81,10 +79,10 @@ public abstract class DependencyColumnLabelProvider extends ColumnLabelProvider 
 	}
 
 	/**
-	 * @param element
+	 * @param dependency
 	 * @return
 	 */
-	protected abstract HGNode getArtifactElement(HGDependency element);
+	protected abstract HGNode getNode(AbstractHGDependency dependency);
 
 	/*
 	 * (non-Javadoc)
@@ -96,8 +94,8 @@ public abstract class DependencyColumnLabelProvider extends ColumnLabelProvider 
 	public String getText(Object element) {
 
 		//
-		if (element instanceof HGDependency) {
-			element = getArtifactElement((HGDependency) element);
+		if (element instanceof AbstractHGDependency) {
+			element = getNode((AbstractHGDependency) element);
 		}
 
 		//
@@ -105,7 +103,7 @@ public abstract class DependencyColumnLabelProvider extends ColumnLabelProvider 
 
 			//
 			HGRootNode rootNode = ((HGNode) element).getRootNode();
-			return rootNode.getItemLabelProvider().getText(element);
+			return rootNode.getExtension(IItemLabelProvider.class).getText(element);
 		}
 
 		//

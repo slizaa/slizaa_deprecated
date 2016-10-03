@@ -16,20 +16,20 @@ import java.util.List;
 import java.util.Observable;
 
 import org.eclipse.core.runtime.Assert;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.ui.widget.dsm.IDsmContentProvider;
 
 public class DefaultAnalysisModelElementDsmContentProvider extends Observable implements IDsmContentProvider {
 
   /** - */
-  private static final List<HGNode> EMPTY_MODEL_ELEMENTS = Collections.emptyList();
+  private static final List<HGNode>  EMPTY_MODEL_ELEMENTS = Collections.emptyList();
 
   /** - */
-  private CycleDetector             _cycleDetector;
+  private CycleDetector              _cycleDetector;
 
   /** - */
-  private HGDependency[][]          _dependencies;
+  private HGAggregatedDependency[][] _dependencies;
 
   /**
    * <p>
@@ -39,7 +39,7 @@ public class DefaultAnalysisModelElementDsmContentProvider extends Observable im
    * @param unorderedArtifacts
    */
   public DefaultAnalysisModelElementDsmContentProvider(Collection<HGNode> unorderedArtifacts) {
-    _dependencies = new HGDependency[0][0];
+    _dependencies = new HGAggregatedDependency[0][0];
     initialize(unorderedArtifacts);
   }
 
@@ -79,7 +79,7 @@ public class DefaultAnalysisModelElementDsmContentProvider extends Observable im
    * {@inheritDoc}
    */
   @Override
-  public HGDependency getDependency(int x, int y) {
+  public HGAggregatedDependency getDependency(int x, int y) {
 
     //
     if (x == -1 || y == -1) {
@@ -132,13 +132,13 @@ public class DefaultAnalysisModelElementDsmContentProvider extends Observable im
 
     _cycleDetector = new CycleDetector(unorderedNodes);
 
-    _dependencies = new HGDependency[_cycleDetector.getOrderedArtifacts().length][_cycleDetector
+    _dependencies = new HGAggregatedDependency[_cycleDetector.getOrderedArtifacts().length][_cycleDetector
         .getOrderedArtifacts().length];
     for (int i = 0; i < _cycleDetector.getOrderedArtifacts().length; i++) {
       for (int j = 0; j < _cycleDetector.getOrderedArtifacts().length; j++) {
-        HGDependency dependency = _cycleDetector.getOrderedArtifacts()[i]
+        HGAggregatedDependency dependency = _cycleDetector.getOrderedArtifacts()[i]
             .getOutgoingDependenciesTo(_cycleDetector.getOrderedArtifacts()[j]);
-        _dependencies[j][i] = dependency != null && dependency.getWeight() != 0 ? dependency : null;
+        _dependencies[j][i] = dependency != null && dependency.getAggregatedWeight() != 0 ? dependency : null;
       }
     }
   }

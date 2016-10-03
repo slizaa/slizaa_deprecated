@@ -2,7 +2,7 @@
 <feature
       id="org.slizaa.neo4j.jqassistant.feature"
       label="org.slizaa.neo4j.jqassistant.feature"
-      version="1.0.0.qualifier">
+      version="0.0.3.qualifier">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -101,13 +101,6 @@
 
    <plugin
          id="org.slizaa.neo4j.jqassistant.application"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.slizaa.selection"
          download-size="0"
          install-size="0"
          version="0.0.0"

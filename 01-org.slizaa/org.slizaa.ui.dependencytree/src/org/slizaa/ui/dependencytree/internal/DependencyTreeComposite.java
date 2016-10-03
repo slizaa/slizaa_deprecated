@@ -10,14 +10,15 @@
  ******************************************************************************/
 package org.slizaa.ui.dependencytree.internal;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.emfforms.spi.swt.treemasterdetail.util.RootObject;
+import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -28,14 +29,21 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TreeItem;
-import org.slizaa.hierarchicalgraph.HGDependency;
-import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.hierarchicalgraph.algorithms.DependencySelector;
-import org.slizaa.hierarchicalgraph.algorithms.DependencySelector.SourceOrTarget;
-import org.slizaa.selection.IHierarchicalGraphSelectionService;
-import org.slizaa.ui.dependencytree.internal.expand.IExpandStrategy;
-import org.slizaa.ui.tree.SlizaaTreeFactory;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector;
+import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
+import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.common.context.RootObject;
+import org.slizaa.ui.tree.DependencyResolvingTreeEventInterceptor;
+import org.slizaa.ui.tree.IInterceptableLabelProvider;
+import org.slizaa.ui.tree.SelectedNodesLabelProviderInterceptor;
+import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
+import org.slizaa.ui.tree.VisibleNodesFilter;
+import org.slizaa.ui.tree.expand.DefaultExpandStrategy;
+import org.slizaa.ui.tree.expand.IExpandStrategy;
 
 /**
  * <p>
@@ -46,7 +54,7 @@ import org.slizaa.ui.tree.SlizaaTreeFactory;
 public class DependencyTreeComposite extends Composite {
 
   /** - */
-  private static final Set<HGDependency>     EMPTY_DEPENDENCY_SET = Collections.emptySet();
+  private static final Set<HGCoreDependency> EMPTY_DEPENDENCY_SET = Collections.emptySet();
 
   /** the from tree viewer */
   private TreeViewer                         _fromTreeViewer;
@@ -54,11 +62,8 @@ public class DependencyTreeComposite extends Composite {
   /** the to tree viewer */
   private TreeViewer                         _toTreeViewer;
 
-  /** the to tree viewer */
-  private TreeViewer                         _currentlySelectedTreeViewer;
-
   /** - */
-  private DependencySelector                 _selector;
+  private DefaultDependencySelector          _selector;
 
   /** - */
   private IExpandStrategy                    _fromExpandStrategy;
@@ -67,9 +72,13 @@ public class DependencyTreeComposite extends Composite {
   private IExpandStrategy                    _toExpandStrategy;
 
   /** - */
-  private boolean                            _showReferenceCount;
+  private IEclipseContext                    _eclipseContext;
 
-  private IHierarchicalGraphSelectionService _selectionService;
+  /** - */
+  private boolean                            _filterSource;
+
+  /** - */
+  private boolean                            _filterTarget;
 
   /**
    * <p>
@@ -78,17 +87,29 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @param parent
    */
-  public DependencyTreeComposite(Composite parent, String providerId, IExpandStrategy fromExpandStrategy,
-      IExpandStrategy toExpandStrategy, boolean showReferenceCount,
-      IHierarchicalGraphSelectionService selectionService) {
+  public DependencyTreeComposite(Composite parent, IEclipseContext eclipseContext) {
     super(parent, SWT.NONE);
 
-    // _providerId = checkNotNull(providerId);
-    _fromExpandStrategy = checkNotNull(fromExpandStrategy);
-    _toExpandStrategy = checkNotNull(toExpandStrategy);
-    _showReferenceCount = showReferenceCount;
-    _selectionService = selectionService;
+    // TODO
+    _fromExpandStrategy = new DefaultExpandStrategy(
+        (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getOutgoingCoreDependencies()));
+    _toExpandStrategy = new DefaultExpandStrategy(
+        (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getIncomingCoreDependencies()));
 
+    //
+    _eclipseContext = eclipseContext;
+    _selector = new DefaultDependencySelector();
+
+    // TODO
+    _selector.addPropertyChangeListener(new PropertyChangeListener() {
+      @Override
+      public void propertyChange(PropertyChangeEvent evt) {
+        _fromTreeViewer.refresh();
+        _toTreeViewer.refresh();
+      }
+    });
+
+    //
     init();
   }
 
@@ -98,14 +119,18 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @param dependencies
    */
-  public void setDependencies(Collection<HGDependency> dependencies) {
+  public void setDependencies(Collection<HGCoreDependency> dependencies) {
 
     //
-    _selector = new DependencySelector(dependencies);
+    _selector.setDependencies(dependencies);
+
+    //
+    _fromTreeViewer.collapseAll();
+    _toTreeViewer.collapseAll();
 
     // set the root if necessary...
     if (dependencies.size() > 0) {
-      HGRootNode rootNode = dependencies.toArray(new HGDependency[0])[0].getFrom().getRootNode();
+      HGRootNode rootNode = dependencies.toArray(new AbstractHGDependency[0])[0].getFrom().getRootNode();
       if (!rootNode.equals(_fromTreeViewer.getInput()) && !rootNode.equals(_toTreeViewer.getInput())) {
         _fromTreeViewer.setInput(new RootObject(rootNode));
         _toTreeViewer.setInput(new RootObject(rootNode));
@@ -118,21 +143,12 @@ public class DependencyTreeComposite extends Composite {
     }
 
     //
-    _fromTreeViewer.collapseAll();
-    _toTreeViewer.collapseAll();
-
-    // update 'from' and 'to' tree, no filtering
-    VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-        _selector.getUnfilteredElementsWithParents(SourceOrTarget.SOURCE));
-    VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-        _selector.getUnfilteredElementsWithParents(SourceOrTarget.TARGET));
-
-    //
     _fromTreeViewer.setSelection(null);
     _toTreeViewer.setSelection(null);
 
-    expandArtifacts(_fromTreeViewer, _selector.getUnfilteredElementsWithParents(SourceOrTarget.SOURCE));
-    expandArtifacts(_toTreeViewer, _selector.getUnfilteredElementsWithParents(SourceOrTarget.TARGET));
+    //
+    _fromExpandStrategy.expand(_selector.getNodesWithParents(NodeType.SOURCE, false));
+    _toExpandStrategy.expand(_selector.getNodesWithParents(NodeType.TARGET, false));
   }
 
   /**
@@ -141,22 +157,8 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @return
    */
-  public final Set<HGDependency> getSelectedDetailDependencies() {
-    return _selector != null ? _selector.getFilteredDependencies() : EMPTY_DEPENDENCY_SET;
-  }
-
-  /**
-   * Set wether reference count should by displayed on nodes
-   * 
-   * @param showReferenceCount
-   */
-  public void setShowReferenceCount(boolean showReferenceCount) {
-    if (_showReferenceCount != showReferenceCount) {
-      _showReferenceCount = showReferenceCount;
-
-      _fromTreeViewer.refresh(true);
-      _toTreeViewer.refresh(true);
-    }
+  public final Set<HGCoreDependency> getSelectedDetailDependencies() {
+    return _selector != null ? _selector.getFilteredCoreDependencies() : EMPTY_DEPENDENCY_SET;
   }
 
   /**
@@ -167,8 +169,8 @@ public class DependencyTreeComposite extends Composite {
 
     //
     GridLayout layout = new GridLayout(1, false);
-    layout.marginWidth=0;
-    layout.marginHeight=0;
+    layout.marginWidth = 0;
+    layout.marginHeight = 0;
     this.setLayout(layout);
 
     //
@@ -177,8 +179,36 @@ public class DependencyTreeComposite extends Composite {
     sashForm.setLayoutData(data);
 
     //
-    _fromTreeViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI);
-    _toTreeViewer = SlizaaTreeFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI);
+    _fromTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 3,
+        new DependencyResolvingTreeEventInterceptor((node) -> _selector.getDependenciesWithSourceNode(node)));
+
+    _toTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 3,
+        new DependencyResolvingTreeEventInterceptor((node) -> _selector.getDependenciesWithTargetNode(node)));
+
+    IBaseLabelProvider labelProvider = _fromTreeViewer.getLabelProvider();
+    if (labelProvider instanceof IInterceptableLabelProvider) {
+      ((IInterceptableLabelProvider) labelProvider)
+          .setLabelProviderInterceptor(new SelectedNodesLabelProviderInterceptor(() -> {
+            return _selector.getNodesWithParents(NodeType.SOURCE, _filterSource);
+          }));
+    }
+
+    labelProvider = _toTreeViewer.getLabelProvider();
+    if (labelProvider instanceof IInterceptableLabelProvider) {
+      ((IInterceptableLabelProvider) labelProvider)
+          .setLabelProviderInterceptor(new SelectedNodesLabelProviderInterceptor(() -> {
+            return _selector.getNodesWithParents(NodeType.TARGET, _filterTarget);
+          }));
+    }
+
+    //
+    _fromTreeViewer.setFilters(new VisibleNodesFilter(() -> {
+      return _selector.getNodesWithParents(NodeType.SOURCE, false);
+    }));
+
+    _toTreeViewer.setFilters(new VisibleNodesFilter(() -> {
+      return _selector.getNodesWithParents(NodeType.TARGET, false);
+    }));
 
     // add SelectionListeners
     _fromTreeViewer.addSelectionChangedListener(new FromArtifactsSelectionChangedListener());
@@ -195,12 +225,9 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @param selectedDetailDependencies
    */
-  private void setSelectedDetailDependencies(Set<HGDependency> dependencies) {
-
-    //
-    if (propagateSelectedDetailDependencies() && !dependencies.isEmpty()) {
-      _selectionService.setCurrentDependencySelection(DependencyTreePart.ID, dependencies.toArray(new HGDependency[0]));
-    }
+  private void setSelectedDetailDependencies(Collection<HGCoreDependency> dependencies) {
+    ContextHelper.setValueInContext(_eclipseContext, SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION,
+        new ArrayList<>(dependencies));
   }
 
   /**
@@ -227,12 +254,6 @@ public class DependencyTreeComposite extends Composite {
       //
       IStructuredSelection structuredSelection = (IStructuredSelection) event.getSelection();
 
-      //
-      if (!structuredSelection.isEmpty() && _currentlySelectedTreeViewer != _fromTreeViewer) {
-        fromViewerSelected(_fromTreeViewer, _toTreeViewer);
-        _currentlySelectedTreeViewer = _fromTreeViewer;
-      }
-
       // check for selected root element
       boolean containsRoot = false;
       for (Object object : structuredSelection.toList()) {
@@ -248,13 +269,10 @@ public class DependencyTreeComposite extends Composite {
         TreeItem treeItem = _toTreeViewer.getTree().getTopItem();
 
         //
-        _selector.setSelectedElements(SourceOrTarget.SOURCE, SelectionUtil.toArtifactList(structuredSelection));
-        VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-            _selector.getFilteredElementsWithParents(SourceOrTarget.TARGET));
-        setSelectedDetailDependencies(_selector.getFilteredDependencies());
-
-        //
-        expandArtifacts(_toTreeViewer, _selector.getFilteredElementsWithParents(SourceOrTarget.TARGET));
+        _selector.setSelectedNodes(NodeType.SOURCE, SelectionUtil.toArtifactList(structuredSelection));
+        _filterSource = false;
+        _filterTarget = true;
+        setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         // set the top item again
         if (treeItem != null && !treeItem.isDisposed()) {
@@ -264,10 +282,16 @@ public class DependencyTreeComposite extends Composite {
         }
 
       } else {
-        VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_toTreeViewer,
-            _selector.getUnfilteredElementsWithParents(SourceOrTarget.TARGET));
-        setSelectedDetailDependencies(_selector.getUnfilteredDependencies());
+        _filterSource = false;
+        _filterTarget = false;
+        setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
+
+      _fromTreeViewer.refresh(true);
+      _toTreeViewer.refresh(true);
+
+      //
+      _toExpandStrategy.expand(_selector.getNodesWithParents(NodeType.TARGET, _filterTarget));
     }
   }
 
@@ -288,12 +312,6 @@ public class DependencyTreeComposite extends Composite {
       //
       IStructuredSelection structuredSelection = (IStructuredSelection) event.getSelection();
 
-      //
-      if (!structuredSelection.isEmpty() && _currentlySelectedTreeViewer != _toTreeViewer) {
-        toViewerSelected(_fromTreeViewer, _toTreeViewer);
-        _currentlySelectedTreeViewer = _toTreeViewer;
-      }
-
       // check for selected root element
       boolean containsRoot = false;
       for (Object object : structuredSelection.toList()) {
@@ -309,13 +327,10 @@ public class DependencyTreeComposite extends Composite {
         TreeItem treeItem = _fromTreeViewer.getTree().getTopItem();
 
         //
-        _selector.setSelectedElements(SourceOrTarget.TARGET, SelectionUtil.toArtifactList(structuredSelection));
-        VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-            _selector.getFilteredElementsWithParents(SourceOrTarget.SOURCE));
-        setSelectedDetailDependencies(_selector.getFilteredDependencies());
-
-        //
-        expandArtifacts(_fromTreeViewer, _selector.getFilteredElementsWithParents(SourceOrTarget.SOURCE));
+        _selector.setSelectedNodes(NodeType.TARGET, SelectionUtil.toArtifactList(structuredSelection));
+        _filterSource = true;
+        _filterTarget = false;
+        setSelectedDetailDependencies(_selector.getFilteredCoreDependencies());
 
         // set the top item again
         try {
@@ -324,67 +339,17 @@ public class DependencyTreeComposite extends Composite {
           //
         }
       } else {
-        VisibleAnalysisModelElementsFilter.setVisibleArtifacts(_fromTreeViewer,
-            _selector.getUnfilteredElementsWithParents(SourceOrTarget.SOURCE));
-        setSelectedDetailDependencies(_selector.getUnfilteredDependencies());
+        _filterSource = false;
+        _filterTarget = false;
+        setSelectedDetailDependencies(_selector.getUnfilteredCoreDependencies());
       }
+
+      _fromTreeViewer.refresh(true);
+      _toTreeViewer.refresh(true);
+
+      //
+      _fromExpandStrategy.expand(_selector.getNodesWithParents(NodeType.SOURCE, _filterSource));
     }
 
-  }
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @param toTreeViewer
-   * @param fromTreeViewer
-   */
-  protected void toViewerSelected(TreeViewer fromTreeViewer, TreeViewer toTreeViewer) {
-
-  }
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @param fromTreeViewer
-   * @param toTreeViewer
-   */
-  protected void fromViewerSelected(TreeViewer fromTreeViewer, TreeViewer toTreeViewer) {
-
-  }
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @param visibleArtifactsFilter
-   * 
-   */
-  private void expandArtifacts(final TreeViewer treeViewer, final Set<HGNode> visibleElements) {
-    Assert.isNotNull(treeViewer);
-
-    // return if no expand strategy has been set
-    if (treeViewer == _fromTreeViewer && _fromExpandStrategy == null) {
-      return;
-    }
-
-    //
-    if (treeViewer == _toTreeViewer && _toExpandStrategy == null) {
-      return;
-    }
-
-    // disable redraw (performance)
-    treeViewer.getTree().setRedraw(false);
-
-    //
-    if (treeViewer == _fromTreeViewer) {
-      _fromExpandStrategy.expandTreeViewer(visibleElements);
-    } else if (treeViewer == _toTreeViewer) {
-      _toExpandStrategy.expandTreeViewer(visibleElements);
-    }
-
-    // enable redraw (performance)
-    treeViewer.getTree().setRedraw(true);
   }
 }

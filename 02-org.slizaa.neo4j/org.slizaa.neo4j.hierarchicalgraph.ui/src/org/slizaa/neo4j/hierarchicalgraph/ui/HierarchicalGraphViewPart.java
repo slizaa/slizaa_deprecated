@@ -16,6 +16,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -25,33 +26,27 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
+import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.neo4j.workbenchmodel.MappedGraphs;
-import org.slizaa.neo4j.workbenchmodel.WorkbenchModel;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
-import org.slizaa.selection.IHierarchicalGraphSelectionService;
-import org.slizaa.ui.tree.SlizaaTreeFactory;
+import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 
 public class HierarchicalGraphViewPart {
 
   /** - */
-  public static final String                 PART_ID = HierarchicalGraphViewPart.class.getName();
+  public static final String    PART_ID = HierarchicalGraphViewPart.class.getName();
 
   /** - */
   @Inject
-  private WorkbenchModelService              _workbenchModelService;
+  private WorkbenchModelService _workbenchModelService;
 
   @Inject
-  private ESelectionService                  _selectionService;
+  private ESelectionService     _selectionService;
 
   @Inject
-  private IHierarchicalGraphSelectionService _hierarchicalGraphSelectionService;
-
-  @Inject
-  private IHierarchicalGraphMappingService   _hierarchicalgraphMappingService;
-
-  /** - */
-  private TreeViewer                         _treeViewer;
+  private MApplication          _mApplication;
 
   /**
    * <p>
@@ -69,10 +64,7 @@ public class HierarchicalGraphViewPart {
     parent.setLayout(layout);
 
     //
-    WorkbenchModel workbenchModel = _workbenchModelService.getWorkbenchModel();
-
-    //
-    _treeViewer = createTreeViewer(parent, workbenchModel.getMappedGraphs());
+    createTreeViewer(parent, _workbenchModelService.getWorkbenchModel().getMappedGraphs());
   }
 
   /**
@@ -85,8 +77,10 @@ public class HierarchicalGraphViewPart {
    */
   private TreeViewer createTreeViewer(Composite parent, MappedGraphs mappedGraphs) {
 
-    TreeViewer treeViewer = SlizaaTreeFactory.createTreeViewer(parent, mappedGraphs,
-        SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI, 2);
+    TreeViewer treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent, mappedGraphs,
+        SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI, 2, null);
+
+    // TODO: MOVE SORTER TO Graph module!!!
     treeViewer.setSorter(new CustomViewerSorter());
     treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -100,7 +94,7 @@ public class HierarchicalGraphViewPart {
         //
         List<HGNode> rep = new LinkedList<>();
         for (Object s : selection.toList()) {
-          if (!(s instanceof HGNode)) {
+          if (!(s instanceof HGNode) || s instanceof HGRootNode) {
             rep.clear();
             break;
           } else {
@@ -108,7 +102,9 @@ public class HierarchicalGraphViewPart {
           }
         }
 
-        _hierarchicalGraphSelectionService.setCurrentNodeSelection(PART_ID, rep);
+        //
+        ContextHelper.setValueInContext(_mApplication.getContext(),
+            SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION, rep);
       }
     });
 

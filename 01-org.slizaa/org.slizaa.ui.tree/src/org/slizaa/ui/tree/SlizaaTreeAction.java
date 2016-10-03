@@ -15,6 +15,9 @@ public interface SlizaaTreeAction {
   boolean shouldShow(EObject eObject);
 
   /**
+   * <p>
+   * </p>
+   *
    * @param eSelectedObject
    * @return
    */

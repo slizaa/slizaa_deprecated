@@ -10,28 +10,27 @@
  ******************************************************************************/
 package org.slizaa.ui.dsm;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.selection.IHierarchicalGraphSelection;
-import org.slizaa.selection.IHierarchicalGraphSelectionListener;
-import org.slizaa.selection.IHierarchicalGraphSelectionService;
-import org.slizaa.selection.INodeSelection;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.ui.common.context.BusyCursor;
 import org.slizaa.ui.widget.dsm.DsmViewWidget;
 import org.slizaa.ui.widget.dsm.IDsmContentProvider;
 import org.slizaa.ui.widget.dsm.IMatrixListener;
@@ -43,37 +42,40 @@ import org.slizaa.ui.widget.dsm.MatrixEvent;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class DsmPart implements IHierarchicalGraphSelectionListener {
+public class DsmPart {
 
   /**
    * This is used as the DSMView's providerId for the xxxSelectionServices
    */
-  public static String                       DSM_EDITOR_ID = DsmPart.class.getName();
-
-  /** - */
-  private DsmViewWidget                      _viewWidget;
-
-  /** - */
-  private DsmDetailComposite                 _detailComposite;
-
-  /** - */
-  private int[]                              _selectedCell;
-
-  /** - */
-  private HGNode                             _fromArtifact;
-
-  /** - */
-  private HGNode                             _toArtifact;
-
-  /** - */
-  private IDsmContentProvider                _dsmContentProvider;
-  
-  /** - */
-  private DelegatingLabelProvider            _labelProvider;
+  public static String            DSM_EDITOR_ID = DsmPart.class.getName();
 
   /** - */
   @Inject
-  private IHierarchicalGraphSelectionService _hierarchicalGraphSelectionService;
+  private MPerspective            _perspective;
+
+  /** - */
+  private DsmViewWidget           _viewWidget;
+
+  /** - */
+  private DsmDetailComposite      _detailComposite;
+
+  /** - */
+  private int[]                   _selectedCell;
+
+  /** - */
+  private HGNode                  _fromArtifact;
+
+  /** - */
+  private HGNode                  _toArtifact;
+
+  /** - */
+  private IDsmContentProvider     _dsmContentProvider;
+
+  /** - */
+  private DelegatingLabelProvider _labelProvider;
+
+  /** - */
+  private List<HGNode>            _selectedNodes;
 
   /**
    * <p>
@@ -109,9 +111,11 @@ public class DsmPart implements IHierarchicalGraphSelectionListener {
         // TODO!
         if (isCellSelected(event)) {
 
-          HGDependency dependency = (HGDependency) _dsmContentProvider.getDependency(event.getX(), event.getY());
+          HGAggregatedDependency dependency = (HGAggregatedDependency) _dsmContentProvider.getDependency(event.getX(),
+              event.getY());
+
           if (dependency != null) {
-            _detailComposite.setLabel(Integer.toString(dependency.getWeight()),
+            _detailComposite.setLabel(Integer.toString(dependency.getAggregatedWeight()),
                 getName(_dsmContentProvider.getNodes()[event.getY()]),
                 getName(_dsmContentProvider.getNodes()[event.getX()]));
 
@@ -141,72 +145,58 @@ public class DsmPart implements IHierarchicalGraphSelectionListener {
 
           _selectedCell = new int[] { event.getX(), event.getY() };
 
-          HGDependency dependency = (HGDependency) _dsmContentProvider.getDependency(event.getX(), event.getY());
+          HGAggregatedDependency dependency = (HGAggregatedDependency) _dsmContentProvider.getDependency(event.getX(),
+              event.getY());
 
-          List<HGDependency> dependencies = new LinkedList<>();
+          final List<HGAggregatedDependency> dependencies = new LinkedList<>();
           if (dependency != null) {
             dependencies.add(dependency);
           }
-          _hierarchicalGraphSelectionService.setCurrentDependencySelection(DSM_EDITOR_ID, dependencies);
+
+          BusyCursor.execute(_viewWidget, () -> {
+            IEclipseContext eclipseContext = _perspective.getContext();
+            eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_ROOTNODE);
+            eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
+          });
 
           _fromArtifact = (HGNode) _dsmContentProvider.getNodes()[event.getX()];
           _toArtifact = (HGNode) _dsmContentProvider.getNodes()[event.getY()];
         }
       }
+
     });
 
-    // create the context menu
-    // createContextMenu(_viewWidget);
-    _hierarchicalGraphSelectionService.addHierarchicalGraphSelectionListener(this);
+    //
+    if (_selectedNodes != null)
+
+    {
+      initSelection(_selectedNodes);
+    }
   }
 
   protected String getName(Object object) {
     return _labelProvider.getText(object);
   }
 
-  /**
-   * <p>
-   * </p>
-   */
-  @PreDestroy
-  public void dispose() {
-    _hierarchicalGraphSelectionService.removeHierarchicalGraphSelectionListener(this);
-  }
+  @Inject
+  public void initSelection(
+      @Optional @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION) List<HGNode> selectedNodes) {
 
-  @Override
-  public String getSelectionProviderId() {
-    return DSM_EDITOR_ID;
-  }
+    _selectedNodes = selectedNodes;
 
-  @Override
-  public void currentSelectionChanged(IHierarchicalGraphSelection selection) {
-    initSelection(selection);
-  }
+    if (_viewWidget != null && _detailComposite != null && !_viewWidget.isDisposed()) {
 
-  private void initSelection(IHierarchicalGraphSelection selection) {
-
-    if (_viewWidget != null && _detailComposite != null) {
-
-      //
-      INodeSelection nodeSelection = selection.cast(INodeSelection.class);
-
-      if (nodeSelection != null && !nodeSelection.getSelectedNodes().isEmpty()) {
-        
-        //
-        _dsmContentProvider = new DefaultAnalysisModelElementDsmContentProvider(nodeSelection.getSelectedNodes());
-        
-        //
-        IItemLabelProvider itemLabelProvider = nodeSelection.getSelectedNodes().get(0).getRootNode().getItemLabelProvider();
+      if (selectedNodes != null && !selectedNodes.isEmpty()) {
+        _dsmContentProvider = new DefaultAnalysisModelElementDsmContentProvider(selectedNodes);
+        IItemLabelProvider itemLabelProvider = selectedNodes.get(0).getRootNode()
+            .getExtension(IItemLabelProvider.class);
         _labelProvider.setItemLabelProvider(itemLabelProvider);
-        
       } else {
         _dsmContentProvider = new DefaultAnalysisModelElementDsmContentProvider();
       }
 
-      // _artifactLabelProvider.setLabelPresentationMode(_detailComposite.getLabelPresentationMode());
-      _viewWidget.setModel(_dsmContentProvider);
-      
       //
+      _viewWidget.setModel(_dsmContentProvider);
 
       // clear the dependency selection
       resetDependencySelection();
@@ -248,7 +238,8 @@ public class DsmPart implements IHierarchicalGraphSelectionListener {
       //
       _selectedCell = new int[] { artifacts.indexOf(_fromArtifact), artifacts.indexOf(_toArtifact) };
 
-      HGDependency dependency = (HGDependency) _dsmContentProvider.getDependency(_selectedCell[0], _selectedCell[1]);
+      HGAggregatedDependency dependency = (HGAggregatedDependency) _dsmContentProvider.getDependency(_selectedCell[0],
+          _selectedCell[1]);
 
       // Selection.instance().getDependencySelectionService().setSelection(Selection.MAIN_DEPENDENCY_SELECTION_ID,
       // DsmPart.DSM_EDITOR_ID, dependency);
@@ -257,13 +248,9 @@ public class DsmPart implements IHierarchicalGraphSelectionListener {
 
   private void clearDependencySelection() {
     _selectedCell = null;
-    List<HGDependency> dependencies = Collections.emptyList();
-    // Selection.instance().getDependencySelectionService().setSelection(Selection.MAIN_DEPENDENCY_SELECTION_ID,
-    // DSM_EDITOR_ID, dependencies);
-  }
 
-  private String getNullSafeString(String string, String defaultValue) {
-    checkNotNull(defaultValue);
-    return string != null ? string : defaultValue;
+    IEclipseContext eclipseContext = _perspective.getContext();
+    eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_ROOTNODE);
+    eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, Collections.emptyList());
   }
 }

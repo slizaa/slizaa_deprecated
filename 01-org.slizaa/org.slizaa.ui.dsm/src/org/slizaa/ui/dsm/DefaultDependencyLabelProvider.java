@@ -12,7 +12,7 @@ package org.slizaa.ui.dsm;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 
 /**
  * <p>
@@ -37,9 +37,9 @@ public class DefaultDependencyLabelProvider extends LabelProvider {
   public String getText(Object element) {
 
     //
-    if (element instanceof HGDependency) {
-      HGDependency dependency = ((HGDependency) element);
-      return dependency.getWeight() + "";
+    if (element instanceof HGAggregatedDependency) {
+      HGAggregatedDependency dependency = ((HGAggregatedDependency) element);
+      return dependency.getAggregatedWeight() + "";
     }
 
     //

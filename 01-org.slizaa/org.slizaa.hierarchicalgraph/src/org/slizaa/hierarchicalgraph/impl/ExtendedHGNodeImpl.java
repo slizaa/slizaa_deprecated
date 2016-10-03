@@ -1,8 +1,11 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.eclipse.emf.common.util.EList;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 
@@ -15,8 +18,9 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
     _trait = new ExtendedHGNodeTrait(this);
   }
 
-  public ExtendedHGNodeTrait getTrait() {
-    return _trait;
+  @Override
+  public EList<HGNode> getPredecessors() {
+    return _trait.getPredecessors();
   }
 
   @Override
@@ -24,44 +28,69 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
     return _trait.getRootNode();
   }
 
+  @Override
   public Object getIdentifier() {
     return _trait.getIdentifier();
   }
 
-  public void onInitializeCaches() {
-    _trait.onInitializeCaches();
+  @Override
+  public EList<HGCoreDependency> getAccumulatedOutgoingCoreDependencies() {
+    return _trait.getAccumulatedOutgoingCoreDependencies();
   }
 
-  public HGDependency getIncomingDependenciesFrom(HGNode node) {
+  @Override
+  public EList<HGCoreDependency> getAccumulatedIncomingCoreDependencies() {
+    return _trait.getAccumulatedIncomingCoreDependencies();
+  }
+
+  @Override
+  public HGAggregatedDependency getIncomingDependenciesFrom(HGNode node) {
     return _trait.getIncomingDependenciesFrom(node);
   }
 
-  public List<HGDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
+  @Override
+  public List<HGAggregatedDependency> getIncomingDependenciesFrom(List<HGNode> nodes) {
     return _trait.getIncomingDependenciesFrom(nodes);
   }
 
-  public HGDependency getOutgoingDependenciesTo(HGNode node) {
+  @Override
+  public HGAggregatedDependency getOutgoingDependenciesTo(HGNode node) {
     return _trait.getOutgoingDependenciesTo(node);
   }
 
-  public List<HGDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
+  @Override
+  public List<HGAggregatedDependency> getOutgoingDependenciesTo(List<HGNode> nodes) {
     return _trait.getOutgoingDependenciesTo(nodes);
   }
 
-  public List<HGDependency> getOutgoingCoreDependencies(boolean includeChildren) {
-    return _trait.getOutgoingCoreDependencies(includeChildren);
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void resolveIncomingAggregatedCoreDependencies() {
+    _trait.resolveIncomingAggregatedCoreDependencies();
   }
 
-  public List<HGDependency> getIncomingCoreDependencies(boolean includeChildren) {
-    return _trait.getIncomingCoreDependencies(includeChildren);
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void resolveOutgoingAggregatedCoreDependencies() {
+    _trait.resolveOutgoingAggregatedCoreDependencies();
   }
 
+  @Override
   public boolean isPredecessorOf(HGNode node) {
     return _trait.isPredecessorOf(node);
   }
 
+  @Override
   public boolean isSuccessorOf(HGNode node) {
     return _trait.isSuccessorOf(node);
+  }
+
+  public ExtendedHGNodeTrait getTrait() {
+    return _trait;
   }
 
   public void onExpand() {
@@ -70,5 +99,26 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
 
   public void onCollapse() {
     _trait.onCollapse();
+  }
+
+  public void onSelect() {
+    _trait.onSelect();
+  }
+  
+  public void invalidateLocalCaches() {
+    _trait.invalidateLocalCaches();
+  }
+
+  public EList<HGCoreDependency> getIncomingCoreDependencies() {
+    return _trait.getIncomingCoreDependencies();
+  }
+
+  public EList<HGCoreDependency> getOutgoingCoreDependencies() {
+    return _trait.getOutgoingCoreDependencies();
+  }
+
+  @Override
+  public <T> Optional<T> getNodeSource(Class<T> clazz) {
+    return _trait.getNodeSource(clazz);
   }
 }

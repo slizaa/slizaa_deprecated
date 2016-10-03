@@ -48,17 +48,19 @@ public class PerspectiveSwitcherControl {
     for (final MPerspective perspective : getPerspectives()) {
       ToolItem item = new ToolItem(toolBar, SWT.PUSH);
       
-      if (Activator.getDefault().getImageRegistry().get(perspective.getIconURI()) == null) {
-        try {
-          ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(new URL(perspective.getIconURI()));
-          Activator.getDefault().getImageRegistry().put(perspective.getIconURI(), imageDescriptor);
-        } catch (MalformedURLException e1) {
-          // TODO Auto-generated catch block
-          e1.printStackTrace();
+      if (perspective.getIconURI() != null) {
+        if (Activator.getDefault().getImageRegistry().get(perspective.getIconURI()) == null) {
+          try {
+            ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(new URL(perspective.getIconURI()));
+            Activator.getDefault().getImageRegistry().put(perspective.getIconURI(), imageDescriptor);
+          } catch (MalformedURLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+          }
         }
+        item.setImage(Activator.getDefault().getImageRegistry().get(perspective.getIconURI()));
       }
       
-      item.setImage(Activator.getDefault().getImageRegistry().get(perspective.getIconURI()));
       item.setText(perspective.getLabel());
       item.addSelectionListener(new SelectionListener() {
         

@@ -40,191 +40,191 @@ public class PropertyBasedImageMapperItemProvider
 		IItemLabelProvider,
 		IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public PropertyBasedImageMapperItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+    super(adapterFactory);
+  }
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+    if (itemPropertyDescriptors == null) {
+      super.getPropertyDescriptors(object);
 
-			addPositionPropertyDescriptor(object);
-			addPropertyNamePropertyDescriptor(object);
-			addPropertyValuePropertyDescriptor(object);
-			addImagePropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
+      addPositionPropertyDescriptor(object);
+      addPropertyNamePropertyDescriptor(object);
+      addPropertyValuePropertyDescriptor(object);
+      addImagePropertyDescriptor(object);
+    }
+    return itemPropertyDescriptors;
+  }
 
 	/**
-	 * This adds a property descriptor for the Position feature.
-	 * <!-- begin-user-doc -->
+   * This adds a property descriptor for the Position feature.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected void addPositionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PropertyBasedImageMapper_position_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PropertyBasedImageMapper_position_feature", "_UI_PropertyBasedImageMapper_type"),
-				 Neo4jHierarchicalGraphMappingPackage.Literals.PROPERTY_BASED_IMAGE_MAPPER__POSITION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_PropertyBasedImageMapper_position_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_PropertyBasedImageMapper_position_feature", "_UI_PropertyBasedImageMapper_type"),
+         Neo4jHierarchicalGraphMappingPackage.Literals.PROPERTY_BASED_IMAGE_MAPPER__POSITION,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
 
 	/**
-	 * This adds a property descriptor for the Property Name feature.
-	 * <!-- begin-user-doc -->
+   * This adds a property descriptor for the Property Name feature.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected void addPropertyNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PropertyBasedImageMapper_propertyName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PropertyBasedImageMapper_propertyName_feature", "_UI_PropertyBasedImageMapper_type"),
-				 Neo4jHierarchicalGraphMappingPackage.Literals.PROPERTY_BASED_IMAGE_MAPPER__PROPERTY_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_PropertyBasedImageMapper_propertyName_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_PropertyBasedImageMapper_propertyName_feature", "_UI_PropertyBasedImageMapper_type"),
+         Neo4jHierarchicalGraphMappingPackage.Literals.PROPERTY_BASED_IMAGE_MAPPER__PROPERTY_NAME,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
 
 	/**
-	 * This adds a property descriptor for the Property Value feature.
-	 * <!-- begin-user-doc -->
+   * This adds a property descriptor for the Property Value feature.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected void addPropertyValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PropertyBasedImageMapper_propertyValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PropertyBasedImageMapper_propertyValue_feature", "_UI_PropertyBasedImageMapper_type"),
-				 Neo4jHierarchicalGraphMappingPackage.Literals.PROPERTY_BASED_IMAGE_MAPPER__PROPERTY_VALUE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_PropertyBasedImageMapper_propertyValue_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_PropertyBasedImageMapper_propertyValue_feature", "_UI_PropertyBasedImageMapper_type"),
+         Neo4jHierarchicalGraphMappingPackage.Literals.PROPERTY_BASED_IMAGE_MAPPER__PROPERTY_VALUE,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
 
 	/**
-	 * This adds a property descriptor for the Image feature.
-	 * <!-- begin-user-doc -->
+   * This adds a property descriptor for the Image feature.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected void addImagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PropertyBasedImageMapper_image_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PropertyBasedImageMapper_image_feature", "_UI_PropertyBasedImageMapper_type"),
-				 Neo4jHierarchicalGraphMappingPackage.Literals.PROPERTY_BASED_IMAGE_MAPPER__IMAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_PropertyBasedImageMapper_image_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_PropertyBasedImageMapper_image_feature", "_UI_PropertyBasedImageMapper_type"),
+         Neo4jHierarchicalGraphMappingPackage.Literals.PROPERTY_BASED_IMAGE_MAPPER__IMAGE,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
 
 	/**
-	 * This returns PropertyBasedImageMapper.gif.
-	 * <!-- begin-user-doc -->
+   * This returns PropertyBasedImageMapper.gif.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyBasedImageMapper"));
-	}
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyBasedImageMapper"));
+  }
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public String getText(Object object) {
-		String label = ((PropertyBasedImageMapper)object).getPropertyName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_PropertyBasedImageMapper_type") :
-			getString("_UI_PropertyBasedImageMapper_type") + " " + label;
-	}
+    String label = ((PropertyBasedImageMapper)object).getPropertyName();
+    return label == null || label.length() == 0 ?
+      getString("_UI_PropertyBasedImageMapper_type") :
+      getString("_UI_PropertyBasedImageMapper_type") + " " + label;
+  }
 	
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+    updateChildren(notification);
 
-		switch (notification.getFeatureID(PropertyBasedImageMapper.class)) {
-			case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__POSITION:
-			case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__PROPERTY_NAME:
-			case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__PROPERTY_VALUE:
-			case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__IMAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
-		super.notifyChanged(notification);
-	}
+    switch (notification.getFeatureID(PropertyBasedImageMapper.class)) {
+      case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__POSITION:
+      case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__PROPERTY_NAME:
+      case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__PROPERTY_VALUE:
+      case Neo4jHierarchicalGraphMappingPackage.PROPERTY_BASED_IMAGE_MAPPER__IMAGE:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
+    }
+    super.notifyChanged(notification);
+  }
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
+    super.collectNewChildDescriptors(newChildDescriptors, object);
+  }
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
+   * Return the resource locator for this item provider's resources.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return Hierarchicalgraphneo4jmappingEditPlugin.INSTANCE;
-	}
+    return Hierarchicalgraphneo4jmappingEditPlugin.INSTANCE;
+  }
 
 }

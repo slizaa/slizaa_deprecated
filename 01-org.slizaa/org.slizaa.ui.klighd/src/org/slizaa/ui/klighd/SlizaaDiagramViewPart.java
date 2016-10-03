@@ -28,6 +28,8 @@ import de.cau.cs.kieler.klighd.util.KlighdSynthesisProperties;
 
 public class SlizaaDiagramViewPart extends DiagramViewPart {
 
+  // http://stackoverflow.com/questions/23992497/get-e4-service-without-injection
+
   // set the ID
   public static String                  ID                       = "org.slizaa.ui.klighd.SlizaaDiagramViewPart";
 
@@ -35,8 +37,6 @@ public class SlizaaDiagramViewPart extends DiagramViewPart {
   private static final String           UPDATE_JOB               = "Updating Diagram";
 
   private static final String           UPDATE_DIAGRAM_EXCEPTION = "Displaying diagram failed!";
-
-  private static final String           DIAGRAM_IS_NULL          = "Diagram is null or empty. Inernal KLighD error.";
 
   // -- Icons --
   /** The icon for refreshing view content. */
@@ -101,6 +101,7 @@ public class SlizaaDiagramViewPart extends DiagramViewPart {
   public void init(IViewSite site) throws PartInitException {
     super.init(site);
 
+    //
     _partListener.activate();
   }
 

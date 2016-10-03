@@ -17,6 +17,7 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
+import org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedNodeSourceImpl;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -143,6 +144,10 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
   public void onCollapse() {
   }
 
+  public void onSelect() {
+
+  }
+
   /**
    * <p>
    * </p>
@@ -160,7 +165,10 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
           Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE__PROPERTIES);
     }
 
-    //
+    // clear the properties first
+    _nodeSource.properties.clear();
+
+    // re-populate
     jsonObject.entrySet().forEach((e) -> {
       _nodeSource.properties.put(e.getKey(), e.getValue().getAsString());
     });

@@ -1,6 +1,6 @@
 package org.slizaa.neo4j.hierarchicalgraph.ui.deprecated;
 
-import org.slizaa.neo4j.hierarchicalgraph.mapping.CypherQuery;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.DependencyMapping;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.ImagePosition;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.Neo4jHierarchicalGraphMappingFactory;
@@ -12,27 +12,17 @@ public class Descriptors2 {
   /** HIERARCHY_QUERY */
   public static final String HIERARCHY_ROOT_MODULES_QUERY          = "MATCH (module:Java:Artifact) WHERE (module:Directory OR module:Jar:Archive) RETURN id(module)";
 
-  // public static final String HIERARCHY_TOP_LEVEL_DIRECTORIES = "MATCH
-  // (module:Java:Artifact)-[:CONTAINS]->(d:Directory) WHERE (module:Directory OR module:Jar:Archive) AND NOT
-  // (:Directory)-[:CONTAINS]->(d) RETURN id(module), id(d)";
-  //
-  // public static final String HIERARCHY_DIRECTORIES = "MATCH (d1:Directory)-[:CONTAINS]->(d2:Directory) RETURN id(d1),
-  // id(d2)";
-  
-  
-  // SNIPPET:
-  // MATCH (m)-[r:CONTAINS]->(p:Package) WHERE id(m)=145766 AND p.fqn =~ '.*\\.impl' RETURN id(m), id(p), type(r)
-  
-  public static String FLAT_DIRECTORIES = "MATCH (module:Java:Artifact)-[:CONTAINS]->(d:Directory)-[:CONTAINS]->(f:File) WHERE (module:Directory OR module:Jar:Archive)  AND NOT (f:Directory) RETURN DISTINCT id(module), id(d)";
+  public static final String FLAT_DIRECTORIES                      = "MATCH (module:Java:Artifact)-[:CONTAINS]->(d:Directory)-[:CONTAINS]->(f:File) WHERE (module:Directory OR module:Jar:Archive)  AND NOT (f:Directory) RETURN DISTINCT id(module), id(d)";
 
   public static final String HIERARCHY_FILES                       = "MATCH (d:Directory)-[:CONTAINS]->(f:File) WHERE NOT (f:Type) AND NOT (f:Directory) RETURN id(d), id(f)";
-
-  // HIER HAT JQASSISTANT einen BUG (glaube ich)
-  public static final String HIERARCHY_INNER_CLASSES               = "MATCH (t1:Type)-[:DECLARES]->(t2:Type) RETURN id(t1), id(t2)";
 
   public static final String HIERARCHY_TOPLEVEL_CLASSES            = "MATCH (d:Directory)-[:CONTAINS]->(t:Type) RETURN id(d), id(t)";
 
   public static final String HIERARCHY_METHODS_AND_FIELDS          = "MATCH (t:Type)-[:DECLARES]->(e) WHERE ((e:Method) OR (e:Field)) AND NOT e.visibility IS NULL RETURN id(t), id(e)";
+
+  public static final String QUERY_SIMPLE_DEPENDENCIES             = "MATCH (t1:File:Type:Java)-[r:DEPENDS_ON]->(t2:File:Type:Java) RETURN id(t1),id(t2),id(r),type(r)";
+
+  // ************************************** //
 
   public static final String QUERY_DEPENDENCIES_EXTENDS_IMPLEMENTS = "MATCH (t)-[rel:EXTENDS|:IMPLEMENTS]->(t2), (:Artifact)-[:CONTAINS]->(t2) RETURN id(t), id(t2), id(rel), type(rel)";
 
@@ -48,8 +38,39 @@ public class Descriptors2 {
 
   public static final String QUERY_DEPENDENCIES_HAS_PARAM_OF_TYPE  = "MATCH (m:Method)-[rel:HAS]->(p:Parameter)-[rel2:OF_TYPE]->(t:Type)<-[:CONTAINS]-(:Artifact) RETURN id(m), id(t), id(rel), 'HAS_PARAM_OF_TYPE'";
 
-  public static final String QUERY_SIMPLE_DEPENDENCIES             = "MATCH (t1:File:Type:Java)-[:DEPENDS_ON]->(t2:File:Type:Java) RETURN id(t1),id(t2), 'DEPENDS_ON'";
+  // MATCH (n1)-[rel]->(n2)
+  // WHERE id(n1) in [98364, 98847, 98851, 98850, 98854, 98846, 98848,98853, 98855,98852,98849,98895, 98844,
+  // 98365,98868,98870,98887,98865]
+  // AND (
+  // (n1:Type)-[rel:EXTENDS|:IMPLEMENTS]->(n2:Type) OR
+  // (n1:Method)-[rel:INVOKES]->(n2:Method) OR
+  // (n1:Method)-[rel:READS|:WRITES]->(n2:Field) OR
+  // (n1:Field)-[rel:OF_TYPE]->(n2:Type) OR
+  // (n1:Method)-[rel:THROWS]->(n2:Type) OR
+  // (n1:Method)-[rel:RETURNS]->(n2:Type) OR
+  // (n1:Method)-[rel:RETURNS]->(n2:Type)
+  // )
+  // RETURN id(n1), id(n2), id(rel), type(rel)
+  //
+  //
+  // MATCH (n1:Method)-[rel:HAS]->(p:Parameter)-[rel2:OF_TYPE]->(n2:Type)
+  // WHERE id(n1) in [98364, 98847, 98851, 98850, 98854, 98846, 98848,98853, 98855,98852,98849,98895, 98844,
+  // 98365,98868,98870,98887,98865]
+  // RETURN id(n1), id(n2), id(rel), "HAS_PARAMETER_OF_TYPE"
 
+  public static final String DETAIL_QUERY                          = "MATCH (n1)-[rel]->(n2) "
+      + "WHERE id(n1) in {from} " + "AND id(n2) in {to} " + "AND ( "
+      + "(n1:Type)-[rel:EXTENDS|:IMPLEMENTS]->(n2:Type) OR " + "(n1:Method)-[rel:INVOKES]->(n2:Method) OR "
+      + "(n1:Method)-[rel:READS|:WRITES]->(n2:Field) OR " + "(n1:Field)-[rel:OF_TYPE]->(n2:Type) OR "
+      + "(n1:Method)-[rel:THROWS]->(n2:Type) OR " + "(n1:Method)-[rel:RETURNS]->(n2:Type) OR "
+      + "(n1:Method)-[rel:RETURNS]->(n2:Type) " + ") " + "RETURN id(n1), id(n2), id(rel), type(rel)";
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
   public static HierarchicalGraphMappingDescriptor createHierarchicalGraphMappingDescriptor() {
 
     //
@@ -57,15 +78,18 @@ public class Descriptors2 {
         .createHierarchicalGraphMappingDescriptor();
 
     // hierachy
-    graphProviderDescriptor.getRootMappings().add(cypherQuery(HIERARCHY_ROOT_MODULES_QUERY));
-    // graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOP_LEVEL_DIRECTORIES);
-    // graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_DIRECTORIES);
-    graphProviderDescriptor.getHierarchyMappings().add(FLAT_DIRECTORIES);
+    graphProviderDescriptor.getRootMappings().add(HIERARCHY_ROOT_MODULES_QUERY);
     graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_FILES);
+    graphProviderDescriptor.getHierarchyMappings().add(FLAT_DIRECTORIES);
     graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_TOPLEVEL_CLASSES);
     graphProviderDescriptor.getHierarchyMappings().add(HIERARCHY_METHODS_AND_FIELDS);
 
-    graphProviderDescriptor.getDependencyMappers().add(QUERY_SIMPLE_DEPENDENCIES);
+    DependencyMapping dependencyMapping = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createDependencyMapping();
+    dependencyMapping.setMainQuery(QUERY_SIMPLE_DEPENDENCIES);
+    dependencyMapping.getDetailQueries().add(DETAIL_QUERY);
+    graphProviderDescriptor.getDependencyMappings().add(dependencyMapping);
+
+    // ********************/
     // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_EXTENDS_IMPLEMENTS);
     // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_INVOKE);
     // graphProviderDescriptor.getDependencyMappers().add(QUERY_DEPENDENCIES_READS_WRITES);
@@ -164,87 +188,6 @@ public class Descriptors2 {
     labelDescriptor.setTextPropertyName("fileName");
     labelDescriptor.setDefaultImage("icons/core/obj16/file_obj.png");
 
-    // //
-    // // parallelExecuter.handle((j) ->
-    // createHierarchy(j.getAsJsonArray("data"), creator));
-    // Future<JsonObject> queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_ROOT_MODULES_QUERY);
-    // createRootElements(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created RootElements " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_TOP_LEVEL_DIRECTORIES);
-    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Toplevel directories " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_DIRECTORIES);
-    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created directories " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_FILES);
-    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created toplevel files " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_INNER_CLASSES);
-    // // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // // System.out.println("Created directories " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_TOPLEVEL_CLASSES);
-    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created toplevel classes " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    //
-    // queryHierarchy =
-    // repository.executeCypherQuery(HIERARCHY_METHODS_AND_FIELDS);
-    // createHierarchy(queryHierarchy.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created method and fields " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-
-    // createDependencies(dependenciesInvoke.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Invoke " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependenciesExtendsImplements.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Extends/Implements " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependencyReadsWrites.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Reads/Writes " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependenciesFieldOfType.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Field of Type " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependenciesThrows.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Throws " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependenciesReturns.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Returns " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-    // createDependencies(dependenciesHasParamOfType.get().getAsJsonArray("data"),
-    // creator);
-    // System.out.println("Created Has Param Of Type " +
-    // stopwatch.elapsed(TimeUnit.MILLISECONDS));
-
     return graphProviderDescriptor;
   }
 
@@ -260,40 +203,4 @@ public class Descriptors2 {
     labelDescriptor.getPropertyBasedImages().add(imageProvider);
     return imageProvider;
   }
-
-  private static CypherQuery cypherQuery(String query) {
-    CypherQuery cypherQuery = Neo4jHierarchicalGraphMappingFactory.eINSTANCE.createCypherQuery();
-    cypherQuery.setCypherQuery(query);
-    return cypherQuery;
-  }
-
-  // public static void main(String[] args) {
-  //
-  // //
-  // HierarchicalGraphMappingDescriptor descriptor =
-  // createHierarchicalGraphMappingDescriptor();
-  //
-  // //
-  // Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-  // Map<String, Object> m = reg.getExtensionToFactoryMap();
-  // m.put("jqamapping", new XMIResourceFactoryImpl());
-  //
-  // // Obtain a new resource set
-  // ResourceSet resSet = new ResourceSetImpl();
-  //
-  // // create a resource
-  // Resource resource =
-  // resSet.createResource(URI.createURI("jqamapping/sample.jqamapping"));
-  // // Get the first model element and cast it to the right type, in my
-  // // example everything is hierarchical included in this first node
-  // resource.getContents().add(descriptor);
-  //
-  // // now save the content.
-  // try {
-  // resource.save(Collections.EMPTY_MAP);
-  // } catch (IOException e) {
-  // // TODO Auto-generated catch block
-  // e.printStackTrace();
-  // }
-  // }
 }

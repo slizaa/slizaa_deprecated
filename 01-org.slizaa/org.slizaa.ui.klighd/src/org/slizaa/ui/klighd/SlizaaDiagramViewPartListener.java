@@ -1,21 +1,31 @@
 package org.slizaa.ui.klighd;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.e4.core.contexts.ContextInjectionFactory;
+import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.IWorkbenchPartReference;
+import org.eclipse.ui.internal.PartSite;
 import org.eclipse.ui.progress.UIJob;
-import org.slizaa.selection.IHierarchicalGraphSelection;
-import org.slizaa.selection.IHierarchicalGraphSelectionListener;
-import org.slizaa.selection.INodeSelection;
+import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 
 import de.cau.cs.kieler.klighd.ui.DiagramViewManager;
 
 /**
  * 
  */
-class SlizaaDiagramViewPartListener implements IPartListener2, IHierarchicalGraphSelectionListener {
+class SlizaaDiagramViewPartListener implements IPartListener2 {
 
   private static final String         UPDATE_JOB = "Updating Diagram";
 
@@ -23,7 +33,10 @@ class SlizaaDiagramViewPartListener implements IPartListener2, IHierarchicalGrap
   private final SlizaaDiagramViewPart _diagramView;
 
   /** - */
-  private INodeSelection              _currentNodeSelection;
+  private List<HGNode>                _currentNodeSelection;
+  
+  /** - */
+  private List<HGNode>                _shownNodeSelection;
 
   /**
    * Create a new listener handling events for the given {@link SlizaaDiagramViewPart}.
@@ -33,7 +46,7 @@ class SlizaaDiagramViewPartListener implements IPartListener2, IHierarchicalGrap
    *          The associated {@link SlizaaDiagramViewPart}
    */
   SlizaaDiagramViewPartListener(final SlizaaDiagramViewPart diagramView) {
-    this._diagramView = diagramView;
+    this._diagramView = checkNotNull(diagramView);
   }
 
   /**
@@ -41,7 +54,9 @@ class SlizaaDiagramViewPartListener implements IPartListener2, IHierarchicalGrap
    */
   public void activate() {
     _diagramView.getSite().getPage().addPartListener(this);
-    Activator.getDefault().getHierarchicalGraphSelectionService().addHierarchicalGraphSelectionListener(this);
+    
+    IEclipseContext context = ((PartSite) _diagramView.getSite()).getContext();
+    ContextInjectionFactory.inject(this, context.getParent());
   }
 
   /**
@@ -49,7 +64,9 @@ class SlizaaDiagramViewPartListener implements IPartListener2, IHierarchicalGrap
    */
   public void deactivate() {
     _diagramView.getSite().getPage().removePartListener(this);
-    Activator.getDefault().getHierarchicalGraphSelectionService().removeHierarchicalGraphSelectionListener(this);
+    
+    IEclipseContext context = ((PartSite) _diagramView.getSite()).getContext();
+    ContextInjectionFactory.uninject(this, context.getParent());
   }
 
   /**
@@ -101,13 +118,7 @@ class SlizaaDiagramViewPartListener implements IPartListener2, IHierarchicalGrap
       return;
     }
 
-    //
-    IHierarchicalGraphSelection selection = Activator.getDefault().getHierarchicalGraphSelectionService()
-        .getCurrentSelection();
-
-    if (selection != null) {
-      updateNodeSelection(selection);
-    }
+    updateNodeSelection();
   }
 
   /**
@@ -148,12 +159,7 @@ class SlizaaDiagramViewPartListener implements IPartListener2, IHierarchicalGrap
     }
 
     //
-    IHierarchicalGraphSelection selection = Activator.getDefault().getHierarchicalGraphSelectionService()
-        .getCurrentSelection();
-
-    if (selection != null) {
-      updateNodeSelection(selection);
-    }
+    updateNodeSelection();
   }
 
   /**
@@ -168,66 +174,54 @@ class SlizaaDiagramViewPartListener implements IPartListener2, IHierarchicalGrap
     }
   }
 
-  @Override
-  public String getSelectionProviderId() {
-    return null;
-  }
-
-  @Override
-  public void currentSelectionChanged(IHierarchicalGraphSelection selection) {
-
+  @Inject
+  public void initSelection(
+      @Optional @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION) List<HGNode> selectedNodes) {
+    
+    //
+    _currentNodeSelection = selectedNodes;
+    
+    //
     if (_diagramView.getSite().getPage().isPartVisible(_diagramView)) {
-      updateNodeSelection(selection);
+      updateNodeSelection();
     }
   }
 
   /**
    * @param selection
    */
-  private void updateNodeSelection(IHierarchicalGraphSelection selection) {
+  private void updateNodeSelection() {
 
-    if (setCurrentNodeSelection(selection) && _currentNodeSelection != null) {
-
-      // Start update job
-      new UIJob(UPDATE_JOB) {
-
-        @Override
-        public IStatus runInUIThread(final IProgressMonitor monitor) {
-          DiagramViewManager.updateView("org.slizaa.ui.klighd.SlizaaDiagramViewPart", null, _currentNodeSelection, null);
-          return Status.OK_STATUS;
-        }
-      }.schedule();
-
-    }
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param selection
-   * @return
-   */
-  private boolean setCurrentNodeSelection(IHierarchicalGraphSelection selection) {
-
-    //
-    if (selection == null) {
-      _currentNodeSelection = null;
-      return true;
-    }
-
-    //
-    INodeSelection nodeSelection = selection.findFirstOccurrence(INodeSelection.class);
-
-    //
-    if (nodeSelection != null) {
-      if (! nodeSelection.equals(_currentNodeSelection)) {
-        _currentNodeSelection = nodeSelection;
-        return true;
+      if (!equalLists(_currentNodeSelection, _shownNodeSelection)) {
+        
+        _shownNodeSelection = _currentNodeSelection;
+        
+        // Start update job
+        new UIJob(UPDATE_JOB) {
+          @Override
+          public IStatus runInUIThread(final IProgressMonitor monitor) {
+            DiagramViewManager.updateView("org.slizaa.ui.klighd.SlizaaDiagramViewPart", null, _currentNodeSelection,
+                null);
+            return Status.OK_STATUS;
+          }
+        }.schedule();
       }
+  }
+
+  public  boolean equalLists(List<HGNode> a, List<HGNode> b){     
+    
+    if (a == null && b == null) {
+      return true;
     }
     
     //
-    return false;
-  }
+    if ((a == null && b!= null) || (a != null && b== null) || (a.size() != b.size())){
+        return false;
+    }
+
+    // Sort and compare the two lists          
+//    Collections.sort(a);
+//    Collections.sort(b);      
+    return a.equals(b);
+}
 }

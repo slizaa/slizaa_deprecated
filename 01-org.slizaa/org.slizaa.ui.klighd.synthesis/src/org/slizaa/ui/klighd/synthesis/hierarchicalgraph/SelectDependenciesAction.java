@@ -1,10 +1,15 @@
 package org.slizaa.ui.klighd.synthesis.hierarchicalgraph;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.elk.graph.KGraphElement;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.eclipse.ui.internal.PartSite;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.ui.common.context.ContextHelper;
 
 import de.cau.cs.kieler.klighd.IAction;
 
@@ -24,14 +29,19 @@ public class SelectDependenciesAction implements IAction {
 
       Object sourceElement = context.getViewContext().getSourceElement(kGraphElement);
 
-      if (sourceElement instanceof HGDependency) {
-        HGDependency dependency = (HGDependency) sourceElement;
-        List<HGDependency> dependencies = new LinkedList<>();
+      if (sourceElement instanceof HGAggregatedDependency) {
+        HGAggregatedDependency dependency = (HGAggregatedDependency) sourceElement;
+        Collection<HGAggregatedDependency> dependencies = new LinkedList<>();
         if (dependency != null) {
           dependencies.add(dependency);
         }
-        Activator.getDefault().getHierarchicalGraphSelectionService().setCurrentDependencySelection("TODO",
-            dependencies);
+
+        // fetch the perspective context
+        IEclipseContext eclipseContext = ((PartSite) context.getViewContext().getDiagramWorkbenchPart().getSite())
+            .getContext().getParent();
+
+        ContextHelper.setValueInContext(eclipseContext,
+            SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
       }
     }
 

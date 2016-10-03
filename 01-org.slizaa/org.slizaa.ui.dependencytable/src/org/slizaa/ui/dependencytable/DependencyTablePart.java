@@ -11,11 +11,13 @@
 package org.slizaa.ui.dependencytable;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -30,34 +32,30 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.AbstractHGDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.util.HierarchicalGraphUtils;
-import org.slizaa.selection.IDependencySelection;
-import org.slizaa.selection.IHierarchicalGraphSelection;
-import org.slizaa.selection.IHierarchicalGraphSelectionListener;
-import org.slizaa.selection.IHierarchicalGraphSelectionService;
+import org.slizaa.hierarchicalgraph.selection.DependencySelections;
+import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 
-public class DependencyTablePart implements IHierarchicalGraphSelectionListener {
+public class DependencyTablePart {
 
   /** - */
-  public static final String                 ID                    = DependencyTablePart.class.getName();
+  public static final String         ID                  = DependencyTablePart.class.getName();
 
   /** - */
-  private TableViewer                        _viewer;
+  private TableViewer                _viewer;
 
   /** Comparator used to sort the columns */
-  private DependencyComparator               _dependencyComparator;
+  private DependencyComparator       _dependencyComparator;
 
   /** - */
-  private ArtifactPathLabelGenerator         _fromLabelGenerator   = new ArtifactPathLabelGenerator();
+  private ArtifactPathLabelGenerator _fromLabelGenerator = new ArtifactPathLabelGenerator();
 
   /** - */
-  private ArtifactPathLabelGenerator         _toLabelGenerator     = new ArtifactPathLabelGenerator();
+  private ArtifactPathLabelGenerator _toLabelGenerator   = new ArtifactPathLabelGenerator();
 
-  /** - */
-  @Inject
-  private IHierarchicalGraphSelectionService _selectionService;
+  private List<AbstractHGDependency> _selectedDependencies;
 
   @PostConstruct
   public void createComposite(Composite parent) {
@@ -80,80 +78,36 @@ public class DependencyTablePart implements IHierarchicalGraphSelectionListener 
 
     createColumns(tableComposite, _viewer);
 
-    // open editor on double click
-    // _viewer.addDoubleClickListener(new IDoubleClickListener() {
     //
-    // @Override
-    // public void doubleClick(DoubleClickEvent event) {
-    // openDependenciesInEditor();
-    // }
-    // });
-
-//    _viewer.addSelectionChangedListener(new ISelectionChangedListener() {
-//
-//      @Override
-//      public void selectionChanged(SelectionChangedEvent event) {
-//
-//        IStructuredSelection structuredSelection = (IStructuredSelection) event.getSelection();
-//
-//        //
-//        List<IDependency> dependencies = new LinkedList<IDependency>();
-//
-//        //
-//        for (Iterator<?> iterator = structuredSelection.iterator(); iterator.hasNext();) {
-//          dependencies.add((IDependency) iterator.next());
-//        }
-//
-//        //
-//        _selectionService.addDependencySelection(ID, dependencies);
-//      }
-//    });
-
-    // IDependencySelection dependencySelection = Selection.instance().getDependencySelectionService()
-    // .getSelection(Selection.MAIN_DEPENDENCY_SELECTION_ID);
-    // initDependencies(dependencySelection);
-
-    //
-    _selectionService.addHierarchicalGraphSelectionListener(this);
+    if (_selectedDependencies != null) {
+      initSelection(_selectedDependencies);
+    }
   }
 
-  /**
-   * <p>
-   * </p>
-   */
-  @PreDestroy
-  public void dispose() {
-    _selectionService.removeHierarchicalGraphSelectionListener(this);
-  }
+  @Inject
+  public void initSelection(
+      @Optional @Named(SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION) List<AbstractHGDependency> selectedDependencies) {
 
-  @Override
-  public String getSelectionProviderId() {
-    return ID;
-  }
-
-  @Override
-  public void currentSelectionChanged(IHierarchicalGraphSelection selection) {
+    _selectedDependencies = selectedDependencies;
 
     if (_viewer == null || _viewer.getTable().isDisposed()) {
       return;
     }
 
-    IDependencySelection currentDependencySelection = selection.findLastOccurrence(IDependencySelection.class);
-
-    if (currentDependencySelection == null || currentDependencySelection.getSelectedDependencies().isEmpty()) {
+    if (selectedDependencies == null || selectedDependencies.isEmpty()) {
       setColumnTitles("From", "To");
-      _viewer.setInput(new HGDependency[0]);
+      _viewer.setInput(new AbstractHGDependency[0]);
       _viewer.getTable().redraw();
       return;
-    } else {
+    }
+    //
+    else {
 
-      HGNode toBaseArtifact = currentDependencySelection.getSelectedDependencies().get(0)
-          .getFrom();
+      HGNode toBaseArtifact = selectedDependencies.get(0).getFrom();
 
-      HGNode fromBaseArtifact = currentDependencySelection.getSelectedDependencies().get(0)
-          .getTo();
+      HGNode fromBaseArtifact = selectedDependencies.get(0).getTo();
 
-      if (currentDependencySelection.getSelectedDependencies().size() != 1) {
+      if (selectedDependencies.size() != 1) {
         // TODO determine deepest common base of all dependencies
         toBaseArtifact = toBaseArtifact.getRootNode();
         fromBaseArtifact = fromBaseArtifact.getRootNode();
@@ -163,14 +117,13 @@ public class DependencyTablePart implements IHierarchicalGraphSelectionListener 
       _toLabelGenerator.setBaseArtifact(toBaseArtifact);
       //
       String fromColumnTitle = "From " /* + _fromLabelGenerator.getTitle() */;
-      String toColumnTitle = "To " /*+ _toLabelGenerator.getTitle() */;
+      String toColumnTitle = "To " /* + _toLabelGenerator.getTitle() */;
 
       setColumnTitles(fromColumnTitle, toColumnTitle);
 
-      List<HGDependency> leafDependencies = HierarchicalGraphUtils
-          .getCoreDependencies(currentDependencySelection.getSelectedDependencies());
+      Set<HGCoreDependency> leafDependencies = DependencySelections.getCoreDependencies(selectedDependencies);
 
-      HGDependency[] dependencies = leafDependencies.toArray(new HGDependency[0]);
+      AbstractHGDependency[] dependencies = leafDependencies.toArray(new AbstractHGDependency[0]);
       setOrderedDependencies(dependencies);
     }
   }
@@ -179,7 +132,7 @@ public class DependencyTablePart implements IHierarchicalGraphSelectionListener 
 
     createTableViewerColumn(parent, viewer, 0, "From", 45, new DependencyColumnLabelProvider(_fromLabelGenerator) {
       @Override
-      protected HGNode getArtifactElement(HGDependency dependency) {
+      protected HGNode getNode(AbstractHGDependency dependency) {
         return dependency.getFrom();
       }
     });
@@ -188,9 +141,11 @@ public class DependencyTablePart implements IHierarchicalGraphSelectionListener 
     createTableViewerColumn(parent, viewer, 1, "Type", 10, new ColumnLabelProvider() {
       @Override
       public String getText(Object element) {
-        if (element instanceof HGDependency) {
-          HGDependency dependency = (HGDependency) element;
-          // TODO
+        if (element instanceof AbstractHGDependency) {
+          AbstractHGDependency dependency = (AbstractHGDependency) element;
+          if (dependency instanceof HGCoreDependency) {
+            return ((HGCoreDependency) dependency).getType();
+          }
           // return String.valueOf(dependency.getDependencyKind()).toLowerCase();
           return "depends on";
         }
@@ -201,7 +156,7 @@ public class DependencyTablePart implements IHierarchicalGraphSelectionListener 
     createTableViewerColumn(parent, viewer, 2, "To", 45, new DependencyColumnLabelProvider(_toLabelGenerator) {
 
       @Override
-      public HGNode getArtifactElement(HGDependency dependency) {
+      public HGNode getNode(AbstractHGDependency dependency) {
         return dependency.getTo();
       }
     });
@@ -236,7 +191,7 @@ public class DependencyTablePart implements IHierarchicalGraphSelectionListener 
         _viewer.getTable().setSortDirection(dir);
         _viewer.getTable().setSortColumn(column);
 
-        HGDependency[] currentDependencies = (HGDependency[]) _viewer.getInput();
+        AbstractHGDependency[] currentDependencies = (AbstractHGDependency[]) _viewer.getInput();
         setOrderedDependencies(currentDependencies);
 
         _viewer.refresh();
@@ -252,7 +207,7 @@ public class DependencyTablePart implements IHierarchicalGraphSelectionListener 
     table.getColumn(2).setText(toColumnTitle);
   }
 
-  private void setOrderedDependencies(HGDependency[] dependencies) {
+  private void setOrderedDependencies(AbstractHGDependency[] dependencies) {
     _dependencyComparator.sortDependencies(dependencies);
 
     _viewer.setInput(dependencies);

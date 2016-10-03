@@ -3,10 +3,13 @@ Bundle-ManifestVersion: 2
 Bundle-Name: de.gerdwuetherich.hierarchicalgraph.test
 Bundle-SymbolicName: org.slizaa.hierarchicalgraph.test
 Fragment-Host: org.slizaa.hierarchicalgraph
-Bundle-Version: 0.0.2.qualifier
+Bundle-Version: 0.0.3.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.junit;visibility:=reexport,
  com.google.guava;bundle-version="15.0.0",
- org.assertj.core;bundle-version="3.3.0"
+ org.assertj.core;bundle-version="3.3.0",
+ org.mockito;bundle-version="1.9.5",
+ org.slizaa.testfwk;bundle-version="0.0.3",
+ org.slizaa.hierarchicalgraph.selection;bundle-version="0.0.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

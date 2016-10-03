@@ -14,7 +14,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
 
-import org.slizaa.hierarchicalgraph.HGDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 
 /**
@@ -59,8 +59,8 @@ public class AdjacencyMatrix {
       for (int j = 0; j < result.length; j++) {
 
         // get the dependency
-        HGDependency dependency = artifacts[i].getOutgoingDependenciesTo(artifacts[j]);
-        result[i][j] = dependency != null ? dependency.getWeight() : 0;
+        HGAggregatedDependency dependency = artifacts[i].getOutgoingDependenciesTo(artifacts[j]);
+        result[i][j] = dependency != null ? dependency.getAggregatedWeight() : 0;
       }
     }
 

@@ -2,6 +2,7 @@ package org.slizaa.neo4j.hierarchicalgraph.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+import org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedNodeSourceImpl;
 
 /**
  * <p>
@@ -24,7 +25,7 @@ public class ExtendedNeo4JBackedNodeSourceImpl extends Neo4JBackedNodeSourceImpl
     _trait = new ExtendedNeo4JBackedNodeSourceTrait(this);
   }
 
-  ExtendedNeo4JBackedNodeSourceTrait getTrait() {
+  public ExtendedNeo4JBackedNodeSourceTrait getTrait() {
     return _trait;
   }
 
@@ -58,6 +59,11 @@ public class ExtendedNeo4JBackedNodeSourceImpl extends Neo4JBackedNodeSourceImpl
   @Override
   public void onCollapse() {
     _trait.onCollapse();
+  }
+  
+  @Override
+  public void onSelect() {
+    _trait.onSelect();
   }
   
   @Override
