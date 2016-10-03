@@ -128,7 +128,7 @@ public class XRefComposite extends Composite {
 
     // Make sure selected Artifacts are visible in Center Tree Viewer
     _fromTreeViewer.setSelection(new StructuredSelection());
-    _centerViewer.setSelection(new StructuredSelection(_rootNode));
+    _centerViewer.setSelection(_rootNode != null ? new StructuredSelection(_rootNode) : new StructuredSelection());
     _toTreeViewer.setSelection(new StructuredSelection());
 
     // set focus to center tree viewer
@@ -242,14 +242,10 @@ public class XRefComposite extends Composite {
     });
 
     _fromTreeExpandStrategy = new NullExpandStrategy();
-    // _fromTreeExpandStrategy = new DefaultExpandStrategy(
-    // (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getOutgoingCoreDependencies()));
     _centerTreeExpandStrategy = new DefaultExpandStrategy(
         (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(
             Iterables.concat(node.getOutgoingCoreDependencies(), node.getIncomingCoreDependencies())));
     _toTreeExpandStrategy = new NullExpandStrategy();
-    // _toTreeExpandStrategy = new DefaultExpandStrategy(
-    // (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getIncomingCoreDependencies()));
 
     //
     _fromTreeExpandStrategy.init(_fromTreeViewer);
