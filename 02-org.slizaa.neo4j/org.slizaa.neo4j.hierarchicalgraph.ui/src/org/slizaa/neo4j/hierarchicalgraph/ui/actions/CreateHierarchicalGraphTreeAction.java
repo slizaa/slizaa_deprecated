@@ -1,5 +1,7 @@
 package org.slizaa.neo4j.hierarchicalgraph.ui.actions;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import javax.inject.Inject;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -11,7 +13,10 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
@@ -28,6 +33,10 @@ import org.slizaa.ui.tree.SlizaaTreeAction;
 
 @Component
 public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
+
+  private static final String              JAVA_MAPPING_FLAT_PACKAGES         = "Java mapping (flat packages)";
+
+  private static final String              JAVA_MAPPING_HIERARCHICAL_PACKAGES = "Java mapping (hierarchical packages)";
 
   @Inject
   private IHierarchicalGraphMappingService _mappingService;
@@ -58,8 +67,26 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
     //
     Neo4JRemoteRepository remoteRepository = (Neo4JRemoteRepository) object;
 
+    ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(),
+        new LabelProvider());
+    dialog.setElements(new String[] { JAVA_MAPPING_HIERARCHICAL_PACKAGES, JAVA_MAPPING_FLAT_PACKAGES });
+    dialog.setTitle("Which mapping should be applied?");
+
+    // user pressed cancel
+    if (dialog.open() != Window.OK) {
+      return;
+    }
+
+    HierarchicalGraphMappingDescriptor mapping = null;
+    Object[] result = dialog.getResult();
+    if (JAVA_MAPPING_HIERARCHICAL_PACKAGES.equals(result[0])) {
+      mapping = Descriptors.createHierarchicalGraphMappingDescriptor();
+    } else if (JAVA_MAPPING_FLAT_PACKAGES.equals(result[0])) {
+      mapping = Descriptors2.createHierarchicalGraphMappingDescriptor();
+    }
+
     //
-    LoadModelFromGraphDatabaseJob myJob = new LoadModelFromGraphDatabaseJob(remoteRepository);
+    LoadModelFromGraphDatabaseJob myJob = new LoadModelFromGraphDatabaseJob(remoteRepository, mapping);
     myJob.schedule();
 
     //
@@ -90,7 +117,10 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
   private class LoadModelFromGraphDatabaseJob extends Job {
 
     /** - */
-    private Neo4JRemoteRepository _remoteRepository;
+    private Neo4JRemoteRepository              _remoteRepository;
+
+    /** - */
+    private HierarchicalGraphMappingDescriptor _mappingDescriptor;
 
     /**
      * <p>
@@ -99,10 +129,14 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
      *
      * @param remoteRepository
      */
-    public LoadModelFromGraphDatabaseJob(Neo4JRemoteRepository remoteRepository) {
+    public LoadModelFromGraphDatabaseJob(Neo4JRemoteRepository remoteRepository,
+        HierarchicalGraphMappingDescriptor mappingDescriptor) {
       super("Creating hierarchical graph");
+      
+      //
       setUser(true);
-      _remoteRepository = remoteRepository;
+      _remoteRepository = checkNotNull(remoteRepository);
+      _mappingDescriptor = checkNotNull(mappingDescriptor);
     }
 
     @Override
@@ -110,14 +144,11 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
       //
       try {
 
-        // create the default mapping descriptor
-        HierarchicalGraphMappingDescriptor mappingDescriptor = Descriptors.createHierarchicalGraphMappingDescriptor();
-
         // convert the model
-        HGRootNode rootNode = _mappingService.convert(mappingDescriptor, _remoteRepository, monitor);
+        HGRootNode rootNode = _mappingService.convert(_mappingDescriptor, _remoteRepository, monitor);
         // set label provider
         rootNode.registerExtension(IItemLabelProvider.class,
-            new MappingDescriptorBasedItemLabelProviderImpl(mappingDescriptor));
+            new MappingDescriptorBasedItemLabelProviderImpl(_mappingDescriptor));
         _remoteRepository.getHierarchicalGraphs().add(rootNode);
         _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().add(rootNode);
 
