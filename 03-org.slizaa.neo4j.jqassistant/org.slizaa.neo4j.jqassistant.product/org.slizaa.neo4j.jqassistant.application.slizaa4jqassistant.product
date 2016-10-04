@@ -3,30 +3,17 @@
 
 <product name="Slizaa for jQAssistant" uid="org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant" id="org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant" application="org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant" version="0.0.3" useFeatures="false" includeLaunchers="true">
 
-
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
       <programArgs>-clearPersistedState
       </programArgs>
-      <vmArgs>-XX:+UseParallelGC
+      <vmArgs>-Xms512m
+-Xmx2048m
+-XX:+UseParallelGC
 -XX:PermSize=256M
 -XX:MaxPermSize=512M
-         <argsX86>-Xms512m
--Xmx1024m</argsX86>
-         <argsX86_64>-Xms512m
--Xmx2048m</argsX86_64>
-         <argsPPC>-Xms512m
--Xmx1024m</argsPPC>
-         <argsIA_64>-Xms512m
--Xmx2048m</argsIA_64>
-         <argsIA_64_32>-Xms512m
--Xmx1024m</argsIA_64_32>
-         <argsPA_RISC>-Xms512m
--Xmx1024m</argsPA_RISC>
-         <argsSPARC>-Xms512m
--Xmx1024m</argsSPARC>
       </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
