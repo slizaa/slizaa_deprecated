@@ -31,7 +31,7 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<List<
 	@Inject extension KRenderingExtensions
 	@Inject extension KContainerRenderingExtensions
 	@Inject extension KPolylineExtensions
-	
+
 	val float LINE_WIDTH = 1.5f;
 
 	override KNode transform(List<HGNode> nodeSelection) {
@@ -62,17 +62,21 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<List<
 
 					if (outgoingDependencies != null && outgoingDependencies.aggregatedWeight > 0) {
 						createEdge => [
-							it.source = sourceElement.node;
-							it.target = targetElement.node;
+							it.source = sourceElement.node
+							it.target = targetElement.node
 							it.associateWith(outgoingDependencies)
 							it.addPolyline => [
+								it.invisible = false
 								it.lineWidth = LINE_WIDTH
 								it.addHeadArrowDecorator => [
+									it.invisible = false
 									it.lineWidth = LINE_WIDTH
 								]
 								it.addSingleOrMultiClickAction(SelectDependenciesAction.ID)
 							]
-							it.createLabel.configureCenterEdgeLabel(Integer.toString(outgoingDependencies.aggregatedWeight), 10)
+							it.createLabel => [
+								it.configureCenterEdgeLabel(Integer.toString(outgoingDependencies.aggregatedWeight), 10)
+							]
 						]
 					}
 				}
@@ -98,7 +102,7 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<List<
 
 				// upper part is icon
 				if (original != null) {
-					
+
 					// TODO: WORKAROUND as the KlighdImage Implementation disposes our cached image
 					// de.cau.cs.kieler.klighd.piccolo.internal.nodes.KlighdImage#setImage (line 174)
 					val Image image = new Image(Display.current, original, SWT.IMAGE_COPY);
