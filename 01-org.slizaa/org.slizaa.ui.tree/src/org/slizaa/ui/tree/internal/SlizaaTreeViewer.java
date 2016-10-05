@@ -6,9 +6,9 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.TreeEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGNodeImpl;
+import org.slizaa.ui.common.SlizaaCommonColors;
 import org.slizaa.ui.common.context.BusyCursor;
 import org.slizaa.ui.tree.ITreeEventInterceptor;
 
@@ -36,7 +36,7 @@ public class SlizaaTreeViewer extends TreeViewer {
 
     //
     FlatScrollBarTree flatScrollBarTree = new FlatScrollBarTree(parent, (adapter) -> new Tree(adapter, SWT.NO_SCROLL | SWT.V_SCROLL | style));
-    flatScrollBarTree.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_RED));
+    flatScrollBarTree.setThumbColor(SlizaaCommonColors.getScrollbarThumbColor());
     flatScrollBarTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     
     //

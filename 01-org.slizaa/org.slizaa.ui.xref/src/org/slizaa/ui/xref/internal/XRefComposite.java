@@ -31,6 +31,7 @@ import org.slizaa.hierarchicalgraph.SourceOrTarget;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector;
 import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
+import org.slizaa.ui.common.SlizaaCommonColors;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.common.context.RootObject;
 import org.slizaa.ui.tree.DependencyResolvingTreeEventInterceptor;
@@ -192,6 +193,7 @@ public class XRefComposite extends Composite {
 
     //
     SashForm sashForm = new SashForm(this, SWT.HORIZONTAL);
+    sashForm.setBackground(SlizaaCommonColors.getSashBackgroundColor());
     GridData data = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
     sashForm.setLayoutData(data);
 
