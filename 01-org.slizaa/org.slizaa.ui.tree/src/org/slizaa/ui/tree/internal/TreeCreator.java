@@ -32,7 +32,7 @@ public class TreeCreator {
     EditingDomain editingDomain = getEditingDomain(input);
 
     //
-    final TreeViewer treeViewer = new SlizaaTreeViewer(parent, style, eventInterceptor, autoExpandLevel);
+    final TreeViewer treeViewer = SlizaaTreeViewer.createSlizaaTreeViewer(parent, style, eventInterceptor, autoExpandLevel);
 
     //
     GridDataFactory.fillDefaults().grab(true, true).applyTo(treeViewer.getControl());
@@ -48,7 +48,6 @@ public class TreeCreator {
         new InterceptableAdapterFactoryLabelProvider(Activator.getDefault().getComposedAdapterFactory(), treeViewer));
 
     // set the layout data
-    treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
     //
     return treeViewer;

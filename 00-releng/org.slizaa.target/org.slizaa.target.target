@@ -62,5 +62,10 @@
 <unit id="de.cau.cs.kieler.klighd.feature.feature.group" version="0.11.2.201609261315"/>
 <repository location="http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/release_pragmatics_2016-07/"/>
 </location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="com.codeaffine.eclipse.swt.feature.feature.group" version="0.4.0.20160623-0336"/>
+<unit id="com.codeaffine.eclipse.ui.swt.theme.feature.feature.group" version="0.4.0.20160623-0336"/>
+<repository location="http://fappel.github.io/xiliary/"/>
+</location>
 </locations>
 </target>
