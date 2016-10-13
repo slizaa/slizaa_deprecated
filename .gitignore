@@ -2,3 +2,4 @@ target/
 bin/
 /.metadata/
 neo4j-home
+org.slizaa.target.target-gen
