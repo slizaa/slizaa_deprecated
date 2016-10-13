@@ -12,27 +12,4 @@
 	<artifactId>org.slizaa.target</artifactId>
 	<packaging>eclipse-target-definition</packaging>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>lt.velykis.maven</groupId>
-				<artifactId>pde-target-maven-plugin</artifactId>
-				<version>1.0.1</version>
-				<executions>
-					<execution>
-						<id>pde-target</id>
-						<goals>
-							<goal>add-pom-dependencies</goal>
-						</goals>
-						<configuration>
-							<baseDefinition>${project.basedir}/org.slizaa.target.target</baseDefinition>
-							<outputFile>${project.build.directory}/org.slizaa.target-local.target</outputFile>
-							<excludeTransitive>true</excludeTransitive>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-
 </project>
