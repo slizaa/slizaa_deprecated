@@ -38,7 +38,6 @@
    </vm>
 
    <plugins>
-      <plugin id="com.codeaffine.eclipse.swt"/>
       <plugin id="com.google.gson"/>
       <plugin id="com.google.guava"/>
       <plugin id="com.google.inject"/>

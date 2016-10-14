@@ -9,6 +9,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.slizaa.ui.common.context.RootObject;
@@ -17,7 +18,7 @@ import org.slizaa.ui.tree.ITreeEventInterceptor;
 public class TreeCreator {
 
   public static TreeViewer createTreeViewer(Composite parent, Object input) {
-    return createTreeViewer(parent, input, SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI);
+    return createTreeViewer(parent, input, SWT.NO_SCROLL | SWT.V_SCROLL | SWT.NO_BACKGROUND | SWT.MULTI);
   }
 
   public static TreeViewer createTreeViewer(Composite parent, Object input, int style) {
@@ -31,7 +32,7 @@ public class TreeCreator {
     EditingDomain editingDomain = getEditingDomain(input);
 
     //
-    final TreeViewer treeViewer = SlizaaTreeViewer.createSlizaaTreeViewer(parent, style, eventInterceptor, autoExpandLevel);
+    final TreeViewer treeViewer = new SlizaaTreeViewer(parent,  SWT.NO_SCROLL | SWT.V_SCROLL | style, eventInterceptor, autoExpandLevel);
 
     //
     GridDataFactory.fillDefaults().grab(true, true).applyTo(treeViewer.getControl());
@@ -47,6 +48,7 @@ public class TreeCreator {
         new InterceptableAdapterFactoryLabelProvider(Activator.getDefault().getComposedAdapterFactory(), treeViewer));
 
     // set the layout data
+    treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
     //
     return treeViewer;

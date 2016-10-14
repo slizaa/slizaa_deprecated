@@ -1,18 +1,12 @@
 package org.slizaa.ui.tree.internal;
 
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.TreeEvent;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Tree;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGNodeImpl;
-import org.slizaa.ui.common.SlizaaCommonColors;
 import org.slizaa.ui.common.context.BusyCursor;
 import org.slizaa.ui.tree.ITreeEventInterceptor;
-
-import com.codeaffine.eclipse.swt.widget.scrollable.FlatScrollBarTree;
 
 /**
  * <p>
@@ -27,24 +21,6 @@ public class SlizaaTreeViewer extends TreeViewer {
 
   /**
    * <p>
-   * </p>
-   *
-   * @return
-   */
-  public static SlizaaTreeViewer createSlizaaTreeViewer(Composite parent, int style,
-      ITreeEventInterceptor eventInterceptor, int autoExpandLevel) {
-
-    //
-    FlatScrollBarTree flatScrollBarTree = new FlatScrollBarTree(parent, (adapter) -> new Tree(adapter, SWT.NO_SCROLL | SWT.V_SCROLL | style));
-    flatScrollBarTree.setThumbColor(SlizaaCommonColors.getScrollbarThumbColor());
-    flatScrollBarTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-    
-    //
-    return new SlizaaTreeViewer(flatScrollBarTree.getTree(), eventInterceptor, autoExpandLevel);
-  }
-
-  /**
-   * <p>
    * Creates a new instance of type {@link SlizaaTreeViewer}.
    * </p>
    *
@@ -52,8 +28,8 @@ public class SlizaaTreeViewer extends TreeViewer {
    * @param style
    * @param eventInterceptor
    */
-  SlizaaTreeViewer(Tree tree, ITreeEventInterceptor eventInterceptor, int autoExpandLevel) {
-    super(tree);
+  public SlizaaTreeViewer(Composite parent, int style, ITreeEventInterceptor eventInterceptor, int autoExpandLevel) {
+    super(parent, style);
 
     //
     _eventInterceptor = eventInterceptor;
