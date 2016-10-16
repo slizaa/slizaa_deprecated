@@ -5,10 +5,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.elk.graph.KNode;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IMemento;
@@ -18,7 +16,6 @@ import org.eclipse.ui.progress.UIJob;
 import org.eclipse.ui.statushandlers.StatusManager;
 import org.slizaa.ui.klighd.nullmodel.NullModel;
 
-import de.cau.cs.kieler.klighd.KlighdPlugin;
 import de.cau.cs.kieler.klighd.LightDiagramServices;
 import de.cau.cs.kieler.klighd.ViewContext;
 import de.cau.cs.kieler.klighd.ui.parts.DiagramViewPart;
@@ -38,15 +35,6 @@ public class SlizaaDiagramViewPart extends DiagramViewPart {
 
   private static final String           UPDATE_DIAGRAM_EXCEPTION = "Displaying diagram failed!";
 
-  // -- Icons --
-  /** The icon for refreshing view content. */
-  private static final ImageDescriptor  REFRESH_ICON             = KlighdPlugin
-      .getImageDescriptor("icons/full/elcl16/refresh.gif");
-
-  /** The icon for layout view content. */
-  private static final ImageDescriptor  ARRANGE_ICON             = KlighdViewPlugin
-      .getImageDescriptor("icons/full/menu16/arrange.gif");
-
   // -- ATTRIBUTES --
 
   /** The views root composite. */
@@ -54,12 +42,6 @@ public class SlizaaDiagramViewPart extends DiagramViewPart {
 
   /** - */
   private SlizaaDiagramViewPartListener _partListener;
-
-  /** The action for reloading displayed model. */
-  private final Action                  refreshAction;
-
-  /** The action for performing. */
-  private final Action                  layoutAction;
 
   /** The menu manger. */
   private IMenuManager                  _menuManager;
@@ -74,27 +56,6 @@ public class SlizaaDiagramViewPart extends DiagramViewPart {
 
     //
     _partListener = new SlizaaDiagramViewPartListener(this);
-
-    // Refresh Button
-    refreshAction = new Action("Refresh diagram", IAction.AS_PUSH_BUTTON) {
-
-      @Override
-      public void run() {
-        updateDiagram();
-      }
-    };
-    refreshAction.setId("refreshAction");
-    refreshAction.setImageDescriptor(REFRESH_ICON);
-
-    // Automatic Layout Button
-    layoutAction = new Action("Arrange diagram", IAction.AS_PUSH_BUTTON) {
-      @Override
-      public void run() {
-        LightDiagramServices.layoutDiagram(SlizaaDiagramViewPart.this);
-      }
-    };
-    layoutAction.setId("layoutAction");
-    layoutAction.setImageDescriptor(ARRANGE_ICON);
   }
 
   @Override
@@ -135,8 +96,6 @@ public class SlizaaDiagramViewPart extends DiagramViewPart {
     IActionBars bars = getViewSite().getActionBars();
     _toolBarManager = bars.getToolBarManager();
     _menuManager = bars.getMenuManager();
-
-    addContributions();
   }
 
   /**
@@ -145,11 +104,6 @@ public class SlizaaDiagramViewPart extends DiagramViewPart {
   @Override
   protected void addButtons() {
     // Suppressing DiagramViewPart default buttons
-  }
-
-  protected void addContributions() {
-    _toolBarManager.add(refreshAction);
-    _toolBarManager.add(layoutAction);
   }
 
   /**
