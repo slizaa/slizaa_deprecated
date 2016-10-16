@@ -106,12 +106,12 @@ public class Utilities {
       if (!dependencyResolution.getDependency().getResolvedCoreDependencies().isEmpty()) {
         removeDependency(dependencyResolution.getDependency(), true);
       } else {
-        System.out.println("*****************************************************************************************");
-        System.out.println("** WARNING: Aggregated Dependency has been resolved to ZERO core dependencies!         **");
-        System.out
-            .println(String.format("** %s : %s **", dependencyResolution.getDependency().getFrom().getIdentifier(),
-                dependencyResolution.getDependency().getTo().getIdentifier()));
-        System.out.println("*****************************************************************************************");
+        // System.out.println("*****************************************************************************************");
+        // System.out.println("** WARNING: Aggregated Dependency has been resolved to ZERO core dependencies! **");
+        // System.out
+        // .println(String.format("** %s : %s **", dependencyResolution.getDependency().getFrom().getIdentifier(),
+        // dependencyResolution.getDependency().getTo().getIdentifier()));
+        // System.out.println("*****************************************************************************************");
       }
 
       //
