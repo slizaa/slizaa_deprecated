@@ -48,12 +48,13 @@ public class SlizaaTreeViewer extends TreeViewer {
     //
     if (event.item.getData() instanceof ExtendedHGNodeImpl) {
 
-      //
-      if (_eventInterceptor != null) {
-        _eventInterceptor.handleSelect((ExtendedHGNodeImpl) event.item.getData());
-      }
-
       BusyCursor.execute(getTree().getParent(), () -> {
+
+        //
+        if (_eventInterceptor != null) {
+          _eventInterceptor.handleSelect((ExtendedHGNodeImpl) event.item.getData());
+        }
+
         ExtendedHGNodeImpl hgNode = (ExtendedHGNodeImpl) event.item.getData();
         hgNode.onSelect();
       });
@@ -70,12 +71,13 @@ public class SlizaaTreeViewer extends TreeViewer {
     //
     if (event.item.getData() instanceof ExtendedHGNodeImpl) {
 
-      //
-      if (_eventInterceptor != null) {
-        _eventInterceptor.handleTreeExpand((ExtendedHGNodeImpl) event.item.getData());
-      }
-
       BusyCursor.execute(getTree().getParent(), () -> {
+
+        //
+        if (_eventInterceptor != null) {
+          _eventInterceptor.handleTreeExpand((ExtendedHGNodeImpl) event.item.getData());
+        }
+
         ExtendedHGNodeImpl hgNode = (ExtendedHGNodeImpl) event.item.getData();
         hgNode.onExpand();
       });
@@ -92,13 +94,14 @@ public class SlizaaTreeViewer extends TreeViewer {
     //
     if (event.item.getData() instanceof ExtendedHGNodeImpl) {
 
-      //
-      if (_eventInterceptor != null) {
-        _eventInterceptor.handleTreeCollapse((ExtendedHGNodeImpl) event.item.getData());
-      }
-
-      //
       BusyCursor.execute(getTree().getParent(), () -> {
+
+        //
+        if (_eventInterceptor != null) {
+          _eventInterceptor.handleTreeCollapse((ExtendedHGNodeImpl) event.item.getData());
+        }
+
+        //
         ExtendedHGNodeImpl hgNode = (ExtendedHGNodeImpl) event.item.getData();
         hgNode.onCollapse();
       });
