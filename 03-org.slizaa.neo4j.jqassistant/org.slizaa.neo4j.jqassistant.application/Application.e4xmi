@@ -2,6 +2,19 @@
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_ZCnwYLRYEeWVj_GUPFMSKw" elementId="org.slizaa.neo4j.jqassistant.application">
   <children xsi:type="basic:TrimmedWindow" xmi:id="_LQqxgLRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.trimmedwindow.mymainwindow" label="Slizaa" iconURI="platform:/plugin/org.slizaa.neo4j.jqassistant.application/icons/slizaa_24.png">
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_VaObcLRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.perspectivestack.0" selectedElement="_XYjJULRaEeWVj_GUPFMSKw">
+      <children xsi:type="advanced:Perspective" xmi:id="_Sy8MEJXmEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.perspective.main" label="Core" iconURI="platform:/plugin/org.slizaa.neo4j.jqassistant.application/icons/slizaa_16.png">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_cPe_AJXmEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.partsashcontainer.2" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_gMTZ4JXmEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.partstack.4">
+            <children xsi:type="advanced:Placeholder" xmi:id="_hr6LcJXmEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.placeholder.1" ref="_CsnowJXmEea3b53pV5gj-A"/>
+          </children>
+          <children xsi:type="basic:PartSashContainer" xmi:id="_BCdXkJXnEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.partsashcontainer.3">
+            <children xsi:type="advanced:Placeholder" xmi:id="_y6rIEJXnEea3b53pV5gj-A" elementId="org.eclipse.ui.editorss" ref="_izSNwJXnEea3b53pV5gj-A"/>
+            <children xsi:type="basic:PartStack" xmi:id="_JljaAJXnEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.partstack.5">
+              <children xsi:type="advanced:Placeholder" xmi:id="_NCkTcJXnEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.placeholder.2" ref="_WqRGcNS1EeGBn6dQ9VPexA"/>
+            </children>
+          </children>
+        </children>
+      </children>
       <children xsi:type="advanced:Perspective" xmi:id="_XYjJULRaEeWVj_GUPFMSKw" elementId="org.slizaa.neo4j.jqassistant.application.perspective.dependencies" label="Visualize Dependencies" iconURI="platform:/plugin/org.slizaa.ui.klighd/icons/full/etool16/diagrams_view.gif">
         <children xsi:type="basic:PartSashContainer" xmi:id="_cYZHcLRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.partsashcontainer.0" horizontal="true">
           <children xsi:type="basic:PartSashContainer" xmi:id="_jFEa0LRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.partsashcontainer.1" containerData="25">
@@ -62,6 +75,19 @@
     <sharedElements xsi:type="basic:Part" xmi:id="_uIM2kELwEealhJdRRUyEZA" elementId="org.slizaa.ui.klighd.SlizaaDiagramViewPart" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Diagram" iconURI="platform:/plugin/org.slizaa.ui.klighd/icons/full/etool16/diagrams_view.gif">
       <tags>categoryTag:General</tags>
       <tags>View</tags>
+    </sharedElements>
+    <sharedElements xsi:type="basic:Part" xmi:id="_CsnowJXmEea3b53pV5gj-A" elementId="org.eclipse.ui.navigator.ProjectExplorer" containerData="" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui.navigator.resources//icons/full/eview16/resource_persp.gif">
+      <tags>categoryTag:General</tags>
+      <tags>View</tags>
+      <toolbar xmi:id="_QZLfYJXmEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.toolbar.0"/>
+    </sharedElements>
+    <sharedElements xsi:type="advanced:Area" xmi:id="_izSNwJXnEea3b53pV5gj-A" elementId="org.eclipse.ui.editorss" label="E3 Editor Area">
+      <children xsi:type="basic:PartStack" xmi:id="_lPhmsJXnEea3b53pV5gj-A" elementId="org.eclipse.e4.primaryDataStack">
+        <tags>newtablook</tags>
+        <tags>org.eclipse.e4.primaryDataStack</tags>
+        <tags>EditorStack</tags>
+        <tags>NoAutoCollapse</tags>
+      </children>
     </sharedElements>
     <trimBars xmi:id="_gqMEUEFmEeajAorWx6G97w" elementId="org.eclipse.ui.main.toolbar">
       <children xsi:type="menu:ToolControl" xmi:id="_mHThMCjkEea7i8crIf9fnw" elementId="de.gerdwuetherich.jqassistant.ui.application.toolcontrol.1" contributionURI="bundleclass://org.slizaa.neo4j.jqassistant.application/org.slizaa.neo4j.jqassistant.application.perspectiveswitcher.SpacerControl"/>

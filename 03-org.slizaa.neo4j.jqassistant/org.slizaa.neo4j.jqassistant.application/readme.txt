@@ -1,0 +1,1 @@
+https://openchrom.wordpress.com/2016/05/19/editor-3-x4-x-org-eclipse-ui-editorss/

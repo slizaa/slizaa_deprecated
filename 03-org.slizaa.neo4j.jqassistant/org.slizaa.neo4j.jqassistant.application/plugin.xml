@@ -57,6 +57,46 @@
    <activityPatternBinding activityId="menuHidingActivity" pattern="org.eclipse.ui.edit.text.gotoLastEditPosition" />
    <activityPatternBinding activityId="menuHidingActivity" pattern="org.eclipse.ui.navigate.next" />  
    <activityPatternBinding activityId="menuHidingActivity" pattern="org.eclipse.ui.navigate.previous" />  
+   <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.team\.ui/org.*">
+      </activityPatternBinding> 
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.team\.ui/nonbound\.org.*">
+      </activityPatternBinding> 
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.compare/compareWithPatch">
+      </activityPatternBinding>           
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.compare/compareWithHistory">
+      </activityPatternBinding>           
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.compare/compareWithEachOther">
+      </activityPatternBinding>           
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.compare/addFromHistoryAction">
+      </activityPatternBinding>           
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.compare/replaceFromHistory">
+      </activityPatternBinding>           
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.compare/replaceWithPreviousFromHistory">
+      </activityPatternBinding>           
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.team\.cvs\.ui/.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.team\.cvs\.core/.*cvsnature">
+      </activityPatternBinding>
    
 </extension>
    <extension
