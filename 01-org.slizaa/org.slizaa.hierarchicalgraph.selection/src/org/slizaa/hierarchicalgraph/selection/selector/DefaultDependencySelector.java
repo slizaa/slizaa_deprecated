@@ -217,7 +217,7 @@ public class DefaultDependencySelector implements IDependencySelector {
   @Override
   public Collection<HGCoreDependency> getUnfilteredCoreDependencies() {
     init();
-    return Collections.unmodifiableCollection(getResolvedCoreDependencies());
+    return Collections.unmodifiableCollection(getResolvedCoreDependenciesOrAggregatedCoreDependencyOtherwise());
   }
 
   /**
@@ -309,7 +309,7 @@ public class DefaultDependencySelector implements IDependencySelector {
       Set<HGNode> unfilteredTargetNodes = new HashSet<HGNode>();
 
       //
-      getResolvedCoreDependencies().forEach(dep -> {
+      getResolvedCoreDependenciesOrAggregatedCoreDependencyOtherwise().forEach(dep -> {
         _sourceNode2CoreDependenciesMap.getUnchecked(dep.getFrom()).add(dep);
         _targetNode2CoreDependenciesMap.getUnchecked(dep.getTo()).add(dep);
         unfilteredSourceNodes.add(dep.getFrom());
@@ -425,7 +425,7 @@ public class DefaultDependencySelector implements IDependencySelector {
    *
    * @return
    */
-  private Collection<HGCoreDependency> getResolvedCoreDependencies() {
+  private Collection<HGCoreDependency> getResolvedCoreDependenciesOrAggregatedCoreDependencyOtherwise() {
 
     //
     List<HGCoreDependency> coreDependencies = new ArrayList<>();
