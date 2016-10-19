@@ -3,7 +3,6 @@
 
 <product name="Slizaa for jQAssistant" uid="org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant" id="org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant" application="org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant" version="0.0.3" useFeatures="false" includeLaunchers="true">
 
-
    <configIni use="default">
    </configIni>
 
@@ -32,7 +31,6 @@
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
       <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
@@ -209,6 +207,8 @@
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="1" />
       <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" />
+      <plugin id="org.slizaa.ui.klighd" autoStart="true" startLevel="0" />
+      <plugin id="org.slizaa.ui.klighd.synthesis" autoStart="true" startLevel="0" />
    </configurations>
 
    <preferencesInfo>
