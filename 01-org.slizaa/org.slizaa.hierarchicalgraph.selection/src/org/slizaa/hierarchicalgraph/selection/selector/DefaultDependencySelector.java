@@ -157,25 +157,27 @@ public class DefaultDependencySelector implements IDependencySelector {
     this._propertyChangeSupport.removePropertyChangeListener(listener);
   }
 
-  private void handleNotify(HGAggregatedCoreDependency dep) {
+  private void handleNotify(HGAggregatedCoreDependency aggregatedCoreDependency) {
 
     // remove the aggregated dependency
-    _sourceNode2CoreDependenciesMap.getUnchecked(dep.getFrom()).remove(dep);
-    _targetNode2CoreDependenciesMap.getUnchecked(dep.getTo()).remove(dep);
-    _unfilteredSourceNodes.remove(dep.getFrom());
-    _unfilteredTargetNodes.remove(dep.getTo());
+    _sourceNode2CoreDependenciesMap.getUnchecked(aggregatedCoreDependency.getFrom()).remove(aggregatedCoreDependency);
+    _targetNode2CoreDependenciesMap.getUnchecked(aggregatedCoreDependency.getTo()).remove(aggregatedCoreDependency);
+    _unfilteredSourceNodes.remove(aggregatedCoreDependency.getFrom());
+    _unfilteredTargetNodes.remove(aggregatedCoreDependency.getTo());
     // _unfilteredSourceNodesWithParents - we don't have to change this here...
     // _unfilteredTargetNodesWithParents - we don't have to change this here...
-    _filteredCoreDependencies.remove(dep);
+    _filteredCoreDependencies.remove(aggregatedCoreDependency);
 
     // add the new core dependencies
-    for (HGCoreDependency hgCoreDependency : dep.getResolvedCoreDependencies()) {
+    for (HGCoreDependency hgCoreDependency : aggregatedCoreDependency.getResolvedCoreDependencies()) {
 
       _sourceNode2CoreDependenciesMap.getUnchecked(hgCoreDependency.getFrom()).add(hgCoreDependency);
       _targetNode2CoreDependenciesMap.getUnchecked(hgCoreDependency.getTo()).add(hgCoreDependency);
       _unfilteredSourceNodes.add(hgCoreDependency.getFrom());
       _unfilteredTargetNodes.add(hgCoreDependency.getTo());
+      _unfilteredSourceNodesWithParents.add(hgCoreDependency.getFrom());
       _unfilteredSourceNodesWithParents.addAll(hgCoreDependency.getFrom().getPredecessors());
+      _unfilteredTargetNodesWithParents.add(hgCoreDependency.getTo());
       _unfilteredTargetNodesWithParents.addAll(hgCoreDependency.getTo().getPredecessors());
 
 
@@ -233,12 +235,12 @@ public class DefaultDependencySelector implements IDependencySelector {
   }
 
   @Override
-  public List<HGCoreDependency> getDependenciesWithSourceNode(HGNode sourceNode) {
+  public List<HGCoreDependency> getDependenciesForSourceNode(HGNode sourceNode) {
     return _sourceNode2CoreDependenciesMap.getIfPresent(checkNotNull(sourceNode));
   }
 
   @Override
-  public List<HGCoreDependency> getDependenciesWithTargetNode(HGNode targetNode) {
+  public List<HGCoreDependency> getDependenciesForTargetNode(HGNode targetNode) {
     return _targetNode2CoreDependenciesMap.getIfPresent(checkNotNull(targetNode));
   }
 
