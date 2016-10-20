@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph.selection.test;
+package org.slizaa.hierarchicalgraph.selection.testfwk;
 
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewAggregatedCoreDependency;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;

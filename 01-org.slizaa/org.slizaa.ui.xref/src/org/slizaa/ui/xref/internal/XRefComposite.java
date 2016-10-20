@@ -205,16 +205,16 @@ public class XRefComposite extends Composite {
     //
     _fromTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2,
         new DependencyResolvingTreeEventInterceptor(
-            (node) -> _incomingDependencySelector.getDependenciesWithSourceNode(node)));
+            (node) -> _incomingDependencySelector.getDependenciesForSourceNode(node)));
 
     _centerViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2,
         new DependencyResolvingTreeEventInterceptor((node) -> {
           List<HGCoreDependency> result = new ArrayList<>();
-          List<HGCoreDependency> in = _incomingDependencySelector.getDependenciesWithTargetNode(node);
+          List<HGCoreDependency> in = _incomingDependencySelector.getDependenciesForTargetNode(node);
           if (in != null) {
             result.addAll(in);
           }
-          List<HGCoreDependency> out = _outgoingDependencySelector.getDependenciesWithSourceNode(node);
+          List<HGCoreDependency> out = _outgoingDependencySelector.getDependenciesForSourceNode(node);
           if (out != null) {
             result.addAll(out);
           }
@@ -223,7 +223,7 @@ public class XRefComposite extends Composite {
 
     _toTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2,
         new DependencyResolvingTreeEventInterceptor(
-            (node) -> _outgoingDependencySelector.getDependenciesWithTargetNode(node)));
+            (node) -> _outgoingDependencySelector.getDependenciesForTargetNode(node)));
 
     //
     _outgoingDependencySelector.addPropertyChangeListener(new PropertyChangeListener() {

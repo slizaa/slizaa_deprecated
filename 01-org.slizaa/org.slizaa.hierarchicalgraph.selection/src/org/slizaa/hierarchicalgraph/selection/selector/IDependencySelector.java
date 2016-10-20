@@ -89,7 +89,7 @@ public interface IDependencySelector {
    * @param fromNode
    * @return
    */
-  List<HGCoreDependency> getDependenciesWithSourceNode(HGNode fromNode);
+  List<HGCoreDependency> getDependenciesForSourceNode(HGNode fromNode);
 
   /**
    * <p>
@@ -98,7 +98,7 @@ public interface IDependencySelector {
    * @param toNode
    * @return
    */
-  List<HGCoreDependency> getDependenciesWithTargetNode(HGNode toNode);
+  List<HGCoreDependency> getDependenciesForTargetNode(HGNode toNode);
 
   /**
    * <p>

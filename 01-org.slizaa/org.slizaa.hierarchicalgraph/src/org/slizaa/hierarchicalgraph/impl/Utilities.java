@@ -6,12 +6,18 @@ import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.remov
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
@@ -113,10 +119,25 @@ public class Utilities {
         // dependencyResolution.getDependency().getTo().getIdentifier()));
         // System.out.println("*****************************************************************************************");
       }
-
-      //
+      
       dependencyResolution.getDependency().setResolved(true);
     }
+
+    // // Workaround for bug https://github.com/slizaa/slizaa/issues/52
+    // for (Iterator<DependencyResolution> iterator = dependencyResolutions.iterator(); iterator.hasNext();) {
+    // DependencyResolution dependencyResolution = iterator.next();
+    //
+    // NotificationBuffer buffer = null;
+    // if (iterator.hasNext()) {
+    // buffer = new NotificationBuffer(dependencyResolution.getDependency());
+    // buffer.startBuffering();
+    // }
+    // dependencyResolution.getDependency().setResolved(true);
+    //
+    // if (iterator.hasNext()) {
+    // buffer.stopBuffering();
+    // }
+    // }
   }
 
   /**
@@ -142,6 +163,40 @@ public class Utilities {
 
     public ExtendedHGAggregatedCoreDependencyImpl getDependency() {
       return _dependency;
+    }
+  }
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+   */
+  public static class NotificationBuffer {
+
+    protected List<Notification> notifications = new ArrayList<Notification>();
+
+    protected List<Adapter>      savedAdapters = new ArrayList<Adapter>();
+
+    protected EObject            eObject;
+
+    public NotificationBuffer(EObject eObject) {
+      this.eObject = eObject;
+    }
+
+    public void startBuffering() {
+      EList<Adapter> eAdapters = eObject.eAdapters();
+      for (Adapter a : eAdapters) {
+        savedAdapters.add(a);
+      }
+      for (Adapter a : savedAdapters) {
+        eAdapters.remove(a);
+      }
+      System.out.println("NotificationBuffer: " + savedAdapters.size());
+    }
+
+    public void stopBuffering() {
+      eObject.eAdapters().addAll(savedAdapters);
     }
   }
 }

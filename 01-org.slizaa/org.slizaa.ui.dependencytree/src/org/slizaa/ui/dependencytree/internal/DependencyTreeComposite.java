@@ -182,10 +182,10 @@ public class DependencyTreeComposite extends Composite {
 
     //
     _fromTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 3,
-        new DependencyResolvingTreeEventInterceptor((node) -> _selector.getDependenciesWithSourceNode(node)));
+        new DependencyResolvingTreeEventInterceptor((node) -> _selector.getDependenciesForSourceNode(node)));
 
     _toTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 3,
-        new DependencyResolvingTreeEventInterceptor((node) -> _selector.getDependenciesWithTargetNode(node)));
+        new DependencyResolvingTreeEventInterceptor((node) -> _selector.getDependenciesForTargetNode(node)));
 
     IBaseLabelProvider labelProvider = _fromTreeViewer.getLabelProvider();
     if (labelProvider instanceof IInterceptableLabelProvider) {
