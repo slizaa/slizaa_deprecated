@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph.selection.test;
+package org.slizaa.hierarchicalgraph.selection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,7 +9,7 @@ import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector
 import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
 import org.slizaa.testfwk.AbstractXmiBasedTest;
 
-public class DependencySelectorTest extends AbstractXmiBasedTest {
+public class DependencySelector_HandleNotify_Test extends AbstractXmiBasedTest {
 
   /** - */
   private DefaultDependencySelector _dependencySelector;
@@ -19,10 +19,10 @@ public class DependencySelectorTest extends AbstractXmiBasedTest {
 
   /**
    * <p>
-   * Creates a new instance of type {@link DependencySelectorTest}.
+   * Creates a new instance of type {@link DependencySelector_HandleNotify_Test}.
    * </p>
    */
-  public DependencySelectorTest() {
+  public DependencySelector_HandleNotify_Test() {
     super("mapstruct_1-1-0-Beta2.hggraph");
   }
 

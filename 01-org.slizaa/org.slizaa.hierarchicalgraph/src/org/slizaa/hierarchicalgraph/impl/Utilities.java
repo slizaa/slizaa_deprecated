@@ -119,23 +119,25 @@ public class Utilities {
         // dependencyResolution.getDependency().getTo().getIdentifier()));
         // System.out.println("*****************************************************************************************");
       }
-    }
-
-    // Workaround for bug https://github.com/slizaa/slizaa/issues/52
-    for (Iterator<DependencyResolution> iterator = dependencyResolutions.iterator(); iterator.hasNext();) {
-      DependencyResolution dependencyResolution = iterator.next();
-
-      NotificationBuffer buffer = null;
-      if (iterator.hasNext()) {
-        buffer = new NotificationBuffer(dependencyResolution.getDependency());
-        buffer.startBuffering();
-      }
+      
       dependencyResolution.getDependency().setResolved(true);
-
-      if (iterator.hasNext()) {
-        buffer.stopBuffering();
-      }
     }
+
+    // // Workaround for bug https://github.com/slizaa/slizaa/issues/52
+    // for (Iterator<DependencyResolution> iterator = dependencyResolutions.iterator(); iterator.hasNext();) {
+    // DependencyResolution dependencyResolution = iterator.next();
+    //
+    // NotificationBuffer buffer = null;
+    // if (iterator.hasNext()) {
+    // buffer = new NotificationBuffer(dependencyResolution.getDependency());
+    // buffer.startBuffering();
+    // }
+    // dependencyResolution.getDependency().setResolved(true);
+    //
+    // if (iterator.hasNext()) {
+    // buffer.stopBuffering();
+    // }
+    // }
   }
 
   /**

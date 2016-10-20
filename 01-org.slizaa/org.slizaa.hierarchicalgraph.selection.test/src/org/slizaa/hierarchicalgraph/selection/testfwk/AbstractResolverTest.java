@@ -1,6 +1,5 @@
-package org.slizaa.hierarchicalgraph.selection.test;
+package org.slizaa.hierarchicalgraph.selection.testfwk;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
 
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.concurrent.Future;
 
 import org.junit.Before;
 import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
-import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;

@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph.selection.test;
+package org.slizaa.hierarchicalgraph.selection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector;
+import org.slizaa.hierarchicalgraph.selection.testfwk.AbstractResolverTest;
 
 public class SimpleDependencySelectorTest extends AbstractResolverTest {
 

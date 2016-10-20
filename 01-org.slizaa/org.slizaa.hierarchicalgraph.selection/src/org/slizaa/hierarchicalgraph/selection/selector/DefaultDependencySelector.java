@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) Gerd Wütherich 2012-2016.
+ * Copyright (c) Gerd Wï¿½therich 2012-2016.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
+ *    Gerd Wï¿½therich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
 package org.slizaa.hierarchicalgraph.selection.selector;
 
@@ -47,11 +47,14 @@ import com.google.common.cache.LoadingCache;
  */
 public class DefaultDependencySelector implements IDependencySelector {
 
-  /** - */
+  /** _coreDependencies contains the dependencies that have been set from the outside */
   private Collection<HGCoreDependency>                       _coreDependencies;
 
   /** - */
-  private Collection<HGNode>                                 _selectedNodes;
+  private Collection<HGNode>                                 _selectedNodesWithChildren;
+
+  /** - */
+  private NodeType                                           _selectedNodesType;
 
   /** - */
   private Set<HGNode>                                        _unfilteredSourceNodes;
@@ -87,9 +90,6 @@ public class DefaultDependencySelector implements IDependencySelector {
   private final LoadingCache<HGNode, List<HGCoreDependency>> _targetNode2CoreDependenciesMap;
 
   /** - */
-  private NodeType                                           _selectedNodesType;
-
-  /** - */
   private boolean                                            _initialized;
 
   /** - */
@@ -118,7 +118,7 @@ public class DefaultDependencySelector implements IDependencySelector {
     _filteredTargetNodesWithParents = new HashSet<HGNode>();
     _unfilteredSourceNodesWithParents = new HashSet<HGNode>();
     _unfilteredTargetNodesWithParents = new HashSet<HGNode>();
-    _selectedNodes = new HashSet<HGNode>();
+    _selectedNodesWithChildren = new HashSet<HGNode>();
 
     //
     _sourceNode2CoreDependenciesMap = CacheBuilder.newBuilder()
@@ -142,7 +142,8 @@ public class DefaultDependencySelector implements IDependencySelector {
       public void notifyChanged(Notification msg) {
         if (msg.getFeatureID(
             HGAggregatedCoreDependency.class) == HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED) {
-          handleNotify();
+
+          handleNotify((HGAggregatedCoreDependency) msg.getNotifier());
         }
       }
     };
@@ -156,18 +157,48 @@ public class DefaultDependencySelector implements IDependencySelector {
     this._propertyChangeSupport.removePropertyChangeListener(listener);
   }
 
-  public void handleNotify() {
-    _filteredCoreDependencies.clear();
-    _filteredSourceNodes.clear();
-    _filteredTargetNodes.clear();
-    _sourceNode2CoreDependenciesMap.invalidateAll();
-    _targetNode2CoreDependenciesMap.invalidateAll();
-    _unfilteredSourceNodes.clear();
-    _unfilteredTargetNodes.clear();
-    _initialized = false;
-    init();
+  private void handleNotify(HGAggregatedCoreDependency dep) {
 
-    //
+    // remove the aggregated dependency
+    _sourceNode2CoreDependenciesMap.getUnchecked(dep.getFrom()).remove(dep);
+    _targetNode2CoreDependenciesMap.getUnchecked(dep.getTo()).remove(dep);
+    _unfilteredSourceNodes.remove(dep.getFrom());
+    _unfilteredTargetNodes.remove(dep.getTo());
+    // _unfilteredSourceNodesWithParents - we don't have to change this here...
+    // _unfilteredTargetNodesWithParents - we don't have to change this here...
+    _filteredCoreDependencies.remove(dep);
+
+    // add the new core dependencies
+    for (HGCoreDependency hgCoreDependency : dep.getResolvedCoreDependencies()) {
+
+      _sourceNode2CoreDependenciesMap.getUnchecked(hgCoreDependency.getFrom()).add(hgCoreDependency);
+      _targetNode2CoreDependenciesMap.getUnchecked(hgCoreDependency.getTo()).add(hgCoreDependency);
+      _unfilteredSourceNodes.add(hgCoreDependency.getFrom());
+      _unfilteredTargetNodes.add(hgCoreDependency.getTo());
+      _unfilteredSourceNodesWithParents.addAll(hgCoreDependency.getFrom().getPredecessors());
+      _unfilteredTargetNodesWithParents.addAll(hgCoreDependency.getTo().getPredecessors());
+
+
+      //
+        if (_selectedNodesWithChildren.contains(_selectedNodesType == NodeType.SOURCE ? hgCoreDependency.getFrom() : hgCoreDependency.getTo())) {
+          _filteredCoreDependencies.add(hgCoreDependency);
+          
+          if (_selectedNodesType == NodeType.SOURCE) {
+            _filteredTargetNodes.add(hgCoreDependency.getTo());
+            _filteredTargetNodesWithParents.add(hgCoreDependency.getTo());
+            _filteredTargetNodesWithParents.addAll(hgCoreDependency.getTo().getPredecessors());
+          } 
+          //
+          else {
+            _filteredTargetNodes.add(hgCoreDependency.getFrom());
+            _filteredTargetNodesWithParents.add(hgCoreDependency.getFrom());
+            _filteredTargetNodesWithParents.addAll(hgCoreDependency.getFrom().getPredecessors());
+          }
+        }
+    }
+
+
+    // TODO
     _propertyChangeSupport.firePropertyChange("coreDependencies", "TODO-old", "TODO-new");
   }
 
@@ -190,7 +221,7 @@ public class DefaultDependencySelector implements IDependencySelector {
     _filteredCoreDependencies.clear();
     _filteredSourceNodes.clear();
     _filteredTargetNodes.clear();
-    _selectedNodes.clear();
+    _selectedNodesWithChildren.clear();
     _selectedNodesType = null;
     _sourceNode2CoreDependenciesMap.invalidateAll();
     _targetNode2CoreDependenciesMap.invalidateAll();
@@ -286,7 +317,14 @@ public class DefaultDependencySelector implements IDependencySelector {
    */
   @Override
   public void setSelectedNodes(NodeType type, Collection<HGNode> selectedNodes) {
-    _selectedNodes = checkNotNull(selectedNodes);
+
+    //
+    _selectedNodesWithChildren.clear();
+    for (HGNode node : checkNotNull(selectedNodes)) {
+      _selectedNodesWithChildren.addAll(getSelfAndAllChildren(node));
+    }
+
+    //
     _selectedNodesType = checkNotNull(type);
     _initialized = false;
     init();
@@ -322,60 +360,45 @@ public class DefaultDependencySelector implements IDependencySelector {
       _unfilteredSourceNodesWithParents = computeNodesWithParents(unfilteredSourceNodes, false);
       _unfilteredTargetNodesWithParents = computeNodesWithParents(unfilteredTargetNodes, false);
 
+      // clear filtered dependencies
+      _filteredCoreDependencies = new HashSet<HGCoreDependency>();
+      Set<HGNode> filteredNodes = new HashSet<HGNode>();
+
       //
-      recomputeFilter();
+      if (_selectedNodesWithChildren != null) {
+
+        Map<HGNode, List<HGCoreDependency>> node2DependenciesMap = _selectedNodesType == NodeType.SOURCE
+            ? _sourceNode2CoreDependenciesMap.asMap() : _targetNode2CoreDependenciesMap.asMap();
+
+        //
+        for (HGNode keyNode : node2DependenciesMap.keySet()) {
+          if (_selectedNodesWithChildren.contains(keyNode)) {
+            List<HGCoreDependency> dependencies = node2DependenciesMap.get(keyNode);
+            _filteredCoreDependencies.addAll(dependencies);
+
+            // compute the reverse side
+            dependencies.forEach((reverseDependency) -> {
+              filteredNodes
+                  .add(_selectedNodesType == NodeType.SOURCE ? reverseDependency.getTo() : reverseDependency.getFrom());
+            });
+          }
+        }
+      }
+
+      //
+      if (_selectedNodesType == NodeType.SOURCE) {
+        _filteredSourceNodes.clear();
+        _filteredTargetNodes = filteredNodes;
+      } else {
+        _filteredSourceNodes = filteredNodes;
+        _filteredTargetNodes.clear();
+      }
+      _filteredSourceNodesWithParents = computeNodesWithParents(_filteredSourceNodes, false);
+      _filteredTargetNodesWithParents = computeNodesWithParents(_filteredTargetNodes, false);
 
       //
       _initialized = true;
     }
-  }
-
-  /**
-   * <p>
-   * </p>
-   */
-  private void recomputeFilter() {
-
-    // clear filtered dependencies
-    Set<HGCoreDependency> filteredCoreDependencies = new HashSet<HGCoreDependency>();
-    Set<HGNode> filteredNodes = new HashSet<HGNode>();
-
-    //
-    Map<HGNode, List<HGCoreDependency>> node2DependenciesMap = _selectedNodesType == NodeType.SOURCE
-        ? _sourceNode2CoreDependenciesMap.asMap() : _targetNode2CoreDependenciesMap.asMap();
-
-    //
-    if (_selectedNodes != null) {
-      _selectedNodes.forEach((node) -> {
-        getSelfAndAllChildren(node).forEach((n) -> {
-          if (node2DependenciesMap.containsKey(n)) {
-
-            List<HGCoreDependency> dependencies = node2DependenciesMap.get(n);
-
-            filteredCoreDependencies.addAll(dependencies);
-
-            // compute the reverse side
-            dependencies.forEach((dep) -> {
-              filteredNodes.add(_selectedNodesType == NodeType.SOURCE ? dep.getTo() : dep.getFrom());
-            });
-          }
-        });
-      });
-    }
-
-    //
-    _filteredCoreDependencies = filteredCoreDependencies;
-
-    //
-    if (_selectedNodesType == NodeType.SOURCE) {
-      _filteredSourceNodes.clear();
-      _filteredTargetNodes = filteredNodes;
-    } else {
-      _filteredSourceNodes = filteredNodes;
-      _filteredTargetNodes.clear();
-    }
-    _filteredSourceNodesWithParents = computeNodesWithParents(_filteredSourceNodes, false);
-    _filteredTargetNodesWithParents = computeNodesWithParents(_filteredTargetNodes, false);
   }
 
   /**
