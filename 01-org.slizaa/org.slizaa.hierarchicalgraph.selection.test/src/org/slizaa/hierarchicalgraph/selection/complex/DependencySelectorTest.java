@@ -1,4 +1,4 @@
-package org.slizaa.hierarchicalgraph.selection;
+package org.slizaa.hierarchicalgraph.selection.complex;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector;
-import org.slizaa.hierarchicalgraph.selection.testfwk.AbstractResolverTest;
 
 public class SimpleDependencySelectorTest extends AbstractResolverTest {
 
