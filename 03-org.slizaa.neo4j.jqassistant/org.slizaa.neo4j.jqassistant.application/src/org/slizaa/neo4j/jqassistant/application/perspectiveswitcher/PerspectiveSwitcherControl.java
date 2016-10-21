@@ -16,20 +16,20 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.slizaa.neo4j.jqassistant.application.Activator;
+import org.slizaa.ui.common.context.BusyCursor;
 
 public class PerspectiveSwitcherControl {
 
   @Inject
-  private MWindow window;
-  
+  private MWindow      window;
+
   @Inject
-  private EPartService partService; 
+  private EPartService partService;
 
   @PostConstruct
   public void createGui(final Composite parent) {
@@ -40,14 +40,11 @@ public class PerspectiveSwitcherControl {
     gridLayout.marginWidth = 5;
     comp.setLayout(gridLayout);
 
-    //
-//   
-
     ToolBar toolBar = new ToolBar(comp, SWT.FLAT | SWT.HORIZONTAL | SWT.RIGHT);
 
     for (final MPerspective perspective : getPerspectives()) {
       ToolItem item = new ToolItem(toolBar, SWT.PUSH);
-      
+
       if (perspective.getIconURI() != null) {
         if (Activator.getDefault().getImageRegistry().get(perspective.getIconURI()) == null) {
           try {
@@ -60,15 +57,14 @@ public class PerspectiveSwitcherControl {
         }
         item.setImage(Activator.getDefault().getImageRegistry().get(perspective.getIconURI()));
       }
-      
+
       item.setText(perspective.getLabel());
       item.addSelectionListener(new SelectionListener() {
-        
         @Override
         public void widgetSelected(SelectionEvent e) {
-          partService.switchPerspective(perspective);
+          BusyCursor.execute(parent, () -> partService.switchPerspective(perspective));
         }
-        
+
         @Override
         public void widgetDefaultSelected(SelectionEvent e) {
         }
