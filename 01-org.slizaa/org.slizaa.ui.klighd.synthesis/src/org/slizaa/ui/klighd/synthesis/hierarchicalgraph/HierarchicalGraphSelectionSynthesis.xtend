@@ -103,17 +103,13 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<List<
 				// upper part is icon
 				if (original != null) {
 
-					// TODO: WORKAROUND as the KlighdImage Implementation disposes our cached image
-					// de.cau.cs.kieler.klighd.piccolo.internal.nodes.KlighdImage#setImage (line 174)
-					val Image image = new Image(Display.current, original, SWT.IMAGE_COPY);
-
 					it.addRectangle =>
 						[
 							it.invisible = true;
 							// set minimal size
-							it.setGridPlacementData(image.boundsInPixels.width, image.boundsInPixels.height);
-							it.addImage(image).setPointPlacementData(LEFT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL,
-								10, 10, image.boundsInPixels.width, image.boundsInPixels.height).addRectangularClip;
+							it.setGridPlacementData(original.boundsInPixels.width, original.boundsInPixels.height);
+							it.addImage(original.getImageData()).setPointPlacementData(LEFT, 0, 0.5f, TOP, 0, 0.5f, H_CENTRAL, V_CENTRAL,
+								10, 10, original.boundsInPixels.width, original.boundsInPixels.height).addRectangularClip;
 						]
 				}
 
