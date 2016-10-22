@@ -9,7 +9,12 @@
     <eOperations name="goBack"/>
     <eOperations name="clear"/>
     <eOperations name="setSelection">
-      <eParameters name="selection" upperBound="-1" eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//AbstractHGDependency"/>
+      <eTypeParameters name="E">
+        <eBounds eClassifier="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//AbstractHGDependency"/>
+      </eTypeParameters>
+      <eParameters name="selection" upperBound="-1">
+        <eGenericType eTypeParameter="#//DependencySelectionStack/setSelection/E"/>
+      </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentSelection" upperBound="-1"
         eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//AbstractHGDependency"/>

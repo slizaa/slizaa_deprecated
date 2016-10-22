@@ -5,14 +5,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.ECollections;
-import org.eclipse.emf.common.util.EList;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 
 public class ExtendedDependencySelectionStack extends DependencySelectionStackImpl {
 
   /** - */
-  protected List<EList<AbstractHGDependency>> _dependencySelectionStack;
+  protected List<List<? extends AbstractHGDependency>> _dependencySelectionStack;
 
   /** - */
   private int                                 _currentPosition = -1;
@@ -42,11 +42,19 @@ public class ExtendedDependencySelectionStack extends DependencySelectionStackIm
 
   }
 
-  @Override
-  public void setSelection(EList<AbstractHGDependency> selection) {
+  
+  
+//  @Override
+//  public void setSelection(List<AbstractHGDependency> selection) {
+//
 
+//  }
+
+  @Override
+  public <E extends AbstractHGDependency> void setSelection(List<E> selection) {
+    
     //
-    checkNotNull(currentSelection);
+    checkNotNull(selection);
 
     // 'cut' the selection history
     if (_currentPosition != -1) {
@@ -56,11 +64,11 @@ public class ExtendedDependencySelectionStack extends DependencySelectionStackIm
     }
 
     //
-    dependencySelectionStack().add(currentSelection);
+    dependencySelectionStack().add(selection);
     _currentPosition = _currentPosition + 1;
 
     // set currentSelection
-    ECollections.setEList(getCurrentSelection(), selection);
+    ECollections.setEList((AbstractEList<AbstractHGDependency>) getCurrentSelection(), selection);
   }
 
   /**
@@ -69,11 +77,11 @@ public class ExtendedDependencySelectionStack extends DependencySelectionStackIm
    *
    * @return
    */
-  private List<EList<AbstractHGDependency>> dependencySelectionStack() {
+  private List<List<? extends AbstractHGDependency>> dependencySelectionStack() {
 
     //
     if (_dependencySelectionStack == null) {
-      _dependencySelectionStack = new ArrayList<EList<AbstractHGDependency>>();
+      _dependencySelectionStack = new ArrayList<List<? extends AbstractHGDependency>>();
     }
 
     //

@@ -2,8 +2,8 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.slizaa.hierarchicalgraph.selection/src-gen"
     modelPluginID="org.slizaa.hierarchicalgraph.selection" modelName="Selection" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    usedGenPackages="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.genmodel#//hierarchicalgraph"
+    suppressEMFTypes="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0"
+    copyrightFields="false" usedGenPackages="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.genmodel#//hierarchicalgraph"
     operationReflection="true" importOrganizing="true">
   <foreignModel>selection.ecore</foreignModel>
   <genPackages prefix="Selection" basePackage="org.slizaa.hierarchicalgraph" disposableProviderFactory="true"
@@ -15,6 +15,9 @@
       <genOperations ecoreOperation="selection.ecore#//DependencySelectionStack/canGoBack"/>
       <genOperations ecoreOperation="selection.ecore#//DependencySelectionStack/goBack"/>
       <genOperations ecoreOperation="selection.ecore#//DependencySelectionStack/clear"/>
+      <genOperations ecoreOperation="selection.ecore#//DependencySelectionStack/setSelection">
+        <genParameters ecoreParameter="selection.ecore#//DependencySelectionStack/setSelection/selection"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

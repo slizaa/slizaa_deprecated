@@ -136,7 +136,7 @@ public interface SelectionPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DEPENDENCY_SELECTION_STACK___SET_SELECTION__ELIST = 5;
+  int DEPENDENCY_SELECTION_STACK___SET_SELECTION__LIST = 5;
 
   /**
    * The number of operations of the '<em>Dependency Selection Stack</em>' class.
@@ -220,14 +220,14 @@ public interface SelectionPackage extends EPackage {
   EOperation getDependencySelectionStack__Clear();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#setSelection(org.eclipse.emf.common.util.EList) <em>Set Selection</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#setSelection(java.util.List) <em>Set Selection</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Set Selection</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#setSelection(org.eclipse.emf.common.util.EList)
+   * @see org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#setSelection(java.util.List)
    * @generated
    */
-  EOperation getDependencySelectionStack__SetSelection__EList();
+  EOperation getDependencySelectionStack__SetSelection__List();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -316,7 +316,7 @@ public interface SelectionPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation DEPENDENCY_SELECTION_STACK___SET_SELECTION__ELIST = eINSTANCE.getDependencySelectionStack__SetSelection__EList();
+    EOperation DEPENDENCY_SELECTION_STACK___SET_SELECTION__LIST = eINSTANCE.getDependencySelectionStack__SetSelection__List();
 
   }
 

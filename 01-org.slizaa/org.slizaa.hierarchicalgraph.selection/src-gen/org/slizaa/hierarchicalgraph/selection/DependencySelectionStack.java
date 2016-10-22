@@ -2,8 +2,7 @@
  */
 package org.slizaa.hierarchicalgraph.selection;
 
-import org.eclipse.emf.common.util.EList;
-
+import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
@@ -39,7 +38,7 @@ public interface DependencySelectionStack extends EObject {
    * @model
    * @generated
    */
-  EList<AbstractHGDependency> getCurrentSelection();
+  List<AbstractHGDependency> getCurrentSelection();
 
   /**
    * <!-- begin-user-doc -->
@@ -87,6 +86,6 @@ public interface DependencySelectionStack extends EObject {
    * @model selectionMany="true"
    * @generated
    */
-  void setSelection(EList<AbstractHGDependency> selection);
+  <E extends AbstractHGDependency> void setSelection(List<E> selection);
 
 } // DependencySelectionStack

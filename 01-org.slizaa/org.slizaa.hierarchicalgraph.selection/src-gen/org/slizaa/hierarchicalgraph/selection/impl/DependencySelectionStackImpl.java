@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -67,7 +68,7 @@ public class DependencySelectionStackImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<AbstractHGDependency> getCurrentSelection() {
+  public List<AbstractHGDependency> getCurrentSelection() {
     if (currentSelection == null) {
       currentSelection = new EObjectResolvingEList<AbstractHGDependency>(AbstractHGDependency.class, this, SelectionPackage.DEPENDENCY_SELECTION_STACK__CURRENT_SELECTION);
     }
@@ -134,7 +135,7 @@ public class DependencySelectionStackImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSelection(EList<AbstractHGDependency> selection) {
+  public <E extends AbstractHGDependency> void setSelection(List<E> selection) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -222,8 +223,8 @@ public class DependencySelectionStackImpl extends MinimalEObjectImpl.Container i
       case SelectionPackage.DEPENDENCY_SELECTION_STACK___CLEAR:
         clear();
         return null;
-      case SelectionPackage.DEPENDENCY_SELECTION_STACK___SET_SELECTION__ELIST:
-        setSelection((EList<AbstractHGDependency>)arguments.get(0));
+      case SelectionPackage.DEPENDENCY_SELECTION_STACK___SET_SELECTION__LIST:
+        setSelection((List)arguments.get(0));
         return null;
     }
     return super.eInvoke(operationID, arguments);

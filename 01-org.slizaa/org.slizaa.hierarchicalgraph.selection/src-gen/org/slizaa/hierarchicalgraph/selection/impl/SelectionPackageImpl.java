@@ -3,10 +3,11 @@
 package org.slizaa.hierarchicalgraph.selection.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
@@ -161,7 +162,7 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getDependencySelectionStack__SetSelection__EList() {
+  public EOperation getDependencySelectionStack__SetSelection__List() {
     return dependencySelectionStackEClass.getEOperations().get(5);
   }
 
@@ -200,7 +201,7 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
     createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___CAN_GO_BACK);
     createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___GO_BACK);
     createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___CLEAR);
-    createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___SET_SELECTION__ELIST);
+    createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___SET_SELECTION__LIST);
   }
 
   /**
@@ -249,8 +250,12 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
 
     initEOperation(getDependencySelectionStack__Clear(), null, "clear", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    EOperation op = initEOperation(getDependencySelectionStack__SetSelection__EList(), null, "setSelection", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, theHierarchicalgraphPackage.getAbstractHGDependency(), "selection", 0, -1, IS_UNIQUE, IS_ORDERED);
+    EOperation op = initEOperation(getDependencySelectionStack__SetSelection__List(), null, "setSelection", 0, 1, IS_UNIQUE, IS_ORDERED);
+    ETypeParameter t1 = addETypeParameter(op, "E");
+    EGenericType g1 = createEGenericType(theHierarchicalgraphPackage.getAbstractHGDependency());
+    t1.getEBounds().add(g1);
+    g1 = createEGenericType(t1);
+    addEParameter(op, g1, "selection", 0, -1, IS_UNIQUE, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);
