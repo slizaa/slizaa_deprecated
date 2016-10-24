@@ -196,10 +196,10 @@ public class Descriptors2 {
 
     PropertyBasedImageMapper imageProvider = Neo4jHierarchicalGraphMappingFactory.eINSTANCE
         .createPropertyBasedImageMapper();
-    imageProvider.setPropertyName("visibility");
-    imageProvider.setPropertyValue("public");
-    imageProvider.setPosition(ImagePosition.BASE);
-    imageProvider.setImage("icons/jdt/obj16/methpub_obj.png");
+    imageProvider.setPropertyName(propertyName);
+    imageProvider.setPropertyValue(propertyValue);
+    imageProvider.setPosition(imagePosition);
+    imageProvider.setImage(image);
     labelDescriptor.getPropertyBasedImages().add(imageProvider);
     return imageProvider;
   }
