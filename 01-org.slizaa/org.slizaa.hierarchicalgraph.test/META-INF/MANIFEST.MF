@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: de.gerdwuetherich.hierarchicalgraph.test
 Bundle-SymbolicName: org.slizaa.hierarchicalgraph.test
 Fragment-Host: org.slizaa.hierarchicalgraph
-Bundle-Version: 0.0.3.qualifier
+Bundle-Version: 0.0.4.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.junit;visibility:=reexport,

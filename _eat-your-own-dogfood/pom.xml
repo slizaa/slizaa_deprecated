@@ -31,7 +31,7 @@
 								<artifactItem>
 									<groupId>org.slizaa</groupId>
 									<artifactId>org.slizaa.neo4j.jqassistant.product</artifactId>
-									<version>0.0.3-SNAPSHOT</version>
+									<version>0.0.4-SNAPSHOT</version>
 									<type>zip</type>
 								</artifactItem>
 							</artifactItems>

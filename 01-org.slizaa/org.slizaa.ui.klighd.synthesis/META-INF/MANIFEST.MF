@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.slizaa.ui.klighd.synthesis
-Bundle-Version: 0.0.3.qualifier
+Bundle-Version: 0.0.4.qualifier
 Bundle-SymbolicName: org.slizaa.ui.klighd.synthesis;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: javax.inject,

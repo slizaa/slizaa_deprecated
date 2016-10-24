@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.slizaa.testfwk
 Bundle-SymbolicName: org.slizaa.testfwk
-Bundle-Version: 0.0.3.qualifier
+Bundle-Version: 0.0.4.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.slizaa.hierarchicalgraph;bundle-version="0.0.3",
  com.google.guava;bundle-version="15.0.0",

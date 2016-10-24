@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.slizaa.neo4j.hierarchicalgraph.mapping.service.test
 Bundle-SymbolicName: org.slizaa.neo4j.hierarchicalgraph.mapping.service.test
 Fragment-Host: org.slizaa.neo4j.hierarchicalgraph.mapping.service
-Bundle-Version: 0.0.3.qualifier
+Bundle-Version: 0.0.4.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.slizaa.neo4j.testfwk;bundle-version="0.0.3",
  org.junit;bundle-version="4.12.0",

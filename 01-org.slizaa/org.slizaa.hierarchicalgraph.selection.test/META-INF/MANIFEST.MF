@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.slizaa.hierarchicalgraph.selection.test
 Bundle-SymbolicName: org.slizaa.hierarchicalgraph.selection.test
-Bundle-Version: 0.0.3.qualifier
+Bundle-Version: 0.0.4.qualifier
 Fragment-Host: org.slizaa.hierarchicalgraph.selection
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.slizaa.hierarchicalgraph,

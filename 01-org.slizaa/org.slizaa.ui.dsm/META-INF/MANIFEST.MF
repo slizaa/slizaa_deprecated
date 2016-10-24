@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.slizaa.ui.dsm
 Bundle-SymbolicName: org.slizaa.ui.dsm;singleton:=true
-Bundle-Version: 0.0.3.qualifier
+Bundle-Version: 0.0.4.qualifier
 Require-Bundle: org.slizaa.hierarchicalgraph;bundle-version="0.0.3",
  org.slizaa.hierarchicalgraph.algorithms;bundle-version="0.0.3",
  org.slizaa.ui.widget.dsm;bundle-version="0.0.3",
