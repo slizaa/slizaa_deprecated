@@ -1,0 +1,57 @@
+<project name="update-version" basedir="." default="update-version">
+
+	<property name="old.version" value="0.0.3" />
+	<property name="new.version" value="0.0.4" />
+
+	<!-- ================================= 
+          target: update-version              
+         ================================= -->
+	<target name="update-version">
+
+		<!-- pom.xml - version -->
+		<replaceregexp byline="true">
+			<regexp pattern="&lt;version&gt;${old.version}-SNAPSHOT&lt;/version&gt;" />
+			<substitution expression="&lt;version&gt;${new.version}-SNAPSHOT&lt;/version&gt;" />
+			<fileset dir=".">
+				<include name="**/*pom.xml" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- MANIFEST.MF - Bundle-Version -->
+		<replaceregexp byline="true">
+			<regexp pattern="Bundle-Version: ${old.version}.qualifier" />
+			<substitution expression="Bundle-Version: ${new.version}.qualifier" />
+			<fileset dir=".">
+				<include name="**/META-INF/MANIFEST.MF" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- MANIFEST.MF - Require-Bundle -->
+		<replaceregexp>
+			<regexp pattern="org.slizaa.([^;]*);bundle-version=&quot;${old.version}&quot;;" />
+			<substitution expression="org.slizaa.\1;bundle-version=&quot;${new.version}&quot;;" />
+			<fileset dir=".">
+				<include name="**/META-INF/MANIFEST.MF" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- feature.xml - version -->
+		<replaceregexp byline="true">
+			<regexp pattern="version=&quot;${old.version}.qualifier&quot;>" />
+			<substitution expression="version=&quot;${new.version}.qualifier&quot;>" />
+			<fileset dir=".">
+				<include name="03-org.slizaa.neo4j.jqassistant/org.slizaa.neo4j.jqassistant.feature/feature.xml" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- product.xml - version -->
+		<replaceregexp>
+			<regexp pattern="application=&quot;org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant&quot; version=&quot;${old.version}&quot;" />
+			<substitution expression="application=&quot;org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant&quot; version=&quot;${new.version}&quot;" />
+			<fileset dir=".">
+				<include name="03-org.slizaa.neo4j.jqassistant/org.slizaa.neo4j.jqassistant.product/org.slizaa.neo4j.jqassistant.application.slizaa4jqassistant.product" />
+			</fileset>
+		</replaceregexp>
+
+	</target>
+</project>
