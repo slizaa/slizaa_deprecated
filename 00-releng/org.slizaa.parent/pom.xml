@@ -22,6 +22,7 @@
 	<properties>
 		<tycho-version>0.24.0</tycho-version>
 		<xtend-version>2.10.0</xtend-version>
+		<xtext-version>2.10.0</xtext-version>
 	</properties>
 
 	<build>
