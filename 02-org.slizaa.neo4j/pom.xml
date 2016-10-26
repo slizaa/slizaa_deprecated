@@ -19,6 +19,10 @@
 		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.edit</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.service</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.ui</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.mappingdsl</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.mappingdsl.ide</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.mappingdsl.ui</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.mappingdsl.tests</module>
 		<module>org.slizaa.neo4j.workbenchmodel</module>
 		<module>org.slizaa.neo4j.workbenchmodel.edit</module>
 	</modules>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mappingDsl" nsURI="http://www.slizaa.org/neo4j/hierarchicalgraph/MappingDsl"
+    nsPrefix="mappingDsl">
+  <eClassifiers xsi:type="ecore:EClass" name="MappingDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metaInformation" eType="#//MetaInformation"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="structureDefinition" eType="#//StructureDefinition"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visualisationDefinition"
+        eType="#//VisualizationDefinition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MetaInformation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructureDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelNodes" eType="#//TopLevelNodes"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hierarchyDefinitions" eType="#//HierarchyDefinitions"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencyDefinitions"
+        eType="#//DependencyDefinitions" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevelNodes">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="queries" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HierarchyDefinitions">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="queries" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DependencyDefinitions">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simpleDependencies" upperBound="-1"
+        eType="#//SimpleDependencies" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aggregatedDependencies"
+        upperBound="-1" eType="#//AggregatedDependencies" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AggregatedDependencies">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="queries" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleDependencies">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="queries" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VisualizationDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodeVisualizationDefinition"
+        upperBound="-1" eType="#//NodeVisualizationDefinition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeVisualizationDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//Function"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="labelProperties" eType="#//LabelProperties"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="switch" eType="#//labelSwitch"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="labelSwitch">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//Function"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="labelCases" upperBound="-1"
+        eType="#//LabelCase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LabelCase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="case" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="labelProperties" eType="#//LabelProperties"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LabelProperties">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textLabel" eType="#//SimpleExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="baseImage" eType="#//SimpleExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="overlayImageTopLeft" eType="#//SimpleExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="overlayImageTopRight" eType="#//SimpleExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="overlayImageBottomLeft"
+        eType="#//SimpleExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="overlayImageBottomRight"
+        eType="#//SimpleExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//SimpleExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//SimpleExpression" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

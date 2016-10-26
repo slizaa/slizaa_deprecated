@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package 
+			uri = "http://www.slizaa.org/neo4j/hierarchicalgraph/MappingDsl"
+			class = "org.slizaa.neo4j.hierarchicalgraph.mappingDsl.MappingDslPackage"
+			genModel = "model/generated/MappingDsl.genmodel" />
+	</extension>
+</plugin>
