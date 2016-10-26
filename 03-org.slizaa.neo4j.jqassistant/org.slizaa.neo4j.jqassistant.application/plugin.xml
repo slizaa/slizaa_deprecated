@@ -54,9 +54,9 @@
          </with>
       </enabledWhen>
    </activity>
-   <activityPatternBinding activityId="menuHidingActivity" pattern="org.eclipse.ui.edit.text.gotoLastEditPosition" />
-   <activityPatternBinding activityId="menuHidingActivity" pattern="org.eclipse.ui.navigate.next" />  
-   <activityPatternBinding activityId="menuHidingActivity" pattern="org.eclipse.ui.navigate.previous" />  
+   <activityPatternBinding activityId="menuHidingActivity" isEqualityPattern="true" pattern="org.eclipse.ui.edit.text.gotoLastEditPosition" />
+   <activityPatternBinding activityId="menuHidingActivity" isEqualityPattern="true" pattern="org.eclipse.ui.navigate.next" />  
+   <activityPatternBinding activityId="menuHidingActivity" isEqualityPattern="true" pattern="org.eclipse.ui.navigate.previous" />  
    <activityPatternBinding
             activityId="menuHidingActivity"
             pattern="org\.eclipse\.team\.ui/org.*">
@@ -93,12 +93,74 @@
             activityId="menuHidingActivity"
             pattern="org\.eclipse\.team\.cvs\.ui/.*">
       </activityPatternBinding>
+      
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.debug\.ui/.*">
+      </activityPatternBinding>
+      
       <activityPatternBinding
             activityId="menuHidingActivity"
             pattern="org\.eclipse\.team\.cvs\.core/.*cvsnature">
       </activityPatternBinding>
-   
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.ui\.externaltools\..*">
+      </activityPatternBinding>            
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org\.eclipse\.search\.*">     
+      </activityPatternBinding> 
+      
+      <activityPatternBinding
+        	activityId="menuHidingActivity"
+        	isEqualityPattern="true"
+             pattern="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly">
+       </activityPatternBinding>
+      
+      
+		<!-- editing -->
+       	<activityPatternBinding
+        	activityId="menuHidingActivity"
+             pattern="org\.eclipse\.ui\.editors/org\.eclipse\.ui\.edit\.text\.actionSet\.convertLineDelimitersTo">
+       </activityPatternBinding>
+       <activityPatternBinding
+            activityId="menuHidingActivity"
+             pattern="org\.eclipse\.ui\.editors/org\.eclipse\.ui\.edit\.text\.delimiter\..*">
+       </activityPatternBinding>
+       <activityPatternBinding
+            activityId="menuHidingActivity"
+             pattern="org\.eclipse\.ui\.editors/org\.eclipse\.ui\.edit\.text\.actionSet\.navigation">
+       </activityPatternBinding>
+       <activityPatternBinding
+                       activityId="menuHidingActivity"
+             pattern="org\.eclipse\.ui\.editors/org\.eclipse\.ui\.edit\.text\.gotoLastEditPosition">
+       </activityPatternBinding>
+       <activityPatternBinding
+            activityId="menuHidingActivity"
+             pattern="org\.eclipse\.ui\.editors/org\.eclipse\.ui\.edit\.text\.actionSet\.annotationNavigation">
+       </activityPatternBinding>
+       <activityPatternBinding
+            activityId="menuHidingActivity"
+             pattern="org\.eclipse\.ui\.editors/org\.eclipse\.ui\.edit\.text\.gotoNextAnnotation">
+       </activityPatternBinding>
+       <activityPatternBinding
+            activityId="menuHidingActivity"
+             pattern="org\.eclipse\.ui\.editors/org\.eclipse\.ui\.edit\.text\.gotoPreviousAnnotation">
+       </activityPatternBinding>
+
 </extension>
+
+<extension
+id="removeStuff"
+         point="org.eclipse.e4.workbench.model">
+      <!-- if beforefragment="true", then the processor is run before any fragments are stitched in -->
+      <processor
+            beforefragment="false"
+            class="org.slizaa.neo4j.jqassistant.application.processor.SlizaaProcessor">
+      </processor>
+</extension>
+
    <extension
          id="slizaa4jqassistant"
          point="org.eclipse.core.runtime.products">

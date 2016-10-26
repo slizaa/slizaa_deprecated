@@ -4,12 +4,12 @@
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_VaObcLRaEeWVj_GUPFMSKw" elementId="com.example.e3e4.test.rcp.perspectivestack.0" selectedElement="_XYjJULRaEeWVj_GUPFMSKw">
       <children xsi:type="advanced:Perspective" xmi:id="_Sy8MEJXmEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.perspective.main" label="Core" iconURI="platform:/plugin/org.slizaa.neo4j.jqassistant.application/icons/slizaa_16.png">
         <children xsi:type="basic:PartSashContainer" xmi:id="_cPe_AJXmEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.partsashcontainer.2" horizontal="true">
-          <children xsi:type="basic:PartStack" xmi:id="_gMTZ4JXmEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.partstack.4">
+          <children xsi:type="basic:PartStack" xmi:id="_gMTZ4JXmEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.partstack.4" containerData="25">
             <children xsi:type="advanced:Placeholder" xmi:id="_hr6LcJXmEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.placeholder.1" ref="_CsnowJXmEea3b53pV5gj-A"/>
           </children>
-          <children xsi:type="basic:PartSashContainer" xmi:id="_BCdXkJXnEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.partsashcontainer.3">
-            <children xsi:type="advanced:Placeholder" xmi:id="_y6rIEJXnEea3b53pV5gj-A" elementId="org.eclipse.ui.editorss" ref="_izSNwJXnEea3b53pV5gj-A"/>
-            <children xsi:type="basic:PartStack" xmi:id="_JljaAJXnEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.partstack.5">
+          <children xsi:type="basic:PartSashContainer" xmi:id="_BCdXkJXnEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.partsashcontainer.3" containerData="75">
+            <children xsi:type="advanced:Placeholder" xmi:id="_y6rIEJXnEea3b53pV5gj-A" elementId="org.eclipse.ui.editorss" containerData="75" ref="_izSNwJXnEea3b53pV5gj-A"/>
+            <children xsi:type="basic:PartStack" xmi:id="_JljaAJXnEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.partstack.5" containerData="25">
               <children xsi:type="advanced:Placeholder" xmi:id="_NCkTcJXnEea3b53pV5gj-A" elementId="org.slizaa.neo4j.jqassistant.application.placeholder.2" ref="_WqRGcNS1EeGBn6dQ9VPexA"/>
             </children>
           </children>
