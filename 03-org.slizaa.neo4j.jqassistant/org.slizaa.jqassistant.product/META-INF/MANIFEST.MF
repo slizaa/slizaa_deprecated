@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.slizaa.jqassistant.product
+Bundle-SymbolicName: org.slizaa.jqassistant.product;singleton:=true
+Bundle-Version: 0.0.4.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.12.0"
