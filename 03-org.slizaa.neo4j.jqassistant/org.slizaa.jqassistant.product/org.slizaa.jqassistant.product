@@ -3,6 +3,13 @@
 
 <product name="Slizaa" uid="org.slizaa.jqassistant.product.product" id="org.slizaa.jqassistant.product.slizaa4jqassistant" application="org.eclipse.ui.ide.workbench" version="0.0.4.qualifier" useFeatures="true" includeLaunchers="true">
 
+   <aboutInfo>
+      <image path="/org.slizaa.jqassistant.product/icons/app32.png"/>
+      <text>
+         WAHNSINN WAS ALLES GEHT
+      </text>
+   </aboutInfo>
+
    <configIni use="default">
    </configIni>
 
@@ -10,6 +17,28 @@
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
+
+   <windowImages i16="/org.slizaa.jqassistant.product/icons/app16.png" i32="/org.slizaa.jqassistant.product/icons/app32.png" i48="/org.slizaa.jqassistant.product/icons/app48.png" i64="/org.slizaa.jqassistant.product/icons/app64.png" i128="/org.slizaa.jqassistant.product/icons/app128.png" i256="/org.slizaa.jqassistant.product/icons/app256.png"/>
+
+   <splash
+      location="org.slizaa.jqassistant.product"
+      startupProgressRect="5,275,445,15" />
+   <launcher name="Slizaa">
+      <solaris/>
+      <win useIco="false">
+         <bmp
+            winSmallHigh="/org.slizaa.jqassistant.product/icons/app16.bmp"
+            winMediumHigh="/org.slizaa.jqassistant.product/icons/app32.bmp"
+            winLargeHigh="/org.slizaa.jqassistant.product/icons/app48.bmp"
+            winExtraLargeHigh="/org.slizaa.jqassistant.product/icons/app256.bmp"/>
+      </win>
+   </launcher>
+
+
+   <vm>
+      <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
+   </vm>
+
 
    <plugins>
    </plugins>
@@ -34,5 +63,12 @@
       <feature id="org.slizaa.jqassistant.feature" version="0.0.4.qualifier"/>
    </features>
 
+
+   <preferencesInfo>
+      <targetfile overwrite="false"/>
+   </preferencesInfo>
+
+   <cssInfo>
+   </cssInfo>
 
 </product>
