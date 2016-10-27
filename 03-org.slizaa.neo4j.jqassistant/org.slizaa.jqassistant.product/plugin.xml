@@ -30,6 +30,10 @@
                value="5,275,445,15">
          </property>
          <property
+               name="applicationCSS"
+               value="platform:/plugin/org.slizaa.jqassistant.product/css/default.css">
+         </property>
+         <property
                name="preferenceCustomization"
                value="plugin_customization.ini">
          </property>
