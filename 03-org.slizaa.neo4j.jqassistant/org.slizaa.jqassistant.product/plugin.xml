@@ -63,5 +63,17 @@
             activityId="menuHidingActivity"
             pattern="org.eclipse.ui.externaltools/.*">
       </activityPatternBinding>  
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="*">
+         <hiddenMenuItem
+               id="org.eclipse.ui.run">
+         </hiddenMenuItem>
+         <!-- <hiddenMenuItem
+               id="viewsShortlist">
+         </hiddenMenuItem> -->
+      </perspectiveExtension>
    </extension>   
 </plugin>

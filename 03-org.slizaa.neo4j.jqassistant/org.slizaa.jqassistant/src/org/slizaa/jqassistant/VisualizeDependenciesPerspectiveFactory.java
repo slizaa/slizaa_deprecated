@@ -9,6 +9,14 @@ public class VisualizeDependenciesPerspectiveFactory implements IPerspectiveFact
   @Override
   public void createInitialLayout(IPageLayout layout) {
 
+    layout.addShowViewShortcut(IPageLayout.ID_PROJECT_EXPLORER);
+    layout.addShowViewShortcut(IPageLayout.ID_BOOKMARKS);
+    layout.addShowViewShortcut(IPageLayout.ID_OUTLINE);
+    layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);
+    layout.addShowViewShortcut(IPageLayout.ID_PROBLEM_VIEW);
+    layout.addShowViewShortcut(IPageLayout.ID_PROGRESS_VIEW);
+    layout.addShowViewShortcut(IPageLayout.ID_TASK_LIST);
+    
     //
     IFolderLayout folderLayout = layout.createFolder("left", IPageLayout.LEFT, 0.2f, IPageLayout.ID_OUTLINE);
     folderLayout.addView(IPageLayout.ID_OUTLINE);
