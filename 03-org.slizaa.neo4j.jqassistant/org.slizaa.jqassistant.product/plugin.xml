@@ -15,23 +15,31 @@
          </property>
          <property
                name="aboutImage"
-               value="icons/app32.png">
+               value="icons/about.png">
          </property>
          <property
                name="aboutText"
-               value="WAHNSINN WAS ALLES GEHT">
+               value="Slizaa architecture workbench&#x0A;powered by jQAssistant&#x0A;&#x0A;(c) Copyright Gerd Wütherich. 2015-2016. All rights reserved.&#x0A;&#x0A;Visit http://www.slizaa.org&#x0A;&#x0A;This offering is powered by Eclipse technology &#x0A;and includes Eclipse plug-ins that can be &#x0A;installed and used with other Eclipse-based &#x0A;offerings.">
          </property>
          <property
                name="windowImages"
-               value="icons/app16.png,icons/app32.png,icons/app48.png,icons/app64.png,icons/app128.png,icons/app256.png">
+               value="icons/slizaa_16.png,icons/slizaa_32.png,icons/slizaa_48.png,icons/slizaa_64.png,icons/slizaa_128.png,icons/slizaa_256.png">
          </property>
          <property
                name="startupProgressRect"
-               value="5,275,445,15">
+               value="5,180,464,16">
          </property>
          <property
                name="applicationCSS"
                value="platform:/plugin/org.slizaa.jqassistant.product/css/default.css">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="000000">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="7,151,464,29">
          </property>
          <property
                name="preferenceCustomization"
@@ -71,9 +79,9 @@
          <hiddenMenuItem
                id="org.eclipse.ui.run">
          </hiddenMenuItem>
-         <!-- <hiddenMenuItem
-               id="viewsShortlist">
-         </hiddenMenuItem> -->
+        <hiddenMenuItem
+               id="project">
+         </hiddenMenuItem>
       </perspectiveExtension>
    </extension>   
 </plugin>

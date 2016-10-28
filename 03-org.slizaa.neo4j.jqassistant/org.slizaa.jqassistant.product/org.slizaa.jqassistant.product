@@ -4,9 +4,19 @@
 <product name="Slizaa" uid="org.slizaa.jqassistant.product.product" id="org.slizaa.jqassistant.product.slizaa4jqassistant" application="org.eclipse.ui.ide.workbench" version="0.0.4.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
-      <image path="/org.slizaa.jqassistant.product/icons/app32.png"/>
+      <image path="/org.slizaa.jqassistant.product/icons/about.png"/>
       <text>
-         WAHNSINN WAS ALLES GEHT
+         Slizaa architecture workbench
+powered by jQAssistant
+
+(c) Copyright Gerd Wütherich. 2015-2016. All rights reserved.
+
+Visit http://www.slizaa.org
+
+This offering is powered by Eclipse technology 
+and includes Eclipse plug-ins that can be 
+installed and used with other Eclipse-based 
+offerings.
       </text>
    </aboutInfo>
 
@@ -18,18 +28,25 @@
       </vmArgsMac>
    </launcherArgs>
 
-   <windowImages i16="/org.slizaa.jqassistant.product/icons/app16.png" i32="/org.slizaa.jqassistant.product/icons/app32.png" i48="/org.slizaa.jqassistant.product/icons/app48.png" i64="/org.slizaa.jqassistant.product/icons/app64.png" i128="/org.slizaa.jqassistant.product/icons/app128.png" i256="/org.slizaa.jqassistant.product/icons/app256.png"/>
+   <windowImages i16="/org.slizaa.jqassistant.product/icons/slizaa_16.png" i32="/org.slizaa.jqassistant.product/icons/slizaa_32.png" i48="/org.slizaa.jqassistant.product/icons/slizaa_48.png" i64="/org.slizaa.jqassistant.product/icons/slizaa_64.png" i128="/org.slizaa.jqassistant.product/icons/slizaa_128.png" i256="/org.slizaa.jqassistant.product/icons/slizaa_256.png"/>
 
    <splash
       location="org.slizaa.jqassistant.product"
-      startupProgressRect="5,275,445,15" />
+      startupProgressRect="5,180,464,16"
+      startupMessageRect="7,151,464,29"
+      startupForegroundColor="000000" />
    <launcher name="Slizaa">
+      <linux icon="/org.slizaa.jqassistant.product/icons/slizaa.xpm"/>
+      <macosx icon="/org.slizaa.jqassistant.product/icons/slizaa.icns"/>
       <solaris/>
       <win useIco="false">
          <bmp
             winSmallHigh="/org.slizaa.jqassistant.product/icons/app16.bmp"
+            winSmallLow="/org.slizaa.jqassistant.product/icons/slizaa_16_16_8.bmp"
             winMediumHigh="/org.slizaa.jqassistant.product/icons/app32.bmp"
+            winMediumLow="/org.slizaa.jqassistant.product/icons/slizaa_32_32_8.bmp"
             winLargeHigh="/org.slizaa.jqassistant.product/icons/app48.bmp"
+            winLargeLow="/org.slizaa.jqassistant.product/icons/slizaa_48_48_8.bmp"
             winExtraLargeHigh="/org.slizaa.jqassistant.product/icons/app256.bmp"/>
       </win>
    </launcher>
@@ -38,11 +55,15 @@
       <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
    </vm>
 
+   <license>
+        <url>http://www.gnu.org/licenses/gpl.html</url>
+   </license>
+
    <plugins>
    </plugins>
 
    <features>
-      <feature id="org.eclipse.e4.rcp" version="1.5.1.v20160907-0248"/>
+      <feature id="org.eclipse.e4.rcp"/>
       <feature id="org.eclipse.emf.ecore"/>
       <feature id="org.eclipse.equinox.p2.user.ui"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
@@ -57,8 +78,8 @@
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
       <feature id="org.eclipse.ecf.core.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
-      <feature id="org.slizaa.jqassistant.feature" version="0.0.4.qualifier"/>
-      <feature id="org.eclipse.platform" version="4.6.0.v20160606-1342"/>
+      <feature id="org.slizaa.jqassistant.feature"/>
+      <feature id="org.eclipse.platform"/>
    </features>
 
 
