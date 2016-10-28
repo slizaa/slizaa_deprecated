@@ -49,17 +49,19 @@
             </with>
          </enabledWhen>
       </activity>
+      
+      <!-- -->
       <activityPatternBinding
             activityId="menuHidingActivity"
-            pattern="org\.eclipse\.debug\.ui/.*">
+            pattern="org.eclipse.debug.ui/.*">
       </activityPatternBinding>
-      <activityPatternBinding
-            activityId="menuHidingActivity"
-            pattern="org\.eclipse\.ui\.externaltools/.*">
-      </activityPatternBinding>      
        <activityPatternBinding
             activityId="menuHidingActivity"
-            pattern="org\.eclipse\.team\.ui/.*">
-      </activityPatternBinding>       
+            pattern="org.eclipse.team.ui/.*">
+      </activityPatternBinding>      
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org.eclipse.ui.externaltools/.*">
+      </activityPatternBinding>  
    </extension>   
 </plugin>

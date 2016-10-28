@@ -1,4 +1,4 @@
-package org.slizaa.jqassistant;
+package org.slizaa.jqassistant.product;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.ui.model.application.MApplication;
@@ -42,36 +42,30 @@ public class MyEventListener implements EventHandler {
 
     // MApplication application = (MApplication)
     // perspectiveStack.getParent().getParent().getParent().getSelectedElement();
-    System.out.println("paernt = " + ((MApplication) perspectiveStack.getParent().getParent().getCurSharedRef()));
+    System.out.println("getParent = " + ((MApplication) perspectiveStack.getParent().getParent().getCurSharedRef()));
 
     MWindow window = modelService.getTopLevelWindowFor(perspectiveStack.getParent());
     
     for (MMenuElement menuElement : window.getMainMenu().getChildren()) {
       if (menuElement.getElementId().equals("project")) {
         menuElement.setToBeRendered(false);
-      }
-      if (menuElement.getElementId().equals("org.eclipse.ui.run")) {
-        menuElement.setRenderer(null);
-      }
-      if (menuElement.getElementId().equals("project")) {
-        menuElement.setToBeRendered(false);
+        menuElement.setVisible(false);
       }
       System.out.println("menuElement: " + menuElement);
     }
     
     MTrimBar trimBar = modelService.getTrim((MTrimmedWindow) window, SideValue.TOP);
     trimBar.getChildren().forEach(e -> {
-      System.out.println(e.getElementId());
-      if (e.getElementId().startsWith("org.eclipse.ui.workbench")) {
-        e.setToBeRendered(false);
-      }
+//      if (e.getElementId().startsWith("org.eclipse.ui.workbench")) {
+//        e.setToBeRendered(false);
+//      }
     });
 
     //
     IWorkbenchPage workbenchPage = context.getActive(IWorkbenchPage.class);
     if (workbenchPage != null) {
       workbenchPage.hideActionSet("org.eclipse.search.searchActionSet");
-      workbenchPage.hideActionSet("org.eclipse.ui.externaltools.ExternalToolsSet");
+//      workbenchPage.hideActionSet("org.eclipse.ui.externaltools.ExternalToolsSet");
     }
 //    for (IWorkbenchPage workbenchPage : workbenchWindow.getPages()) {
 //    }
