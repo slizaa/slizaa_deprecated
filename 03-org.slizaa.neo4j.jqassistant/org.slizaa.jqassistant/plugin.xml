@@ -9,5 +9,14 @@
             name="Visualize Dependencies"
             icon="icons/perspective_visDep.gif">
       </perspective>
+      <perspective
+            class="org.slizaa.jqassistant.GraphDatabasesPerspectiveFactory"
+            id="org.slizaa.jqassistant.GraphDatabasesPerspective"
+            name="Graph Databases"
+            icon="icons/perspective_visDep.gif">
+      </perspective>
+      
+      
+      
    </extension>
 </plugin>
