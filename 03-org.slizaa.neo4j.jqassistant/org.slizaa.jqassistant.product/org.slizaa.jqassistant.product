@@ -32,7 +32,7 @@ offerings.
 
    <splash
       location="org.slizaa.jqassistant.product"
-      startupProgressRect="5,180,464,16"
+      startupProgressRect="5,180,459,16"
       startupMessageRect="7,151,464,29"
       startupForegroundColor="000000" />
    <launcher name="Slizaa">
@@ -41,13 +41,13 @@ offerings.
       <solaris/>
       <win useIco="false">
          <bmp
-            winSmallHigh="/org.slizaa.jqassistant.product/icons/app16.bmp"
+            winSmallHigh="/org.slizaa.jqassistant.product/icons/slizaa_16_16_32.bmp"
             winSmallLow="/org.slizaa.jqassistant.product/icons/slizaa_16_16_8.bmp"
-            winMediumHigh="/org.slizaa.jqassistant.product/icons/app32.bmp"
+            winMediumHigh="/org.slizaa.jqassistant.product/icons/slizaa_32_32_32.bmp"
             winMediumLow="/org.slizaa.jqassistant.product/icons/slizaa_32_32_8.bmp"
-            winLargeHigh="/org.slizaa.jqassistant.product/icons/app48.bmp"
+            winLargeHigh="/org.slizaa.jqassistant.product/icons/slizaa_48_48_32.bmp"
             winLargeLow="/org.slizaa.jqassistant.product/icons/slizaa_48_48_8.bmp"
-            winExtraLargeHigh="/org.slizaa.jqassistant.product/icons/app256.bmp"/>
+            winExtraLargeHigh="/org.slizaa.jqassistant.product/icons/slizaa_256_256_32.bmp"/>
       </win>
    </launcher>
 
