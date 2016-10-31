@@ -32,7 +32,7 @@ offerings.
 
    <splash
       location="org.slizaa.jqassistant.product"
-      startupProgressRect="5,180,459,16"
+      startupProgressRect="3,180,461,16"
       startupMessageRect="7,151,464,29"
       startupForegroundColor="000000" />
    <launcher name="Slizaa">
@@ -78,8 +78,9 @@ offerings.
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
       <feature id="org.eclipse.ecf.core.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
-      <feature id="org.slizaa.jqassistant.feature"/>
       <feature id="org.eclipse.platform"/>
+      <feature id="org.slizaa.neo4j.opencypher.feature" version="1.0.0.qualifier"/>
+      <feature id="org.slizaa.neo4j.restclient.feature" version="1.0.0.qualifier"/>
    </features>
 
 

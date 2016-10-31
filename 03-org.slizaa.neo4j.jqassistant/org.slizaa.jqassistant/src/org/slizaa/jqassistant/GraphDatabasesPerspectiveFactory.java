@@ -12,11 +12,10 @@ public class GraphDatabasesPerspectiveFactory implements IPerspectiveFactory {
     IFolderLayout folder = layout.createFolder("test",
         IPageLayout.LEFT, 0.25f, IPageLayout.ID_EDITOR_AREA);
     folder.addView(IPageLayout.ID_PROJECT_EXPLORER);
-    folder.addView(IPageLayout.ID_OUTLINE);
     
-//    folder = layout.createFolder("test2",
-//        IPageLayout.RIGHT, 0.75f, IPageLayout.ID_EDITOR_AREA);
-//    folder.addView(IPageLayout.ID_OUTLINE);
+    folder = layout.createFolder("test2",
+        IPageLayout.RIGHT, 0.70f, IPageLayout.ID_EDITOR_AREA);
+    folder.addView(IPageLayout.ID_OUTLINE);
     
     //
     String folderId = "org.slizaa.jqassistant.graphdatabases.resultfolder";
@@ -26,20 +25,16 @@ public class GraphDatabasesPerspectiveFactory implements IPerspectiveFactory {
     folder.addView(IPageLayout.ID_PROBLEM_VIEW);
     folder.addView(IPageLayout.ID_PROP_SHEET);
     
+    folder.addPlaceholder("com.packtpub.e4.migration.views.SampleView");
+//    folder.addView("com.packtpub.e4.migration.views.SampleView");
+    
     //
     addViewShortCuts(layout);
   }
 
   private void addViewShortCuts(IPageLayout layout) {
-
-    layout.addShowViewShortcut(IPageLayout.ID_PROJECT_EXPLORER);
+    layout.addShowViewShortcut("com.packtpub.e4.migration.views.SampleView");
     layout.addShowViewShortcut(IPageLayout.ID_BOOKMARKS);
-    layout.addShowViewShortcut(IPageLayout.ID_OUTLINE);
-    layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);
-    layout.addShowViewShortcut(IPageLayout.ID_PROBLEM_VIEW);
-    layout.addShowViewShortcut(IPageLayout.ID_PROGRESS_VIEW);
-    layout.addShowViewShortcut(IPageLayout.ID_TASK_LIST);
-
   }
 }
   
