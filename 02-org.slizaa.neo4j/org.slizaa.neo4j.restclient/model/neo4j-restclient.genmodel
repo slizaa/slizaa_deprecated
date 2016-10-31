@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.slizaa.neo4j.restclient/src-gen" modelPluginID="org.slizaa.neo4j.restclient"
+    modelName="Neo4j-restclient" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>neo4j-restclient.ecore</foreignModel>
+  <genPackages prefix="Neo4jRestClient" basePackage="org.slizaa.neo4j" disposableProviderFactory="true"
+      ecorePackage="neo4j-restclient.ecore#/">
+    <genDataTypes ecoreDataType="neo4j-restclient.ecore#//Future">
+      <genTypeParameters ecoreTypeParameter="neo4j-restclient.ecore#//Future/T"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="neo4j-restclient.ecore#//Consumer">
+      <genTypeParameters ecoreTypeParameter="neo4j-restclient.ecore#//Consumer/T"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="neo4j-restclient.ecore#//JsonArray"/>
+    <genDataTypes ecoreDataType="neo4j-restclient.ecore#//JsonObject"/>
+    <genClasses ecoreClass="neo4j-restclient.ecore#//Neo4jRestClient">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-restclient.ecore#//Neo4jRestClient/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-restclient.ecore#//Neo4jRestClient/baseURI"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-restclient.ecore#//Neo4jRestClient/threadPoolSize"/>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/init"/>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/dispose"/>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/getAllRelationshipTypes"/>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/getAllPropertyKeys"/>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/getAllLabels"/>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/getLabelsForNode">
+        <genParameters ecoreParameter="neo4j-restclient.ecore#//Neo4jRestClient/getLabelsForNode/nodeId"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/getPropertiesForNode">
+        <genParameters ecoreParameter="neo4j-restclient.ecore#//Neo4jRestClient/getPropertiesForNode/nodeId"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/getPropertiesForRelationship">
+        <genParameters ecoreParameter="neo4j-restclient.ecore#//Neo4jRestClient/getPropertiesForRelationship/nodeId"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery">
+        <genParameters ecoreParameter="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery/cypherQuery"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery.1">
+        <genParameters ecoreParameter="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery.1/cypherQuery"/>
+        <genParameters ecoreParameter="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery.1/params"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery.2">
+        <genParameters ecoreParameter="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery.2/cypherQuery"/>
+        <genParameters ecoreParameter="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery.2/consumer"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery.3">
+        <genParameters ecoreParameter="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery.3/cypherQuery"/>
+        <genParameters ecoreParameter="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery.3/params"/>
+        <genParameters ecoreParameter="neo4j-restclient.ecore#//Neo4jRestClient/executeCypherQuery.3/consumer"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

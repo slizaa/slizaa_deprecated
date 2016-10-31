@@ -3,10 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.slizaa.neo4j.hierarchicalgraph;singleton:=true
 Bundle-Version: 0.0.4.qualifier
-Bundle-ClassPath: .,
- libs/com.eclipsesource.jaxrs.consumer_5.3.0.201512270850.jar,
- libs/com.eclipsesource.jaxrs.jersey-min_2.22.1.jar,
- libs/com.eclipsesource.jaxrs.provider.gson_2.3.0.201512270850.jar
+Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

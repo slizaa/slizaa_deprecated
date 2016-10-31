@@ -18,12 +18,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
+import org.slizaa.neo4j.graphdb.impl.ExtendedNeo4JRemoteRepositoryImpl;
 import org.slizaa.neo4j.hierarchicalgraph.*;
 import org.slizaa.neo4j.hierarchicalgraph.impl.ExtendedNeo4JBackedDependencySourceImpl;
 import org.slizaa.neo4j.hierarchicalgraph.impl.ExtendedNeo4JBackedNodeSourceImpl;
 import org.slizaa.neo4j.hierarchicalgraph.impl.ExtendedNeo4JBackedRootNodeSourceImpl;
-import org.slizaa.neo4j.hierarchicalgraph.impl.ExtendedNeo4JRemoteRepositoryImpl;
 
 /**
  * <!-- begin-user-doc -->

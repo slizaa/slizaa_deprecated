@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="restclient" nsURI="http://org/slizaa/neo4j/restclient" nsPrefix="org.slizaa.neo4j.restclient">
+  <eClassifiers xsi:type="ecore:EClass" name="Neo4jRestClient">
+    <eOperations name="init"/>
+    <eOperations name="dispose"/>
+    <eOperations name="getAllRelationshipTypes" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getAllPropertyKeys" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getAllLabels" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getLabelsForNode" eType="#//JsonArray">
+      <eParameters name="nodeId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    </eOperations>
+    <eOperations name="getPropertiesForNode" eType="#//JsonObject">
+      <eParameters name="nodeId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    </eOperations>
+    <eOperations name="getPropertiesForRelationship" eType="#//JsonObject">
+      <eParameters name="nodeId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    </eOperations>
+    <eOperations name="executeCypherQuery">
+      <eGenericType eClassifier="#//Future">
+        <eTypeArguments eClassifier="#//JsonObject"/>
+      </eGenericType>
+      <eParameters name="cypherQuery" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="executeCypherQuery">
+      <eGenericType eClassifier="#//Future">
+        <eTypeArguments eClassifier="#//JsonObject"/>
+      </eGenericType>
+      <eParameters name="cypherQuery" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="params">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="executeCypherQuery">
+      <eGenericType eClassifier="#//Future">
+        <eTypeArguments/>
+      </eGenericType>
+      <eParameters name="cypherQuery" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="consumer">
+        <eGenericType eClassifier="#//Consumer">
+          <eTypeArguments eClassifier="#//JsonObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="executeCypherQuery">
+      <eGenericType eClassifier="#//Future">
+        <eTypeArguments/>
+      </eGenericType>
+      <eParameters name="cypherQuery" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="params">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="consumer">
+        <eGenericType eClassifier="#//Consumer">
+          <eTypeArguments eClassifier="#//JsonObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="hasExtension" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eTypeParameters name="T"/>
+      <eParameters name="key">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments eTypeParameter="#//Neo4jRestClient/hasExtension/T"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getExtension">
+      <eGenericType eTypeParameter="#//Neo4jRestClient/getExtension/T"/>
+      <eTypeParameters name="T"/>
+      <eParameters name="key">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments eTypeParameter="#//Neo4jRestClient/getExtension/T"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="registerExtension">
+      <eTypeParameters name="T"/>
+      <eParameters name="key">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments eTypeParameter="#//Neo4jRestClient/registerExtension/T"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPoolSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Neo4jRestClientRegistry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clients" upperBound="-1"
+        eType="#//Neo4jRestClient"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Future" instanceClassName="java.util.concurrent.Future">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Consumer" instanceClassName="java.util.function.Consumer">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="JsonArray" instanceClassName="com.google.gson.JsonArray"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="JsonObject" instanceClassName="com.google.gson.JsonObject"/>
+</ecore:EPackage>
