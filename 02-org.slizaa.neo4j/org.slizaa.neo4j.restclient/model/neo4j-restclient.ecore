@@ -93,7 +93,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Neo4jRestClientRegistry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="clients" upperBound="-1"
-        eType="#//Neo4jRestClient"/>
+        eType="#//Neo4jRestClient" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Future" instanceClassName="java.util.concurrent.Future">
     <eTypeParameters name="T"/>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <e4view
+            class="org.slizaa.neo4j.restclient.ui.GraphDatabasesView"
+            id="org.slizaa.neo4j.restclient.ui.GraphDatabasesView"
+            name="Graph Databases"
+            restorable="true">
+      </e4view>
+   </extension>
+
+</plugin>

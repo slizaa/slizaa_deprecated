@@ -35,28 +35,28 @@ public class DeleteRemoteServerHandler {
   @Execute
   public void execute(@Named(IServiceConstants.ACTIVE_SHELL) Shell shell) throws IOException {
 
-    SelectionUtils.doWithSelection(_selectionService.getSelection(), (remoteService) -> {
-
-			// //
-			// if (remoteService.hasAnalysisModel()) {
-			// if (!MessageDialog.openConfirm(shell, "Active Remote Server",
-			// "The remote server is in use. Deleting the server entry will also
-			// close any model created from this server. Delete?")) {
-			// return;
-			// }
-			// }
-			//
-			// //
-			// Configuration configuration;
-			// try {
-			// configuration =
-			// _configAdmin.getConfiguration(remoteService.getServicePID());
-			// configuration.delete();
-			// } catch (Exception e) {
-			// // TODO Auto-generated catch block
-			// e.printStackTrace();
-			// }
-    });
+//    SelectionUtils.doWithSelection(_selectionService.getSelection(), (remoteService) -> {
+//
+//			// //
+//			// if (remoteService.hasAnalysisModel()) {
+//			// if (!MessageDialog.openConfirm(shell, "Active Remote Server",
+//			// "The remote server is in use. Deleting the server entry will also
+//			// close any model created from this server. Delete?")) {
+//			// return;
+//			// }
+//			// }
+//			//
+//			// //
+//			// Configuration configuration;
+//			// try {
+//			// configuration =
+//			// _configAdmin.getConfiguration(remoteService.getServicePID());
+//			// configuration.delete();
+//			// } catch (Exception e) {
+//			// // TODO Auto-generated catch block
+//			// e.printStackTrace();
+//			// }
+//    });
   }
 
   @CanExecute

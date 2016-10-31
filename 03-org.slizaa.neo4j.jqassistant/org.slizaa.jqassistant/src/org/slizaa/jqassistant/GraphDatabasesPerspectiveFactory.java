@@ -11,7 +11,8 @@ public class GraphDatabasesPerspectiveFactory implements IPerspectiveFactory {
     
     IFolderLayout folder = layout.createFolder("test",
         IPageLayout.LEFT, 0.25f, IPageLayout.ID_EDITOR_AREA);
-    folder.addView(IPageLayout.ID_PROJECT_EXPLORER);
+    folder.addView("org.slizaa.neo4j.restclient.ui.GraphDatabasesView");
+    folder.addView("com.packtpub.e4.migration.views.SampleView");
     
     folder = layout.createFolder("test2",
         IPageLayout.RIGHT, 0.70f, IPageLayout.ID_EDITOR_AREA);

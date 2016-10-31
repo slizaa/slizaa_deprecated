@@ -79,8 +79,7 @@ offerings.
       <feature id="org.eclipse.ecf.core.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.platform"/>
-      <feature id="org.slizaa.neo4j.opencypher.feature" version="1.0.0.qualifier"/>
-      <feature id="org.slizaa.neo4j.restclient.feature" version="1.0.0.qualifier"/>
+      <feature id="org.slizaa.jqassistant.feature" version="0.0.4.qualifier"/>
    </features>
 
 

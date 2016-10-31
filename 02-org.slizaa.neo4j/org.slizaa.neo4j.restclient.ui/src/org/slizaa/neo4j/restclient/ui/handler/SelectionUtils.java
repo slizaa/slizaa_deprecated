@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import org.slizaa.neo4j.restclient.Neo4JRemoteRepository;
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
 
 /**
  * @author
@@ -19,7 +19,7 @@ public class SelectionUtils {
 	 * @param selection
 	 * @param consumer
 	 */
-	public static void doWithSelection(Object selection, Consumer<Neo4JRemoteRepository> consumer) {
+	public static void doWithSelection(Object selection, Consumer<Neo4jRestClient> consumer) {
 		getNeo4JRepositories(selection).forEach(consumer);
 	}
 
@@ -30,18 +30,18 @@ public class SelectionUtils {
 	 * @param selection
 	 * @return
 	 */
-	public static List<Neo4JRemoteRepository> getNeo4JRepositories(Object selection) {
+	public static List<Neo4jRestClient> getNeo4JRepositories(Object selection) {
 
 		//
-		List<Neo4JRemoteRepository> result = new LinkedList<>();
+		List<Neo4jRestClient> result = new LinkedList<>();
 
 		//
 		if (selection instanceof Collection<?>) {
 			for (Object element : (Collection<?>) selection) {
-				result.add((Neo4JRemoteRepository) element);
+				result.add((Neo4jRestClient) element);
 			}
 		} else {
-			result.add((Neo4JRemoteRepository) selection);
+			result.add((Neo4jRestClient) selection);
 		}
 
 		//
@@ -60,7 +60,7 @@ public class SelectionUtils {
 		//
 		if (selection instanceof Collection<?>) {
 			for (Object element : (Collection<?>) selection) {
-				if (!(element instanceof Neo4JRemoteRepository)) {
+				if (!(element instanceof Neo4jRestClient)) {
 					return false;
 				}
 			}
@@ -68,6 +68,6 @@ public class SelectionUtils {
 		}
 
 		//
-		return selection instanceof Neo4JRemoteRepository;
+		return selection instanceof Neo4jRestClient;
 	}
 }
