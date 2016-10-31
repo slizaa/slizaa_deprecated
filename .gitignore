@@ -3,6 +3,5 @@ bin/
 /.metadata/
 neo4j-home
 org.slizaa.target.target-gen
-src-gen/
 xtend-gen/
 plugin.xml_gen
