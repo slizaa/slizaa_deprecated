@@ -13,6 +13,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.neo4j.restclient.Neo4jRestClient;
+import org.slizaa.neo4j.restclient.Neo4jRestClientContainer;
 import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
 import org.slizaa.neo4j.restclient.Neo4jRestClientRegistry;
 
@@ -44,11 +45,16 @@ public class GraphDatabasesView {
     parent.setLayout(layout);
 
     Neo4jRestClientRegistry registry = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClientRegistry();
+    
+    Neo4jRestClientContainer restClientContainer = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClientContainer();
+    restClientContainer.setName("Local");
+    registry.getClients().add(restClientContainer);
+    
     Neo4jRestClient restClient = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClient();
     restClient.setBaseURI("http://localhost:7474");
     restClient.setName("Local");
     restClient.setThreadPoolSize(20);
-    registry.getClients().add(restClient);
+    restClientContainer.getClients().add(restClient);
 
     //
     _treeViewer = createTreeViewer(parent, registry);
