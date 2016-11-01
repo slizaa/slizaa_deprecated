@@ -75,6 +75,13 @@ public class Neo4jRestClientSwitch<T> extends Switch<T> {
       case Neo4jRestClientPackage.NEO4J_REST_CLIENT_REGISTRY: {
         Neo4jRestClientRegistry neo4jRestClientRegistry = (Neo4jRestClientRegistry)theEObject;
         T result = caseNeo4jRestClientRegistry(neo4jRestClientRegistry);
+        if (result == null) result = caseNeo4jRestClientContainer(neo4jRestClientRegistry);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER: {
+        Neo4jRestClientContainer neo4jRestClientContainer = (Neo4jRestClientContainer)theEObject;
+        T result = caseNeo4jRestClientContainer(neo4jRestClientContainer);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -109,6 +116,21 @@ public class Neo4jRestClientSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseNeo4jRestClientRegistry(Neo4jRestClientRegistry object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Container</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNeo4jRestClientContainer(Neo4jRestClientContainer object) {
     return null;
   }
 

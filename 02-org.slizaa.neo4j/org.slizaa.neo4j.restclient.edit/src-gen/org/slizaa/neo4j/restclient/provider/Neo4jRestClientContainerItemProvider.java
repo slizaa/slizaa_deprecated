@@ -12,26 +12,29 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.slizaa.neo4j.restclient.Neo4jRestClientContainer;
 import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
 import org.slizaa.neo4j.restclient.Neo4jRestClientPackage;
-import org.slizaa.neo4j.restclient.Neo4jRestClientRegistry;
 
 /**
- * This is the item provider adapter for a {@link org.slizaa.neo4j.restclient.Neo4jRestClientRegistry} object.
+ * This is the item provider adapter for a {@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class Neo4jRestClientRegistryItemProvider 
+public class Neo4jRestClientContainerItemProvider 
   extends ItemProviderAdapter
   implements
     IEditingDomainItemProvider,
@@ -45,7 +48,7 @@ public class Neo4jRestClientRegistryItemProvider
    * <!-- end-user-doc -->
    * @generated
    */
-  public Neo4jRestClientRegistryItemProvider(AdapterFactory adapterFactory) {
+  public Neo4jRestClientContainerItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -60,8 +63,31 @@ public class Neo4jRestClientRegistryItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addNamePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Name feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addNamePropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Neo4jRestClientContainer_name_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClientContainer_name_feature", "_UI_Neo4jRestClientContainer_type"),
+         Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_CONTAINER__NAME,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
@@ -76,7 +102,7 @@ public class Neo4jRestClientRegistryItemProvider
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_REGISTRY__CLIENTS);
+      childrenFeatures.add(Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_CONTAINER__CLIENTS);
     }
     return childrenFeatures;
   }
@@ -95,14 +121,14 @@ public class Neo4jRestClientRegistryItemProvider
   }
 
   /**
-   * This returns Neo4jRestClientRegistry.gif.
+   * This returns Neo4jRestClientContainer.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClientRegistry"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClientContainer"));
   }
 
   /**
@@ -113,7 +139,10 @@ public class Neo4jRestClientRegistryItemProvider
    */
   @Override
   public String getText(Object object) {
-    return getString("_UI_Neo4jRestClientRegistry_type");
+    String label = ((Neo4jRestClientContainer)object).getName();
+    return label == null || label.length() == 0 ?
+      getString("_UI_Neo4jRestClientContainer_type") :
+      getString("_UI_Neo4jRestClientContainer_type") + " " + label;
   }
   
 
@@ -128,8 +157,11 @@ public class Neo4jRestClientRegistryItemProvider
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(Neo4jRestClientRegistry.class)) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_REGISTRY__CLIENTS:
+    switch (notification.getFeatureID(Neo4jRestClientContainer.class)) {
+      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__NAME:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
+      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__CLIENTS:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
@@ -149,8 +181,18 @@ public class Neo4jRestClientRegistryItemProvider
 
     newChildDescriptors.add
       (createChildParameter
-        (Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_REGISTRY__CLIENTS,
+        (Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_CONTAINER__CLIENTS,
          Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClient()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_CONTAINER__CLIENTS,
+         Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClientContainer()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_CONTAINER__CLIENTS,
+         Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClientRegistry()));
   }
 
   /**

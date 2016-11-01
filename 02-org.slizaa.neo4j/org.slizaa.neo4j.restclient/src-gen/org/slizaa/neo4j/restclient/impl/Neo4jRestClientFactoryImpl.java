@@ -61,6 +61,7 @@ public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRes
     switch (eClass.getClassifierID()) {
       case Neo4jRestClientPackage.NEO4J_REST_CLIENT: return createNeo4jRestClient();
       case Neo4jRestClientPackage.NEO4J_REST_CLIENT_REGISTRY: return createNeo4jRestClientRegistry();
+      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER: return createNeo4jRestClientContainer();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -123,6 +124,16 @@ public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRes
   public Neo4jRestClientRegistry createNeo4jRestClientRegistry() {
     Neo4jRestClientRegistryImpl neo4jRestClientRegistry = new Neo4jRestClientRegistryImpl();
     return neo4jRestClientRegistry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Neo4jRestClientContainer createNeo4jRestClientContainer() {
+    Neo4jRestClientContainerImpl neo4jRestClientContainer = new Neo4jRestClientContainerImpl();
+    return neo4jRestClientContainer;
   }
 
   /**

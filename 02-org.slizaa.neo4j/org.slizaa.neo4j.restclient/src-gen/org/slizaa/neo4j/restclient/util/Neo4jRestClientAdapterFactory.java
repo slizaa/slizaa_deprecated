@@ -76,6 +76,10 @@ public class Neo4jRestClientAdapterFactory extends AdapterFactoryImpl {
         return createNeo4jRestClientRegistryAdapter();
       }
       @Override
+      public Adapter caseNeo4jRestClientContainer(Neo4jRestClientContainer object) {
+        return createNeo4jRestClientContainerAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object) {
         return createEObjectAdapter();
       }
@@ -120,6 +124,20 @@ public class Neo4jRestClientAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createNeo4jRestClientRegistryAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer <em>Container</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.neo4j.restclient.Neo4jRestClientContainer
+   * @generated
+   */
+  public Adapter createNeo4jRestClientContainerAdapter() {
     return null;
   }
 

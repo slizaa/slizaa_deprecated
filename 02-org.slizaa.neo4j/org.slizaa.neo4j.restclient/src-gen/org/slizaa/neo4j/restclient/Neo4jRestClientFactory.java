@@ -40,6 +40,15 @@ public interface Neo4jRestClientFactory extends EFactory {
   Neo4jRestClientRegistry createNeo4jRestClientRegistry();
 
   /**
+   * Returns a new object of class '<em>Container</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Container</em>'.
+   * @generated
+   */
+  Neo4jRestClientContainer createNeo4jRestClientContainer();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

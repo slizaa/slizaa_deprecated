@@ -91,9 +91,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPoolSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Neo4jRestClientRegistry">
+  <eClassifiers xsi:type="ecore:EClass" name="Neo4jRestClientRegistry" eSuperTypes="#//Neo4jRestClientContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Neo4jRestClientContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="clients" upperBound="-1"
-        eType="#//Neo4jRestClient" containment="true"/>
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Future" instanceClassName="java.util.concurrent.Future">
     <eTypeParameters name="T"/>

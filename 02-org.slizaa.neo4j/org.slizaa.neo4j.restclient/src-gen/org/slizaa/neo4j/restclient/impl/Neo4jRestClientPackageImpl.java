@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.neo4j.restclient.Neo4jRestClient;
+import org.slizaa.neo4j.restclient.Neo4jRestClientContainer;
 import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
 import org.slizaa.neo4j.restclient.Neo4jRestClientPackage;
 import org.slizaa.neo4j.restclient.Neo4jRestClientRegistry;
@@ -45,6 +46,13 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
    * @generated
    */
   private EClass neo4jRestClientRegistryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass neo4jRestClientContainerEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -320,8 +328,26 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getNeo4jRestClientRegistry_Clients() {
-    return (EReference)neo4jRestClientRegistryEClass.getEStructuralFeatures().get(0);
+  public EClass getNeo4jRestClientContainer() {
+    return neo4jRestClientContainerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNeo4jRestClientContainer_Clients() {
+    return (EReference)neo4jRestClientContainerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNeo4jRestClientContainer_Name() {
+    return (EAttribute)neo4jRestClientContainerEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -409,7 +435,10 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
     createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___REGISTER_EXTENSION__CLASS);
 
     neo4jRestClientRegistryEClass = createEClass(NEO4J_REST_CLIENT_REGISTRY);
-    createEReference(neo4jRestClientRegistryEClass, NEO4J_REST_CLIENT_REGISTRY__CLIENTS);
+
+    neo4jRestClientContainerEClass = createEClass(NEO4J_REST_CLIENT_CONTAINER);
+    createEReference(neo4jRestClientContainerEClass, NEO4J_REST_CLIENT_CONTAINER__CLIENTS);
+    createEAttribute(neo4jRestClientContainerEClass, NEO4J_REST_CLIENT_CONTAINER__NAME);
 
     // Create data types
     futureEDataType = createEDataType(FUTURE);
@@ -448,6 +477,7 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    neo4jRestClientRegistryEClass.getESuperTypes().add(this.getNeo4jRestClientContainer());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(neo4jRestClientEClass, Neo4jRestClient.class, "Neo4jRestClient", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -546,7 +576,10 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
     addEParameter(op, g1, "key", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(neo4jRestClientRegistryEClass, Neo4jRestClientRegistry.class, "Neo4jRestClientRegistry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNeo4jRestClientRegistry_Clients(), this.getNeo4jRestClient(), null, "clients", null, 0, -1, Neo4jRestClientRegistry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(neo4jRestClientContainerEClass, Neo4jRestClientContainer.class, "Neo4jRestClientContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNeo4jRestClientContainer_Clients(), ecorePackage.getEObject(), null, "clients", null, 0, -1, Neo4jRestClientContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNeo4jRestClientContainer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Neo4jRestClientContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize data types
     initEDataType(futureEDataType, Future.class, "Future", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

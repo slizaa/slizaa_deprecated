@@ -83,12 +83,12 @@ public class Neo4jRestClientItemProviderAdapterFactory extends Neo4jRestClientAd
    * This creates an adapter for a {@link org.slizaa.neo4j.restclient.Neo4jRestClient}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public Adapter createNeo4jRestClientAdapter() {
     if (neo4jRestClientItemProvider == null) {
-      neo4jRestClientItemProvider = new Neo4jRestClientItemProvider(this);
+      neo4jRestClientItemProvider = new ExtendedNeo4jRestClientItemProvider(this);
     }
 
     return neo4jRestClientItemProvider;
@@ -115,6 +115,29 @@ public class Neo4jRestClientItemProviderAdapterFactory extends Neo4jRestClientAd
     }
 
     return neo4jRestClientRegistryItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected Neo4jRestClientContainerItemProvider neo4jRestClientContainerItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createNeo4jRestClientContainerAdapter() {
+    if (neo4jRestClientContainerItemProvider == null) {
+      neo4jRestClientContainerItemProvider = new ExtendedNeo4jRestClientContainerItemProvider(this);
+    }
+
+    return neo4jRestClientContainerItemProvider;
   }
 
   /**
@@ -218,6 +241,7 @@ public class Neo4jRestClientItemProviderAdapterFactory extends Neo4jRestClientAd
   public void dispose() {
     if (neo4jRestClientItemProvider != null) neo4jRestClientItemProvider.dispose();
     if (neo4jRestClientRegistryItemProvider != null) neo4jRestClientRegistryItemProvider.dispose();
+    if (neo4jRestClientContainerItemProvider != null) neo4jRestClientContainerItemProvider.dispose();
   }
 
 }

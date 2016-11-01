@@ -249,6 +249,52 @@ public interface Neo4jRestClientPackage extends EPackage {
   int NEO4J_REST_CLIENT_OPERATION_COUNT = 15;
 
   /**
+   * The meta object id for the '{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientContainerImpl <em>Container</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientContainerImpl
+   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getNeo4jRestClientContainer()
+   * @generated
+   */
+  int NEO4J_REST_CLIENT_CONTAINER = 2;
+
+  /**
+   * The feature id for the '<em><b>Clients</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4J_REST_CLIENT_CONTAINER__CLIENTS = 0;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4J_REST_CLIENT_CONTAINER__NAME = 1;
+
+  /**
+   * The number of structural features of the '<em>Container</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4J_REST_CLIENT_CONTAINER_FEATURE_COUNT = 2;
+
+  /**
+   * The number of operations of the '<em>Container</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4J_REST_CLIENT_CONTAINER_OPERATION_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientRegistryImpl <em>Registry</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -265,7 +311,16 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_REGISTRY__CLIENTS = 0;
+  int NEO4J_REST_CLIENT_REGISTRY__CLIENTS = NEO4J_REST_CLIENT_CONTAINER__CLIENTS;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4J_REST_CLIENT_REGISTRY__NAME = NEO4J_REST_CLIENT_CONTAINER__NAME;
 
   /**
    * The number of structural features of the '<em>Registry</em>' class.
@@ -274,7 +329,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_REGISTRY_FEATURE_COUNT = 1;
+  int NEO4J_REST_CLIENT_REGISTRY_FEATURE_COUNT = NEO4J_REST_CLIENT_CONTAINER_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Registry</em>' class.
@@ -283,7 +338,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_REGISTRY_OPERATION_COUNT = 0;
+  int NEO4J_REST_CLIENT_REGISTRY_OPERATION_COUNT = NEO4J_REST_CLIENT_CONTAINER_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '<em>Future</em>' data type.
@@ -293,7 +348,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getFuture()
    * @generated
    */
-  int FUTURE = 2;
+  int FUTURE = 3;
 
   /**
    * The meta object id for the '<em>Consumer</em>' data type.
@@ -303,7 +358,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getConsumer()
    * @generated
    */
-  int CONSUMER = 3;
+  int CONSUMER = 4;
 
   /**
    * The meta object id for the '<em>Json Array</em>' data type.
@@ -313,7 +368,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getJsonArray()
    * @generated
    */
-  int JSON_ARRAY = 4;
+  int JSON_ARRAY = 5;
 
   /**
    * The meta object id for the '<em>Json Object</em>' data type.
@@ -323,7 +378,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getJsonObject()
    * @generated
    */
-  int JSON_OBJECT = 5;
+  int JSON_OBJECT = 6;
 
 
   /**
@@ -530,15 +585,36 @@ public interface Neo4jRestClientPackage extends EPackage {
   EClass getNeo4jRestClientRegistry();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.slizaa.neo4j.restclient.Neo4jRestClientRegistry#getClients <em>Clients</em>}'.
+   * Returns the meta object for class '{@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer <em>Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Container</em>'.
+   * @see org.slizaa.neo4j.restclient.Neo4jRestClientContainer
+   * @generated
+   */
+  EClass getNeo4jRestClientContainer();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer#getClients <em>Clients</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Clients</em>'.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClientRegistry#getClients()
-   * @see #getNeo4jRestClientRegistry()
+   * @see org.slizaa.neo4j.restclient.Neo4jRestClientContainer#getClients()
+   * @see #getNeo4jRestClientContainer()
    * @generated
    */
-  EReference getNeo4jRestClientRegistry_Clients();
+  EReference getNeo4jRestClientContainer_Clients();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.slizaa.neo4j.restclient.Neo4jRestClientContainer#getName()
+   * @see #getNeo4jRestClientContainer()
+   * @generated
+   */
+  EAttribute getNeo4jRestClientContainer_Name();
 
   /**
    * Returns the meta object for data type '{@link java.util.concurrent.Future <em>Future</em>}'.
@@ -772,12 +848,30 @@ public interface Neo4jRestClientPackage extends EPackage {
     EClass NEO4J_REST_CLIENT_REGISTRY = eINSTANCE.getNeo4jRestClientRegistry();
 
     /**
+     * The meta object literal for the '{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientContainerImpl <em>Container</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientContainerImpl
+     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getNeo4jRestClientContainer()
+     * @generated
+     */
+    EClass NEO4J_REST_CLIENT_CONTAINER = eINSTANCE.getNeo4jRestClientContainer();
+
+    /**
      * The meta object literal for the '<em><b>Clients</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference NEO4J_REST_CLIENT_REGISTRY__CLIENTS = eINSTANCE.getNeo4jRestClientRegistry_Clients();
+    EReference NEO4J_REST_CLIENT_CONTAINER__CLIENTS = eINSTANCE.getNeo4jRestClientContainer_Clients();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NEO4J_REST_CLIENT_CONTAINER__NAME = eINSTANCE.getNeo4jRestClientContainer_Name();
 
     /**
      * The meta object literal for the '<em>Future</em>' data type.
