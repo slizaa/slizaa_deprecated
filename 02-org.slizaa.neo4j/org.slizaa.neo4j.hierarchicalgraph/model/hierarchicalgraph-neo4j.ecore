@@ -11,7 +11,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedRootNodeSource" eSuperTypes="#//Neo4JBackedNodeSource">
     <eStructuralFeatures xsi:type="ecore:EReference" name="repository" lowerBound="1"
-        eType="#//INeo4JRepository"/>
+        eType="ecore:EClass ../../org.slizaa.neo4j.restclient/model/neo4j-restclient.ecore#//Neo4jRestClient"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Neo4JBackedDependencySource" eSuperTypes="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//IDependencySource">
     <eOperations name="getUserObject" lowerBound="1">
@@ -31,81 +31,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="userObject" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="INeo4JRepository" abstract="true" interface="true">
-    <eOperations name="getNodeLabels" eType="#//JsonArray">
-      <eParameters name="nodeId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-    </eOperations>
-    <eOperations name="getNodeProperties" eType="#//JsonObject">
-      <eParameters name="nodeId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-    </eOperations>
-    <eOperations name="getRelationshipProperties" eType="#//JsonObject">
-      <eParameters name="nodeId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-    </eOperations>
-    <eOperations name="executeCypherQuery">
-      <eGenericType eClassifier="#//Future">
-        <eTypeArguments eClassifier="#//JsonObject"/>
-      </eGenericType>
-      <eParameters name="cypherQuery" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eOperations>
-    <eOperations name="executeCypherQuery">
-      <eGenericType eClassifier="#//Future">
-        <eTypeArguments eClassifier="#//JsonObject"/>
-      </eGenericType>
-      <eParameters name="cypherQuery" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="params">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="executeCypherQuery">
-      <eGenericType eClassifier="#//Future">
-        <eTypeArguments/>
-      </eGenericType>
-      <eParameters name="cypherQuery" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="consumer">
-        <eGenericType eClassifier="#//Consumer">
-          <eTypeArguments eClassifier="#//JsonObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="executeCypherQuery">
-      <eGenericType eClassifier="#//Future">
-        <eTypeArguments/>
-      </eGenericType>
-      <eParameters name="cypherQuery" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="params">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        </eGenericType>
-      </eParameters>
-      <eParameters name="consumer">
-        <eGenericType eClassifier="#//Consumer">
-          <eTypeArguments eClassifier="#//JsonObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="hierarchicalGraphs" upperBound="-1"
-        eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGRootNode"
-        transient="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Neo4JRemoteRepository" eSuperTypes="#//INeo4JRepository">
-    <eOperations name="init"/>
-    <eOperations name="dispose"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPoolSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="Future" instanceClassName="java.util.concurrent.Future">
-    <eTypeParameters name="T"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="Consumer" instanceClassName="java.util.function.Consumer">
-    <eTypeParameters name="T"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="JsonArray" instanceClassName="com.google.gson.JsonArray"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="JsonObject" instanceClassName="com.google.gson.JsonObject"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Optional" instanceClassName="java.util.Optional">
     <eTypeParameters name="T"/>
   </eClassifiers>

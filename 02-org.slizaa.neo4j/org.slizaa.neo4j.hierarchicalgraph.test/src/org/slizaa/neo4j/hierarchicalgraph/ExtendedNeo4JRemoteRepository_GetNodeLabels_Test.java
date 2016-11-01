@@ -49,7 +49,7 @@ public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test extends AbstractRe
    */
   @Test
   public void getNodeProperties() {
-    JsonArray jsonObject = getNeo4JRemoteRepository().getNodeLabels(_nodeId);
+    JsonArray jsonObject = getNeo4JRemoteRepository().getLabelsForNode(_nodeId);
     assertThatJson(jsonObject).when(IGNORING_ARRAY_ORDER).isEqualTo(_expectedJsonString);
   }
 

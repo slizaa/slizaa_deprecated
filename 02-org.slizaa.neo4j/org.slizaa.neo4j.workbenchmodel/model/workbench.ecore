@@ -4,13 +4,9 @@
     nsPrefix="org.slizaa.neo4j.workbenchmodel">
   <eClassifiers xsi:type="ecore:EClass" name="WorkbenchModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="databases" lowerBound="1"
-        eType="#//Databases" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mappedGraphs" eType="#//MappedGraphs"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Databases">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="content" upperBound="-1"
-        eType="ecore:EClass ../../org.slizaa.neo4j.hierarchicalgraph/model/hierarchicalgraph-neo4j.ecore#//INeo4JRepository"
+        eType="ecore:EClass ../../org.slizaa.neo4j.restclient/model/neo4j-restclient.ecore#//Neo4jRestClientRegistry"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappedGraphs" eType="#//MappedGraphs"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MappedGraphs">
     <eStructuralFeatures xsi:type="ecore:EReference" name="content" upperBound="-1"

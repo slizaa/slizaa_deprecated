@@ -49,15 +49,6 @@ public interface Neo4jHierarchicalgraphFactory extends EFactory {
   Neo4JBackedDependencySource createNeo4JBackedDependencySource();
 
   /**
-   * Returns a new object of class '<em>Neo4 JRemote Repository</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Neo4 JRemote Repository</em>'.
-   * @generated
-   */
-  Neo4JRemoteRepository createNeo4JRemoteRepository();
-
-  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

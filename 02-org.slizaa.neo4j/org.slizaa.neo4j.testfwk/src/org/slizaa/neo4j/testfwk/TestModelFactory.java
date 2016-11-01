@@ -18,8 +18,9 @@ import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
+import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
 
 import com.google.gson.JsonObject;
 
@@ -47,11 +48,10 @@ public class TestModelFactory {
    * @param baseUri
    * @return
    */
-  public static Neo4JRemoteRepository createNeo4JRemoteRepository(String baseUri) {
+  public static Neo4jRestClient createNeo4JRemoteRepository(String baseUri) {
 
     // create the remote repository
-    final Neo4JRemoteRepository remoteRepository = Neo4jHierarchicalgraphFactory.eINSTANCE
-        .createNeo4JRemoteRepository();
+    final Neo4jRestClient remoteRepository = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClient();
 
     //
     remoteRepository.setBaseURI(checkNotNull(baseUri));
@@ -70,7 +70,7 @@ public class TestModelFactory {
    * @throws ExecutionException
    * @throws IOException
    */
-  public static HGRootNode createGraphFromDefaultMapping(Neo4JRemoteRepository remoteRepository) throws Exception {
+  public static HGRootNode createGraphFromDefaultMapping(Neo4jRestClient remoteRepository) throws Exception {
 
     // create the root element
     final HGRootNode rootElement = createNewRootNode(() -> {

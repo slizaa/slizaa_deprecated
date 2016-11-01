@@ -48,7 +48,7 @@ public class ExtendedNeo4JRemoteRepository_GetRelationshipProperties_Test extend
    */
   @Test
   public void getNodeProperties() {
-    JsonObject jsonObject = getNeo4JRemoteRepository().getRelationshipProperties(_nodeId);
+    JsonObject jsonObject = getNeo4JRemoteRepository().getPropertiesForRelationship(_nodeId);
     System.out.println(jsonObject);
     assertThatJson(jsonObject).isEqualTo(_expectedJsonString);
   }

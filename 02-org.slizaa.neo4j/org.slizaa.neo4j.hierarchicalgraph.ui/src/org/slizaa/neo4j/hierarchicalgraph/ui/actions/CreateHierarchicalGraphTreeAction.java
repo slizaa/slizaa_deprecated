@@ -20,13 +20,13 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorBasedItemLabelProviderImpl;
 import org.slizaa.neo4j.hierarchicalgraph.ui.deprecated.Descriptors;
 import org.slizaa.neo4j.hierarchicalgraph.ui.deprecated.Descriptors2;
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.tree.SlizaaTreeAction;
@@ -52,20 +52,21 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
 
   @Override
   public boolean shouldShow(EObject eObject) {
-    return eObject instanceof Neo4JRemoteRepository;
+    return eObject instanceof Neo4jRestClient;
   }
 
   @Override
   public boolean isEnabled(EObject eSelectedObject) {
-    Neo4JRemoteRepository repository = (Neo4JRemoteRepository) eSelectedObject;
-    return repository.getHierarchicalGraphs().size() == 0;
+    Neo4jRestClient repository = (Neo4jRestClient) eSelectedObject;
+    // return repository.getHierarchicalGraphs().size() == 0;
+    return true;
   }
 
   @Override
   public void execute(EObject object) {
 
     //
-    Neo4JRemoteRepository remoteRepository = (Neo4JRemoteRepository) object;
+    Neo4jRestClient remoteRepository = (Neo4jRestClient) object;
 
     ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(),
         new LabelProvider());
@@ -117,7 +118,7 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
   private class LoadModelFromGraphDatabaseJob extends Job {
 
     /** - */
-    private Neo4JRemoteRepository              _remoteRepository;
+    private Neo4jRestClient                    _remoteRepository;
 
     /** - */
     private HierarchicalGraphMappingDescriptor _mappingDescriptor;
@@ -129,10 +130,10 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
      *
      * @param remoteRepository
      */
-    public LoadModelFromGraphDatabaseJob(Neo4JRemoteRepository remoteRepository,
+    public LoadModelFromGraphDatabaseJob(Neo4jRestClient remoteRepository,
         HierarchicalGraphMappingDescriptor mappingDescriptor) {
       super("Creating hierarchical graph");
-      
+
       //
       setUser(true);
       _remoteRepository = checkNotNull(remoteRepository);
@@ -149,7 +150,7 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
         // set label provider
         rootNode.registerExtension(IItemLabelProvider.class,
             new MappingDescriptorBasedItemLabelProviderImpl(_mappingDescriptor));
-        _remoteRepository.getHierarchicalGraphs().add(rootNode);
+        // _remoteRepository.getHierarchicalGraphs().add(rootNode);
         _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().add(rootNode);
 
         //

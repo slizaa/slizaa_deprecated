@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
-import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.tree.SlizaaTreeAction;
@@ -49,13 +49,13 @@ public class DisposeHierarchicalGraphTreeAction implements SlizaaTreeAction {
     //
     _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().remove(rootNode);
 
-    //
-    for (INeo4JRepository neo4jRepository : _workbenchModelService.getWorkbenchModel().getDatabases().getContent()) {
-      if (neo4jRepository.getHierarchicalGraphs().contains(rootNode)) {
-        neo4jRepository.getHierarchicalGraphs().remove(rootNode);
-        break;
-      }
-    }
+//    //
+//    for (Neo4jRestClient neo4jRepository : _workbenchModelService.getWorkbenchModel().getDatabases().getContent()) {
+//      if (neo4jRepository.getHierarchicalGraphs().contains(rootNode)) {
+//        neo4jRepository.getHierarchicalGraphs().remove(rootNode);
+//        break;
+//      }
+//    }
 
     //
     ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE,

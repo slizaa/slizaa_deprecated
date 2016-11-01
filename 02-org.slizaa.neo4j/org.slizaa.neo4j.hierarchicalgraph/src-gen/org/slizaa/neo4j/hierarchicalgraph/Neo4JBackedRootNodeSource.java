@@ -2,6 +2,7 @@
  */
 package org.slizaa.neo4j.hierarchicalgraph;
 
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,12 +30,12 @@ public interface Neo4JBackedRootNodeSource extends Neo4JBackedNodeSource {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Repository</em>' reference.
-   * @see #setRepository(INeo4JRepository)
+   * @see #setRepository(Neo4jRestClient)
    * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedRootNodeSource_Repository()
    * @model required="true"
    * @generated
    */
-  INeo4JRepository getRepository();
+  Neo4jRestClient getRepository();
 
   /**
    * Sets the value of the '{@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource#getRepository <em>Repository</em>}' reference.
@@ -44,6 +45,6 @@ public interface Neo4JBackedRootNodeSource extends Neo4JBackedNodeSource {
    * @see #getRepository()
    * @generated
    */
-  void setRepository(INeo4JRepository value);
+  void setRepository(Neo4jRestClient value);
 
 } // Neo4JBackedRootNodeSource

@@ -57,7 +57,6 @@ public class WorkbenchmodelFactoryImpl extends EFactoryImpl implements Workbench
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
       case WorkbenchmodelPackage.WORKBENCH_MODEL: return createWorkbenchModel();
-      case WorkbenchmodelPackage.DATABASES: return createDatabases();
       case WorkbenchmodelPackage.MAPPED_GRAPHS: return createMappedGraphs();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -72,16 +71,6 @@ public class WorkbenchmodelFactoryImpl extends EFactoryImpl implements Workbench
   public WorkbenchModel createWorkbenchModel() {
     WorkbenchModelImpl workbenchModel = new WorkbenchModelImpl();
     return workbenchModel;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Databases createDatabases() {
-    DatabasesImpl databases = new DatabasesImpl();
-    return databases;
   }
 
   /**

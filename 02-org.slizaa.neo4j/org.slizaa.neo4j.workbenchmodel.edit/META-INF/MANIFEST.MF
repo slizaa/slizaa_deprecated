@@ -15,5 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.slizaa.hierarchicalgraph;visibility:=reexport,
  org.slizaa.hierarchicalgraph.edit;visibility:=reexport,
  org.slizaa.neo4j.hierarchicalgraph;visibility:=reexport,
- org.slizaa.neo4j.hierarchicalgraph.edit;visibility:=reexport
+ org.slizaa.neo4j.hierarchicalgraph.edit;visibility:=reexport,
+ org.slizaa.neo4j.restclient;visibility:=reexport,
+ org.slizaa.neo4j.restclient.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

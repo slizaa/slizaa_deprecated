@@ -3,7 +3,8 @@ package org.slizaa.neo4j.testfwk;
 import org.junit.After;
 import org.junit.Before;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
+import org.slizaa.neo4j.graphdb.testfwk.AbstractNeo4JServerTest;
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
 
 /**
  * <p>
@@ -14,7 +15,7 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 public abstract class AbstractRemoteRepositoryTest extends AbstractNeo4JServerTest {
 
   /** - */
-  private Neo4JRemoteRepository _neo4JRemoteRepository;
+  private Neo4jRestClient _neo4JRemoteRepository;
 
   @Before
   public void init() throws Exception {
@@ -32,7 +33,7 @@ public abstract class AbstractRemoteRepositoryTest extends AbstractNeo4JServerTe
    *
    * @return the neo4JRemoteRepository
    */
-  public Neo4JRemoteRepository getNeo4JRemoteRepository() {
+  public Neo4jRestClient getNeo4JRemoteRepository() {
     return _neo4JRemoteRepository;
   }
 
@@ -44,7 +45,7 @@ public abstract class AbstractRemoteRepositoryTest extends AbstractNeo4JServerTe
    * @return
    * @throws Exception
    */
-  public HGRootNode createGraphFromDefaultMapping(Neo4JRemoteRepository remoteRepository) throws Exception {
+  public HGRootNode createGraphFromDefaultMapping(Neo4jRestClient remoteRepository) throws Exception {
     return TestModelFactory.createGraphFromDefaultMapping(remoteRepository);
   }
 }

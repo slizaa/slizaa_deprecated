@@ -3,6 +3,7 @@
 package org.slizaa.neo4j.workbenchmodel;
 
 import org.eclipse.emf.ecore.EObject;
+import org.slizaa.neo4j.restclient.Neo4jRestClientRegistry;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,12 +32,12 @@ public interface WorkbenchModel extends EObject {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Databases</em>' containment reference.
-   * @see #setDatabases(Databases)
+   * @see #setDatabases(Neo4jRestClientRegistry)
    * @see org.slizaa.neo4j.workbenchmodel.WorkbenchmodelPackage#getWorkbenchModel_Databases()
    * @model containment="true" required="true"
    * @generated
    */
-  Databases getDatabases();
+  Neo4jRestClientRegistry getDatabases();
 
   /**
    * Sets the value of the '{@link org.slizaa.neo4j.workbenchmodel.WorkbenchModel#getDatabases <em>Databases</em>}' containment reference.
@@ -46,7 +47,7 @@ public interface WorkbenchModel extends EObject {
    * @see #getDatabases()
    * @generated
    */
-  void setDatabases(Databases value);
+  void setDatabases(Neo4jRestClientRegistry value);
 
   /**
    * Returns the value of the '<em><b>Mapped Graphs</b></em>' reference.

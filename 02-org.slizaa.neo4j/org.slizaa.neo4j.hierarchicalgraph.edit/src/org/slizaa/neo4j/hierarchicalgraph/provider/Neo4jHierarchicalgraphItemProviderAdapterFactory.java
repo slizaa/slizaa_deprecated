@@ -118,29 +118,6 @@ public class Neo4jHierarchicalgraphItemProviderAdapterFactory extends Neo4jHiera
   }
 
 	/**
-   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository} instances.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	protected Neo4JRemoteRepositoryItemProvider neo4JRemoteRepositoryItemProvider;
-
-	/**
-   * This creates an adapter for a {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository}.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	@Override
-	public Adapter createNeo4JRemoteRepositoryAdapter() {
-    if (neo4JRemoteRepositoryItemProvider == null) {
-      neo4JRemoteRepositoryItemProvider = new Neo4JRemoteRepositoryItemProvider(this);
-    }
-
-    return neo4JRemoteRepositoryItemProvider;
-  }
-
-	/**
    * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -265,7 +242,6 @@ public class Neo4jHierarchicalgraphItemProviderAdapterFactory extends Neo4jHiera
     if (neo4JBackedNodeSourceItemProvider != null) neo4JBackedNodeSourceItemProvider.dispose();
     if (neo4JBackedRootNodeSourceItemProvider != null) neo4JBackedRootNodeSourceItemProvider.dispose();
     if (neo4JBackedDependencySourceItemProvider != null) neo4JBackedDependencySourceItemProvider.dispose();
-    if (neo4JRemoteRepositoryItemProvider != null) neo4JRemoteRepositoryItemProvider.dispose();
   }
 
 }

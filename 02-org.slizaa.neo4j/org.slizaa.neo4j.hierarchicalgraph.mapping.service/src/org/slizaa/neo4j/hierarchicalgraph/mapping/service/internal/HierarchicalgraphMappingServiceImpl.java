@@ -24,14 +24,13 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
-import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.DependencyMapping;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.HierarchicalGraphMappingException;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -61,7 +60,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
    */
   @Override
   public HGRootNode convert(HierarchicalGraphMappingDescriptor mappingDescriptor,
-      final Neo4JRemoteRepository remoteRepository, IProgressMonitor progressMonitor)
+      final Neo4jRestClient remoteRepository, IProgressMonitor progressMonitor)
       throws HierarchicalGraphMappingException {
 
     checkNotNull(mappingDescriptor);
@@ -111,7 +110,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
         subMonitor != null ? subMonitor.split(33).setWorkRemaining(dependencyQueries.size()) : null);
 
     // set the extensions
-    rootNode.registerExtension(INeo4JRepository.class, remoteRepository);
+    rootNode.registerExtension(Neo4jRestClient.class, remoteRepository);
     rootNode.registerExtension(IAggregatedCoreDependencyResolver.class, new CustomAggregatedDependencyResolver());
     rootNode.registerExtension(HierarchicalGraphMappingDescriptor.class, mappingDescriptor);
 

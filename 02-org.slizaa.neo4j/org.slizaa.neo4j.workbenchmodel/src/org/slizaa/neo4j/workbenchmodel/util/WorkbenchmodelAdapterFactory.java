@@ -72,10 +72,6 @@ public class WorkbenchmodelAdapterFactory extends AdapterFactoryImpl {
         return createWorkbenchModelAdapter();
       }
       @Override
-      public Adapter caseDatabases(Databases object) {
-        return createDatabasesAdapter();
-      }
-      @Override
       public Adapter caseMappedGraphs(MappedGraphs object) {
         return createMappedGraphsAdapter();
       }
@@ -110,20 +106,6 @@ public class WorkbenchmodelAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createWorkbenchModelAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.workbenchmodel.Databases <em>Databases</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.slizaa.neo4j.workbenchmodel.Databases
-   * @generated
-   */
-  public Adapter createDatabasesAdapter() {
     return null;
   }
 

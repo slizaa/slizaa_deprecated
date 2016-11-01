@@ -7,9 +7,9 @@ import java.util.Optional;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
 
 import com.google.gson.JsonObject;
 
@@ -51,7 +51,7 @@ public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependen
   public EMap<String, String> reloadProperties() {
 
     //
-    JsonObject jsonObject = getJQAssistantRemoteService().getRelationshipProperties((long) getIdentifier());
+    JsonObject jsonObject = getNeo4jRestClient().getPropertiesForRelationship((long) getIdentifier());
 
     // lazy init
     if (properties == null) {
@@ -78,8 +78,8 @@ public class ExtendedNeo4JBackedDependencySourceImpl extends Neo4JBackedDependen
    *
    * @return
    */
-  public INeo4JRepository getJQAssistantRemoteService() {
-    return (INeo4JRepository) ((Neo4JBackedRootNodeSource) getDependency().getFrom().getRootNode().getNodeSource())
+  public Neo4jRestClient getNeo4jRestClient() {
+    return (Neo4jRestClient) ((Neo4JBackedRootNodeSource) getDependency().getFrom().getRootNode().getNodeSource())
         .getRepository();
   }
 }

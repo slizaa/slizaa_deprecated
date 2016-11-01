@@ -19,10 +19,10 @@ import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
-import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.DependencyMapping;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
 
 import com.google.gson.JsonArray;
 
@@ -60,7 +60,7 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
     params.put("to", toNodes.toString());
 
     //
-    INeo4JRepository neo4jRepository = dependency.getRootNode().getExtension(INeo4JRepository.class);
+    Neo4jRestClient neo4jRepository = dependency.getRootNode().getExtension(Neo4jRestClient.class);
 
     //
     return getDetailQueries(dependency).stream()
@@ -97,7 +97,7 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
    * @param params
    * @return
    */
-  private Future<?> createFutureForQuery(INeo4JRepository neo4jRepository, final HGAggregatedCoreDependency dependency,
+  private Future<?> createFutureForQuery(Neo4jRestClient neo4jRepository, final HGAggregatedCoreDependency dependency,
       final String query, Map<String, String> params) {
 
     // return new future

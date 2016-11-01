@@ -95,29 +95,6 @@ public class WorkbenchmodelItemProviderAdapterFactory extends WorkbenchmodelAdap
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.workbenchmodel.Databases} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected DatabasesItemProvider databasesItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.slizaa.neo4j.workbenchmodel.Databases}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createDatabasesAdapter() {
-    if (databasesItemProvider == null) {
-      databasesItemProvider = new DatabasesItemProvider(this);
-    }
-
-    return databasesItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.workbenchmodel.MappedGraphs} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -240,7 +217,6 @@ public class WorkbenchmodelItemProviderAdapterFactory extends WorkbenchmodelAdap
    */
   public void dispose() {
     if (workbenchModelItemProvider != null) workbenchModelItemProvider.dispose();
-    if (databasesItemProvider != null) databasesItemProvider.dispose();
     if (mappedGraphsItemProvider != null) mappedGraphsItemProvider.dispose();
   }
 

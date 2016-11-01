@@ -72,12 +72,6 @@ public class WorkbenchmodelSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case WorkbenchmodelPackage.DATABASES: {
-        Databases databases = (Databases)theEObject;
-        T result = caseDatabases(databases);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case WorkbenchmodelPackage.MAPPED_GRAPHS: {
         MappedGraphs mappedGraphs = (MappedGraphs)theEObject;
         T result = caseMappedGraphs(mappedGraphs);
@@ -100,21 +94,6 @@ public class WorkbenchmodelSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseWorkbenchModel(WorkbenchModel object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Databases</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Databases</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDatabases(Databases object) {
     return null;
   }
 

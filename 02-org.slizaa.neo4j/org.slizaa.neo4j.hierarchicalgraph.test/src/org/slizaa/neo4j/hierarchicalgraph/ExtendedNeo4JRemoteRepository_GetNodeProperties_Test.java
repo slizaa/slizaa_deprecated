@@ -48,7 +48,7 @@ public class ExtendedNeo4JRemoteRepository_GetNodeProperties_Test extends Abstra
    */
   @Test
   public void getNodeProperties() {
-    JsonObject jsonObject = getNeo4JRemoteRepository().getNodeProperties(_nodeId);
+    JsonObject jsonObject = getNeo4JRemoteRepository().getPropertiesForNode(_nodeId);
     assertThatJson(jsonObject).isEqualTo(_expectedJsonString);
   }
 

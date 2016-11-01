@@ -9,9 +9,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
+
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +36,7 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
    * @generated
    * @ordered
    */
-  protected INeo4JRepository repository;
+  protected Neo4jRestClient repository;
 
   /**
    * <!-- begin-user-doc -->
@@ -61,10 +62,10 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public INeo4JRepository getRepository() {
+  public Neo4jRestClient getRepository() {
     if (repository != null && repository.eIsProxy()) {
       InternalEObject oldRepository = (InternalEObject)repository;
-      repository = (INeo4JRepository)eResolveProxy(oldRepository);
+      repository = (Neo4jRestClient)eResolveProxy(oldRepository);
       if (repository != oldRepository) {
         if (eNotificationRequired())
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY, oldRepository, repository));
@@ -78,7 +79,7 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public INeo4JRepository basicGetRepository() {
+  public Neo4jRestClient basicGetRepository() {
     return repository;
   }
 
@@ -87,8 +88,8 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRepository(INeo4JRepository newRepository) {
-    INeo4JRepository oldRepository = repository;
+  public void setRepository(Neo4jRestClient newRepository) {
+    Neo4jRestClient oldRepository = repository;
     repository = newRepository;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY, oldRepository, repository));
@@ -118,7 +119,7 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY:
-        setRepository((INeo4JRepository)newValue);
+        setRepository((Neo4jRestClient)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -133,7 +134,7 @@ public class Neo4JBackedRootNodeSourceImpl extends Neo4JBackedNodeSourceImpl imp
   public void eUnset(int featureID) {
     switch (featureID) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY:
-        setRepository((INeo4JRepository)null);
+        setRepository((Neo4jRestClient)null);
         return;
     }
     super.eUnset(featureID);

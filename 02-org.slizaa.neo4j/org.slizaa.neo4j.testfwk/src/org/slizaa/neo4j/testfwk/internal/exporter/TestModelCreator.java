@@ -18,8 +18,8 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4JRemoteRepository;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
+import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
 
 import com.google.gson.JsonObject;
 
@@ -51,8 +51,7 @@ public class TestModelCreator {
   public static void createTestModel(String fileName, String baseUri) throws Exception {
 
     // create the remote repository
-    final Neo4JRemoteRepository remoteRepository = Neo4jHierarchicalgraphFactory.eINSTANCE
-        .createNeo4JRemoteRepository();
+    final Neo4jRestClient remoteRepository = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClient();
     remoteRepository.setBaseURI(baseUri);
     remoteRepository.setThreadPoolSize(20);
     remoteRepository.init();
@@ -73,12 +72,12 @@ public class TestModelCreator {
       nodeSource.setIdentifier(id);
 
       // add properties
-      remoteRepository.getNodeProperties(id).entrySet().forEach((e) -> {
+      remoteRepository.getPropertiesForNode(id).entrySet().forEach((e) -> {
         nodeSource.getProperties().put(e.getKey(), e.getValue().getAsString());
       });
 
       // add labels
-      nodeSource.getProperties().put("labels", remoteRepository.getNodeLabels(id).toString().replace("\"", ""));
+      nodeSource.getProperties().put("labels", remoteRepository.getLabelsForNode(id).toString().replace("\"", ""));
 
       // return the result
       return nodeSource;

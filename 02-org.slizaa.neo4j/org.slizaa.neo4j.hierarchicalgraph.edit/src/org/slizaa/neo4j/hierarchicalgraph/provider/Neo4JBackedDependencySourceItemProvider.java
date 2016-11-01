@@ -230,7 +230,7 @@ public class Neo4JBackedDependencySourceItemProvider extends ItemProviderAdapter
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return Neo4jHierarchicalGraphEditPlugin.INSTANCE;
+    return Hierarchicalgraphneo4jEditPlugin.INSTANCE;
   }
 
 }

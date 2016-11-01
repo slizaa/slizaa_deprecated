@@ -91,19 +91,6 @@ public class Neo4jHierarchicalgraphSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case Neo4jHierarchicalgraphPackage.INEO4_JREPOSITORY: {
-        INeo4JRepository iNeo4JRepository = (INeo4JRepository)theEObject;
-        T result = caseINeo4JRepository(iNeo4JRepository);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case Neo4jHierarchicalgraphPackage.NEO4_JREMOTE_REPOSITORY: {
-        Neo4JRemoteRepository neo4JRemoteRepository = (Neo4JRemoteRepository)theEObject;
-        T result = caseNeo4JRemoteRepository(neo4JRemoteRepository);
-        if (result == null) result = caseINeo4JRepository(neo4JRemoteRepository);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       default: return defaultCase(theEObject);
     }
   }
@@ -150,36 +137,6 @@ public class Neo4jHierarchicalgraphSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseNeo4JBackedDependencySource(Neo4JBackedDependencySource object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>INeo4 JRepository</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>INeo4 JRepository</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseINeo4JRepository(INeo4JRepository object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Neo4 JRemote Repository</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Neo4 JRemote Repository</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNeo4JRemoteRepository(Neo4JRemoteRepository object) {
     return null;
   }
 

@@ -1,6 +1,6 @@
 /**
  */
-package org.slizaa.neo4j.workbenchmodel.provider;
+package org.slizaa.neo4j.hierarchicalgraph.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 
@@ -8,23 +8,22 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.slizaa.hierarchicalgraph.provider.HierarchicalgraphEditPlugin;
 
-import org.slizaa.neo4j.hierarchicalgraph.provider.Hierarchicalgraphneo4jEditPlugin;
 import org.slizaa.neo4j.restclient.provider.Neo4jrestclientEditPlugin;
 
 /**
- * This is the central singleton for the Workbench edit plugin.
+ * This is the central singleton for the Hierarchicalgraph-neo4j edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class WorkbenchEditPlugin extends EMFPlugin {
+public final class Hierarchicalgraphneo4jEditPlugin extends EMFPlugin {
   /**
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final WorkbenchEditPlugin INSTANCE = new WorkbenchEditPlugin();
+  public static final Hierarchicalgraphneo4jEditPlugin INSTANCE = new Hierarchicalgraphneo4jEditPlugin();
 
   /**
    * Keep track of the singleton.
@@ -40,11 +39,10 @@ public final class WorkbenchEditPlugin extends EMFPlugin {
    * <!-- end-user-doc -->
    * @generated
    */
-  public WorkbenchEditPlugin() {
+  public Hierarchicalgraphneo4jEditPlugin() {
     super
       (new ResourceLocator [] {
          HierarchicalgraphEditPlugin.INSTANCE,
-         Hierarchicalgraphneo4jEditPlugin.INSTANCE,
          Neo4jrestclientEditPlugin.INSTANCE,
        });
   }

@@ -102,43 +102,6 @@ public interface WorkbenchmodelPackage extends EPackage {
   int WORKBENCH_MODEL_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.slizaa.neo4j.workbenchmodel.impl.DatabasesImpl <em>Databases</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.slizaa.neo4j.workbenchmodel.impl.DatabasesImpl
-   * @see org.slizaa.neo4j.workbenchmodel.impl.WorkbenchmodelPackageImpl#getDatabases()
-   * @generated
-   */
-  int DATABASES = 1;
-
-  /**
-   * The feature id for the '<em><b>Content</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATABASES__CONTENT = 0;
-
-  /**
-   * The number of structural features of the '<em>Databases</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATABASES_FEATURE_COUNT = 1;
-
-  /**
-   * The number of operations of the '<em>Databases</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATABASES_OPERATION_COUNT = 0;
-
-  /**
    * The meta object id for the '{@link org.slizaa.neo4j.workbenchmodel.impl.MappedGraphsImpl <em>Mapped Graphs</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -146,7 +109,7 @@ public interface WorkbenchmodelPackage extends EPackage {
    * @see org.slizaa.neo4j.workbenchmodel.impl.WorkbenchmodelPackageImpl#getMappedGraphs()
    * @generated
    */
-  int MAPPED_GRAPHS = 2;
+  int MAPPED_GRAPHS = 1;
 
   /**
    * The feature id for the '<em><b>Content</b></em>' reference list.
@@ -206,27 +169,6 @@ public interface WorkbenchmodelPackage extends EPackage {
    * @generated
    */
   EReference getWorkbenchModel_MappedGraphs();
-
-  /**
-   * Returns the meta object for class '{@link org.slizaa.neo4j.workbenchmodel.Databases <em>Databases</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Databases</em>'.
-   * @see org.slizaa.neo4j.workbenchmodel.Databases
-   * @generated
-   */
-  EClass getDatabases();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.slizaa.neo4j.workbenchmodel.Databases#getContent <em>Content</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Content</em>'.
-   * @see org.slizaa.neo4j.workbenchmodel.Databases#getContent()
-   * @see #getDatabases()
-   * @generated
-   */
-  EReference getDatabases_Content();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.neo4j.workbenchmodel.MappedGraphs <em>Mapped Graphs</em>}'.
@@ -297,24 +239,6 @@ public interface WorkbenchmodelPackage extends EPackage {
      * @generated
      */
     EReference WORKBENCH_MODEL__MAPPED_GRAPHS = eINSTANCE.getWorkbenchModel_MappedGraphs();
-
-    /**
-     * The meta object literal for the '{@link org.slizaa.neo4j.workbenchmodel.impl.DatabasesImpl <em>Databases</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.slizaa.neo4j.workbenchmodel.impl.DatabasesImpl
-     * @see org.slizaa.neo4j.workbenchmodel.impl.WorkbenchmodelPackageImpl#getDatabases()
-     * @generated
-     */
-    EClass DATABASES = eINSTANCE.getDatabases();
-
-    /**
-     * The meta object literal for the '<em><b>Content</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATABASES__CONTENT = eINSTANCE.getDatabases_Content();
 
     /**
      * The meta object literal for the '{@link org.slizaa.neo4j.workbenchmodel.impl.MappedGraphsImpl <em>Mapped Graphs</em>}' class.

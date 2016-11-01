@@ -31,15 +31,6 @@ public interface WorkbenchmodelFactory extends EFactory {
   WorkbenchModel createWorkbenchModel();
 
   /**
-   * Returns a new object of class '<em>Databases</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Databases</em>'.
-   * @generated
-   */
-  Databases createDatabases();
-
-  /**
    * Returns a new object of class '<em>Mapped Graphs</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

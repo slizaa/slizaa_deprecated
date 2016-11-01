@@ -1,67 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.slizaa.neo4j.hierarchicalgraph/src-gen" modelPluginID="org.slizaa.neo4j.hierarchicalgraph"
-    modelName="Neo4j-HierarchicalGraph" editPluginClass="org.slizaa.neo4j.hierarchicalgraph.provider.Neo4jHierarchicalGraphEditPlugin"
-    editorPluginClass="org.slizaa.neo4j.hierarchicalgraph.presentation.Neo4jHierarchicalGraphEditorPlugin"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.slizaa.neo4j.hierarchicalgraph/src-gen" editDirectory="/org.slizaa.neo4j.hierarchicalgraph.edit/src"
+    modelPluginID="org.slizaa.neo4j.hierarchicalgraph" modelName="Hierarchicalgraph-neo4j"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.genmodel#//hierarchicalgraph"
-    operationReflection="true" importOrganizing="true" pluginKey="neo4j-hierarchicalgraph">
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.genmodel#//hierarchicalgraph ../../org.slizaa.neo4j.restclient/model/neo4j-restclient.genmodel#//restclient"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>hierarchicalgraph-neo4j.ecore</foreignModel>
   <genPackages prefix="Neo4jHierarchicalgraph" basePackage="org.slizaa.neo4j" disposableProviderFactory="true"
       ecorePackage="hierarchicalgraph-neo4j.ecore#/">
-    <genDataTypes ecoreDataType="hierarchicalgraph-neo4j.ecore#//Future">
-      <genTypeParameters ecoreTypeParameter="hierarchicalgraph-neo4j.ecore#//Future/T"/>
+    <genDataTypes ecoreDataType="hierarchicalgraph-neo4j.ecore#//Optional">
+      <genTypeParameters ecoreTypeParameter="hierarchicalgraph-neo4j.ecore#//Optional/T"/>
     </genDataTypes>
-    <genDataTypes ecoreDataType="hierarchicalgraph-neo4j.ecore#//Consumer">
-      <genTypeParameters ecoreTypeParameter="hierarchicalgraph-neo4j.ecore#//Consumer/T"/>
-    </genDataTypes>
-    <genDataTypes ecoreDataType="hierarchicalgraph-neo4j.ecore#//JsonArray"/>
-    <genDataTypes ecoreDataType="hierarchicalgraph-neo4j.ecore#//JsonObject"/>
-    <genClasses image="false" ecoreClass="hierarchicalgraph-neo4j.ecore#//Neo4JBackedNodeSource">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hierarchicalgraph-neo4j.ecore#//Neo4JBackedNodeSource/properties"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph-neo4j.ecore#//Neo4JBackedNodeSource/labels"/>
+    <genClasses ecoreClass="hierarchicalgraph-neo4j.ecore#//Neo4JBackedNodeSource">
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference hierarchicalgraph-neo4j.ecore#//Neo4JBackedNodeSource/properties"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph-neo4j.ecore#//Neo4JBackedNodeSource/labels"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="hierarchicalgraph-neo4j.ecore#//Neo4JBackedRootNodeSource">
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference hierarchicalgraph-neo4j.ecore#//Neo4JBackedRootNodeSource/repository"/>
+    <genClasses ecoreClass="hierarchicalgraph-neo4j.ecore#//Neo4JBackedRootNodeSource">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hierarchicalgraph-neo4j.ecore#//Neo4JBackedRootNodeSource/repository"/>
     </genClasses>
     <genClasses ecoreClass="hierarchicalgraph-neo4j.ecore#//Neo4JBackedDependencySource">
       <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference hierarchicalgraph-neo4j.ecore#//Neo4JBackedDependencySource/properties"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph-neo4j.ecore#//Neo4JBackedDependencySource/type"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="hierarchicalgraph-neo4j.ecore#//INeo4JRepository">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hierarchicalgraph-neo4j.ecore#//INeo4JRepository/hierarchicalGraphs"/>
-      <genOperations ecoreOperation="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/getNodeLabels">
-        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/getNodeLabels/nodeId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph-neo4j.ecore#//Neo4JBackedDependencySource/userObject"/>
+      <genOperations ecoreOperation="hierarchicalgraph-neo4j.ecore#//Neo4JBackedDependencySource/getUserObject">
+        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//Neo4JBackedDependencySource/getUserObject/type"/>
+        <genTypeParameters ecoreTypeParameter="hierarchicalgraph-neo4j.ecore#//Neo4JBackedDependencySource/getUserObject/T"/>
       </genOperations>
-      <genOperations ecoreOperation="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/getNodeProperties">
-        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/getNodeProperties/nodeId"/>
-      </genOperations>
-      <genOperations ecoreOperation="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/getRelationshipProperties">
-        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/getRelationshipProperties/nodeId"/>
-      </genOperations>
-      <genOperations ecoreOperation="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery">
-        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery/cypherQuery"/>
-      </genOperations>
-      <genOperations ecoreOperation="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery.1">
-        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery.1/cypherQuery"/>
-        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery.1/params"/>
-      </genOperations>
-      <genOperations ecoreOperation="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery.2">
-        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery.2/cypherQuery"/>
-        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery.2/consumer"/>
-      </genOperations>
-      <genOperations ecoreOperation="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery.3">
-        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery.3/cypherQuery"/>
-        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery.3/params"/>
-        <genParameters ecoreParameter="hierarchicalgraph-neo4j.ecore#//INeo4JRepository/executeCypherQuery.3/consumer"/>
-      </genOperations>
-    </genClasses>
-    <genClasses ecoreClass="hierarchicalgraph-neo4j.ecore#//Neo4JRemoteRepository">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph-neo4j.ecore#//Neo4JRemoteRepository/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph-neo4j.ecore#//Neo4JRemoteRepository/baseURI"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hierarchicalgraph-neo4j.ecore#//Neo4JRemoteRepository/threadPoolSize"/>
-      <genOperations ecoreOperation="hierarchicalgraph-neo4j.ecore#//Neo4JRemoteRepository/init"/>
-      <genOperations ecoreOperation="hierarchicalgraph-neo4j.ecore#//Neo4JRemoteRepository/dispose"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

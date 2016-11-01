@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-import org.slizaa.neo4j.hierarchicalgraph.INeo4JRepository;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
 import org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedNodeSourceImpl;
+import org.slizaa.neo4j.restclient.Neo4jRestClient;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -91,7 +91,7 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
   public EList<String> reloadLabels() {
 
     // request properties
-    return setLabels(getJQAssistantRemoteService().getNodeLabels((long) _nodeSource.getIdentifier()));
+    return setLabels(getNeo4jRestClient().getLabelsForNode((long) _nodeSource.getIdentifier()));
   }
 
   /**
@@ -103,7 +103,7 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
   public EMap<String, String> reloadProperties() {
 
     // request properties
-    return setProperties(getJQAssistantRemoteService().getNodeProperties((long) _nodeSource.getIdentifier()));
+    return setProperties(getNeo4jRestClient().getPropertiesForNode((long) _nodeSource.getIdentifier()));
   }
 
   /**
@@ -191,7 +191,7 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
     // query
     Map<String, String> params = new HashMap<>();
     params.put("ids", nodes.keySet().toString());
-    Future<JsonObject> result = getJQAssistantRemoteService().executeCypherQuery(BATCH_UPDATE_QUERY, params);
+    Future<JsonObject> result = getNeo4jRestClient().executeCypherQuery(BATCH_UPDATE_QUERY, params);
 
     try {
       JsonObject jsonObject = result.get();
@@ -228,13 +228,13 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
    *
    * @return
    */
-  public INeo4JRepository getJQAssistantRemoteService() {
+  public Neo4jRestClient getNeo4jRestClient() {
     //
     Neo4JBackedRootNodeSource rootNodeSource = (Neo4JBackedRootNodeSource) _nodeSource.getNode().getRootNode()
         .getNodeSource();
 
     //
-    return (INeo4JRepository) rootNodeSource.getRepository();
+    return (Neo4jRestClient) rootNodeSource.getRepository();
   }
 
   public boolean isAutoExpand() {

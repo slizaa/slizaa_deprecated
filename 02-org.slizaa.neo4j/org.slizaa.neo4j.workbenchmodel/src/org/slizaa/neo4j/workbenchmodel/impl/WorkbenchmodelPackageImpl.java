@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
-import org.slizaa.neo4j.workbenchmodel.Databases;
+import org.slizaa.neo4j.restclient.Neo4jRestClientPackage;
 import org.slizaa.neo4j.workbenchmodel.MappedGraphs;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchModel;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchmodelFactory;
@@ -29,13 +29,6 @@ public class WorkbenchmodelPackageImpl extends EPackageImpl implements Workbench
    * @generated
    */
   private EClass workbenchModelEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass databasesEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -140,24 +133,6 @@ public class WorkbenchmodelPackageImpl extends EPackageImpl implements Workbench
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDatabases() {
-    return databasesEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDatabases_Content() {
-    return (EReference)databasesEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getMappedGraphs() {
     return mappedGraphsEClass;
   }
@@ -203,9 +178,6 @@ public class WorkbenchmodelPackageImpl extends EPackageImpl implements Workbench
     createEReference(workbenchModelEClass, WORKBENCH_MODEL__DATABASES);
     createEReference(workbenchModelEClass, WORKBENCH_MODEL__MAPPED_GRAPHS);
 
-    databasesEClass = createEClass(DATABASES);
-    createEReference(databasesEClass, DATABASES__CONTENT);
-
     mappedGraphsEClass = createEClass(MAPPED_GRAPHS);
     createEReference(mappedGraphsEClass, MAPPED_GRAPHS__CONTENT);
   }
@@ -234,7 +206,7 @@ public class WorkbenchmodelPackageImpl extends EPackageImpl implements Workbench
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
-    Neo4jHierarchicalgraphPackage theNeo4jHierarchicalgraphPackage = (Neo4jHierarchicalgraphPackage)EPackage.Registry.INSTANCE.getEPackage(Neo4jHierarchicalgraphPackage.eNS_URI);
+    Neo4jRestClientPackage theNeo4jRestClientPackage = (Neo4jRestClientPackage)EPackage.Registry.INSTANCE.getEPackage(Neo4jRestClientPackage.eNS_URI);
     HierarchicalgraphPackage theHierarchicalgraphPackage = (HierarchicalgraphPackage)EPackage.Registry.INSTANCE.getEPackage(HierarchicalgraphPackage.eNS_URI);
 
     // Create type parameters
@@ -245,11 +217,8 @@ public class WorkbenchmodelPackageImpl extends EPackageImpl implements Workbench
 
     // Initialize classes, features, and operations; add parameters
     initEClass(workbenchModelEClass, WorkbenchModel.class, "WorkbenchModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getWorkbenchModel_Databases(), this.getDatabases(), null, "databases", null, 1, 1, WorkbenchModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getWorkbenchModel_Databases(), theNeo4jRestClientPackage.getNeo4jRestClientRegistry(), null, "databases", null, 1, 1, WorkbenchModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getWorkbenchModel_MappedGraphs(), this.getMappedGraphs(), null, "mappedGraphs", null, 0, 1, WorkbenchModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(databasesEClass, Databases.class, "Databases", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDatabases_Content(), theNeo4jHierarchicalgraphPackage.getINeo4JRepository(), null, "content", null, 0, -1, Databases.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(mappedGraphsEClass, MappedGraphs.class, "MappedGraphs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMappedGraphs_Content(), theHierarchicalgraphPackage.getHGRootNode(), null, "content", null, 0, -1, MappedGraphs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

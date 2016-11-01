@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
 
@@ -57,13 +56,24 @@ public class Neo4JBackedRootNodeSourceItemProvider extends Neo4JBackedNodeSource
          Neo4jHierarchicalgraphPackage.Literals.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY,
          true,
          false,
-         false,
+         true,
          null,
          null,
          null));
   }
 
 	/**
+   * This returns Neo4JBackedRootNodeSource.gif.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4JBackedRootNodeSource"));
+  }
+
+  /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -88,12 +98,6 @@ public class Neo4JBackedRootNodeSourceItemProvider extends Neo4JBackedNodeSource
 	@Override
 	public void notifyChanged(Notification notification) {
     updateChildren(notification);
-
-    switch (notification.getFeatureID(Neo4JBackedRootNodeSource.class)) {
-      case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_ROOT_NODE_SOURCE__REPOSITORY:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
-    }
     super.notifyChanged(notification);
   }
 

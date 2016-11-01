@@ -14,4 +14,12 @@
             genModel="model/hierarchicalgraph-neo4j.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated neo4j-hierarchicalgraph -->
+      <package
+            uri="http://org/slizaa/neo4j/restclient"
+            class="restclient.RestclientPackage"
+            genModel="model/hierarchicalgraph-neo4j.genmodel"/>
+   </extension>
+
 </plugin>
