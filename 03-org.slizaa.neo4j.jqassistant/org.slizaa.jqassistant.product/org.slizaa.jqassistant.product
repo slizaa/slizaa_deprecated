@@ -32,7 +32,7 @@ offerings.
 
    <splash
       location="org.slizaa.jqassistant.product"
-      startupProgressRect="3,180,461,16"
+      startupProgressRect="1,180,463,16"
       startupMessageRect="7,151,464,29"
       startupForegroundColor="000000" />
    <launcher name="Slizaa">
