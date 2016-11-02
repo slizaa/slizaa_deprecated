@@ -31,20 +31,23 @@ public class VisualizeDependenciesPerspectiveFactory implements IPerspectiveFact
   public void createInitialLayout(IPageLayout layout) {
 
     //
-    IFolderLayout folderLayout = layout.createFolder(FOLDER_UPPER_LEFT, IPageLayout.LEFT, 0.2f, IPageLayout.ID_EDITOR_AREA);
+    IFolderLayout folderLayout = layout.createFolder(FOLDER_UPPER_LEFT, IPageLayout.LEFT, 0.2f,
+        IPageLayout.ID_EDITOR_AREA);
     folderLayout.addView(IPageLayout.ID_OUTLINE);
-    
+
     //
     folderLayout = layout.createFolder(FOLDER_LOWER_LEFT, IPageLayout.BOTTOM, 0.6f, FOLDER_UPPER_LEFT);
     folderLayout.addView(IPageLayout.ID_PROBLEM_VIEW);
-    
+
     //
-    folderLayout = layout.createFolder(FOLDER_UPPER_RIGHT, IPageLayout.RIGHT, 0.8f,  IPageLayout.ID_EDITOR_AREA);
-    folderLayout.addView(IPageLayout.ID_PROJECT_EXPLORER);
-    
+    folderLayout = layout.createFolder(FOLDER_UPPER_RIGHT, IPageLayout.RIGHT, 0.8f, IPageLayout.ID_EDITOR_AREA);
+    folderLayout.addView("org.slizaa.ui.dsm.DsmPart");
+    folderLayout.addView("org.slizaa.ui.klighd.SlizaaDiagramViewPart");
+
     //
     folderLayout = layout.createFolder(FOLDER_LOWER_RIGHT, IPageLayout.BOTTOM, 0.6f, FOLDER_UPPER_RIGHT);
-    folderLayout.addView(IPageLayout.ID_PROP_SHEET);
+    folderLayout.addView("org.slizaa.ui.dependencytree.DependencyTreePart");
+    folderLayout.addView("org.slizaa.ui.dependencytable.DependencyTablePart");
 
     //
     layout.setEditorAreaVisible(false);

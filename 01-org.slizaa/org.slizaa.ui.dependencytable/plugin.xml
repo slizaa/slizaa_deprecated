@@ -3,14 +3,13 @@
 <plugin>
    <extension
          point="org.eclipse.ui.views">
-              <view
-                    category="org.slizaa.core.eclipse.ui.views"
-                    class="org.slizaa.ui.dependencytable.DependencyTableView"
+              <e4view
+                    class="org.slizaa.ui.dependencytable.DependencyTablePart"
                     icon="icons/dependency-table-small.png"
-                    id="org.slizaa.core.ui.view.dependencytable.DependencyTableView"
-                    name="Dependencies Table"
+                    id="org.slizaa.ui.dependencytable.DependencyTablePart"
+                    name="Dependency Table"
                     restorable="true">
-				</view>
+              </e4view>
    </extension>
 
 </plugin>
