@@ -119,7 +119,7 @@ Shell.MTrimmedWindow > .MTrimBar > .MToolBar.Draggable {
 	jtab-border-radius: 6px;
 	jtab-spacing: 2px;
 	jtab-item-padding: 0px 5px;
-	jtab-item-horizontal-spacing: 0px;
+	jtab-item-horizontal-spacing: 3px;
 	jtab-padding : 2px;
 	jtab-truncate-tab-items : true;
 	jtab-use-ellipses : false;
@@ -178,6 +178,8 @@ Shell.MTrimmedWindow > .MTrimBar > .MToolBar.Draggable {
  **************************************************/
 .MPartStack.active {
 	swt-tab-renderer: url('bundleclass://net.jeeeyul.eclipse.themes/net.jeeeyul.eclipse.themes.rendering.JeeeyulsTabRenderer');
+	
+	jtab-item-horizontal-spacing: 3px;
 	
 	/* tab background */
 	jtab-header-background : #6b8fb3 #5a83aa 100%;
