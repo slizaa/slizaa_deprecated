@@ -7,16 +7,19 @@
             class="org.slizaa.jqassistant.VisualizeDependenciesPerspectiveFactory"
             id="org.slizaa.jqassistant.VisualizeDependenciesPerspective"
             name="Visualize Dependencies"
-            icon="icons/perspective_visDep.gif">
+            icon="icons/perspective_visdep.gif">
       </perspective>
       <perspective
             class="org.slizaa.jqassistant.GraphDatabasesPerspectiveFactory"
             id="org.slizaa.jqassistant.GraphDatabasesPerspective"
             name="Graph Databases"
-            icon="icons/perspective_visDep.gif">
+            icon="icons/perspective_create.gif">
       </perspective>
-      
-      
-      
+      <perspective
+            class="org.slizaa.jqassistant.CrossReferencerPerspectiveFactory"
+            id="org.slizaa.jqassistant.CrossReferencerPerspective"
+            name="Cross-Referencer"
+            icon="icons/perspective_xref.png">
+      </perspective>      
    </extension>
 </plugin>

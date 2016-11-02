@@ -4,52 +4,69 @@ import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 public class GraphDatabasesPerspectiveFactory implements IPerspectiveFactory {
 
+  /** - */
+  private static final String FOLDER_LOWER_LEFT   = "lowerleft";
+
+  /** - */
+  private static final String FOLDER_UPPER_LEFT   = "upperleft";
+
+  /** - */
+  private static final String FOLDER_LOWER_MIDDLE = "lowermiddle";
+
+  /** - */
+  private static final String FOLDER_LOWER_RIGHT  = "lowerright";
+
+  /** - */
+  private static final String FOLDER_UPPER_RIGHT  = "upperright";
+
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void createInitialLayout(IPageLayout layout) {
-    
-    IFolderLayout folder = layout.createFolder("test",
-        IPageLayout.LEFT, 0.25f, IPageLayout.ID_EDITOR_AREA);
+
+    // upper left
+    IFolderLayout folder = layout.createFolder(FOLDER_UPPER_LEFT, IPageLayout.LEFT, 0.2f, IPageLayout.ID_EDITOR_AREA);
+    folder.addView(IPageLayout.ID_PROJECT_EXPLORER);
+
+    // lower left
+    folder = layout.createFolder(FOLDER_LOWER_LEFT, IPageLayout.BOTTOM, 0.50f, FOLDER_UPPER_LEFT);
     folder.addView("org.slizaa.neo4j.restclient.ui.GraphDatabasesView");
-    folder.addView("com.packtpub.e4.migration.views.SampleView");
-    
-    folder = layout.createFolder("test2",
-        IPageLayout.RIGHT, 0.70f, IPageLayout.ID_EDITOR_AREA);
-    folder.addView(IPageLayout.ID_OUTLINE);
-    
-    //
-    String folderId = "org.slizaa.jqassistant.graphdatabases.resultfolder";
- 
-    folder = layout.createFolder(folderId,
-            IPageLayout.BOTTOM, 0.5f, IPageLayout.ID_EDITOR_AREA);
-    folder.addView(IPageLayout.ID_PROBLEM_VIEW);
+
+    // upper left
+    folder = layout.createFolder(FOLDER_UPPER_RIGHT, IPageLayout.RIGHT, 0.75f, IPageLayout.ID_EDITOR_AREA);
     folder.addView(IPageLayout.ID_PROP_SHEET);
-    
-    folder.addPlaceholder("com.packtpub.e4.migration.views.SampleView");
-//    folder.addView("com.packtpub.e4.migration.views.SampleView");
-    
+
+    // lower left
+    folder = layout.createFolder(FOLDER_LOWER_RIGHT, IPageLayout.BOTTOM, 0.50f, FOLDER_UPPER_RIGHT);
+    folder.addView(IPageLayout.ID_TASK_LIST);
+
+    // lower middle
+    folder = layout.createFolder(FOLDER_LOWER_MIDDLE, IPageLayout.BOTTOM, 0.5f, IPageLayout.ID_EDITOR_AREA);
+    folder.addView(IPageLayout.ID_PROBLEM_VIEW);
+
     //
     addViewShortCuts(layout);
   }
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @param layout
+   */
   private void addViewShortCuts(IPageLayout layout) {
-    layout.addShowViewShortcut("com.packtpub.e4.migration.views.SampleView");
-    layout.addShowViewShortcut(IPageLayout.ID_BOOKMARKS);
+
+    // TODO
+    // layout.addShowViewShortcut("com.packtpub.e4.migration.views.SampleView");
+    // layout.addShowViewShortcut(IPageLayout.ID_BOOKMARKS);
   }
 }
-  
-//  @Override
-//  public void createInitialLayout(IPageLayout layout) {
-//
-//    
-//    //
-//    IFolderLayout folderLayout = layout.createFolder("left", IPageLayout.LEFT, 0.2f, IPageLayout.ID_OUTLINE);
-//    folderLayout.addView(IPageLayout.ID_PROBLEM_VIEW);
-//    layout.createFolder("right", IPageLayout.RIGHT, 0.6f, IPageLayout.ID_OUTLINE);
-//    layout.createFolder("bottom", IPageLayout.BOTTOM, 0.8f, IPageLayout.ID_OUTLINE);
-//    layout.createFolder("top", IPageLayout.TOP, 0.6f, IPageLayout.ID_OUTLINE);
-//    
-//    //
-//    layout.setEditorAreaVisible(false);
-//  }
