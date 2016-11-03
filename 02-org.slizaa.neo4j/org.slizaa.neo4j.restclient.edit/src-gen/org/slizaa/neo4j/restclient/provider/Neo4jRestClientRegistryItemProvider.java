@@ -3,7 +3,6 @@
 package org.slizaa.neo4j.restclient.provider;
 
 
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -46,14 +45,13 @@ public class Neo4jRestClientRegistryItemProvider extends Neo4jRestClientContaine
   }
 
   /**
-   * This returns Neo4jRestClientRegistry.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClientRegistry"));
+  protected boolean shouldComposeCreationImage() {
+    return true;
   }
 
   /**
@@ -82,18 +80,6 @@ public class Neo4jRestClientRegistryItemProvider extends Neo4jRestClientContaine
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
     super.notifyChanged(notification);
-  }
-
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
   }
 
 }

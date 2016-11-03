@@ -52,11 +52,13 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
 
   @Override
   public boolean shouldShow(EObject eObject) {
+    System.out.println("shouldShow");
     return eObject instanceof Neo4jRestClient;
   }
 
   @Override
   public boolean isEnabled(EObject eSelectedObject) {
+    System.out.println("isEnabled");
     Neo4jRestClient repository = (Neo4jRestClient) eSelectedObject;
     // return repository.getHierarchicalGraphs().size() == 0;
     return true;

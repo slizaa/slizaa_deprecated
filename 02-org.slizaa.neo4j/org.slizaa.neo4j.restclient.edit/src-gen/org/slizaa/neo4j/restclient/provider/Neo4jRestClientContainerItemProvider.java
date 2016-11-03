@@ -25,7 +25,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.slizaa.neo4j.restclient.Neo4jRestClientContainer;
-import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
 import org.slizaa.neo4j.restclient.Neo4jRestClientPackage;
 
 /**
@@ -132,6 +131,16 @@ public class Neo4jRestClientContainerItemProvider
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected boolean shouldComposeCreationImage() {
+    return true;
+  }
+
+  /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -166,33 +175,6 @@ public class Neo4jRestClientContainerItemProvider
         return;
     }
     super.notifyChanged(notification);
-  }
-
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
-
-    newChildDescriptors.add
-      (createChildParameter
-        (Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_CONTAINER__CLIENTS,
-         Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClient()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_CONTAINER__CLIENTS,
-         Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClientContainer()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_CONTAINER__CLIENTS,
-         Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClientRegistry()));
   }
 
   /**

@@ -15,6 +15,6 @@ public class ExtendedNeo4jRestClientItemProvider extends Neo4jRestClientItemProv
 
   @Override
   public String getText(Object object) {
-    return ((Neo4jRestClient) object).getName();
+    return ((Neo4jRestClient) object).getBaseURI();
   }
 }

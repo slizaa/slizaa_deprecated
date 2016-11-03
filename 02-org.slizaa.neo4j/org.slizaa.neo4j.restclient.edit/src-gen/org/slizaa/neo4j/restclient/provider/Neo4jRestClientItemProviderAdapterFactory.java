@@ -129,7 +129,7 @@ public class Neo4jRestClientItemProviderAdapterFactory extends Neo4jRestClientAd
    * This creates an adapter for a {@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public Adapter createNeo4jRestClientContainerAdapter() {

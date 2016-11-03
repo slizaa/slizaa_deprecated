@@ -47,10 +47,10 @@ public class SlizaaTreeMenuListener implements IMenuListener {
 
       if (selection.size() == 1 && selection.getFirstElement() instanceof EObject) {
         final EObject eObject = (EObject) selection.getFirstElement();
-        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
-        if (domain == null) {
-          return;
-        }
+//        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
+//        if (domain == null) {
+//          return;
+//        }
       }
 
       // collect the "right click actions"
