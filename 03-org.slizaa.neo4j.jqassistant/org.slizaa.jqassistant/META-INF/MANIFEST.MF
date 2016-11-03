@@ -14,3 +14,4 @@ Require-Bundle:
  org.eclipse.osgi.services;bundle-version="3.5.100",
  org.eclipse.e4.ui.workbench;bundle-version="1.4.0"
 Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/org.slizaa.jqassistant.MyEventListener.xml

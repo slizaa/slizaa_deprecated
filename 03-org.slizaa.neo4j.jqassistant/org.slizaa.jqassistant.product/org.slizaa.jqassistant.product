@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Slizaa" uid="org.slizaa.jqassistant.product.product" id="org.slizaa.jqassistant.product.slizaa4jqassistant" application="org.eclipse.ui.ide.workbench" version="0.0.4.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="org.slizaa.jqassistant" uid="org.slizaa.jqassistant.product.product" id="org.slizaa.jqassistant.slizaa4jqassistant" application="org.eclipse.ui.ide.workbench" version="0.0.4.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
-      <image path="/org.slizaa.jqassistant.product/icons/about.png"/>
+      <image path="/org.slizaa.jqassistant/icons/about.png"/>
       <text>
          Slizaa architecture workbench
 powered by jQAssistant
@@ -24,30 +24,32 @@ offerings.
    </configIni>
 
    <launcherArgs>
+      <programArgs>-data workspace/
+      </programArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
 
-   <windowImages i16="/org.slizaa.jqassistant.product/icons/slizaa_16.png" i32="/org.slizaa.jqassistant.product/icons/slizaa_32.png" i48="/org.slizaa.jqassistant.product/icons/slizaa_48.png" i64="/org.slizaa.jqassistant.product/icons/slizaa_64.png" i128="/org.slizaa.jqassistant.product/icons/slizaa_128.png" i256="/org.slizaa.jqassistant.product/icons/slizaa_256.png"/>
+   <windowImages i16="/org.slizaa.jqassistant/icons/slizaa_16.png" i32="/org.slizaa.jqassistant/icons/slizaa_32.png" i48="/org.slizaa.jqassistant/icons/slizaa_48.png" i64="/org.slizaa.jqassistant/icons/slizaa_64.png" i128="/org.slizaa.jqassistant/icons/slizaa_128.png" i256="/org.slizaa.jqassistant/icons/slizaa_256.png"/>
 
    <splash
-      location="org.slizaa.jqassistant.product"
+      location="org.slizaa.jqassistant"
       startupProgressRect="1,180,463,16"
       startupMessageRect="7,151,464,29"
       startupForegroundColor="000000" />
-   <launcher name="Slizaa">
-      <linux icon="/org.slizaa.jqassistant.product/icons/slizaa.xpm"/>
-      <macosx icon="/org.slizaa.jqassistant.product/icons/slizaa.icns"/>
+   <launcher name="slizaa">
+      <linux icon="icons/slizaa.xpm"/>
+      <macosx icon="icons/slizaa.icns"/>
       <solaris/>
       <win useIco="false">
          <bmp
-            winSmallHigh="/org.slizaa.jqassistant.product/icons/slizaa_16_16_32.bmp"
-            winSmallLow="/org.slizaa.jqassistant.product/icons/slizaa_16_16_8.bmp"
-            winMediumHigh="/org.slizaa.jqassistant.product/icons/slizaa_32_32_32.bmp"
-            winMediumLow="/org.slizaa.jqassistant.product/icons/slizaa_32_32_8.bmp"
-            winLargeHigh="/org.slizaa.jqassistant.product/icons/slizaa_48_48_32.bmp"
-            winLargeLow="/org.slizaa.jqassistant.product/icons/slizaa_48_48_8.bmp"
-            winExtraLargeHigh="/org.slizaa.jqassistant.product/icons/slizaa_256_256_32.bmp"/>
+            winSmallHigh="icons/slizaa_16_16_32.bmp"
+            winSmallLow="icons/slizaa_16_16_8.bmp"
+            winMediumHigh="icons/slizaa_32_32_32.bmp"
+            winMediumLow="icons/slizaa_32_32_8.bmp"
+            winLargeHigh="icons/slizaa_48_48_32.bmp"
+            winLargeLow="icons/slizaa_48_48_8.bmp"
+            winExtraLargeHigh="icons/slizaa_256_256_32.bmp"/>
       </win>
    </launcher>
 
@@ -79,16 +81,23 @@ offerings.
       <feature id="org.eclipse.ecf.core.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.platform"/>
-      <feature id="org.slizaa.jqassistant.feature" version="0.0.4.qualifier"/>
+      <feature id="org.slizaa.jqassistant.feature"/>
    </features>
 
+   <configurations>
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+   </configurations>
 
    <preferencesInfo>
       <targetfile overwrite="false"/>
    </preferencesInfo>
 
    <cssInfo>
-      <file path="/org.slizaa.jqassistant.product/css/default.css"/>
+      <file path="/org.slizaa.jqassistant/css/default.css"/>
    </cssInfo>
 
 </product>

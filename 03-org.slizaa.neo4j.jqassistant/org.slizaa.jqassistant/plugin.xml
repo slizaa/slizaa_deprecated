@@ -7,19 +7,105 @@
             class="org.slizaa.jqassistant.VisualizeDependenciesPerspectiveFactory"
             id="org.slizaa.jqassistant.VisualizeDependenciesPerspective"
             name="Visualize Dependencies"
-            icon="icons/perspective_visdep.gif">
+            icon="icons/perspectives/perspective_visdep.gif">
       </perspective>
       <perspective
             class="org.slizaa.jqassistant.GraphDatabasesPerspectiveFactory"
             id="org.slizaa.jqassistant.GraphDatabasesPerspective"
             name="Graph Databases"
-            icon="icons/perspective_create.gif">
+            icon="icons/perspectives/perspective_create.gif">
       </perspective>
       <perspective
             class="org.slizaa.jqassistant.CrossReferencerPerspectiveFactory"
             id="org.slizaa.jqassistant.CrossReferencerPerspective"
             name="Cross-Referencer"
-            icon="icons/perspective_xref.png">
+            icon="icons/perspectives/perspective_xref.png">
       </perspective>      
    </extension>
+   
+   <extension
+         id="slizaa4jqassistant"
+         name="Slizaa powered by jQAssistant"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            description="Slizaa powered by jQAssistant"
+            name="org.slizaa.jqassistant">
+         <property
+               name="appName"
+               value="org.slizaa.jqassistant">
+         </property>
+         <property
+               name="aboutImage"
+               value="icons/about.png">
+         </property>
+         <property
+               name="aboutText"
+               value="Slizaa architecture workbench&#x0A;powered by jQAssistant&#x0A;&#x0A;(c) Copyright Gerd Wütherich. 2015-2016. All rights reserved.&#x0A;&#x0A;Visit http://www.slizaa.org&#x0A;&#x0A;This offering is powered by Eclipse technology &#x0A;and includes Eclipse plug-ins that can be &#x0A;installed and used with other Eclipse-based &#x0A;offerings.">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/slizaa_16.png,icons/slizaa_32.png,icons/slizaa_48.png,icons/slizaa_64.png,icons/slizaa_128.png,icons/slizaa_256.png">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="1,180,463,16">
+         </property>
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/org.slizaa.jqassistant/css/default.css">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="000000">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="7,151,464,29">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+      </product>
+   </extension>
+   
+   <!-- http://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Fguide%2Fworkbench_advext_activities.htm  -->
+   <extension point="org.eclipse.ui.activities">  
+   
+      <!-- -->   
+      <activity id="menuHidingActivity" name="MenuHidingActivity">  
+         <enabledWhen>  
+            <with variable="activePartId">    
+               <equals value="nonExistentPartId"></equals>      
+            </with>
+         </enabledWhen>
+      </activity>
+      
+      <!-- -->
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org.eclipse.debug.ui/.*">
+      </activityPatternBinding>
+       <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org.eclipse.team.ui/.*">
+      </activityPatternBinding>      
+      <activityPatternBinding
+            activityId="menuHidingActivity"
+            pattern="org.eclipse.ui.externaltools/.*">
+      </activityPatternBinding>  
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="*">
+         <hiddenMenuItem
+               id="org.eclipse.ui.run">
+         </hiddenMenuItem>
+        <hiddenMenuItem
+               id="project">
+         </hiddenMenuItem>
+      </perspectiveExtension>
+   </extension>   
 </plugin>

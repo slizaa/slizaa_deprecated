@@ -10,8 +10,9 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>org.slizaa.neo4j.jqassistant.application</module>
-		<module>org.slizaa.neo4j.jqassistant.product</module>
+		<module>org.slizaa.jqassistant</module>
+		<module>org.slizaa.jqassistant.feature</module>
+		<module>org.slizaa.jqassistant.product</module>
 	</modules>
 
 </project>

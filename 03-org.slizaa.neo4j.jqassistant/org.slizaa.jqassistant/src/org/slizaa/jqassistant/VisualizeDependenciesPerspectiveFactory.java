@@ -42,8 +42,8 @@ public class VisualizeDependenciesPerspectiveFactory implements IPerspectiveFact
     
     //
     folderLayout = layout.createFolder(FOLDER_UPPER_RIGHT, IPageLayout.RIGHT, 0.8f, IPageLayout.ID_EDITOR_AREA);
-    folderLayout.addView("org.slizaa.ui.dsm.DsmPart");
     folderLayout.addView("org.slizaa.ui.klighd.SlizaaDiagramViewPart");
+    folderLayout.addView("org.slizaa.ui.dsm.DsmPart");
 
     //
     folderLayout = layout.createFolder(FOLDER_LOWER_RIGHT, IPageLayout.BOTTOM, 0.6f, FOLDER_UPPER_RIGHT);

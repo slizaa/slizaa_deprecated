@@ -1,4 +1,4 @@
-package org.slizaa.jqassistant.product;
+package org.slizaa.jqassistant;
 
 import org.eclipse.e4.ui.workbench.UIEvents;
 import org.osgi.service.component.annotations.Component;
