@@ -10,5 +10,5 @@
 	</parent>
 
 	<artifactId>org.slizaa.neo4j.hierarchicalgraph.test</artifactId>
-	<packaging>eclipse-plugin</packaging>
+	<packaging>eclipse-test-plugin</packaging>
 </project>
