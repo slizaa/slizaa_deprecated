@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.slizaa.neo4j.restclient.Neo4jRestClient;
 import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
+import org.slizaa.neo4j.restclient.ui.Activator;
 import org.slizaa.neo4j.restclient.ui.dialog.UrlDialog;
 
 public class AddRemoteServerHandler {
@@ -52,7 +53,7 @@ public class AddRemoteServerHandler {
           neo4RestClient.setName(uri);
           neo4RestClient.init();
 
-//          _workbenchService.getWorkbenchModel().getDatabases().getContent().add(neo4RestClient);
+          Activator.getDefault().getRestClientRegistry().getClients().add(neo4RestClient);
         }
       }
     });

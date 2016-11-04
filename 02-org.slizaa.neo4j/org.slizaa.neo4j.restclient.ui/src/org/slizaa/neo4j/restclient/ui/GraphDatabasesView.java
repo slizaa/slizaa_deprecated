@@ -16,10 +16,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
-import org.slizaa.neo4j.restclient.Neo4jRestClientContainer;
-import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
-import org.slizaa.neo4j.restclient.Neo4jRestClientRegistry;
 import org.slizaa.neo4j.restclient.ui.handler.AddRemoteServerHandler;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 
@@ -53,59 +49,11 @@ public class GraphDatabasesView {
     layout.marginWidth = 0;
     parent.setLayout(layout);
 
-    Neo4jRestClientRegistry registry = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClientRegistry();
-
-    Neo4jRestClientContainer restClientContainer = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClientContainer();
-    restClientContainer.setName("Unmanaged");
-    registry.getClients().add(restClientContainer);
-
-    Neo4jRestClient restClient = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClient();
-    restClient.setBaseURI("http://localhost:7474");
-    restClient.setName("localhost");
-    restClient.setThreadPoolSize(20);
-    restClient.init();
-    restClientContainer.getClients().add(restClient);
-
     //
-    _treeViewer = createTreeViewer(parent, registry);
+    _treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent, Activator.getDefault().getRestClientRegistry());
+    _treeViewer.expandAll();
 
     createToolBar();
-  }
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @param parent
-   * @param project
-   * @return
-   */
-  private TreeViewer createTreeViewer(Composite parent, Neo4jRestClientRegistry registry) {
-
-    TreeViewer treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent, registry);
-
-    treeViewer.expandAll();
-
-    // //
-    // final TreeViewer treeViewer = new TreeViewer(parent, SWT.NO_SCROLL | SWT.V_SCROLL);
-    //
-    // //
-    // GridDataFactory.fillDefaults().grab(true, true).applyTo(treeViewer.getControl());
-    //
-    // //
-    // treeViewer
-    // .setContentProvider(new AdapterFactoryContentProvider(Activator.getDefault().getComposedAdapterFactory()));
-    // // treeViewer.getControl().setMenu(getMenu(treeViewer, editingDomain));
-    // treeViewer.setInput(registry);
-    //
-    // //
-    // treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(Activator.getDefault().getComposedAdapterFactory()));
-    //
-    // // set the layout data
-    // treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
-    //
-    return treeViewer;
   }
 
   private void createToolBar() {
