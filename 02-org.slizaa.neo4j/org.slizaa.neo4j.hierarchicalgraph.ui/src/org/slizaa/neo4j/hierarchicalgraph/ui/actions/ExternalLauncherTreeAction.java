@@ -7,7 +7,9 @@ import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
+import org.eclipse.debug.core.ILaunchListener;
 import org.eclipse.debug.core.ILaunchManager;
+import org.eclipse.debug.core.ILaunchesListener2;
 import org.eclipse.emf.ecore.EObject;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.neo4j.restclient.Neo4jRestClient;
@@ -49,17 +51,50 @@ public class ExternalLauncherTreeAction implements SlizaaTreeAction {
       }
 
       ILaunchConfigurationWorkingCopy workingCopy = type.newInstance(null, "slizaa_server");
-//       String exec = "mvn.sh";
+      // String exec = "mvn.sh";
       // TODO
       // if (nameOS.toLowerCase().contains("win")) {
       // exec = "mvn.bat";
       // }
-      workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_LOCATION", "C:\\NOA\\JQAssistant\\jqassistant.distribution-1.1.3\\bin\\jqassistant.cmd");
+      String jqassistantHomeDirectory = "D:\\50-Development\\jqassistant-1.1.3-examples";
+
+      workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_LOCATION",
+          jqassistantHomeDirectory + "\\bin\\jqassistant.cmd");
       workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS",
-          "server -s .\\jqassistant\\mapstruct");
-      workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY", "C:\\NOA\\JQAssistant\\jqassistant.distribution-1.1.3");
+          "server -s .\\jqassistant\\mapstructDB");
+      workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY", jqassistantHomeDirectory);
       ILaunch launch = workingCopy.launch(ILaunchManager.RUN_MODE, new NullProgressMonitor());
-System.out.println(launch);
+      System.out.println(launch);
+
+      manager.addLaunchListener(new ILaunchesListener2() {
+
+        @Override
+        public void launchesRemoved(ILaunch[] launches) {
+          // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void launchesChanged(ILaunch[] launches) {
+          // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void launchesAdded(ILaunch[] launches) {
+          // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void launchesTerminated(ILaunch[] launches) {
+          for (ILaunch launch : launches) {
+            System.out.println("launchesTerminated: " + launch);
+          }
+        }
+      });
+
+      // launch.terminate();
 
     } catch (CoreException e) {
       // TODO Auto-generated catch block
