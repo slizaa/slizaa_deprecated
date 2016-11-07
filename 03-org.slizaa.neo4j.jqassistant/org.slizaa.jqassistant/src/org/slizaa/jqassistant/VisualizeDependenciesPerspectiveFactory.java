@@ -3,6 +3,7 @@ package org.slizaa.jqassistant;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
+import org.eclipse.ui.console.IConsoleConstants;
 
 /**
  * <p>
@@ -49,7 +50,7 @@ public class VisualizeDependenciesPerspectiveFactory implements IPerspectiveFact
     folderLayout = layout.createFolder(FOLDER_LOWER_RIGHT, IPageLayout.BOTTOM, 0.6f, FOLDER_UPPER_RIGHT);
     folderLayout.addView("org.slizaa.ui.dependencytree.DependencyTreePart");
     folderLayout.addView("org.slizaa.ui.dependencytable.DependencyTablePart");
-//    folderLayout.addView(IPageLayout.ID_);
+    folderLayout.addView(IConsoleConstants.ID_CONSOLE_VIEW);
 
     //
     layout.setEditorAreaVisible(false);
