@@ -13,7 +13,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workbench.ecore#//WorkbenchModel/mappedGraphs"/>
     </genClasses>
     <genClasses ecoreClass="workbench.ecore#//MappedGraphs">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workbench.ecore#//MappedGraphs/content"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference workbench.ecore#//MappedGraphs/content"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
