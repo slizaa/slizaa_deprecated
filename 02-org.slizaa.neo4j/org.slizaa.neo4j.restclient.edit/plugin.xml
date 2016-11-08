@@ -10,7 +10,7 @@
       <!-- @generated neo4j-restclient -->
       <factory
             uri="http://org/slizaa/neo4j/restclient"
-            class="org.slizaa.neo4j.restclient.provider.Neo4jRestClientItemProviderAdapterFactory"
+            class="org.slizaa.neo4j.dbadapter.provider.Neo4jRestClientItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

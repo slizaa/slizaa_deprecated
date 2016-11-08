@@ -6,7 +6,7 @@
       <e4view
             name="Graph Databases"
             icon="icons/obj16/graphdbview.gif"
-            class="org.slizaa.neo4j.restclient.ui.GraphDatabasesView"
+            class="org.slizaa.neo4j.dbadapter.ui.GraphDatabasesView"
             restorable="true"
             id="org.slizaa.neo4j.restclient.ui.GraphDatabasesView">
       </e4view>

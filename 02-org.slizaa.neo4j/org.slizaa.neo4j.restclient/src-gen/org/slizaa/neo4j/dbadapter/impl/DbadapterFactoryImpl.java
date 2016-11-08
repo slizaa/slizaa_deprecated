@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.slizaa.neo4j.dbadapter.*;
+import org.slizaa.neo4j.dbadapter.impl.ExtendedNeo4JRemoteRepositoryImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,7 +121,7 @@ public class DbadapterFactoryImpl extends EFactoryImpl implements DbadapterFacto
    * @generated NOT
    */
   public Neo4jRestClient createNeo4jRestClient() {
-    Neo4jRestClientImpl neo4jRestClient = new Neo4jRestClientImpl();
+    Neo4jRestClientImpl neo4jRestClient = new ExtendedNeo4JRemoteRepositoryImpl();
     return neo4jRestClient;
   }
 
