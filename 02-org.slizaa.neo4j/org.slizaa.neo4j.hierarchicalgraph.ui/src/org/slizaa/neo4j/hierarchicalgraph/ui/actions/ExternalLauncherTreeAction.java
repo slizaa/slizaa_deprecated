@@ -12,7 +12,7 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.ILaunchesListener2;
 import org.eclipse.emf.ecore.EObject;
 import org.osgi.service.component.annotations.Component;
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.ui.tree.SlizaaTreeAction;
 
 @Component

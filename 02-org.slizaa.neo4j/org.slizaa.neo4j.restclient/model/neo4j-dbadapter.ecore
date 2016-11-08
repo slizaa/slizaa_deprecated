@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="restclient" nsURI="http://org/slizaa/neo4j/restclient" nsPrefix="org.slizaa.neo4j.restclient">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dbadapter" nsURI="http://org/slizaa/neo4j/dbadapter" nsPrefix="org.slizaa.neo4j.dbadapter">
   <eClassifiers xsi:type="ecore:EClass" name="Neo4jRestClient">
     <eOperations name="init"/>
     <eOperations name="dispose"/>
@@ -62,37 +62,12 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="hasExtension" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
-      <eTypeParameters name="T"/>
-      <eParameters name="key">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
-          <eTypeArguments eTypeParameter="#//Neo4jRestClient/hasExtension/T"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="getExtension">
-      <eGenericType eTypeParameter="#//Neo4jRestClient/getExtension/T"/>
-      <eTypeParameters name="T"/>
-      <eParameters name="key">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
-          <eTypeArguments eTypeParameter="#//Neo4jRestClient/getExtension/T"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="registerExtension">
-      <eTypeParameters name="T"/>
-      <eParameters name="key">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
-          <eTypeArguments eTypeParameter="#//Neo4jRestClient/registerExtension/T"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPoolSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Neo4jRestClientRegistry" eSuperTypes="#//Neo4jRestClientContainer"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Neo4jRestClientContainer">
+  <eClassifiers xsi:type="ecore:EClass" name="DbAdapterRegistry" eSuperTypes="#//DbadapterContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DbadapterContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="clients" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

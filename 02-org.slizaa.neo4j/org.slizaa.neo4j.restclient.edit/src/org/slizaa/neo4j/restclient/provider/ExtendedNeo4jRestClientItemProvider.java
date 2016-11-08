@@ -3,7 +3,8 @@
 package org.slizaa.neo4j.restclient.provider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
+import org.slizaa.neo4j.dbadapter.provider.Neo4jRestClientItemProvider;
 
 /**
  */

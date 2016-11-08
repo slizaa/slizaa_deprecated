@@ -3,7 +3,7 @@ package org.slizaa.neo4j.hierarchicalgraph.performance;
 import java.util.concurrent.TimeUnit;
 
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.testfwk.TestModelFactory;
 
 import com.google.common.base.Stopwatch;

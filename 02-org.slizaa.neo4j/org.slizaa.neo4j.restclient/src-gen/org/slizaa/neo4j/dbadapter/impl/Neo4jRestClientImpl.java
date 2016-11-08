@@ -1,6 +1,6 @@
 /**
  */
-package org.slizaa.neo4j.restclient.impl;
+package org.slizaa.neo4j.dbadapter.impl;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
-import org.slizaa.neo4j.restclient.Neo4jRestClientPackage;
+import org.slizaa.neo4j.dbadapter.DbadapterPackage;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,9 +33,9 @@ import org.slizaa.neo4j.restclient.Neo4jRestClientPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientImpl#getBaseURI <em>Base URI</em>}</li>
- *   <li>{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientImpl#getThreadPoolSize <em>Thread Pool Size</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getBaseURI <em>Base URI</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getThreadPoolSize <em>Thread Pool Size</em>}</li>
  * </ul>
  *
  * @generated
@@ -117,7 +117,7 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
    */
   @Override
   protected EClass eStaticClass() {
-    return Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT;
+    return DbadapterPackage.Literals.NEO4J_REST_CLIENT;
   }
 
   /**
@@ -138,7 +138,7 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Neo4jRestClientPackage.NEO4J_REST_CLIENT__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, DbadapterPackage.NEO4J_REST_CLIENT__NAME, oldName, name));
   }
 
   /**
@@ -159,7 +159,7 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
     String oldBaseURI = baseURI;
     baseURI = newBaseURI;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Neo4jRestClientPackage.NEO4J_REST_CLIENT__BASE_URI, oldBaseURI, baseURI));
+      eNotify(new ENotificationImpl(this, Notification.SET, DbadapterPackage.NEO4J_REST_CLIENT__BASE_URI, oldBaseURI, baseURI));
   }
 
   /**
@@ -180,7 +180,7 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
     int oldThreadPoolSize = threadPoolSize;
     threadPoolSize = newThreadPoolSize;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Neo4jRestClientPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE, oldThreadPoolSize, threadPoolSize));
+      eNotify(new ENotificationImpl(this, Notification.SET, DbadapterPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE, oldThreadPoolSize, threadPoolSize));
   }
 
   /**
@@ -320,47 +320,14 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public <T> Boolean hasExtension(Class<T> key) {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public <T> T getExtension(Class<T> key) {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public <T> void registerExtension(Class<T> key) {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__NAME:
+      case DbadapterPackage.NEO4J_REST_CLIENT__NAME:
         return getName();
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__BASE_URI:
+      case DbadapterPackage.NEO4J_REST_CLIENT__BASE_URI:
         return getBaseURI();
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE:
+      case DbadapterPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE:
         return getThreadPoolSize();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -374,13 +341,13 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__NAME:
+      case DbadapterPackage.NEO4J_REST_CLIENT__NAME:
         setName((String)newValue);
         return;
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__BASE_URI:
+      case DbadapterPackage.NEO4J_REST_CLIENT__BASE_URI:
         setBaseURI((String)newValue);
         return;
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE:
+      case DbadapterPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE:
         setThreadPoolSize((Integer)newValue);
         return;
     }
@@ -395,13 +362,13 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__NAME:
+      case DbadapterPackage.NEO4J_REST_CLIENT__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__BASE_URI:
+      case DbadapterPackage.NEO4J_REST_CLIENT__BASE_URI:
         setBaseURI(BASE_URI_EDEFAULT);
         return;
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE:
+      case DbadapterPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE:
         setThreadPoolSize(THREAD_POOL_SIZE_EDEFAULT);
         return;
     }
@@ -416,11 +383,11 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__NAME:
+      case DbadapterPackage.NEO4J_REST_CLIENT__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__BASE_URI:
+      case DbadapterPackage.NEO4J_REST_CLIENT__BASE_URI:
         return BASE_URI_EDEFAULT == null ? baseURI != null : !BASE_URI_EDEFAULT.equals(baseURI);
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE:
+      case DbadapterPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE:
         return threadPoolSize != THREAD_POOL_SIZE_EDEFAULT;
     }
     return super.eIsSet(featureID);
@@ -435,39 +402,32 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
   @SuppressWarnings({"rawtypes", "unchecked" })
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___INIT:
+      case DbadapterPackage.NEO4J_REST_CLIENT___INIT:
         init();
         return null;
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___DISPOSE:
+      case DbadapterPackage.NEO4J_REST_CLIENT___DISPOSE:
         dispose();
         return null;
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___GET_ALL_RELATIONSHIP_TYPES:
+      case DbadapterPackage.NEO4J_REST_CLIENT___GET_ALL_RELATIONSHIP_TYPES:
         return getAllRelationshipTypes();
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___GET_ALL_PROPERTY_KEYS:
+      case DbadapterPackage.NEO4J_REST_CLIENT___GET_ALL_PROPERTY_KEYS:
         return getAllPropertyKeys();
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___GET_ALL_LABELS:
+      case DbadapterPackage.NEO4J_REST_CLIENT___GET_ALL_LABELS:
         return getAllLabels();
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___GET_LABELS_FOR_NODE__LONG:
+      case DbadapterPackage.NEO4J_REST_CLIENT___GET_LABELS_FOR_NODE__LONG:
         return getLabelsForNode((Long)arguments.get(0));
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___GET_PROPERTIES_FOR_NODE__LONG:
+      case DbadapterPackage.NEO4J_REST_CLIENT___GET_PROPERTIES_FOR_NODE__LONG:
         return getPropertiesForNode((Long)arguments.get(0));
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___GET_PROPERTIES_FOR_RELATIONSHIP__LONG:
+      case DbadapterPackage.NEO4J_REST_CLIENT___GET_PROPERTIES_FOR_RELATIONSHIP__LONG:
         return getPropertiesForRelationship((Long)arguments.get(0));
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING:
+      case DbadapterPackage.NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING:
         return executeCypherQuery((String)arguments.get(0));
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP:
+      case DbadapterPackage.NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP:
         return executeCypherQuery((String)arguments.get(0), (Map<String, String>)arguments.get(1));
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_CONSUMER:
+      case DbadapterPackage.NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_CONSUMER:
         return executeCypherQuery((String)arguments.get(0), (Consumer<JsonObject>)arguments.get(1));
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER:
+      case DbadapterPackage.NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER:
         return executeCypherQuery((String)arguments.get(0), (Map<String, String>)arguments.get(1), (Consumer<JsonObject>)arguments.get(2));
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___HAS_EXTENSION__CLASS:
-        return hasExtension((Class)arguments.get(0));
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___GET_EXTENSION__CLASS:
-        return getExtension((Class)arguments.get(0));
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT___REGISTER_EXTENSION__CLASS:
-        registerExtension((Class)arguments.get(0));
-        return null;
     }
     return super.eInvoke(operationID, arguments);
   }

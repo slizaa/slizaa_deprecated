@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.slizaa.neo4j.dbadapter/src-gen" editDirectory="/org.slizaa.neo4j.dbadapter.edit/src-gen"
+    modelPluginID="org.slizaa.neo4j.dbadapter" modelName="Neo4j-dbadapter" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>neo4j-dbadapter.ecore</foreignModel>
+  <genPackages prefix="Dbadapter" basePackage="org.slizaa.neo4j" disposableProviderFactory="true"
+      ecorePackage="neo4j-dbadapter.ecore#/">
+    <genDataTypes ecoreDataType="neo4j-dbadapter.ecore#//Future">
+      <genTypeParameters ecoreTypeParameter="neo4j-dbadapter.ecore#//Future/T"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="neo4j-dbadapter.ecore#//Consumer">
+      <genTypeParameters ecoreTypeParameter="neo4j-dbadapter.ecore#//Consumer/T"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="neo4j-dbadapter.ecore#//JsonArray"/>
+    <genDataTypes ecoreDataType="neo4j-dbadapter.ecore#//JsonObject"/>
+    <genClasses ecoreClass="neo4j-dbadapter.ecore#//Neo4jRestClient">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//Neo4jRestClient/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//Neo4jRestClient/baseURI"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//Neo4jRestClient/threadPoolSize"/>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/init"/>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/dispose"/>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/getAllRelationshipTypes"/>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/getAllPropertyKeys"/>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/getAllLabels"/>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/getLabelsForNode">
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/getLabelsForNode/nodeId"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/getPropertiesForNode">
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/getPropertiesForNode/nodeId"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/getPropertiesForRelationship">
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/getPropertiesForRelationship/nodeId"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery">
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery/cypherQuery"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery.1">
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery.1/cypherQuery"/>
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery.1/params"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery.2">
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery.2/cypherQuery"/>
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery.2/consumer"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery.3">
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery.3/cypherQuery"/>
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery.3/params"/>
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/executeCypherQuery.3/consumer"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/hasExtension">
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/hasExtension/key"/>
+        <genTypeParameters ecoreTypeParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/hasExtension/T"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/getExtension">
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/getExtension/key"/>
+        <genTypeParameters ecoreTypeParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/getExtension/T"/>
+      </genOperations>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/registerExtension">
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/registerExtension/key"/>
+        <genTypeParameters ecoreTypeParameter="neo4j-dbadapter.ecore#//Neo4jRestClient/registerExtension/T"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="neo4j-dbadapter.ecore#//Neo4jRestClientRegistry"/>
+    <genClasses ecoreClass="neo4j-dbadapter.ecore#//Neo4jRestClientContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference neo4j-dbadapter.ecore#//Neo4jRestClientContainer/clients"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//Neo4jRestClientContainer/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

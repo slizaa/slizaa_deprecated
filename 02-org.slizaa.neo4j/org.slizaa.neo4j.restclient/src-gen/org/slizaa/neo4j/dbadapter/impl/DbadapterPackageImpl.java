@@ -1,6 +1,6 @@
 /**
  */
-package org.slizaa.neo4j.restclient.impl;
+package org.slizaa.neo4j.dbadapter.impl;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -16,15 +16,13 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
-import org.slizaa.neo4j.restclient.Neo4jRestClientContainer;
-import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
-import org.slizaa.neo4j.restclient.Neo4jRestClientPackage;
-import org.slizaa.neo4j.restclient.Neo4jRestClientRegistry;
+import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
+import org.slizaa.neo4j.dbadapter.DbadapterContainer;
+import org.slizaa.neo4j.dbadapter.DbadapterFactory;
+import org.slizaa.neo4j.dbadapter.DbadapterPackage;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +30,7 @@ import org.slizaa.neo4j.restclient.Neo4jRestClientRegistry;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRestClientPackage {
+public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -45,14 +43,14 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass neo4jRestClientRegistryEClass = null;
+  private EClass dbAdapterRegistryEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass neo4jRestClientContainerEClass = null;
+  private EClass dbadapterContainerEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -93,12 +91,12 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.ecore.EPackage.Registry
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClientPackage#eNS_URI
+   * @see org.slizaa.neo4j.dbadapter.DbadapterPackage#eNS_URI
    * @see #init()
    * @generated
    */
-  private Neo4jRestClientPackageImpl() {
-    super(eNS_URI, Neo4jRestClientFactory.eINSTANCE);
+  private DbadapterPackageImpl() {
+    super(eNS_URI, DbadapterFactory.eINSTANCE);
   }
 
   /**
@@ -111,7 +109,7 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
   /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
    * 
-   * <p>This method is used to initialize {@link Neo4jRestClientPackage#eINSTANCE} when that field is accessed.
+   * <p>This method is used to initialize {@link DbadapterPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -120,27 +118,27 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
    * @see #initializePackageContents()
    * @generated
    */
-  public static Neo4jRestClientPackage init() {
-    if (isInited) return (Neo4jRestClientPackage)EPackage.Registry.INSTANCE.getEPackage(Neo4jRestClientPackage.eNS_URI);
+  public static DbadapterPackage init() {
+    if (isInited) return (DbadapterPackage)EPackage.Registry.INSTANCE.getEPackage(DbadapterPackage.eNS_URI);
 
     // Obtain or create and register package
-    Neo4jRestClientPackageImpl theNeo4jRestClientPackage = (Neo4jRestClientPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof Neo4jRestClientPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new Neo4jRestClientPackageImpl());
+    DbadapterPackageImpl theDbadapterPackage = (DbadapterPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DbadapterPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new DbadapterPackageImpl());
 
     isInited = true;
 
     // Create package meta-data objects
-    theNeo4jRestClientPackage.createPackageContents();
+    theDbadapterPackage.createPackageContents();
 
     // Initialize created meta-data
-    theNeo4jRestClientPackage.initializePackageContents();
+    theDbadapterPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
-    theNeo4jRestClientPackage.freeze();
+    theDbadapterPackage.freeze();
 
   
     // Update the registry and return the package
-    EPackage.Registry.INSTANCE.put(Neo4jRestClientPackage.eNS_URI, theNeo4jRestClientPackage);
-    return theNeo4jRestClientPackage;
+    EPackage.Registry.INSTANCE.put(DbadapterPackage.eNS_URI, theDbadapterPackage);
+    return theDbadapterPackage;
   }
 
   /**
@@ -292,8 +290,8 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getNeo4jRestClient__HasExtension__Class() {
-    return neo4jRestClientEClass.getEOperations().get(12);
+  public EClass getDbAdapterRegistry() {
+    return dbAdapterRegistryEClass;
   }
 
   /**
@@ -301,8 +299,8 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getNeo4jRestClient__GetExtension__Class() {
-    return neo4jRestClientEClass.getEOperations().get(13);
+  public EClass getDbadapterContainer() {
+    return dbadapterContainerEClass;
   }
 
   /**
@@ -310,8 +308,8 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getNeo4jRestClient__RegisterExtension__Class() {
-    return neo4jRestClientEClass.getEOperations().get(14);
+  public EReference getDbadapterContainer_Clients() {
+    return (EReference)dbadapterContainerEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -319,35 +317,8 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getNeo4jRestClientRegistry() {
-    return neo4jRestClientRegistryEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getNeo4jRestClientContainer() {
-    return neo4jRestClientContainerEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getNeo4jRestClientContainer_Clients() {
-    return (EReference)neo4jRestClientContainerEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getNeo4jRestClientContainer_Name() {
-    return (EAttribute)neo4jRestClientContainerEClass.getEStructuralFeatures().get(1);
+  public EAttribute getDbadapterContainer_Name() {
+    return (EAttribute)dbadapterContainerEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -391,8 +362,8 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
    * <!-- end-user-doc -->
    * @generated
    */
-  public Neo4jRestClientFactory getNeo4jRestClientFactory() {
-    return (Neo4jRestClientFactory)getEFactoryInstance();
+  public DbadapterFactory getDbadapterFactory() {
+    return (DbadapterFactory)getEFactoryInstance();
   }
 
   /**
@@ -430,15 +401,12 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
     createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP);
     createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_CONSUMER);
     createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER);
-    createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___HAS_EXTENSION__CLASS);
-    createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___GET_EXTENSION__CLASS);
-    createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___REGISTER_EXTENSION__CLASS);
 
-    neo4jRestClientRegistryEClass = createEClass(NEO4J_REST_CLIENT_REGISTRY);
+    dbAdapterRegistryEClass = createEClass(DB_ADAPTER_REGISTRY);
 
-    neo4jRestClientContainerEClass = createEClass(NEO4J_REST_CLIENT_CONTAINER);
-    createEReference(neo4jRestClientContainerEClass, NEO4J_REST_CLIENT_CONTAINER__CLIENTS);
-    createEAttribute(neo4jRestClientContainerEClass, NEO4J_REST_CLIENT_CONTAINER__NAME);
+    dbadapterContainerEClass = createEClass(DBADAPTER_CONTAINER);
+    createEReference(dbadapterContainerEClass, DBADAPTER_CONTAINER__CLIENTS);
+    createEAttribute(dbadapterContainerEClass, DBADAPTER_CONTAINER__NAME);
 
     // Create data types
     futureEDataType = createEDataType(FUTURE);
@@ -477,7 +445,7 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    neo4jRestClientRegistryEClass.getESuperTypes().add(this.getNeo4jRestClientContainer());
+    dbAdapterRegistryEClass.getESuperTypes().add(this.getDbadapterContainer());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(neo4jRestClientEClass, Neo4jRestClient.class, "Neo4jRestClient", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -552,34 +520,11 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
 
-    op = initEOperation(getNeo4jRestClient__HasExtension__Class(), ecorePackage.getEBooleanObject(), "hasExtension", 0, 1, IS_UNIQUE, IS_ORDERED);
-    ETypeParameter t1 = addETypeParameter(op, "T");
-    g1 = createEGenericType(ecorePackage.getEJavaClass());
-    g2 = createEGenericType(t1);
-    g1.getETypeArguments().add(g2);
-    addEParameter(op, g1, "key", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEClass(dbAdapterRegistryEClass, DbAdapterRegistry.class, "DbAdapterRegistry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    op = initEOperation(getNeo4jRestClient__GetExtension__Class(), null, "getExtension", 0, 1, IS_UNIQUE, IS_ORDERED);
-    t1 = addETypeParameter(op, "T");
-    g1 = createEGenericType(ecorePackage.getEJavaClass());
-    g2 = createEGenericType(t1);
-    g1.getETypeArguments().add(g2);
-    addEParameter(op, g1, "key", 0, 1, IS_UNIQUE, IS_ORDERED);
-    g1 = createEGenericType(t1);
-    initEOperation(op, g1);
-
-    op = initEOperation(getNeo4jRestClient__RegisterExtension__Class(), null, "registerExtension", 0, 1, IS_UNIQUE, IS_ORDERED);
-    t1 = addETypeParameter(op, "T");
-    g1 = createEGenericType(ecorePackage.getEJavaClass());
-    g2 = createEGenericType(t1);
-    g1.getETypeArguments().add(g2);
-    addEParameter(op, g1, "key", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    initEClass(neo4jRestClientRegistryEClass, Neo4jRestClientRegistry.class, "Neo4jRestClientRegistry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(neo4jRestClientContainerEClass, Neo4jRestClientContainer.class, "Neo4jRestClientContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNeo4jRestClientContainer_Clients(), ecorePackage.getEObject(), null, "clients", null, 0, -1, Neo4jRestClientContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNeo4jRestClientContainer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Neo4jRestClientContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(dbadapterContainerEClass, DbadapterContainer.class, "DbadapterContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDbadapterContainer_Clients(), ecorePackage.getEObject(), null, "clients", null, 0, -1, DbadapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDbadapterContainer_Name(), ecorePackage.getEString(), "name", null, 0, 1, DbadapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize data types
     initEDataType(futureEDataType, Future.class, "Future", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
@@ -591,4 +536,4 @@ public class Neo4jRestClientPackageImpl extends EPackageImpl implements Neo4jRes
     createResource(eNS_URI);
   }
 
-} //Neo4jRestClientPackageImpl
+} //DbadapterPackageImpl

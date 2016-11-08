@@ -1,6 +1,6 @@
 /**
  */
-package org.slizaa.neo4j.restclient.util;
+package org.slizaa.neo4j.dbadapter.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -9,24 +9,24 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.slizaa.neo4j.restclient.*;
+import org.slizaa.neo4j.dbadapter.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.slizaa.neo4j.restclient.Neo4jRestClientPackage
+ * @see org.slizaa.neo4j.dbadapter.DbadapterPackage
  * @generated
  */
-public class Neo4jRestClientAdapterFactory extends AdapterFactoryImpl {
+public class DbadapterAdapterFactory extends AdapterFactoryImpl {
   /**
    * The cached model package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected static Neo4jRestClientPackage modelPackage;
+  protected static DbadapterPackage modelPackage;
 
   /**
    * Creates an instance of the adapter factory.
@@ -34,9 +34,9 @@ public class Neo4jRestClientAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Neo4jRestClientAdapterFactory() {
+  public DbadapterAdapterFactory() {
     if (modelPackage == null) {
-      modelPackage = Neo4jRestClientPackage.eINSTANCE;
+      modelPackage = DbadapterPackage.eINSTANCE;
     }
   }
 
@@ -65,19 +65,19 @@ public class Neo4jRestClientAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Neo4jRestClientSwitch<Adapter> modelSwitch =
-    new Neo4jRestClientSwitch<Adapter>() {
+  protected DbadapterSwitch<Adapter> modelSwitch =
+    new DbadapterSwitch<Adapter>() {
       @Override
       public Adapter caseNeo4jRestClient(Neo4jRestClient object) {
         return createNeo4jRestClientAdapter();
       }
       @Override
-      public Adapter caseNeo4jRestClientRegistry(Neo4jRestClientRegistry object) {
-        return createNeo4jRestClientRegistryAdapter();
+      public Adapter caseDbAdapterRegistry(DbAdapterRegistry object) {
+        return createDbAdapterRegistryAdapter();
       }
       @Override
-      public Adapter caseNeo4jRestClientContainer(Neo4jRestClientContainer object) {
-        return createNeo4jRestClientContainerAdapter();
+      public Adapter caseDbadapterContainer(DbadapterContainer object) {
+        return createDbadapterContainerAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -100,13 +100,13 @@ public class Neo4jRestClientAdapterFactory extends AdapterFactoryImpl {
 
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.restclient.Neo4jRestClient <em>Neo4j Rest Client</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient <em>Neo4j Rest Client</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient
    * @generated
    */
   public Adapter createNeo4jRestClientAdapter() {
@@ -114,30 +114,30 @@ public class Neo4jRestClientAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.restclient.Neo4jRestClientRegistry <em>Registry</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry <em>Db Adapter Registry</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClientRegistry
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterRegistry
    * @generated
    */
-  public Adapter createNeo4jRestClientRegistryAdapter() {
+  public Adapter createDbAdapterRegistryAdapter() {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer <em>Container</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.dbadapter.DbadapterContainer <em>Container</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClientContainer
+   * @see org.slizaa.neo4j.dbadapter.DbadapterContainer
    * @generated
    */
-  public Adapter createNeo4jRestClientContainerAdapter() {
+  public Adapter createDbadapterContainerAdapter() {
     return null;
   }
 
@@ -153,4 +153,4 @@ public class Neo4jRestClientAdapterFactory extends AdapterFactoryImpl {
     return null;
   }
 
-} //Neo4jRestClientAdapterFactory
+} //DbadapterAdapterFactory

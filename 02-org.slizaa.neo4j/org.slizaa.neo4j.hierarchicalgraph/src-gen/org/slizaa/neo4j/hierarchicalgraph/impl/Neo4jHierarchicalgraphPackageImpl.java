@@ -17,13 +17,12 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
+import org.slizaa.neo4j.dbadapter.DbadapterPackage;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
-
-import org.slizaa.neo4j.restclient.Neo4jRestClientPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,7 +107,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
     // Initialize simple dependencies
     HierarchicalgraphPackage.eINSTANCE.eClass();
-    Neo4jRestClientPackage.eINSTANCE.eClass();
+    DbadapterPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theNeo4jHierarchicalgraphPackage.createPackageContents();
@@ -294,7 +293,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
 
     // Obtain other dependent packages
     HierarchicalgraphPackage theHierarchicalgraphPackage = (HierarchicalgraphPackage)EPackage.Registry.INSTANCE.getEPackage(HierarchicalgraphPackage.eNS_URI);
-    Neo4jRestClientPackage theNeo4jRestClientPackage = (Neo4jRestClientPackage)EPackage.Registry.INSTANCE.getEPackage(Neo4jRestClientPackage.eNS_URI);
+    DbadapterPackage theDbadapterPackage = (DbadapterPackage)EPackage.Registry.INSTANCE.getEPackage(DbadapterPackage.eNS_URI);
 
     // Create type parameters
     addETypeParameter(optionalEDataType, "T");
@@ -312,7 +311,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     initEAttribute(getNeo4JBackedNodeSource_Labels(), ecorePackage.getEString(), "labels", null, 0, -1, Neo4JBackedNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(neo4JBackedRootNodeSourceEClass, Neo4JBackedRootNodeSource.class, "Neo4JBackedRootNodeSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNeo4JBackedRootNodeSource_Repository(), theNeo4jRestClientPackage.getNeo4jRestClient(), null, "repository", null, 1, 1, Neo4JBackedRootNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNeo4JBackedRootNodeSource_Repository(), theDbadapterPackage.getNeo4jRestClient(), null, "repository", null, 1, 1, Neo4JBackedRootNodeSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(neo4JBackedDependencySourceEClass, Neo4JBackedDependencySource.class, "Neo4JBackedDependencySource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNeo4JBackedDependencySource_Properties(), theHierarchicalgraphPackage.getStringToStringMap(), null, "properties", null, 0, -1, Neo4JBackedDependencySource.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

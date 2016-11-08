@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.slizaa.neo4j.workbenchmodel/src" modelPluginID="org.slizaa.neo4j.workbenchmodel"
     modelName="Workbench" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    usedGenPackages="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.genmodel#//hierarchicalgraph ../../org.slizaa.neo4j.hierarchicalgraph/model/hierarchicalgraph-neo4j.genmodel#//hierarchicalgraph"
+    usedGenPackages="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.genmodel#//hierarchicalgraph ../../org.slizaa.neo4j.dbadapter/model/neo4j-dbadapter.genmodel#//dbadapter"
     operationReflection="true" importOrganizing="true">
   <foreignModel>workbench.ecore</foreignModel>
   <genPackages prefix="Workbenchmodel" basePackage="org.slizaa.neo4j" disposableProviderFactory="true"
@@ -12,11 +12,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workbench.ecore#//WorkbenchModel/databases"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workbench.ecore#//WorkbenchModel/mappedGraphs"/>
     </genClasses>
-    <genClasses ecoreClass="workbench.ecore#//Databases">
-      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference workbench.ecore#//Databases/content"/>
-    </genClasses>
     <genClasses ecoreClass="workbench.ecore#//MappedGraphs">
-      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference workbench.ecore#//MappedGraphs/content"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workbench.ecore#//MappedGraphs/content"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

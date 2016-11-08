@@ -16,8 +16,8 @@ import org.eclipse.jface.databinding.swt.DisplayRealm;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
-import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
+import org.slizaa.neo4j.dbadapter.DbadapterFactory;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.restclient.ui.Activator;
 import org.slizaa.neo4j.restclient.ui.dialog.UrlDialog;
 
@@ -47,7 +47,7 @@ public class AddRemoteServerHandler {
         if (dialog.open() == Dialog.OK) {
           String uri = dialog.getUri();
 
-          Neo4jRestClient neo4RestClient = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClient();
+          Neo4jRestClient neo4RestClient = DbadapterFactory.eINSTANCE.createNeo4jRestClient();
           neo4RestClient.setBaseURI(uri);
           neo4RestClient.setThreadPoolSize(20);
           neo4RestClient.setName(uri);

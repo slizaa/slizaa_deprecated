@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) Gerd W�therich 2012-2016.
+ * Copyright (c) Gerd Wuetherich 2012-2016.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Public License v3.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,7 @@ import java.util.function.Consumer;
 
 import org.eclipse.emf.common.util.EList;
 import org.glassfish.jersey.client.ClientConfig;
+import org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl;
 import org.slizaa.neo4j.restclient.internal.Neo4JRemoteServiceRestApi;
 import org.slizaa.neo4j.restclient.internal.QueryCallable;
 import org.slizaa.neo4j.restclient.internal.QueryConsumerCallable;

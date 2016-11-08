@@ -1,6 +1,6 @@
 /**
  */
-package org.slizaa.neo4j.restclient.provider;
+package org.slizaa.neo4j.dbadapter.provider;
 
 
 import java.util.Collection;
@@ -10,8 +10,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -24,16 +22,16 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.slizaa.neo4j.restclient.Neo4jRestClientContainer;
-import org.slizaa.neo4j.restclient.Neo4jRestClientPackage;
+import org.slizaa.neo4j.dbadapter.DbadapterPackage;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 /**
- * This is the item provider adapter for a {@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer} object.
+ * This is the item provider adapter for a {@link org.slizaa.neo4j.dbadapter.Neo4jRestClient} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class Neo4jRestClientContainerItemProvider 
+public class Neo4jRestClientItemProvider 
   extends ItemProviderAdapter
   implements
     IEditingDomainItemProvider,
@@ -47,7 +45,7 @@ public class Neo4jRestClientContainerItemProvider
    * <!-- end-user-doc -->
    * @generated
    */
-  public Neo4jRestClientContainerItemProvider(AdapterFactory adapterFactory) {
+  public Neo4jRestClientItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -63,6 +61,8 @@ public class Neo4jRestClientContainerItemProvider
       super.getPropertyDescriptors(object);
 
       addNamePropertyDescriptor(object);
+      addBaseURIPropertyDescriptor(object);
+      addThreadPoolSizePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -78,9 +78,9 @@ public class Neo4jRestClientContainerItemProvider
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_Neo4jRestClientContainer_name_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClientContainer_name_feature", "_UI_Neo4jRestClientContainer_type"),
-         Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_CONTAINER__NAME,
+         getString("_UI_Neo4jRestClient_name_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_name_feature", "_UI_Neo4jRestClient_type"),
+         DbadapterPackage.Literals.NEO4J_REST_CLIENT__NAME,
          true,
          false,
          false,
@@ -90,54 +90,58 @@ public class Neo4jRestClientContainerItemProvider
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * This adds a property descriptor for the Base URI feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
-      super.getChildrenFeatures(object);
-      childrenFeatures.add(Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_CONTAINER__CLIENTS);
-    }
-    return childrenFeatures;
+  protected void addBaseURIPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Neo4jRestClient_baseURI_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_baseURI_feature", "_UI_Neo4jRestClient_type"),
+         DbadapterPackage.Literals.NEO4J_REST_CLIENT__BASE_URI,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
+   * This adds a property descriptor for the Thread Pool Size feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  protected EStructuralFeature getChildFeature(Object object, Object child) {
-    // Check the type of the specified child object and return the proper feature to use for
-    // adding (see {@link AddCommand}) it as a child.
-
-    return super.getChildFeature(object, child);
+  protected void addThreadPoolSizePropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Neo4jRestClient_threadPoolSize_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_threadPoolSize_feature", "_UI_Neo4jRestClient_type"),
+         DbadapterPackage.Literals.NEO4J_REST_CLIENT__THREAD_POOL_SIZE,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
-   * This returns Neo4jRestClientContainer.gif.
+   * This returns Neo4jRestClient.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClientContainer"));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected boolean shouldComposeCreationImage() {
-    return true;
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClient"));
   }
 
   /**
@@ -148,10 +152,10 @@ public class Neo4jRestClientContainerItemProvider
    */
   @Override
   public String getText(Object object) {
-    String label = ((Neo4jRestClientContainer)object).getName();
+    String label = ((Neo4jRestClient)object).getName();
     return label == null || label.length() == 0 ?
-      getString("_UI_Neo4jRestClientContainer_type") :
-      getString("_UI_Neo4jRestClientContainer_type") + " " + label;
+      getString("_UI_Neo4jRestClient_type") :
+      getString("_UI_Neo4jRestClient_type") + " " + label;
   }
   
 
@@ -166,15 +170,26 @@ public class Neo4jRestClientContainerItemProvider
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(Neo4jRestClientContainer.class)) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__NAME:
+    switch (notification.getFeatureID(Neo4jRestClient.class)) {
+      case DbadapterPackage.NEO4J_REST_CLIENT__NAME:
+      case DbadapterPackage.NEO4J_REST_CLIENT__BASE_URI:
+      case DbadapterPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__CLIENTS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
     super.notifyChanged(notification);
+  }
+
+  /**
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+    super.collectNewChildDescriptors(newChildDescriptors, object);
   }
 
   /**
@@ -185,7 +200,7 @@ public class Neo4jRestClientContainerItemProvider
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return Neo4jrestclientEditPlugin.INSTANCE;
+    return Neo4jdbadapterEditPlugin.INSTANCE;
   }
 
 }

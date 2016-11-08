@@ -2,7 +2,7 @@
  */
 package org.slizaa.neo4j.hierarchicalgraph;
 
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 /**
  * <!-- begin-user-doc -->

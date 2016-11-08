@@ -1,6 +1,6 @@
 /**
  */
-package org.slizaa.neo4j.restclient.impl;
+package org.slizaa.neo4j.dbadapter.impl;
 
 import java.util.Collection;
 
@@ -18,8 +18,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.slizaa.neo4j.restclient.Neo4jRestClientContainer;
-import org.slizaa.neo4j.restclient.Neo4jRestClientPackage;
+
+import org.slizaa.neo4j.dbadapter.DbadapterContainer;
+import org.slizaa.neo4j.dbadapter.DbadapterPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,13 +30,13 @@ import org.slizaa.neo4j.restclient.Neo4jRestClientPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientContainerImpl#getClients <em>Clients</em>}</li>
- *   <li>{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientContainerImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl#getClients <em>Clients</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class Neo4jRestClientContainerImpl extends MinimalEObjectImpl.Container implements Neo4jRestClientContainer {
+public class DbadapterContainerImpl extends MinimalEObjectImpl.Container implements DbadapterContainer {
   /**
    * The cached value of the '{@link #getClients() <em>Clients</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -71,7 +72,7 @@ public class Neo4jRestClientContainerImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Neo4jRestClientContainerImpl() {
+  protected DbadapterContainerImpl() {
     super();
   }
 
@@ -82,7 +83,7 @@ public class Neo4jRestClientContainerImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   protected EClass eStaticClass() {
-    return Neo4jRestClientPackage.Literals.NEO4J_REST_CLIENT_CONTAINER;
+    return DbadapterPackage.Literals.DBADAPTER_CONTAINER;
   }
 
   /**
@@ -92,7 +93,7 @@ public class Neo4jRestClientContainerImpl extends MinimalEObjectImpl.Container i
    */
   public EList<EObject> getClients() {
     if (clients == null) {
-      clients = new EObjectContainmentEList<EObject>(EObject.class, this, Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__CLIENTS);
+      clients = new EObjectContainmentEList<EObject>(EObject.class, this, DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS);
     }
     return clients;
   }
@@ -115,7 +116,7 @@ public class Neo4jRestClientContainerImpl extends MinimalEObjectImpl.Container i
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, DbadapterPackage.DBADAPTER_CONTAINER__NAME, oldName, name));
   }
 
   /**
@@ -126,7 +127,7 @@ public class Neo4jRestClientContainerImpl extends MinimalEObjectImpl.Container i
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__CLIENTS:
+      case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
         return ((InternalEList<?>)getClients()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -140,9 +141,9 @@ public class Neo4jRestClientContainerImpl extends MinimalEObjectImpl.Container i
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__CLIENTS:
+      case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
         return getClients();
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__NAME:
+      case DbadapterPackage.DBADAPTER_CONTAINER__NAME:
         return getName();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -157,11 +158,11 @@ public class Neo4jRestClientContainerImpl extends MinimalEObjectImpl.Container i
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__CLIENTS:
+      case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
         getClients().clear();
         getClients().addAll((Collection<? extends EObject>)newValue);
         return;
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__NAME:
+      case DbadapterPackage.DBADAPTER_CONTAINER__NAME:
         setName((String)newValue);
         return;
     }
@@ -176,10 +177,10 @@ public class Neo4jRestClientContainerImpl extends MinimalEObjectImpl.Container i
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__CLIENTS:
+      case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
         getClients().clear();
         return;
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__NAME:
+      case DbadapterPackage.DBADAPTER_CONTAINER__NAME:
         setName(NAME_EDEFAULT);
         return;
     }
@@ -194,9 +195,9 @@ public class Neo4jRestClientContainerImpl extends MinimalEObjectImpl.Container i
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__CLIENTS:
+      case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
         return clients != null && !clients.isEmpty();
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER__NAME:
+      case DbadapterPackage.DBADAPTER_CONTAINER__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
@@ -218,4 +219,4 @@ public class Neo4jRestClientContainerImpl extends MinimalEObjectImpl.Container i
     return result.toString();
   }
 
-} //Neo4jRestClientContainerImpl
+} //DbadapterContainerImpl

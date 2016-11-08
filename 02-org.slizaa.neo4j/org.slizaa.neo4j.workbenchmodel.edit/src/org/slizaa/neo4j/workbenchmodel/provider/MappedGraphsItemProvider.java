@@ -10,8 +10,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -19,9 +18,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.slizaa.neo4j.workbenchmodel.MappedGraphs;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchmodelPackage;
 
 /**
@@ -59,38 +55,31 @@ public class MappedGraphsItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addContentPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * This adds a property descriptor for the Content feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
-      super.getChildrenFeatures(object);
-      childrenFeatures.add(WorkbenchmodelPackage.Literals.MAPPED_GRAPHS__CONTENT);
-    }
-    return childrenFeatures;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EStructuralFeature getChildFeature(Object object, Object child) {
-    // Check the type of the specified child object and return the proper feature to use for
-    // adding (see {@link AddCommand}) it as a child.
-
-    return super.getChildFeature(object, child);
+  protected void addContentPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_MappedGraphs_content_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_MappedGraphs_content_feature", "_UI_MappedGraphs_type"),
+         WorkbenchmodelPackage.Literals.MAPPED_GRAPHS__CONTENT,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
   }
 
   /**
@@ -126,12 +115,6 @@ public class MappedGraphsItemProvider
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
-
-    switch (notification.getFeatureID(MappedGraphs.class)) {
-      case WorkbenchmodelPackage.MAPPED_GRAPHS__CONTENT:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-        return;
-    }
     super.notifyChanged(notification);
   }
 

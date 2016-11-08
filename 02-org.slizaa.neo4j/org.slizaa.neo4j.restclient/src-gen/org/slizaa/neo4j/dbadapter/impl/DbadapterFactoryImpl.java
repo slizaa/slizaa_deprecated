@@ -1,6 +1,6 @@
 /**
  */
-package org.slizaa.neo4j.restclient.impl;
+package org.slizaa.neo4j.dbadapter.impl;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -18,112 +18,42 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.slizaa.neo4j.restclient.*;
+import org.slizaa.neo4j.dbadapter.*;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
-public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRestClientFactory {
+public class DbadapterFactoryImpl extends EFactoryImpl implements DbadapterFactory {
   /**
    * Creates the default factory implementation.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  public static Neo4jRestClientFactory init() {
+  public static DbadapterFactory init() {
     try {
-      Neo4jRestClientFactory theNeo4jRestClientFactory = (Neo4jRestClientFactory)EPackage.Registry.INSTANCE.getEFactory(Neo4jRestClientPackage.eNS_URI);
-      if (theNeo4jRestClientFactory != null) {
-        return theNeo4jRestClientFactory;
+      DbadapterFactory theDbadapterFactory = (DbadapterFactory)EPackage.Registry.INSTANCE.getEFactory(DbadapterPackage.eNS_URI);
+      if (theDbadapterFactory != null) {
+        return theDbadapterFactory;
       }
     }
     catch (Exception exception) {
       EcorePlugin.INSTANCE.log(exception);
     }
-    return new Neo4jRestClientFactoryImpl();
+    return new DbadapterFactoryImpl();
   }
 
   /**
    * Creates an instance of the factory.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  public Neo4jRestClientFactoryImpl() {
+  public DbadapterFactoryImpl() {
     super();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EObject create(EClass eClass) {
-    switch (eClass.getClassifierID()) {
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT: return createNeo4jRestClient();
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_REGISTRY: return createNeo4jRestClientRegistry();
-      case Neo4jRestClientPackage.NEO4J_REST_CLIENT_CONTAINER: return createNeo4jRestClientContainer();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object createFromString(EDataType eDataType, String initialValue) {
-    switch (eDataType.getClassifierID()) {
-      case Neo4jRestClientPackage.FUTURE:
-        return createFutureFromString(eDataType, initialValue);
-      case Neo4jRestClientPackage.CONSUMER:
-        return createConsumerFromString(eDataType, initialValue);
-      case Neo4jRestClientPackage.JSON_ARRAY:
-        return createJsonArrayFromString(eDataType, initialValue);
-      case Neo4jRestClientPackage.JSON_OBJECT:
-        return createJsonObjectFromString(eDataType, initialValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String convertToString(EDataType eDataType, Object instanceValue) {
-    switch (eDataType.getClassifierID()) {
-      case Neo4jRestClientPackage.FUTURE:
-        return convertFutureToString(eDataType, instanceValue);
-      case Neo4jRestClientPackage.CONSUMER:
-        return convertConsumerToString(eDataType, instanceValue);
-      case Neo4jRestClientPackage.JSON_ARRAY:
-        return convertJsonArrayToString(eDataType, instanceValue);
-      case Neo4jRestClientPackage.JSON_OBJECT:
-        return convertJsonObjectToString(eDataType, instanceValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public Neo4jRestClient createNeo4jRestClient() {
-    Neo4jRestClientImpl neo4jRestClient = new ExtendedNeo4JRemoteRepositoryImpl();
-    return neo4jRestClient;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public Neo4jRestClientRegistry createNeo4jRestClientRegistry() {
-    Neo4jRestClientRegistryImpl neo4jRestClientRegistry = new Neo4jRestClientRegistryImpl();
-    return neo4jRestClientRegistry;
   }
 
   /**
@@ -131,13 +61,92 @@ public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRes
    * <!-- end-user-doc -->
    * @generated
    */
-  public Neo4jRestClientContainer createNeo4jRestClientContainer() {
-    Neo4jRestClientContainerImpl neo4jRestClientContainer = new Neo4jRestClientContainerImpl();
-    return neo4jRestClientContainer;
+  @Override
+  public EObject create(EClass eClass) {
+    switch (eClass.getClassifierID()) {
+      case DbadapterPackage.NEO4J_REST_CLIENT: return createNeo4jRestClient();
+      case DbadapterPackage.DB_ADAPTER_REGISTRY: return createDbAdapterRegistry();
+      case DbadapterPackage.DBADAPTER_CONTAINER: return createDbadapterContainer();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue) {
+    switch (eDataType.getClassifierID()) {
+      case DbadapterPackage.FUTURE:
+        return createFutureFromString(eDataType, initialValue);
+      case DbadapterPackage.CONSUMER:
+        return createConsumerFromString(eDataType, initialValue);
+      case DbadapterPackage.JSON_ARRAY:
+        return createJsonArrayFromString(eDataType, initialValue);
+      case DbadapterPackage.JSON_OBJECT:
+        return createJsonObjectFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue) {
+    switch (eDataType.getClassifierID()) {
+      case DbadapterPackage.FUTURE:
+        return convertFutureToString(eDataType, instanceValue);
+      case DbadapterPackage.CONSUMER:
+        return convertConsumerToString(eDataType, instanceValue);
+      case DbadapterPackage.JSON_ARRAY:
+        return convertJsonArrayToString(eDataType, instanceValue);
+      case DbadapterPackage.JSON_OBJECT:
+        return convertJsonObjectToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  public Neo4jRestClient createNeo4jRestClient() {
+    Neo4jRestClientImpl neo4jRestClient = new Neo4jRestClientImpl();
+    return neo4jRestClient;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DbAdapterRegistry createDbAdapterRegistry() {
+    DbAdapterRegistryImpl dbAdapterRegistry = new DbAdapterRegistryImpl();
+    return dbAdapterRegistry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DbadapterContainer createDbadapterContainer() {
+    DbadapterContainerImpl dbadapterContainer = new DbadapterContainerImpl();
+    return dbadapterContainer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public Future<?> createFutureFromString(EDataType eDataType, String initialValue) {
@@ -145,7 +154,8 @@ public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRes
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public String convertFutureToString(EDataType eDataType, Object instanceValue) {
@@ -153,7 +163,8 @@ public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRes
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public Consumer<?> createConsumerFromString(EDataType eDataType, String initialValue) {
@@ -161,7 +172,8 @@ public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRes
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public String convertConsumerToString(EDataType eDataType, Object instanceValue) {
@@ -169,7 +181,8 @@ public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRes
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public JsonArray createJsonArrayFromString(EDataType eDataType, String initialValue) {
@@ -177,7 +190,8 @@ public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRes
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public String convertJsonArrayToString(EDataType eDataType, Object instanceValue) {
@@ -185,7 +199,8 @@ public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRes
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public JsonObject createJsonObjectFromString(EDataType eDataType, String initialValue) {
@@ -193,7 +208,8 @@ public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRes
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public String convertJsonObjectToString(EDataType eDataType, Object instanceValue) {
@@ -201,21 +217,23 @@ public class Neo4jRestClientFactoryImpl extends EFactoryImpl implements Neo4jRes
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  public Neo4jRestClientPackage getNeo4jRestClientPackage() {
-    return (Neo4jRestClientPackage)getEPackage();
+  public DbadapterPackage getDbadapterPackage() {
+    return (DbadapterPackage)getEPackage();
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @deprecated
    * @generated
    */
   @Deprecated
-  public static Neo4jRestClientPackage getPackage() {
-    return Neo4jRestClientPackage.eINSTANCE;
+  public static DbadapterPackage getPackage() {
+    return DbadapterPackage.eINSTANCE;
   }
 
-} // Neo4jRestClientFactoryImpl
+} //DbadapterFactoryImpl

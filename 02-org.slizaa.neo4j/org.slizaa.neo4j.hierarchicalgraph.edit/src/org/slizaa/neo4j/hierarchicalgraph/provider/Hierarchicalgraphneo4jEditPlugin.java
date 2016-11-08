@@ -8,7 +8,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.slizaa.hierarchicalgraph.provider.HierarchicalgraphEditPlugin;
 
-import org.slizaa.neo4j.restclient.provider.Neo4jrestclientEditPlugin;
+import org.slizaa.neo4j.dbadapter.provider.Neo4jdbadapterEditPlugin;
 
 /**
  * This is the central singleton for the Hierarchicalgraph-neo4j edit plugin.
@@ -43,7 +43,7 @@ public final class Hierarchicalgraphneo4jEditPlugin extends EMFPlugin {
     super
       (new ResourceLocator [] {
          HierarchicalgraphEditPlugin.INSTANCE,
-         Neo4jrestclientEditPlugin.INSTANCE,
+         Neo4jdbadapterEditPlugin.INSTANCE,
        });
   }
 

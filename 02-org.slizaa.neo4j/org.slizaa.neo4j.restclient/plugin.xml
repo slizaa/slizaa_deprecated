@@ -7,11 +7,11 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated neo4j-restclient -->
+      <!-- @generated neo4j-dbadapter -->
       <package
-            uri="http://org/slizaa/neo4j/restclient"
-            class="org.slizaa.neo4j.restclient.Neo4jRestClientPackage"
-            genModel="model/neo4j-restclient.genmodel"/>
+            uri="http://org/slizaa/neo4j/dbadapter"
+            class="org.slizaa.neo4j.dbadapter.DbadapterPackage"
+            genModel="model/neo4j-dbadapter.genmodel"/>
    </extension>
 
 </plugin>

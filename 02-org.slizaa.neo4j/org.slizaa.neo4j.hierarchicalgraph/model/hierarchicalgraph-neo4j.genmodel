@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.slizaa.neo4j.hierarchicalgraph/src-gen" editDirectory="/org.slizaa.neo4j.hierarchicalgraph.edit/src"
     modelPluginID="org.slizaa.neo4j.hierarchicalgraph" modelName="Hierarchicalgraph-neo4j"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.genmodel#//hierarchicalgraph ../../org.slizaa.neo4j.restclient/model/neo4j-restclient.genmodel#//restclient"
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.genmodel#//hierarchicalgraph ../../org.slizaa.neo4j.dbadapter/model/neo4j-dbadapter.genmodel#//dbadapter"
     operationReflection="true" importOrganizing="true">
   <foreignModel>hierarchicalgraph-neo4j.ecore</foreignModel>
   <genPackages prefix="Neo4jHierarchicalgraph" basePackage="org.slizaa.neo4j" disposableProviderFactory="true"

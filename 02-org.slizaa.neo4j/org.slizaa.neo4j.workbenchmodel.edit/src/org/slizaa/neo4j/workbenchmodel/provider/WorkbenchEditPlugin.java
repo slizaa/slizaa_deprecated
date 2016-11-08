@@ -8,8 +8,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.slizaa.hierarchicalgraph.provider.HierarchicalgraphEditPlugin;
 
-import org.slizaa.neo4j.hierarchicalgraph.provider.Hierarchicalgraphneo4jEditPlugin;
-import org.slizaa.neo4j.restclient.provider.Neo4jrestclientEditPlugin;
+import org.slizaa.neo4j.dbadapter.provider.Neo4jdbadapterEditPlugin;
 
 /**
  * This is the central singleton for the Workbench edit plugin.
@@ -44,8 +43,7 @@ public final class WorkbenchEditPlugin extends EMFPlugin {
     super
       (new ResourceLocator [] {
          HierarchicalgraphEditPlugin.INSTANCE,
-         Hierarchicalgraphneo4jEditPlugin.INSTANCE,
-         Neo4jrestclientEditPlugin.INSTANCE,
+         Neo4jdbadapterEditPlugin.INSTANCE,
        });
   }
 

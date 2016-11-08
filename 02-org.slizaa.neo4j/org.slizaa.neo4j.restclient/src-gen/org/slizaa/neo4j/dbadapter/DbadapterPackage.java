@@ -1,6 +1,6 @@
 /**
  */
-package org.slizaa.neo4j.restclient;
+package org.slizaa.neo4j.dbadapter;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -21,18 +21,18 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.slizaa.neo4j.restclient.Neo4jRestClientFactory
+ * @see org.slizaa.neo4j.dbadapter.DbadapterFactory
  * @model kind="package"
  * @generated
  */
-public interface Neo4jRestClientPackage extends EPackage {
+public interface DbadapterPackage extends EPackage {
   /**
    * The package name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNAME = "restclient";
+  String eNAME = "dbadapter";
 
   /**
    * The package namespace URI.
@@ -40,7 +40,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://org/slizaa/neo4j/restclient";
+  String eNS_URI = "http://org/slizaa/neo4j/dbadapter";
 
   /**
    * The package namespace name.
@@ -48,7 +48,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_PREFIX = "org.slizaa.neo4j.restclient";
+  String eNS_PREFIX = "org.slizaa.neo4j.dbadapter";
 
   /**
    * The singleton instance of the package.
@@ -56,14 +56,14 @@ public interface Neo4jRestClientPackage extends EPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  Neo4jRestClientPackage eINSTANCE = org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl.init();
+  DbadapterPackage eINSTANCE = org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientImpl <em>Neo4j Rest Client</em>}' class.
+   * The meta object id for the '{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl <em>Neo4j Rest Client</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientImpl
-   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getNeo4jRestClient()
+   * @see org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl
+   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getNeo4jRestClient()
    * @generated
    */
   int NEO4J_REST_CLIENT = 0;
@@ -213,50 +213,23 @@ public interface Neo4jRestClientPackage extends EPackage {
   int NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = 11;
 
   /**
-   * The operation id for the '<em>Has Extension</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEO4J_REST_CLIENT___HAS_EXTENSION__CLASS = 12;
-
-  /**
-   * The operation id for the '<em>Get Extension</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEO4J_REST_CLIENT___GET_EXTENSION__CLASS = 13;
-
-  /**
-   * The operation id for the '<em>Register Extension</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEO4J_REST_CLIENT___REGISTER_EXTENSION__CLASS = 14;
-
-  /**
    * The number of operations of the '<em>Neo4j Rest Client</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_OPERATION_COUNT = 15;
+  int NEO4J_REST_CLIENT_OPERATION_COUNT = 12;
 
   /**
-   * The meta object id for the '{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientContainerImpl <em>Container</em>}' class.
+   * The meta object id for the '{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl <em>Container</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientContainerImpl
-   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getNeo4jRestClientContainer()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl
+   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getDbadapterContainer()
    * @generated
    */
-  int NEO4J_REST_CLIENT_CONTAINER = 2;
+  int DBADAPTER_CONTAINER = 2;
 
   /**
    * The feature id for the '<em><b>Clients</b></em>' containment reference list.
@@ -265,7 +238,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_CONTAINER__CLIENTS = 0;
+  int DBADAPTER_CONTAINER__CLIENTS = 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -274,7 +247,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_CONTAINER__NAME = 1;
+  int DBADAPTER_CONTAINER__NAME = 1;
 
   /**
    * The number of structural features of the '<em>Container</em>' class.
@@ -283,7 +256,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_CONTAINER_FEATURE_COUNT = 2;
+  int DBADAPTER_CONTAINER_FEATURE_COUNT = 2;
 
   /**
    * The number of operations of the '<em>Container</em>' class.
@@ -292,17 +265,17 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_CONTAINER_OPERATION_COUNT = 0;
+  int DBADAPTER_CONTAINER_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientRegistryImpl <em>Registry</em>}' class.
+   * The meta object id for the '{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl <em>Db Adapter Registry</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientRegistryImpl
-   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getNeo4jRestClientRegistry()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl
+   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getDbAdapterRegistry()
    * @generated
    */
-  int NEO4J_REST_CLIENT_REGISTRY = 1;
+  int DB_ADAPTER_REGISTRY = 1;
 
   /**
    * The feature id for the '<em><b>Clients</b></em>' containment reference list.
@@ -311,7 +284,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_REGISTRY__CLIENTS = NEO4J_REST_CLIENT_CONTAINER__CLIENTS;
+  int DB_ADAPTER_REGISTRY__CLIENTS = DBADAPTER_CONTAINER__CLIENTS;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -320,32 +293,32 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_REGISTRY__NAME = NEO4J_REST_CLIENT_CONTAINER__NAME;
+  int DB_ADAPTER_REGISTRY__NAME = DBADAPTER_CONTAINER__NAME;
 
   /**
-   * The number of structural features of the '<em>Registry</em>' class.
+   * The number of structural features of the '<em>Db Adapter Registry</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_REGISTRY_FEATURE_COUNT = NEO4J_REST_CLIENT_CONTAINER_FEATURE_COUNT + 0;
+  int DB_ADAPTER_REGISTRY_FEATURE_COUNT = DBADAPTER_CONTAINER_FEATURE_COUNT + 0;
 
   /**
-   * The number of operations of the '<em>Registry</em>' class.
+   * The number of operations of the '<em>Db Adapter Registry</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_REGISTRY_OPERATION_COUNT = NEO4J_REST_CLIENT_CONTAINER_OPERATION_COUNT + 0;
+  int DB_ADAPTER_REGISTRY_OPERATION_COUNT = DBADAPTER_CONTAINER_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '<em>Future</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see java.util.concurrent.Future
-   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getFuture()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getFuture()
    * @generated
    */
   int FUTURE = 3;
@@ -355,7 +328,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see java.util.function.Consumer
-   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getConsumer()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getConsumer()
    * @generated
    */
   int CONSUMER = 4;
@@ -365,7 +338,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see com.google.gson.JsonArray
-   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getJsonArray()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getJsonArray()
    * @generated
    */
   int JSON_ARRAY = 5;
@@ -375,246 +348,216 @@ public interface Neo4jRestClientPackage extends EPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see com.google.gson.JsonObject
-   * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getJsonObject()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getJsonObject()
    * @generated
    */
   int JSON_OBJECT = 6;
 
 
   /**
-   * Returns the meta object for class '{@link org.slizaa.neo4j.restclient.Neo4jRestClient <em>Neo4j Rest Client</em>}'.
+   * Returns the meta object for class '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient <em>Neo4j Rest Client</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for class '<em>Neo4j Rest Client</em>'.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient
    * @generated
    */
   EClass getNeo4jRestClient();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#getName()
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getName()
    * @see #getNeo4jRestClient()
    * @generated
    */
   EAttribute getNeo4jRestClient_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#getBaseURI <em>Base URI</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getBaseURI <em>Base URI</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Base URI</em>'.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#getBaseURI()
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getBaseURI()
    * @see #getNeo4jRestClient()
    * @generated
    */
   EAttribute getNeo4jRestClient_BaseURI();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#getThreadPoolSize <em>Thread Pool Size</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getThreadPoolSize <em>Thread Pool Size</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Thread Pool Size</em>'.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#getThreadPoolSize()
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getThreadPoolSize()
    * @see #getNeo4jRestClient()
    * @generated
    */
   EAttribute getNeo4jRestClient_ThreadPoolSize();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#init() <em>Init</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#init() <em>Init</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Init</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#init()
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#init()
    * @generated
    */
   EOperation getNeo4jRestClient__Init();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#dispose() <em>Dispose</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#dispose() <em>Dispose</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Dispose</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#dispose()
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#dispose()
    * @generated
    */
   EOperation getNeo4jRestClient__Dispose();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#getAllRelationshipTypes() <em>Get All Relationship Types</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getAllRelationshipTypes() <em>Get All Relationship Types</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Get All Relationship Types</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#getAllRelationshipTypes()
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getAllRelationshipTypes()
    * @generated
    */
   EOperation getNeo4jRestClient__GetAllRelationshipTypes();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#getAllPropertyKeys() <em>Get All Property Keys</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getAllPropertyKeys() <em>Get All Property Keys</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Get All Property Keys</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#getAllPropertyKeys()
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getAllPropertyKeys()
    * @generated
    */
   EOperation getNeo4jRestClient__GetAllPropertyKeys();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#getAllLabels() <em>Get All Labels</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getAllLabels() <em>Get All Labels</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Get All Labels</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#getAllLabels()
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getAllLabels()
    * @generated
    */
   EOperation getNeo4jRestClient__GetAllLabels();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#getLabelsForNode(long) <em>Get Labels For Node</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getLabelsForNode(long) <em>Get Labels For Node</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Get Labels For Node</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#getLabelsForNode(long)
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getLabelsForNode(long)
    * @generated
    */
   EOperation getNeo4jRestClient__GetLabelsForNode__long();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#getPropertiesForNode(long) <em>Get Properties For Node</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getPropertiesForNode(long) <em>Get Properties For Node</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Get Properties For Node</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#getPropertiesForNode(long)
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getPropertiesForNode(long)
    * @generated
    */
   EOperation getNeo4jRestClient__GetPropertiesForNode__long();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#getPropertiesForRelationship(long) <em>Get Properties For Relationship</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getPropertiesForRelationship(long) <em>Get Properties For Relationship</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Get Properties For Relationship</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#getPropertiesForRelationship(long)
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getPropertiesForRelationship(long)
    * @generated
    */
   EOperation getNeo4jRestClient__GetPropertiesForRelationship__long();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#executeCypherQuery(java.lang.String) <em>Execute Cypher Query</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#executeCypherQuery(java.lang.String) <em>Execute Cypher Query</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Execute Cypher Query</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#executeCypherQuery(java.lang.String)
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#executeCypherQuery(java.lang.String)
    * @generated
    */
   EOperation getNeo4jRestClient__ExecuteCypherQuery__String();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.Map) <em>Execute Cypher Query</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.Map) <em>Execute Cypher Query</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Execute Cypher Query</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.Map)
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.Map)
    * @generated
    */
   EOperation getNeo4jRestClient__ExecuteCypherQuery__String_Map();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.function.Consumer) <em>Execute Cypher Query</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.function.Consumer) <em>Execute Cypher Query</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Execute Cypher Query</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.function.Consumer)
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.function.Consumer)
    * @generated
    */
   EOperation getNeo4jRestClient__ExecuteCypherQuery__String_Consumer();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.Map, java.util.function.Consumer) <em>Execute Cypher Query</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.Map, java.util.function.Consumer) <em>Execute Cypher Query</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Execute Cypher Query</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.Map, java.util.function.Consumer)
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#executeCypherQuery(java.lang.String, java.util.Map, java.util.function.Consumer)
    * @generated
    */
   EOperation getNeo4jRestClient__ExecuteCypherQuery__String_Map_Consumer();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#hasExtension(java.lang.Class) <em>Has Extension</em>}' operation.
+   * Returns the meta object for class '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry <em>Db Adapter Registry</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Has Extension</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#hasExtension(java.lang.Class)
+   * @return the meta object for class '<em>Db Adapter Registry</em>'.
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterRegistry
    * @generated
    */
-  EOperation getNeo4jRestClient__HasExtension__Class();
+  EClass getDbAdapterRegistry();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#getExtension(java.lang.Class) <em>Get Extension</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Extension</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#getExtension(java.lang.Class)
-   * @generated
-   */
-  EOperation getNeo4jRestClient__GetExtension__Class();
-
-  /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.restclient.Neo4jRestClient#registerExtension(java.lang.Class) <em>Register Extension</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Register Extension</em>' operation.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClient#registerExtension(java.lang.Class)
-   * @generated
-   */
-  EOperation getNeo4jRestClient__RegisterExtension__Class();
-
-  /**
-   * Returns the meta object for class '{@link org.slizaa.neo4j.restclient.Neo4jRestClientRegistry <em>Registry</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Registry</em>'.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClientRegistry
-   * @generated
-   */
-  EClass getNeo4jRestClientRegistry();
-
-  /**
-   * Returns the meta object for class '{@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer <em>Container</em>}'.
+   * Returns the meta object for class '{@link org.slizaa.neo4j.dbadapter.DbadapterContainer <em>Container</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for class '<em>Container</em>'.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClientContainer
+   * @see org.slizaa.neo4j.dbadapter.DbadapterContainer
    * @generated
    */
-  EClass getNeo4jRestClientContainer();
+  EClass getDbadapterContainer();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer#getClients <em>Clients</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.slizaa.neo4j.dbadapter.DbadapterContainer#getClients <em>Clients</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Clients</em>'.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClientContainer#getClients()
-   * @see #getNeo4jRestClientContainer()
+   * @see org.slizaa.neo4j.dbadapter.DbadapterContainer#getClients()
+   * @see #getDbadapterContainer()
    * @generated
    */
-  EReference getNeo4jRestClientContainer_Clients();
+  EReference getDbadapterContainer_Clients();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.DbadapterContainer#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.slizaa.neo4j.restclient.Neo4jRestClientContainer#getName()
-   * @see #getNeo4jRestClientContainer()
+   * @see org.slizaa.neo4j.dbadapter.DbadapterContainer#getName()
+   * @see #getDbadapterContainer()
    * @generated
    */
-  EAttribute getNeo4jRestClientContainer_Name();
+  EAttribute getDbadapterContainer_Name();
 
   /**
    * Returns the meta object for data type '{@link java.util.concurrent.Future <em>Future</em>}'.
@@ -667,7 +610,7 @@ public interface Neo4jRestClientPackage extends EPackage {
    * @return the factory that creates the instances of the model.
    * @generated
    */
-  Neo4jRestClientFactory getNeo4jRestClientFactory();
+  DbadapterFactory getDbadapterFactory();
 
   /**
    * <!-- begin-user-doc -->
@@ -684,11 +627,11 @@ public interface Neo4jRestClientPackage extends EPackage {
    */
   interface Literals {
     /**
-     * The meta object literal for the '{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientImpl <em>Neo4j Rest Client</em>}' class.
+     * The meta object literal for the '{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl <em>Neo4j Rest Client</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientImpl
-     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getNeo4jRestClient()
+     * @see org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl
+     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getNeo4jRestClient()
      * @generated
      */
     EClass NEO4J_REST_CLIENT = eINSTANCE.getNeo4jRestClient();
@@ -814,48 +757,24 @@ public interface Neo4jRestClientPackage extends EPackage {
     EOperation NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = eINSTANCE.getNeo4jRestClient__ExecuteCypherQuery__String_Map_Consumer();
 
     /**
-     * The meta object literal for the '<em><b>Has Extension</b></em>' operation.
+     * The meta object literal for the '{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl <em>Db Adapter Registry</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl
+     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getDbAdapterRegistry()
      * @generated
      */
-    EOperation NEO4J_REST_CLIENT___HAS_EXTENSION__CLASS = eINSTANCE.getNeo4jRestClient__HasExtension__Class();
+    EClass DB_ADAPTER_REGISTRY = eINSTANCE.getDbAdapterRegistry();
 
     /**
-     * The meta object literal for the '<em><b>Get Extension</b></em>' operation.
+     * The meta object literal for the '{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl <em>Container</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl
+     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getDbadapterContainer()
      * @generated
      */
-    EOperation NEO4J_REST_CLIENT___GET_EXTENSION__CLASS = eINSTANCE.getNeo4jRestClient__GetExtension__Class();
-
-    /**
-     * The meta object literal for the '<em><b>Register Extension</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation NEO4J_REST_CLIENT___REGISTER_EXTENSION__CLASS = eINSTANCE.getNeo4jRestClient__RegisterExtension__Class();
-
-    /**
-     * The meta object literal for the '{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientRegistryImpl <em>Registry</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientRegistryImpl
-     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getNeo4jRestClientRegistry()
-     * @generated
-     */
-    EClass NEO4J_REST_CLIENT_REGISTRY = eINSTANCE.getNeo4jRestClientRegistry();
-
-    /**
-     * The meta object literal for the '{@link org.slizaa.neo4j.restclient.impl.Neo4jRestClientContainerImpl <em>Container</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientContainerImpl
-     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getNeo4jRestClientContainer()
-     * @generated
-     */
-    EClass NEO4J_REST_CLIENT_CONTAINER = eINSTANCE.getNeo4jRestClientContainer();
+    EClass DBADAPTER_CONTAINER = eINSTANCE.getDbadapterContainer();
 
     /**
      * The meta object literal for the '<em><b>Clients</b></em>' containment reference list feature.
@@ -863,7 +782,7 @@ public interface Neo4jRestClientPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference NEO4J_REST_CLIENT_CONTAINER__CLIENTS = eINSTANCE.getNeo4jRestClientContainer_Clients();
+    EReference DBADAPTER_CONTAINER__CLIENTS = eINSTANCE.getDbadapterContainer_Clients();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -871,14 +790,14 @@ public interface Neo4jRestClientPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute NEO4J_REST_CLIENT_CONTAINER__NAME = eINSTANCE.getNeo4jRestClientContainer_Name();
+    EAttribute DBADAPTER_CONTAINER__NAME = eINSTANCE.getDbadapterContainer_Name();
 
     /**
      * The meta object literal for the '<em>Future</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see java.util.concurrent.Future
-     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getFuture()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getFuture()
      * @generated
      */
     EDataType FUTURE = eINSTANCE.getFuture();
@@ -888,7 +807,7 @@ public interface Neo4jRestClientPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see java.util.function.Consumer
-     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getConsumer()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getConsumer()
      * @generated
      */
     EDataType CONSUMER = eINSTANCE.getConsumer();
@@ -898,7 +817,7 @@ public interface Neo4jRestClientPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see com.google.gson.JsonArray
-     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getJsonArray()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getJsonArray()
      * @generated
      */
     EDataType JSON_ARRAY = eINSTANCE.getJsonArray();
@@ -908,11 +827,11 @@ public interface Neo4jRestClientPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see com.google.gson.JsonObject
-     * @see org.slizaa.neo4j.restclient.impl.Neo4jRestClientPackageImpl#getJsonObject()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getJsonObject()
      * @generated
      */
     EDataType JSON_OBJECT = eINSTANCE.getJsonObject();
 
   }
 
-} //Neo4jRestClientPackage
+} //DbadapterPackage

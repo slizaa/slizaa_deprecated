@@ -2,7 +2,6 @@ package org.slizaa.neo4j.hierarchicalgraph.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-import org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedNodeSourceImpl;
 
 /**
  * <p>

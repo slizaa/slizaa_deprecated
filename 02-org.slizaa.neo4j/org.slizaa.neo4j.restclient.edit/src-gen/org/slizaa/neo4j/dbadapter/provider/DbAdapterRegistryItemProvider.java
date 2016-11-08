@@ -1,8 +1,9 @@
 /**
  */
-package org.slizaa.neo4j.restclient.provider;
+package org.slizaa.neo4j.dbadapter.provider;
 
 
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -10,22 +11,22 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import org.slizaa.neo4j.restclient.Neo4jRestClientRegistry;
+import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 
 /**
- * This is the item provider adapter for a {@link org.slizaa.neo4j.restclient.Neo4jRestClientRegistry} object.
+ * This is the item provider adapter for a {@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class Neo4jRestClientRegistryItemProvider extends Neo4jRestClientContainerItemProvider {
+public class DbAdapterRegistryItemProvider extends DbadapterContainerItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public Neo4jRestClientRegistryItemProvider(AdapterFactory adapterFactory) {
+  public DbAdapterRegistryItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -45,13 +46,14 @@ public class Neo4jRestClientRegistryItemProvider extends Neo4jRestClientContaine
   }
 
   /**
+   * This returns DbAdapterRegistry.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  protected boolean shouldComposeCreationImage() {
-    return true;
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/DbAdapterRegistry"));
   }
 
   /**
@@ -62,10 +64,10 @@ public class Neo4jRestClientRegistryItemProvider extends Neo4jRestClientContaine
    */
   @Override
   public String getText(Object object) {
-    String label = ((Neo4jRestClientRegistry)object).getName();
+    String label = ((DbAdapterRegistry)object).getName();
     return label == null || label.length() == 0 ?
-      getString("_UI_Neo4jRestClientRegistry_type") :
-      getString("_UI_Neo4jRestClientRegistry_type") + " " + label;
+      getString("_UI_DbAdapterRegistry_type") :
+      getString("_UI_DbAdapterRegistry_type") + " " + label;
   }
   
 
@@ -80,6 +82,18 @@ public class Neo4jRestClientRegistryItemProvider extends Neo4jRestClientContaine
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
     super.notifyChanged(notification);
+  }
+
+  /**
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+    super.collectNewChildDescriptors(newChildDescriptors, object);
   }
 
 }

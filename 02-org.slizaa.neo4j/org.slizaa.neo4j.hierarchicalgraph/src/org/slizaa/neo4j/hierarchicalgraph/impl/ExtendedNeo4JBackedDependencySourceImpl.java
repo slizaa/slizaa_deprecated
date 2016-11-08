@@ -7,9 +7,9 @@ import java.util.Optional;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
 
 import com.google.gson.JsonObject;
 

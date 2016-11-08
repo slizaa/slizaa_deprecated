@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.tree.SlizaaTreeAction;

@@ -4,7 +4,7 @@
     nsPrefix="org.slizaa.neo4j.workbenchmodel">
   <eClassifiers xsi:type="ecore:EClass" name="WorkbenchModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="databases" lowerBound="1"
-        eType="ecore:EClass ../../org.slizaa.neo4j.restclient/model/neo4j-restclient.ecore#//Neo4jRestClientRegistry"
+        eType="ecore:EClass ../../org.slizaa.neo4j.dbadapter/model/neo4j-dbadapter.ecore#//DbAdapterRegistry"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappedGraphs" eType="#//MappedGraphs"/>
   </eClassifiers>

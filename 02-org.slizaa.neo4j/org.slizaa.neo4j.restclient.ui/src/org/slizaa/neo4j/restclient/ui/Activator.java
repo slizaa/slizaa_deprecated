@@ -5,10 +5,10 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
-import org.slizaa.neo4j.restclient.Neo4jRestClientContainer;
-import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
-import org.slizaa.neo4j.restclient.Neo4jRestClientRegistry;
+import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
+import org.slizaa.neo4j.dbadapter.DbadapterContainer;
+import org.slizaa.neo4j.dbadapter.DbadapterFactory;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -16,16 +16,16 @@ import org.slizaa.neo4j.restclient.Neo4jRestClientRegistry;
 public class Activator extends AbstractUIPlugin {
 
   // The plug-in ID
-  public static final String      PLUGIN_ID = "org.slizaa.neo4j.restclient.ui"; //$NON-NLS-1$
+  public static final String     PLUGIN_ID = "org.slizaa.neo4j.restclient.ui"; //$NON-NLS-1$
 
   // The shared instance
-  private static Activator        _plugin;
+  private static Activator       _plugin;
 
   //
-  private ComposedAdapterFactory  _adapterFactory;
+  private ComposedAdapterFactory _adapterFactory;
 
   //
-  private Neo4jRestClientRegistry _restClientRegistry;
+  private DbAdapterRegistry      _dbAdapterRegistry;
 
   /**
    * Returns the shared instance
@@ -44,20 +44,19 @@ public class Activator extends AbstractUIPlugin {
     _plugin = this;
 
     //
-    _restClientRegistry = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClientRegistry();
+    _dbAdapterRegistry = DbadapterFactory.eINSTANCE.createDbAdapterRegistry();
 
     //
-    Neo4jRestClientContainer remoteUnmanagedDatabaseClient = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClientContainer();
+    DbadapterContainer remoteUnmanagedDatabaseClient = DbadapterFactory.eINSTANCE.createDbadapterContainer();
     remoteUnmanagedDatabaseClient.setName("Remote Database");
-    _restClientRegistry.getClients().add(remoteUnmanagedDatabaseClient);
+    _dbAdapterRegistry.getClients().add(remoteUnmanagedDatabaseClient);
 
     //
-    Neo4jRestClientContainer localManagedDatabaseClient = Neo4jRestClientFactory.eINSTANCE
-        .createNeo4jRestClientContainer();
+    DbadapterContainer localManagedDatabaseClient = DbadapterFactory.eINSTANCE.createDbadapterContainer();
     localManagedDatabaseClient.setName("Local Managed Database");
-    _restClientRegistry.getClients().add(localManagedDatabaseClient);
+    _dbAdapterRegistry.getClients().add(localManagedDatabaseClient);
 
-    Neo4jRestClient restClient = Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClient();
+    Neo4jRestClient restClient = DbadapterFactory.eINSTANCE.createNeo4jRestClient();
     restClient.setBaseURI("http://localhost:7474");
     restClient.setName("localhost");
     restClient.setThreadPoolSize(20);
@@ -65,7 +64,7 @@ public class Activator extends AbstractUIPlugin {
     remoteUnmanagedDatabaseClient.getClients().add(restClient);
 
     // register as service
-    context.registerService(Neo4jRestClientRegistry.class, _restClientRegistry, null);
+    context.registerService(DbAdapterRegistry.class, _dbAdapterRegistry, null);
   }
 
   /**
@@ -95,7 +94,7 @@ public class Activator extends AbstractUIPlugin {
    *
    * @return
    */
-  public Neo4jRestClientRegistry getRestClientRegistry() {
-    return _restClientRegistry;
+  public DbAdapterRegistry getRestClientRegistry() {
+    return _dbAdapterRegistry;
   }
 }

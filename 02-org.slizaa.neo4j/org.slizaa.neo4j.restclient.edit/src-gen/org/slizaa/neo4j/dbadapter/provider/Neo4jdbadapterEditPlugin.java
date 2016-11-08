@@ -1,25 +1,25 @@
 /**
  */
-package org.slizaa.neo4j.restclient.provider;
+package org.slizaa.neo4j.dbadapter.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
- * This is the central singleton for the Neo4j-restclient edit plugin.
+ * This is the central singleton for the Neo4j-dbadapter edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class Neo4jrestclientEditPlugin extends EMFPlugin {
+public final class Neo4jdbadapterEditPlugin extends EMFPlugin {
   /**
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final Neo4jrestclientEditPlugin INSTANCE = new Neo4jrestclientEditPlugin();
+  public static final Neo4jdbadapterEditPlugin INSTANCE = new Neo4jdbadapterEditPlugin();
 
   /**
    * Keep track of the singleton.
@@ -35,7 +35,7 @@ public final class Neo4jrestclientEditPlugin extends EMFPlugin {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Neo4jrestclientEditPlugin() {
+  public Neo4jdbadapterEditPlugin() {
     super
       (new ResourceLocator [] {
        });

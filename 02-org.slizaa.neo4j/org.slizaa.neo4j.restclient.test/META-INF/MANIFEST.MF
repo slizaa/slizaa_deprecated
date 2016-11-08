@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.slizaa.neo4j.graphdb.test
-Bundle-SymbolicName: org.slizaa.neo4j.restclient.test
-Fragment-Host: org.slizaa.neo4j.restclient
+Bundle-SymbolicName: org.slizaa.neo4j.dbadapter.test
+Fragment-Host: org.slizaa.neo4j.dbadapter
 Bundle-Version: 0.0.4.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit;bundle-version="4.12.0",

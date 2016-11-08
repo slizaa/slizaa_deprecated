@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.slizaa.neo4j.restclient.Neo4jRestClientRegistry;
+import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.workbenchmodel.MappedGraphs;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchModel;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchmodelPackage;
@@ -36,7 +36,7 @@ public class WorkbenchModelImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected Neo4jRestClientRegistry databases;
+  protected DbAdapterRegistry databases;
 
   /**
    * The cached value of the '{@link #getMappedGraphs() <em>Mapped Graphs</em>}' reference.
@@ -72,7 +72,7 @@ public class WorkbenchModelImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public Neo4jRestClientRegistry getDatabases() {
+  public DbAdapterRegistry getDatabases() {
     return databases;
   }
 
@@ -81,8 +81,8 @@ public class WorkbenchModelImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDatabases(Neo4jRestClientRegistry newDatabases, NotificationChain msgs) {
-    Neo4jRestClientRegistry oldDatabases = databases;
+  public NotificationChain basicSetDatabases(DbAdapterRegistry newDatabases, NotificationChain msgs) {
+    DbAdapterRegistry oldDatabases = databases;
     databases = newDatabases;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkbenchmodelPackage.WORKBENCH_MODEL__DATABASES, oldDatabases, newDatabases);
@@ -96,7 +96,7 @@ public class WorkbenchModelImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDatabases(Neo4jRestClientRegistry newDatabases) {
+  public void setDatabases(DbAdapterRegistry newDatabases) {
     if (newDatabases != databases) {
       NotificationChain msgs = null;
       if (databases != null)
@@ -188,7 +188,7 @@ public class WorkbenchModelImpl extends MinimalEObjectImpl.Container implements 
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
       case WorkbenchmodelPackage.WORKBENCH_MODEL__DATABASES:
-        setDatabases((Neo4jRestClientRegistry)newValue);
+        setDatabases((DbAdapterRegistry)newValue);
         return;
       case WorkbenchmodelPackage.WORKBENCH_MODEL__MAPPED_GRAPHS:
         setMappedGraphs((MappedGraphs)newValue);
@@ -206,7 +206,7 @@ public class WorkbenchModelImpl extends MinimalEObjectImpl.Container implements 
   public void eUnset(int featureID) {
     switch (featureID) {
       case WorkbenchmodelPackage.WORKBENCH_MODEL__DATABASES:
-        setDatabases((Neo4jRestClientRegistry)null);
+        setDatabases((DbAdapterRegistry)null);
         return;
       case WorkbenchmodelPackage.WORKBENCH_MODEL__MAPPED_GRAPHS:
         setMappedGraphs((MappedGraphs)null);

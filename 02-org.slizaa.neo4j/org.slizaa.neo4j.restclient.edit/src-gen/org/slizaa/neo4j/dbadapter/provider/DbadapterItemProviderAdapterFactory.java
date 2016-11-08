@@ -1,6 +1,6 @@
 /**
  */
-package org.slizaa.neo4j.restclient.provider;
+package org.slizaa.neo4j.dbadapter.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,7 +21,9 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.slizaa.neo4j.restclient.util.Neo4jRestClientAdapterFactory;
+import org.slizaa.neo4j.dbadapter.util.DbadapterAdapterFactory;
+import org.slizaa.neo4j.restclient.provider.ExtendedDbadapterContainerItemProvider;
+import org.slizaa.neo4j.restclient.provider.ExtendedNeo4jRestClientItemProvider;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -32,7 +34,7 @@ import org.slizaa.neo4j.restclient.util.Neo4jRestClientAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Neo4jRestClientItemProviderAdapterFactory extends Neo4jRestClientAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class DbadapterItemProviderAdapterFactory extends DbadapterAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory.
    * <!-- begin-user-doc -->
@@ -63,7 +65,7 @@ public class Neo4jRestClientItemProviderAdapterFactory extends Neo4jRestClientAd
    * <!-- end-user-doc -->
    * @generated
    */
-  public Neo4jRestClientItemProviderAdapterFactory() {
+  public DbadapterItemProviderAdapterFactory() {
     supportedTypes.add(IEditingDomainItemProvider.class);
     supportedTypes.add(IStructuredItemContentProvider.class);
     supportedTypes.add(ITreeItemContentProvider.class);
@@ -72,7 +74,7 @@ public class Neo4jRestClientItemProviderAdapterFactory extends Neo4jRestClientAd
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.restclient.Neo4jRestClient} instances.
+   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.dbadapter.Neo4jRestClient} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -80,7 +82,7 @@ public class Neo4jRestClientItemProviderAdapterFactory extends Neo4jRestClientAd
   protected Neo4jRestClientItemProvider neo4jRestClientItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.slizaa.neo4j.restclient.Neo4jRestClient}.
+   * This creates an adapter for a {@link org.slizaa.neo4j.dbadapter.Neo4jRestClient}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated NOT
@@ -95,49 +97,49 @@ public class Neo4jRestClientItemProviderAdapterFactory extends Neo4jRestClientAd
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.restclient.Neo4jRestClientRegistry} instances.
+   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Neo4jRestClientRegistryItemProvider neo4jRestClientRegistryItemProvider;
+  protected DbAdapterRegistryItemProvider dbAdapterRegistryItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.slizaa.neo4j.restclient.Neo4jRestClientRegistry}.
+   * This creates an adapter for a {@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createNeo4jRestClientRegistryAdapter() {
-    if (neo4jRestClientRegistryItemProvider == null) {
-      neo4jRestClientRegistryItemProvider = new Neo4jRestClientRegistryItemProvider(this);
+  public Adapter createDbAdapterRegistryAdapter() {
+    if (dbAdapterRegistryItemProvider == null) {
+      dbAdapterRegistryItemProvider = new DbAdapterRegistryItemProvider(this);
     }
 
-    return neo4jRestClientRegistryItemProvider;
+    return dbAdapterRegistryItemProvider;
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer} instances.
+   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.dbadapter.DbadapterContainer} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Neo4jRestClientContainerItemProvider neo4jRestClientContainerItemProvider;
+  protected DbadapterContainerItemProvider dbadapterContainerItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.slizaa.neo4j.restclient.Neo4jRestClientContainer}.
+   * This creates an adapter for a {@link org.slizaa.neo4j.dbadapter.DbadapterContainer}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated NOT
    */
   @Override
-  public Adapter createNeo4jRestClientContainerAdapter() {
-    if (neo4jRestClientContainerItemProvider == null) {
-      neo4jRestClientContainerItemProvider = new ExtendedNeo4jRestClientContainerItemProvider(this);
+  public Adapter createDbadapterContainerAdapter() {
+    if (dbadapterContainerItemProvider == null) {
+      dbadapterContainerItemProvider = new ExtendedDbadapterContainerItemProvider(this);
     }
 
-    return neo4jRestClientContainerItemProvider;
+    return dbadapterContainerItemProvider;
   }
 
   /**
@@ -240,8 +242,8 @@ public class Neo4jRestClientItemProviderAdapterFactory extends Neo4jRestClientAd
    */
   public void dispose() {
     if (neo4jRestClientItemProvider != null) neo4jRestClientItemProvider.dispose();
-    if (neo4jRestClientRegistryItemProvider != null) neo4jRestClientRegistryItemProvider.dispose();
-    if (neo4jRestClientContainerItemProvider != null) neo4jRestClientContainerItemProvider.dispose();
+    if (dbAdapterRegistryItemProvider != null) dbAdapterRegistryItemProvider.dispose();
+    if (dbadapterContainerItemProvider != null) dbadapterContainerItemProvider.dispose();
   }
 
 }

@@ -3,8 +3,8 @@ package org.slizaa.neo4j.testfwk;
 import org.junit.After;
 import org.junit.Before;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.graphdb.testfwk.AbstractNeo4JServerTest;
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
 
 /**
  * <p>

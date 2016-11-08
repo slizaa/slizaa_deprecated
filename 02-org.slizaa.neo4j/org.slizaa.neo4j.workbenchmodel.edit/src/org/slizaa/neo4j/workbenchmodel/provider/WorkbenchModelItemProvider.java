@@ -22,7 +22,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.slizaa.neo4j.restclient.Neo4jRestClientFactory;
+import org.slizaa.neo4j.dbadapter.DbadapterFactory;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchModel;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchmodelPackage;
 
@@ -174,7 +174,7 @@ public class WorkbenchModelItemProvider
     newChildDescriptors.add
       (createChildParameter
         (WorkbenchmodelPackage.Literals.WORKBENCH_MODEL__DATABASES,
-         Neo4jRestClientFactory.eINSTANCE.createNeo4jRestClientRegistry()));
+         DbadapterFactory.eINSTANCE.createDbAdapterRegistry()));
   }
 
   /**

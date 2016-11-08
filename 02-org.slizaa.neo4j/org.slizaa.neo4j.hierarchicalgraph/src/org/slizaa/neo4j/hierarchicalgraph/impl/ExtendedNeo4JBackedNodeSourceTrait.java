@@ -14,10 +14,9 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
-import org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedNodeSourceImpl;
-import org.slizaa.neo4j.restclient.Neo4jRestClient;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
