@@ -142,6 +142,29 @@ public class DbadapterItemProviderAdapterFactory extends DbadapterAdapterFactory
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ManagedNeo4jInstanceItemProvider managedNeo4jInstanceItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createManagedNeo4jInstanceAdapter() {
+    if (managedNeo4jInstanceItemProvider == null) {
+      managedNeo4jInstanceItemProvider = new ManagedNeo4jInstanceItemProvider(this);
+    }
+
+    return managedNeo4jInstanceItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -243,6 +266,7 @@ public class DbadapterItemProviderAdapterFactory extends DbadapterAdapterFactory
     if (neo4jRestClientItemProvider != null) neo4jRestClientItemProvider.dispose();
     if (dbAdapterRegistryItemProvider != null) dbAdapterRegistryItemProvider.dispose();
     if (dbadapterContainerItemProvider != null) dbadapterContainerItemProvider.dispose();
+    if (managedNeo4jInstanceItemProvider != null) managedNeo4jInstanceItemProvider.dispose();
   }
 
 }

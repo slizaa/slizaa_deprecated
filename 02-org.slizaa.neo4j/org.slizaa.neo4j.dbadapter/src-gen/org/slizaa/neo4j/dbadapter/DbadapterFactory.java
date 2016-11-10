@@ -49,6 +49,15 @@ public interface DbadapterFactory extends EFactory {
   DbadapterContainer createDbadapterContainer();
 
   /**
+   * Returns a new object of class '<em>Managed Neo4j Instance</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Managed Neo4j Instance</em>'.
+   * @generated
+   */
+  ManagedNeo4jInstance createManagedNeo4jInstance();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

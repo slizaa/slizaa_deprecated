@@ -24,15 +24,15 @@ public class DisposeHierarchicalGraphTreeAction implements SlizaaTreeAction {
    * {@inheritDoc}
    */
   @Override
-  public boolean shouldShow(EObject eObject) {
-    return eObject instanceof HGRootNode;
+  public boolean shouldShow(Object selection) {
+    return selection instanceof HGRootNode;
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public boolean isEnabled(EObject eSelectedObject) {
+  public boolean isEnabled(Object selection) {
     return true;
   }
 
@@ -40,10 +40,10 @@ public class DisposeHierarchicalGraphTreeAction implements SlizaaTreeAction {
    * {@inheritDoc}
    */
   @Override
-  public void execute(EObject object) {
+  public void execute(Object selection) {
 
     //
-    HGRootNode rootNode = (HGRootNode) object;
+    HGRootNode rootNode = (HGRootNode) selection;
 
     //
     _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().remove(rootNode);

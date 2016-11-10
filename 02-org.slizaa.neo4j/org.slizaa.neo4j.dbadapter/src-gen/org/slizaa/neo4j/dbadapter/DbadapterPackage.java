@@ -232,13 +232,22 @@ public interface DbadapterPackage extends EPackage {
   int DBADAPTER_CONTAINER = 2;
 
   /**
+   * The feature id for the '<em><b>Identifier</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DBADAPTER_CONTAINER__IDENTIFIER = 0;
+
+  /**
    * The feature id for the '<em><b>Clients</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DBADAPTER_CONTAINER__CLIENTS = 0;
+  int DBADAPTER_CONTAINER__CLIENTS = 1;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -247,7 +256,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DBADAPTER_CONTAINER__NAME = 1;
+  int DBADAPTER_CONTAINER__NAME = 2;
 
   /**
    * The number of structural features of the '<em>Container</em>' class.
@@ -256,7 +265,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DBADAPTER_CONTAINER_FEATURE_COUNT = 2;
+  int DBADAPTER_CONTAINER_FEATURE_COUNT = 3;
 
   /**
    * The number of operations of the '<em>Container</em>' class.
@@ -276,6 +285,15 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    */
   int DB_ADAPTER_REGISTRY = 1;
+
+  /**
+   * The feature id for the '<em><b>Identifier</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DB_ADAPTER_REGISTRY__IDENTIFIER = DBADAPTER_CONTAINER__IDENTIFIER;
 
   /**
    * The feature id for the '<em><b>Clients</b></em>' containment reference list.
@@ -314,6 +332,241 @@ public interface DbadapterPackage extends EPackage {
   int DB_ADAPTER_REGISTRY_OPERATION_COUNT = DBADAPTER_CONTAINER_OPERATION_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl <em>Managed Neo4j Instance</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl
+   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getManagedNeo4jInstance()
+   * @generated
+   */
+  int MANAGED_NEO4J_INSTANCE = 3;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE__NAME = NEO4J_REST_CLIENT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Base URI</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE__BASE_URI = NEO4J_REST_CLIENT__BASE_URI;
+
+  /**
+   * The feature id for the '<em><b>Thread Pool Size</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE__THREAD_POOL_SIZE = NEO4J_REST_CLIENT__THREAD_POOL_SIZE;
+
+  /**
+   * The feature id for the '<em><b>Running</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE__RUNNING = NEO4J_REST_CLIENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Scanned</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE__SCANNED = NEO4J_REST_CLIENT_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Storage Area</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE__STORAGE_AREA = NEO4J_REST_CLIENT_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Directories To Scan</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN = NEO4J_REST_CLIENT_FEATURE_COUNT + 3;
+
+  /**
+   * The number of structural features of the '<em>Managed Neo4j Instance</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE_FEATURE_COUNT = NEO4J_REST_CLIENT_FEATURE_COUNT + 4;
+
+  /**
+   * The operation id for the '<em>Init</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___INIT = NEO4J_REST_CLIENT___INIT;
+
+  /**
+   * The operation id for the '<em>Dispose</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___DISPOSE = NEO4J_REST_CLIENT___DISPOSE;
+
+  /**
+   * The operation id for the '<em>Get All Relationship Types</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___GET_ALL_RELATIONSHIP_TYPES = NEO4J_REST_CLIENT___GET_ALL_RELATIONSHIP_TYPES;
+
+  /**
+   * The operation id for the '<em>Get All Property Keys</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___GET_ALL_PROPERTY_KEYS = NEO4J_REST_CLIENT___GET_ALL_PROPERTY_KEYS;
+
+  /**
+   * The operation id for the '<em>Get All Labels</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___GET_ALL_LABELS = NEO4J_REST_CLIENT___GET_ALL_LABELS;
+
+  /**
+   * The operation id for the '<em>Get Labels For Node</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___GET_LABELS_FOR_NODE__LONG = NEO4J_REST_CLIENT___GET_LABELS_FOR_NODE__LONG;
+
+  /**
+   * The operation id for the '<em>Get Properties For Node</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___GET_PROPERTIES_FOR_NODE__LONG = NEO4J_REST_CLIENT___GET_PROPERTIES_FOR_NODE__LONG;
+
+  /**
+   * The operation id for the '<em>Get Properties For Relationship</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___GET_PROPERTIES_FOR_RELATIONSHIP__LONG = NEO4J_REST_CLIENT___GET_PROPERTIES_FOR_RELATIONSHIP__LONG;
+
+  /**
+   * The operation id for the '<em>Execute Cypher Query</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___EXECUTE_CYPHER_QUERY__STRING = NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING;
+
+  /**
+   * The operation id for the '<em>Execute Cypher Query</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___EXECUTE_CYPHER_QUERY__STRING_MAP = NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP;
+
+  /**
+   * The operation id for the '<em>Execute Cypher Query</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___EXECUTE_CYPHER_QUERY__STRING_CONSUMER = NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_CONSUMER;
+
+  /**
+   * The operation id for the '<em>Execute Cypher Query</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER;
+
+  /**
+   * The operation id for the '<em>Scan</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___SCAN = NEO4J_REST_CLIENT_OPERATION_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Start</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___START = NEO4J_REST_CLIENT_OPERATION_COUNT + 1;
+
+  /**
+   * The operation id for the '<em>Stop</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___STOP = NEO4J_REST_CLIENT_OPERATION_COUNT + 2;
+
+  /**
+   * The operation id for the '<em>Delete</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___DELETE = NEO4J_REST_CLIENT_OPERATION_COUNT + 3;
+
+  /**
+   * The number of operations of the '<em>Managed Neo4j Instance</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE_OPERATION_COUNT = NEO4J_REST_CLIENT_OPERATION_COUNT + 4;
+
+  /**
    * The meta object id for the '<em>Future</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -321,7 +574,7 @@ public interface DbadapterPackage extends EPackage {
    * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getFuture()
    * @generated
    */
-  int FUTURE = 3;
+  int FUTURE = 4;
 
   /**
    * The meta object id for the '<em>Consumer</em>' data type.
@@ -331,7 +584,7 @@ public interface DbadapterPackage extends EPackage {
    * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getConsumer()
    * @generated
    */
-  int CONSUMER = 4;
+  int CONSUMER = 5;
 
   /**
    * The meta object id for the '<em>Json Array</em>' data type.
@@ -341,7 +594,7 @@ public interface DbadapterPackage extends EPackage {
    * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getJsonArray()
    * @generated
    */
-  int JSON_ARRAY = 5;
+  int JSON_ARRAY = 6;
 
   /**
    * The meta object id for the '<em>Json Object</em>' data type.
@@ -351,7 +604,7 @@ public interface DbadapterPackage extends EPackage {
    * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getJsonObject()
    * @generated
    */
-  int JSON_OBJECT = 6;
+  int JSON_OBJECT = 7;
 
 
   /**
@@ -538,6 +791,17 @@ public interface DbadapterPackage extends EPackage {
   EClass getDbadapterContainer();
 
   /**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.DbadapterContainer#getIdentifier <em>Identifier</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Identifier</em>'.
+   * @see org.slizaa.neo4j.dbadapter.DbadapterContainer#getIdentifier()
+   * @see #getDbadapterContainer()
+   * @generated
+   */
+  EAttribute getDbadapterContainer_Identifier();
+
+  /**
    * Returns the meta object for the containment reference list '{@link org.slizaa.neo4j.dbadapter.DbadapterContainer#getClients <em>Clients</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -558,6 +822,100 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    */
   EAttribute getDbadapterContainer_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance <em>Managed Neo4j Instance</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Managed Neo4j Instance</em>'.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance
+   * @generated
+   */
+  EClass getManagedNeo4jInstance();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isRunning <em>Running</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Running</em>'.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isRunning()
+   * @see #getManagedNeo4jInstance()
+   * @generated
+   */
+  EAttribute getManagedNeo4jInstance_Running();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isScanned <em>Scanned</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Scanned</em>'.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isScanned()
+   * @see #getManagedNeo4jInstance()
+   * @generated
+   */
+  EAttribute getManagedNeo4jInstance_Scanned();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getStorageArea <em>Storage Area</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Storage Area</em>'.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getStorageArea()
+   * @see #getManagedNeo4jInstance()
+   * @generated
+   */
+  EAttribute getManagedNeo4jInstance_StorageArea();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getDirectoriesToScan <em>Directories To Scan</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Directories To Scan</em>'.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getDirectoriesToScan()
+   * @see #getManagedNeo4jInstance()
+   * @generated
+   */
+  EAttribute getManagedNeo4jInstance_DirectoriesToScan();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#scan() <em>Scan</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Scan</em>' operation.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#scan()
+   * @generated
+   */
+  EOperation getManagedNeo4jInstance__Scan();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#start() <em>Start</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Start</em>' operation.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#start()
+   * @generated
+   */
+  EOperation getManagedNeo4jInstance__Start();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#stop() <em>Stop</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Stop</em>' operation.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#stop()
+   * @generated
+   */
+  EOperation getManagedNeo4jInstance__Stop();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#delete() <em>Delete</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Delete</em>' operation.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#delete()
+   * @generated
+   */
+  EOperation getManagedNeo4jInstance__Delete();
 
   /**
    * Returns the meta object for data type '{@link java.util.concurrent.Future <em>Future</em>}'.
@@ -777,6 +1135,14 @@ public interface DbadapterPackage extends EPackage {
     EClass DBADAPTER_CONTAINER = eINSTANCE.getDbadapterContainer();
 
     /**
+     * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DBADAPTER_CONTAINER__IDENTIFIER = eINSTANCE.getDbadapterContainer_Identifier();
+
+    /**
      * The meta object literal for the '<em><b>Clients</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -791,6 +1157,80 @@ public interface DbadapterPackage extends EPackage {
      * @generated
      */
     EAttribute DBADAPTER_CONTAINER__NAME = eINSTANCE.getDbadapterContainer_Name();
+
+    /**
+     * The meta object literal for the '{@link org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl <em>Managed Neo4j Instance</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl
+     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getManagedNeo4jInstance()
+     * @generated
+     */
+    EClass MANAGED_NEO4J_INSTANCE = eINSTANCE.getManagedNeo4jInstance();
+
+    /**
+     * The meta object literal for the '<em><b>Running</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MANAGED_NEO4J_INSTANCE__RUNNING = eINSTANCE.getManagedNeo4jInstance_Running();
+
+    /**
+     * The meta object literal for the '<em><b>Scanned</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MANAGED_NEO4J_INSTANCE__SCANNED = eINSTANCE.getManagedNeo4jInstance_Scanned();
+
+    /**
+     * The meta object literal for the '<em><b>Storage Area</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MANAGED_NEO4J_INSTANCE__STORAGE_AREA = eINSTANCE.getManagedNeo4jInstance_StorageArea();
+
+    /**
+     * The meta object literal for the '<em><b>Directories To Scan</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN = eINSTANCE.getManagedNeo4jInstance_DirectoriesToScan();
+
+    /**
+     * The meta object literal for the '<em><b>Scan</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation MANAGED_NEO4J_INSTANCE___SCAN = eINSTANCE.getManagedNeo4jInstance__Scan();
+
+    /**
+     * The meta object literal for the '<em><b>Start</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation MANAGED_NEO4J_INSTANCE___START = eINSTANCE.getManagedNeo4jInstance__Start();
+
+    /**
+     * The meta object literal for the '<em><b>Stop</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation MANAGED_NEO4J_INSTANCE___STOP = eINSTANCE.getManagedNeo4jInstance__Stop();
+
+    /**
+     * The meta object literal for the '<em><b>Delete</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation MANAGED_NEO4J_INSTANCE___DELETE = eINSTANCE.getManagedNeo4jInstance__Delete();
 
     /**
      * The meta object literal for the '<em>Future</em>' data type.

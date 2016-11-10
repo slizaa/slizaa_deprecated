@@ -85,6 +85,13 @@ public class DbadapterSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case DbadapterPackage.MANAGED_NEO4J_INSTANCE: {
+        ManagedNeo4jInstance managedNeo4jInstance = (ManagedNeo4jInstance)theEObject;
+        T result = caseManagedNeo4jInstance(managedNeo4jInstance);
+        if (result == null) result = caseNeo4jRestClient(managedNeo4jInstance);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -131,6 +138,21 @@ public class DbadapterSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseDbadapterContainer(DbadapterContainer object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Managed Neo4j Instance</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Managed Neo4j Instance</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseManagedNeo4jInstance(ManagedNeo4jInstance object) {
     return null;
   }
 

@@ -80,6 +80,10 @@ public class DbadapterAdapterFactory extends AdapterFactoryImpl {
         return createDbadapterContainerAdapter();
       }
       @Override
+      public Adapter caseManagedNeo4jInstance(ManagedNeo4jInstance object) {
+        return createManagedNeo4jInstanceAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object) {
         return createEObjectAdapter();
       }
@@ -138,6 +142,20 @@ public class DbadapterAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createDbadapterContainerAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance <em>Managed Neo4j Instance</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance
+   * @generated
+   */
+  public Adapter createManagedNeo4jInstanceAdapter() {
     return null;
   }
 

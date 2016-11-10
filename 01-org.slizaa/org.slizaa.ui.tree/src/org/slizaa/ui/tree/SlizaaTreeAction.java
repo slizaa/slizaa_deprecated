@@ -1,7 +1,5 @@
 package org.slizaa.ui.tree;
 
-import org.eclipse.emf.ecore.EObject;
-
 public interface SlizaaTreeAction {
 
   /**
@@ -12,7 +10,7 @@ public interface SlizaaTreeAction {
    *          the {@link EObject} on which to test if the action can be executed
    * @return <b>true</b> if the action can be executed on the parameter {@code eObject}
    */
-  boolean shouldShow(EObject eObject);
+  boolean shouldShow(Object object);
 
   /**
    * <p>
@@ -21,7 +19,7 @@ public interface SlizaaTreeAction {
    * @param eSelectedObject
    * @return
    */
-  boolean isEnabled(EObject eSelectedObject);
+  boolean isEnabled(Object selectedObject);
 
   /**
    * <p>
@@ -30,7 +28,7 @@ public interface SlizaaTreeAction {
    * @param object
    *          The {@link EObject} on which the action is executed
    **/
-  void execute(EObject object);
+  void execute(Object selectedObject);
 
   /**
    * <p>

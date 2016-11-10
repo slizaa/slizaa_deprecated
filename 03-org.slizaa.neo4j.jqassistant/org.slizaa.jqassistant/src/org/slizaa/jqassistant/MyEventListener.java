@@ -1,5 +1,6 @@
 package org.slizaa.jqassistant;
 
+import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.e4.ui.workbench.UIEvents;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.event.Event;
@@ -25,7 +26,7 @@ public class MyEventListener implements EventHandler {
     // }
     //
     // MPerspectiveStack perspectiveStack = (MPerspectiveStack) element;
-    // MPerspective perspective = (MPerspective) newValue;
+//     MPerspective perspective = (MPerspective) newValue;
     //
     // // MApplication application = (MApplication)
     // // perspectiveStack.getParent().getParent().getParent().getSelectedElement();

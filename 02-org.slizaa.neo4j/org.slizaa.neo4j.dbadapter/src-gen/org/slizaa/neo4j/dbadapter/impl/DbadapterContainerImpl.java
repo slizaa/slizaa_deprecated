@@ -30,6 +30,7 @@ import org.slizaa.neo4j.dbadapter.DbadapterPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl#getClients <em>Clients</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl#getName <em>Name</em>}</li>
  * </ul>
@@ -37,6 +38,26 @@ import org.slizaa.neo4j.dbadapter.DbadapterPackage;
  * @generated
  */
 public class DbadapterContainerImpl extends MinimalEObjectImpl.Container implements DbadapterContainer {
+  /**
+   * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIdentifier()
+   * @generated
+   * @ordered
+   */
+  protected static final String IDENTIFIER_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIdentifier()
+   * @generated
+   * @ordered
+   */
+  protected String identifier = IDENTIFIER_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getClients() <em>Clients</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -84,6 +105,27 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
   @Override
   protected EClass eStaticClass() {
     return DbadapterPackage.Literals.DBADAPTER_CONTAINER;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getIdentifier() {
+    return identifier;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIdentifier(String newIdentifier) {
+    String oldIdentifier = identifier;
+    identifier = newIdentifier;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DbadapterPackage.DBADAPTER_CONTAINER__IDENTIFIER, oldIdentifier, identifier));
   }
 
   /**
@@ -141,6 +183,8 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+      case DbadapterPackage.DBADAPTER_CONTAINER__IDENTIFIER:
+        return getIdentifier();
       case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
         return getClients();
       case DbadapterPackage.DBADAPTER_CONTAINER__NAME:
@@ -158,6 +202,9 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
+      case DbadapterPackage.DBADAPTER_CONTAINER__IDENTIFIER:
+        setIdentifier((String)newValue);
+        return;
       case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
         getClients().clear();
         getClients().addAll((Collection<? extends EObject>)newValue);
@@ -177,6 +224,9 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
+      case DbadapterPackage.DBADAPTER_CONTAINER__IDENTIFIER:
+        setIdentifier(IDENTIFIER_EDEFAULT);
+        return;
       case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
         getClients().clear();
         return;
@@ -195,6 +245,8 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+      case DbadapterPackage.DBADAPTER_CONTAINER__IDENTIFIER:
+        return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
       case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
         return clients != null && !clients.isEmpty();
       case DbadapterPackage.DBADAPTER_CONTAINER__NAME:
@@ -213,7 +265,9 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (identifier: ");
+    result.append(identifier);
+    result.append(", name: ");
     result.append(name);
     result.append(')');
     return result.toString();

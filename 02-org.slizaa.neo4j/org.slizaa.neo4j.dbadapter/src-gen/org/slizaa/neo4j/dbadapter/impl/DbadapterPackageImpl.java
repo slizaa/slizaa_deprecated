@@ -22,6 +22,7 @@ import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.DbadapterContainer;
 import org.slizaa.neo4j.dbadapter.DbadapterFactory;
 import org.slizaa.neo4j.dbadapter.DbadapterPackage;
+import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 /**
@@ -51,6 +52,13 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   private EClass dbadapterContainerEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass managedNeo4jInstanceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -308,8 +316,17 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getDbadapterContainer_Identifier() {
+    return (EAttribute)dbadapterContainerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getDbadapterContainer_Clients() {
-    return (EReference)dbadapterContainerEClass.getEStructuralFeatures().get(0);
+    return (EReference)dbadapterContainerEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -318,7 +335,88 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   public EAttribute getDbadapterContainer_Name() {
-    return (EAttribute)dbadapterContainerEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)dbadapterContainerEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getManagedNeo4jInstance() {
+    return managedNeo4jInstanceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getManagedNeo4jInstance_Running() {
+    return (EAttribute)managedNeo4jInstanceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getManagedNeo4jInstance_Scanned() {
+    return (EAttribute)managedNeo4jInstanceEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getManagedNeo4jInstance_StorageArea() {
+    return (EAttribute)managedNeo4jInstanceEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getManagedNeo4jInstance_DirectoriesToScan() {
+    return (EAttribute)managedNeo4jInstanceEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getManagedNeo4jInstance__Scan() {
+    return managedNeo4jInstanceEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getManagedNeo4jInstance__Start() {
+    return managedNeo4jInstanceEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getManagedNeo4jInstance__Stop() {
+    return managedNeo4jInstanceEClass.getEOperations().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getManagedNeo4jInstance__Delete() {
+    return managedNeo4jInstanceEClass.getEOperations().get(3);
   }
 
   /**
@@ -405,8 +503,19 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
     dbAdapterRegistryEClass = createEClass(DB_ADAPTER_REGISTRY);
 
     dbadapterContainerEClass = createEClass(DBADAPTER_CONTAINER);
+    createEAttribute(dbadapterContainerEClass, DBADAPTER_CONTAINER__IDENTIFIER);
     createEReference(dbadapterContainerEClass, DBADAPTER_CONTAINER__CLIENTS);
     createEAttribute(dbadapterContainerEClass, DBADAPTER_CONTAINER__NAME);
+
+    managedNeo4jInstanceEClass = createEClass(MANAGED_NEO4J_INSTANCE);
+    createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__RUNNING);
+    createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__SCANNED);
+    createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__STORAGE_AREA);
+    createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN);
+    createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___SCAN);
+    createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___START);
+    createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___STOP);
+    createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___DELETE);
 
     // Create data types
     futureEDataType = createEDataType(FUTURE);
@@ -446,6 +555,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
 
     // Add supertypes to classes
     dbAdapterRegistryEClass.getESuperTypes().add(this.getDbadapterContainer());
+    managedNeo4jInstanceEClass.getESuperTypes().add(this.getNeo4jRestClient());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(neo4jRestClientEClass, Neo4jRestClient.class, "Neo4jRestClient", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -523,8 +633,23 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
     initEClass(dbAdapterRegistryEClass, DbAdapterRegistry.class, "DbAdapterRegistry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(dbadapterContainerEClass, DbadapterContainer.class, "DbadapterContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDbadapterContainer_Identifier(), ecorePackage.getEString(), "identifier", null, 0, 1, DbadapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDbadapterContainer_Clients(), ecorePackage.getEObject(), null, "clients", null, 0, -1, DbadapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDbadapterContainer_Name(), ecorePackage.getEString(), "name", null, 0, 1, DbadapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(managedNeo4jInstanceEClass, ManagedNeo4jInstance.class, "ManagedNeo4jInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getManagedNeo4jInstance_Running(), ecorePackage.getEBoolean(), "running", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getManagedNeo4jInstance_Scanned(), ecorePackage.getEBoolean(), "scanned", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getManagedNeo4jInstance_StorageArea(), ecorePackage.getEString(), "storageArea", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getManagedNeo4jInstance_DirectoriesToScan(), ecorePackage.getEString(), "directoriesToScan", null, 1, -1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEOperation(getManagedNeo4jInstance__Scan(), null, "scan", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+    initEOperation(getManagedNeo4jInstance__Start(), null, "start", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+    initEOperation(getManagedNeo4jInstance__Stop(), null, "stop", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+    initEOperation(getManagedNeo4jInstance__Delete(), null, "delete", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     // Initialize data types
     initEDataType(futureEDataType, Future.class, "Future", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

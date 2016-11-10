@@ -63,9 +63,32 @@ public class DbadapterContainerItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addIdentifierPropertyDescriptor(object);
       addNamePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Identifier feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addIdentifierPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_DbadapterContainer_identifier_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_DbadapterContainer_identifier_feature", "_UI_DbadapterContainer_type"),
+         DbadapterPackage.Literals.DBADAPTER_CONTAINER__IDENTIFIER,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
@@ -158,6 +181,7 @@ public class DbadapterContainerItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(DbadapterContainer.class)) {
+      case DbadapterPackage.DBADAPTER_CONTAINER__IDENTIFIER:
       case DbadapterPackage.DBADAPTER_CONTAINER__NAME:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
@@ -193,6 +217,11 @@ public class DbadapterContainerItemProvider
       (createChildParameter
         (DbadapterPackage.Literals.DBADAPTER_CONTAINER__CLIENTS,
          DbadapterFactory.eINSTANCE.createDbAdapterRegistry()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (DbadapterPackage.Literals.DBADAPTER_CONTAINER__CLIENTS,
+         DbadapterFactory.eINSTANCE.createManagedNeo4jInstance()));
   }
 
   /**

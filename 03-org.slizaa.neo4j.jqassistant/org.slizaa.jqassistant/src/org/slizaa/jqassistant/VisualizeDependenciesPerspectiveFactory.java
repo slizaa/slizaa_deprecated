@@ -4,6 +4,7 @@ import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 import org.eclipse.ui.console.IConsoleConstants;
+import org.eclipse.ui.internal.e4.compatibility.ModeledPageLayout;
 
 /**
  * <p>
@@ -41,19 +42,19 @@ public class VisualizeDependenciesPerspectiveFactory implements IPerspectiveFact
     folderLayout = layout.createFolder(FOLDER_LOWER_LEFT, IPageLayout.BOTTOM, 0.6f, FOLDER_UPPER_LEFT);
     folderLayout.addView(IPageLayout.ID_PROP_SHEET);
     
-    //
-    folderLayout = layout.createFolder(FOLDER_UPPER_RIGHT, IPageLayout.RIGHT, 0.8f, IPageLayout.ID_EDITOR_AREA);
-    folderLayout.addView("org.slizaa.ui.klighd.SlizaaDiagramViewPart");
-    folderLayout.addView("org.slizaa.ui.dsm.DsmPart");
+    // folderLayout = layout.createFolder(FOLDER_UPPER_RIGHT, IPageLayout.RIGHT, 0.8f, IPageLayout.ID_EDITOR_AREA);
+    // http://stackoverflow.com/questions/26776802/eclipse-rcp-open-a-view-in-the-editor-area-3-8-e4-hybrid
+    ((ModeledPageLayout)layout).stackView("org.slizaa.ui.klighd.SlizaaDiagramViewPart", IPageLayout.ID_EDITOR_AREA, true);
+    ((ModeledPageLayout)layout).stackView("org.slizaa.ui.dsm.DsmPart", IPageLayout.ID_EDITOR_AREA, true);
 
     //
-    folderLayout = layout.createFolder(FOLDER_LOWER_RIGHT, IPageLayout.BOTTOM, 0.6f, FOLDER_UPPER_RIGHT);
+    folderLayout = layout.createFolder(FOLDER_LOWER_RIGHT, IPageLayout.BOTTOM, 0.6f, IPageLayout.ID_EDITOR_AREA);
     folderLayout.addView("org.slizaa.ui.dependencytree.DependencyTreePart");
     folderLayout.addView("org.slizaa.ui.dependencytable.DependencyTablePart");
     folderLayout.addView(IConsoleConstants.ID_CONSOLE_VIEW);
 
     //
-    layout.setEditorAreaVisible(false);
+//    layout.setEditorAreaVisible(false);
 
     //
     addViewShortCuts(layout);

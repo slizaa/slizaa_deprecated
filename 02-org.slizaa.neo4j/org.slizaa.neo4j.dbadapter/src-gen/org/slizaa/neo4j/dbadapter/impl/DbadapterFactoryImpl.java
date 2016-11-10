@@ -2,24 +2,24 @@
  */
 package org.slizaa.neo4j.dbadapter.impl;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import java.util.concurrent.Future;
-
 import java.util.function.Consumer;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
+import org.slizaa.neo4j.dbadapter.DbadapterContainer;
+import org.slizaa.neo4j.dbadapter.DbadapterFactory;
+import org.slizaa.neo4j.dbadapter.DbadapterPackage;
+import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
-import org.slizaa.neo4j.dbadapter.*;
-import org.slizaa.neo4j.dbadapter.impl.ExtendedNeo4JRemoteRepositoryImpl;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,6 +68,7 @@ public class DbadapterFactoryImpl extends EFactoryImpl implements DbadapterFacto
       case DbadapterPackage.NEO4J_REST_CLIENT: return createNeo4jRestClient();
       case DbadapterPackage.DB_ADAPTER_REGISTRY: return createDbAdapterRegistry();
       case DbadapterPackage.DBADAPTER_CONTAINER: return createDbadapterContainer();
+      case DbadapterPackage.MANAGED_NEO4J_INSTANCE: return createManagedNeo4jInstance();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -143,6 +144,16 @@ public class DbadapterFactoryImpl extends EFactoryImpl implements DbadapterFacto
   public DbadapterContainer createDbadapterContainer() {
     DbadapterContainerImpl dbadapterContainer = new DbadapterContainerImpl();
     return dbadapterContainer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ManagedNeo4jInstance createManagedNeo4jInstance() {
+    ManagedNeo4jInstanceImpl managedNeo4jInstance = new ExtendedManagedNeo4JInstanceImpl();
+    return managedNeo4jInstance;
   }
 
   /**

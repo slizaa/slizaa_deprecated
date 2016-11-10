@@ -18,10 +18,11 @@
 		<!-- module>org.slizaa.neo4j.hierarchicalgraph.mapping.service.test</module -->
 		<module>org.slizaa.neo4j.hierarchicalgraph.test</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.ui</module>
-		<module>org.slizaa.neo4j.restclient</module>
-		<module>org.slizaa.neo4j.restclient.edit</module>
-		<module>org.slizaa.neo4j.restclient.test</module>
-		<module>org.slizaa.neo4j.restclient.ui</module>
+		<module>org.slizaa.neo4j.ui.discovery</module>
+		<module>org.slizaa.neo4j.dbadapter</module>
+		<module>org.slizaa.neo4j.dbadapter.edit</module>
+		<module>org.slizaa.neo4j.dbadapter.test</module>
+		<module>org.slizaa.neo4j.dbadapter.ui</module>
 		<module>org.slizaa.neo4j.testfwk</module>
 		<module>org.slizaa.neo4j.testfwk.dbserver</module>
 		<module>org.slizaa.neo4j.workbenchmodel</module>

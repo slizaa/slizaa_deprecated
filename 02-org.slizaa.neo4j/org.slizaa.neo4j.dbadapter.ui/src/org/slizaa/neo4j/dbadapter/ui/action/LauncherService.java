@@ -1,6 +1,7 @@
-package org.slizaa.neo4j.hierarchicalgraph.ui.actions;
+package org.slizaa.neo4j.dbadapter.ui.action;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
@@ -9,28 +10,66 @@ import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.ILaunchesListener2;
-import org.osgi.service.component.annotations.Component;
-import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.ui.tree.SlizaaTreeAction;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 
-@Component
-public class ExternalLauncherTreeAction implements SlizaaTreeAction {
+import static com.google.common.base.Preconditions.checkNotNull;
 
-  @Override
-  public boolean shouldShow(Object selection) {
-    return selection instanceof Neo4jRestClient;
+import java.io.File;
+import java.io.IOException;
+
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
+public class LauncherService {
+
+  /**
+   * <p>
+   * </p>
+   */
+  public static boolean isJQAssistantInstalled() {
+    return getJQAssistantBundle() != null;
   }
 
-  @Override
-  public boolean isEnabled(Object selection) {
-    Neo4jRestClient repository = (Neo4jRestClient) selection;
-    // return repository.getHierarchicalGraphs().size() == 0;
-    return true;
+  /**
+   * <p>
+   * </p>
+   */
+  public static Bundle getJQAssistantBundle() {
+
+    //
+    BundleContext context = FrameworkUtil.getBundle(LauncherService.class).getBundleContext();
+    for (Bundle bundle : context.getBundles()) {
+      if (bundle.getSymbolicName().equals("org.slizaa.org.jqassistant.distribution")) {
+        return bundle;
+      }
+    }
+
+    //
+    return null;
   }
 
-  @Override
-  public void execute(Object selection) {
+  /**
+   * <p>
+   * </p>
+   * 
+   * @throws IOException
+   */
+  public static void scan(ManagedNeo4jInstance managedInstance) throws IOException {
 
+    //
+    checkNotNull(managedInstance);
+
+    //
+    Bundle jqassistantBundle = getJQAssistantBundle();
+    String jqassistantHomeDirectory = FileLocator.getBundleFile(jqassistantBundle).getAbsolutePath();
+
+    //
     try {
 
       //
@@ -50,16 +89,14 @@ public class ExternalLauncherTreeAction implements SlizaaTreeAction {
 
       ILaunchConfigurationWorkingCopy workingCopy = type.newInstance(null, "slizaa_server");
       // String exec = "mvn.sh";
-      // TODO
       // if (nameOS.toLowerCase().contains("win")) {
       // exec = "mvn.bat";
       // }
-      String jqassistantHomeDirectory = "D:\\50-Development\\jqassistant-1.1.3-examples";
-
+      
       workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_LOCATION",
           jqassistantHomeDirectory + "\\bin\\jqassistant.cmd");
-      workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS",
-          "server -s .\\jqassistant\\mapstructDB");
+      workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS", String.format(
+          "scan -reset -f %s -s %s", managedInstance.getDirectoriesToScan().get(0), managedInstance.getStorageArea()));
       workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY", jqassistantHomeDirectory);
       ILaunch launch = workingCopy.launch(ILaunchManager.RUN_MODE, new NullProgressMonitor());
       System.out.println(launch);
@@ -98,15 +135,5 @@ public class ExternalLauncherTreeAction implements SlizaaTreeAction {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-  }
-
-  @Override
-  public String getLabel() {
-    return "External launch... ";
-  }
-
-  @Override
-  public String getImagePath() {
-    return null;
   }
 }

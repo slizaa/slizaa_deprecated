@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="com.codeandme.toolbar.discovery"
+               label="Discovery">
+            <command
+                  commandId="org.eclipse.equinox.p2.ui.discovery.commands.ShowBundleCatalog"
+                  label="Extended"
+                  style="push">
+               <parameter
+                     name="org.eclipse.equinox.p2.ui.discovery.commands.DirectoryParameter"
+                     value="http://www.slizaa.org/p2/org.slizaa.org.jqassistant.distribution/directory.xml">
+               </parameter>
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>

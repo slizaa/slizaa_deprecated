@@ -11,7 +11,6 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
@@ -51,24 +50,22 @@ public class CreateHierarchicalGraphTreeAction implements SlizaaTreeAction {
   private MApplication                     _mApplication;
 
   @Override
-  public boolean shouldShow(EObject eObject) {
-    System.out.println("shouldShow");
-    return eObject instanceof Neo4jRestClient;
+  public boolean shouldShow(Object selection) {
+    return selection instanceof Neo4jRestClient;
   }
 
   @Override
-  public boolean isEnabled(EObject eSelectedObject) {
-    System.out.println("isEnabled");
-    Neo4jRestClient repository = (Neo4jRestClient) eSelectedObject;
+  public boolean isEnabled(Object selection) {
+    Neo4jRestClient repository = (Neo4jRestClient) selection;
     // return repository.getHierarchicalGraphs().size() == 0;
     return true;
   }
 
   @Override
-  public void execute(EObject object) {
+  public void execute(Object selection) {
 
     //
-    Neo4jRestClient remoteRepository = (Neo4jRestClient) object;
+    Neo4jRestClient remoteRepository = (Neo4jRestClient) selection;
 
     ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(),
         new LabelProvider());
