@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
-import org.slizaa.ui.tree.SlizaaTreeAction;
+import org.slizaa.ui.tree.ISlizaaAction;
 
 @Component
-public class ScanAction implements SlizaaTreeAction {
+public class ScanAction implements ISlizaaAction {
 
   @Override
   public boolean shouldShow(Object object) {
@@ -17,12 +17,12 @@ public class ScanAction implements SlizaaTreeAction {
   @Override
   public boolean isEnabled(Object selectedObject) {
     ManagedNeo4jInstance managedNeo4jInstance = (ManagedNeo4jInstance) selectedObject;
-    return !managedNeo4jInstance.isScanned();
+    return !managedNeo4jInstance.isScanned() && LauncherService.isJQAssistantInstalled();
   }
 
   @Override
   public void execute(Object selectedObject) {
-    
+
     try {
       ManagedNeo4jInstance managedNeo4jInstance = (ManagedNeo4jInstance) selectedObject;
       LauncherService.scan(managedNeo4jInstance);

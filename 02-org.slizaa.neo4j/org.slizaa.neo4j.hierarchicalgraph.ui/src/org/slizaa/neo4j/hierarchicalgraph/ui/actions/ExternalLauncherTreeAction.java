@@ -11,10 +11,10 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.ILaunchesListener2;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.ui.tree.SlizaaTreeAction;
+import org.slizaa.ui.tree.ISlizaaAction;
 
 @Component
-public class ExternalLauncherTreeAction implements SlizaaTreeAction {
+public class ExternalLauncherTreeAction implements ISlizaaAction {
 
   @Override
   public boolean shouldShow(Object selection) {

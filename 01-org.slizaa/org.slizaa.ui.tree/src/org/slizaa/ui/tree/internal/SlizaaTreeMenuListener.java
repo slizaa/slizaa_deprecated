@@ -6,6 +6,7 @@ import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
@@ -13,7 +14,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.osgi.framework.FrameworkUtil;
-import org.slizaa.ui.tree.SlizaaTreeAction;
+import org.slizaa.ui.tree.ISlizaaAction;
 
 /**
  * {@link IMenuListener Menu listener} added on the tree master detail.
@@ -54,7 +55,7 @@ public class SlizaaTreeMenuListener implements IMenuListener {
       }
 
       // collect the "right click actions"
-      SlizaaTreeAction[] rightClickActions = getRightClickActions();
+      ISlizaaAction[] rightClickActions = getRightClickActions();
 
       if (selection.getFirstElement() instanceof EObject && rightClickActions != null && rightClickActions.length > 0) {
 
@@ -62,7 +63,7 @@ public class SlizaaTreeMenuListener implements IMenuListener {
         final EObject eSelectedObject = (EObject) selection.getFirstElement();
 
         //
-        for (final SlizaaTreeAction slizaaTreeAction : rightClickActions) {
+        for (final ISlizaaAction slizaaTreeAction : rightClickActions) {
 
           ContextInjectionFactory.inject(slizaaTreeAction,
               Activator.getDefault().getE4Workbench().getApplication().getContext());
@@ -94,6 +95,15 @@ public class SlizaaTreeMenuListener implements IMenuListener {
 
             // add to manager
             manager.add(newAction);
+            
+            // https://wiki.eclipse.org/FAQ_How_do_I_build_menus_and_toolbars_programmatically%3F
+            
+//            manager.add(new GroupMarker("Save IT"));
+//            manager.appendToGroup("Save IT", newAction);
+            
+            MenuManager menu2 = new MenuManager("Menu &2", "2");
+            menu2.add(new Action("Action 2") {});
+            manager.add(menu2);
           }
         }
 
@@ -116,7 +126,7 @@ public class SlizaaTreeMenuListener implements IMenuListener {
   /**
    * @return
    */
-  private SlizaaTreeAction[] getRightClickActions() {
+  private ISlizaaAction[] getRightClickActions() {
     return Activator.getDefault().getSlizaaTreeActions();
   }
 }

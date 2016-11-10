@@ -1,6 +1,14 @@
 package org.slizaa.ui.tree;
 
-public interface SlizaaTreeAction {
+import org.eclipse.emf.ecore.EObject;
+
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
+public interface ISlizaaAction {
 
   /**
    * <p>

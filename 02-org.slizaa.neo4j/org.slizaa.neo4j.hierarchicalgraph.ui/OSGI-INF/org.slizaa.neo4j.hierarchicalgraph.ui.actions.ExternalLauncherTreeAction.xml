@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.slizaa.neo4j.hierarchicalgraph.ui.actions.ExternalLauncherTreeAction">
    <service>
-      <provide interface="org.slizaa.ui.tree.SlizaaTreeAction"/>
+      <provide interface="org.slizaa.ui.tree.ISlizaaAction"/>
    </service>
    <implementation class="org.slizaa.neo4j.hierarchicalgraph.ui.actions.ExternalLauncherTreeAction"/>
 </scr:component>

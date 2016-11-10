@@ -7,7 +7,7 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.osgi.util.tracker.ServiceTracker;
-import org.slizaa.ui.tree.SlizaaTreeAction;
+import org.slizaa.ui.tree.ISlizaaAction;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -21,7 +21,7 @@ public class Activator extends AbstractUIPlugin {
   private static Activator                                   plugin;
 
   /** - */
-  private ServiceTracker<SlizaaTreeAction, SlizaaTreeAction> _slizaaTreeActionTracker;
+  private ServiceTracker<ISlizaaAction, ISlizaaAction> _slizaaTreeActionTracker;
 
   private ServiceTracker<IWorkbench, IWorkbench>             _workBenchServiceTracker;
   
@@ -35,7 +35,7 @@ public class Activator extends AbstractUIPlugin {
     plugin = this;
 
     //
-    _slizaaTreeActionTracker = new ServiceTracker<>(context, SlizaaTreeAction.class, null);
+    _slizaaTreeActionTracker = new ServiceTracker<>(context, ISlizaaAction.class, null);
     _slizaaTreeActionTracker.open();
 
     //
@@ -61,8 +61,8 @@ public class Activator extends AbstractUIPlugin {
    * 
    * @return
    */
-  public SlizaaTreeAction[] getSlizaaTreeActions() {
-    return _slizaaTreeActionTracker.getServices(new SlizaaTreeAction[0]);
+  public ISlizaaAction[] getSlizaaTreeActions() {
+    return _slizaaTreeActionTracker.getServices(new ISlizaaAction[0]);
   }
 
   /**
