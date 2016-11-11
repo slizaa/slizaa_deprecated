@@ -38,13 +38,13 @@ import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeT
 import org.slizaa.ui.common.SlizaaCommonColors;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.common.context.RootObject;
-import org.slizaa.ui.tree.DependencyResolvingTreeEventInterceptor;
-import org.slizaa.ui.tree.IInterceptableLabelProvider;
-import org.slizaa.ui.tree.SelectedNodesLabelProviderInterceptor;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 import org.slizaa.ui.tree.VisibleNodesFilter;
 import org.slizaa.ui.tree.expand.DefaultExpandStrategy;
 import org.slizaa.ui.tree.expand.IExpandStrategy;
+import org.slizaa.ui.tree.interceptors.DependencyResolvingTreeEventInterceptor;
+import org.slizaa.ui.tree.interceptors.IInterceptableLabelProvider;
+import org.slizaa.ui.tree.interceptors.SelectedNodesLabelProviderInterceptor;
 
 /**
  * <p>

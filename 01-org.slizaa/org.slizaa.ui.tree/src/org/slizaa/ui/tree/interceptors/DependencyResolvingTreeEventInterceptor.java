@@ -1,4 +1,4 @@
-package org.slizaa.ui.tree;
+package org.slizaa.ui.tree.interceptors;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

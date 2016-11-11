@@ -8,8 +8,32 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public interface ISlizaaAction {
+public interface ISlizaaActionContribution {
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  String getGroupId();
+  
+  /**
+   * <p>
+   * </p>
+   * 
+   * @return the label of the action
+   */
+  String getLabel();
+
+  /**
+   * <p>
+   * </p>
+   * 
+   * @return the imagePath
+   */
+  String getImagePath();
+  
   /**
    * <p>
    * </p>
@@ -37,20 +61,4 @@ public interface ISlizaaAction {
    *          The {@link EObject} on which the action is executed
    **/
   void execute(Object selectedObject);
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @return the label of the action
-   */
-  String getLabel();
-
-  /**
-   * <p>
-   * </p>
-   * 
-   * @return the imagePath
-   */
-  String getImagePath();
 }

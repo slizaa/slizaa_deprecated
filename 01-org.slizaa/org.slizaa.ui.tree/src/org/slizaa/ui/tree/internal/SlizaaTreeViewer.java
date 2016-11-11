@@ -6,7 +6,7 @@ import org.eclipse.swt.events.TreeEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGNodeImpl;
 import org.slizaa.ui.common.context.BusyCursor;
-import org.slizaa.ui.tree.ITreeEventInterceptor;
+import org.slizaa.ui.tree.interceptors.ITreeEventInterceptor;
 
 /**
  * <p>

@@ -18,4 +18,5 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.slizaa.ui.tree,
- org.slizaa.ui.tree.expand
+ org.slizaa.ui.tree.expand,
+ org.slizaa.ui.tree.interceptors

@@ -3,6 +3,7 @@ package org.slizaa.ui.tree;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.slizaa.ui.tree.interceptors.ITreeEventInterceptor;
 import org.slizaa.ui.tree.internal.TreeCreator;
 
 /**

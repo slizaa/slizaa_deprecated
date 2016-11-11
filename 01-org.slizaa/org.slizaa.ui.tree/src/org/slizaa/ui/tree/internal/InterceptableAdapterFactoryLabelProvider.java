@@ -8,8 +8,8 @@ import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
-import org.slizaa.ui.tree.IInterceptableLabelProvider;
-import org.slizaa.ui.tree.ILabelProviderInterceptor;
+import org.slizaa.ui.tree.interceptors.IInterceptableLabelProvider;
+import org.slizaa.ui.tree.interceptors.ILabelProviderInterceptor;
 
 /**
  * <p>

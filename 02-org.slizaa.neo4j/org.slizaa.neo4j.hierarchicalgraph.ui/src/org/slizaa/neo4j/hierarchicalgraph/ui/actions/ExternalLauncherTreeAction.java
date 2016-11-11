@@ -11,11 +11,16 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.ILaunchesListener2;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.ui.tree.ISlizaaAction;
+import org.slizaa.ui.tree.ISlizaaActionContribution;
 
 @Component
-public class ExternalLauncherTreeAction implements ISlizaaAction {
+public class ExternalLauncherTreeAction implements ISlizaaActionContribution {
 
+  @Override
+  public String getGroupId() {
+    return null;
+  }
+  
   @Override
   public boolean shouldShow(Object selection) {
     return selection instanceof Neo4jRestClient;

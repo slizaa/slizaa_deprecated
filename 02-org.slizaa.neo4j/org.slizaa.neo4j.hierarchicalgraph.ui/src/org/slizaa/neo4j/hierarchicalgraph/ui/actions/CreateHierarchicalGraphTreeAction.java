@@ -28,10 +28,10 @@ import org.slizaa.neo4j.hierarchicalgraph.ui.deprecated.Descriptors;
 import org.slizaa.neo4j.hierarchicalgraph.ui.deprecated.Descriptors2;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
-import org.slizaa.ui.tree.ISlizaaAction;
+import org.slizaa.ui.tree.ISlizaaActionContribution;
 
 @Component
-public class CreateHierarchicalGraphTreeAction implements ISlizaaAction {
+public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribution {
 
   private static final String              JAVA_MAPPING_FLAT_PACKAGES         = "Java mapping (flat packages)";
 
@@ -48,6 +48,11 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaAction {
 
   @Inject
   private MApplication                     _mApplication;
+
+  @Override
+  public String getGroupId() {
+    return null;
+  }
 
   @Override
   public boolean shouldShow(Object selection) {

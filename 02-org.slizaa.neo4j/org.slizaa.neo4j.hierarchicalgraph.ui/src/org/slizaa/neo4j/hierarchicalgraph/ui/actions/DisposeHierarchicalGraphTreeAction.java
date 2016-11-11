@@ -9,10 +9,10 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
-import org.slizaa.ui.tree.ISlizaaAction;
+import org.slizaa.ui.tree.ISlizaaActionContribution;
 
 @Component
-public class DisposeHierarchicalGraphTreeAction implements ISlizaaAction {
+public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribution {
 
   @Inject
   private WorkbenchModelService _workbenchModelService;
@@ -20,6 +20,11 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaAction {
   @Inject
   private MApplication          _mApplication;
 
+  @Override
+  public String getGroupId() {
+    return null;
+  }
+  
   /**
    * {@inheritDoc}
    */

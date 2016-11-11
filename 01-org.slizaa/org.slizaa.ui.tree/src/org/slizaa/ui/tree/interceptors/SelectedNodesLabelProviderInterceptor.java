@@ -1,4 +1,4 @@
-package org.slizaa.ui.tree;
+package org.slizaa.ui.tree.interceptors;
 
 import java.util.Collection;
 import java.util.function.Supplier;

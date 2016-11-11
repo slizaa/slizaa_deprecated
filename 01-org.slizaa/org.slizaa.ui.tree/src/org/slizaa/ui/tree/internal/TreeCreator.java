@@ -13,7 +13,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.slizaa.ui.common.context.RootObject;
-import org.slizaa.ui.tree.ITreeEventInterceptor;
+import org.slizaa.ui.tree.interceptors.ITreeEventInterceptor;
 
 public class TreeCreator {
 
@@ -96,7 +96,7 @@ public class TreeCreator {
   protected static Menu getMenu(TreeViewer treeViewer, EditingDomain editingDomain) {
     final MenuManager menuMgr = new MenuManager();
     menuMgr.setRemoveAllWhenShown(true);
-    menuMgr.addMenuListener(new SlizaaTreeMenuListener(menuMgr, treeViewer, editingDomain));
+    menuMgr.addMenuListener(new SlizaaTreeMenuListener(treeViewer));
     final Menu menu = menuMgr.createContextMenu(treeViewer.getControl());
     return menu;
   }

@@ -4,10 +4,15 @@ import java.io.IOException;
 
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
-import org.slizaa.ui.tree.ISlizaaAction;
+import org.slizaa.ui.tree.ISlizaaActionContribution;
 
 @Component
-public class ScanAction implements ISlizaaAction {
+public class ScanActionContribution implements ISlizaaActionContribution {
+  
+  @Override
+  public String getGroupId() {
+    return ManagedServerActionGroup.GROUP_ID_MANAGED_SERVER;
+  }
 
   @Override
   public boolean shouldShow(Object object) {
