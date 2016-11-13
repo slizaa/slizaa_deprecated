@@ -21,10 +21,13 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
   private MApplication          _mApplication;
 
   @Override
-  public String getGroupId() {
+  public String getParentGroupId() {
     return null;
   }
-  
+  @Override
+  public int getRanking() {
+    return 0;
+  }
   /**
    * {@inheritDoc}
    */

@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.dbadapter.ui;
+package org.slizaa.neo4j.dbadapter.ui.internal;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -10,6 +10,7 @@ import org.slizaa.neo4j.dbadapter.DbadapterContainer;
 import org.slizaa.neo4j.dbadapter.DbadapterFactory;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
+import org.slizaa.neo4j.dbadapter.ui.internal.action.LauncherService;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -27,6 +28,9 @@ public class Activator extends AbstractUIPlugin {
 
   // The shared instance
   private static Activator       _plugin;
+
+  /** - */
+  private LauncherService        _launcherService;
 
   //
   private ComposedAdapterFactory _adapterFactory;
@@ -77,7 +81,6 @@ public class Activator extends AbstractUIPlugin {
     managedNeo4jInstance.setName("localhost");
     managedNeo4jInstance.setThreadPoolSize(20);
     managedNeo4jInstance.init();
-    managedNeo4jInstance.setScanned(false);
     managedNeo4jInstance.setRunning(false);
     managedNeo4jInstance.setStorageArea("c:\\neo4jTemp\\testdatabase");
     managedNeo4jInstance.getDirectoriesToScan().add("c:\\neo4jTemp\\testInput");
@@ -92,7 +95,21 @@ public class Activator extends AbstractUIPlugin {
    */
   public void stop(BundleContext context) throws Exception {
     _plugin = null;
+    if (_launcherService != null) {
+      _launcherService.dispose();
+    }
     super.stop(context);
+  }
+
+  public LauncherService getLauncherService() {
+
+    //
+    if (_launcherService == null) {
+      _launcherService = new LauncherService();
+      _launcherService.init();
+    }
+
+    return _launcherService;
   }
 
   /**

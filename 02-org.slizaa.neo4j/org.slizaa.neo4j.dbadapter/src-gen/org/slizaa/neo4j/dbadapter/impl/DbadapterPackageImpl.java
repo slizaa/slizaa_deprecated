@@ -9,6 +9,7 @@ import java.util.concurrent.Future;
 
 import java.util.function.Consumer;
 
+import org.eclipse.debug.core.ILaunch;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -87,6 +88,13 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   private EDataType jsonObjectEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType iLaunchEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -361,7 +369,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getManagedNeo4jInstance_Scanned() {
+  public EAttribute getManagedNeo4jInstance_StorageArea() {
     return (EAttribute)managedNeo4jInstanceEClass.getEStructuralFeatures().get(1);
   }
 
@@ -370,7 +378,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getManagedNeo4jInstance_StorageArea() {
+  public EAttribute getManagedNeo4jInstance_DirectoriesToScan() {
     return (EAttribute)managedNeo4jInstanceEClass.getEStructuralFeatures().get(2);
   }
 
@@ -379,7 +387,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getManagedNeo4jInstance_DirectoriesToScan() {
+  public EAttribute getManagedNeo4jInstance_Launch() {
     return (EAttribute)managedNeo4jInstanceEClass.getEStructuralFeatures().get(3);
   }
 
@@ -397,7 +405,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getManagedNeo4jInstance__Start() {
+  public EOperation getManagedNeo4jInstance__IsScanned() {
     return managedNeo4jInstanceEClass.getEOperations().get(1);
   }
 
@@ -406,7 +414,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getManagedNeo4jInstance__Stop() {
+  public EOperation getManagedNeo4jInstance__Start() {
     return managedNeo4jInstanceEClass.getEOperations().get(2);
   }
 
@@ -415,8 +423,17 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getManagedNeo4jInstance__Delete() {
+  public EOperation getManagedNeo4jInstance__Stop() {
     return managedNeo4jInstanceEClass.getEOperations().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getManagedNeo4jInstance__Delete() {
+    return managedNeo4jInstanceEClass.getEOperations().get(4);
   }
 
   /**
@@ -453,6 +470,15 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    */
   public EDataType getJsonObject() {
     return jsonObjectEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EDataType getILaunch() {
+    return iLaunchEDataType;
   }
 
   /**
@@ -509,10 +535,11 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
 
     managedNeo4jInstanceEClass = createEClass(MANAGED_NEO4J_INSTANCE);
     createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__RUNNING);
-    createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__SCANNED);
     createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__STORAGE_AREA);
     createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN);
+    createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__LAUNCH);
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___SCAN);
+    createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___IS_SCANNED);
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___START);
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___STOP);
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___DELETE);
@@ -522,6 +549,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
     consumerEDataType = createEDataType(CONSUMER);
     jsonArrayEDataType = createEDataType(JSON_ARRAY);
     jsonObjectEDataType = createEDataType(JSON_OBJECT);
+    iLaunchEDataType = createEDataType(ILAUNCH);
   }
 
   /**
@@ -639,11 +667,13 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
 
     initEClass(managedNeo4jInstanceEClass, ManagedNeo4jInstance.class, "ManagedNeo4jInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getManagedNeo4jInstance_Running(), ecorePackage.getEBoolean(), "running", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getManagedNeo4jInstance_Scanned(), ecorePackage.getEBoolean(), "scanned", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getManagedNeo4jInstance_StorageArea(), ecorePackage.getEString(), "storageArea", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getManagedNeo4jInstance_DirectoriesToScan(), ecorePackage.getEString(), "directoriesToScan", null, 1, -1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getManagedNeo4jInstance_Launch(), this.getILaunch(), "launch", null, 0, 1, ManagedNeo4jInstance.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEOperation(getManagedNeo4jInstance__Scan(), null, "scan", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+    initEOperation(getManagedNeo4jInstance__IsScanned(), ecorePackage.getEBoolean(), "isScanned", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEOperation(getManagedNeo4jInstance__Start(), null, "start", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -656,6 +686,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
     initEDataType(consumerEDataType, Consumer.class, "Consumer", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(jsonArrayEDataType, JsonArray.class, "JsonArray", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(jsonObjectEDataType, JsonObject.class, "JsonObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(iLaunchEDataType, ILaunch.class, "ILaunch", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

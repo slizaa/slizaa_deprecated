@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.slizaa.neo4j.dbadapter.ui.handler.AddRemoteServerHandler;
+import org.slizaa.neo4j.dbadapter.ui.internal.Activator;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 
 public class GraphDatabasesView {

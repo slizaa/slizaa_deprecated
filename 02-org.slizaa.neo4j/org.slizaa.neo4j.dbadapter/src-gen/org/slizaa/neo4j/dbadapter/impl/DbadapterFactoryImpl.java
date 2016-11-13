@@ -149,7 +149,7 @@ public class DbadapterFactoryImpl extends EFactoryImpl implements DbadapterFacto
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public ManagedNeo4jInstance createManagedNeo4jInstance() {
     ManagedNeo4jInstanceImpl managedNeo4jInstance = new ExtendedManagedNeo4JInstanceImpl();

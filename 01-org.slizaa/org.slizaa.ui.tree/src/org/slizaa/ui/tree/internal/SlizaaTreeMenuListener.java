@@ -5,6 +5,7 @@ import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.slizaa.ui.tree.internal.menu.MenuBuilder;
 
 /**
  * {@link IMenuListener Menu listener} added on the tree master detail.

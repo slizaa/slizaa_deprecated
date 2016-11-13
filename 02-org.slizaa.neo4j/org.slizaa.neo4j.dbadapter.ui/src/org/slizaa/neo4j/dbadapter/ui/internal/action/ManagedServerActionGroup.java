@@ -1,10 +1,10 @@
-package org.slizaa.neo4j.dbadapter.ui.action;
+package org.slizaa.neo4j.dbadapter.ui.internal.action;
 
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 import org.slizaa.ui.tree.ISlizaaActionGroupContribution;
 
-@Component
+@Component(service = ISlizaaActionGroupContribution.class)
 public class ManagedServerActionGroup implements ISlizaaActionGroupContribution {
 
   public static final String GROUP_ID_MANAGED_SERVER = "GROUP_ID_MANAGED_SERVER";
@@ -17,6 +17,14 @@ public class ManagedServerActionGroup implements ISlizaaActionGroupContribution 
   @Override
   public String getLabel() {
     return "Managed Server";
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getRanking() {
+    return 0;
   }
 
   @Override

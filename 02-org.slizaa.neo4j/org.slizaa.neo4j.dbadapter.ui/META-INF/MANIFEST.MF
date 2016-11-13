@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.slizaa.neo4j.graphdb.ui
 Bundle-SymbolicName: org.slizaa.neo4j.dbadapter.ui;singleton:=true
 Bundle-Version: 0.0.4.qualifier
-Bundle-Activator: org.slizaa.neo4j.dbadapter.ui.Activator
+Bundle-Activator: org.slizaa.neo4j.dbadapter.ui.internal.Activator
 Export-Package: org.slizaa.neo4j.dbadapter.ui,
  org.slizaa.neo4j.dbadapter.ui.dialog,
  org.slizaa.neo4j.dbadapter.ui.handler
@@ -33,5 +33,8 @@ Import-Package: javax.annotation;version="1.2.0",
  javax.inject;version="1.0.0",
  org.osgi.service.component.annotations;version="1.2.0"
 Bundle-ActivationPolicy: lazy
-Service-Component: OSGI-INF/org.slizaa.neo4j.dbadapter.ui.action.ScanActionContribution.xml,
- OSGI-INF/org.slizaa.neo4j.dbadapter.ui.action.ManagedServerActionGroup.xml
+Service-Component: OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.ScanActionContribution.xml,
+ OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.ManagedServerActionGroup.xml,
+ OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.EnrichActionContribution.xml,
+ OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.StopActionContribution.xml,
+ OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.StartActionContribution.xml

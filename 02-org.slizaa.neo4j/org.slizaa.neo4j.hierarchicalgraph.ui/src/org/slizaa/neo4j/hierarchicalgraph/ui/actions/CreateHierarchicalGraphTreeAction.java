@@ -50,9 +50,18 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
   private MApplication                     _mApplication;
 
   @Override
-  public String getGroupId() {
+  public String getParentGroupId() {
     return null;
   }
+
+  
+  
+  @Override
+  public int getRanking() {
+    return 0;
+  }
+
+
 
   @Override
   public boolean shouldShow(Object selection) {

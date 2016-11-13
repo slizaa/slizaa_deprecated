@@ -13,6 +13,7 @@ package org.slizaa.neo4j.dbadapter.impl;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import java.io.File;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -63,6 +64,13 @@ public class ExtendedManagedNeo4JInstanceImpl extends ManagedNeo4jInstanceImpl {
     ClientConfig config = new ClientConfig().register(new GsonProvider<>());
     _cypherQueryService = ConsumerFactory.createConsumer(getBaseURI(), config, Neo4JRemoteServiceRestApi.class);
   }
+
+  @Override
+  public boolean isScanned() {
+    return new File(getStorageArea(), "neostore").exists();
+  }
+
+
 
   /**
    * {@inheritDoc}

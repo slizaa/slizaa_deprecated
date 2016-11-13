@@ -18,8 +18,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.slizaa.neo4j.dbadapter.DbadapterFactory;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.neo4j.dbadapter.ui.Activator;
 import org.slizaa.neo4j.dbadapter.ui.dialog.UrlDialog;
+import org.slizaa.neo4j.dbadapter.ui.internal.Activator;
 
 public class AddRemoteServerHandler {
 

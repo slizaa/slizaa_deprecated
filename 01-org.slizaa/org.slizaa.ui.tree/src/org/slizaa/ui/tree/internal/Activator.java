@@ -1,8 +1,5 @@
 package org.slizaa.ui.tree.internal;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.e4.ui.workbench.IWorkbench;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -84,21 +81,8 @@ public class Activator extends AbstractUIPlugin {
    * 
    * @return
    */
-  public Map<String, ISlizaaActionGroupContribution> getSlizaaActionGroupContributions() {
-
-    //
-    Map<String, ISlizaaActionGroupContribution> result = new HashMap<String, ISlizaaActionGroupContribution>();
-
-    //
-    for (ISlizaaActionGroupContribution actionGroupContribution : _slizaaActionGroupContribution
-        .getServices(new ISlizaaActionGroupContribution[0])) {
-
-      //
-      result.put(actionGroupContribution.getId(), actionGroupContribution);
-    }
-
-    //
-    return result;
+  public ISlizaaActionGroupContribution[]  getSlizaaActionGroupContributions() {
+    return _slizaaActionGroupContribution.getServices(new ISlizaaActionGroupContribution[0]);
   }
 
   /**

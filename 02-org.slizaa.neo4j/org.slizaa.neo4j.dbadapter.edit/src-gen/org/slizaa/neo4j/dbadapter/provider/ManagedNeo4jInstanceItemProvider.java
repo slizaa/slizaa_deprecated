@@ -46,9 +46,9 @@ public class ManagedNeo4jInstanceItemProvider
       super.getPropertyDescriptors(object);
 
       addRunningPropertyDescriptor(object);
-      addScannedPropertyDescriptor(object);
       addStorageAreaPropertyDescriptor(object);
       addDirectoriesToScanPropertyDescriptor(object);
+      addLaunchPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -67,28 +67,6 @@ public class ManagedNeo4jInstanceItemProvider
          getString("_UI_ManagedNeo4jInstance_running_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ManagedNeo4jInstance_running_feature", "_UI_ManagedNeo4jInstance_type"),
          DbadapterPackage.Literals.MANAGED_NEO4J_INSTANCE__RUNNING,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Scanned feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addScannedPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_ManagedNeo4jInstance_scanned_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ManagedNeo4jInstance_scanned_feature", "_UI_ManagedNeo4jInstance_type"),
-         DbadapterPackage.Literals.MANAGED_NEO4J_INSTANCE__SCANNED,
          true,
          false,
          false,
@@ -142,6 +120,28 @@ public class ManagedNeo4jInstanceItemProvider
   }
 
   /**
+   * This adds a property descriptor for the Launch feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addLaunchPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_ManagedNeo4jInstance_launch_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ManagedNeo4jInstance_launch_feature", "_UI_ManagedNeo4jInstance_type"),
+         DbadapterPackage.Literals.MANAGED_NEO4J_INSTANCE__LAUNCH,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
    * This returns ManagedNeo4jInstance.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -180,9 +180,9 @@ public class ManagedNeo4jInstanceItemProvider
 
     switch (notification.getFeatureID(ManagedNeo4jInstance.class)) {
       case DbadapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__SCANNED:
       case DbadapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
       case DbadapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
+      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }
