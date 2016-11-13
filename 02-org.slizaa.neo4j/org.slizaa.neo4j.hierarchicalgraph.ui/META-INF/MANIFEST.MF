@@ -8,8 +8,7 @@ Import-Package: javax.inject;version="1.0.0",
  javax.annotation;version="1.2.0",
  org.osgi.service.component.annotations;version="1.2.0"
 Service-Component: OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.ui.actions.DisposeHierarchicalGraphTreeAction.xml,
- OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.ui.actions.CreateHierarchicalGraphTreeAction.xml,
- OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.ui.actions.ExternalLauncherTreeAction.xml
+ OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.ui.actions.CreateHierarchicalGraphTreeAction.xml
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.slizaa.ui.tree;bundle-version="0.0.3",
  org.eclipse.emf.ecore;bundle-version="2.12.0",
