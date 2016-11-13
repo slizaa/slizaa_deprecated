@@ -9,6 +9,6 @@
 		<relativePath>../../00-releng/org.slizaa.parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>org.slizaa.neo4j.restclient.ui</artifactId>
+	<artifactId>org.slizaa.neo4j.dbadapter.ui</artifactId>
 	<packaging>eclipse-plugin</packaging>
 </project>

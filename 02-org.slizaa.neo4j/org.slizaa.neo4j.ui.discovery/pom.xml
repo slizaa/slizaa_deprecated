@@ -9,6 +9,6 @@
 		<relativePath>../../00-releng/org.slizaa.parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>org.slizaa.neo4j.ui.discover</artifactId>
+	<artifactId>org.slizaa.neo4j.ui.discovery</artifactId>
 	<packaging>eclipse-plugin</packaging>
 </project>
