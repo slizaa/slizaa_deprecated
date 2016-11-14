@@ -40,12 +40,14 @@ public class GraphDatabasesPerspectiveFactory implements IPerspectiveFactory {
     // lower left
     folder = layout.createFolder(FOLDER_LOWER_LEFT, IPageLayout.BOTTOM, 0.50f, FOLDER_UPPER_LEFT);
     folder.addView("org.slizaa.neo4j.restclient.ui.GraphDatabasesView");
-
-    // upper left
-    folder = layout.createFolder(FOLDER_UPPER_RIGHT, IPageLayout.RIGHT, 0.75f, IPageLayout.ID_EDITOR_AREA);
     folder.addView(IPageLayout.ID_PROP_SHEET);
 
-    // lower left
+    // upper right
+    folder = layout.createFolder(FOLDER_UPPER_RIGHT, IPageLayout.RIGHT, 0.75f, IPageLayout.ID_EDITOR_AREA);
+    folder.addView("org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart");
+//    folder.addView(IPageLayout.ID_PROP_SHEET);
+
+    // lower right
     folder = layout.createFolder(FOLDER_LOWER_RIGHT, IPageLayout.BOTTOM, 0.50f, FOLDER_UPPER_RIGHT);
     folder.addView(IPageLayout.ID_TASK_LIST);
 

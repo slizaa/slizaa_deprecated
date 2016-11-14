@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="init" deactivate="dispose" name="org.slizaa.neo4j.dbadapter.internal.DatabaseDefinitionService">
+   <implementation class="org.slizaa.neo4j.dbadapter.internal.DatabaseDefinitionService"/>
+</scr:component>

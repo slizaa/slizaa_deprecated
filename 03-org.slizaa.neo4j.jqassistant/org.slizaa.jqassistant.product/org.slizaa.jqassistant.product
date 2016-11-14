@@ -82,6 +82,7 @@ offerings.
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.platform"/>
       <feature id="org.slizaa.jqassistant.feature"/>
+      <feature id="org.slizaa.neo4j.dbadapter.dsl.feature" version="1.0.0.qualifier"/>
    </features>
 
    <configurations>
