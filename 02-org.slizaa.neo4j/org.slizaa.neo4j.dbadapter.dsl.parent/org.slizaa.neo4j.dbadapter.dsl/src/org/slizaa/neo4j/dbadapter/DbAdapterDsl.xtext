@@ -1,0 +1,9 @@
+grammar org.slizaa.neo4j.dbadapter.DbAdapterDsl with org.eclipse.xtext.common.Terminals
+
+generate dbAdapterDsl "http://www.slizaa.org/neo4j/dbadapter/DbAdapterDsl"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
