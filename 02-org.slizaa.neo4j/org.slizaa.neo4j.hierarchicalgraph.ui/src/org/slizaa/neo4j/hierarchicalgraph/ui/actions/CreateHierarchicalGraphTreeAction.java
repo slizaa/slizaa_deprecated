@@ -19,6 +19,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
@@ -49,19 +50,18 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
   @Inject
   private MApplication                     _mApplication;
 
+  @Inject
+  private DbAdapterRegistry                _dbAdapterRegistry;
+
   @Override
   public String getParentGroupId() {
     return null;
   }
 
-  
-  
   @Override
   public int getRanking() {
     return 0;
   }
-
-
 
   @Override
   public boolean shouldShow(Object selection) {
@@ -70,9 +70,7 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
 
   @Override
   public boolean isEnabled(Object selection) {
-    Neo4jRestClient repository = (Neo4jRestClient) selection;
-    // return repository.getHierarchicalGraphs().size() == 0;
-    return true;
+    return !_dbAdapterRegistry.hasHierarchicalGraph();
   }
 
   @Override
@@ -163,7 +161,8 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
         // set label provider
         rootNode.registerExtension(IItemLabelProvider.class,
             new MappingDescriptorBasedItemLabelProviderImpl(_mappingDescriptor));
-        // _remoteRepository.getHierarchicalGraphs().add(rootNode);
+        _remoteRepository.setHierarchicalGraph(rootNode);
+
         _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().add(rootNode);
 
         //

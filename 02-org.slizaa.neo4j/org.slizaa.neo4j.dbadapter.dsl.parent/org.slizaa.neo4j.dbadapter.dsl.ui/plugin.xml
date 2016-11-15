@@ -407,4 +407,11 @@
 			type="text">
 		</fileTypes>
 	</extension>
+	
+	<!-- -->
+	<extension point="org.eclipse.core.runtime.adapters">
+      <factory adaptableType="org.eclipse.core.resources.IFile" class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.slizaa.neo4j.dbadapter.ui.util.ModelLoadingAdapter">
+         <adapter type="org.slizaa.neo4j.dbadapter.dbAdapterDsl.DbAdapterDefinition" />
+      </factory>
+	</extension>
 </plugin>

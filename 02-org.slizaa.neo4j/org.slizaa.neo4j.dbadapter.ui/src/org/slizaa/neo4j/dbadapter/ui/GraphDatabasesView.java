@@ -1,23 +1,14 @@
 package org.slizaa.neo4j.dbadapter.ui;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.eclipse.e4.ui.model.application.ui.menu.MDirectToolItem;
-import org.eclipse.e4.ui.model.application.ui.menu.MMenuFactory;
-import org.eclipse.e4.ui.model.application.ui.menu.MToolBar;
-import org.eclipse.e4.ui.model.application.ui.menu.MToolBarElement;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.slizaa.neo4j.dbadapter.ui.handler.AddRemoteServerHandler;
-import org.slizaa.neo4j.dbadapter.ui.internal.Activator;
+import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 
 public class GraphDatabasesView {
@@ -31,6 +22,9 @@ public class GraphDatabasesView {
 
   @Inject
   private MPart              part;
+
+  @Inject
+  private DbAdapterRegistry  dbAdapterRegistry;
 
   /** - */
   private TreeViewer         _treeViewer;
@@ -51,31 +45,31 @@ public class GraphDatabasesView {
     parent.setLayout(layout);
 
     //
-    _treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent, Activator.getDefault().getRestClientRegistry());
+    _treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent, dbAdapterRegistry);
     _treeViewer.expandAll();
 
-    createToolBar();
+    // createToolBar();
   }
 
-  private void createToolBar() {
+  // private void createToolBar() {
+  //
+  // //
+  // MDirectToolItem one = MMenuFactory.INSTANCE.createDirectToolItem();
+  // one.setTooltip("Create a new rest client");
+  // one.setIconURI("platform:/plugin/org.slizaa.neo4j.dbadapter.ui/icons/obj16/newgraphdb.gif");
+  // one.setContributionURI(getURI(AddRemoteServerHandler.class));
+  // MToolBar toolBar = MMenuFactory.INSTANCE.createToolBar();
+  // List<MToolBarElement> children = toolBar.getChildren();
+  // children.add(one);
+  // part.setToolbar(toolBar);
+  // }
 
-    //
-    MDirectToolItem one = MMenuFactory.INSTANCE.createDirectToolItem();
-    one.setTooltip("Create a new rest client");
-    one.setIconURI("platform:/plugin/org.slizaa.neo4j.dbadapter.ui/icons/obj16/newgraphdb.gif");
-    one.setContributionURI(getURI(AddRemoteServerHandler.class));
-    MToolBar toolBar = MMenuFactory.INSTANCE.createToolBar();
-    List<MToolBarElement> children = toolBar.getChildren();
-    children.add(one);
-    part.setToolbar(toolBar);
-  }
-
-  private String getURI(Class<?> clazz) {
-    Bundle bundle = FrameworkUtil.getBundle(clazz);
-    if (bundle != null) {
-      return "bundleclass://" + bundle.getSymbolicName() + "/" + clazz.getName();
-    } else {
-      return null;
-    }
-  }
+  // private String getURI(Class<?> clazz) {
+  // Bundle bundle = FrameworkUtil.getBundle(clazz);
+  // if (bundle != null) {
+  // return "bundleclass://" + bundle.getSymbolicName() + "/" + clazz.getName();
+  // } else {
+  // return null;
+  // }
+  // }
 }

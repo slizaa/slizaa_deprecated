@@ -16,17 +16,17 @@ import org.slizaa.neo4j.dbadapter.*;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.slizaa.neo4j.dbadapter.DbadapterPackage
+ * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage
  * @generated
  */
-public class DbadapterAdapterFactory extends AdapterFactoryImpl {
+public class DbAdapterAdapterFactory extends AdapterFactoryImpl {
   /**
    * The cached model package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected static DbadapterPackage modelPackage;
+  protected static DbAdapterPackage modelPackage;
 
   /**
    * Creates an instance of the adapter factory.
@@ -34,9 +34,9 @@ public class DbadapterAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbadapterAdapterFactory() {
+  public DbAdapterAdapterFactory() {
     if (modelPackage == null) {
-      modelPackage = DbadapterPackage.eINSTANCE;
+      modelPackage = DbAdapterPackage.eINSTANCE;
     }
   }
 
@@ -65,8 +65,8 @@ public class DbadapterAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DbadapterSwitch<Adapter> modelSwitch =
-    new DbadapterSwitch<Adapter>() {
+  protected DbAdapterSwitch<Adapter> modelSwitch =
+    new DbAdapterSwitch<Adapter>() {
       @Override
       public Adapter caseNeo4jRestClient(Neo4jRestClient object) {
         return createNeo4jRestClientAdapter();
@@ -76,8 +76,8 @@ public class DbadapterAdapterFactory extends AdapterFactoryImpl {
         return createDbAdapterRegistryAdapter();
       }
       @Override
-      public Adapter caseDbadapterContainer(DbadapterContainer object) {
-        return createDbadapterContainerAdapter();
+      public <T extends Neo4jRestClient> Adapter caseDbAdapterContainer(DbAdapterContainer<T> object) {
+        return createDbAdapterContainerAdapter();
       }
       @Override
       public Adapter caseManagedNeo4jInstance(ManagedNeo4jInstance object) {
@@ -118,7 +118,7 @@ public class DbadapterAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry <em>Db Adapter Registry</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry <em>Registry</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -132,16 +132,16 @@ public class DbadapterAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.dbadapter.DbadapterContainer <em>Container</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.dbadapter.DbAdapterContainer <em>Container</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.slizaa.neo4j.dbadapter.DbadapterContainer
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterContainer
    * @generated
    */
-  public Adapter createDbadapterContainerAdapter() {
+  public Adapter createDbAdapterContainerAdapter() {
     return null;
   }
 
@@ -171,4 +171,4 @@ public class DbadapterAdapterFactory extends AdapterFactoryImpl {
     return null;
   }
 
-} //DbadapterAdapterFactory
+} //DbAdapterAdapterFactory

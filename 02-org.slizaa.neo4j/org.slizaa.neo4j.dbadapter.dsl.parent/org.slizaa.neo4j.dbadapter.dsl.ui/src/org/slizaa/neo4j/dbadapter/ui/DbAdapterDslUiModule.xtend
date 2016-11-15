@@ -4,10 +4,25 @@
 package org.slizaa.neo4j.dbadapter.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
+import org.eclipse.xtext.ui.editor.model.ResourceForIEditorInputFactory
+import org.eclipse.xtext.ui.resource.SimpleResourceSetProvider
+import org.eclipse.xtext.ui.shared.Access
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 class DbAdapterDslUiModule extends AbstractDbAdapterDslUiModule {
+
+	override bindIResourceForEditorInputFactory() {
+		return ResourceForIEditorInputFactory
+	}
+
+	override bindIResourceSetProvider() {
+		return SimpleResourceSetProvider
+	}
+
+	override provideIAllContainersState() {
+		return Access.getWorkspaceProjectsState();
+	}
 }

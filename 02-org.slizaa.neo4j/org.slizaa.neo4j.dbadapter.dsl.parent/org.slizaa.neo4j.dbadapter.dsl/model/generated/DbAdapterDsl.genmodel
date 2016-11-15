@@ -6,11 +6,17 @@
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.12">
   <genPackages prefix="DbAdapterDsl" basePackage="org.slizaa.neo4j.dbadapter" disposableProviderFactory="true"
       fileExtensions="dbdef" ecorePackage="DbAdapterDsl.ecore#/">
-    <genClasses ecoreClass="DbAdapterDsl.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DbAdapterDsl.ecore#//Model/greetings"/>
+    <genClasses ecoreClass="DbAdapterDsl.ecore#//DbAdapterDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbAdapterDsl.ecore#//DbAdapterDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbAdapterDsl.ecore#//DbAdapterDefinition/description"/>
     </genClasses>
-    <genClasses ecoreClass="DbAdapterDsl.ecore#//Greeting">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbAdapterDsl.ecore#//Greeting/name"/>
+    <genClasses ecoreClass="DbAdapterDsl.ecore#//UnmanagedRemoteDatabase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbAdapterDsl.ecore#//UnmanagedRemoteDatabase/uri"/>
+    </genClasses>
+    <genClasses ecoreClass="DbAdapterDsl.ecore#//ManagedLocalDatabase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbAdapterDsl.ecore#//ManagedLocalDatabase/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbAdapterDsl.ecore#//ManagedLocalDatabase/storage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbAdapterDsl.ecore#//ManagedLocalDatabase/files"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

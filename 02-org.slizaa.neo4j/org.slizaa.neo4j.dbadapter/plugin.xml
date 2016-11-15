@@ -10,7 +10,7 @@
       <!-- @generated neo4j-dbadapter -->
       <package
             uri="http://org/slizaa/neo4j/dbadapter"
-            class="org.slizaa.neo4j.dbadapter.DbadapterPackage"
+            class="org.slizaa.neo4j.dbadapter.DbAdapterPackage"
             genModel="model/neo4j-dbadapter.genmodel"/>
    </extension>
 

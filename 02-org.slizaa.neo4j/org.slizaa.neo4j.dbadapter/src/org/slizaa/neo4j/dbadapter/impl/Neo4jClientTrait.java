@@ -11,22 +11,20 @@
 package org.slizaa.neo4j.dbadapter.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
+import java.io.File;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 import org.eclipse.emf.common.util.EList;
 import org.glassfish.jersey.client.ClientConfig;
-import org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl;
-import org.slizaa.neo4j.dbadapter.internal.Neo4JRemoteServiceRestApi;
-import org.slizaa.neo4j.dbadapter.internal.QueryCallable;
-import org.slizaa.neo4j.dbadapter.internal.QueryConsumerCallable;
+import org.slizaa.neo4j.dbadapter.internal.DbAdapterActivator;
+import org.slizaa.neo4j.dbadapter.internal.rest.Neo4JRemoteServiceRestApi;
+import org.slizaa.neo4j.dbadapter.internal.rest.QueryCallable;
+import org.slizaa.neo4j.dbadapter.internal.rest.QueryConsumerCallable;
 
 import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 import com.eclipsesource.jaxrs.provider.gson.GsonProvider;
@@ -39,53 +37,52 @@ import com.google.gson.JsonObject;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4jRestClientImpl {
-
-  /** - */
-  private ExecutorService           _executor;
+public class Neo4jClientTrait {
 
   /** - */
   private Neo4JRemoteServiceRestApi _cypherQueryService;
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void init() {
-
-    //
-    checkState(getThreadPoolSize() > 0, "threadPoolSize must not be <= 0.");
-
-    //
-    _executor = Executors.newFixedThreadPool(getThreadPoolSize());
-
-    //
-    ClientConfig config = new ClientConfig().register(new GsonProvider<>());
-    _cypherQueryService = ConsumerFactory.createConsumer(getBaseURI(), config, Neo4JRemoteServiceRestApi.class);
-  }
 
   /**
-   * {@inheritDoc}
+   * <p>
+   * </p>
+   *
+   * @param baseURI
+   * @return
    */
-  @Override
-  public void dispose() {
-
-    //
-    _executor.shutdown();
-
-    //
+  public static Neo4jClientTrait create(String baseURI) {
     try {
-      _executor.awaitTermination(20, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      Neo4jClientTrait result = new Neo4jClientTrait();
+      result.init(baseURI);
+      return result;
+    } catch (Exception e) {
+      throw new RuntimeException(e);
     }
   }
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @param storageArea
+   * @return
+   */
+  public boolean isScanned(String storageArea) {
+    return new File(checkNotNull(storageArea), "neostore").exists();
+  }
 
   /**
    * {@inheritDoc}
    */
-  @Override
+
+  public void dispose() {
+
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+
   public Future<JsonObject> executeCypherQuery(String query) {
 
     // create future task
@@ -93,7 +90,7 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4jRestClientImpl {
         new QueryCallable(_cypherQueryService, checkNotNull(query), null));
 
     // execute
-    _executor.execute(futureTask);
+    getExecutor().execute(futureTask);
 
     // return the running task
     return futureTask;
@@ -102,7 +99,7 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4jRestClientImpl {
   /**
    * {@inheritDoc}
    */
-  @Override
+
   public Future<JsonObject> executeCypherQuery(String query, Map<String, String> maps) {
 
     // create future task
@@ -110,7 +107,7 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4jRestClientImpl {
         new QueryCallable(_cypherQueryService, checkNotNull(query), maps));
 
     // execute
-    _executor.execute(futureTask);
+    getExecutor().execute(futureTask);
 
     // return the running task
     return futureTask;
@@ -119,7 +116,7 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4jRestClientImpl {
   /**
    * {@inheritDoc}
    */
-  @Override
+
   public Future<?> executeCypherQuery(String query, Consumer<JsonObject> consumer) {
 
     // create future task
@@ -127,7 +124,7 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4jRestClientImpl {
         new QueryConsumerCallable(_cypherQueryService, checkNotNull(query), null, checkNotNull(consumer)));
 
     // execute
-    _executor.execute(futureTask);
+    getExecutor().execute(futureTask);
 
     // return the running task
     return futureTask;
@@ -136,7 +133,7 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4jRestClientImpl {
   /**
    * {@inheritDoc}
    */
-  @Override
+
   public Future<?> executeCypherQuery(String query, Map<String, String> params, Consumer<JsonObject> consumer) {
 
     // create future task
@@ -144,42 +141,57 @@ public class ExtendedNeo4JRemoteRepositoryImpl extends Neo4jRestClientImpl {
         new QueryConsumerCallable(_cypherQueryService, checkNotNull(query), params, checkNotNull(consumer)));
 
     // execute
-    _executor.execute(futureTask);
+    getExecutor().execute(futureTask);
 
     // return the running task
     return futureTask;
   }
 
-  @Override
   public EList<String> getAllRelationshipTypes() {
     // http://localhost:7474/db/data/relationship/types
-    return super.getAllRelationshipTypes();
+    throw new UnsupportedOperationException();
   }
 
-  @Override
   public EList<String> getAllPropertyKeys() {
     // http://localhost:7474/db/data/propertykeys
-    return super.getAllPropertyKeys();
+    throw new UnsupportedOperationException();
   }
 
-  @Override
   public EList<String> getAllLabels() {
     // http://localhost:7474/db/data/labels
-    return super.getAllLabels();
+    throw new UnsupportedOperationException();
   }
 
-  @Override
   public JsonArray getLabelsForNode(long nodeId) {
     return _cypherQueryService.getNodeLabels(nodeId);
   }
 
-  @Override
   public JsonObject getPropertiesForNode(long nodeId) {
     return _cypherQueryService.getNodeProperties(nodeId);
   }
 
-  @Override
   public JsonObject getPropertiesForRelationship(long relationshipId) {
     return _cypherQueryService.getRelationshipProperties(relationshipId);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  private ExecutorService getExecutor() {
+    return DbAdapterActivator.instance().getExecutor();
+  }
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @param baseUri
+   */
+  private void init(String baseUri) {
+    _cypherQueryService = ConsumerFactory.createConsumer(checkNotNull(baseUri),
+        new ClientConfig().register(new GsonProvider<>()), Neo4JRemoteServiceRestApi.class);
   }
 }

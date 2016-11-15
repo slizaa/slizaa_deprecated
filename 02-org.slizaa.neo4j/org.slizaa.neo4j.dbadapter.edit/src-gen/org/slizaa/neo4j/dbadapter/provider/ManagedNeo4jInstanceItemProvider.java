@@ -8,12 +8,13 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.slizaa.neo4j.dbadapter.DbadapterPackage;
+import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 
 /**
@@ -22,8 +23,7 @@ import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ManagedNeo4jInstanceItemProvider 
-  extends Neo4jRestClientItemProvider {
+public class ManagedNeo4jInstanceItemProvider extends Neo4jRestClientItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class ManagedNeo4jInstanceItemProvider
          getResourceLocator(),
          getString("_UI_ManagedNeo4jInstance_running_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ManagedNeo4jInstance_running_feature", "_UI_ManagedNeo4jInstance_type"),
-         DbadapterPackage.Literals.MANAGED_NEO4J_INSTANCE__RUNNING,
+         DbAdapterPackage.Literals.MANAGED_NEO4J_INSTANCE__RUNNING,
          true,
          false,
          false,
@@ -88,7 +88,7 @@ public class ManagedNeo4jInstanceItemProvider
          getResourceLocator(),
          getString("_UI_ManagedNeo4jInstance_storageArea_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ManagedNeo4jInstance_storageArea_feature", "_UI_ManagedNeo4jInstance_type"),
-         DbadapterPackage.Literals.MANAGED_NEO4J_INSTANCE__STORAGE_AREA,
+         DbAdapterPackage.Literals.MANAGED_NEO4J_INSTANCE__STORAGE_AREA,
          true,
          false,
          false,
@@ -110,7 +110,7 @@ public class ManagedNeo4jInstanceItemProvider
          getResourceLocator(),
          getString("_UI_ManagedNeo4jInstance_directoriesToScan_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ManagedNeo4jInstance_directoriesToScan_feature", "_UI_ManagedNeo4jInstance_type"),
-         DbadapterPackage.Literals.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN,
+         DbAdapterPackage.Literals.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN,
          true,
          false,
          false,
@@ -132,7 +132,7 @@ public class ManagedNeo4jInstanceItemProvider
          getResourceLocator(),
          getString("_UI_ManagedNeo4jInstance_launch_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ManagedNeo4jInstance_launch_feature", "_UI_ManagedNeo4jInstance_type"),
-         DbadapterPackage.Literals.MANAGED_NEO4J_INSTANCE__LAUNCH,
+         DbAdapterPackage.Literals.MANAGED_NEO4J_INSTANCE__LAUNCH,
          true,
          false,
          false,
@@ -179,10 +179,10 @@ public class ManagedNeo4jInstanceItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(ManagedNeo4jInstance.class)) {
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

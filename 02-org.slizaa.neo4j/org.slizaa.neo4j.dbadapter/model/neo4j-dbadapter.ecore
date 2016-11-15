@@ -2,8 +2,6 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dbadapter" nsURI="http://org/slizaa/neo4j/dbadapter" nsPrefix="org.slizaa.neo4j.dbadapter">
   <eClassifiers xsi:type="ecore:EClass" name="Neo4jRestClient">
-    <eOperations name="init"/>
-    <eOperations name="dispose"/>
     <eOperations name="getAllRelationshipTypes" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="getAllPropertyKeys" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="getAllLabels" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -63,14 +61,36 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPoolSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="definingResource" eType="#//IFile"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hierarchicalGraph" eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGRootNode"
+        transient="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DbAdapterRegistry" eSuperTypes="#//DbadapterContainer"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DbadapterContainer">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="clients" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DbAdapterRegistry">
+    <eOperations name="hasHierarchicalGraph" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="managed" lowerBound="1"
+        containment="true">
+      <eGenericType eClassifier="#//DbAdapterContainer">
+        <eTypeArguments eClassifier="#//ManagedNeo4jInstance"/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unmanaged" lowerBound="1"
+        containment="true">
+      <eGenericType eClassifier="#//DbAdapterContainer">
+        <eTypeArguments eClassifier="#//Neo4jRestClient"/>
+      </eGenericType>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DbAdapterContainer">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//Neo4jRestClient"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        containment="true">
+      <eGenericType eTypeParameter="#//DbAdapterContainer/T"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ManagedNeo4jInstance" eSuperTypes="#//Neo4jRestClient">
@@ -95,5 +115,7 @@
   <eClassifiers xsi:type="ecore:EDataType" name="JsonArray" instanceClassName="com.google.gson.JsonArray"/>
   <eClassifiers xsi:type="ecore:EDataType" name="JsonObject" instanceClassName="com.google.gson.JsonObject"/>
   <eClassifiers xsi:type="ecore:EDataType" name="ILaunch" instanceClassName="org.eclipse.debug.core.ILaunch"
+      serializable="false"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="IFile" instanceClassName="org.eclipse.core.resources.IFile"
       serializable="false"/>
 </ecore:EPackage>

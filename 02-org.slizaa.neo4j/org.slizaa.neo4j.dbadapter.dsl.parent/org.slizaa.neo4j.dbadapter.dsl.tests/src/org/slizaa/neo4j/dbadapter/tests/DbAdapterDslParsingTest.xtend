@@ -10,16 +10,16 @@ import org.eclipse.xtext.junit4.util.ParseHelper
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.slizaa.neo4j.dbadapter.dbAdapterDsl.Model
+import org.slizaa.neo4j.dbadapter.dbAdapterDsl.DbAdapterDefinition
 
 @RunWith(XtextRunner)
 @InjectWith(DbAdapterDslInjectorProvider)
-class DbAdapterDslParsingTest{
+class DbAdapterDslParsingTest {
 
 	@Inject
-	ParseHelper<Model> parseHelper
+	ParseHelper<DbAdapterDefinition> parseHelper
 
-	@Test 
+	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''
 			Hello Xtext!

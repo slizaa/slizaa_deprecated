@@ -4,12 +4,14 @@ package org.slizaa.neo4j.dbadapter.impl;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
 import java.util.concurrent.Future;
 
 import java.util.function.Consumer;
 
+import org.eclipse.core.resources.IFile;
+
 import org.eclipse.debug.core.ILaunch;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -17,12 +19,15 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
+import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
+import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
-import org.slizaa.neo4j.dbadapter.DbadapterContainer;
-import org.slizaa.neo4j.dbadapter.DbadapterFactory;
-import org.slizaa.neo4j.dbadapter.DbadapterPackage;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
@@ -32,7 +37,7 @@ import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPackage {
+public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -52,7 +57,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass dbadapterContainerEClass = null;
+  private EClass dbAdapterContainerEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -97,6 +102,13 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
   private EDataType iLaunchEDataType = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType iFileEDataType = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -107,12 +119,12 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.ecore.EPackage.Registry
-   * @see org.slizaa.neo4j.dbadapter.DbadapterPackage#eNS_URI
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#eNS_URI
    * @see #init()
    * @generated
    */
-  private DbadapterPackageImpl() {
-    super(eNS_URI, DbadapterFactory.eINSTANCE);
+  private DbAdapterPackageImpl() {
+    super(eNS_URI, DbAdapterFactory.eINSTANCE);
   }
 
   /**
@@ -125,7 +137,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
   /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
    * 
-   * <p>This method is used to initialize {@link DbadapterPackage#eINSTANCE} when that field is accessed.
+   * <p>This method is used to initialize {@link DbAdapterPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -134,27 +146,30 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @see #initializePackageContents()
    * @generated
    */
-  public static DbadapterPackage init() {
-    if (isInited) return (DbadapterPackage)EPackage.Registry.INSTANCE.getEPackage(DbadapterPackage.eNS_URI);
+  public static DbAdapterPackage init() {
+    if (isInited) return (DbAdapterPackage)EPackage.Registry.INSTANCE.getEPackage(DbAdapterPackage.eNS_URI);
 
     // Obtain or create and register package
-    DbadapterPackageImpl theDbadapterPackage = (DbadapterPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DbadapterPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new DbadapterPackageImpl());
+    DbAdapterPackageImpl theDbAdapterPackage = (DbAdapterPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DbAdapterPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new DbAdapterPackageImpl());
 
     isInited = true;
 
+    // Initialize simple dependencies
+    HierarchicalgraphPackage.eINSTANCE.eClass();
+
     // Create package meta-data objects
-    theDbadapterPackage.createPackageContents();
+    theDbAdapterPackage.createPackageContents();
 
     // Initialize created meta-data
-    theDbadapterPackage.initializePackageContents();
+    theDbAdapterPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
-    theDbadapterPackage.freeze();
+    theDbAdapterPackage.freeze();
 
   
     // Update the registry and return the package
-    EPackage.Registry.INSTANCE.put(DbadapterPackage.eNS_URI, theDbadapterPackage);
-    return theDbadapterPackage;
+    EPackage.Registry.INSTANCE.put(DbAdapterPackage.eNS_URI, theDbAdapterPackage);
+    return theDbAdapterPackage;
   }
 
   /**
@@ -180,7 +195,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNeo4jRestClient_BaseURI() {
+  public EAttribute getNeo4jRestClient_Description() {
     return (EAttribute)neo4jRestClientEClass.getEStructuralFeatures().get(1);
   }
 
@@ -189,7 +204,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNeo4jRestClient_ThreadPoolSize() {
+  public EAttribute getNeo4jRestClient_BaseURI() {
     return (EAttribute)neo4jRestClientEClass.getEStructuralFeatures().get(2);
   }
 
@@ -198,8 +213,8 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getNeo4jRestClient__Init() {
-    return neo4jRestClientEClass.getEOperations().get(0);
+  public EAttribute getNeo4jRestClient_DefiningResource() {
+    return (EAttribute)neo4jRestClientEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -207,8 +222,8 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getNeo4jRestClient__Dispose() {
-    return neo4jRestClientEClass.getEOperations().get(1);
+  public EReference getNeo4jRestClient_HierarchicalGraph() {
+    return (EReference)neo4jRestClientEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -217,7 +232,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   public EOperation getNeo4jRestClient__GetAllRelationshipTypes() {
-    return neo4jRestClientEClass.getEOperations().get(2);
+    return neo4jRestClientEClass.getEOperations().get(0);
   }
 
   /**
@@ -226,7 +241,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   public EOperation getNeo4jRestClient__GetAllPropertyKeys() {
-    return neo4jRestClientEClass.getEOperations().get(3);
+    return neo4jRestClientEClass.getEOperations().get(1);
   }
 
   /**
@@ -235,7 +250,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   public EOperation getNeo4jRestClient__GetAllLabels() {
-    return neo4jRestClientEClass.getEOperations().get(4);
+    return neo4jRestClientEClass.getEOperations().get(2);
   }
 
   /**
@@ -244,7 +259,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   public EOperation getNeo4jRestClient__GetLabelsForNode__long() {
-    return neo4jRestClientEClass.getEOperations().get(5);
+    return neo4jRestClientEClass.getEOperations().get(3);
   }
 
   /**
@@ -253,7 +268,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   public EOperation getNeo4jRestClient__GetPropertiesForNode__long() {
-    return neo4jRestClientEClass.getEOperations().get(6);
+    return neo4jRestClientEClass.getEOperations().get(4);
   }
 
   /**
@@ -262,7 +277,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   public EOperation getNeo4jRestClient__GetPropertiesForRelationship__long() {
-    return neo4jRestClientEClass.getEOperations().get(7);
+    return neo4jRestClientEClass.getEOperations().get(5);
   }
 
   /**
@@ -271,7 +286,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   public EOperation getNeo4jRestClient__ExecuteCypherQuery__String() {
-    return neo4jRestClientEClass.getEOperations().get(8);
+    return neo4jRestClientEClass.getEOperations().get(6);
   }
 
   /**
@@ -280,7 +295,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   public EOperation getNeo4jRestClient__ExecuteCypherQuery__String_Map() {
-    return neo4jRestClientEClass.getEOperations().get(9);
+    return neo4jRestClientEClass.getEOperations().get(7);
   }
 
   /**
@@ -289,7 +304,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   public EOperation getNeo4jRestClient__ExecuteCypherQuery__String_Consumer() {
-    return neo4jRestClientEClass.getEOperations().get(10);
+    return neo4jRestClientEClass.getEOperations().get(8);
   }
 
   /**
@@ -298,7 +313,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * @generated
    */
   public EOperation getNeo4jRestClient__ExecuteCypherQuery__String_Map_Consumer() {
-    return neo4jRestClientEClass.getEOperations().get(11);
+    return neo4jRestClientEClass.getEOperations().get(9);
   }
 
   /**
@@ -315,8 +330,8 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDbadapterContainer() {
-    return dbadapterContainerEClass;
+  public EReference getDbAdapterRegistry_Managed() {
+    return (EReference)dbAdapterRegistryEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -324,8 +339,8 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDbadapterContainer_Identifier() {
-    return (EAttribute)dbadapterContainerEClass.getEStructuralFeatures().get(0);
+  public EReference getDbAdapterRegistry_Unmanaged() {
+    return (EReference)dbAdapterRegistryEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -333,8 +348,8 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDbadapterContainer_Clients() {
-    return (EReference)dbadapterContainerEClass.getEStructuralFeatures().get(1);
+  public EOperation getDbAdapterRegistry__HasHierarchicalGraph() {
+    return dbAdapterRegistryEClass.getEOperations().get(0);
   }
 
   /**
@@ -342,8 +357,26 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDbadapterContainer_Name() {
-    return (EAttribute)dbadapterContainerEClass.getEStructuralFeatures().get(2);
+  public EClass getDbAdapterContainer() {
+    return dbAdapterContainerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDbAdapterContainer_Children() {
+    return (EReference)dbAdapterContainerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDbAdapterContainer_Name() {
+    return (EAttribute)dbAdapterContainerEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -486,8 +519,17 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbadapterFactory getDbadapterFactory() {
-    return (DbadapterFactory)getEFactoryInstance();
+  public EDataType getIFile() {
+    return iFileEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DbAdapterFactory getDbAdapterFactory() {
+    return (DbAdapterFactory)getEFactoryInstance();
   }
 
   /**
@@ -511,10 +553,10 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
     // Create classes and their features
     neo4jRestClientEClass = createEClass(NEO4J_REST_CLIENT);
     createEAttribute(neo4jRestClientEClass, NEO4J_REST_CLIENT__NAME);
+    createEAttribute(neo4jRestClientEClass, NEO4J_REST_CLIENT__DESCRIPTION);
     createEAttribute(neo4jRestClientEClass, NEO4J_REST_CLIENT__BASE_URI);
-    createEAttribute(neo4jRestClientEClass, NEO4J_REST_CLIENT__THREAD_POOL_SIZE);
-    createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___INIT);
-    createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___DISPOSE);
+    createEAttribute(neo4jRestClientEClass, NEO4J_REST_CLIENT__DEFINING_RESOURCE);
+    createEReference(neo4jRestClientEClass, NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH);
     createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___GET_ALL_RELATIONSHIP_TYPES);
     createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___GET_ALL_PROPERTY_KEYS);
     createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___GET_ALL_LABELS);
@@ -527,11 +569,13 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
     createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER);
 
     dbAdapterRegistryEClass = createEClass(DB_ADAPTER_REGISTRY);
+    createEReference(dbAdapterRegistryEClass, DB_ADAPTER_REGISTRY__MANAGED);
+    createEReference(dbAdapterRegistryEClass, DB_ADAPTER_REGISTRY__UNMANAGED);
+    createEOperation(dbAdapterRegistryEClass, DB_ADAPTER_REGISTRY___HAS_HIERARCHICAL_GRAPH);
 
-    dbadapterContainerEClass = createEClass(DBADAPTER_CONTAINER);
-    createEAttribute(dbadapterContainerEClass, DBADAPTER_CONTAINER__IDENTIFIER);
-    createEReference(dbadapterContainerEClass, DBADAPTER_CONTAINER__CLIENTS);
-    createEAttribute(dbadapterContainerEClass, DBADAPTER_CONTAINER__NAME);
+    dbAdapterContainerEClass = createEClass(DB_ADAPTER_CONTAINER);
+    createEReference(dbAdapterContainerEClass, DB_ADAPTER_CONTAINER__CHILDREN);
+    createEAttribute(dbAdapterContainerEClass, DB_ADAPTER_CONTAINER__NAME);
 
     managedNeo4jInstanceEClass = createEClass(MANAGED_NEO4J_INSTANCE);
     createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__RUNNING);
@@ -550,6 +594,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
     jsonArrayEDataType = createEDataType(JSON_ARRAY);
     jsonObjectEDataType = createEDataType(JSON_OBJECT);
     iLaunchEDataType = createEDataType(ILAUNCH);
+    iFileEDataType = createEDataType(IFILE);
   }
 
   /**
@@ -575,25 +620,28 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
     setNsPrefix(eNS_PREFIX);
     setNsURI(eNS_URI);
 
+    // Obtain other dependent packages
+    HierarchicalgraphPackage theHierarchicalgraphPackage = (HierarchicalgraphPackage)EPackage.Registry.INSTANCE.getEPackage(HierarchicalgraphPackage.eNS_URI);
+
     // Create type parameters
+    ETypeParameter dbAdapterContainerEClass_T = addETypeParameter(dbAdapterContainerEClass, "T");
     addETypeParameter(futureEDataType, "T");
     addETypeParameter(consumerEDataType, "T");
 
     // Set bounds for type parameters
+    EGenericType g1 = createEGenericType(this.getNeo4jRestClient());
+    dbAdapterContainerEClass_T.getEBounds().add(g1);
 
     // Add supertypes to classes
-    dbAdapterRegistryEClass.getESuperTypes().add(this.getDbadapterContainer());
     managedNeo4jInstanceEClass.getESuperTypes().add(this.getNeo4jRestClient());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(neo4jRestClientEClass, Neo4jRestClient.class, "Neo4jRestClient", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNeo4jRestClient_Name(), ecorePackage.getEString(), "name", null, 0, 1, Neo4jRestClient.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNeo4jRestClient_Description(), ecorePackage.getEString(), "description", null, 0, 1, Neo4jRestClient.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getNeo4jRestClient_BaseURI(), ecorePackage.getEString(), "baseURI", null, 0, 1, Neo4jRestClient.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNeo4jRestClient_ThreadPoolSize(), ecorePackage.getEInt(), "threadPoolSize", null, 0, 1, Neo4jRestClient.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEOperation(getNeo4jRestClient__Init(), null, "init", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    initEOperation(getNeo4jRestClient__Dispose(), null, "dispose", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEAttribute(getNeo4jRestClient_DefiningResource(), this.getIFile(), "definingResource", null, 0, 1, Neo4jRestClient.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNeo4jRestClient_HierarchicalGraph(), theHierarchicalgraphPackage.getHGRootNode(), null, "hierarchicalGraph", null, 0, 1, Neo4jRestClient.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEOperation(getNeo4jRestClient__GetAllRelationshipTypes(), ecorePackage.getEString(), "getAllRelationshipTypes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
@@ -612,7 +660,7 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
 
     op = initEOperation(getNeo4jRestClient__ExecuteCypherQuery__String(), null, "executeCypherQuery", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEString(), "cypherQuery", 0, 1, IS_UNIQUE, IS_ORDERED);
-    EGenericType g1 = createEGenericType(this.getFuture());
+    g1 = createEGenericType(this.getFuture());
     EGenericType g2 = createEGenericType(this.getJsonObject());
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
@@ -659,11 +707,21 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
     initEOperation(op, g1);
 
     initEClass(dbAdapterRegistryEClass, DbAdapterRegistry.class, "DbAdapterRegistry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    g1 = createEGenericType(this.getDbAdapterContainer());
+    g2 = createEGenericType(this.getManagedNeo4jInstance());
+    g1.getETypeArguments().add(g2);
+    initEReference(getDbAdapterRegistry_Managed(), g1, null, "managed", null, 1, 1, DbAdapterRegistry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    g1 = createEGenericType(this.getDbAdapterContainer());
+    g2 = createEGenericType(this.getNeo4jRestClient());
+    g1.getETypeArguments().add(g2);
+    initEReference(getDbAdapterRegistry_Unmanaged(), g1, null, "unmanaged", null, 1, 1, DbAdapterRegistry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(dbadapterContainerEClass, DbadapterContainer.class, "DbadapterContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDbadapterContainer_Identifier(), ecorePackage.getEString(), "identifier", null, 0, 1, DbadapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDbadapterContainer_Clients(), ecorePackage.getEObject(), null, "clients", null, 0, -1, DbadapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDbadapterContainer_Name(), ecorePackage.getEString(), "name", null, 0, 1, DbadapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEOperation(getDbAdapterRegistry__HasHierarchicalGraph(), ecorePackage.getEBoolean(), "hasHierarchicalGraph", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+    initEClass(dbAdapterContainerEClass, DbAdapterContainer.class, "DbAdapterContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    g1 = createEGenericType(dbAdapterContainerEClass_T);
+    initEReference(getDbAdapterContainer_Children(), g1, null, "children", null, 0, -1, DbAdapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDbAdapterContainer_Name(), ecorePackage.getEString(), "name", null, 0, 1, DbAdapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(managedNeo4jInstanceEClass, ManagedNeo4jInstance.class, "ManagedNeo4jInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getManagedNeo4jInstance_Running(), ecorePackage.getEBoolean(), "running", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -687,9 +745,10 @@ public class DbadapterPackageImpl extends EPackageImpl implements DbadapterPacka
     initEDataType(jsonArrayEDataType, JsonArray.class, "JsonArray", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(jsonObjectEDataType, JsonObject.class, "JsonObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(iLaunchEDataType, ILaunch.class, "ILaunch", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(iFileEDataType, IFile.class, "IFile", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);
   }
 
-} //DbadapterPackageImpl
+} //DbAdapterPackageImpl

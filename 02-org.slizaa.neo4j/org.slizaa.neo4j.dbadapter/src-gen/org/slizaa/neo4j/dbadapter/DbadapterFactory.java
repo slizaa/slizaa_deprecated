@@ -9,17 +9,17 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.slizaa.neo4j.dbadapter.DbadapterPackage
+ * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage
  * @generated
  */
-public interface DbadapterFactory extends EFactory {
+public interface DbAdapterFactory extends EFactory {
   /**
    * The singleton instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  DbadapterFactory eINSTANCE = org.slizaa.neo4j.dbadapter.impl.DbadapterFactoryImpl.init();
+  DbAdapterFactory eINSTANCE = org.slizaa.neo4j.dbadapter.impl.DbAdapterFactoryImpl.init();
 
   /**
    * Returns a new object of class '<em>Neo4j Rest Client</em>'.
@@ -31,10 +31,10 @@ public interface DbadapterFactory extends EFactory {
   Neo4jRestClient createNeo4jRestClient();
 
   /**
-   * Returns a new object of class '<em>Db Adapter Registry</em>'.
+   * Returns a new object of class '<em>Registry</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Db Adapter Registry</em>'.
+   * @return a new object of class '<em>Registry</em>'.
    * @generated
    */
   DbAdapterRegistry createDbAdapterRegistry();
@@ -46,7 +46,7 @@ public interface DbadapterFactory extends EFactory {
    * @return a new object of class '<em>Container</em>'.
    * @generated
    */
-  DbadapterContainer createDbadapterContainer();
+  <T extends Neo4jRestClient> DbAdapterContainer<T> createDbAdapterContainer();
 
   /**
    * Returns a new object of class '<em>Managed Neo4j Instance</em>'.
@@ -64,6 +64,6 @@ public interface DbadapterFactory extends EFactory {
    * @return the package supported by this factory.
    * @generated
    */
-  DbadapterPackage getDbadapterPackage();
+  DbAdapterPackage getDbAdapterPackage();
 
-} //DbadapterFactory
+} //DbAdapterFactory

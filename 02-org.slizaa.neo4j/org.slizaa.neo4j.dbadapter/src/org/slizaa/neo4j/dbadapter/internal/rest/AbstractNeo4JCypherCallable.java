@@ -8,7 +8,7 @@
  * Contributors:
  *    Gerd W�therich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.neo4j.dbadapter.internal;
+package org.slizaa.neo4j.dbadapter.internal.rest;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

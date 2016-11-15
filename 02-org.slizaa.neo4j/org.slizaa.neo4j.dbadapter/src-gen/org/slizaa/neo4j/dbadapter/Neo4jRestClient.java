@@ -4,16 +4,18 @@ package org.slizaa.neo4j.dbadapter;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
 import java.util.Map;
 
 import java.util.concurrent.Future;
 
 import java.util.function.Consumer;
 
+import org.eclipse.core.resources.IFile;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.slizaa.hierarchicalgraph.HGRootNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,11 +27,13 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getName <em>Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getDescription <em>Description</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getBaseURI <em>Base URI</em>}</li>
- *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getThreadPoolSize <em>Thread Pool Size</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getDefiningResource <em>Defining Resource</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getHierarchicalGraph <em>Hierarchical Graph</em>}</li>
  * </ul>
  *
- * @see org.slizaa.neo4j.dbadapter.DbadapterPackage#getNeo4jRestClient()
+ * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getNeo4jRestClient()
  * @model
  * @generated
  */
@@ -44,7 +48,7 @@ public interface Neo4jRestClient extends EObject {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see org.slizaa.neo4j.dbadapter.DbadapterPackage#getNeo4jRestClient_Name()
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getNeo4jRestClient_Name()
    * @model
    * @generated
    */
@@ -61,6 +65,32 @@ public interface Neo4jRestClient extends EObject {
   void setName(String value);
 
   /**
+   * Returns the value of the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Description</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Description</em>' attribute.
+   * @see #setDescription(String)
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getNeo4jRestClient_Description()
+   * @model
+   * @generated
+   */
+  String getDescription();
+
+  /**
+   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getDescription <em>Description</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Description</em>' attribute.
+   * @see #getDescription()
+   * @generated
+   */
+  void setDescription(String value);
+
+  /**
    * Returns the value of the '<em><b>Base URI</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
@@ -70,7 +100,7 @@ public interface Neo4jRestClient extends EObject {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Base URI</em>' attribute.
    * @see #setBaseURI(String)
-   * @see org.slizaa.neo4j.dbadapter.DbadapterPackage#getNeo4jRestClient_BaseURI()
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getNeo4jRestClient_BaseURI()
    * @model
    * @generated
    */
@@ -87,46 +117,56 @@ public interface Neo4jRestClient extends EObject {
   void setBaseURI(String value);
 
   /**
-   * Returns the value of the '<em><b>Thread Pool Size</b></em>' attribute.
+   * Returns the value of the '<em><b>Defining Resource</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Thread Pool Size</em>' attribute isn't clear,
+   * If the meaning of the '<em>Defining Resource</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Thread Pool Size</em>' attribute.
-   * @see #setThreadPoolSize(int)
-   * @see org.slizaa.neo4j.dbadapter.DbadapterPackage#getNeo4jRestClient_ThreadPoolSize()
-   * @model
+   * @return the value of the '<em>Defining Resource</em>' attribute.
+   * @see #setDefiningResource(IFile)
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getNeo4jRestClient_DefiningResource()
+   * @model dataType="org.slizaa.neo4j.dbadapter.IFile" transient="true"
    * @generated
    */
-  int getThreadPoolSize();
+  IFile getDefiningResource();
 
   /**
-   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getThreadPoolSize <em>Thread Pool Size</em>}' attribute.
+   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getDefiningResource <em>Defining Resource</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Thread Pool Size</em>' attribute.
-   * @see #getThreadPoolSize()
+   * @param value the new value of the '<em>Defining Resource</em>' attribute.
+   * @see #getDefiningResource()
    * @generated
    */
-  void setThreadPoolSize(int value);
+  void setDefiningResource(IFile value);
 
   /**
+   * Returns the value of the '<em><b>Hierarchical Graph</b></em>' reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Hierarchical Graph</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
-   * @model
+   * @return the value of the '<em>Hierarchical Graph</em>' reference.
+   * @see #setHierarchicalGraph(HGRootNode)
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getNeo4jRestClient_HierarchicalGraph()
+   * @model transient="true"
    * @generated
    */
-  void init();
+  HGRootNode getHierarchicalGraph();
 
   /**
+   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getHierarchicalGraph <em>Hierarchical Graph</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model
+   * @param value the new value of the '<em>Hierarchical Graph</em>' reference.
+   * @see #getHierarchicalGraph()
    * @generated
    */
-  void dispose();
+  void setHierarchicalGraph(HGRootNode value);
 
   /**
    * <!-- begin-user-doc -->

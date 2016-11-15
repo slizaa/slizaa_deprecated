@@ -18,7 +18,7 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
-import org.slizaa.neo4j.dbadapter.DbadapterFactory;
+import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 import com.google.gson.JsonObject;
@@ -51,10 +51,8 @@ public class TestModelCreator {
   public static void createTestModel(String fileName, String baseUri) throws Exception {
 
     // create the remote repository
-    final Neo4jRestClient remoteRepository = DbadapterFactory.eINSTANCE.createNeo4jRestClient();
+    final Neo4jRestClient remoteRepository = DbAdapterFactory.eINSTANCE.createNeo4jRestClient();
     remoteRepository.setBaseURI(baseUri);
-    remoteRepository.setThreadPoolSize(20);
-    remoteRepository.init();
 
     // create the root element
     final HGRootNode rootElement = HierarchicalgraphFactory.eINSTANCE.createHGRootNode();
@@ -121,9 +119,6 @@ public class TestModelCreator {
 
     //
     save(fileName, rootElement);
-
-    //
-    remoteRepository.dispose();
   }
 
   /**

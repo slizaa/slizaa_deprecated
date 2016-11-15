@@ -20,9 +20,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.slizaa.neo4j.dbadapter.provider.ExtendedDbadapterContainerItemProvider;
-import org.slizaa.neo4j.dbadapter.provider.ExtendedNeo4jRestClientItemProvider;
-import org.slizaa.neo4j.dbadapter.util.DbadapterAdapterFactory;
+
+import org.slizaa.neo4j.dbadapter.util.DbAdapterAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -33,7 +32,7 @@ import org.slizaa.neo4j.dbadapter.util.DbadapterAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DbadapterItemProviderAdapterFactory extends DbadapterAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class DbAdapterItemProviderAdapterFactory extends DbAdapterAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory.
    * <!-- begin-user-doc -->
@@ -64,7 +63,7 @@ public class DbadapterItemProviderAdapterFactory extends DbadapterAdapterFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbadapterItemProviderAdapterFactory() {
+  public DbAdapterItemProviderAdapterFactory() {
     supportedTypes.add(IEditingDomainItemProvider.class);
     supportedTypes.add(IStructuredItemContentProvider.class);
     supportedTypes.add(ITreeItemContentProvider.class);
@@ -119,26 +118,26 @@ public class DbadapterItemProviderAdapterFactory extends DbadapterAdapterFactory
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.dbadapter.DbadapterContainer} instances.
+   * This keeps track of the one adapter used for all {@link org.slizaa.neo4j.dbadapter.DbAdapterContainer} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DbadapterContainerItemProvider dbadapterContainerItemProvider;
+  protected DbAdapterContainerItemProvider dbAdapterContainerItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.slizaa.neo4j.dbadapter.DbadapterContainer}.
+   * This creates an adapter for a {@link org.slizaa.neo4j.dbadapter.DbAdapterContainer}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated NOT
    */
   @Override
-  public Adapter createDbadapterContainerAdapter() {
-    if (dbadapterContainerItemProvider == null) {
-      dbadapterContainerItemProvider = new ExtendedDbadapterContainerItemProvider(this);
+  public Adapter createDbAdapterContainerAdapter() {
+    if (dbAdapterContainerItemProvider == null) {
+      dbAdapterContainerItemProvider = new ExtendedDbAdapterContainerItemProvider(this);
     }
 
-    return dbadapterContainerItemProvider;
+    return dbAdapterContainerItemProvider;
   }
 
   /**
@@ -153,12 +152,12 @@ public class DbadapterItemProviderAdapterFactory extends DbadapterAdapterFactory
    * This creates an adapter for a {@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public Adapter createManagedNeo4jInstanceAdapter() {
     if (managedNeo4jInstanceItemProvider == null) {
-      managedNeo4jInstanceItemProvider = new ManagedNeo4jInstanceItemProvider(this);
+      managedNeo4jInstanceItemProvider = new ExtendedManagedNeo4jInstanceItemProvider(this);
     }
 
     return managedNeo4jInstanceItemProvider;
@@ -265,7 +264,7 @@ public class DbadapterItemProviderAdapterFactory extends DbadapterAdapterFactory
   public void dispose() {
     if (neo4jRestClientItemProvider != null) neo4jRestClientItemProvider.dispose();
     if (dbAdapterRegistryItemProvider != null) dbAdapterRegistryItemProvider.dispose();
-    if (dbadapterContainerItemProvider != null) dbadapterContainerItemProvider.dispose();
+    if (dbAdapterContainerItemProvider != null) dbAdapterContainerItemProvider.dispose();
     if (managedNeo4jInstanceItemProvider != null) managedNeo4jInstanceItemProvider.dispose();
   }
 

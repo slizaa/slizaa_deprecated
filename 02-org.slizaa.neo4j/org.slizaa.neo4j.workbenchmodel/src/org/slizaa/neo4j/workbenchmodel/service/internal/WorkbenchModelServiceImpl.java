@@ -8,7 +8,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
-import org.slizaa.neo4j.dbadapter.DbadapterFactory;
+import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchModel;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchmodelFactory;
@@ -35,16 +35,16 @@ public class WorkbenchModelServiceImpl implements WorkbenchModelService {
 
     // initialize your model
     _workbenchModel = WorkbenchmodelFactory.eINSTANCE.createWorkbenchModel();
-    _workbenchModel.setDatabases(DbadapterFactory.eINSTANCE.createDbAdapterRegistry());
+    _workbenchModel.setDatabases(DbAdapterFactory.eINSTANCE.createDbAdapterRegistry());
     _workbenchModel.setMappedGraphs(WorkbenchmodelFactory.eINSTANCE.createMappedGraphs());
 
-    //
-    Neo4jRestClient neo4jRestClient = DbadapterFactory.eINSTANCE.createNeo4jRestClient();
-    neo4jRestClient.setThreadPoolSize(20);
-    neo4jRestClient.setName("http://localhost:7474");
-    neo4jRestClient.setBaseURI("http://localhost:7474");
-    neo4jRestClient.init();
-    _workbenchModel.getDatabases().getClients().add(neo4jRestClient);
+//    //
+//    Neo4jRestClient neo4jRestClient = DbAdapterFactory.eINSTANCE.createNeo4jRestClient();
+//    neo4jRestClient.setThreadPoolSize(20);
+//    neo4jRestClient.setName("http://localhost:7474");
+//    neo4jRestClient.setBaseURI("http://localhost:7474");
+//    neo4jRestClient.init();
+//    _workbenchModel.getDatabases().getClients().add(neo4jRestClient);
 
     //
     Resource resource = new ResourceSetImpl().createResource(URI.createURI("memory://localhost/slizaaWorkbenchModel"));

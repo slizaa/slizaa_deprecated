@@ -10,27 +10,12 @@
  ******************************************************************************/
 package org.slizaa.neo4j.dbadapter.impl;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
-
-import java.io.File;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 import org.eclipse.emf.common.util.EList;
-import org.glassfish.jersey.client.ClientConfig;
-import org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl;
-import org.slizaa.neo4j.dbadapter.internal.Neo4JRemoteServiceRestApi;
-import org.slizaa.neo4j.dbadapter.internal.QueryCallable;
-import org.slizaa.neo4j.dbadapter.internal.QueryConsumerCallable;
 
-import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
-import com.eclipsesource.jaxrs.provider.gson.GsonProvider;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -43,68 +28,14 @@ import com.google.gson.JsonObject;
 public class ExtendedManagedNeo4JInstanceImpl extends ManagedNeo4jInstanceImpl {
 
   /** - */
-  private ExecutorService           _executor;
-
-  /** - */
-  private Neo4JRemoteServiceRestApi _cypherQueryService;
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void init() {
-
-    //
-    checkState(getThreadPoolSize() > 0, "threadPoolSize must not be <= 0.");
-
-    //
-    _executor = Executors.newFixedThreadPool(getThreadPoolSize());
-
-    //
-    ClientConfig config = new ClientConfig().register(new GsonProvider<>());
-    _cypherQueryService = ConsumerFactory.createConsumer(getBaseURI(), config, Neo4JRemoteServiceRestApi.class);
-  }
-
-  @Override
-  public boolean isScanned() {
-    return new File(getStorageArea(), "neostore").exists();
-  }
-
-
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void dispose() {
-
-    //
-    _executor.shutdown();
-
-    //
-    try {
-      _executor.awaitTermination(20, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+  private Neo4jClientTrait _neo4jClientTrait;
 
   /**
    * {@inheritDoc}
    */
   @Override
   public Future<JsonObject> executeCypherQuery(String query) {
-
-    // create future task
-    FutureTask<JsonObject> futureTask = new FutureTask<JsonObject>(
-        new QueryCallable(_cypherQueryService, checkNotNull(query), null));
-
-    // execute
-    _executor.execute(futureTask);
-
-    // return the running task
-    return futureTask;
+    return neo4jClientTrait().executeCypherQuery(query);
   }
 
   /**
@@ -112,16 +43,7 @@ public class ExtendedManagedNeo4JInstanceImpl extends ManagedNeo4jInstanceImpl {
    */
   @Override
   public Future<JsonObject> executeCypherQuery(String query, Map<String, String> maps) {
-
-    // create future task
-    FutureTask<JsonObject> futureTask = new FutureTask<JsonObject>(
-        new QueryCallable(_cypherQueryService, checkNotNull(query), maps));
-
-    // execute
-    _executor.execute(futureTask);
-
-    // return the running task
-    return futureTask;
+    return neo4jClientTrait().executeCypherQuery(query, maps);
   }
 
   /**
@@ -129,16 +51,7 @@ public class ExtendedManagedNeo4JInstanceImpl extends ManagedNeo4jInstanceImpl {
    */
   @Override
   public Future<?> executeCypherQuery(String query, Consumer<JsonObject> consumer) {
-
-    // create future task
-    FutureTask<Void> futureTask = new FutureTask<Void>(
-        new QueryConsumerCallable(_cypherQueryService, checkNotNull(query), null, checkNotNull(consumer)));
-
-    // execute
-    _executor.execute(futureTask);
-
-    // return the running task
-    return futureTask;
+    return neo4jClientTrait().executeCypherQuery(query, consumer);
   }
 
   /**
@@ -146,48 +59,53 @@ public class ExtendedManagedNeo4JInstanceImpl extends ManagedNeo4jInstanceImpl {
    */
   @Override
   public Future<?> executeCypherQuery(String query, Map<String, String> params, Consumer<JsonObject> consumer) {
-
-    // create future task
-    FutureTask<Void> futureTask = new FutureTask<Void>(
-        new QueryConsumerCallable(_cypherQueryService, checkNotNull(query), params, checkNotNull(consumer)));
-
-    // execute
-    _executor.execute(futureTask);
-
-    // return the running task
-    return futureTask;
+    return neo4jClientTrait().executeCypherQuery(query, params, consumer);
   }
 
   @Override
   public EList<String> getAllRelationshipTypes() {
-    // http://localhost:7474/db/data/relationship/types
-    return super.getAllRelationshipTypes();
+    return neo4jClientTrait().getAllRelationshipTypes();
   }
 
   @Override
   public EList<String> getAllPropertyKeys() {
-    // http://localhost:7474/db/data/propertykeys
-    return super.getAllPropertyKeys();
+    return neo4jClientTrait().getAllPropertyKeys();
   }
 
   @Override
   public EList<String> getAllLabels() {
-    // http://localhost:7474/db/data/labels
-    return super.getAllLabels();
+    return neo4jClientTrait().getAllLabels();
   }
 
   @Override
   public JsonArray getLabelsForNode(long nodeId) {
-    return _cypherQueryService.getNodeLabels(nodeId);
+    return neo4jClientTrait().getLabelsForNode(nodeId);
   }
 
   @Override
   public JsonObject getPropertiesForNode(long nodeId) {
-    return _cypherQueryService.getNodeProperties(nodeId);
+    return neo4jClientTrait().getPropertiesForNode(nodeId);
   }
 
   @Override
   public JsonObject getPropertiesForRelationship(long relationshipId) {
-    return _cypherQueryService.getRelationshipProperties(relationshipId);
+    return neo4jClientTrait().getPropertiesForRelationship(relationshipId);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  private Neo4jClientTrait neo4jClientTrait() {
+
+    //
+    if (_neo4jClientTrait == null) {
+      _neo4jClientTrait = Neo4jClientTrait.create(getBaseURI());
+    }
+
+    //
+    return _neo4jClientTrait;
   }
 }

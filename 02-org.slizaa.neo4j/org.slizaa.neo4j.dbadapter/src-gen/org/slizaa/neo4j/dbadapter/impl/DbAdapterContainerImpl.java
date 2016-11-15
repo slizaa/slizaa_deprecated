@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -19,8 +18,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.slizaa.neo4j.dbadapter.DbadapterContainer;
-import org.slizaa.neo4j.dbadapter.DbadapterPackage;
+import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
+import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,43 +30,22 @@ import org.slizaa.neo4j.dbadapter.DbadapterPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl#getClients <em>Clients</em>}</li>
- *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterContainerImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterContainerImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DbadapterContainerImpl extends MinimalEObjectImpl.Container implements DbadapterContainer {
+public class DbAdapterContainerImpl<T extends Neo4jRestClient> extends MinimalEObjectImpl.Container implements DbAdapterContainer<T> {
   /**
-   * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+   * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdentifier()
+   * @see #getChildren()
    * @generated
    * @ordered
    */
-  protected static final String IDENTIFIER_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getIdentifier()
-   * @generated
-   * @ordered
-   */
-  protected String identifier = IDENTIFIER_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getClients() <em>Clients</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getClients()
-   * @generated
-   * @ordered
-   */
-  protected EList<EObject> clients;
+  protected EList<T> children;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -77,7 +56,6 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
    * @ordered
    */
   protected static final String NAME_EDEFAULT = null;
-
   /**
    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -93,7 +71,7 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DbadapterContainerImpl() {
+  protected DbAdapterContainerImpl() {
     super();
   }
 
@@ -104,7 +82,7 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
    */
   @Override
   protected EClass eStaticClass() {
-    return DbadapterPackage.Literals.DBADAPTER_CONTAINER;
+    return DbAdapterPackage.Literals.DB_ADAPTER_CONTAINER;
   }
 
   /**
@@ -112,32 +90,11 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdentifier() {
-    return identifier;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setIdentifier(String newIdentifier) {
-    String oldIdentifier = identifier;
-    identifier = newIdentifier;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DbadapterPackage.DBADAPTER_CONTAINER__IDENTIFIER, oldIdentifier, identifier));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<EObject> getClients() {
-    if (clients == null) {
-      clients = new EObjectContainmentEList<EObject>(EObject.class, this, DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS);
+  public EList<T> getChildren() {
+    if (children == null) {
+      children = new EObjectContainmentEList<T>(Neo4jRestClient.class, this, DbAdapterPackage.DB_ADAPTER_CONTAINER__CHILDREN);
     }
-    return clients;
+    return children;
   }
 
   /**
@@ -158,7 +115,7 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DbadapterPackage.DBADAPTER_CONTAINER__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.DB_ADAPTER_CONTAINER__NAME, oldName, name));
   }
 
   /**
@@ -169,8 +126,8 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
-        return ((InternalEList<?>)getClients()).basicRemove(otherEnd, msgs);
+      case DbAdapterPackage.DB_ADAPTER_CONTAINER__CHILDREN:
+        return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -183,11 +140,9 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case DbadapterPackage.DBADAPTER_CONTAINER__IDENTIFIER:
-        return getIdentifier();
-      case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
-        return getClients();
-      case DbadapterPackage.DBADAPTER_CONTAINER__NAME:
+      case DbAdapterPackage.DB_ADAPTER_CONTAINER__CHILDREN:
+        return getChildren();
+      case DbAdapterPackage.DB_ADAPTER_CONTAINER__NAME:
         return getName();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -202,14 +157,11 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case DbadapterPackage.DBADAPTER_CONTAINER__IDENTIFIER:
-        setIdentifier((String)newValue);
+      case DbAdapterPackage.DB_ADAPTER_CONTAINER__CHILDREN:
+        getChildren().clear();
+        getChildren().addAll((Collection<? extends T>)newValue);
         return;
-      case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
-        getClients().clear();
-        getClients().addAll((Collection<? extends EObject>)newValue);
-        return;
-      case DbadapterPackage.DBADAPTER_CONTAINER__NAME:
+      case DbAdapterPackage.DB_ADAPTER_CONTAINER__NAME:
         setName((String)newValue);
         return;
     }
@@ -224,13 +176,10 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case DbadapterPackage.DBADAPTER_CONTAINER__IDENTIFIER:
-        setIdentifier(IDENTIFIER_EDEFAULT);
+      case DbAdapterPackage.DB_ADAPTER_CONTAINER__CHILDREN:
+        getChildren().clear();
         return;
-      case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
-        getClients().clear();
-        return;
-      case DbadapterPackage.DBADAPTER_CONTAINER__NAME:
+      case DbAdapterPackage.DB_ADAPTER_CONTAINER__NAME:
         setName(NAME_EDEFAULT);
         return;
     }
@@ -245,11 +194,9 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case DbadapterPackage.DBADAPTER_CONTAINER__IDENTIFIER:
-        return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
-      case DbadapterPackage.DBADAPTER_CONTAINER__CLIENTS:
-        return clients != null && !clients.isEmpty();
-      case DbadapterPackage.DBADAPTER_CONTAINER__NAME:
+      case DbAdapterPackage.DB_ADAPTER_CONTAINER__CHILDREN:
+        return children != null && !children.isEmpty();
+      case DbAdapterPackage.DB_ADAPTER_CONTAINER__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
@@ -265,12 +212,10 @@ public class DbadapterContainerImpl extends MinimalEObjectImpl.Container impleme
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (identifier: ");
-    result.append(identifier);
-    result.append(", name: ");
+    result.append(" (name: ");
     result.append(name);
     result.append(')');
     return result.toString();
   }
 
-} //DbadapterContainerImpl
+} //DbAdapterContainerImpl

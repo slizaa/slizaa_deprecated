@@ -5,6 +5,7 @@ package org.slizaa.neo4j.dbadapter.provider;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.slizaa.hierarchicalgraph.provider.HierarchicalgraphEditPlugin;
 
 /**
  * This is the central singleton for the Neo4j-dbadapter edit plugin.
@@ -38,6 +39,7 @@ public final class Neo4jdbadapterEditPlugin extends EMFPlugin {
   public Neo4jdbadapterEditPlugin() {
     super
       (new ResourceLocator [] {
+         HierarchicalgraphEditPlugin.INSTANCE,
        });
   }
 

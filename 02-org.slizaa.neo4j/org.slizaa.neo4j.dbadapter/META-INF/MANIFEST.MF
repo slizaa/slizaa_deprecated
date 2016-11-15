@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.debug.core;bundle-version="3.10.100",
  org.slizaa.neo4j.dbadapter.dsl;bundle-version="1.0.0",
  org.eclipse.xtext;bundle-version="2.10.0",
- org.eclipse.core.variables;bundle-version="3.3.0"
+ org.eclipse.core.variables;bundle-version="3.3.0",
+ org.slizaa.hierarchicalgraph;bundle-version="0.0.4";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.slizaa.neo4j.dbadapter,
@@ -24,3 +25,4 @@ Export-Package: org.slizaa.neo4j.dbadapter,
  org.slizaa.neo4j.dbadapter.util
 Import-Package: org.osgi.service.component.annotations;version="1.2.0"
 Service-Component: OSGI-INF/org.slizaa.neo4j.dbadapter.internal.DatabaseDefinitionService.xml
+Bundle-Activator: org.slizaa.neo4j.dbadapter.internal.DbAdapterActivator

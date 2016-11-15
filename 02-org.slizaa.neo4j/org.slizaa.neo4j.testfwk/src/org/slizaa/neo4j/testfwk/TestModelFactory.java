@@ -15,7 +15,7 @@ import java.util.function.Function;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
-import org.slizaa.neo4j.dbadapter.DbadapterFactory;
+import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
@@ -51,12 +51,10 @@ public class TestModelFactory {
   public static Neo4jRestClient createNeo4JRemoteRepository(String baseUri) {
 
     // create the remote repository
-    final Neo4jRestClient remoteRepository = DbadapterFactory.eINSTANCE.createNeo4jRestClient();
+    final Neo4jRestClient remoteRepository = DbAdapterFactory.eINSTANCE.createNeo4jRestClient();
 
     //
     remoteRepository.setBaseURI(checkNotNull(baseUri));
-    remoteRepository.setThreadPoolSize(20);
-    remoteRepository.init();
 
     //
     return remoteRepository;

@@ -3,6 +3,7 @@
 package org.slizaa.neo4j.dbadapter;
 
 import org.eclipse.debug.core.ILaunch;
+
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -20,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getLaunch <em>Launch</em>}</li>
  * </ul>
  *
- * @see org.slizaa.neo4j.dbadapter.DbadapterPackage#getManagedNeo4jInstance()
+ * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance()
  * @model
  * @generated
  */
@@ -35,7 +36,7 @@ public interface ManagedNeo4jInstance extends Neo4jRestClient {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Running</em>' attribute.
    * @see #setRunning(boolean)
-   * @see org.slizaa.neo4j.dbadapter.DbadapterPackage#getManagedNeo4jInstance_Running()
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance_Running()
    * @model
    * @generated
    */
@@ -52,18 +53,6 @@ public interface ManagedNeo4jInstance extends Neo4jRestClient {
   void setRunning(boolean value);
 
   /**
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Scanned</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
-  boolean isScanned();
-
-  /**
    * Returns the value of the '<em><b>Storage Area</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
@@ -73,7 +62,7 @@ public interface ManagedNeo4jInstance extends Neo4jRestClient {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Storage Area</em>' attribute.
    * @see #setStorageArea(String)
-   * @see org.slizaa.neo4j.dbadapter.DbadapterPackage#getManagedNeo4jInstance_StorageArea()
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance_StorageArea()
    * @model
    * @generated
    */
@@ -99,7 +88,7 @@ public interface ManagedNeo4jInstance extends Neo4jRestClient {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Directories To Scan</em>' attribute list.
-   * @see org.slizaa.neo4j.dbadapter.DbadapterPackage#getManagedNeo4jInstance_DirectoriesToScan()
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance_DirectoriesToScan()
    * @model required="true"
    * @generated
    */
@@ -115,7 +104,7 @@ public interface ManagedNeo4jInstance extends Neo4jRestClient {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Launch</em>' attribute.
    * @see #setLaunch(ILaunch)
-   * @see org.slizaa.neo4j.dbadapter.DbadapterPackage#getManagedNeo4jInstance_Launch()
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance_Launch()
    * @model dataType="org.slizaa.neo4j.dbadapter.ILaunch" transient="true"
    * @generated
    */
@@ -138,6 +127,14 @@ public interface ManagedNeo4jInstance extends Neo4jRestClient {
    * @generated
    */
   void scan();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  boolean isScanned();
 
   /**
    * <!-- begin-user-doc -->

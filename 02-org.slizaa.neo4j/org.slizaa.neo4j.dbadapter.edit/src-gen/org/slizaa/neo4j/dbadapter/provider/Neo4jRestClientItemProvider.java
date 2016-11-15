@@ -22,7 +22,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.slizaa.neo4j.dbadapter.DbadapterPackage;
+import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 /**
@@ -61,8 +61,10 @@ public class Neo4jRestClientItemProvider
       super.getPropertyDescriptors(object);
 
       addNamePropertyDescriptor(object);
+      addDescriptionPropertyDescriptor(object);
       addBaseURIPropertyDescriptor(object);
-      addThreadPoolSizePropertyDescriptor(object);
+      addDefiningResourcePropertyDescriptor(object);
+      addHierarchicalGraphPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -80,7 +82,29 @@ public class Neo4jRestClientItemProvider
          getResourceLocator(),
          getString("_UI_Neo4jRestClient_name_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_name_feature", "_UI_Neo4jRestClient_type"),
-         DbadapterPackage.Literals.NEO4J_REST_CLIENT__NAME,
+         DbAdapterPackage.Literals.NEO4J_REST_CLIENT__NAME,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Description feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addDescriptionPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Neo4jRestClient_description_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_description_feature", "_UI_Neo4jRestClient_type"),
+         DbAdapterPackage.Literals.NEO4J_REST_CLIENT__DESCRIPTION,
          true,
          false,
          false,
@@ -102,7 +126,7 @@ public class Neo4jRestClientItemProvider
          getResourceLocator(),
          getString("_UI_Neo4jRestClient_baseURI_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_baseURI_feature", "_UI_Neo4jRestClient_type"),
-         DbadapterPackage.Literals.NEO4J_REST_CLIENT__BASE_URI,
+         DbAdapterPackage.Literals.NEO4J_REST_CLIENT__BASE_URI,
          true,
          false,
          false,
@@ -112,23 +136,45 @@ public class Neo4jRestClientItemProvider
   }
 
   /**
-   * This adds a property descriptor for the Thread Pool Size feature.
+   * This adds a property descriptor for the Defining Resource feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addThreadPoolSizePropertyDescriptor(Object object) {
+  protected void addDefiningResourcePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_Neo4jRestClient_threadPoolSize_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_threadPoolSize_feature", "_UI_Neo4jRestClient_type"),
-         DbadapterPackage.Literals.NEO4J_REST_CLIENT__THREAD_POOL_SIZE,
+         getString("_UI_Neo4jRestClient_definingResource_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_definingResource_feature", "_UI_Neo4jRestClient_type"),
+         DbAdapterPackage.Literals.NEO4J_REST_CLIENT__DEFINING_RESOURCE,
          true,
          false,
          false,
-         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Hierarchical Graph feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addHierarchicalGraphPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Neo4jRestClient_hierarchicalGraph_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_hierarchicalGraph_feature", "_UI_Neo4jRestClient_type"),
+         DbAdapterPackage.Literals.NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH,
+         true,
+         false,
+         true,
+         null,
          null,
          null));
   }
@@ -171,9 +217,11 @@ public class Neo4jRestClientItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(Neo4jRestClient.class)) {
-      case DbadapterPackage.NEO4J_REST_CLIENT__NAME:
-      case DbadapterPackage.NEO4J_REST_CLIENT__BASE_URI:
-      case DbadapterPackage.NEO4J_REST_CLIENT__THREAD_POOL_SIZE:
+      case DbAdapterPackage.NEO4J_REST_CLIENT__NAME:
+      case DbAdapterPackage.NEO4J_REST_CLIENT__DESCRIPTION:
+      case DbAdapterPackage.NEO4J_REST_CLIENT__BASE_URI:
+      case DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE:
+      case DbAdapterPackage.NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

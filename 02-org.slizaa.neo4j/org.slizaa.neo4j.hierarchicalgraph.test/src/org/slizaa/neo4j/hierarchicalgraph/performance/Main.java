@@ -50,8 +50,5 @@ public class Main {
     //
     System.out.println("Get incoming dependencies matrix: " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
     stopwatch.stop();
-
-    //
-    restClient.dispose();
   }
 }

@@ -21,11 +21,11 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.slizaa.neo4j.dbadapter.DbadapterFactory
+ * @see org.slizaa.neo4j.dbadapter.DbAdapterFactory
  * @model kind="package"
  * @generated
  */
-public interface DbadapterPackage extends EPackage {
+public interface DbAdapterPackage extends EPackage {
   /**
    * The package name.
    * <!-- begin-user-doc -->
@@ -56,14 +56,14 @@ public interface DbadapterPackage extends EPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  DbadapterPackage eINSTANCE = org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl.init();
+  DbAdapterPackage eINSTANCE = org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl.init();
 
   /**
    * The meta object id for the '{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl <em>Neo4j Rest Client</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl
-   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getNeo4jRestClient()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getNeo4jRestClient()
    * @generated
    */
   int NEO4J_REST_CLIENT = 0;
@@ -78,22 +78,40 @@ public interface DbadapterPackage extends EPackage {
   int NEO4J_REST_CLIENT__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4J_REST_CLIENT__DESCRIPTION = 1;
+
+  /**
    * The feature id for the '<em><b>Base URI</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT__BASE_URI = 1;
+  int NEO4J_REST_CLIENT__BASE_URI = 2;
 
   /**
-   * The feature id for the '<em><b>Thread Pool Size</b></em>' attribute.
+   * The feature id for the '<em><b>Defining Resource</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT__THREAD_POOL_SIZE = 2;
+  int NEO4J_REST_CLIENT__DEFINING_RESOURCE = 3;
+
+  /**
+   * The feature id for the '<em><b>Hierarchical Graph</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH = 4;
 
   /**
    * The number of structural features of the '<em>Neo4j Rest Client</em>' class.
@@ -102,25 +120,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_FEATURE_COUNT = 3;
-
-  /**
-   * The operation id for the '<em>Init</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEO4J_REST_CLIENT___INIT = 0;
-
-  /**
-   * The operation id for the '<em>Dispose</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEO4J_REST_CLIENT___DISPOSE = 1;
+  int NEO4J_REST_CLIENT_FEATURE_COUNT = 5;
 
   /**
    * The operation id for the '<em>Get All Relationship Types</em>' operation.
@@ -129,7 +129,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT___GET_ALL_RELATIONSHIP_TYPES = 2;
+  int NEO4J_REST_CLIENT___GET_ALL_RELATIONSHIP_TYPES = 0;
 
   /**
    * The operation id for the '<em>Get All Property Keys</em>' operation.
@@ -138,7 +138,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT___GET_ALL_PROPERTY_KEYS = 3;
+  int NEO4J_REST_CLIENT___GET_ALL_PROPERTY_KEYS = 1;
 
   /**
    * The operation id for the '<em>Get All Labels</em>' operation.
@@ -147,7 +147,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT___GET_ALL_LABELS = 4;
+  int NEO4J_REST_CLIENT___GET_ALL_LABELS = 2;
 
   /**
    * The operation id for the '<em>Get Labels For Node</em>' operation.
@@ -156,7 +156,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT___GET_LABELS_FOR_NODE__LONG = 5;
+  int NEO4J_REST_CLIENT___GET_LABELS_FOR_NODE__LONG = 3;
 
   /**
    * The operation id for the '<em>Get Properties For Node</em>' operation.
@@ -165,7 +165,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT___GET_PROPERTIES_FOR_NODE__LONG = 6;
+  int NEO4J_REST_CLIENT___GET_PROPERTIES_FOR_NODE__LONG = 4;
 
   /**
    * The operation id for the '<em>Get Properties For Relationship</em>' operation.
@@ -174,7 +174,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT___GET_PROPERTIES_FOR_RELATIONSHIP__LONG = 7;
+  int NEO4J_REST_CLIENT___GET_PROPERTIES_FOR_RELATIONSHIP__LONG = 5;
 
   /**
    * The operation id for the '<em>Execute Cypher Query</em>' operation.
@@ -183,7 +183,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING = 8;
+  int NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING = 6;
 
   /**
    * The operation id for the '<em>Execute Cypher Query</em>' operation.
@@ -192,7 +192,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP = 9;
+  int NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP = 7;
 
   /**
    * The operation id for the '<em>Execute Cypher Query</em>' operation.
@@ -201,7 +201,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_CONSUMER = 10;
+  int NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_CONSUMER = 8;
 
   /**
    * The operation id for the '<em>Execute Cypher Query</em>' operation.
@@ -210,7 +210,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = 11;
+  int NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = 9;
 
   /**
    * The number of operations of the '<em>Neo4j Rest Client</em>' class.
@@ -219,35 +219,81 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT_OPERATION_COUNT = 12;
+  int NEO4J_REST_CLIENT_OPERATION_COUNT = 10;
 
   /**
-   * The meta object id for the '{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl <em>Container</em>}' class.
+   * The meta object id for the '{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl <em>Registry</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl
-   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getDbadapterContainer()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getDbAdapterRegistry()
    * @generated
    */
-  int DBADAPTER_CONTAINER = 2;
+  int DB_ADAPTER_REGISTRY = 1;
 
   /**
-   * The feature id for the '<em><b>Identifier</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DBADAPTER_CONTAINER__IDENTIFIER = 0;
-
-  /**
-   * The feature id for the '<em><b>Clients</b></em>' containment reference list.
+   * The feature id for the '<em><b>Managed</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DBADAPTER_CONTAINER__CLIENTS = 1;
+  int DB_ADAPTER_REGISTRY__MANAGED = 0;
+
+  /**
+   * The feature id for the '<em><b>Unmanaged</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DB_ADAPTER_REGISTRY__UNMANAGED = 1;
+
+  /**
+   * The number of structural features of the '<em>Registry</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DB_ADAPTER_REGISTRY_FEATURE_COUNT = 2;
+
+  /**
+   * The operation id for the '<em>Has Hierarchical Graph</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DB_ADAPTER_REGISTRY___HAS_HIERARCHICAL_GRAPH = 0;
+
+  /**
+   * The number of operations of the '<em>Registry</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DB_ADAPTER_REGISTRY_OPERATION_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterContainerImpl <em>Container</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterContainerImpl
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getDbAdapterContainer()
+   * @generated
+   */
+  int DB_ADAPTER_CONTAINER = 2;
+
+  /**
+   * The feature id for the '<em><b>Children</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DB_ADAPTER_CONTAINER__CHILDREN = 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -256,7 +302,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DBADAPTER_CONTAINER__NAME = 2;
+  int DB_ADAPTER_CONTAINER__NAME = 1;
 
   /**
    * The number of structural features of the '<em>Container</em>' class.
@@ -265,7 +311,7 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DBADAPTER_CONTAINER_FEATURE_COUNT = 3;
+  int DB_ADAPTER_CONTAINER_FEATURE_COUNT = 2;
 
   /**
    * The number of operations of the '<em>Container</em>' class.
@@ -274,69 +320,14 @@ public interface DbadapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DBADAPTER_CONTAINER_OPERATION_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl <em>Db Adapter Registry</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl
-   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getDbAdapterRegistry()
-   * @generated
-   */
-  int DB_ADAPTER_REGISTRY = 1;
-
-  /**
-   * The feature id for the '<em><b>Identifier</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DB_ADAPTER_REGISTRY__IDENTIFIER = DBADAPTER_CONTAINER__IDENTIFIER;
-
-  /**
-   * The feature id for the '<em><b>Clients</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DB_ADAPTER_REGISTRY__CLIENTS = DBADAPTER_CONTAINER__CLIENTS;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DB_ADAPTER_REGISTRY__NAME = DBADAPTER_CONTAINER__NAME;
-
-  /**
-   * The number of structural features of the '<em>Db Adapter Registry</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DB_ADAPTER_REGISTRY_FEATURE_COUNT = DBADAPTER_CONTAINER_FEATURE_COUNT + 0;
-
-  /**
-   * The number of operations of the '<em>Db Adapter Registry</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DB_ADAPTER_REGISTRY_OPERATION_COUNT = DBADAPTER_CONTAINER_OPERATION_COUNT + 0;
+  int DB_ADAPTER_CONTAINER_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl <em>Managed Neo4j Instance</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl
-   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getManagedNeo4jInstance()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getManagedNeo4jInstance()
    * @generated
    */
   int MANAGED_NEO4J_INSTANCE = 3;
@@ -351,6 +342,15 @@ public interface DbadapterPackage extends EPackage {
   int MANAGED_NEO4J_INSTANCE__NAME = NEO4J_REST_CLIENT__NAME;
 
   /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE__DESCRIPTION = NEO4J_REST_CLIENT__DESCRIPTION;
+
+  /**
    * The feature id for the '<em><b>Base URI</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -360,13 +360,22 @@ public interface DbadapterPackage extends EPackage {
   int MANAGED_NEO4J_INSTANCE__BASE_URI = NEO4J_REST_CLIENT__BASE_URI;
 
   /**
-   * The feature id for the '<em><b>Thread Pool Size</b></em>' attribute.
+   * The feature id for the '<em><b>Defining Resource</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MANAGED_NEO4J_INSTANCE__THREAD_POOL_SIZE = NEO4J_REST_CLIENT__THREAD_POOL_SIZE;
+  int MANAGED_NEO4J_INSTANCE__DEFINING_RESOURCE = NEO4J_REST_CLIENT__DEFINING_RESOURCE;
+
+  /**
+   * The feature id for the '<em><b>Hierarchical Graph</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE__HIERARCHICAL_GRAPH = NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH;
 
   /**
    * The feature id for the '<em><b>Running</b></em>' attribute.
@@ -412,24 +421,6 @@ public interface DbadapterPackage extends EPackage {
    * @ordered
    */
   int MANAGED_NEO4J_INSTANCE_FEATURE_COUNT = NEO4J_REST_CLIENT_FEATURE_COUNT + 4;
-
-  /**
-   * The operation id for the '<em>Init</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MANAGED_NEO4J_INSTANCE___INIT = NEO4J_REST_CLIENT___INIT;
-
-  /**
-   * The operation id for the '<em>Dispose</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MANAGED_NEO4J_INSTANCE___DISPOSE = NEO4J_REST_CLIENT___DISPOSE;
 
   /**
    * The operation id for the '<em>Get All Relationship Types</em>' operation.
@@ -580,7 +571,7 @@ public interface DbadapterPackage extends EPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see java.util.concurrent.Future
-   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getFuture()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getFuture()
    * @generated
    */
   int FUTURE = 4;
@@ -590,7 +581,7 @@ public interface DbadapterPackage extends EPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see java.util.function.Consumer
-   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getConsumer()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getConsumer()
    * @generated
    */
   int CONSUMER = 5;
@@ -600,7 +591,7 @@ public interface DbadapterPackage extends EPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see com.google.gson.JsonArray
-   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getJsonArray()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getJsonArray()
    * @generated
    */
   int JSON_ARRAY = 6;
@@ -610,21 +601,30 @@ public interface DbadapterPackage extends EPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see com.google.gson.JsonObject
-   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getJsonObject()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getJsonObject()
    * @generated
    */
   int JSON_OBJECT = 7;
-
 
   /**
    * The meta object id for the '<em>ILaunch</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.debug.core.ILaunch
-   * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getILaunch()
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getILaunch()
    * @generated
    */
   int ILAUNCH = 8;
+
+  /**
+   * The meta object id for the '<em>IFile</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.core.resources.IFile
+   * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getIFile()
+   * @generated
+   */
+  int IFILE = 9;
 
 
   /**
@@ -649,6 +649,17 @@ public interface DbadapterPackage extends EPackage {
   EAttribute getNeo4jRestClient_Name();
 
   /**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getDescription <em>Description</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Description</em>'.
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getDescription()
+   * @see #getNeo4jRestClient()
+   * @generated
+   */
+  EAttribute getNeo4jRestClient_Description();
+
+  /**
    * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getBaseURI <em>Base URI</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -660,35 +671,26 @@ public interface DbadapterPackage extends EPackage {
   EAttribute getNeo4jRestClient_BaseURI();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getThreadPoolSize <em>Thread Pool Size</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getDefiningResource <em>Defining Resource</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Thread Pool Size</em>'.
-   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getThreadPoolSize()
+   * @return the meta object for the attribute '<em>Defining Resource</em>'.
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getDefiningResource()
    * @see #getNeo4jRestClient()
    * @generated
    */
-  EAttribute getNeo4jRestClient_ThreadPoolSize();
+  EAttribute getNeo4jRestClient_DefiningResource();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#init() <em>Init</em>}' operation.
+   * Returns the meta object for the reference '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getHierarchicalGraph <em>Hierarchical Graph</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Init</em>' operation.
-   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#init()
+   * @return the meta object for the reference '<em>Hierarchical Graph</em>'.
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#getHierarchicalGraph()
+   * @see #getNeo4jRestClient()
    * @generated
    */
-  EOperation getNeo4jRestClient__Init();
-
-  /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#dispose() <em>Dispose</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Dispose</em>' operation.
-   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#dispose()
-   * @generated
-   */
-  EOperation getNeo4jRestClient__Dispose();
+  EReference getNeo4jRestClient_HierarchicalGraph();
 
   /**
    * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getAllRelationshipTypes() <em>Get All Relationship Types</em>}' operation.
@@ -791,57 +793,78 @@ public interface DbadapterPackage extends EPackage {
   EOperation getNeo4jRestClient__ExecuteCypherQuery__String_Map_Consumer();
 
   /**
-   * Returns the meta object for class '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry <em>Db Adapter Registry</em>}'.
+   * Returns the meta object for class '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry <em>Registry</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Db Adapter Registry</em>'.
+   * @return the meta object for class '<em>Registry</em>'.
    * @see org.slizaa.neo4j.dbadapter.DbAdapterRegistry
    * @generated
    */
   EClass getDbAdapterRegistry();
 
   /**
-   * Returns the meta object for class '{@link org.slizaa.neo4j.dbadapter.DbadapterContainer <em>Container</em>}'.
+   * Returns the meta object for the containment reference '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry#getManaged <em>Managed</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Managed</em>'.
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterRegistry#getManaged()
+   * @see #getDbAdapterRegistry()
+   * @generated
+   */
+  EReference getDbAdapterRegistry_Managed();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry#getUnmanaged <em>Unmanaged</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Unmanaged</em>'.
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterRegistry#getUnmanaged()
+   * @see #getDbAdapterRegistry()
+   * @generated
+   */
+  EReference getDbAdapterRegistry_Unmanaged();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry#hasHierarchicalGraph() <em>Has Hierarchical Graph</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Has Hierarchical Graph</em>' operation.
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterRegistry#hasHierarchicalGraph()
+   * @generated
+   */
+  EOperation getDbAdapterRegistry__HasHierarchicalGraph();
+
+  /**
+   * Returns the meta object for class '{@link org.slizaa.neo4j.dbadapter.DbAdapterContainer <em>Container</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for class '<em>Container</em>'.
-   * @see org.slizaa.neo4j.dbadapter.DbadapterContainer
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterContainer
    * @generated
    */
-  EClass getDbadapterContainer();
+  EClass getDbAdapterContainer();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.DbadapterContainer#getIdentifier <em>Identifier</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.slizaa.neo4j.dbadapter.DbAdapterContainer#getChildren <em>Children</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Identifier</em>'.
-   * @see org.slizaa.neo4j.dbadapter.DbadapterContainer#getIdentifier()
-   * @see #getDbadapterContainer()
+   * @return the meta object for the containment reference list '<em>Children</em>'.
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterContainer#getChildren()
+   * @see #getDbAdapterContainer()
    * @generated
    */
-  EAttribute getDbadapterContainer_Identifier();
+  EReference getDbAdapterContainer_Children();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.slizaa.neo4j.dbadapter.DbadapterContainer#getClients <em>Clients</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Clients</em>'.
-   * @see org.slizaa.neo4j.dbadapter.DbadapterContainer#getClients()
-   * @see #getDbadapterContainer()
-   * @generated
-   */
-  EReference getDbadapterContainer_Clients();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.DbadapterContainer#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.DbAdapterContainer#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.slizaa.neo4j.dbadapter.DbadapterContainer#getName()
-   * @see #getDbadapterContainer()
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterContainer#getName()
+   * @see #getDbAdapterContainer()
    * @generated
    */
-  EAttribute getDbadapterContainer_Name();
+  EAttribute getDbAdapterContainer_Name();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance <em>Managed Neo4j Instance</em>}'.
@@ -1003,13 +1026,24 @@ public interface DbadapterPackage extends EPackage {
   EDataType getILaunch();
 
   /**
+   * Returns the meta object for data type '{@link org.eclipse.core.resources.IFile <em>IFile</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>IFile</em>'.
+   * @see org.eclipse.core.resources.IFile
+   * @model instanceClass="org.eclipse.core.resources.IFile" serializeable="false"
+   * @generated
+   */
+  EDataType getIFile();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the factory that creates the instances of the model.
    * @generated
    */
-  DbadapterFactory getDbadapterFactory();
+  DbAdapterFactory getDbAdapterFactory();
 
   /**
    * <!-- begin-user-doc -->
@@ -1030,7 +1064,7 @@ public interface DbadapterPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl
-     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getNeo4jRestClient()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getNeo4jRestClient()
      * @generated
      */
     EClass NEO4J_REST_CLIENT = eINSTANCE.getNeo4jRestClient();
@@ -1044,6 +1078,14 @@ public interface DbadapterPackage extends EPackage {
     EAttribute NEO4J_REST_CLIENT__NAME = eINSTANCE.getNeo4jRestClient_Name();
 
     /**
+     * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NEO4J_REST_CLIENT__DESCRIPTION = eINSTANCE.getNeo4jRestClient_Description();
+
+    /**
      * The meta object literal for the '<em><b>Base URI</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1052,28 +1094,20 @@ public interface DbadapterPackage extends EPackage {
     EAttribute NEO4J_REST_CLIENT__BASE_URI = eINSTANCE.getNeo4jRestClient_BaseURI();
 
     /**
-     * The meta object literal for the '<em><b>Thread Pool Size</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Defining Resource</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute NEO4J_REST_CLIENT__THREAD_POOL_SIZE = eINSTANCE.getNeo4jRestClient_ThreadPoolSize();
+    EAttribute NEO4J_REST_CLIENT__DEFINING_RESOURCE = eINSTANCE.getNeo4jRestClient_DefiningResource();
 
     /**
-     * The meta object literal for the '<em><b>Init</b></em>' operation.
+     * The meta object literal for the '<em><b>Hierarchical Graph</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation NEO4J_REST_CLIENT___INIT = eINSTANCE.getNeo4jRestClient__Init();
-
-    /**
-     * The meta object literal for the '<em><b>Dispose</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation NEO4J_REST_CLIENT___DISPOSE = eINSTANCE.getNeo4jRestClient__Dispose();
+    EReference NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH = eINSTANCE.getNeo4jRestClient_HierarchicalGraph();
 
     /**
      * The meta object literal for the '<em><b>Get All Relationship Types</b></em>' operation.
@@ -1156,40 +1190,56 @@ public interface DbadapterPackage extends EPackage {
     EOperation NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = eINSTANCE.getNeo4jRestClient__ExecuteCypherQuery__String_Map_Consumer();
 
     /**
-     * The meta object literal for the '{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl <em>Db Adapter Registry</em>}' class.
+     * The meta object literal for the '{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl <em>Registry</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl
-     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getDbAdapterRegistry()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getDbAdapterRegistry()
      * @generated
      */
     EClass DB_ADAPTER_REGISTRY = eINSTANCE.getDbAdapterRegistry();
 
     /**
-     * The meta object literal for the '{@link org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl <em>Container</em>}' class.
+     * The meta object literal for the '<em><b>Managed</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterContainerImpl
-     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getDbadapterContainer()
      * @generated
      */
-    EClass DBADAPTER_CONTAINER = eINSTANCE.getDbadapterContainer();
+    EReference DB_ADAPTER_REGISTRY__MANAGED = eINSTANCE.getDbAdapterRegistry_Managed();
 
     /**
-     * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Unmanaged</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DBADAPTER_CONTAINER__IDENTIFIER = eINSTANCE.getDbadapterContainer_Identifier();
+    EReference DB_ADAPTER_REGISTRY__UNMANAGED = eINSTANCE.getDbAdapterRegistry_Unmanaged();
 
     /**
-     * The meta object literal for the '<em><b>Clients</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Has Hierarchical Graph</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DBADAPTER_CONTAINER__CLIENTS = eINSTANCE.getDbadapterContainer_Clients();
+    EOperation DB_ADAPTER_REGISTRY___HAS_HIERARCHICAL_GRAPH = eINSTANCE.getDbAdapterRegistry__HasHierarchicalGraph();
+
+    /**
+     * The meta object literal for the '{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterContainerImpl <em>Container</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterContainerImpl
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getDbAdapterContainer()
+     * @generated
+     */
+    EClass DB_ADAPTER_CONTAINER = eINSTANCE.getDbAdapterContainer();
+
+    /**
+     * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DB_ADAPTER_CONTAINER__CHILDREN = eINSTANCE.getDbAdapterContainer_Children();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1197,14 +1247,14 @@ public interface DbadapterPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DBADAPTER_CONTAINER__NAME = eINSTANCE.getDbadapterContainer_Name();
+    EAttribute DB_ADAPTER_CONTAINER__NAME = eINSTANCE.getDbAdapterContainer_Name();
 
     /**
      * The meta object literal for the '{@link org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl <em>Managed Neo4j Instance</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl
-     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getManagedNeo4jInstance()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getManagedNeo4jInstance()
      * @generated
      */
     EClass MANAGED_NEO4J_INSTANCE = eINSTANCE.getManagedNeo4jInstance();
@@ -1286,7 +1336,7 @@ public interface DbadapterPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see java.util.concurrent.Future
-     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getFuture()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getFuture()
      * @generated
      */
     EDataType FUTURE = eINSTANCE.getFuture();
@@ -1296,7 +1346,7 @@ public interface DbadapterPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see java.util.function.Consumer
-     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getConsumer()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getConsumer()
      * @generated
      */
     EDataType CONSUMER = eINSTANCE.getConsumer();
@@ -1306,7 +1356,7 @@ public interface DbadapterPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see com.google.gson.JsonArray
-     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getJsonArray()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getJsonArray()
      * @generated
      */
     EDataType JSON_ARRAY = eINSTANCE.getJsonArray();
@@ -1316,7 +1366,7 @@ public interface DbadapterPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see com.google.gson.JsonObject
-     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getJsonObject()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getJsonObject()
      * @generated
      */
     EDataType JSON_OBJECT = eINSTANCE.getJsonObject();
@@ -1326,11 +1376,21 @@ public interface DbadapterPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.debug.core.ILaunch
-     * @see org.slizaa.neo4j.dbadapter.impl.DbadapterPackageImpl#getILaunch()
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getILaunch()
      * @generated
      */
     EDataType ILAUNCH = eINSTANCE.getILaunch();
 
+    /**
+     * The meta object literal for the '<em>IFile</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.core.resources.IFile
+     * @see org.slizaa.neo4j.dbadapter.impl.DbAdapterPackageImpl#getIFile()
+     * @generated
+     */
+    EDataType IFILE = eINSTANCE.getIFile();
+
   }
 
-} //DbadapterPackage
+} //DbAdapterPackage

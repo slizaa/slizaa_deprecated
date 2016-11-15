@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-import org.slizaa.neo4j.dbadapter.DbadapterPackage;
+import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 import org.slizaa.neo4j.workbenchmodel.MappedGraphs;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchModel;
 import org.slizaa.neo4j.workbenchmodel.WorkbenchmodelFactory;
@@ -84,7 +84,7 @@ public class WorkbenchmodelPackageImpl extends EPackageImpl implements Workbench
 
     // Initialize simple dependencies
     HierarchicalgraphPackage.eINSTANCE.eClass();
-    DbadapterPackage.eINSTANCE.eClass();
+    DbAdapterPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theWorkbenchmodelPackage.createPackageContents();
@@ -206,7 +206,7 @@ public class WorkbenchmodelPackageImpl extends EPackageImpl implements Workbench
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
-    DbadapterPackage theDbadapterPackage = (DbadapterPackage)EPackage.Registry.INSTANCE.getEPackage(DbadapterPackage.eNS_URI);
+    DbAdapterPackage theDbAdapterPackage = (DbAdapterPackage)EPackage.Registry.INSTANCE.getEPackage(DbAdapterPackage.eNS_URI);
     HierarchicalgraphPackage theHierarchicalgraphPackage = (HierarchicalgraphPackage)EPackage.Registry.INSTANCE.getEPackage(HierarchicalgraphPackage.eNS_URI);
 
     // Create type parameters
@@ -217,7 +217,7 @@ public class WorkbenchmodelPackageImpl extends EPackageImpl implements Workbench
 
     // Initialize classes, features, and operations; add parameters
     initEClass(workbenchModelEClass, WorkbenchModel.class, "WorkbenchModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getWorkbenchModel_Databases(), theDbadapterPackage.getDbAdapterRegistry(), null, "databases", null, 1, 1, WorkbenchModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getWorkbenchModel_Databases(), theDbAdapterPackage.getDbAdapterRegistry(), null, "databases", null, 1, 1, WorkbenchModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getWorkbenchModel_MappedGraphs(), this.getMappedGraphs(), null, "mappedGraphs", null, 0, 1, WorkbenchModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(mappedGraphsEClass, MappedGraphs.class, "MappedGraphs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

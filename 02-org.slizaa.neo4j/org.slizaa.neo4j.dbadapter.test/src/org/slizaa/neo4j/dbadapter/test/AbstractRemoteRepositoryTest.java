@@ -4,7 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.junit.After;
 import org.junit.Before;
-import org.slizaa.neo4j.dbadapter.DbadapterFactory;
+import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.graphdb.testfwk.AbstractNeo4JServerTest;
 
@@ -36,7 +36,6 @@ public abstract class AbstractRemoteRepositoryTest extends AbstractNeo4JServerTe
    */
   @After
   public void dispose() {
-    _neo4JRestClient.dispose();
   }
 
   /**
@@ -59,12 +58,10 @@ public abstract class AbstractRemoteRepositoryTest extends AbstractNeo4JServerTe
   public static Neo4jRestClient createNeo4jRestClient(String baseUri) {
 
     // create the remote repository
-    final Neo4jRestClient remoteRepository = DbadapterFactory.eINSTANCE.createNeo4jRestClient();
+    final Neo4jRestClient remoteRepository = DbAdapterFactory.eINSTANCE.createNeo4jRestClient();
 
     //
     remoteRepository.setBaseURI(checkNotNull(baseUri));
-    remoteRepository.setThreadPoolSize(20);
-    remoteRepository.init();
 
     //
     return remoteRepository;

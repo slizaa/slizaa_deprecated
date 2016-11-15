@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.debug.core.ILaunch;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
@@ -14,9 +15,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import org.slizaa.neo4j.dbadapter.DbadapterPackage;
+import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 
 /**
@@ -122,7 +124,7 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
    */
   @Override
   protected EClass eStaticClass() {
-    return DbadapterPackage.Literals.MANAGED_NEO4J_INSTANCE;
+    return DbAdapterPackage.Literals.MANAGED_NEO4J_INSTANCE;
   }
 
   /**
@@ -143,18 +145,7 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
     boolean oldRunning = running;
     running = newRunning;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DbadapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING, oldRunning, running));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean isScanned() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING, oldRunning, running));
   }
 
   /**
@@ -175,7 +166,7 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
     String oldStorageArea = storageArea;
     storageArea = newStorageArea;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DbadapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA, oldStorageArea, storageArea));
+      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA, oldStorageArea, storageArea));
   }
 
   /**
@@ -185,7 +176,7 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
    */
   public EList<String> getDirectoriesToScan() {
     if (directoriesToScan == null) {
-      directoriesToScan = new EDataTypeUniqueEList<String>(String.class, this, DbadapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN);
+      directoriesToScan = new EDataTypeUniqueEList<String>(String.class, this, DbAdapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN);
     }
     return directoriesToScan;
   }
@@ -208,7 +199,7 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
     ILaunch oldLaunch = launch;
     launch = newLaunch;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DbadapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH, oldLaunch, launch));
+      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH, oldLaunch, launch));
   }
 
   /**
@@ -217,6 +208,17 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
    * @generated
    */
   public void scan() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isScanned() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -263,13 +265,13 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
         return isRunning();
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
         return getStorageArea();
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
         return getDirectoriesToScan();
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH:
         return getLaunch();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -284,17 +286,17 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
         setRunning((Boolean)newValue);
         return;
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
         setStorageArea((String)newValue);
         return;
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
         getDirectoriesToScan().clear();
         getDirectoriesToScan().addAll((Collection<? extends String>)newValue);
         return;
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH:
         setLaunch((ILaunch)newValue);
         return;
     }
@@ -309,16 +311,16 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
         setRunning(RUNNING_EDEFAULT);
         return;
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
         setStorageArea(STORAGE_AREA_EDEFAULT);
         return;
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
         getDirectoriesToScan().clear();
         return;
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH:
         setLaunch(LAUNCH_EDEFAULT);
         return;
     }
@@ -333,13 +335,13 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
         return running != RUNNING_EDEFAULT;
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
         return STORAGE_AREA_EDEFAULT == null ? storageArea != null : !STORAGE_AREA_EDEFAULT.equals(storageArea);
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
         return directoriesToScan != null && !directoriesToScan.isEmpty();
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__LAUNCH:
         return LAUNCH_EDEFAULT == null ? launch != null : !LAUNCH_EDEFAULT.equals(launch);
     }
     return super.eIsSet(featureID);
@@ -353,18 +355,18 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE___SCAN:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE___SCAN:
         scan();
         return null;
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE___IS_SCANNED:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE___IS_SCANNED:
         return isScanned();
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE___START:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE___START:
         start();
         return null;
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE___STOP:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE___STOP:
         stop();
         return null;
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE___DELETE:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE___DELETE:
         delete();
         return null;
     }

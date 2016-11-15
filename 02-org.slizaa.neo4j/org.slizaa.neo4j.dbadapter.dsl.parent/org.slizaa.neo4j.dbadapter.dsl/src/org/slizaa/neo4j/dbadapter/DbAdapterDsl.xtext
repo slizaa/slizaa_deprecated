@@ -2,8 +2,16 @@ grammar org.slizaa.neo4j.dbadapter.DbAdapterDsl with org.eclipse.xtext.common.Te
 
 generate dbAdapterDsl "http://www.slizaa.org/neo4j/dbadapter/DbAdapterDsl"
 
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
+DbAdapterDefinition:
+	ManagedLocalDatabase | UnmanagedRemoteDatabase;
+
+UnmanagedRemoteDatabase:
+	'unmanaged' 'remote' 'database' '{'
+	(('uri' uri=STRING) & ('name' name=STRING)? & ('description' description=STRING)?)
+	'}';
+
+ManagedLocalDatabase:
+	'managed' 'local' 'database' '{'
+	(('name' name=STRING)? & ('description' description=STRING)? & ('port' port=INT)? & ('storage' storage=STRING) &
+	('files' files+=STRING (',' files+=STRING))?)
+	'}';

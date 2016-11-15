@@ -19,17 +19,17 @@ import org.slizaa.neo4j.dbadapter.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.slizaa.neo4j.dbadapter.DbadapterPackage
+ * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage
  * @generated
  */
-public class DbadapterSwitch<T> extends Switch<T> {
+public class DbAdapterSwitch<T1> extends Switch<T1> {
   /**
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected static DbadapterPackage modelPackage;
+  protected static DbAdapterPackage modelPackage;
 
   /**
    * Creates an instance of the switch.
@@ -37,9 +37,9 @@ public class DbadapterSwitch<T> extends Switch<T> {
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbadapterSwitch() {
+  public DbAdapterSwitch() {
     if (modelPackage == null) {
-      modelPackage = DbadapterPackage.eINSTANCE;
+      modelPackage = DbAdapterPackage.eINSTANCE;
     }
   }
 
@@ -64,30 +64,29 @@ public class DbadapterSwitch<T> extends Switch<T> {
    * @generated
    */
   @Override
-  protected T doSwitch(int classifierID, EObject theEObject) {
+  protected T1 doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
-      case DbadapterPackage.NEO4J_REST_CLIENT: {
+      case DbAdapterPackage.NEO4J_REST_CLIENT: {
         Neo4jRestClient neo4jRestClient = (Neo4jRestClient)theEObject;
-        T result = caseNeo4jRestClient(neo4jRestClient);
+        T1 result = caseNeo4jRestClient(neo4jRestClient);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case DbadapterPackage.DB_ADAPTER_REGISTRY: {
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY: {
         DbAdapterRegistry dbAdapterRegistry = (DbAdapterRegistry)theEObject;
-        T result = caseDbAdapterRegistry(dbAdapterRegistry);
-        if (result == null) result = caseDbadapterContainer(dbAdapterRegistry);
+        T1 result = caseDbAdapterRegistry(dbAdapterRegistry);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case DbadapterPackage.DBADAPTER_CONTAINER: {
-        DbadapterContainer dbadapterContainer = (DbadapterContainer)theEObject;
-        T result = caseDbadapterContainer(dbadapterContainer);
+      case DbAdapterPackage.DB_ADAPTER_CONTAINER: {
+        DbAdapterContainer<?> dbAdapterContainer = (DbAdapterContainer<?>)theEObject;
+        T1 result = caseDbAdapterContainer(dbAdapterContainer);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case DbadapterPackage.MANAGED_NEO4J_INSTANCE: {
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE: {
         ManagedNeo4jInstance managedNeo4jInstance = (ManagedNeo4jInstance)theEObject;
-        T result = caseManagedNeo4jInstance(managedNeo4jInstance);
+        T1 result = caseManagedNeo4jInstance(managedNeo4jInstance);
         if (result == null) result = caseNeo4jRestClient(managedNeo4jInstance);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -107,22 +106,22 @@ public class DbadapterSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseNeo4jRestClient(Neo4jRestClient object) {
+  public T1 caseNeo4jRestClient(Neo4jRestClient object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Db Adapter Registry</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Registry</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Db Adapter Registry</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Registry</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDbAdapterRegistry(DbAdapterRegistry object) {
+  public T1 caseDbAdapterRegistry(DbAdapterRegistry object) {
     return null;
   }
 
@@ -137,7 +136,7 @@ public class DbadapterSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDbadapterContainer(DbadapterContainer object) {
+  public <T extends Neo4jRestClient> T1 caseDbAdapterContainer(DbAdapterContainer<T> object) {
     return null;
   }
 
@@ -152,7 +151,7 @@ public class DbadapterSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseManagedNeo4jInstance(ManagedNeo4jInstance object) {
+  public T1 caseManagedNeo4jInstance(ManagedNeo4jInstance object) {
     return null;
   }
 
@@ -168,8 +167,8 @@ public class DbadapterSwitch<T> extends Switch<T> {
    * @generated
    */
   @Override
-  public T defaultCase(EObject object) {
+  public T1 defaultCase(EObject object) {
     return null;
   }
 
-} //DbadapterSwitch
+} //DbAdapterSwitch

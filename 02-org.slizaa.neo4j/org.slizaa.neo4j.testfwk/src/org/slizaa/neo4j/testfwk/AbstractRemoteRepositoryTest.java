@@ -24,7 +24,7 @@ public abstract class AbstractRemoteRepositoryTest extends AbstractNeo4JServerTe
 
   @After
   public void dispose() {
-    _neo4JRemoteRepository.dispose();
+    // _neo4JRemoteRepository.dispose();
   }
 
   /**

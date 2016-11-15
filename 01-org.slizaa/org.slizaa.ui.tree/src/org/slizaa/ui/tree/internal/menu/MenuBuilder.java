@@ -1,7 +1,6 @@
 package org.slizaa.ui.tree.internal.menu;
 
 import java.util.Collections;
-import java.util.Comparator;
 
 import org.eclipse.e4.core.contexts.ContextInjectionFactory;
 import org.eclipse.jface.action.Action;
@@ -50,10 +49,10 @@ public class MenuBuilder {
    * @param eSelectedObject
    */
   private static void createMenuManager(IMenuManager menuManager, MenuGroup menuGroup, Object eSelectedObject) {
-    
+
     //
-    Collections.sort(menuGroup.getMenuEntries(), (a,b) -> a.ranking() - b.ranking() );
-    
+    Collections.sort(menuGroup.getMenuEntries(), (a, b) -> a.ranking() - b.ranking());
+
     //
     for (IMenuPart menuPart : menuGroup.getMenuEntries()) {
       if (menuPart instanceof MenuEntry) {
@@ -127,6 +126,10 @@ public class MenuBuilder {
   private static Action wrapActionContribution(final Object eSelectedObject,
       final ISlizaaActionContribution slizaaTreeAction) {
 
+    // set enabled
+    ContextInjectionFactory.inject(slizaaTreeAction,
+        Activator.getDefault().getE4Workbench().getApplication().getContext());
+
     //
     final Action newAction = new Action() {
 
@@ -148,11 +151,11 @@ public class MenuBuilder {
 
     }
 
+    //
+    newAction.setEnabled(slizaaTreeAction.isEnabled(eSelectedObject));
+
     // set action text
     newAction.setText(slizaaTreeAction.getLabel());
-
-    // set enabled
-    newAction.setEnabled(slizaaTreeAction.isEnabled(eSelectedObject));
 
     // return the result
     return newAction;
