@@ -65,33 +65,28 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="definingResource" eType="#//IFile"
         transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//DbAdapterContainer"
+        transient="true" eOpposite="#//DbAdapterContainer/children"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="hierarchicalGraph" eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGRootNode"
         transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DbAdapterRegistry">
-    <eOperations name="hasHierarchicalGraph" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="managed" lowerBound="1"
-        containment="true">
-      <eGenericType eClassifier="#//DbAdapterContainer">
-        <eTypeArguments eClassifier="#//ManagedNeo4jInstance"/>
-      </eGenericType>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="unmanaged" lowerBound="1"
-        containment="true">
-      <eGenericType eClassifier="#//DbAdapterContainer">
-        <eTypeArguments eClassifier="#//Neo4jRestClient"/>
-      </eGenericType>
-    </eStructuralFeatures>
+    <eOperations name="getDbAdapterContainer" eType="#//DbAdapterContainer">
+      <eParameters name="type" lowerBound="1" eType="#//ContainerType"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activeDbAdapter" eType="#//Neo4jRestClient"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" lowerBound="1"
+        upperBound="-1" eType="#//DbAdapterContainer" containment="true" eOpposite="#//DbAdapterContainer/parent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DbAdapterContainer">
-    <eTypeParameters name="T">
-      <eBounds eClassifier="#//Neo4jRestClient"/>
-    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ContainerType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//DbAdapterRegistry"
+        eOpposite="#//DbAdapterRegistry/children"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
-        containment="true">
-      <eGenericType eTypeParameter="#//DbAdapterContainer/T"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="#//Neo4jRestClient" containment="true" eOpposite="#//Neo4jRestClient/parent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ManagedNeo4jInstance" eSuperTypes="#//Neo4jRestClient">
     <eOperations name="scan"/>
@@ -118,4 +113,8 @@
       serializable="false"/>
   <eClassifiers xsi:type="ecore:EDataType" name="IFile" instanceClassName="org.eclipse.core.resources.IFile"
       serializable="false"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ContainerType">
+    <eLiterals name="MANAGED"/>
+    <eLiterals name="UNMANAGED" value="1"/>
+  </eClassifiers>
 </ecore:EPackage>

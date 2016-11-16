@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.slizaa.neo4j.dbadapter.ContainerType;
 import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
 import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 
@@ -60,25 +61,25 @@ public class DbAdapterContainerItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addNamePropertyDescriptor(object);
+      addTypePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Name feature.
+   * This adds a property descriptor for the Type feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addNamePropertyDescriptor(Object object) {
+  protected void addTypePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_DbAdapterContainer_name_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_DbAdapterContainer_name_feature", "_UI_DbAdapterContainer_type"),
-         DbAdapterPackage.Literals.DB_ADAPTER_CONTAINER__NAME,
+         getString("_UI_DbAdapterContainer_type_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_DbAdapterContainer_type_feature", "_UI_DbAdapterContainer_type"),
+         DbAdapterPackage.Literals.DB_ADAPTER_CONTAINER__TYPE,
          true,
          false,
          false,
@@ -136,7 +137,8 @@ public class DbAdapterContainerItemProvider
    */
   @Override
   public String getText(Object object) {
-    String label = ((DbAdapterContainer<?>)object).getName();
+    ContainerType labelValue = ((DbAdapterContainer)object).getType();
+    String label = labelValue == null ? null : labelValue.toString();
     return label == null || label.length() == 0 ?
       getString("_UI_DbAdapterContainer_type") :
       getString("_UI_DbAdapterContainer_type") + " " + label;
@@ -155,7 +157,7 @@ public class DbAdapterContainerItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(DbAdapterContainer.class)) {
-      case DbAdapterPackage.DB_ADAPTER_CONTAINER__NAME:
+      case DbAdapterPackage.DB_ADAPTER_CONTAINER__TYPE:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
       case DbAdapterPackage.DB_ADAPTER_CONTAINER__CHILDREN:

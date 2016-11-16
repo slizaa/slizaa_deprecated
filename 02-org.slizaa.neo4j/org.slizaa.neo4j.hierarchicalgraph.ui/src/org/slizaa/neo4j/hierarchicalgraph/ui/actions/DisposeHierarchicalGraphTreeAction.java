@@ -6,9 +6,10 @@ import org.eclipse.e4.ui.model.application.MApplication;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.neo4j.dbadapter.ContainerType;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
-import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
+import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
@@ -16,10 +17,13 @@ import org.slizaa.ui.tree.ISlizaaActionContribution;
 public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribution {
 
   @Inject
-  private DbAdapterRegistry _dbAdapterRegistry;
+  private DbAdapterRegistry     _dbAdapterRegistry;
 
   @Inject
-  private MApplication      _mApplication;
+  private MApplication          _mApplication;
+
+  @Inject
+  private WorkbenchModelService _workbenchModelService;
 
   @Override
   public String getParentGroupId() {
@@ -57,14 +61,15 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
     HGRootNode rootNode = (HGRootNode) selection;
 
     //
-    for (ManagedNeo4jInstance managedNeo4jInstance : _dbAdapterRegistry.getManaged().getChildren()) {
+    for (Neo4jRestClient managedNeo4jInstance : _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED)
+        .getChildren()) {
       if (rootNode.equals(managedNeo4jInstance.getHierarchicalGraph())) {
         managedNeo4jInstance.setHierarchicalGraph(null);
         break;
       }
     }
 
-    for (Neo4jRestClient restClient : _dbAdapterRegistry.getUnmanaged().getChildren()) {
+    for (Neo4jRestClient restClient : _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren()) {
       if (rootNode.equals(restClient.getHierarchicalGraph())) {
         restClient.setHierarchicalGraph(null);
         break;
@@ -72,6 +77,7 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
     }
 
     //
+    _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().remove(rootNode);
     ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE, null);
   }
 

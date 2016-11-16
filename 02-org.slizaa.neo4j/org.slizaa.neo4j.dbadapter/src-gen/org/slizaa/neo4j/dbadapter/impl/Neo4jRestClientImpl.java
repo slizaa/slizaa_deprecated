@@ -16,6 +16,7 @@ import org.eclipse.core.resources.IFile;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -24,7 +25,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
 import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
@@ -40,6 +43,8 @@ import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getBaseURI <em>Base URI</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getDefiningResource <em>Defining Resource</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#isActive <em>Active</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getHierarchicalGraph <em>Hierarchical Graph</em>}</li>
  * </ul>
  *
@@ -125,6 +130,26 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected IFile definingResource = DEFINING_RESOURCE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isActive() <em>Active</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isActive()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean ACTIVE_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isActive() <em>Active</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isActive()
+   * @generated
+   * @ordered
+   */
+  protected boolean active = ACTIVE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getHierarchicalGraph() <em>Hierarchical Graph</em>}' reference.
@@ -237,6 +262,68 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
     definingResource = newDefiningResource;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE, oldDefiningResource, definingResource));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isActive() {
+    return active;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setActive(boolean newActive) {
+    boolean oldActive = active;
+    active = newActive;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE, oldActive, active));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DbAdapterContainer getParent() {
+    if (eContainerFeatureID() != DbAdapterPackage.NEO4J_REST_CLIENT__PARENT) return null;
+    return (DbAdapterContainer)eInternalContainer();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetParent(DbAdapterContainer newParent, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject)newParent, DbAdapterPackage.NEO4J_REST_CLIENT__PARENT, msgs);
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setParent(DbAdapterContainer newParent) {
+    if (newParent != eInternalContainer() || (eContainerFeatureID() != DbAdapterPackage.NEO4J_REST_CLIENT__PARENT && newParent != null)) {
+      if (EcoreUtil.isAncestor(this, newParent))
+        throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+      NotificationChain msgs = null;
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      if (newParent != null)
+        msgs = ((InternalEObject)newParent).eInverseAdd(this, DbAdapterPackage.DB_ADAPTER_CONTAINER__CHILDREN, DbAdapterContainer.class, msgs);
+      msgs = basicSetParent(newParent, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.NEO4J_REST_CLIENT__PARENT, newParent, newParent));
   }
 
   /**
@@ -393,6 +480,50 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case DbAdapterPackage.NEO4J_REST_CLIENT__PARENT:
+        if (eInternalContainer() != null)
+          msgs = eBasicRemoveFromContainer(msgs);
+        return basicSetParent((DbAdapterContainer)otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case DbAdapterPackage.NEO4J_REST_CLIENT__PARENT:
+        return basicSetParent(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    switch (eContainerFeatureID()) {
+      case DbAdapterPackage.NEO4J_REST_CLIENT__PARENT:
+        return eInternalContainer().eInverseRemove(this, DbAdapterPackage.DB_ADAPTER_CONTAINER__CHILDREN, DbAdapterContainer.class, msgs);
+    }
+    return super.eBasicRemoveFromContainerFeature(msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case DbAdapterPackage.NEO4J_REST_CLIENT__NAME:
@@ -403,6 +534,10 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
         return getBaseURI();
       case DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE:
         return getDefiningResource();
+      case DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE:
+        return isActive();
+      case DbAdapterPackage.NEO4J_REST_CLIENT__PARENT:
+        return getParent();
       case DbAdapterPackage.NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH:
         if (resolve) return getHierarchicalGraph();
         return basicGetHierarchicalGraph();
@@ -429,6 +564,12 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
         return;
       case DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE:
         setDefiningResource((IFile)newValue);
+        return;
+      case DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE:
+        setActive((Boolean)newValue);
+        return;
+      case DbAdapterPackage.NEO4J_REST_CLIENT__PARENT:
+        setParent((DbAdapterContainer)newValue);
         return;
       case DbAdapterPackage.NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH:
         setHierarchicalGraph((HGRootNode)newValue);
@@ -457,6 +598,12 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
       case DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE:
         setDefiningResource(DEFINING_RESOURCE_EDEFAULT);
         return;
+      case DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE:
+        setActive(ACTIVE_EDEFAULT);
+        return;
+      case DbAdapterPackage.NEO4J_REST_CLIENT__PARENT:
+        setParent((DbAdapterContainer)null);
+        return;
       case DbAdapterPackage.NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH:
         setHierarchicalGraph((HGRootNode)null);
         return;
@@ -480,6 +627,10 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
         return BASE_URI_EDEFAULT == null ? baseURI != null : !BASE_URI_EDEFAULT.equals(baseURI);
       case DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE:
         return DEFINING_RESOURCE_EDEFAULT == null ? definingResource != null : !DEFINING_RESOURCE_EDEFAULT.equals(definingResource);
+      case DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE:
+        return active != ACTIVE_EDEFAULT;
+      case DbAdapterPackage.NEO4J_REST_CLIENT__PARENT:
+        return getParent() != null;
       case DbAdapterPackage.NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH:
         return hierarchicalGraph != null;
     }
@@ -537,6 +688,8 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
     result.append(baseURI);
     result.append(", definingResource: ");
     result.append(definingResource);
+    result.append(", active: ");
+    result.append(active);
     result.append(')');
     return result.toString();
   }

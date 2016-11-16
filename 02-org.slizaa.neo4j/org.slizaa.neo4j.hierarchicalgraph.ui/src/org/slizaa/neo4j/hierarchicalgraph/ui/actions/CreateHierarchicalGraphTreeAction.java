@@ -70,7 +70,8 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
 
   @Override
   public boolean isEnabled(Object selection) {
-    return !_dbAdapterRegistry.hasHierarchicalGraph();
+    Neo4jRestClient restClient = (Neo4jRestClient) selection;
+    return restClient.isActive();
   }
 
   @Override

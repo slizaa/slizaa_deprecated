@@ -64,6 +64,7 @@ public class Neo4jRestClientItemProvider
       addDescriptionPropertyDescriptor(object);
       addBaseURIPropertyDescriptor(object);
       addDefiningResourcePropertyDescriptor(object);
+      addActivePropertyDescriptor(object);
       addHierarchicalGraphPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
@@ -158,6 +159,28 @@ public class Neo4jRestClientItemProvider
   }
 
   /**
+   * This adds a property descriptor for the Active feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addActivePropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Neo4jRestClient_active_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_active_feature", "_UI_Neo4jRestClient_type"),
+         DbAdapterPackage.Literals.NEO4J_REST_CLIENT__ACTIVE,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
    * This adds a property descriptor for the Hierarchical Graph feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -221,6 +244,7 @@ public class Neo4jRestClientItemProvider
       case DbAdapterPackage.NEO4J_REST_CLIENT__DESCRIPTION:
       case DbAdapterPackage.NEO4J_REST_CLIENT__BASE_URI:
       case DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE:
+      case DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE:
       case DbAdapterPackage.NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;

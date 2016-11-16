@@ -6,11 +6,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.slizaa.neo4j.dbadapter.ContainerType;
 import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
-import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
-import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
-import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
+import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 
 public class DbAdapterActivator implements BundleActivator {
 
@@ -56,16 +55,16 @@ public class DbAdapterActivator implements BundleActivator {
     _dbAdapterRegistry = DbAdapterFactory.eINSTANCE.createDbAdapterRegistry();
 
     //
-    DbAdapterContainer<Neo4jRestClient> remoteUnmanagedDatabaseClient = DbAdapterFactory.eINSTANCE
+    DbAdapterContainer remoteUnmanagedDatabaseClient = DbAdapterFactory.eINSTANCE
         .createDbAdapterContainer();
-    remoteUnmanagedDatabaseClient.setName("Unmanaged Remote Database");
-    _dbAdapterRegistry.setUnmanaged(remoteUnmanagedDatabaseClient);
+    remoteUnmanagedDatabaseClient.setType(ContainerType.UNMANAGED);
+    _dbAdapterRegistry.getChildren().add(remoteUnmanagedDatabaseClient);
 
     //
-    DbAdapterContainer<ManagedNeo4jInstance> localManagedDatabaseClient = DbAdapterFactory.eINSTANCE
+    DbAdapterContainer localManagedDatabaseClient = DbAdapterFactory.eINSTANCE
         .createDbAdapterContainer();
-    localManagedDatabaseClient.setName("Managed Local Database");
-    _dbAdapterRegistry.setManaged(localManagedDatabaseClient);
+    localManagedDatabaseClient.setType(ContainerType.MANAGED);
+    _dbAdapterRegistry.getChildren().add(localManagedDatabaseClient);
 
     // register as service
     context.registerService(DbAdapterRegistry.class, _dbAdapterRegistry, null);

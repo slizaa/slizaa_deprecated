@@ -2,6 +2,7 @@
  */
 package org.slizaa.neo4j.dbadapter;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,8 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry#getManaged <em>Managed</em>}</li>
- *   <li>{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry#getUnmanaged <em>Unmanaged</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry#getActiveDbAdapter <em>Active Db Adapter</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry#getChildren <em>Children</em>}</li>
  * </ul>
  *
  * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getDbAdapterRegistry()
@@ -23,63 +24,55 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DbAdapterRegistry extends EObject {
   /**
-   * Returns the value of the '<em><b>Managed</b></em>' containment reference.
+   * Returns the value of the '<em><b>Active Db Adapter</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Managed</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Active Db Adapter</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Managed</em>' containment reference.
-   * @see #setManaged(DbAdapterContainer)
-   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getDbAdapterRegistry_Managed()
-   * @model containment="true" required="true"
+   * @return the value of the '<em>Active Db Adapter</em>' reference.
+   * @see #setActiveDbAdapter(Neo4jRestClient)
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getDbAdapterRegistry_ActiveDbAdapter()
+   * @model transient="true"
    * @generated
    */
-  DbAdapterContainer<ManagedNeo4jInstance> getManaged();
+  Neo4jRestClient getActiveDbAdapter();
 
   /**
-   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry#getManaged <em>Managed</em>}' containment reference.
+   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry#getActiveDbAdapter <em>Active Db Adapter</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Managed</em>' containment reference.
-   * @see #getManaged()
+   * @param value the new value of the '<em>Active Db Adapter</em>' reference.
+   * @see #getActiveDbAdapter()
    * @generated
    */
-  void setManaged(DbAdapterContainer<ManagedNeo4jInstance> value);
+  void setActiveDbAdapter(Neo4jRestClient value);
 
   /**
-   * Returns the value of the '<em><b>Unmanaged</b></em>' containment reference.
+   * Returns the value of the '<em><b>Children</b></em>' containment reference list.
+   * The list contents are of type {@link org.slizaa.neo4j.dbadapter.DbAdapterContainer}.
+   * It is bidirectional and its opposite is '{@link org.slizaa.neo4j.dbadapter.DbAdapterContainer#getParent <em>Parent</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Unmanaged</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Children</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Unmanaged</em>' containment reference.
-   * @see #setUnmanaged(DbAdapterContainer)
-   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getDbAdapterRegistry_Unmanaged()
-   * @model containment="true" required="true"
+   * @return the value of the '<em>Children</em>' containment reference list.
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getDbAdapterRegistry_Children()
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterContainer#getParent
+   * @model opposite="parent" containment="true" required="true"
    * @generated
    */
-  DbAdapterContainer<Neo4jRestClient> getUnmanaged();
-
-  /**
-   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.DbAdapterRegistry#getUnmanaged <em>Unmanaged</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Unmanaged</em>' containment reference.
-   * @see #getUnmanaged()
-   * @generated
-   */
-  void setUnmanaged(DbAdapterContainer<Neo4jRestClient> value);
+  EList<DbAdapterContainer> getChildren();
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model required="true"
+   * @model typeRequired="true"
    * @generated
    */
-  boolean hasHierarchicalGraph();
+  DbAdapterContainer getDbAdapterContainer(ContainerType type);
 
 } // DbAdapterRegistry

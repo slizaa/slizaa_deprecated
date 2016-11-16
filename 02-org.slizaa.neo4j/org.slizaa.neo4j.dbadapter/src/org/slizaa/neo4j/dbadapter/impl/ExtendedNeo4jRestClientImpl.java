@@ -34,6 +34,25 @@ public class ExtendedNeo4jRestClientImpl extends Neo4jRestClientImpl {
    * {@inheritDoc}
    */
   @Override
+  public void setActive(boolean newActive) {
+    super.setActive(newActive);
+
+    //
+    if (newActive) {
+      if (getParent() != null && getParent().getParent() != null) {
+        getParent().getParent().setActiveDbAdapter(this);
+      }
+    } else {
+      if (getParent() != null && getParent().getParent() != null) {
+        getParent().getParent().setActiveDbAdapter(null);
+      }
+    }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public Future<JsonObject> executeCypherQuery(String query) {
     return neo4jClientTrait().executeCypherQuery(query);
   }

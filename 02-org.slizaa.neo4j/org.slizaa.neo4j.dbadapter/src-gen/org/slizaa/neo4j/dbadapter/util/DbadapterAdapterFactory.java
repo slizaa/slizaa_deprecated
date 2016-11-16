@@ -76,7 +76,7 @@ public class DbAdapterAdapterFactory extends AdapterFactoryImpl {
         return createDbAdapterRegistryAdapter();
       }
       @Override
-      public <T extends Neo4jRestClient> Adapter caseDbAdapterContainer(DbAdapterContainer<T> object) {
+      public Adapter caseDbAdapterContainer(DbAdapterContainer object) {
         return createDbAdapterContainerAdapter();
       }
       @Override

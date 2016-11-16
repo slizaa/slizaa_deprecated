@@ -11,6 +11,14 @@ public class ExtendedDbAdapterContainerItemProvider extends DbAdapterContainerIt
 
   @Override
   public String getText(Object object) {
-    return  ((DbAdapterContainer<?>)object).getName();
+
+    switch (((DbAdapterContainer) object).getType()) {
+    case MANAGED:
+      return "Local Managed Databases";
+    case UNMANAGED:
+      return "Remote Unmanaged Databases";
+    default:
+      return "Unknown";
+    }
   }
 }

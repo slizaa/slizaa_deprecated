@@ -3,9 +3,9 @@
 package org.slizaa.neo4j.dbadapter.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -13,10 +13,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.slizaa.neo4j.dbadapter.ContainerType;
 import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
 import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
-import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 /**
@@ -27,32 +29,32 @@ import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl#getManaged <em>Managed</em>}</li>
- *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl#getUnmanaged <em>Unmanaged</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl#getActiveDbAdapter <em>Active Db Adapter</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.DbAdapterRegistryImpl#getChildren <em>Children</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DbAdapterRegistryImpl extends MinimalEObjectImpl.Container implements DbAdapterRegistry {
   /**
-   * The cached value of the '{@link #getManaged() <em>Managed</em>}' containment reference.
+   * The cached value of the '{@link #getActiveDbAdapter() <em>Active Db Adapter</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getManaged()
+   * @see #getActiveDbAdapter()
    * @generated
    * @ordered
    */
-  protected DbAdapterContainer<ManagedNeo4jInstance> managed;
+  protected Neo4jRestClient activeDbAdapter;
 
   /**
-   * The cached value of the '{@link #getUnmanaged() <em>Unmanaged</em>}' containment reference.
+   * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getUnmanaged()
+   * @see #getChildren()
    * @generated
    * @ordered
    */
-  protected DbAdapterContainer<Neo4jRestClient> unmanaged;
+  protected EList<DbAdapterContainer> children;
 
   /**
    * <!-- begin-user-doc -->
@@ -78,23 +80,16 @@ public class DbAdapterRegistryImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbAdapterContainer<ManagedNeo4jInstance> getManaged() {
-    return managed;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetManaged(DbAdapterContainer<ManagedNeo4jInstance> newManaged, NotificationChain msgs) {
-    DbAdapterContainer<ManagedNeo4jInstance> oldManaged = managed;
-    managed = newManaged;
-    if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DbAdapterPackage.DB_ADAPTER_REGISTRY__MANAGED, oldManaged, newManaged);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+  public Neo4jRestClient getActiveDbAdapter() {
+    if (activeDbAdapter != null && activeDbAdapter.eIsProxy()) {
+      InternalEObject oldActiveDbAdapter = (InternalEObject)activeDbAdapter;
+      activeDbAdapter = (Neo4jRestClient)eResolveProxy(oldActiveDbAdapter);
+      if (activeDbAdapter != oldActiveDbAdapter) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, DbAdapterPackage.DB_ADAPTER_REGISTRY__ACTIVE_DB_ADAPTER, oldActiveDbAdapter, activeDbAdapter));
+      }
     }
-    return msgs;
+    return activeDbAdapter;
   }
 
   /**
@@ -102,18 +97,32 @@ public class DbAdapterRegistryImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setManaged(DbAdapterContainer<ManagedNeo4jInstance> newManaged) {
-    if (newManaged != managed) {
-      NotificationChain msgs = null;
-      if (managed != null)
-        msgs = ((InternalEObject)managed).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DbAdapterPackage.DB_ADAPTER_REGISTRY__MANAGED, null, msgs);
-      if (newManaged != null)
-        msgs = ((InternalEObject)newManaged).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DbAdapterPackage.DB_ADAPTER_REGISTRY__MANAGED, null, msgs);
-      msgs = basicSetManaged(newManaged, msgs);
-      if (msgs != null) msgs.dispatch();
+  public Neo4jRestClient basicGetActiveDbAdapter() {
+    return activeDbAdapter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setActiveDbAdapter(Neo4jRestClient newActiveDbAdapter) {
+    Neo4jRestClient oldActiveDbAdapter = activeDbAdapter;
+    activeDbAdapter = newActiveDbAdapter;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.DB_ADAPTER_REGISTRY__ACTIVE_DB_ADAPTER, oldActiveDbAdapter, activeDbAdapter));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<DbAdapterContainer> getChildren() {
+    if (children == null) {
+      children = new EObjectContainmentWithInverseEList<DbAdapterContainer>(DbAdapterContainer.class, this, DbAdapterPackage.DB_ADAPTER_REGISTRY__CHILDREN, DbAdapterPackage.DB_ADAPTER_CONTAINER__PARENT);
     }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.DB_ADAPTER_REGISTRY__MANAGED, newManaged, newManaged));
+    return children;
   }
 
   /**
@@ -121,50 +130,7 @@ public class DbAdapterRegistryImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbAdapterContainer<Neo4jRestClient> getUnmanaged() {
-    return unmanaged;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetUnmanaged(DbAdapterContainer<Neo4jRestClient> newUnmanaged, NotificationChain msgs) {
-    DbAdapterContainer<Neo4jRestClient> oldUnmanaged = unmanaged;
-    unmanaged = newUnmanaged;
-    if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DbAdapterPackage.DB_ADAPTER_REGISTRY__UNMANAGED, oldUnmanaged, newUnmanaged);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setUnmanaged(DbAdapterContainer<Neo4jRestClient> newUnmanaged) {
-    if (newUnmanaged != unmanaged) {
-      NotificationChain msgs = null;
-      if (unmanaged != null)
-        msgs = ((InternalEObject)unmanaged).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DbAdapterPackage.DB_ADAPTER_REGISTRY__UNMANAGED, null, msgs);
-      if (newUnmanaged != null)
-        msgs = ((InternalEObject)newUnmanaged).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DbAdapterPackage.DB_ADAPTER_REGISTRY__UNMANAGED, null, msgs);
-      msgs = basicSetUnmanaged(newUnmanaged, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.DB_ADAPTER_REGISTRY__UNMANAGED, newUnmanaged, newUnmanaged));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean hasHierarchicalGraph() {
+  public DbAdapterContainer getDbAdapterContainer(ContainerType type) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -175,13 +141,26 @@ public class DbAdapterRegistryImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY__CHILDREN:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildren()).basicAdd(otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__MANAGED:
-        return basicSetManaged(null, msgs);
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__UNMANAGED:
-        return basicSetUnmanaged(null, msgs);
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY__CHILDREN:
+        return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -194,10 +173,11 @@ public class DbAdapterRegistryImpl extends MinimalEObjectImpl.Container implemen
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__MANAGED:
-        return getManaged();
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__UNMANAGED:
-        return getUnmanaged();
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY__ACTIVE_DB_ADAPTER:
+        if (resolve) return getActiveDbAdapter();
+        return basicGetActiveDbAdapter();
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY__CHILDREN:
+        return getChildren();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -211,11 +191,12 @@ public class DbAdapterRegistryImpl extends MinimalEObjectImpl.Container implemen
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__MANAGED:
-        setManaged((DbAdapterContainer<ManagedNeo4jInstance>)newValue);
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY__ACTIVE_DB_ADAPTER:
+        setActiveDbAdapter((Neo4jRestClient)newValue);
         return;
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__UNMANAGED:
-        setUnmanaged((DbAdapterContainer<Neo4jRestClient>)newValue);
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY__CHILDREN:
+        getChildren().clear();
+        getChildren().addAll((Collection<? extends DbAdapterContainer>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -229,11 +210,11 @@ public class DbAdapterRegistryImpl extends MinimalEObjectImpl.Container implemen
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__MANAGED:
-        setManaged((DbAdapterContainer<ManagedNeo4jInstance>)null);
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY__ACTIVE_DB_ADAPTER:
+        setActiveDbAdapter((Neo4jRestClient)null);
         return;
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__UNMANAGED:
-        setUnmanaged((DbAdapterContainer<Neo4jRestClient>)null);
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY__CHILDREN:
+        getChildren().clear();
         return;
     }
     super.eUnset(featureID);
@@ -247,10 +228,10 @@ public class DbAdapterRegistryImpl extends MinimalEObjectImpl.Container implemen
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__MANAGED:
-        return managed != null;
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__UNMANAGED:
-        return unmanaged != null;
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY__ACTIVE_DB_ADAPTER:
+        return activeDbAdapter != null;
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY__CHILDREN:
+        return children != null && !children.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -263,8 +244,8 @@ public class DbAdapterRegistryImpl extends MinimalEObjectImpl.Container implemen
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY___HAS_HIERARCHICAL_GRAPH:
-        return hasHierarchicalGraph();
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY___GET_DB_ADAPTER_CONTAINER__CONTAINERTYPE:
+        return getDbAdapterContainer((ContainerType)arguments.get(0));
     }
     return super.eInvoke(operationID, arguments);
   }

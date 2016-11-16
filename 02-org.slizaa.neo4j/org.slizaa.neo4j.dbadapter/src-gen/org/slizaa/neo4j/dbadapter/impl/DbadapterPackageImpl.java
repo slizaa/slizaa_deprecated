@@ -15,15 +15,15 @@ import org.eclipse.debug.core.ILaunch;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.neo4j.dbadapter.ContainerType;
 import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
 import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
@@ -65,6 +65,13 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * @generated
    */
   private EClass managedNeo4jInstanceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum containerTypeEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -222,8 +229,26 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getNeo4jRestClient_Active() {
+    return (EAttribute)neo4jRestClientEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNeo4jRestClient_Parent() {
+    return (EReference)neo4jRestClientEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getNeo4jRestClient_HierarchicalGraph() {
-    return (EReference)neo4jRestClientEClass.getEStructuralFeatures().get(4);
+    return (EReference)neo4jRestClientEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -330,7 +355,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDbAdapterRegistry_Managed() {
+  public EReference getDbAdapterRegistry_ActiveDbAdapter() {
     return (EReference)dbAdapterRegistryEClass.getEStructuralFeatures().get(0);
   }
 
@@ -339,7 +364,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDbAdapterRegistry_Unmanaged() {
+  public EReference getDbAdapterRegistry_Children() {
     return (EReference)dbAdapterRegistryEClass.getEStructuralFeatures().get(1);
   }
 
@@ -348,7 +373,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getDbAdapterRegistry__HasHierarchicalGraph() {
+  public EOperation getDbAdapterRegistry__GetDbAdapterContainer__ContainerType() {
     return dbAdapterRegistryEClass.getEOperations().get(0);
   }
 
@@ -366,8 +391,8 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDbAdapterContainer_Children() {
-    return (EReference)dbAdapterContainerEClass.getEStructuralFeatures().get(0);
+  public EAttribute getDbAdapterContainer_Type() {
+    return (EAttribute)dbAdapterContainerEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -375,8 +400,17 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDbAdapterContainer_Name() {
-    return (EAttribute)dbAdapterContainerEClass.getEStructuralFeatures().get(1);
+  public EReference getDbAdapterContainer_Children() {
+    return (EReference)dbAdapterContainerEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDbAdapterContainer_Parent() {
+    return (EReference)dbAdapterContainerEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -474,6 +508,15 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EEnum getContainerType() {
+    return containerTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EDataType getFuture() {
     return futureEDataType;
   }
@@ -556,6 +599,8 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
     createEAttribute(neo4jRestClientEClass, NEO4J_REST_CLIENT__DESCRIPTION);
     createEAttribute(neo4jRestClientEClass, NEO4J_REST_CLIENT__BASE_URI);
     createEAttribute(neo4jRestClientEClass, NEO4J_REST_CLIENT__DEFINING_RESOURCE);
+    createEAttribute(neo4jRestClientEClass, NEO4J_REST_CLIENT__ACTIVE);
+    createEReference(neo4jRestClientEClass, NEO4J_REST_CLIENT__PARENT);
     createEReference(neo4jRestClientEClass, NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH);
     createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___GET_ALL_RELATIONSHIP_TYPES);
     createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___GET_ALL_PROPERTY_KEYS);
@@ -569,13 +614,14 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
     createEOperation(neo4jRestClientEClass, NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER);
 
     dbAdapterRegistryEClass = createEClass(DB_ADAPTER_REGISTRY);
-    createEReference(dbAdapterRegistryEClass, DB_ADAPTER_REGISTRY__MANAGED);
-    createEReference(dbAdapterRegistryEClass, DB_ADAPTER_REGISTRY__UNMANAGED);
-    createEOperation(dbAdapterRegistryEClass, DB_ADAPTER_REGISTRY___HAS_HIERARCHICAL_GRAPH);
+    createEReference(dbAdapterRegistryEClass, DB_ADAPTER_REGISTRY__ACTIVE_DB_ADAPTER);
+    createEReference(dbAdapterRegistryEClass, DB_ADAPTER_REGISTRY__CHILDREN);
+    createEOperation(dbAdapterRegistryEClass, DB_ADAPTER_REGISTRY___GET_DB_ADAPTER_CONTAINER__CONTAINERTYPE);
 
     dbAdapterContainerEClass = createEClass(DB_ADAPTER_CONTAINER);
+    createEAttribute(dbAdapterContainerEClass, DB_ADAPTER_CONTAINER__TYPE);
+    createEReference(dbAdapterContainerEClass, DB_ADAPTER_CONTAINER__PARENT);
     createEReference(dbAdapterContainerEClass, DB_ADAPTER_CONTAINER__CHILDREN);
-    createEAttribute(dbAdapterContainerEClass, DB_ADAPTER_CONTAINER__NAME);
 
     managedNeo4jInstanceEClass = createEClass(MANAGED_NEO4J_INSTANCE);
     createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__RUNNING);
@@ -587,6 +633,9 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___START);
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___STOP);
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___DELETE);
+
+    // Create enums
+    containerTypeEEnum = createEEnum(CONTAINER_TYPE);
 
     // Create data types
     futureEDataType = createEDataType(FUTURE);
@@ -624,13 +673,10 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
     HierarchicalgraphPackage theHierarchicalgraphPackage = (HierarchicalgraphPackage)EPackage.Registry.INSTANCE.getEPackage(HierarchicalgraphPackage.eNS_URI);
 
     // Create type parameters
-    ETypeParameter dbAdapterContainerEClass_T = addETypeParameter(dbAdapterContainerEClass, "T");
     addETypeParameter(futureEDataType, "T");
     addETypeParameter(consumerEDataType, "T");
 
     // Set bounds for type parameters
-    EGenericType g1 = createEGenericType(this.getNeo4jRestClient());
-    dbAdapterContainerEClass_T.getEBounds().add(g1);
 
     // Add supertypes to classes
     managedNeo4jInstanceEClass.getESuperTypes().add(this.getNeo4jRestClient());
@@ -641,6 +687,8 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
     initEAttribute(getNeo4jRestClient_Description(), ecorePackage.getEString(), "description", null, 0, 1, Neo4jRestClient.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getNeo4jRestClient_BaseURI(), ecorePackage.getEString(), "baseURI", null, 0, 1, Neo4jRestClient.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getNeo4jRestClient_DefiningResource(), this.getIFile(), "definingResource", null, 0, 1, Neo4jRestClient.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNeo4jRestClient_Active(), ecorePackage.getEBoolean(), "active", null, 0, 1, Neo4jRestClient.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNeo4jRestClient_Parent(), this.getDbAdapterContainer(), this.getDbAdapterContainer_Children(), "parent", null, 0, 1, Neo4jRestClient.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNeo4jRestClient_HierarchicalGraph(), theHierarchicalgraphPackage.getHGRootNode(), null, "hierarchicalGraph", null, 0, 1, Neo4jRestClient.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEOperation(getNeo4jRestClient__GetAllRelationshipTypes(), ecorePackage.getEString(), "getAllRelationshipTypes", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -660,7 +708,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
 
     op = initEOperation(getNeo4jRestClient__ExecuteCypherQuery__String(), null, "executeCypherQuery", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEString(), "cypherQuery", 0, 1, IS_UNIQUE, IS_ORDERED);
-    g1 = createEGenericType(this.getFuture());
+    EGenericType g1 = createEGenericType(this.getFuture());
     EGenericType g2 = createEGenericType(this.getJsonObject());
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
@@ -707,21 +755,16 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
     initEOperation(op, g1);
 
     initEClass(dbAdapterRegistryEClass, DbAdapterRegistry.class, "DbAdapterRegistry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    g1 = createEGenericType(this.getDbAdapterContainer());
-    g2 = createEGenericType(this.getManagedNeo4jInstance());
-    g1.getETypeArguments().add(g2);
-    initEReference(getDbAdapterRegistry_Managed(), g1, null, "managed", null, 1, 1, DbAdapterRegistry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    g1 = createEGenericType(this.getDbAdapterContainer());
-    g2 = createEGenericType(this.getNeo4jRestClient());
-    g1.getETypeArguments().add(g2);
-    initEReference(getDbAdapterRegistry_Unmanaged(), g1, null, "unmanaged", null, 1, 1, DbAdapterRegistry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDbAdapterRegistry_ActiveDbAdapter(), this.getNeo4jRestClient(), null, "activeDbAdapter", null, 0, 1, DbAdapterRegistry.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDbAdapterRegistry_Children(), this.getDbAdapterContainer(), this.getDbAdapterContainer_Parent(), "children", null, 1, -1, DbAdapterRegistry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEOperation(getDbAdapterRegistry__HasHierarchicalGraph(), ecorePackage.getEBoolean(), "hasHierarchicalGraph", 1, 1, IS_UNIQUE, IS_ORDERED);
+    op = initEOperation(getDbAdapterRegistry__GetDbAdapterContainer__ContainerType(), this.getDbAdapterContainer(), "getDbAdapterContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
+    addEParameter(op, this.getContainerType(), "type", 1, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(dbAdapterContainerEClass, DbAdapterContainer.class, "DbAdapterContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    g1 = createEGenericType(dbAdapterContainerEClass_T);
-    initEReference(getDbAdapterContainer_Children(), g1, null, "children", null, 0, -1, DbAdapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDbAdapterContainer_Name(), ecorePackage.getEString(), "name", null, 0, 1, DbAdapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDbAdapterContainer_Type(), this.getContainerType(), "type", null, 0, 1, DbAdapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDbAdapterContainer_Parent(), this.getDbAdapterRegistry(), this.getDbAdapterRegistry_Children(), "parent", null, 0, 1, DbAdapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDbAdapterContainer_Children(), this.getNeo4jRestClient(), this.getNeo4jRestClient_Parent(), "children", null, 0, -1, DbAdapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(managedNeo4jInstanceEClass, ManagedNeo4jInstance.class, "ManagedNeo4jInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getManagedNeo4jInstance_Running(), ecorePackage.getEBoolean(), "running", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -738,6 +781,11 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
     initEOperation(getManagedNeo4jInstance__Stop(), null, "stop", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEOperation(getManagedNeo4jInstance__Delete(), null, "delete", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(containerTypeEEnum, ContainerType.class, "ContainerType");
+    addEEnumLiteral(containerTypeEEnum, ContainerType.MANAGED);
+    addEEnumLiteral(containerTypeEEnum, ContainerType.UNMANAGED);
 
     // Initialize data types
     initEDataType(futureEDataType, Future.class, "Future", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

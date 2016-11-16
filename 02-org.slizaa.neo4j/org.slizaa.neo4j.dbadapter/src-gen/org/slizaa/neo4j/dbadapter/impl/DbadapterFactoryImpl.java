@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.slizaa.neo4j.dbadapter.*;
 import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
 import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
@@ -83,6 +84,8 @@ public class DbAdapterFactoryImpl extends EFactoryImpl implements DbAdapterFacto
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID()) {
+    case DbAdapterPackage.CONTAINER_TYPE:
+      return createContainerTypeFromString(eDataType, initialValue);
     case DbAdapterPackage.FUTURE:
       return createFutureFromString(eDataType, initialValue);
     case DbAdapterPackage.CONSUMER:
@@ -104,6 +107,8 @@ public class DbAdapterFactoryImpl extends EFactoryImpl implements DbAdapterFacto
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID()) {
+    case DbAdapterPackage.CONTAINER_TYPE:
+      return convertContainerTypeToString(eDataType, instanceValue);
     case DbAdapterPackage.FUTURE:
       return convertFutureToString(eDataType, instanceValue);
     case DbAdapterPackage.CONSUMER:
@@ -142,8 +147,8 @@ public class DbAdapterFactoryImpl extends EFactoryImpl implements DbAdapterFacto
    * 
    * @generated
    */
-  public <T extends Neo4jRestClient> DbAdapterContainer<T> createDbAdapterContainer() {
-    DbAdapterContainerImpl<T> dbAdapterContainer = new DbAdapterContainerImpl<T>();
+  public DbAdapterContainer createDbAdapterContainer() {
+    DbAdapterContainerImpl dbAdapterContainer = new DbAdapterContainerImpl();
     return dbAdapterContainer;
   }
 
@@ -155,6 +160,28 @@ public class DbAdapterFactoryImpl extends EFactoryImpl implements DbAdapterFacto
   public ManagedNeo4jInstance createManagedNeo4jInstance() {
     ManagedNeo4jInstanceImpl managedNeo4jInstance = new ExtendedManagedNeo4JInstanceImpl();
     return managedNeo4jInstance;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public ContainerType createContainerTypeFromString(EDataType eDataType, String initialValue) {
+    ContainerType result = ContainerType.get(initialValue);
+    if (result == null)
+      throw new IllegalArgumentException(
+          "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public String convertContainerTypeToString(EDataType eDataType, Object instanceValue) {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

@@ -1,25 +1,21 @@
 package org.slizaa.neo4j.dbadapter.impl;
 
-import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
-import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import org.slizaa.neo4j.dbadapter.ContainerType;
+import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
 
 public class ExtendedDbAdapterRegistryImpl extends DbAdapterRegistryImpl {
 
   @Override
-  public boolean hasHierarchicalGraph() {
-    if (getManaged() == null || getUnmanaged() == null) {
-      return false;
-    }
-    for (ManagedNeo4jInstance instance : getManaged().getChildren()) {
-      if (instance.getHierarchicalGraph() != null) {
-        return true;
+  public DbAdapterContainer getDbAdapterContainer(ContainerType type) {
+    checkNotNull(type);
+    for (DbAdapterContainer dbAdapterContainer : getChildren()) {
+      if (checkNotNull(type).equals(dbAdapterContainer.getType())) {
+        return dbAdapterContainer;
       }
     }
-    for (Neo4jRestClient client : getUnmanaged().getChildren()) {
-      if (client.getHierarchicalGraph() != null) {
-        return true;
-      }
-    }
-    return false;
+
+    return null;
   }
 }

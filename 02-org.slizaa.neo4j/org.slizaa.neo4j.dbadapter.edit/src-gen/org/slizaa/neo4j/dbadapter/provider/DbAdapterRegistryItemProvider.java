@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -19,6 +20,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 
@@ -57,8 +59,31 @@ public class DbAdapterRegistryItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addActiveDbAdapterPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Active Db Adapter feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addActiveDbAdapterPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_DbAdapterRegistry_activeDbAdapter_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_DbAdapterRegistry_activeDbAdapter_feature", "_UI_DbAdapterRegistry_type"),
+         DbAdapterPackage.Literals.DB_ADAPTER_REGISTRY__ACTIVE_DB_ADAPTER,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
   }
 
   /**
@@ -73,8 +98,7 @@ public class DbAdapterRegistryItemProvider
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(DbAdapterPackage.Literals.DB_ADAPTER_REGISTRY__MANAGED);
-      childrenFeatures.add(DbAdapterPackage.Literals.DB_ADAPTER_REGISTRY__UNMANAGED);
+      childrenFeatures.add(DbAdapterPackage.Literals.DB_ADAPTER_REGISTRY__CHILDREN);
     }
     return childrenFeatures;
   }
@@ -127,8 +151,7 @@ public class DbAdapterRegistryItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(DbAdapterRegistry.class)) {
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__MANAGED:
-      case DbAdapterPackage.DB_ADAPTER_REGISTRY__UNMANAGED:
+      case DbAdapterPackage.DB_ADAPTER_REGISTRY__CHILDREN:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
@@ -145,6 +168,11 @@ public class DbAdapterRegistryItemProvider
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    newChildDescriptors.add
+      (createChildParameter
+        (DbAdapterPackage.Literals.DB_ADAPTER_REGISTRY__CHILDREN,
+         DbAdapterFactory.eINSTANCE.createDbAdapterContainer()));
   }
 
   /**

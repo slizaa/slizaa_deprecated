@@ -113,8 +113,8 @@ public interface ISlizaaActionContribution {
      * @param ranking
      */
     public DefaultActionContribution(String label, String parentGroupId, String imagePath, int ranking) {
-      _groupId = checkNotNull(parentGroupId);
       _label = checkNotNull(label);
+      _groupId = parentGroupId;
       _imagePath = imagePath;
       _ranking = ranking;
     }

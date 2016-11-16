@@ -15,6 +15,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.slizaa.neo4j.dbadapter.ContainerType;
 import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
@@ -148,7 +149,8 @@ public class DatabaseDefinitionService {
             managedNeo4jInstance.getDirectoriesToScan().add(file);
           }
 
-          DbAdapterActivator.instance().getRestClientRegistry().getManaged().getChildren().add(managedNeo4jInstance);
+          DbAdapterActivator.instance().getRestClientRegistry().getDbAdapterContainer(ContainerType.MANAGED)
+              .getChildren().add(managedNeo4jInstance);
         }
 
         break;
@@ -174,8 +176,8 @@ public class DatabaseDefinitionService {
     // }
     //
     //
-    Neo4jRestClient restClient = _dbAdapterRegistry.getUnmanaged().getChildren().stream()
-        .filter(c -> definingFile.equals(c.getDefiningResource())).findFirst().orElse(null);
+    Neo4jRestClient restClient = _dbAdapterRegistry.getDbAdapterContainer(ContainerType.UNMANAGED).getChildren()
+        .stream().filter(c -> definingFile.equals(c.getDefiningResource())).findFirst().orElse(null);
 
     //
     if (restClient != null) {
@@ -188,7 +190,7 @@ public class DatabaseDefinitionService {
       client.setName(unmanagedRemoteDatabase.getName());
       client.setBaseURI(unmanagedRemoteDatabase.getUri());
       client.setDefiningResource(definingFile);
-      _dbAdapterRegistry.getUnmanaged().getChildren().add(client);
+      _dbAdapterRegistry.getDbAdapterContainer(ContainerType.UNMANAGED).getChildren().add(client);
     }
   }
 
@@ -201,12 +203,12 @@ public class DatabaseDefinitionService {
   private void deleteUnmanagedRemoteDatabase(IFile definingFile) {
 
     //
-    Neo4jRestClient restClient = _dbAdapterRegistry.getUnmanaged().getChildren().stream()
-        .filter(c -> definingFile.equals(c.getDefiningResource())).findFirst().orElse(null);
+    Neo4jRestClient restClient = _dbAdapterRegistry.getDbAdapterContainer(ContainerType.UNMANAGED).getChildren()
+        .stream().filter(c -> definingFile.equals(c.getDefiningResource())).findFirst().orElse(null);
 
     //
     if (restClient != null) {
-      _dbAdapterRegistry.getUnmanaged().getChildren().remove(restClient);
+      _dbAdapterRegistry.getDbAdapterContainer(ContainerType.UNMANAGED).getChildren().remove(restClient);
     }
   }
 }

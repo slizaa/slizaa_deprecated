@@ -46,7 +46,7 @@ public interface DbAdapterFactory extends EFactory {
    * @return a new object of class '<em>Container</em>'.
    * @generated
    */
-  <T extends Neo4jRestClient> DbAdapterContainer<T> createDbAdapterContainer();
+  DbAdapterContainer createDbAdapterContainer();
 
   /**
    * Returns a new object of class '<em>Managed Neo4j Instance</em>'.
