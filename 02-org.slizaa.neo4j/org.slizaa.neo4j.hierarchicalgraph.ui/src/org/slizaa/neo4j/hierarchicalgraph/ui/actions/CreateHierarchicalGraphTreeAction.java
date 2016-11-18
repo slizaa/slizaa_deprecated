@@ -2,6 +2,9 @@ package org.slizaa.neo4j.hierarchicalgraph.ui.actions;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -21,22 +24,16 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
+import org.slizaa.neo4j.hierarchicalgraph.mappingdsl.mappingDsl.MappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorBasedItemLabelProviderImpl;
-import org.slizaa.neo4j.hierarchicalgraph.ui.deprecated.Descriptors;
-import org.slizaa.neo4j.hierarchicalgraph.ui.deprecated.Descriptors2;
 import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
 @Component
 public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribution {
-
-  private static final String              JAVA_MAPPING_FLAT_PACKAGES         = "Java mapping (flat packages)";
-
-  private static final String              JAVA_MAPPING_HIERARCHICAL_PACKAGES = "Java mapping (hierarchical packages)";
 
   @Inject
   private IHierarchicalGraphMappingService _mappingService;
@@ -82,7 +79,13 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
 
     ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(),
         new LabelProvider());
-    dialog.setElements(new String[] { JAVA_MAPPING_HIERARCHICAL_PACKAGES, JAVA_MAPPING_FLAT_PACKAGES });
+
+    List<String> names = new LinkedList<String>();
+    List<MappingDescriptor> mappingDescriptors = ReadDescriptors.getMappingDescriptors();
+    for (MappingDescriptor mappingDescriptor : mappingDescriptors) {
+      names.add(mappingDescriptor.getQualifiedName());
+    }
+    dialog.setElements(names.toArray(new String[0]));
     dialog.setTitle("Which mapping should be applied?");
 
     // user pressed cancel
@@ -90,13 +93,8 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
       return;
     }
 
-    HierarchicalGraphMappingDescriptor mapping = null;
     Object[] result = dialog.getResult();
-    if (JAVA_MAPPING_HIERARCHICAL_PACKAGES.equals(result[0])) {
-      mapping = Descriptors.createHierarchicalGraphMappingDescriptor();
-    } else if (JAVA_MAPPING_FLAT_PACKAGES.equals(result[0])) {
-      mapping = Descriptors2.createHierarchicalGraphMappingDescriptor();
-    }
+    MappingDescriptor mapping = mappingDescriptors.stream().filter(md -> md.getQualifiedName().equals(result[0])).findFirst().get();
 
     //
     LoadModelFromGraphDatabaseJob myJob = new LoadModelFromGraphDatabaseJob(remoteRepository, mapping);
@@ -130,10 +128,10 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
   private class LoadModelFromGraphDatabaseJob extends Job {
 
     /** - */
-    private Neo4jRestClient                    _remoteRepository;
+    private Neo4jRestClient   _remoteRepository;
 
     /** - */
-    private HierarchicalGraphMappingDescriptor _mappingDescriptor;
+    private MappingDescriptor _mappingDescriptor;
 
     /**
      * <p>
@@ -142,8 +140,7 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
      *
      * @param remoteRepository
      */
-    public LoadModelFromGraphDatabaseJob(Neo4jRestClient remoteRepository,
-        HierarchicalGraphMappingDescriptor mappingDescriptor) {
+    public LoadModelFromGraphDatabaseJob(Neo4jRestClient remoteRepository, MappingDescriptor mappingDescriptor) {
       super("Creating hierarchical graph");
 
       //

@@ -83,6 +83,7 @@ offerings.
       <feature id="org.eclipse.platform"/>
       <feature id="org.slizaa.jqassistant.feature"/>
       <feature id="org.slizaa.neo4j.dbadapter.dsl.feature" version="1.0.0.qualifier"/>
+      <feature id="org.slizaa.neo4j.hierarchicalgraph.mappingdsl.feature" version="1.0.0.qualifier"/>
    </features>
 
    <configurations>

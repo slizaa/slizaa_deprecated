@@ -43,6 +43,12 @@ public abstract class AbstractNeo4JCypherCallable {
   public AbstractNeo4JCypherCallable(Neo4JRemoteServiceRestApi service, String query, Map<String, String> params) {
     _service = checkNotNull(service);
     _query = checkNotNull(query);
+    if (_query.startsWith("\"")) {
+      _query = _query.substring(1);
+    }
+    if (_query.endsWith("\"")) {
+      _query = _query.substring(0, _query.length() - 1);
+    }
     _params = params;
   }
 

@@ -27,10 +27,10 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.DependencyMapping;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.HierarchicalGraphMappingException;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
+import org.slizaa.neo4j.hierarchicalgraph.mappingdsl.mappingDsl.MappingDescriptor;
+import org.slizaa.neo4j.hierarchicalgraph.mappingdsl.mappingDsl.StructureDescriptor;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -59,9 +59,8 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
    * {@inheritDoc}
    */
   @Override
-  public HGRootNode convert(HierarchicalGraphMappingDescriptor mappingDescriptor,
-      final Neo4jRestClient remoteRepository, IProgressMonitor progressMonitor)
-      throws HierarchicalGraphMappingException {
+  public HGRootNode convert(MappingDescriptor mappingDescriptor, final Neo4jRestClient remoteRepository,
+      IProgressMonitor progressMonitor) throws HierarchicalGraphMappingException {
 
     checkNotNull(mappingDescriptor);
     checkNotNull(remoteRepository);
@@ -83,19 +82,21 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     // create the future lists
     List<Future<JsonObject>> rootQueries = new LinkedList<>();
     List<Future<JsonObject>> hierachyQueries = new LinkedList<>();
-    List<DependencyQuery> dependencyQueries = new LinkedList<>();
+//    List<DependencyQuery> dependencyQueries = new LinkedList<>();
 
     // process root, hierarchy and dependency queries
-    mappingDescriptor.getRootMappings().forEach((cypherQuery) -> {
+    StructureDescriptor structureDescriptor = mappingDescriptor.getStructureDescriptor();
+    structureDescriptor.getTopLevelNodeQueries().getQueries().forEach(cypherQuery -> {
       rootQueries.add(remoteRepository.executeCypherQuery(cypherQuery));
     });
-    mappingDescriptor.getHierarchyMappings().forEach((cypherQuery) -> {
+    structureDescriptor.getNodeHierarchyQueries().getQueries().forEach(cypherQuery -> {
       hierachyQueries.add(remoteRepository.executeCypherQuery(cypherQuery));
     });
-    mappingDescriptor.getDependencyMappings().forEach((dependencyMapping) -> {
-      dependencyQueries.add(new DependencyQuery(dependencyMapping,
-          remoteRepository.executeCypherQuery(dependencyMapping.getMainQuery())));
-    });
+// TODO    
+//    structureDescriptor.getDependencyQueries().getSimpleDependencyQueries().forEach(dependencyMapping -> {
+//      dependencyQueries.add(new DependencyQuery(dependencyMapping,
+//          remoteRepository.executeCypherQuery(dependencyMapping.getMainQuery())));
+//    });
 
     //
     resolveRootQueries(rootNode, rootQueries,
@@ -106,13 +107,15 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
         subMonitor != null ? subMonitor.split(33).setWorkRemaining(hierachyQueries.size()) : null);
 
     //
-    resolveDependencyQueries(rootNode, dependencyQueries,
-        subMonitor != null ? subMonitor.split(33).setWorkRemaining(dependencyQueries.size()) : null);
+// TODO
+//    resolveDependencyQueries(rootNode, dependencyQueries,
+//        subMonitor != null ? subMonitor.split(33).setWorkRemaining(dependencyQueries.size()) : null);
 
     // set the extensions
     rootNode.registerExtension(Neo4jRestClient.class, remoteRepository);
     rootNode.registerExtension(IAggregatedCoreDependencyResolver.class, new CustomAggregatedDependencyResolver());
-    rootNode.registerExtension(HierarchicalGraphMappingDescriptor.class, mappingDescriptor);
+// TODO    
+//    rootNode.registerExtension(HierarchicalGraphMappingDescriptor.class, mappingDescriptor);
 
     //
     return addEditingDomain(rootNode);
@@ -126,31 +129,32 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
    * @param dependencyQueries
    * @param dependencyLoopMonitor
    */
-  private void resolveDependencyQueries(final HGRootNode rootNode, List<DependencyQuery> dependencyQueries,
-      SubMonitor dependencyLoopMonitor) {
-
-    //
-    dependencyQueries.forEach((dependencyQuery) -> {
-
-      try {
-        SubMonitor iterationMonitor = dependencyLoopMonitor != null ? dependencyLoopMonitor.split(1) : null;
-
-        // request dependencies
-        report(iterationMonitor, "Requesting dependencies...");
-        JsonArray jsonArray = dependencyQuery.getFuture().get().getAsJsonArray("data");
-
-        // create dependencies
-        report(iterationMonitor, "Creating dependencies...");
-        createDependencies(jsonArray, rootNode,
-            (id, type) -> GraphFactoryFunctions.createDependencySource(id, type,
-                dependencyQueries.size() > 1 ? dependencyQuery.getDependencyMapping() : null),
-            dependencyQuery.getDependencyMapping().isAggregatedCoreDependency(), false, iterationMonitor);
-
-      } catch (Exception e) {
-        throw new HierarchicalGraphMappingException(e);
-      }
-    });
-  }
+// TODO  
+//  private void resolveDependencyQueries(final HGRootNode rootNode, List<DependencyQuery> dependencyQueries,
+//      SubMonitor dependencyLoopMonitor) {
+// 
+//    //
+//    dependencyQueries.forEach((dependencyQuery) -> {
+//
+//      try {
+//        SubMonitor iterationMonitor = dependencyLoopMonitor != null ? dependencyLoopMonitor.split(1) : null;
+//
+//        // request dependencies
+//        report(iterationMonitor, "Requesting dependencies...");
+//        JsonArray jsonArray = dependencyQuery.getFuture().get().getAsJsonArray("data");
+//
+//        // create dependencies
+//        report(iterationMonitor, "Creating dependencies...");
+//        createDependencies(jsonArray, rootNode,
+//            (id, type) -> GraphFactoryFunctions.createDependencySource(id, type,
+//                dependencyQueries.size() > 1 ? dependencyQuery.getDependencyMapping() : null),
+//            dependencyQuery.getDependencyMapping().isAggregatedCoreDependency(), false, iterationMonitor);
+//
+//      } catch (Exception e) {
+//        throw new HierarchicalGraphMappingException(e);
+//      }
+//    });
+//}
 
   /**
    * <p>
@@ -242,46 +246,47 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     }
   }
 
-  private class DependencyQuery {
-
-    /** - */
-    private Future<JsonObject> _future;
-
-    /** - */
-    private DependencyMapping  _depencyMapping;
-
-    /**
-     * <p>
-     * Creates a new instance of type {@link DependencyQuery}.
-     * </p>
-     *
-     * @param depencyMapping
-     * @param future
-     */
-    public DependencyQuery(DependencyMapping depencyMapping, Future<JsonObject> future) {
-      this._future = checkNotNull(future);
-      this._depencyMapping = checkNotNull(depencyMapping);
-    }
-
-    /**
-     * <p>
-     * </p>
-     *
-     * @return
-     */
-    public Future<JsonObject> getFuture() {
-      return _future;
-    }
-
-    /**
-     * <p>
-     * </p>
-     *
-     * @return
-     */
-    public DependencyMapping getDependencyMapping() {
-      return _depencyMapping;
-    }
-  }
+// TODO  
+//  private class DependencyQuery {
+//
+//    /** - */
+//    private Future<JsonObject> _future;
+//
+//    /** - */
+//    private DependencyMapping  _depencyMapping;
+//
+//    /**
+//     * <p>
+//     * Creates a new instance of type {@link DependencyQuery}.
+//     * </p>
+//     *
+//     * @param depencyMapping
+//     * @param future
+//     */
+//    public DependencyQuery(DependencyMapping depencyMapping, Future<JsonObject> future) {
+//      this._future = checkNotNull(future);
+//      this._depencyMapping = checkNotNull(depencyMapping);
+//    }
+//
+//    /**
+//     * <p>
+//     * </p>
+//     *
+//     * @return
+//     */
+//    public Future<JsonObject> getFuture() {
+//      return _future;
+//    }
+//
+//    /**
+//     * <p>
+//     * </p>
+//     *
+//     * @return
+//     */
+//    public DependencyMapping getDependencyMapping() {
+//      return _depencyMapping;
+//    }
+//  }
 
 }

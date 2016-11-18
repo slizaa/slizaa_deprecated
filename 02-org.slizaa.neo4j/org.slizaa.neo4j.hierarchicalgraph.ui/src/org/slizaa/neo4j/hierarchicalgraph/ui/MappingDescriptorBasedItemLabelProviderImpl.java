@@ -19,15 +19,16 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.NodeLabelMapper;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.PropertyBasedImageMapper;
+import org.slizaa.neo4j.hierarchicalgraph.mappingdsl.mappingDsl.MappingDescriptor;
+import org.slizaa.neo4j.hierarchicalgraph.mappingdsl.mappingDsl.NodeVisualizationDefinition;
 
 public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelProvider, IItemStyledLabelProvider {
 
-  private OverlayImageRegistry               _imageRegistry;
+  private OverlayImageRegistry _imageRegistry;
 
-  private HierarchicalGraphMappingDescriptor _descriptor;
+  private MappingDescriptor    _descriptor;
 
   /**
    * <p>
@@ -36,7 +37,7 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
    *
    * @param imageRegistry
    */
-  public MappingDescriptorBasedItemLabelProviderImpl(HierarchicalGraphMappingDescriptor descriptor) {
+  public MappingDescriptorBasedItemLabelProviderImpl(MappingDescriptor descriptor) {
     _imageRegistry = new OverlayImageRegistry();
     _descriptor = descriptor;
   }
@@ -53,7 +54,7 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
     if (nodeSource.getLabels().contains("Method")) {
       return new MethodSignatureParser().parse(labelDefinition.text) + " (" + nodeSource.getIdentifier() + ")";
     }
-    return labelDefinition.text /*+ " (" + nodeSource.getIdentifier() + ")"*/;
+    return labelDefinition.text /* + " (" + nodeSource.getIdentifier() + ")" */;
   }
 
   @Override
@@ -79,57 +80,60 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
     //
     LabelDefinition result = new LabelDefinition();
 
+    result.text = "Node: " + nodeSource.getIdentifier();
+
     //
-    for (NodeLabelMapper labelMapper : _descriptor.getLabelMappers()) {
+    for (NodeVisualizationDefinition visualizationDefinition : _descriptor.getVisualisationDescriptor()
+        .getNodeVisualizationDefinition()) {
 
-      // TODO: cache?
-      if (containsAll(nodeSource.getLabels(), labelMapper.getRequiredNeo4jLabel())) {
-
-        EMap<String, String> properties = nodeSource.getProperties();
-
-        // System.out.println("---------------------------------");
-        // System.out.println("Contains all: " + nodeSource.getLabels() + " : " + labelMapper.getRequiredNeo4jLabel());
-        // System.out.println("Properties: " + properties);
-        // System.out.println("---------------------------------");
-        //
-
-        result.text = properties.get(labelMapper.getTextPropertyName());
-
-        //
-        if (result.image == null) {
-          result.image = labelMapper.getDefaultImage();
-        }
-
-        //
-        for (PropertyBasedImageMapper mapper : labelMapper.getPropertyBasedImages()) {
-
-          //
-          String propertyValue = properties.get(mapper.getPropertyName());
-
-          if (mapper.getPropertyValue().equals(propertyValue)) {
-
-            switch (mapper.getPosition()) {
-            case BASE:
-              result.image = mapper.getImage();
-              break;
-            case OVERLAY_BOTTOM_LEFT:
-              result.ovl_bottomLeft = mapper.getImage();
-              break;
-            case OVERLAY_BOTTOM_RIGHT:
-              result.ovl_bottomRight = mapper.getImage();
-              break;
-            case OVERLAY_TOP_LEFT:
-              result.ovl_topLeft = mapper.getImage();
-              break;
-            case OVERLAY_TOP_RIGHT:
-              result.ovl_topRight = mapper.getImage();
-              break;
-            }
-          }
-        }
-
-        return result;
-      }
+      // // TODO: cache?
+      // if (containsAll(nodeSource.getLabels(), labelMapper.getRequiredNeo4jLabel())) {
+      //
+      // EMap<String, String> properties = nodeSource.getProperties();
+      //
+      // // System.out.println("---------------------------------");
+      // // System.out.println("Contains all: " + nodeSource.getLabels() + " : " + labelMapper.getRequiredNeo4jLabel());
+      // // System.out.println("Properties: " + properties);
+      // // System.out.println("---------------------------------");
+      // //
+      //
+      // result.text = properties.get(labelMapper.getTextPropertyName());
+      //
+      // //
+      // if (result.image == null) {
+      // result.image = labelMapper.getDefaultImage();
+      // }
+      //
+      // //
+      // for (PropertyBasedImageMapper mapper : labelMapper.getPropertyBasedImages()) {
+      //
+      // //
+      // String propertyValue = properties.get(mapper.getPropertyName());
+      //
+      // if (mapper.getPropertyValue().equals(propertyValue)) {
+      //
+      // switch (mapper.getPosition()) {
+      // case BASE:
+      // result.image = mapper.getImage();
+      // break;
+      // case OVERLAY_BOTTOM_LEFT:
+      // result.ovl_bottomLeft = mapper.getImage();
+      // break;
+      // case OVERLAY_BOTTOM_RIGHT:
+      // result.ovl_bottomRight = mapper.getImage();
+      // break;
+      // case OVERLAY_TOP_LEFT:
+      // result.ovl_topLeft = mapper.getImage();
+      // break;
+      // case OVERLAY_TOP_RIGHT:
+      // result.ovl_topRight = mapper.getImage();
+      // break;
+      // }
+      // }
+      // }
+      //
+      // return result;
+      // }
     }
 
     //

@@ -21,8 +21,6 @@ import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.DependencyMapping;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.HierarchicalGraphMappingDescriptor;
 
 import com.google.gson.JsonArray;
 
@@ -63,8 +61,10 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
     Neo4jRestClient neo4jRepository = dependency.getRootNode().getExtension(Neo4jRestClient.class);
 
     //
-    return getDetailQueries(dependency).stream()
-        .map(query -> createFutureForQuery(neo4jRepository, dependency, query, params)).collect(Collectors.toList());
+// TODO
+//    return getDetailQueries(dependency).stream()
+//        .map(query -> createFutureForQuery(neo4jRepository, dependency, query, params)).collect(Collectors.toList());
+    return null;
   }
 
   /**
@@ -73,19 +73,20 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
    *
    * @return
    */
-  private List<String> getDetailQueries(HGAggregatedCoreDependency dependency) {
-
-    //
-    Optional<EList<String>> specificDetailQueries = dependency.getDependencySource(Neo4JBackedDependencySource.class)
-        .flatMap(s -> s.getUserObject(DependencyMapping.class)).map(depMap -> depMap.getDetailQueries());
-
-    //
-    HierarchicalGraphMappingDescriptor mappingDescriptor = dependency.getRootNode()
-        .getExtension(HierarchicalGraphMappingDescriptor.class);
-
-    //
-    return specificDetailQueries.orElse(mappingDescriptor.getDependencyMappings().get(0).getDetailQueries());
-  }
+// TODO
+//  private List<String> getDetailQueries(HGAggregatedCoreDependency dependency) {
+//
+//    //
+//    Optional<EList<String>> specificDetailQueries = dependency.getDependencySource(Neo4JBackedDependencySource.class)
+//        .flatMap(s -> s.getUserObject(DependencyMapping.class)).map(depMap -> depMap.getDetailQueries());
+//
+//    //
+//    HierarchicalGraphMappingDescriptor mappingDescriptor = dependency.getRootNode()
+//        .getExtension(HierarchicalGraphMappingDescriptor.class);
+//
+//    //
+//    return specificDetailQueries.orElse(mappingDescriptor.getDependencyMappings().get(0).getDetailQueries());
+//  }
 
   /**
    * <p>
