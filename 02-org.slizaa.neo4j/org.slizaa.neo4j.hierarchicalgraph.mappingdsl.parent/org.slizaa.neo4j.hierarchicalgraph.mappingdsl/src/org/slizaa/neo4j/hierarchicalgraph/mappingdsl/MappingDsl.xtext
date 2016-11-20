@@ -1,0 +1,88 @@
+grammar org.slizaa.neo4j.hierarchicalgraph.mappingdsl.MappingDsl with org.eclipse.xtext.common.Terminals
+
+generate mappingDsl "http://www.slizaa.org/neo4j/hierarchicalgraph/mappingdsl/MappingDsl"
+
+MappingDescriptor:
+	'mapping' qualifiedName=QualifiedName '{'
+	metaInformation=MetaInformation
+	structureDescriptor=StructureDescriptor?
+	visualisationDescriptor=VisualizationDescriptor?
+	'}';
+
+MetaInformation:
+	{MetaInformation} (('name' name=STRING)? &
+	('description' description=STRING)?);
+
+StructureDescriptor:
+	{StructureDescriptor} 'structureDefinition' '{'
+	(topLevelNodeQueries=TopLevelNodesQueries? &
+	(nodeHierarchyQueries=NodeHierarchyQueries)? &
+	(dependencyQueries=DependencyQueries)?)
+	'}';
+
+TopLevelNodesQueries:
+	{TopLevelNodesQueries} 'topLevelNodeQueries' '{'
+	queries+=CypherQuery? (',' queries+=CypherQuery)*
+	'}';
+
+NodeHierarchyQueries:
+	{NodeHierarchyQueries} 'nodeHierarchyQueries' '{'
+	queries+=CypherQuery? (',' queries+=CypherQuery)*
+	'}';
+
+DependencyQueries:
+	{DependencyQueries} 'dependencyQueries' '{'
+	(simpleDependencyQueries+=SimpleDependencyQueries | aggregatedDependencyQueries+=AggregatedDependencyQuery)*
+	'}';
+
+AggregatedDependencyQuery:
+	{AggregatedDependencyQuery} 'aggregatedDependencyQuery' '{'
+	queries+=CypherQuery (',' queries+=CypherQuery)*
+	'onResolve' '{'
+	(queries+=CypherQuery)*
+	'}'
+	'}';
+
+SimpleDependencyQueries:
+	{SimpleDependencyQueries} 'simpleDependencyQueries' '{'
+	(queries+=CypherQuery)*
+	'}';
+
+VisualizationDescriptor:
+	{VisualizationDescriptor} 'visualizationDefinition' '{'
+	(nodeVisualizationDefinition+=NodeVisualizationDefinition)*
+	'}';
+
+NodeVisualizationDefinition:
+	'node' function=Function '{'
+	labelProperties=LabelProperties
+	switch=labelSwitch?
+	'}';
+
+labelSwitch:
+	'on' function=Function '{'
+	(labelCases+=LabelCase)+
+	'}';
+
+LabelCase:
+	case=STRING ':' '{' labelProperties=LabelProperties '}';
+
+LabelProperties:
+	{LabelProperties} (('textLabel' textLabel=SimpleExpression)? & ('baseImage' baseImage=SimpleExpression)? &
+	('overlayImageTopLeft' overlayImageTopLeft=SimpleExpression)? & ('overlayImageTopRight'
+	overlayImageTopRight=SimpleExpression)? & ('overlayImageBottomLeft' overlayImageBottomLeft=SimpleExpression)? &
+	('overlayImageBottomRight' overlayImageBottomRight=SimpleExpression)?);
+
+SimpleExpression:
+	{SimpleExpression} STRING | Function;
+
+Function:
+	name=ID '(' parameters+=SimpleExpression (',' parameters+=SimpleExpression)* ')';
+
+QualifiedName:
+	ID ('.' ID)*;
+
+CypherQuery:
+	STRING;
+
+

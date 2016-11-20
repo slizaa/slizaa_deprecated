@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.slizaa.neo4j.hierarchicalgraph.mappingdsl.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.slizaa.neo4j.hierarchicalgraph.mappingdsl.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.slizaa.neo4j.hierarchicalgraph.mappingdsl,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.slizaa.neo4j.hierarchicalgraph.mappingdsl.ide.contentassist.antlr.internal,
+ org.slizaa.neo4j.hierarchicalgraph.mappingdsl.ide.contentassist.antlr
+
