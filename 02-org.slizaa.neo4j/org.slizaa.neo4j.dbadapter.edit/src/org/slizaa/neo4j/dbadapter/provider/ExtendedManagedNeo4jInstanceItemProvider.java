@@ -15,6 +15,6 @@ public class ExtendedManagedNeo4jInstanceItemProvider extends ManagedNeo4jInstan
 
   @Override
   public String getText(Object object) {
-    return ((ManagedNeo4jInstance) object).getStorageArea();
+    return ((ManagedNeo4jInstance) object).getName();
   }
 }
