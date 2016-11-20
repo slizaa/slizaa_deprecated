@@ -12,6 +12,6 @@ UnmanagedRemoteDatabase:
 
 ManagedLocalDatabase:
 	'managed' 'local' 'database' '{'
-	(('name' name=STRING)? & ('description' description=STRING)? & ('port' port=INT)? & ('storage' storage=STRING) &
-	('files' files+=STRING (',' files+=STRING))?)
+	('name' name=STRING)? & ('description' description=STRING)? & ('port' port=INT)? & ('storage' storage=STRING) &
+	('files' '{' files+=STRING (',' files+=STRING)* '}')
 	'}';
