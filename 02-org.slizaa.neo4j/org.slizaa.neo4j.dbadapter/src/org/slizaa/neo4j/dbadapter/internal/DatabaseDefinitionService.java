@@ -50,7 +50,6 @@ public class DatabaseDefinitionService {
       @Override
       public void resourceChanged(IResourceChangeEvent event) {
         if (IResourceChangeEvent.POST_CHANGE == event.getType()) {
-          System.out.println("Resources have changed.");
           try {
             event.getDelta().accept(new DeltaPrinter());
           } catch (CoreException e) {
@@ -72,13 +71,14 @@ public class DatabaseDefinitionService {
           } else {
 
             if ("dbdef".equals(resource.getFileExtension())) {
-              System.out.println("REGISTER: " + resource);
+
               DbAdapterDefinition target = (DbAdapterDefinition) Platform.getAdapterManager().getAdapter(resource,
                   DbAdapterDefinition.class);
 
               if (target instanceof UnmanagedRemoteDatabase) {
-                System.out.println("handleUnmanagedRemoteDatabase");
                 updateUnmanagedRemoteDatabase((IFile) resource, (UnmanagedRemoteDatabase) target);
+              } else if (target instanceof ManagedLocalDatabase) {
+                updateManagedLocalDatabase((IFile) resource, (ManagedLocalDatabase) target);
               }
             }
 
@@ -90,14 +90,6 @@ public class DatabaseDefinitionService {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-
-    // public boolean visit(IResource resource) {
-    //
-    // if (resource.getName().endsWith(".java") processJavaFile((IFile)resource);
-    // return true;
-    // }
-    //
-    // }
   }
 
   @Deactivate
@@ -119,11 +111,14 @@ public class DatabaseDefinitionService {
 
         if (target instanceof UnmanagedRemoteDatabase) {
           updateUnmanagedRemoteDatabase((IFile) resource, (UnmanagedRemoteDatabase) target);
+        }        //
+        else if (target instanceof ManagedLocalDatabase) {
+          updateManagedLocalDatabase((IFile) resource, (ManagedLocalDatabase) target);
         }
         break;
       }
       case IResourceDelta.REMOVED:
-        deleteUnmanagedRemoteDatabase((IFile) resource);
+        deleteDatabase((IFile) resource);
         break;
       case IResourceDelta.CHANGED: {
 
@@ -136,21 +131,7 @@ public class DatabaseDefinitionService {
 
         //
         else if (target instanceof ManagedLocalDatabase) {
-
-          ManagedLocalDatabase managedLocalDatabase = (ManagedLocalDatabase) target;
-
-          ManagedNeo4jInstance managedNeo4jInstance = DbAdapterFactory.eINSTANCE.createManagedNeo4jInstance();
-          managedNeo4jInstance.setBaseURI("http://localhost:" + managedLocalDatabase.getPort() + "/");
-          managedNeo4jInstance.setName(managedLocalDatabase.getName());
-          managedNeo4jInstance.setRunning(false);
-          managedNeo4jInstance.setStorageArea(managedLocalDatabase.getStorage());
-
-          for (String file : managedLocalDatabase.getFiles()) {
-            managedNeo4jInstance.getDirectoriesToScan().add(file);
-          }
-
-          DbAdapterActivator.instance().getRestClientRegistry().getDbAdapterContainer(ContainerType.MANAGED)
-              .getChildren().add(managedNeo4jInstance);
+          updateManagedLocalDatabase((IFile) resource, (ManagedLocalDatabase) target);
         }
 
         break;
@@ -194,13 +175,47 @@ public class DatabaseDefinitionService {
     }
   }
 
+  private void updateManagedLocalDatabase(IFile definingFile, ManagedLocalDatabase managedLocalDatabase) {
+
+    // IStringVariableManager manager = VariablesPlugin.getDefault().getStringVariableManager();
+    //
+    // for (IDynamicVariable variable : manager.getDynamicVariables()) {
+    // System.out.println(" - dynVar " + variable.getName());
+    // }
+    //
+    //
+    Neo4jRestClient restClient = _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren().stream()
+        .filter(c -> definingFile.equals(c.getDefiningResource())).findFirst().orElse(null);
+
+    //
+    if (restClient != null) {
+      restClient.setName(managedLocalDatabase.getName());
+      restClient.setBaseURI("http://localhost:" + managedLocalDatabase.getPort());
+    }
+    //
+    else {
+      ManagedNeo4jInstance managedNeo4jInstance = DbAdapterFactory.eINSTANCE.createManagedNeo4jInstance();
+      managedNeo4jInstance.setBaseURI("http://localhost:" + managedLocalDatabase.getPort() + "/");
+      managedNeo4jInstance.setName(managedLocalDatabase.getName());
+      managedNeo4jInstance.setRunning(false);
+      managedNeo4jInstance.setStorageArea(managedLocalDatabase.getStorage());
+      managedNeo4jInstance.setDefiningResource(definingFile);
+
+      for (String file : managedLocalDatabase.getFiles()) {
+        managedNeo4jInstance.getDirectoriesToScan().add(file);
+      }
+
+      _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren().add(managedNeo4jInstance);
+    }
+  }
+
   /**
    * <p>
    * </p>
    *
    * @param definingFile
    */
-  private void deleteUnmanagedRemoteDatabase(IFile definingFile) {
+  private void deleteDatabase(IFile definingFile) {
 
     //
     Neo4jRestClient restClient = _dbAdapterRegistry.getDbAdapterContainer(ContainerType.UNMANAGED).getChildren()
@@ -209,6 +224,17 @@ public class DatabaseDefinitionService {
     //
     if (restClient != null) {
       _dbAdapterRegistry.getDbAdapterContainer(ContainerType.UNMANAGED).getChildren().remove(restClient);
+      return;
+    }
+
+    //
+    restClient = _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren().stream()
+        .filter(c -> definingFile.equals(c.getDefiningResource())).findFirst().orElse(null);
+
+    //
+    if (restClient != null) {
+      _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren().remove(restClient);
+      return;
     }
   }
 }

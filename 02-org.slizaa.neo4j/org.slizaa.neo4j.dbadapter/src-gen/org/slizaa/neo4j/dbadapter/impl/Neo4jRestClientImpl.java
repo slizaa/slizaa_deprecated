@@ -4,6 +4,7 @@ package org.slizaa.neo4j.dbadapter.impl;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
 import java.lang.reflect.InvocationTargetException;
 
 import java.util.Map;
@@ -15,18 +16,20 @@ import java.util.function.Consumer;
 import org.eclipse.core.resources.IFile;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import org.slizaa.hierarchicalgraph.HGRootNode;
+
 import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
 import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;

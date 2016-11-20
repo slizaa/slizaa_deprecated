@@ -934,17 +934,6 @@ public interface DbAdapterPackage extends EPackage {
   EAttribute getDbAdapterContainer_Type();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.slizaa.neo4j.dbadapter.DbAdapterContainer#getChildren <em>Children</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Children</em>'.
-   * @see org.slizaa.neo4j.dbadapter.DbAdapterContainer#getChildren()
-   * @see #getDbAdapterContainer()
-   * @generated
-   */
-  EReference getDbAdapterContainer_Children();
-
-  /**
    * Returns the meta object for the container reference '{@link org.slizaa.neo4j.dbadapter.DbAdapterContainer#getParent <em>Parent</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -954,6 +943,17 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    */
   EReference getDbAdapterContainer_Parent();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.slizaa.neo4j.dbadapter.DbAdapterContainer#getChildren <em>Children</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Children</em>'.
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterContainer#getChildren()
+   * @see #getDbAdapterContainer()
+   * @generated
+   */
+  EReference getDbAdapterContainer_Children();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance <em>Managed Neo4j Instance</em>}'.
@@ -1357,20 +1357,20 @@ public interface DbAdapterPackage extends EPackage {
     EAttribute DB_ADAPTER_CONTAINER__TYPE = eINSTANCE.getDbAdapterContainer_Type();
 
     /**
-     * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DB_ADAPTER_CONTAINER__CHILDREN = eINSTANCE.getDbAdapterContainer_Children();
-
-    /**
      * The meta object literal for the '<em><b>Parent</b></em>' container reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference DB_ADAPTER_CONTAINER__PARENT = eINSTANCE.getDbAdapterContainer_Parent();
+
+    /**
+     * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DB_ADAPTER_CONTAINER__CHILDREN = eINSTANCE.getDbAdapterContainer_Children();
 
     /**
      * The meta object literal for the '{@link org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl <em>Managed Neo4j Instance</em>}' class.

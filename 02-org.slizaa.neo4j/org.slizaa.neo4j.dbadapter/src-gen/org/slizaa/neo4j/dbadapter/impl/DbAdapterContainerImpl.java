@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -49,6 +50,7 @@ public class DbAdapterContainerImpl extends MinimalEObjectImpl.Container impleme
    * @ordered
    */
   protected static final ContainerType TYPE_EDEFAULT = ContainerType.MANAGED;
+
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -58,6 +60,7 @@ public class DbAdapterContainerImpl extends MinimalEObjectImpl.Container impleme
    * @ordered
    */
   protected ContainerType type = TYPE_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -113,18 +116,6 @@ public class DbAdapterContainerImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Neo4jRestClient> getChildren() {
-    if (children == null) {
-      children = new EObjectContainmentWithInverseEList<Neo4jRestClient>(Neo4jRestClient.class, this, DbAdapterPackage.DB_ADAPTER_CONTAINER__CHILDREN, DbAdapterPackage.NEO4J_REST_CLIENT__PARENT);
-    }
-    return children;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public DbAdapterRegistry getParent() {
     if (eContainerFeatureID() != DbAdapterPackage.DB_ADAPTER_CONTAINER__PARENT) return null;
     return (DbAdapterRegistry)eInternalContainer();
@@ -159,6 +150,18 @@ public class DbAdapterContainerImpl extends MinimalEObjectImpl.Container impleme
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.DB_ADAPTER_CONTAINER__PARENT, newParent, newParent));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Neo4jRestClient> getChildren() {
+    if (children == null) {
+      children = new EObjectContainmentWithInverseEList<Neo4jRestClient>(Neo4jRestClient.class, this, DbAdapterPackage.DB_ADAPTER_CONTAINER__CHILDREN, DbAdapterPackage.NEO4J_REST_CLIENT__PARENT);
+    }
+    return children;
   }
 
   /**
