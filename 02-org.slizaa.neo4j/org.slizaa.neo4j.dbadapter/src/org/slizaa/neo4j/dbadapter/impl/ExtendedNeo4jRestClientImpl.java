@@ -36,17 +36,7 @@ public class ExtendedNeo4jRestClientImpl extends Neo4jRestClientImpl {
   @Override
   public void setActive(boolean newActive) {
     super.setActive(newActive);
-
-    //
-    if (newActive) {
-      if (getParent() != null && getParent().getParent() != null) {
-        getParent().getParent().setActiveDbAdapter(this);
-      }
-    } else {
-      if (getParent() != null && getParent().getParent() != null) {
-        getParent().getParent().setActiveDbAdapter(null);
-      }
-    }
+    neo4jClientTrait().setActive(newActive);
   }
 
   /**
@@ -121,7 +111,7 @@ public class ExtendedNeo4jRestClientImpl extends Neo4jRestClientImpl {
 
     //
     if (_neo4jClientTrait == null) {
-      _neo4jClientTrait = Neo4jClientTrait.create(getBaseURI());
+      _neo4jClientTrait = new Neo4jClientTrait(this);
     }
 
     //

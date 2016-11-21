@@ -35,20 +35,10 @@ public class ExtendedManagedNeo4JInstanceImpl extends ManagedNeo4jInstanceImpl {
    */
   @Override
   public void setActive(boolean newActive) {
-    super.setActive(newActive);
-
-    //
-    if (newActive) {
-      if (getParent() != null && getParent().getParent() != null) {
-        getParent().getParent().setActiveDbAdapter(this);
-      }
-    } else {
-      if (getParent() != null && getParent().getParent() != null) {
-        getParent().getParent().setActiveDbAdapter(null);
-      }
-    }
+    super.setActive(newActive);    
+    neo4jClientTrait().setActive(newActive);
   }
-  
+
   /**
    * {@inheritDoc}
    */
@@ -121,7 +111,7 @@ public class ExtendedManagedNeo4JInstanceImpl extends ManagedNeo4jInstanceImpl {
 
     //
     if (_neo4jClientTrait == null) {
-      _neo4jClientTrait = Neo4jClientTrait.create(getBaseURI());
+      _neo4jClientTrait = new Neo4jClientTrait(this);
     }
 
     //

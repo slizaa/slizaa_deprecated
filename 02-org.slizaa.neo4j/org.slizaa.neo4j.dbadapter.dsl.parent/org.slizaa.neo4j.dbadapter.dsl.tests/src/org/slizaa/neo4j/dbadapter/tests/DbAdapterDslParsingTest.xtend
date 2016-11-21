@@ -3,28 +3,27 @@
  */
 package org.slizaa.neo4j.dbadapter.tests
 
-import com.google.inject.Inject
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.util.ParseHelper
-import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.slizaa.neo4j.dbadapter.dbAdapterDsl.DbAdapterDefinition
 
 @RunWith(XtextRunner)
 @InjectWith(DbAdapterDslInjectorProvider)
-class DbAdapterDslParsingTest {
-
-	@Inject
-	ParseHelper<DbAdapterDefinition> parseHelper
+class DbAdapterDslParsingTest extends AbstractDbAdapterDefinitionTest {
 
 	@Test
 	def void loadModel() {
-		val result = parseHelper.parse('''
-			Hello Xtext!
+		test('''
+			unmanaged remote database {
+				
+				// name & description
+				name "http://localhost:7474"
+				description "Localhost"
+				
+				//
+				uri "http://localhost:7474"
+			}
 		''')
-		Assert.assertNotNull(result)
 	}
-
 }

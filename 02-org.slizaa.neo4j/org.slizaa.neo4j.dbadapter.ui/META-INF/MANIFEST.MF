@@ -27,7 +27,8 @@ Require-Bundle: org.eclipse.e4.ui.workbench;bundle-version="1.4.0",
  org.eclipse.e4.ui.model.workbench;bundle-version="1.2.0.v20160229-1459",
  org.slizaa.ui.tree;bundle-version="0.0.4",
  org.eclipse.debug.core;bundle-version="3.10.100",
- com.google.guava;bundle-version="15.0.0"
+ com.google.guava;bundle-version="15.0.0",
+ org.eclipse.ui.ide;bundle-version="3.12.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: javax.annotation;version="1.2.0",
  javax.inject;version="1.0.0",
@@ -38,5 +39,4 @@ Service-Component: OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.ScanAc
  OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.EnrichActionContribution.xml,
  OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.StopActionContribution.xml,
  OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.StartActionContribution.xml,
- OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.ConnectActionContribution.xml,
- OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.DisconnectActionContribution.xml
+ OSGI-INF/org.slizaa.neo4j.dbadapter.ui.internal.action.connect.ConnectActionContribution.xml

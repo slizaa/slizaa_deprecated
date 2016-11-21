@@ -23,10 +23,18 @@ public interface ISlizaaActionContribution {
   /**
    * <p>
    * </p>
+   *
+   * @return
+   */
+  int getRanking();
+
+  /**
+   * <p>
+   * </p>
    * 
    * @return the label of the action
    */
-  String getLabel();
+  String getLabel(Object selectedObject);
 
   /**
    * <p>
@@ -34,15 +42,7 @@ public interface ISlizaaActionContribution {
    * 
    * @return the imagePath
    */
-  String getImagePath();
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  int getRanking();
+  String getImagePath(Object selectedObject);
 
   /**
    * <p>
@@ -96,6 +96,7 @@ public interface ISlizaaActionContribution {
      * <p>
      * Creates a new instance of type {@link DefaultActionContribution}.
      * </p>
+     * 
      * @param label
      * @param parentGroupId
      */
@@ -107,6 +108,7 @@ public interface ISlizaaActionContribution {
      * <p>
      * Creates a new instance of type {@link DefaultActionContribution}.
      * </p>
+     * 
      * @param label
      * @param parentGroupId
      * @param imagePath
@@ -131,14 +133,6 @@ public interface ISlizaaActionContribution {
      * {@inheritDoc}
      */
     @Override
-    public String getImagePath() {
-      return _imagePath;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public String getParentGroupId() {
       return _groupId;
     }
@@ -147,7 +141,15 @@ public interface ISlizaaActionContribution {
      * {@inheritDoc}
      */
     @Override
-    public String getLabel() {
+    public String getImagePath(Object selectedObject) {
+      return _imagePath;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getLabel(Object selectedObject) {
       return _label;
     }
 

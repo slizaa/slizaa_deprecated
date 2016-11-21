@@ -28,6 +28,11 @@ public class ManagedServerActionGroup implements ISlizaaActionGroupContribution 
   }
 
   @Override
+  public boolean isSubMenu() {
+    return true;
+  }
+
+  @Override
   public String getImagePath() {
     return null;
   }

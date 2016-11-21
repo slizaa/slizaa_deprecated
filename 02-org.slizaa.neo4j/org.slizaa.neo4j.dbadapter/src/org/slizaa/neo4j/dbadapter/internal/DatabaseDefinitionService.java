@@ -30,15 +30,31 @@ public class DatabaseDefinitionService {
   /** - */
   private DbAdapterRegistry _dbAdapterRegistry;
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @param adapterRegistry
+   */
   @Reference
   public void bindDbAdapterRegistry(DbAdapterRegistry adapterRegistry) {
     _dbAdapterRegistry = adapterRegistry;
   }
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @param adapterRegistry
+   */
   public void unbindDbAdapterRegistry(DbAdapterRegistry adapterRegistry) {
     _dbAdapterRegistry = null;
   }
 
+  /**
+   * <p>
+   * </p>
+   */
   @Activate
   protected void init() {
 
@@ -51,7 +67,7 @@ public class DatabaseDefinitionService {
       public void resourceChanged(IResourceChangeEvent event) {
         if (IResourceChangeEvent.POST_CHANGE == event.getType()) {
           try {
-            event.getDelta().accept(new DeltaPrinter());
+            event.getDelta().accept(new DatabaseDefinitionVisitor());
           } catch (CoreException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -97,41 +113,65 @@ public class DatabaseDefinitionService {
 
   }
 
-  class DeltaPrinter implements IResourceDeltaVisitor {
+  /**
+   * <p>
+   * </p>
+   *
+   * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+   */
+  class DatabaseDefinitionVisitor implements IResourceDeltaVisitor {
+
+    /**
+     * {@inheritDoc}
+     */
     public boolean visit(IResourceDelta delta) {
-      IResource resource = delta.getResource();
-      if (resource.getType() != IResource.FILE && !"dbdef".equals(resource.getFileExtension())) {
+
+      //
+      if (delta.getResource().getType() != IResource.FILE && !"dbdef".equals(delta.getResource().getFileExtension())) {
         return true;
       }
+
+      // cast to file
+      IFile file = (IFile) delta.getResource();
+
+      //
       switch (delta.getKind()) {
       case IResourceDelta.ADDED: {
 
-        DbAdapterDefinition target = (DbAdapterDefinition) Platform.getAdapterManager().getAdapter(resource,
+        //
+        DbAdapterDefinition dbAdapterDefinition = (DbAdapterDefinition) Platform.getAdapterManager().getAdapter(file,
             DbAdapterDefinition.class);
 
-        if (target instanceof UnmanagedRemoteDatabase) {
-          updateUnmanagedRemoteDatabase((IFile) resource, (UnmanagedRemoteDatabase) target);
-        }        //
-        else if (target instanceof ManagedLocalDatabase) {
-          updateManagedLocalDatabase((IFile) resource, (ManagedLocalDatabase) target);
+        if (dbAdapterDefinition instanceof UnmanagedRemoteDatabase) {
+          removeFromManaged(file);
+          updateUnmanagedRemoteDatabase(file, (UnmanagedRemoteDatabase) dbAdapterDefinition);
+        }
+        //
+        else if (dbAdapterDefinition instanceof ManagedLocalDatabase) {
+          removeFromUnmanaged(file);
+          updateManagedLocalDatabase(file, (ManagedLocalDatabase) dbAdapterDefinition);
         }
         break;
       }
       case IResourceDelta.REMOVED:
-        deleteDatabase((IFile) resource);
+        removeFromUnmanaged(file);
+        removeFromManaged(file);
         break;
       case IResourceDelta.CHANGED: {
 
-        DbAdapterDefinition target = (DbAdapterDefinition) Platform.getAdapterManager().getAdapter(resource,
+        //
+        DbAdapterDefinition dbAdapterDefinition = (DbAdapterDefinition) Platform.getAdapterManager().getAdapter(file,
             DbAdapterDefinition.class);
 
-        if (target instanceof UnmanagedRemoteDatabase) {
-          updateUnmanagedRemoteDatabase((IFile) resource, (UnmanagedRemoteDatabase) target);
+        if (dbAdapterDefinition instanceof UnmanagedRemoteDatabase) {
+          removeFromManaged(file);
+          updateUnmanagedRemoteDatabase(file, (UnmanagedRemoteDatabase) dbAdapterDefinition);
         }
 
         //
-        else if (target instanceof ManagedLocalDatabase) {
-          updateManagedLocalDatabase((IFile) resource, (ManagedLocalDatabase) target);
+        else if (dbAdapterDefinition instanceof ManagedLocalDatabase) {
+          removeFromUnmanaged(file);
+          updateManagedLocalDatabase(file, (ManagedLocalDatabase) dbAdapterDefinition);
         }
 
         break;
@@ -215,7 +255,7 @@ public class DatabaseDefinitionService {
    *
    * @param definingFile
    */
-  private void deleteDatabase(IFile definingFile) {
+  private void removeFromUnmanaged(IFile definingFile) {
 
     //
     Neo4jRestClient restClient = _dbAdapterRegistry.getDbAdapterContainer(ContainerType.UNMANAGED).getChildren()
@@ -224,17 +264,24 @@ public class DatabaseDefinitionService {
     //
     if (restClient != null) {
       _dbAdapterRegistry.getDbAdapterContainer(ContainerType.UNMANAGED).getChildren().remove(restClient);
-      return;
     }
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param definingFile
+   */
+  private void removeFromManaged(IFile definingFile) {
 
     //
-    restClient = _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren().stream()
+    Neo4jRestClient restClient = _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren().stream()
         .filter(c -> definingFile.equals(c.getDefiningResource())).findFirst().orElse(null);
 
     //
     if (restClient != null) {
       _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren().remove(restClient);
-      return;
     }
   }
 }

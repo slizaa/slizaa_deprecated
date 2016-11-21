@@ -14,15 +14,25 @@ public class ExtendedNeo4jRestClientItemProvider extends Neo4jRestClientItemProv
   }
 
   @Override
+  public Object getImage(Object object) {
+    
+    //
+    if (((Neo4jRestClient) object).isActive()) {
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClient"));
+    }
+    
+    //
+    else {
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClient_grayed"));
+    }
+  }
+  
+  @Override
   public String getText(Object object) {
 
     //
     Neo4jRestClient client = (Neo4jRestClient) object;
 
-    if (client.isActive()) {
-      return "SCHPUMM";
-    }
-    
     //
     if (client.getName() != null) {
       return client.getName();
@@ -31,18 +41,4 @@ public class ExtendedNeo4jRestClientItemProvider extends Neo4jRestClientItemProv
     //
     return client.getBaseURI();
   }
-
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @return
-  // */
-  // private DbAdapterRegistry dbAdapterRegistry(Neo4jRestClient neo4jRestClient) {
-  // if (neo4jRestClient != null && neo4jRestClient.getParent() != null
-  // && neo4jRestClient.getParent().getParent() != null) {
-  // return neo4jRestClient.getParent().getParent();
-  // }
-  // return null;
-  // }
 }

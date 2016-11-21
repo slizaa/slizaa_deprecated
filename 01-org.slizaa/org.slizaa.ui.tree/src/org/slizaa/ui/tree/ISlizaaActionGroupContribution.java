@@ -21,8 +21,16 @@ public interface ISlizaaActionGroupContribution {
   /**
    * <p>
    * </p>
+   *
+   * @return
+   */
+  boolean isSubMenu();
+  
+  /**
+   * <p>
+   * </p>
    * 
-   * @return the label of the action
+   * @return the label of the action group
    */
   String getLabel();
 
@@ -30,7 +38,7 @@ public interface ISlizaaActionGroupContribution {
    * <p>
    * </p>
    * 
-   * @return the imagePath
+   * @return the imagePath of the action group
    */
   String getImagePath();
 
@@ -76,7 +84,17 @@ public interface ISlizaaActionGroupContribution {
     public String getImagePath() {
       return null;
     }
+    
 
+    @Override
+    public boolean isSubMenu() {
+      return false;
+    }
+
+    @Override
+    public String getLabel() {
+      return null;
+    }
 
     /**
      * {@inheritDoc}

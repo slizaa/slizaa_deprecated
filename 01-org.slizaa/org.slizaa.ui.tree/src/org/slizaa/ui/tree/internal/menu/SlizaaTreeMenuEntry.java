@@ -10,19 +10,19 @@ import org.slizaa.ui.tree.ISlizaaActionContribution;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class MenuEntry implements IMenuPart {
+public class SlizaaTreeMenuEntry implements ISlizaaTreeMenuPart {
 
   /** - */
   private ISlizaaActionContribution actionContribution;
 
   /**
    * <p>
-   * Creates a new instance of type {@link MenuEntry}.
+   * Creates a new instance of type {@link SlizaaTreeMenuEntry}.
    * </p>
    *
    * @param actionContribution
    */
-  public MenuEntry(ISlizaaActionContribution actionContribution) {
+  public SlizaaTreeMenuEntry(ISlizaaActionContribution actionContribution) {
     this.actionContribution = checkNotNull(actionContribution);
   }
 

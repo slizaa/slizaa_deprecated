@@ -42,22 +42,38 @@ public class Neo4jClientTrait {
   /** - */
   private Neo4JRemoteServiceRestApi _cypherQueryService;
 
+  /** - */
+  private Neo4jRestClientImpl       _neo4jRestClient;
 
   /**
    * <p>
+   * Creates a new instance of type {@link Neo4jClientTrait}.
    * </p>
    *
-   * @param baseURI
-   * @return
+   * @param neo4jRestClient
    */
-  public static Neo4jClientTrait create(String baseURI) {
-    try {
-      Neo4jClientTrait result = new Neo4jClientTrait();
-      result.init(baseURI);
-      return result;
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+  public Neo4jClientTrait(Neo4jRestClientImpl neo4jRestClient) {
+    this._neo4jRestClient = checkNotNull(neo4jRestClient);
+
+    _cypherQueryService = ConsumerFactory.createConsumer(checkNotNull(_neo4jRestClient.baseURI),
+        new ClientConfig().register(new GsonProvider<>()), Neo4JRemoteServiceRestApi.class);
+  }
+
+  public void setActive(boolean newActive) {
+    
+    //
+    if (newActive) {
+      if (_neo4jRestClient.getParent() != null && _neo4jRestClient.getParent().getParent() != null) {
+        _neo4jRestClient.getParent().getParent().setActiveDbAdapter(_neo4jRestClient);
+      }
+    } else {
+      if (_neo4jRestClient.getParent() != null && _neo4jRestClient.getParent().getParent() != null) {
+        _neo4jRestClient.getParent().getParent().setActiveDbAdapter(null);
+      }
     }
+    
+    //
+    _neo4jRestClient.getDefiningResource().setReadOnly(newActive);
   }
   
   /**
@@ -182,16 +198,5 @@ public class Neo4jClientTrait {
    */
   private ExecutorService getExecutor() {
     return DbAdapterActivator.instance().getExecutor();
-  }
-  
-  /**
-   * <p>
-   * </p>
-   *
-   * @param baseUri
-   */
-  private void init(String baseUri) {
-    _cypherQueryService = ConsumerFactory.createConsumer(checkNotNull(baseUri),
-        new ClientConfig().register(new GsonProvider<>()), Neo4JRemoteServiceRestApi.class);
   }
 }

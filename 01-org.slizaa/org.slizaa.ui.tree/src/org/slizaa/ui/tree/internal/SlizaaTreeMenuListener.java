@@ -5,7 +5,7 @@ import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.slizaa.ui.tree.internal.menu.MenuBuilder;
+import org.slizaa.ui.tree.internal.menu.SlizaaTreeMenuBuilder;
 
 /**
  * {@link IMenuListener Menu listener} added on the tree master detail.
@@ -35,7 +35,7 @@ public class SlizaaTreeMenuListener implements IMenuListener {
       //
       if (selection.size() > 0 && selection.getFirstElement() instanceof EObject) {
         final EObject eSelectedObject = (EObject) selection.getFirstElement();
-        MenuBuilder.populateMenu(menuManager, eSelectedObject);
+        SlizaaTreeMenuBuilder.populateMenu(menuManager, eSelectedObject);
       }
     }
   }

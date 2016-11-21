@@ -57,7 +57,7 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
 
   @Override
   public int getRanking() {
-    return 0;
+    return 100;
   }
 
   @Override
@@ -68,7 +68,7 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
   @Override
   public boolean isEnabled(Object selection) {
     Neo4jRestClient restClient = (Neo4jRestClient) selection;
-    return restClient.isActive();
+    return restClient.isActive() && restClient.getHierarchicalGraph() == null;
   }
 
   @Override
@@ -94,7 +94,8 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
     }
 
     Object[] result = dialog.getResult();
-    MappingDescriptor mapping = mappingDescriptors.stream().filter(md -> md.getQualifiedName().equals(result[0])).findFirst().get();
+    MappingDescriptor mapping = mappingDescriptors.stream().filter(md -> md.getQualifiedName().equals(result[0]))
+        .findFirst().get();
 
     //
     LoadModelFromGraphDatabaseJob myJob = new LoadModelFromGraphDatabaseJob(remoteRepository, mapping);
@@ -110,12 +111,12 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
   }
 
   @Override
-  public String getLabel() {
+  public String getLabel(Object selectedObject) {
     return "New Graph... ";
   }
 
   @Override
-  public String getImagePath() {
+  public String getImagePath(Object selectedObject) {
     return null;
   }
 

@@ -69,14 +69,14 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
       }
     }
 
-    for (Neo4jRestClient restClient : _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren()) {
+    for (Neo4jRestClient restClient : _dbAdapterRegistry.getDbAdapterContainer(ContainerType.UNMANAGED).getChildren()) {
       if (rootNode.equals(restClient.getHierarchicalGraph())) {
         restClient.setHierarchicalGraph(null);
         break;
       }
     }
 
-    //
+    // TODO!!
     _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().remove(rootNode);
     ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE, null);
   }
@@ -85,7 +85,7 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
    * {@inheritDoc}
    */
   @Override
-  public String getLabel() {
+  public String getLabel(Object selectedObject) {
     return "Dispose";
   }
 
@@ -93,7 +93,7 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
    * {@inheritDoc}
    */
   @Override
-  public String getImagePath() {
+  public String getImagePath(Object selectedObject) {
     return null;
   }
 }

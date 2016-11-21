@@ -7,6 +7,8 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 import org.eclipse.xtext.ui.editor.model.ResourceForIEditorInputFactory
 import org.eclipse.xtext.ui.resource.SimpleResourceSetProvider
 import org.eclipse.xtext.ui.shared.Access
+import org.eclipse.xtext.ui.editor.XtextEditor
+import org.slizaa.neo4j.dbadapter.ui.editor.DbAdapterDslEditor
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -25,4 +27,8 @@ class DbAdapterDslUiModule extends AbstractDbAdapterDslUiModule {
 	override provideIAllContainersState() {
 		return Access.getWorkspaceProjectsState();
 	}
+	
+	public def Class<? extends XtextEditor> bindXtextEditor() {
+  		return DbAdapterDslEditor;
+    }
 }

@@ -13,25 +13,28 @@ import org.slizaa.ui.tree.ISlizaaActionGroupContribution;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class MenuGroup implements IMenuPart {
+public class SlizaaTreeMenuGroup implements ISlizaaTreeMenuPart {
 
   /** - */
   private ISlizaaActionGroupContribution _actionGroupContribution;
 
   /** - */
-  private List<IMenuPart>                _menuEntries;
+  private List<ISlizaaTreeMenuPart>      _menuEntries;
+
+  /** - */
+  private boolean                        _isSubMenu;
 
   /** - */
   private String                         _id;
 
   /**
    * <p>
-   * Creates a new instance of type {@link MenuGroup}.
+   * Creates a new instance of type {@link SlizaaTreeMenuGroup}.
    * </p>
    *
    * @param id
    */
-  public MenuGroup(String id) {
+  public SlizaaTreeMenuGroup(String id) {
     _id = checkNotNull(id);
     _menuEntries = new LinkedList<>();
   }
@@ -61,13 +64,31 @@ public class MenuGroup implements IMenuPart {
     this._actionGroupContribution = actionGroupContribution;
   }
 
+  public boolean isSubMenu() {
+    return _isSubMenu;
+  }
+
+  public void setSubMenu(boolean isSubMenu) {
+    this._isSubMenu = isSubMenu;
+  }
+
   /**
    * <p>
    * </p>
    *
    * @return
    */
-  public List<IMenuPart> getMenuEntries() {
+  public String getId() {
+    return _id;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public List<ISlizaaTreeMenuPart> getMenuEntries() {
     return _menuEntries;
   }
 }

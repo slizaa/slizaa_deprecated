@@ -12,6 +12,21 @@ public class ExtendedManagedNeo4jInstanceItemProvider extends ManagedNeo4jInstan
   public ExtendedManagedNeo4jInstanceItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
+  
+  @Override
+  public Object getImage(Object object) {
+    
+    //
+    if (((ManagedNeo4jInstance) object).isActive()) {
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/ManagedNeo4jInstance"));
+    }
+    
+    //
+    else {
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/ManagedNeo4jInstance_grayed"));
+    }
+  }
+
 
   @Override
   public String getText(Object object) {

@@ -6,7 +6,7 @@ package org.slizaa.ui.tree.internal.menu;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public interface IMenuPart {
+public interface ISlizaaTreeMenuPart {
 
   int ranking();
 }
