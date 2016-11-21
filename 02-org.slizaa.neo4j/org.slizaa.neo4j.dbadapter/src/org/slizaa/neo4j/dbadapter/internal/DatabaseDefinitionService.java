@@ -20,9 +20,9 @@ import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.neo4j.dbadapter.dbAdapterDsl.DbAdapterDefinition;
-import org.slizaa.neo4j.dbadapter.dbAdapterDsl.ManagedLocalDatabase;
-import org.slizaa.neo4j.dbadapter.dbAdapterDsl.UnmanagedRemoteDatabase;
+import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.DbAdapterDefinition;
+import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.ManagedLocalDatabase;
+import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.UnmanagedRemoteDatabase;
 
 @Component
 public class DatabaseDefinitionService {

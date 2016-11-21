@@ -2,7 +2,7 @@
 <templates>
 	<template autoinsert="true"
 		id="dbadapterdsl.build-in.dbadapterdefinition.managedlocaldatabase"
-		context="org.slizaa.neo4j.dbadapter.DbAdapterDsl.DbAdapterDefinition"
+		context="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.DbAdapterDefinition"
 		deleted="false" description="Defines a managed local database"
 		enabled="true" name="Managed Local Database">managed local database {
 		
@@ -23,7 +23,7 @@
 }</template>
 	<template autoinsert="true"
 		id="dbadapterdsl.build-in.dbadapterdefinition.unmanagedremotedatabase"	
-		context="org.slizaa.neo4j.dbadapter.DbAdapterDsl.DbAdapterDefinition"
+		context="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.DbAdapterDefinition"
 		deleted="false" description="Defines a unmanaged remote database"
 		enabled="true" name="Unmanaged Remote Database">unmanaged remote database {
 		

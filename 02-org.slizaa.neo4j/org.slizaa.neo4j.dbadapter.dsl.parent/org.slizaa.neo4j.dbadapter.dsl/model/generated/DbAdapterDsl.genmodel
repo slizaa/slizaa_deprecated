@@ -4,8 +4,8 @@
     modelPluginID="org.slizaa.neo4j.dbadapter.dsl" forceOverwrite="true" modelName="DbAdapterDsl"
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.12">
-  <genPackages prefix="DbAdapterDsl" basePackage="org.slizaa.neo4j.dbadapter" disposableProviderFactory="true"
-      fileExtensions="dbdef" ecorePackage="DbAdapterDsl.ecore#/">
+  <genPackages prefix="DbAdapterDsl" basePackage="org.slizaa.neo4j.dbadapter.dsl"
+      disposableProviderFactory="true" fileExtensions="dbdef" ecorePackage="DbAdapterDsl.ecore#/">
     <genClasses ecoreClass="DbAdapterDsl.ecore#//DbAdapterDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbAdapterDsl.ecore#//DbAdapterDefinition/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbAdapterDsl.ecore#//DbAdapterDefinition/description"/>

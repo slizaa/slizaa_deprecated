@@ -15,15 +15,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtend.lib,
  org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.slizaa.neo4j.dbadapter.dbAdapterDsl.util,
- org.slizaa.neo4j.dbadapter.scoping,
- org.slizaa.neo4j.dbadapter.services,
- org.slizaa.neo4j.dbadapter.dbAdapterDsl.impl,
- org.slizaa.neo4j.dbadapter.serializer,
- org.slizaa.neo4j.dbadapter.validation,
- org.slizaa.neo4j.dbadapter.parser.antlr,
- org.slizaa.neo4j.dbadapter,
- org.slizaa.neo4j.dbadapter.dbAdapterDsl,
- org.slizaa.neo4j.dbadapter.generator,
- org.slizaa.neo4j.dbadapter.parser.antlr.internal
+Export-Package: org.slizaa.neo4j.dbadapter.dsl.serializer,
+ org.slizaa.neo4j.dbadapter.dsl.parser.antlr,
+ org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl,
+ org.slizaa.neo4j.dbadapter.dsl.validation,
+ org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.util,
+ org.slizaa.neo4j.dbadapter.dsl.scoping,
+ org.slizaa.neo4j.dbadapter.dsl.services,
+ org.slizaa.neo4j.dbadapter.dsl,
+ org.slizaa.neo4j.dbadapter.dsl.generator,
+ org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.impl,
+ org.slizaa.neo4j.dbadapter.dsl.parser.antlr.internal
 Import-Package: org.apache.log4j

@@ -3,8 +3,8 @@
 <plugin>
 	<extension point="org.eclipse.emf.ecore.generated_package">
 		<package 
-			uri = "http://www.slizaa.org/neo4j/dbadapter/DbAdapterDsl"
-			class = "org.slizaa.neo4j.dbadapter.dbAdapterDsl.DbAdapterDslPackage"
+			uri = "http://www.slizaa.org/neo4j/dbadapter/dsl/DbAdapterDsl"
+			class = "org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.DbAdapterDslPackage"
 			genModel = "model/generated/DbAdapterDsl.genmodel" />
 	</extension>
 </plugin>

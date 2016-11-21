@@ -19,7 +19,7 @@ Require-Bundle: org.slizaa.neo4j.dbadapter.dsl,
  org.eclipse.xtext.xbase.lib
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.slizaa.neo4j.dbadapter.ui.quickfix,
- org.slizaa.neo4j.dbadapter.ui.contentassist,
- org.slizaa.neo4j.dbadapter.dsl.ui.internal
+Export-Package: org.slizaa.neo4j.dbadapter.dsl.ui.contentassist,
+ org.slizaa.neo4j.dbadapter.dsl.ui.internal,
+ org.slizaa.neo4j.dbadapter.dsl.ui.quickfix
 Bundle-Activator: org.slizaa.neo4j.dbadapter.dsl.ui.internal.DslActivator

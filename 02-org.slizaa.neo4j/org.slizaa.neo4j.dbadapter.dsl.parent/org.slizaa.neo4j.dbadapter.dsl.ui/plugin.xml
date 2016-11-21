@@ -4,48 +4,48 @@
 	<extension
 		point="org.eclipse.ui.editors">
 		<editor
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
 			extensions="dbdef"
-			id="org.slizaa.neo4j.dbadapter.DbAdapterDsl"
+			id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl"
 			name="DbAdapterDsl Editor">
 		</editor>
 	</extension>
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
 			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
 			<activeWhen>
 				<reference
-					definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened">
+					definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
 		<handler
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-			commandId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.validate">
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.validate">
 		<activeWhen>
 			<reference
-					definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened">
+					definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened">
 			</reference>
 		</activeWhen>
 		</handler>
 		<!-- copy qualified name -->
 		<handler
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
 			<activeWhen>
-				<reference definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened" />
+				<reference definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened" />
 			</activeWhen>
 		</handler>
 		<handler
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
 			<activeWhen>
 				<and>
-					<reference definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.XtextEditor.opened" />
+					<reference definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.XtextEditor.opened" />
 					<iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -54,22 +54,22 @@
 		</handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
-		<definition id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened">
+		<definition id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened">
 			<and>
 				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="org.slizaa.neo4j.dbadapter.DbAdapterDsl" 
+						value="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
 		</definition>
-		<definition id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.XtextEditor.opened">
+		<definition id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.XtextEditor.opened">
 			<and>
 				<reference definitionId="isXtextEditorActive"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="org.slizaa.neo4j.dbadapter.DbAdapterDsl" 
+						value="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
@@ -78,33 +78,33 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="org.slizaa.neo4j.dbadapter.DbAdapterDsl"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl"
 			name="DbAdapterDsl">
-			<keywordReference id="org.slizaa.neo4j.dbadapter.ui.keyword_DbAdapterDsl"/>
+			<keywordReference id="org.slizaa.neo4j.dbadapter.dsl.ui.keyword_DbAdapterDsl"/>
 		</page>
 		<page
-			category="org.slizaa.neo4j.dbadapter.DbAdapterDsl"
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-			id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.coloring"
+			category="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.coloring"
 			name="Syntax Coloring">
-			<keywordReference id="org.slizaa.neo4j.dbadapter.ui.keyword_DbAdapterDsl"/>
+			<keywordReference id="org.slizaa.neo4j.dbadapter.dsl.ui.keyword_DbAdapterDsl"/>
 		</page>
 		<page
-			category="org.slizaa.neo4j.dbadapter.DbAdapterDsl"
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-			id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.templates"
+			category="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.templates"
 			name="Templates">
-			<keywordReference id="org.slizaa.neo4j.dbadapter.ui.keyword_DbAdapterDsl"/>
+			<keywordReference id="org.slizaa.neo4j.dbadapter.dsl.ui.keyword_DbAdapterDsl"/>
 		</page>
 	</extension>
 	<extension
 			point="org.eclipse.ui.propertyPages">
 		<page
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="org.slizaa.neo4j.dbadapter.DbAdapterDsl"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl"
 			name="DbAdapterDsl">
-			<keywordReference id="org.slizaa.neo4j.dbadapter.ui.keyword_DbAdapterDsl"/>
+			<keywordReference id="org.slizaa.neo4j.dbadapter.dsl.ui.keyword_DbAdapterDsl"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -114,14 +114,14 @@
 	<extension
 		point="org.eclipse.ui.keywords">
 		<keyword
-			id="org.slizaa.neo4j.dbadapter.ui.keyword_DbAdapterDsl"
+			id="org.slizaa.neo4j.dbadapter.dsl.ui.keyword_DbAdapterDsl"
 			label="DbAdapterDsl"/>
 	</extension>
 	<extension
 		point="org.eclipse.ui.commands">
 	<command
 			description="Trigger expensive validation"
-			id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.validate"
+			id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.validate"
 			name="Validate">
 	</command>
 	<!-- copy qualified name -->
@@ -142,12 +142,12 @@
 		<menuContribution
 			locationURI="popup:#TextEditorContext?after=group.edit">
 			 <command
-				 commandId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.validate"
+				 commandId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.validate"
 				 style="push"
 				 tooltip="Trigger expensive validation">
 			<visibleWhen checkEnabled="false">
 				<reference
-					definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened">
+					definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened">
 				</reference>
 			</visibleWhen>
 		</command>
@@ -157,7 +157,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened" />
+					<reference definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -165,7 +165,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened" />
+					<reference definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -174,7 +174,7 @@
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
 					<and>
-						<reference definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.XtextEditor.opened" />
+						<reference definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -187,7 +187,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened">
+					<reference definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -195,11 +195,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
 			commandId="org.eclipse.xtext.ui.editor.FindReferences">
 			<activeWhen>
 				<reference
-					definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened">
+					definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -208,17 +208,17 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="dbdef">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
 		<resourceServiceProvider
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
 			uriExtension="dbdef">
 		</resourceServiceProvider>
 	</extension>
-	<!-- marker definitions for org.slizaa.neo4j.dbadapter.DbAdapterDsl -->
+	<!-- marker definitions for org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl -->
 	<extension
 			id="dbadapterdsl.check.fast"
 			name="DbAdapterDsl Problem"
@@ -242,25 +242,25 @@
 	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
 			fileExtensions="dbdef"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="org.slizaa.neo4j.dbadapter.DbAdapterDsl"
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.compiler.preferencePage"
+			category="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.compiler.preferencePage"
 			name="Compiler">
-			<keywordReference id="org.slizaa.neo4j.dbadapter.ui.keyword_DbAdapterDsl"/>
+			<keywordReference id="org.slizaa.neo4j.dbadapter.dsl.ui.keyword_DbAdapterDsl"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.ui.propertyPages">
 		<page
-			category="org.slizaa.neo4j.dbadapter.DbAdapterDsl"
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.compiler.propertyPage"
+			category="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.compiler.propertyPage"
 			name="Compiler">
-			<keywordReference id="org.slizaa.neo4j.dbadapter.ui.keyword_DbAdapterDsl"/>
+			<keywordReference id="org.slizaa.neo4j.dbadapter.dsl.ui.keyword_DbAdapterDsl"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -271,20 +271,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.OpenGeneratedCode"
+				id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.OpenGeneratedCode"
 				style="push">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened" />
+					<reference definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 			<activeWhen>
-				<reference definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened" />
+				<reference definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened" />
 			</activeWhen>
 		</handler>
 	</extension>
@@ -292,11 +292,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened">
+					definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -316,16 +316,16 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened"/>
+					<reference definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-	<!-- quickfix marker resolution generator for org.slizaa.neo4j.dbadapter.DbAdapterDsl -->
+	<!-- quickfix marker resolution generator for org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl -->
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
 			markerType="org.slizaa.neo4j.dbadapter.dsl.ui.dbadapterdsl.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
@@ -333,7 +333,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
 			markerType="org.slizaa.neo4j.dbadapter.dsl.ui.dbadapterdsl.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
@@ -341,7 +341,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
 			markerType="org.slizaa.neo4j.dbadapter.dsl.ui.dbadapterdsl.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
@@ -352,11 +352,11 @@
 	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened">
+					definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -368,7 +368,7 @@
 				style="push">
 				<visibleWhen checkEnabled="false">
 					<reference
-						definitionId="org.slizaa.neo4j.dbadapter.DbAdapterDsl.Editor.opened">
+						definitionId="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -376,28 +376,28 @@
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="org.slizaa.neo4j.dbadapter.DbAdapterDsl"
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.refactoring"
+			category="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.refactoring"
 			name="Refactoring">
-			<keywordReference id="org.slizaa.neo4j.dbadapter.ui.keyword_DbAdapterDsl"/>
+			<keywordReference id="org.slizaa.neo4j.dbadapter.dsl.ui.keyword_DbAdapterDsl"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
-		<viewer id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.compare.contentViewers"
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+		<viewer id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.compare.contentViewers"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="dbdef">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.compare.contentMergeViewers">
-		<viewer id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.compare.contentMergeViewers"
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+		<viewer id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.compare.contentMergeViewers"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="dbdef" label="DbAdapterDsl Compare">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.ui.editors.documentProviders">
-		<provider id="org.slizaa.neo4j.dbadapter.DbAdapterDsl.editors.documentProviders"
-			class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+		<provider id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.editors.documentProviders"
+			class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
 			extensions="dbdef">
 		</provider>
 	</extension>
@@ -410,8 +410,8 @@
 	
 	<!-- -->
 	<extension point="org.eclipse.core.runtime.adapters">
-      <factory adaptableType="org.eclipse.core.resources.IFile" class="org.slizaa.neo4j.dbadapter.ui.DbAdapterDslExecutableExtensionFactory:org.slizaa.neo4j.dbadapter.ui.util.ModelLoadingAdapter">
-         <adapter type="org.slizaa.neo4j.dbadapter.dbAdapterDsl.DbAdapterDefinition" />
+      <factory adaptableType="org.eclipse.core.resources.IFile" class="org.slizaa.neo4j.dbadapter.dsl.ui.DbAdapterDslExecutableExtensionFactory:org.slizaa.neo4j.dbadapter.dsl.ui.util.ModelLoadingAdapter">
+         <adapter type="org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.DbAdapterDefinition" />
       </factory>
-	</extension>
+	</extension>	
 </plugin>

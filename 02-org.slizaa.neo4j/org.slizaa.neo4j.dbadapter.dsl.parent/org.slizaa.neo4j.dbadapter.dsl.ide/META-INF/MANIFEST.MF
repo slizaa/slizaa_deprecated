@@ -9,6 +9,6 @@ Require-Bundle: org.slizaa.neo4j.dbadapter.dsl,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.slizaa.neo4j.dbadapter.ide.contentassist.antlr.internal,
- org.slizaa.neo4j.dbadapter.ide.contentassist.antlr
+Export-Package: org.slizaa.neo4j.dbadapter.dsl.ide.contentassist.antlr,
+ org.slizaa.neo4j.dbadapter.dsl.ide.contentassist.antlr.internal
 
