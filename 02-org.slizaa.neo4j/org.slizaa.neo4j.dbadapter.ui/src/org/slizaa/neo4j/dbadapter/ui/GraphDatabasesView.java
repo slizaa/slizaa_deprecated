@@ -10,6 +10,8 @@ import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorDescriptor;
@@ -17,6 +19,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
+import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
@@ -64,7 +67,7 @@ public class GraphDatabasesView {
         TreeViewer viewer = (TreeViewer) event.getViewer();
         IStructuredSelection thisSelection = (IStructuredSelection) event.getSelection();
         Object selectedNode = thisSelection.getFirstElement();
-        
+
         if (selectedNode instanceof Neo4jRestClient) {
           Neo4jRestClient restClient = (Neo4jRestClient) selectedNode;
           System.out.println(restClient.getDefiningResource());
@@ -75,6 +78,15 @@ public class GraphDatabasesView {
             e.printStackTrace();
           }
         }
+      }
+    });
+    _treeViewer.setFilters(new ViewerFilter() {
+      @Override
+      public boolean select(Viewer viewer, Object parentElement, Object element) {
+        if (element instanceof DbAdapterContainer) {
+          return !((DbAdapterContainer) element).getChildren().isEmpty();
+        }
+        return true;
       }
     });
 
@@ -108,14 +120,14 @@ public class GraphDatabasesView {
    * 
    * @param file
    *          - The file to open.
-   *          
-   * @throws PartInitException 
+   * 
+   * @throws PartInitException
    */
   public static void openFileInEditor(IFile file) throws PartInitException {
-    
+
     // Get the active page.
     IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-    
+
     // Figure out the default editor for the file type based on extension.
     IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
 
