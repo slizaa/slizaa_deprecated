@@ -15,15 +15,11 @@ public class ExtendedNeo4jRestClientItemProvider extends Neo4jRestClientItemProv
 
   @Override
   public Object getImage(Object object) {
-    
-    //
     if (((Neo4jRestClient) object).isActive()) {
-      return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClient"));
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClient_connected.png"));
     }
-    
-    //
     else {
-      return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClient_grayed"));
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClient.png"));
     }
   }
   

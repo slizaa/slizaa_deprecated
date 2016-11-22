@@ -15,15 +15,19 @@ public class ExtendedManagedNeo4jInstanceItemProvider extends ManagedNeo4jInstan
   
   @Override
   public Object getImage(Object object) {
-    
-    //
     if (((ManagedNeo4jInstance) object).isActive()) {
-      return overlayImage(object, getResourceLocator().getImage("full/obj16/ManagedNeo4jInstance"));
+      if (((ManagedNeo4jInstance) object).isStarted()) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/ManagedNeo4jInstance_running_connected.png"));
+      } else {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/ManagedNeo4jInstance_stopped_connected.png"));
+      }
     }
-    
-    //
     else {
-      return overlayImage(object, getResourceLocator().getImage("full/obj16/ManagedNeo4jInstance_grayed"));
+      if (((ManagedNeo4jInstance) object).isStarted()) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/ManagedNeo4jInstance_running.png"));
+      } else {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/ManagedNeo4jInstance_stopped.png"));
+      }
     }
   }
 
