@@ -87,10 +87,10 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     // process root, hierarchy and dependency queries
     StructureDescriptor structureDescriptor = mappingDescriptor.getStructureDescriptor();
     structureDescriptor.getTopLevelNodeQueries().getQueries().forEach(cypherQuery -> {
-      rootQueries.add(remoteRepository.executeCypherQuery(cypherQuery));
+      rootQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
     });
     structureDescriptor.getNodeHierarchyQueries().getQueries().forEach(cypherQuery -> {
-      hierachyQueries.add(remoteRepository.executeCypherQuery(cypherQuery));
+      hierachyQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
     });
 // TODO    
 //    structureDescriptor.getDependencyQueries().getSimpleDependencyQueries().forEach(dependencyMapping -> {

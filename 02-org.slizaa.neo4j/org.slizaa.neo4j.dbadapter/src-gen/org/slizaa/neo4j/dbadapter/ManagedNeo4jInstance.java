@@ -2,8 +2,6 @@
  */
 package org.slizaa.neo4j.dbadapter;
 
-import org.eclipse.debug.core.ILaunch;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -15,10 +13,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isRunning <em>Running</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isInProgress <em>In Progress</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isStarted <em>Started</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getStorageArea <em>Storage Area</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getDirectoriesToScan <em>Directories To Scan</em>}</li>
- *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getLaunch <em>Launch</em>}</li>
  * </ul>
  *
  * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance()
@@ -27,30 +25,56 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ManagedNeo4jInstance extends Neo4jRestClient {
   /**
-   * Returns the value of the '<em><b>Running</b></em>' attribute.
+   * Returns the value of the '<em><b>In Progress</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Running</em>' attribute isn't clear,
+   * If the meaning of the '<em>In Progress</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Running</em>' attribute.
-   * @see #setRunning(boolean)
-   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance_Running()
+   * @return the value of the '<em>In Progress</em>' attribute.
+   * @see #setInProgress(boolean)
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance_InProgress()
    * @model
    * @generated
    */
-  boolean isRunning();
+  boolean isInProgress();
 
   /**
-   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isRunning <em>Running</em>}' attribute.
+   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isInProgress <em>In Progress</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Running</em>' attribute.
-   * @see #isRunning()
+   * @param value the new value of the '<em>In Progress</em>' attribute.
+   * @see #isInProgress()
    * @generated
    */
-  void setRunning(boolean value);
+  void setInProgress(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Started</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Started</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Started</em>' attribute.
+   * @see #setStarted(boolean)
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance_Started()
+   * @model
+   * @generated
+   */
+  boolean isStarted();
+
+  /**
+   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isStarted <em>Started</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Started</em>' attribute.
+   * @see #isStarted()
+   * @generated
+   */
+  void setStarted(boolean value);
 
   /**
    * Returns the value of the '<em><b>Storage Area</b></em>' attribute.
@@ -95,30 +119,12 @@ public interface ManagedNeo4jInstance extends Neo4jRestClient {
   EList<String> getDirectoriesToScan();
 
   /**
-   * Returns the value of the '<em><b>Launch</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Launch</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Launch</em>' attribute.
-   * @see #setLaunch(ILaunch)
-   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance_Launch()
-   * @model dataType="org.slizaa.neo4j.dbadapter.ILaunch" transient="true"
-   * @generated
-   */
-  ILaunch getLaunch();
-
-  /**
-   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getLaunch <em>Launch</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Launch</em>' attribute.
-   * @see #getLaunch()
+   * @model kind="operation"
    * @generated
    */
-  void setLaunch(ILaunch value);
+  boolean isDatabaseInstallationAvailable();
 
   /**
    * <!-- begin-user-doc -->
@@ -159,5 +165,13 @@ public interface ManagedNeo4jInstance extends Neo4jRestClient {
    * @generated
    */
   void delete();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  void enrich();
 
 } // ManagedNeo4jInstance

@@ -424,13 +424,22 @@ public interface DbAdapterPackage extends EPackage {
   int MANAGED_NEO4J_INSTANCE__HIERARCHICAL_GRAPH = NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH;
 
   /**
-   * The feature id for the '<em><b>Running</b></em>' attribute.
+   * The feature id for the '<em><b>In Progress</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MANAGED_NEO4J_INSTANCE__RUNNING = NEO4J_REST_CLIENT_FEATURE_COUNT + 0;
+  int MANAGED_NEO4J_INSTANCE__IN_PROGRESS = NEO4J_REST_CLIENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Started</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE__STARTED = NEO4J_REST_CLIENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Storage Area</b></em>' attribute.
@@ -439,7 +448,7 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MANAGED_NEO4J_INSTANCE__STORAGE_AREA = NEO4J_REST_CLIENT_FEATURE_COUNT + 1;
+  int MANAGED_NEO4J_INSTANCE__STORAGE_AREA = NEO4J_REST_CLIENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Directories To Scan</b></em>' attribute list.
@@ -448,16 +457,7 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN = NEO4J_REST_CLIENT_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>Launch</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MANAGED_NEO4J_INSTANCE__LAUNCH = NEO4J_REST_CLIENT_FEATURE_COUNT + 3;
+  int MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN = NEO4J_REST_CLIENT_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Managed Neo4j Instance</em>' class.
@@ -559,13 +559,22 @@ public interface DbAdapterPackage extends EPackage {
   int MANAGED_NEO4J_INSTANCE___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER = NEO4J_REST_CLIENT___EXECUTE_CYPHER_QUERY__STRING_MAP_CONSUMER;
 
   /**
+   * The operation id for the '<em>Is Database Installation Available</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___IS_DATABASE_INSTALLATION_AVAILABLE = NEO4J_REST_CLIENT_OPERATION_COUNT + 0;
+
+  /**
    * The operation id for the '<em>Scan</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MANAGED_NEO4J_INSTANCE___SCAN = NEO4J_REST_CLIENT_OPERATION_COUNT + 0;
+  int MANAGED_NEO4J_INSTANCE___SCAN = NEO4J_REST_CLIENT_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Is Scanned</em>' operation.
@@ -574,7 +583,7 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MANAGED_NEO4J_INSTANCE___IS_SCANNED = NEO4J_REST_CLIENT_OPERATION_COUNT + 1;
+  int MANAGED_NEO4J_INSTANCE___IS_SCANNED = NEO4J_REST_CLIENT_OPERATION_COUNT + 2;
 
   /**
    * The operation id for the '<em>Start</em>' operation.
@@ -583,7 +592,7 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MANAGED_NEO4J_INSTANCE___START = NEO4J_REST_CLIENT_OPERATION_COUNT + 2;
+  int MANAGED_NEO4J_INSTANCE___START = NEO4J_REST_CLIENT_OPERATION_COUNT + 3;
 
   /**
    * The operation id for the '<em>Stop</em>' operation.
@@ -592,7 +601,7 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MANAGED_NEO4J_INSTANCE___STOP = NEO4J_REST_CLIENT_OPERATION_COUNT + 3;
+  int MANAGED_NEO4J_INSTANCE___STOP = NEO4J_REST_CLIENT_OPERATION_COUNT + 4;
 
   /**
    * The operation id for the '<em>Delete</em>' operation.
@@ -601,7 +610,16 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MANAGED_NEO4J_INSTANCE___DELETE = NEO4J_REST_CLIENT_OPERATION_COUNT + 4;
+  int MANAGED_NEO4J_INSTANCE___DELETE = NEO4J_REST_CLIENT_OPERATION_COUNT + 5;
+
+  /**
+   * The operation id for the '<em>Enrich</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE___ENRICH = NEO4J_REST_CLIENT_OPERATION_COUNT + 6;
 
   /**
    * The number of operations of the '<em>Managed Neo4j Instance</em>' class.
@@ -610,7 +628,7 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MANAGED_NEO4J_INSTANCE_OPERATION_COUNT = NEO4J_REST_CLIENT_OPERATION_COUNT + 5;
+  int MANAGED_NEO4J_INSTANCE_OPERATION_COUNT = NEO4J_REST_CLIENT_OPERATION_COUNT + 7;
 
   /**
    * The meta object id for the '{@link org.slizaa.neo4j.dbadapter.ContainerType <em>Container Type</em>}' enum.
@@ -966,15 +984,26 @@ public interface DbAdapterPackage extends EPackage {
   EClass getManagedNeo4jInstance();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isRunning <em>Running</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isInProgress <em>In Progress</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Running</em>'.
-   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isRunning()
+   * @return the meta object for the attribute '<em>In Progress</em>'.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isInProgress()
    * @see #getManagedNeo4jInstance()
    * @generated
    */
-  EAttribute getManagedNeo4jInstance_Running();
+  EAttribute getManagedNeo4jInstance_InProgress();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isStarted <em>Started</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Started</em>'.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isStarted()
+   * @see #getManagedNeo4jInstance()
+   * @generated
+   */
+  EAttribute getManagedNeo4jInstance_Started();
 
   /**
    * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getStorageArea <em>Storage Area</em>}'.
@@ -999,15 +1028,14 @@ public interface DbAdapterPackage extends EPackage {
   EAttribute getManagedNeo4jInstance_DirectoriesToScan();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getLaunch <em>Launch</em>}'.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isDatabaseInstallationAvailable() <em>Is Database Installation Available</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Launch</em>'.
-   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getLaunch()
-   * @see #getManagedNeo4jInstance()
+   * @return the meta object for the '<em>Is Database Installation Available</em>' operation.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isDatabaseInstallationAvailable()
    * @generated
    */
-  EAttribute getManagedNeo4jInstance_Launch();
+  EOperation getManagedNeo4jInstance__IsDatabaseInstallationAvailable();
 
   /**
    * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#scan() <em>Scan</em>}' operation.
@@ -1058,6 +1086,16 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    */
   EOperation getManagedNeo4jInstance__Delete();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#enrich() <em>Enrich</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Enrich</em>' operation.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#enrich()
+   * @generated
+   */
+  EOperation getManagedNeo4jInstance__Enrich();
 
   /**
    * Returns the meta object for enum '{@link org.slizaa.neo4j.dbadapter.ContainerType <em>Container Type</em>}'.
@@ -1383,12 +1421,20 @@ public interface DbAdapterPackage extends EPackage {
     EClass MANAGED_NEO4J_INSTANCE = eINSTANCE.getManagedNeo4jInstance();
 
     /**
-     * The meta object literal for the '<em><b>Running</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>In Progress</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MANAGED_NEO4J_INSTANCE__RUNNING = eINSTANCE.getManagedNeo4jInstance_Running();
+    EAttribute MANAGED_NEO4J_INSTANCE__IN_PROGRESS = eINSTANCE.getManagedNeo4jInstance_InProgress();
+
+    /**
+     * The meta object literal for the '<em><b>Started</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MANAGED_NEO4J_INSTANCE__STARTED = eINSTANCE.getManagedNeo4jInstance_Started();
 
     /**
      * The meta object literal for the '<em><b>Storage Area</b></em>' attribute feature.
@@ -1407,12 +1453,12 @@ public interface DbAdapterPackage extends EPackage {
     EAttribute MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN = eINSTANCE.getManagedNeo4jInstance_DirectoriesToScan();
 
     /**
-     * The meta object literal for the '<em><b>Launch</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Is Database Installation Available</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MANAGED_NEO4J_INSTANCE__LAUNCH = eINSTANCE.getManagedNeo4jInstance_Launch();
+    EOperation MANAGED_NEO4J_INSTANCE___IS_DATABASE_INSTALLATION_AVAILABLE = eINSTANCE.getManagedNeo4jInstance__IsDatabaseInstallationAvailable();
 
     /**
      * The meta object literal for the '<em><b>Scan</b></em>' operation.
@@ -1453,6 +1499,14 @@ public interface DbAdapterPackage extends EPackage {
      * @generated
      */
     EOperation MANAGED_NEO4J_INSTANCE___DELETE = eINSTANCE.getManagedNeo4jInstance__Delete();
+
+    /**
+     * The meta object literal for the '<em><b>Enrich</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation MANAGED_NEO4J_INSTANCE___ENRICH = eINSTANCE.getManagedNeo4jInstance__Enrich();
 
     /**
      * The meta object literal for the '{@link org.slizaa.neo4j.dbadapter.ContainerType <em>Container Type</em>}' enum.

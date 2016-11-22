@@ -1,7 +1,8 @@
-package org.slizaa.neo4j.dbadapter.ui.internal.action;
+package org.slizaa.neo4j.dbadapter.internal;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
@@ -22,6 +24,8 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
+import org.slizaa.neo4j.dbadapter.impl.ExtendedManagedNeo4JInstanceImpl;
+import org.slizaa.neo4j.dbadapter.impl.ILauncherService;
 
 /**
  * <p>
@@ -29,7 +33,7 @@ import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class LauncherService {
+public class LauncherService implements ILauncherService {
 
   /** - */
   private ILaunchManager                     _manager;
@@ -87,6 +91,7 @@ public class LauncherService {
    * <p>
    * </p>
    */
+  @Override
   public boolean isJQAssistantInstalled() {
     return getJQAssistantBundle() != null;
   }
@@ -110,11 +115,20 @@ public class LauncherService {
   }
 
   /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isScanned(ManagedNeo4jInstance managedInstance) {
+    return new File(managedInstance.getStorageArea(), "neostore").exists();
+  }
+
+  /**
    * <p>
    * </p>
    * 
    * @throws IOException
    */
+  @Override
   public void scan(ManagedNeo4jInstance managedInstance) throws Exception {
 
     //
@@ -135,16 +149,35 @@ public class LauncherService {
    * @return
    * @throws Exception
    */
-  public ILaunch launch(ManagedNeo4jInstance managedInstance) throws Exception {
+  @Override
+  public void start(ManagedNeo4jInstance managedInstance) throws Exception {
 
     //
     checkNotNull(managedInstance);
 
     //
-    return execute("jQAssistant server", managedInstance, workingCopy -> {
+    execute("jQAssistant server", managedInstance, workingCopy -> {
       workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS",
           String.format("server -s %s", managedInstance.getStorageArea()));
     });
+
+    //
+    managedInstance.setStarted(true);
+  }
+  
+  @Override
+  public void stop(ManagedNeo4jInstance managedInstance) {
+
+    //
+    checkNotNull(managedInstance);
+
+    //
+    try {
+      ((ExtendedManagedNeo4JInstanceImpl)managedInstance).getLaunch().terminate();
+    } catch (DebugException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -155,12 +188,13 @@ public class LauncherService {
    * @return
    * @throws Exception
    */
-  public ILaunch enrich(ManagedNeo4jInstance managedInstance) throws Exception {
+  @Override
+  public void enrich(ManagedNeo4jInstance managedInstance) throws Exception {
 
     //
     checkNotNull(managedInstance);
 
-    return execute("Enrich", managedInstance, workingCopy -> {
+    execute("Enrich", managedInstance, workingCopy -> {
       workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS",
           String.format("analyze -concepts classpath:Resolve -s %s", managedInstance.getStorageArea()));
     });
@@ -176,7 +210,7 @@ public class LauncherService {
    * @return
    * @throws Exception
    */
-  private ILaunch execute(String name, ManagedNeo4jInstance managedInstance,
+  private void execute(String name, ManagedNeo4jInstance managedInstance,
       Consumer<ILaunchConfigurationWorkingCopy> consumer) throws Exception {
 
     //
@@ -184,6 +218,9 @@ public class LauncherService {
     checkNotNull(name);
     checkNotNull(consumer);
 
+    //
+    managedInstance.setInProgress(true);
+    
     //
     deleteLaunchConfiguration(name);
 
@@ -201,13 +238,12 @@ public class LauncherService {
         getJQAssistantHomeDirectory() + "\\bin\\" + exec);
 
     workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY", getJQAssistantHomeDirectory());
-    
+
     consumer.accept(workingCopy);
 
     ILaunch launch = workingCopy.launch(ILaunchManager.RUN_MODE, new NullProgressMonitor());
-    managedInstance.setLaunch(launch);
+    ((ExtendedManagedNeo4JInstanceImpl) managedInstance).setLaunch(launch);
     _launch2managedNeo4jInstanceMap.put(launch, managedInstance);
-    return launch;
   }
 
   /**
@@ -283,8 +319,10 @@ public class LauncherService {
       for (ILaunch iLaunch : launches) {
         ManagedNeo4jInstance managedNeo4jInstance = _launch2managedNeo4jInstanceMap.remove(iLaunch);
         if (managedNeo4jInstance != null) {
-          managedNeo4jInstance.setLaunch(null);
+          ((ExtendedManagedNeo4JInstanceImpl) managedNeo4jInstance).setLaunch(null);
         }
+        managedNeo4jInstance.setStarted(false);
+        managedNeo4jInstance.setInProgress(false);
         try {
           iLaunch.getLaunchConfiguration().delete();
         } catch (CoreException e) {

@@ -6,6 +6,8 @@ import javax.inject.Inject;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -14,6 +16,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -37,7 +40,7 @@ public class GraphDatabasesView {
   private MPart              part;
 
   @Inject
-  private DbAdapterRegistry  dbAdapterRegistry;
+  private DbAdapterRegistry  _dbAdapterRegistry;
 
   /** - */
   private TreeViewer         _treeViewer;
@@ -58,19 +61,16 @@ public class GraphDatabasesView {
     parent.setLayout(layout);
 
     //
-    _treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent, dbAdapterRegistry);
+    _treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent, _dbAdapterRegistry);
     _treeViewer.expandAll();
     _treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
       @Override
       public void doubleClick(DoubleClickEvent event) {
-        TreeViewer viewer = (TreeViewer) event.getViewer();
         IStructuredSelection thisSelection = (IStructuredSelection) event.getSelection();
         Object selectedNode = thisSelection.getFirstElement();
-
         if (selectedNode instanceof Neo4jRestClient) {
           Neo4jRestClient restClient = (Neo4jRestClient) selectedNode;
-          System.out.println(restClient.getDefiningResource());
           try {
             openFileInEditor(restClient.getDefiningResource());
           } catch (PartInitException e) {
@@ -78,6 +78,17 @@ public class GraphDatabasesView {
             e.printStackTrace();
           }
         }
+      }
+    });
+    _dbAdapterRegistry.eAdapters().add(new EContentAdapter() {
+      @Override
+      public void notifyChanged(Notification msg) {
+        Display.getDefault().asyncExec(new Runnable() {
+          public void run() {
+            _treeViewer.refresh();
+            _treeViewer.expandAll();
+          }
+        });
       }
     });
     _treeViewer.setFilters(new ViewerFilter() {

@@ -3,7 +3,6 @@ package org.slizaa.neo4j.dbadapter.ui.internal.action;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
-import org.slizaa.neo4j.dbadapter.ui.internal.Activator;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
 /**
@@ -41,7 +40,7 @@ public abstract class AbstractManagedInstanceActionContribution
   @Override
   public boolean isEnabled(Object selectedObject) {
     ManagedNeo4jInstance managedInstance = (ManagedNeo4jInstance) selectedObject;
-    return Activator.getDefault().getLauncherService().isJQAssistantInstalled()
+    return managedInstance.isDatabaseInstallationAvailable()
         && onIsEnabled((ManagedNeo4jInstance) selectedObject);
   }
 

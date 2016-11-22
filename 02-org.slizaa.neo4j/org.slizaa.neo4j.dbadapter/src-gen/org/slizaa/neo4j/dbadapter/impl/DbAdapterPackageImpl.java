@@ -427,7 +427,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getManagedNeo4jInstance_Running() {
+  public EAttribute getManagedNeo4jInstance_InProgress() {
     return (EAttribute)managedNeo4jInstanceEClass.getEStructuralFeatures().get(0);
   }
 
@@ -436,7 +436,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getManagedNeo4jInstance_StorageArea() {
+  public EAttribute getManagedNeo4jInstance_Started() {
     return (EAttribute)managedNeo4jInstanceEClass.getEStructuralFeatures().get(1);
   }
 
@@ -445,7 +445,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getManagedNeo4jInstance_DirectoriesToScan() {
+  public EAttribute getManagedNeo4jInstance_StorageArea() {
     return (EAttribute)managedNeo4jInstanceEClass.getEStructuralFeatures().get(2);
   }
 
@@ -454,7 +454,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getManagedNeo4jInstance_Launch() {
+  public EAttribute getManagedNeo4jInstance_DirectoriesToScan() {
     return (EAttribute)managedNeo4jInstanceEClass.getEStructuralFeatures().get(3);
   }
 
@@ -463,7 +463,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getManagedNeo4jInstance__Scan() {
+  public EOperation getManagedNeo4jInstance__IsDatabaseInstallationAvailable() {
     return managedNeo4jInstanceEClass.getEOperations().get(0);
   }
 
@@ -472,7 +472,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getManagedNeo4jInstance__IsScanned() {
+  public EOperation getManagedNeo4jInstance__Scan() {
     return managedNeo4jInstanceEClass.getEOperations().get(1);
   }
 
@@ -481,7 +481,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getManagedNeo4jInstance__Start() {
+  public EOperation getManagedNeo4jInstance__IsScanned() {
     return managedNeo4jInstanceEClass.getEOperations().get(2);
   }
 
@@ -490,7 +490,7 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getManagedNeo4jInstance__Stop() {
+  public EOperation getManagedNeo4jInstance__Start() {
     return managedNeo4jInstanceEClass.getEOperations().get(3);
   }
 
@@ -499,8 +499,26 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getManagedNeo4jInstance__Delete() {
+  public EOperation getManagedNeo4jInstance__Stop() {
     return managedNeo4jInstanceEClass.getEOperations().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getManagedNeo4jInstance__Delete() {
+    return managedNeo4jInstanceEClass.getEOperations().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getManagedNeo4jInstance__Enrich() {
+    return managedNeo4jInstanceEClass.getEOperations().get(6);
   }
 
   /**
@@ -624,15 +642,17 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
     createEReference(dbAdapterContainerEClass, DB_ADAPTER_CONTAINER__CHILDREN);
 
     managedNeo4jInstanceEClass = createEClass(MANAGED_NEO4J_INSTANCE);
-    createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__RUNNING);
+    createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__IN_PROGRESS);
+    createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__STARTED);
     createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__STORAGE_AREA);
     createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN);
-    createEAttribute(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE__LAUNCH);
+    createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___IS_DATABASE_INSTALLATION_AVAILABLE);
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___SCAN);
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___IS_SCANNED);
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___START);
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___STOP);
     createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___DELETE);
+    createEOperation(managedNeo4jInstanceEClass, MANAGED_NEO4J_INSTANCE___ENRICH);
 
     // Create enums
     containerTypeEEnum = createEEnum(CONTAINER_TYPE);
@@ -767,10 +787,12 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
     initEReference(getDbAdapterContainer_Children(), this.getNeo4jRestClient(), this.getNeo4jRestClient_Parent(), "children", null, 0, -1, DbAdapterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(managedNeo4jInstanceEClass, ManagedNeo4jInstance.class, "ManagedNeo4jInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getManagedNeo4jInstance_Running(), ecorePackage.getEBoolean(), "running", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getManagedNeo4jInstance_InProgress(), ecorePackage.getEBoolean(), "inProgress", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getManagedNeo4jInstance_Started(), ecorePackage.getEBoolean(), "started", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getManagedNeo4jInstance_StorageArea(), ecorePackage.getEString(), "storageArea", null, 0, 1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getManagedNeo4jInstance_DirectoriesToScan(), ecorePackage.getEString(), "directoriesToScan", null, 1, -1, ManagedNeo4jInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getManagedNeo4jInstance_Launch(), this.getILaunch(), "launch", null, 0, 1, ManagedNeo4jInstance.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEOperation(getManagedNeo4jInstance__IsDatabaseInstallationAvailable(), ecorePackage.getEBoolean(), "isDatabaseInstallationAvailable", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEOperation(getManagedNeo4jInstance__Scan(), null, "scan", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -781,6 +803,8 @@ public class DbAdapterPackageImpl extends EPackageImpl implements DbAdapterPacka
     initEOperation(getManagedNeo4jInstance__Stop(), null, "stop", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEOperation(getManagedNeo4jInstance__Delete(), null, "delete", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+    initEOperation(getManagedNeo4jInstance__Enrich(), null, "enrich", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(containerTypeEEnum, ContainerType.class, "ContainerType");

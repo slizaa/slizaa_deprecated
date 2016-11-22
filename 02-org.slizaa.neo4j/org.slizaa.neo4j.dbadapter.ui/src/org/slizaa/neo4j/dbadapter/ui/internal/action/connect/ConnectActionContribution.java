@@ -1,6 +1,7 @@
 package org.slizaa.neo4j.dbadapter.ui.internal.action.connect;
 
 import org.osgi.service.component.annotations.Component;
+import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
@@ -44,6 +45,11 @@ public class ConnectActionContribution implements ISlizaaActionContribution {
     //
     Neo4jRestClient restClient = (Neo4jRestClient) selectedObject;
 
+    //
+    if (restClient instanceof ManagedNeo4jInstance && !((ManagedNeo4jInstance)restClient).isStarted()) {
+      return false;
+    }
+    
     //
     if (restClient.isActive() && restClient.getHierarchicalGraph() != null) {
       return false;

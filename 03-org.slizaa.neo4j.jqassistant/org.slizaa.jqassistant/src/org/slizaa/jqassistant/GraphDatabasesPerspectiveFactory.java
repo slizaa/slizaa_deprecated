@@ -3,6 +3,7 @@ package org.slizaa.jqassistant;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
+import org.eclipse.ui.console.IConsoleConstants;
 
 /**
  * <p>
@@ -54,6 +55,7 @@ public class GraphDatabasesPerspectiveFactory implements IPerspectiveFactory {
     // lower middle
     folder = layout.createFolder(FOLDER_LOWER_MIDDLE, IPageLayout.BOTTOM, 0.5f, IPageLayout.ID_EDITOR_AREA);
     folder.addView(IPageLayout.ID_PROBLEM_VIEW);
+    folder.addView(IConsoleConstants.ID_CONSOLE_VIEW);
 
     //
     addViewShortCuts(layout);

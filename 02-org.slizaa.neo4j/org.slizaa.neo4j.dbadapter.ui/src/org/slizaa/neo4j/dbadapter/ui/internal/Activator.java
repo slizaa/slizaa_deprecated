@@ -5,7 +5,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.slizaa.neo4j.dbadapter.ui.internal.action.LauncherService;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -17,9 +16,6 @@ public class Activator extends AbstractUIPlugin {
 
   // The shared instance
   private static Activator       _plugin;
-
-  /** - */
-  private LauncherService        _launcherService;
 
   //
   private ComposedAdapterFactory _adapterFactory;
@@ -46,21 +42,7 @@ public class Activator extends AbstractUIPlugin {
    */
   public void stop(BundleContext context) throws Exception {
     _plugin = null;
-    if (_launcherService != null) {
-      _launcherService.dispose();
-    }
     super.stop(context);
-  }
-
-  public LauncherService getLauncherService() {
-
-    //
-    if (_launcherService == null) {
-      _launcherService = new LauncherService();
-      _launcherService.init();
-    }
-
-    return _launcherService;
   }
 
   /**

@@ -37,7 +37,7 @@ import com.google.gson.JsonObject;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class Neo4jClientTrait {
+class Neo4jClientTrait {
 
   /** - */
   private Neo4JRemoteServiceRestApi _cypherQueryService;
@@ -59,8 +59,9 @@ public class Neo4jClientTrait {
         new ClientConfig().register(new GsonProvider<>()), Neo4JRemoteServiceRestApi.class);
   }
 
+  @SuppressWarnings("deprecation")
   public void setActive(boolean newActive) {
-    
+
     //
     if (newActive) {
       if (_neo4jRestClient.getParent() != null && _neo4jRestClient.getParent().getParent() != null) {
@@ -71,11 +72,11 @@ public class Neo4jClientTrait {
         _neo4jRestClient.getParent().getParent().setActiveDbAdapter(null);
       }
     }
-    
+
     //
     _neo4jRestClient.getDefiningResource().setReadOnly(newActive);
   }
-  
+
   /**
    * <p>
    * </p>

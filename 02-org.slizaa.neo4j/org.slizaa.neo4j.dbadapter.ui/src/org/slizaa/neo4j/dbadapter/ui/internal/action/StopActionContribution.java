@@ -16,8 +16,7 @@ public class StopActionContribution extends AbstractManagedInstanceActionContrib
    */
   @Override
   protected boolean onIsEnabled(ManagedNeo4jInstance managedNeo4jInstance) {
-    return managedNeo4jInstance.isScanned() && managedNeo4jInstance.getLaunch() != null
-        && "jQAssistant server".equals(managedNeo4jInstance.getLaunch().getLaunchConfiguration().getName());
+    return managedNeo4jInstance.isScanned() && managedNeo4jInstance.isStarted();
   }
 
   /**
@@ -25,6 +24,6 @@ public class StopActionContribution extends AbstractManagedInstanceActionContrib
    */
   @Override
   protected void onExecute(ManagedNeo4jInstance managedNeo4jInstance) throws Exception {
-    managedNeo4jInstance.getLaunch().terminate();
+    managedNeo4jInstance.stop();
   }
 }

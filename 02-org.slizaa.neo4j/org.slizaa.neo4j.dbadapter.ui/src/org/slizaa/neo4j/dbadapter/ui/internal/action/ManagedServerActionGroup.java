@@ -24,7 +24,7 @@ public class ManagedServerActionGroup implements ISlizaaActionGroupContribution 
    */
   @Override
   public int getRanking() {
-    return 0;
+    return 500;
   }
 
   @Override

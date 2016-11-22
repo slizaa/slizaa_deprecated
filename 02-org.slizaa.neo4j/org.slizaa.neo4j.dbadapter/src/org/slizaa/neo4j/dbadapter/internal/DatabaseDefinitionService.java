@@ -1,5 +1,6 @@
 package org.slizaa.neo4j.dbadapter.internal;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -10,6 +11,7 @@ import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -18,17 +20,20 @@ import org.osgi.service.component.annotations.Reference;
 import org.slizaa.neo4j.dbadapter.ContainerType;
 import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
-import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.DbAdapterDefinition;
 import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.ManagedLocalDatabase;
 import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.UnmanagedRemoteDatabase;
+import org.slizaa.neo4j.dbadapter.impl.ExtendedManagedNeo4JInstanceImpl;
 
 @Component
 public class DatabaseDefinitionService {
 
   /** - */
   private DbAdapterRegistry _dbAdapterRegistry;
+
+  /** - */
+  private LauncherService   _launcherService;
 
   /**
    * <p>
@@ -57,6 +62,10 @@ public class DatabaseDefinitionService {
    */
   @Activate
   protected void init() {
+
+    //
+    _launcherService = new LauncherService();
+    _launcherService.init();
 
     //
     IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
@@ -110,7 +119,7 @@ public class DatabaseDefinitionService {
 
   @Deactivate
   protected void dispose() {
-
+    _launcherService.dispose();
   }
 
   /**
@@ -230,19 +239,27 @@ public class DatabaseDefinitionService {
     //
     if (restClient != null) {
       restClient.setName(managedLocalDatabase.getName());
+      // TODO PATHES -> LAZY
       restClient.setBaseURI("http://localhost:" + managedLocalDatabase.getPort());
     }
     //
     else {
-      ManagedNeo4jInstance managedNeo4jInstance = DbAdapterFactory.eINSTANCE.createManagedNeo4jInstance();
+
+      IContainer container = definingFile.getParent();
+
+      ExtendedManagedNeo4JInstanceImpl managedNeo4jInstance = (ExtendedManagedNeo4JInstanceImpl) DbAdapterFactory.eINSTANCE.createManagedNeo4jInstance();
+      managedNeo4jInstance.setLauncherService(_launcherService);
       managedNeo4jInstance.setBaseURI("http://localhost:" + managedLocalDatabase.getPort() + "/");
       managedNeo4jInstance.setName(managedLocalDatabase.getName());
-      managedNeo4jInstance.setRunning(false);
-      managedNeo4jInstance.setStorageArea(managedLocalDatabase.getStorage());
+      managedNeo4jInstance.setStarted(false);
+      managedNeo4jInstance
+          .setStorageArea(container.getFile(new Path(managedLocalDatabase.getStorage())).getRawLocation().toOSString());
       managedNeo4jInstance.setDefiningResource(definingFile);
 
       for (String file : managedLocalDatabase.getFiles()) {
-        managedNeo4jInstance.getDirectoriesToScan().add(file);
+        // TODO PATHES -> LAZY
+        managedNeo4jInstance.getDirectoriesToScan()
+            .add(container.getFile(new Path(file)).getRawLocation().toOSString());
       }
 
       _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren().add(managedNeo4jInstance);

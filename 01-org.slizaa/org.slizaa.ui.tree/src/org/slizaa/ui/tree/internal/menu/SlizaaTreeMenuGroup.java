@@ -22,9 +22,6 @@ public class SlizaaTreeMenuGroup implements ISlizaaTreeMenuPart {
   private List<ISlizaaTreeMenuPart>      _menuEntries;
 
   /** - */
-  private boolean                        _isSubMenu;
-
-  /** - */
   private String                         _id;
 
   /**
@@ -65,11 +62,7 @@ public class SlizaaTreeMenuGroup implements ISlizaaTreeMenuPart {
   }
 
   public boolean isSubMenu() {
-    return _isSubMenu;
-  }
-
-  public void setSubMenu(boolean isSubMenu) {
-    this._isSubMenu = isSubMenu;
+    return _actionGroupContribution != null ? _actionGroupContribution.isSubMenu() : false;
   }
 
   /**
