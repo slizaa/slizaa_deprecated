@@ -50,7 +50,7 @@
         upperBound="-1" eType="#//NodeVisualizationDefinition" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NodeVisualizationDefinition">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//Function"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Function"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="labelProperties" eType="#//LabelProperties"
         containment="true"/>
@@ -69,23 +69,26 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LabelProperties">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="textLabel" eType="#//SimpleExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textLabel" eType="#//Expression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="baseImage" eType="#//SimpleExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="baseImage" eType="#//Expression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="overlayImageTopLeft" eType="#//SimpleExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="overlayImageTopLeft" eType="#//Expression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="overlayImageTopRight" eType="#//SimpleExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="overlayImageTopRight" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="overlayImageBottomLeft"
-        eType="#//SimpleExpression" containment="true"/>
+        eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="overlayImageBottomRight"
-        eType="#//SimpleExpression" containment="true"/>
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//SimpleExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
-        eType="#//SimpleExpression" containment="true"/>
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringConstant" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

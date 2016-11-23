@@ -14,7 +14,7 @@ MetaInformation:
 	('description' description=STRING)?);
 
 StructureDescriptor:
-	{StructureDescriptor} 'structureDefinition' '{'
+	{StructureDescriptor} 'structure' '{'
 	(topLevelNodeQueries=TopLevelNodesQueries? &
 	(nodeHierarchyQueries=NodeHierarchyQueries)? &
 	(dependencyQueries=DependencyQueries)?)
@@ -49,12 +49,12 @@ SimpleDependencyQueries:
 	'}';
 
 VisualizationDescriptor:
-	{VisualizationDescriptor} 'visualizationDefinition' '{'
+	{VisualizationDescriptor} 'visualization' '{'
 	(nodeVisualizationDefinition+=NodeVisualizationDefinition)*
 	'}';
 
 NodeVisualizationDefinition:
-	'node' function=Function '{'
+	'node' condition=Function '{'
 	labelProperties=LabelProperties
 	switch=labelSwitch?
 	'}';
@@ -68,16 +68,16 @@ LabelCase:
 	case=STRING ':' '{' labelProperties=LabelProperties '}';
 
 LabelProperties:
-	{LabelProperties} (('textLabel' textLabel=SimpleExpression)? & ('baseImage' baseImage=SimpleExpression)? &
-	('overlayImageTopLeft' overlayImageTopLeft=SimpleExpression)? & ('overlayImageTopRight'
-	overlayImageTopRight=SimpleExpression)? & ('overlayImageBottomLeft' overlayImageBottomLeft=SimpleExpression)? &
-	('overlayImageBottomRight' overlayImageBottomRight=SimpleExpression)?);
+	{LabelProperties} (('textLabel' textLabel=Expression)? & ('baseImage' baseImage=Expression)? &
+	('overlayImageTopLeft' overlayImageTopLeft=Expression)? & ('overlayImageTopRight'
+	overlayImageTopRight=Expression)? & ('overlayImageBottomLeft' overlayImageBottomLeft=Expression)? &
+	('overlayImageBottomRight' overlayImageBottomRight=Expression)?);
 
-SimpleExpression:
-	{SimpleExpression} STRING | Function;
+Expression:
+	{StringConstant} value=STRING  | Function;
 
 Function:
-	name=ID '(' parameters+=SimpleExpression (',' parameters+=SimpleExpression)* ')';
+	name=ID '(' parameters+=Expression (',' parameters+=Expression)* ')';
 
 QualifiedName:
 	ID ('.' ID)*;

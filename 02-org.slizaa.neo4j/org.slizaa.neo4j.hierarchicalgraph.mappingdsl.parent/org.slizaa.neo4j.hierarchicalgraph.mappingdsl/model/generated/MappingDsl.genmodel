@@ -41,7 +41,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MappingDsl.ecore#//VisualizationDescriptor/nodeVisualizationDefinition"/>
     </genClasses>
     <genClasses ecoreClass="MappingDsl.ecore#//NodeVisualizationDefinition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MappingDsl.ecore#//NodeVisualizationDefinition/function"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MappingDsl.ecore#//NodeVisualizationDefinition/condition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MappingDsl.ecore#//NodeVisualizationDefinition/labelProperties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MappingDsl.ecore#//NodeVisualizationDefinition/switch"/>
     </genClasses>
@@ -61,10 +61,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MappingDsl.ecore#//LabelProperties/overlayImageBottomLeft"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MappingDsl.ecore#//LabelProperties/overlayImageBottomRight"/>
     </genClasses>
-    <genClasses ecoreClass="MappingDsl.ecore#//SimpleExpression"/>
+    <genClasses ecoreClass="MappingDsl.ecore#//Expression"/>
     <genClasses ecoreClass="MappingDsl.ecore#//Function">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MappingDsl.ecore#//Function/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MappingDsl.ecore#//Function/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="MappingDsl.ecore#//StringConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MappingDsl.ecore#//StringConstant/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
