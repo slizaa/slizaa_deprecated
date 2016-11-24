@@ -4,9 +4,8 @@
 
 	<parent>
 		<groupId>org.slizaa</groupId>
-		<artifactId>org.slizaa.parent</artifactId>
+		<artifactId>org.slizaa.neo4j.parent</artifactId>
 		<version>0.0.4-SNAPSHOT</version>
-		<relativePath>../../00-releng/org.slizaa.parent/pom.xml</relativePath>
 	</parent>
 
 	<artifactId>org.slizaa.neo4j.hierarchicalgraph.ui</artifactId>

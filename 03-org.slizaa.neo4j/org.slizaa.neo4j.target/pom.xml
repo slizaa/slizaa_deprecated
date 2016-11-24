@@ -8,6 +8,7 @@
 		<version>0.0.4-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>org.slizaa.neo4j.workbenchmodel</artifactId>
-	<packaging>eclipse-plugin</packaging>
+	<artifactId>org.slizaa.neo4j.target</artifactId>
+	<packaging>eclipse-target-definition</packaging>
+
 </project>

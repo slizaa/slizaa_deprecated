@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.slizaa</groupId>
-	<artifactId>org.slizaa.neo4j</artifactId>
+	<artifactId>org.slizaa.neo4j.parent</artifactId>
 	<version>0.0.4-SNAPSHOT</version>
-	
+
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>org.slizaa.neo4j.target</module>
+	
 		<module>org.slizaa.neo4j.dbadapter</module>
 		<module>org.slizaa.neo4j.dbadapter.edit</module>
 		<module>org.slizaa.neo4j.dbadapter.test</module>
@@ -22,8 +24,105 @@
 		<module>org.slizaa.neo4j.hierarchicalgraph.ui</module>
 		<module>org.slizaa.neo4j.testfwk</module>
 		<module>org.slizaa.neo4j.testfwk.dbserver</module>
+		<module>org.slizaa.neo4j.ui.discovery</module>
 		<module>org.slizaa.neo4j.workbenchmodel</module>
 		<module>org.slizaa.neo4j.workbenchmodel.edit</module>
 	</modules>
+
+	<!-- tycho requires maven >= 3.0 -->
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+
+	<properties>
+		<tycho-version>0.24.0</tycho-version>
+		<xtend-version>2.10.0</xtend-version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- enable tycho build extension -->
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+			        <pomDependencies>consider</pomDependencies>
+					<target>
+						<artifact>
+							<groupId>org.slizaa</groupId>
+							<artifactId>org.slizaa.target</artifactId>
+							<version>${project.version}</version>
+						</artifact>
+					</target>
+					<filters>
+						<filter>
+							<type>eclipse-plugin</type>
+							<id>org.eclipse.jdt.core</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>eclipse-plugin</type>
+							<id>org.eclipse.jdt.core.manipulation</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>eclipse-plugin</type>
+							<id>org.eclipse.jdt.launching</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>eclipse-plugin</type>
+							<id>org.eclipse.jdt.ui</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>eclipse-plugin</type>
+							<id>org.eclipse.emf.codegen</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>eclipse-plugin</type>
+							<id>org.eclipse.emf.codegen.ecore</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>eclipse-plugin</type>
+							<id>org.eclipse.emf.ecore.edit</id>
+							<removeAll />
+						</filter>
+						<filter>
+							<type>eclipse-plugin</type>
+							<id>org.eclipse.emf.ecore.editor</id>
+							<removeAll />
+						</filter>
+					</filters>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
