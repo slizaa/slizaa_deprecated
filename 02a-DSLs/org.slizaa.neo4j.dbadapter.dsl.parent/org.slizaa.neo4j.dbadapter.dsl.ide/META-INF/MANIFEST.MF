@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.slizaa.neo4j.dbadapter.dsl.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.slizaa.neo4j.dbadapter.dsl.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.slizaa.neo4j.dbadapter.dsl,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.slizaa.neo4j.dbadapter.dsl.ide.contentassist.antlr,
+ org.slizaa.neo4j.dbadapter.dsl.ide.contentassist.antlr.internal
+
