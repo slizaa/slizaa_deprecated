@@ -10,19 +10,16 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>org.slizaa.neo4j.hierarchicalgraph</module>
-		<module>org.slizaa.neo4j.hierarchicalgraph.edit</module>
-		<module>org.slizaa.neo4j.hierarchicalgraph.mapping</module>
-		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.edit</module>
-		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.service</module>
-		<!-- module>org.slizaa.neo4j.hierarchicalgraph.mapping.service.test</module -->
-		<module>org.slizaa.neo4j.hierarchicalgraph.test</module>
-		<module>org.slizaa.neo4j.hierarchicalgraph.ui</module>
-		<module>org.slizaa.neo4j.ui.discovery</module>
 		<module>org.slizaa.neo4j.dbadapter</module>
 		<module>org.slizaa.neo4j.dbadapter.edit</module>
 		<module>org.slizaa.neo4j.dbadapter.test</module>
 		<module>org.slizaa.neo4j.dbadapter.ui</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.edit</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.service</module>
+		<!-- module>org.slizaa.neo4j.hierarchicalgraph.mapping.service.test</module -->
+		<module>org.slizaa.neo4j.hierarchicalgraph.test</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.ui</module>
 		<module>org.slizaa.neo4j.testfwk</module>
 		<module>org.slizaa.neo4j.testfwk.dbserver</module>
 		<module>org.slizaa.neo4j.workbenchmodel</module>
