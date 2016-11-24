@@ -94,6 +94,7 @@ offerings.
       <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
       <plugin id="org.slizaa.neo4j.dbadapter.dsl.ui" autoStart="true" startLevel="0" />
       <plugin id="org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.ui" autoStart="true" startLevel="0" />
+      <plugin id="org.slizaa.neo4j.opencypher.ui" autoStart="true" startLevel="0" />
       <plugin id="org.slizaa.ui.klighd" autoStart="true" startLevel="0" />
       <plugin id="org.slizaa.ui.klighd.synthesis" autoStart="true" startLevel="0" />
    </configurations>
