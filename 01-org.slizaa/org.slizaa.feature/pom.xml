@@ -8,6 +8,7 @@
 		<version>0.0.4-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>org.slizaa.ui.common</artifactId>
-	<packaging>eclipse-plugin</packaging>
+	<artifactId>org.slizaa.feature</artifactId>
+	<packaging>eclipse-feature</packaging>
+
 </project>
