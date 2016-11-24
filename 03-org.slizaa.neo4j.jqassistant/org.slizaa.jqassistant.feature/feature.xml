@@ -479,20 +479,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.slizaa.neo4j.hierarchicalgraph.mapping"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.slizaa.neo4j.hierarchicalgraph.mapping.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.slizaa.neo4j.hierarchicalgraph.mapping.service"
          download-size="0"
          install-size="0"
@@ -564,27 +550,6 @@
 
    <plugin
          id="org.slizaa.neo4j.ui.discovery"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.slizaa.neo4j.hierarchicalgraph.mappingdsl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.slizaa.neo4j.hierarchicalgraph.mappingdsl.ide"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.slizaa.neo4j.hierarchicalgraph.mappingdsl.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

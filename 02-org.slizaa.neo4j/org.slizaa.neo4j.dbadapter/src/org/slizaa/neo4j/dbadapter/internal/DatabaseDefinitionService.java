@@ -238,16 +238,30 @@ public class DatabaseDefinitionService {
 
     //
     if (restClient != null) {
-      restClient.setName(managedLocalDatabase.getName());
-      // TODO PATHES -> LAZY
-      restClient.setBaseURI("http://localhost:" + managedLocalDatabase.getPort());
+
+      ExtendedManagedNeo4JInstanceImpl managedNeo4jInstance = (ExtendedManagedNeo4JInstanceImpl) restClient;
+
+      IContainer container = definingFile.getParent();
+
+      managedNeo4jInstance.setName(managedLocalDatabase.getName());
+      managedNeo4jInstance.setBaseURI("http://localhost:" + managedLocalDatabase.getPort() + "/");
+      managedNeo4jInstance.setName(managedLocalDatabase.getName());
+      managedNeo4jInstance
+          .setStorageArea(container.getFile(new Path(managedLocalDatabase.getStorage())).getRawLocation().toOSString());
+      managedNeo4jInstance.setDefiningResource(definingFile);
+
+      for (String file : managedLocalDatabase.getFiles()) {
+        // TODO PATHES -> LAZY
+        managedNeo4jInstance.getDirectoriesToScan().add(container.getFile(new Path(file)).getRawLocation().toOSString());
+      }
     }
     //
     else {
 
       IContainer container = definingFile.getParent();
 
-      ExtendedManagedNeo4JInstanceImpl managedNeo4jInstance = (ExtendedManagedNeo4JInstanceImpl) DbAdapterFactory.eINSTANCE.createManagedNeo4jInstance();
+      ExtendedManagedNeo4JInstanceImpl managedNeo4jInstance = (ExtendedManagedNeo4JInstanceImpl) DbAdapterFactory.eINSTANCE
+          .createManagedNeo4jInstance();
       managedNeo4jInstance.setLauncherService(_launcherService);
       managedNeo4jInstance.setBaseURI("http://localhost:" + managedLocalDatabase.getPort() + "/");
       managedNeo4jInstance.setName(managedLocalDatabase.getName());

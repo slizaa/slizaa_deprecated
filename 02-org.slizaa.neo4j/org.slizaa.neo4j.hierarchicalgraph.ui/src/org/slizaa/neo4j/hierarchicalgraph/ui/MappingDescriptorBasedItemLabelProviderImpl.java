@@ -1,18 +1,16 @@
 /*******************************************************************************
- * Copyright (c) Gerd Wütherich 2012-2016.
+ * Copyright (c) Gerd Wï¿½therich 2012-2016.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
+ *    Gerd Wï¿½therich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
 package org.slizaa.neo4j.hierarchicalgraph.ui;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.io.File;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
@@ -22,10 +20,10 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
-import org.slizaa.neo4j.hierarchicalgraph.mappingdsl.mappingDsl.Function;
-import org.slizaa.neo4j.hierarchicalgraph.mappingdsl.mappingDsl.MappingDescriptor;
-import org.slizaa.neo4j.hierarchicalgraph.mappingdsl.mappingDsl.NodeVisualizationDefinition;
-import org.slizaa.neo4j.hierarchicalgraph.mappingdsl.mappingDsl.StringConstant;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.Function;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescriptor;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.NodeVisualizationDefinition;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.StringConstant;
 
 public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelProvider, IItemStyledLabelProvider {
 
