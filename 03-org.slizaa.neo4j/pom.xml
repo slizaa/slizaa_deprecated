@@ -13,6 +13,7 @@
 		<module>org.slizaa.neo4j.target</module>
 	
 		<module>org.slizaa.neo4j.dbadapter</module>
+		<module>org.slizaa.neo4j.feature</module>
 		<module>org.slizaa.neo4j.dbadapter.edit</module>
 		<module>org.slizaa.neo4j.dbadapter.test</module>
 		<module>org.slizaa.neo4j.dbadapter.ui</module>
@@ -57,7 +58,7 @@
 					<target>
 						<artifact>
 							<groupId>org.slizaa</groupId>
-							<artifactId>org.slizaa.target</artifactId>
+							<artifactId>org.slizaa.neo4j.target</artifactId>
 							<version>${project.version}</version>
 						</artifact>
 					</target>

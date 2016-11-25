@@ -81,10 +81,12 @@ offerings.
       <feature id="org.eclipse.ecf.core.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.platform"/>
+      <feature id="org.slizaa.feature" version="0.0.4.qualifier"/>
       <feature id="org.slizaa.neo4j.dbadapter.dsl.feature" version="1.0.0.qualifier"/>
       <feature id="org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.feature" version="1.0.0.qualifier"/>
-      <feature id="org.slizaa.feature" version="0.0.4.qualifier"/>
       <feature id="org.slizaa.neo4j.opencypher.feature" version="1.0.0.qualifier"/>
+      <feature id="org.slizaa.jqassistant.feature" version="0.0.4.qualifier"/>
+      <feature id="org.slizaa.neo4j.feature" version="0.0.4.qualifier"/>
    </features>
 
    <configurations>
@@ -93,9 +95,9 @@ offerings.
       <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
-      <plugin id="org.slizaa.neo4j.dbadapter.dsl.ui" autoStart="true" startLevel="0" />
-      <plugin id="org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.ui" autoStart="true" startLevel="0" />
-      <plugin id="org.slizaa.neo4j.opencypher.ui" autoStart="true" startLevel="0" />
+      <plugin id="org.slizaa.neo4j.dbadapter.dsl.ui" autoStart="true" startLevel="5" />
+      <plugin id="org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.ui" autoStart="true" startLevel="5" />
+      <plugin id="org.slizaa.neo4j.opencypher.ui" autoStart="true" startLevel="5" />
       <plugin id="org.slizaa.ui.klighd" autoStart="true" startLevel="0" />
       <plugin id="org.slizaa.ui.klighd.synthesis" autoStart="true" startLevel="0" />
    </configurations>
