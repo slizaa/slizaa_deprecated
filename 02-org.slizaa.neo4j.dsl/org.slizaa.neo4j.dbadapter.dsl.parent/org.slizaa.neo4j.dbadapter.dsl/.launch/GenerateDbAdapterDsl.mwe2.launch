@@ -8,6 +8,6 @@
 <listEntry value="4"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="src/org/slizaa/neo4j/dbadapter/GenerateDbAdapterDsl.mwe2"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="src/org/slizaa/neo4j/dbadapter/dsl/GenerateDbAdapterDsl.mwe2"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.slizaa.neo4j.dbadapter.dsl"/>
 </launchConfiguration>
