@@ -32,11 +32,11 @@ public class ReadDescriptors {
 
           //
           if (resource.getName().endsWith(".mapping")) {
-            System.out.println("MAPPING " + resource);
+            
             //
-            MappingDescriptor mappingDescriptor = (MappingDescriptor) Platform.getAdapterManager().getAdapter(resource,
-                MappingDescriptor.class);
-            System.out.println("mappingDescriptor " + mappingDescriptor);
+            MappingDescriptor mappingDescriptor = (MappingDescriptor) Platform.getAdapterManager().loadAdapter(resource,
+                MappingDescriptor.class.getName());
+
             //
             if (mappingDescriptor != null) {
               result.add(mappingDescriptor);

@@ -50,7 +50,8 @@ public class GraphDatabasesPerspectiveFactory implements IPerspectiveFactory {
 
     // lower right
     folder = layout.createFolder(FOLDER_LOWER_RIGHT, IPageLayout.BOTTOM, 0.50f, FOLDER_UPPER_RIGHT);
-    folder.addView(IPageLayout.ID_TASK_LIST);
+    folder.addView("org.slizaa.ui.xref.ReferencedNodesPart");
+    folder.addView("org.slizaa.ui.xref.ReferencingNodesPart");
 
     // lower middle
     folder = layout.createFolder(FOLDER_LOWER_MIDDLE, IPageLayout.BOTTOM, 0.5f, IPageLayout.ID_EDITOR_AREA);

@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) Gerd Wütherich 2012-2016.
+ * Copyright (c) Gerd Wï¿½therich 2012-2016.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
+ *    Gerd Wï¿½therich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
 package org.slizaa.neo4j.hierarchicalgraph.ui;
 
@@ -15,7 +15,9 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -28,25 +30,26 @@ import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
-import org.slizaa.neo4j.workbenchmodel.MappedGraphs;
-import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.common.context.RootObject;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 
 public class HierarchicalGraphViewPart {
 
   /** - */
-  public static final String    PART_ID = HierarchicalGraphViewPart.class.getName();
+  public static final String PART_ID = HierarchicalGraphViewPart.class.getName();
+
+  @Inject
+  private ESelectionService  _selectionService;
+
+  @Inject
+  private MApplication       _mApplication;
 
   /** - */
-  @Inject
-  private WorkbenchModelService _workbenchModelService;
+  private TreeViewer         _treeViewer;
 
-  @Inject
-  private ESelectionService     _selectionService;
-
-  @Inject
-  private MApplication          _mApplication;
+  /** - */
+  private HGRootNode         _currentRootNode;
 
   /**
    * <p>
@@ -64,7 +67,25 @@ public class HierarchicalGraphViewPart {
     parent.setLayout(layout);
 
     //
-    createTreeViewer(parent, _workbenchModelService.getWorkbenchModel().getMappedGraphs());
+    createTreeViewer(parent);
+  }
+
+  @Inject
+  public void handleChangedDependencies(@Optional
+  @Named(SelectionIdentifier.CURRENT_ROOTNODE)
+  final HGRootNode rootNode) {
+
+    // 
+    if (_currentRootNode == rootNode) {
+      return;
+    } 
+
+    _currentRootNode = rootNode;
+    if (_currentRootNode == null) {
+      _treeViewer.setInput(null);
+    } else {
+      _treeViewer.setInput(new RootObject(rootNode));
+    }
   }
 
   /**
@@ -75,14 +96,13 @@ public class HierarchicalGraphViewPart {
    * @param project
    * @return
    */
-  private TreeViewer createTreeViewer(Composite parent, MappedGraphs mappedGraphs) {
+  private TreeViewer createTreeViewer(Composite parent) {
 
-    TreeViewer treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent, mappedGraphs,
-        SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI, 2, null);
+    _treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent, SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI, 2, null);
 
     // TODO: MOVE SORTER TO Graph module!!!
-    treeViewer.setSorter(new CustomViewerSorter());
-    treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+    _treeViewer.setSorter(new CustomViewerSorter());
+    _treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
       @Override
       public void selectionChanged(SelectionChangedEvent event) {
@@ -103,12 +123,12 @@ public class HierarchicalGraphViewPart {
         }
 
         //
-        ContextHelper.setValueInContext(_mApplication.getContext(),
-            SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION, rep);
+        ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION,
+            rep);
       }
     });
 
-    treeViewer.addPostSelectionChangedListener(new ISelectionChangedListener() {
+    _treeViewer.addPostSelectionChangedListener(new ISelectionChangedListener() {
 
       @Override
       public void selectionChanged(SelectionChangedEvent event) {
@@ -120,6 +140,6 @@ public class HierarchicalGraphViewPart {
     });
 
     //
-    return treeViewer;
+    return _treeViewer;
   }
 }

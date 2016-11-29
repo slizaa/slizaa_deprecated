@@ -9,7 +9,6 @@ import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.neo4j.dbadapter.ContainerType;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
@@ -17,13 +16,10 @@ import org.slizaa.ui.tree.ISlizaaActionContribution;
 public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribution {
 
   @Inject
-  private DbAdapterRegistry     _dbAdapterRegistry;
+  private DbAdapterRegistry _dbAdapterRegistry;
 
   @Inject
-  private MApplication          _mApplication;
-
-  @Inject
-  private WorkbenchModelService _workbenchModelService;
+  private MApplication      _mApplication;
 
   @Override
   public String getParentGroupId() {
@@ -76,8 +72,6 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
       }
     }
 
-    // TODO!!
-    _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().remove(rootNode);
     ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE, null);
   }
 

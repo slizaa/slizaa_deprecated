@@ -97,8 +97,8 @@ public class DatabaseDefinitionService {
 
             if ("dbdef".equals(resource.getFileExtension())) {
 
-              DbAdapterDefinition target = (DbAdapterDefinition) Platform.getAdapterManager().getAdapter(resource,
-                  DbAdapterDefinition.class);
+              DbAdapterDefinition target = (DbAdapterDefinition) Platform.getAdapterManager().loadAdapter(resource,
+                  DbAdapterDefinition.class.getName());
 
               if (target instanceof UnmanagedRemoteDatabase) {
                 updateUnmanagedRemoteDatabase((IFile) resource, (UnmanagedRemoteDatabase) target);
@@ -252,7 +252,8 @@ public class DatabaseDefinitionService {
 
       for (String file : managedLocalDatabase.getFiles()) {
         // TODO PATHES -> LAZY
-        managedNeo4jInstance.getDirectoriesToScan().add(container.getFile(new Path(file)).getRawLocation().toOSString());
+        managedNeo4jInstance.getDirectoriesToScan()
+            .add(container.getFile(new Path(file)).getRawLocation().toOSString());
       }
     }
     //

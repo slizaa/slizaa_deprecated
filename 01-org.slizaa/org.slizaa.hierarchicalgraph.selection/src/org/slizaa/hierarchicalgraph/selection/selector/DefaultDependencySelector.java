@@ -33,6 +33,7 @@ import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphUtilityMethods;
+import org.slizaa.hierarchicalgraph.selection.NodeSelections;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -359,8 +360,8 @@ public class DefaultDependencySelector implements IDependencySelector {
       //
       _unfilteredSourceNodes = unfilteredSourceNodes;
       _unfilteredTargetNodes = unfilteredTargetNodes;
-      _unfilteredSourceNodesWithParents = computeNodesWithParents(unfilteredSourceNodes, false);
-      _unfilteredTargetNodesWithParents = computeNodesWithParents(unfilteredTargetNodes, false);
+      _unfilteredSourceNodesWithParents = NodeSelections.computeNodesWithParents(unfilteredSourceNodes, false);
+      _unfilteredTargetNodesWithParents = NodeSelections.computeNodesWithParents(unfilteredTargetNodes, false);
 
       // clear filtered dependencies
       _filteredCoreDependencies = new HashSet<HGCoreDependency>();
@@ -395,8 +396,8 @@ public class DefaultDependencySelector implements IDependencySelector {
         _filteredSourceNodes = filteredNodes;
         _filteredTargetNodes.clear();
       }
-      _filteredSourceNodesWithParents = computeNodesWithParents(_filteredSourceNodes, false);
-      _filteredTargetNodesWithParents = computeNodesWithParents(_filteredTargetNodes, false);
+      _filteredSourceNodesWithParents = NodeSelections.computeNodesWithParents(_filteredSourceNodes, false);
+      _filteredTargetNodesWithParents = NodeSelections.computeNodesWithParents(_filteredTargetNodes, false);
 
       //
       _initialized = true;
@@ -416,29 +417,6 @@ public class DefaultDependencySelector implements IDependencySelector {
     EcoreUtil.getAllContents(node, false).forEachRemaining((child) -> {
       if (child instanceof HGNode) {
         result.add((HGNode) child);
-      }
-    });
-    return result;
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param elements
-   * @return
-   */
-  private static Set<HGNode> computeNodesWithParents(Collection<HGNode> nodes, boolean includeChildren) {
-    // TODO rework
-    Set<HGNode> result = new HashSet<>(checkNotNull(nodes));
-    nodes.forEach((n) -> {
-      result.addAll(n.getPredecessors());
-      if (includeChildren) {
-        EcoreUtil.getAllContents(n, false).forEachRemaining((child) -> {
-          if (child instanceof HGNode) {
-            result.add((HGNode) child);
-          }
-        });
       }
     });
     return result;

@@ -33,4 +33,5 @@ Import-Package: com.google.common.base;version="15.0.0",
 Service-Component: OSGI-INF/org.slizaa.neo4j.dbadapter.internal.DatabaseDefinitionService.xml
 Bundle-Activator: org.slizaa.neo4j.dbadapter.internal.DbAdapterActivator
 Require-Bundle: org.eclipse.emf.common,
- org.eclipse.debug.core
+ org.eclipse.debug.core,
+ org.eclipse.core.jobs;bundle-version="3.8.0"

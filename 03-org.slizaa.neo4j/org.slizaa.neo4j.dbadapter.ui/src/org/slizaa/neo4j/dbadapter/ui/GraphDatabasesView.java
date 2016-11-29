@@ -61,7 +61,8 @@ public class GraphDatabasesView {
     parent.setLayout(layout);
 
     //
-    _treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent, _dbAdapterRegistry);
+    _treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent);
+    _treeViewer.setInput(_dbAdapterRegistry);
     _treeViewer.expandAll();
     _treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 

@@ -17,22 +17,23 @@ import org.slizaa.ui.tree.interceptors.ITreeEventInterceptor;
 
 public class TreeCreator {
 
-  public static TreeViewer createTreeViewer(Composite parent, Object input) {
-    return createTreeViewer(parent, input, SWT.NO_SCROLL | SWT.V_SCROLL | SWT.NO_BACKGROUND | SWT.MULTI);
+  public static TreeViewer createTreeViewer(Composite parent) {
+    return createTreeViewer(parent, SWT.NO_SCROLL | SWT.V_SCROLL | SWT.NO_BACKGROUND | SWT.MULTI);
   }
 
-  public static TreeViewer createTreeViewer(Composite parent, Object input, int style) {
-    return createTreeViewer(parent, input, style, 3, null);
+  public static TreeViewer createTreeViewer(Composite parent, int style) {
+    return createTreeViewer(parent, style, 3, null);
   }
 
-  public static TreeViewer createTreeViewer(Composite parent, Object input, int style, int autoExpandLevel,
+  public static TreeViewer createTreeViewer(Composite parent, int style, int autoExpandLevel,
       ITreeEventInterceptor eventInterceptor) {
 
     //
-    EditingDomain editingDomain = getEditingDomain(input);
+    /* EditingDomain editingDomain = getEditingDomain(input); */
 
     //
-    final TreeViewer treeViewer = new SlizaaTreeViewer(parent,  SWT.NO_SCROLL | SWT.V_SCROLL | style, eventInterceptor, autoExpandLevel);
+    final TreeViewer treeViewer = new SlizaaTreeViewer(parent, SWT.NO_SCROLL | SWT.V_SCROLL | style, eventInterceptor,
+        autoExpandLevel);
 
     //
     GridDataFactory.fillDefaults().grab(true, true).applyTo(treeViewer.getControl());
@@ -40,8 +41,7 @@ public class TreeCreator {
     //
     treeViewer.setContentProvider(getAdapterFactoryContentProvider());
 
-    treeViewer.getControl().setMenu(getMenu(treeViewer, editingDomain));
-    treeViewer.setInput(input);
+    treeViewer.getControl().setMenu(getMenu(treeViewer /* , editingDomain */));
 
     //
     treeViewer.setLabelProvider(
@@ -93,7 +93,7 @@ public class TreeCreator {
     };
   }
 
-  protected static Menu getMenu(TreeViewer treeViewer, EditingDomain editingDomain) {
+  protected static Menu getMenu(TreeViewer treeViewer /* , EditingDomain editingDomain */) {
     final MenuManager menuMgr = new MenuManager();
     menuMgr.setRemoveAllWhenShown(true);
     menuMgr.addMenuListener(new SlizaaTreeMenuListener(treeViewer));

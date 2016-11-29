@@ -28,7 +28,6 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescript
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorBasedItemLabelProviderImpl;
-import org.slizaa.neo4j.workbenchmodel.service.WorkbenchModelService;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
@@ -37,9 +36,6 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
 
   @Inject
   private IHierarchicalGraphMappingService _mappingService;
-
-  @Inject
-  private WorkbenchModelService            _workbenchModelService;
 
   @Inject
   private EPartService                     _partService;
@@ -161,8 +157,6 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
         rootNode.registerExtension(IItemLabelProvider.class,
             new MappingDescriptorBasedItemLabelProviderImpl(_mappingDescriptor));
         _remoteRepository.setHierarchicalGraph(rootNode);
-
-        _workbenchModelService.getWorkbenchModel().getMappedGraphs().getContent().add(rootNode);
 
         //
         ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE, rootNode);

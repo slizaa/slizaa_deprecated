@@ -22,8 +22,8 @@ public class SlizaaTreeViewerFactory {
    * @param input
    * @return
    */
-  public static TreeViewer createTreeViewer(Composite parent, Object input) {
-    return createTreeViewer(parent, input, SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI);
+  public static TreeViewer createTreeViewer(Composite parent) {
+    return createTreeViewer(parent, SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI);
   }
 
   /**
@@ -35,8 +35,8 @@ public class SlizaaTreeViewerFactory {
    * @param style
    * @return
    */
-  public static TreeViewer createTreeViewer(Composite parent, Object input, int style) {
-    return createTreeViewer(parent, input, style, 3, null);
+  public static TreeViewer createTreeViewer(Composite parent, int style) {
+    return createTreeViewer(parent, style, 3, null);
   }
 
   /**
@@ -50,8 +50,8 @@ public class SlizaaTreeViewerFactory {
    * @param eventInterceptor
    * @return
    */
-  public static TreeViewer createTreeViewer(Composite parent, Object input, int style, int autoExpandLevel,
+  public static TreeViewer createTreeViewer(Composite parent, int style, int autoExpandLevel,
       ITreeEventInterceptor eventInterceptor) {
-    return TreeCreator.createTreeViewer(parent, input, style, autoExpandLevel, eventInterceptor);
+    return TreeCreator.createTreeViewer(parent, style, autoExpandLevel, eventInterceptor);
   }
 }

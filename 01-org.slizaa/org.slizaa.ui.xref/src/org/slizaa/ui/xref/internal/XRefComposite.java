@@ -203,11 +203,11 @@ public class XRefComposite extends Composite {
     _selectedBackReferences = null;
 
     //
-    _fromTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2,
+    _fromTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, SWT.NO_BACKGROUND | SWT.MULTI, 2,
         new DependencyResolvingTreeEventInterceptor(
             (node) -> _incomingDependencySelector.getDependenciesForSourceNode(node)));
 
-    _centerViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2,
+    _centerViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, SWT.NO_BACKGROUND | SWT.MULTI, 2,
         new DependencyResolvingTreeEventInterceptor((node) -> {
           List<HGCoreDependency> result = new ArrayList<>();
           List<HGCoreDependency> in = _incomingDependencySelector.getDependenciesForTargetNode(node);
@@ -221,7 +221,7 @@ public class XRefComposite extends Composite {
           return result;
         }));
 
-    _toTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, null, SWT.NO_BACKGROUND | SWT.MULTI, 2,
+    _toTreeViewer = SlizaaTreeViewerFactory.createTreeViewer(sashForm, SWT.NO_BACKGROUND | SWT.MULTI, 2,
         new DependencyResolvingTreeEventInterceptor(
             (node) -> _outgoingDependencySelector.getDependenciesForTargetNode(node)));
 
