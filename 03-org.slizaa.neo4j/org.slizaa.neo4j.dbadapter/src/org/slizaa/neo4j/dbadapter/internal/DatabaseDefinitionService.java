@@ -295,6 +295,9 @@ public class DatabaseDefinitionService {
 
     //
     if (restClient != null) {
+      if (_dbAdapterRegistry.getActiveDbAdapter() == restClient) {
+        _dbAdapterRegistry.setActiveDbAdapter(null);
+      }
       _dbAdapterRegistry.getDbAdapterContainer(ContainerType.UNMANAGED).getChildren().remove(restClient);
     }
   }
@@ -313,6 +316,9 @@ public class DatabaseDefinitionService {
 
     //
     if (restClient != null) {
+      if (_dbAdapterRegistry.getActiveDbAdapter() == restClient) {
+        _dbAdapterRegistry.setActiveDbAdapter(null);
+      }
       _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren().remove(restClient);
     }
   }

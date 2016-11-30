@@ -68,7 +68,6 @@ public class GraphDatabasesView {
     _treeViewer.expandAll();
     _treeViewer.addCheckStateListener(new ICheckStateListener() {
       public void checkStateChanged(CheckStateChangedEvent event) {
-
         if (event.getElement() instanceof Neo4jRestClient) {
           Neo4jRestClient restClient = (Neo4jRestClient) event.getElement();
           if (event.getChecked()) {
