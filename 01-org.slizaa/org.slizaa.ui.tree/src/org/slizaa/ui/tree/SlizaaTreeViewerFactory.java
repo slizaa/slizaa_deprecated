@@ -1,5 +1,6 @@
 package org.slizaa.ui.tree;
 
+import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -13,6 +14,18 @@ import org.slizaa.ui.tree.internal.TreeCreator;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class SlizaaTreeViewerFactory {
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param parent
+   * @param style
+   * @return
+   */
+  public static CheckboxTreeViewer createCheckboxTreeViewer(Composite parent, int style) {
+    return TreeCreator.createCheckboxTreeViewer(parent, style);
+  }
 
   /**
    * <p>

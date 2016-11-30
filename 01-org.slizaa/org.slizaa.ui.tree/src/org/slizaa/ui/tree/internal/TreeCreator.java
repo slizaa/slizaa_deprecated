@@ -7,6 +7,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -17,6 +18,29 @@ import org.slizaa.ui.tree.interceptors.ITreeEventInterceptor;
 
 public class TreeCreator {
 
+  public static CheckboxTreeViewer createCheckboxTreeViewer(Composite parent, int style) {
+
+    //
+    final CheckboxTreeViewer treeViewer = new CheckboxTreeViewer(parent, SWT.NO_SCROLL | SWT.V_SCROLL | style);
+
+    //
+    GridDataFactory.fillDefaults().grab(true, true).applyTo(treeViewer.getControl());
+
+    //
+    treeViewer.setContentProvider(getAdapterFactoryContentProvider());
+    treeViewer.getControl().setMenu(getMenu(treeViewer /* , editingDomain */));
+    
+    // https://www.eclipse.org/forums/index.php/t/1082215/
+    treeViewer.setLabelProvider(
+        new InterceptableAdapterFactoryLabelProvider(Activator.getDefault().getComposedAdapterFactory(), treeViewer));
+
+    // set the layout data
+    treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+    //
+    return treeViewer;
+  }
+  
   public static TreeViewer createTreeViewer(Composite parent) {
     return createTreeViewer(parent, SWT.NO_SCROLL | SWT.V_SCROLL | SWT.NO_BACKGROUND | SWT.MULTI);
   }

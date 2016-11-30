@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isInProgress <em>In Progress</em>}</li>
- *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isStarted <em>Started</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isRunning <em>Running</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getStorageArea <em>Storage Area</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getDirectoriesToScan <em>Directories To Scan</em>}</li>
  * </ul>
@@ -51,30 +51,30 @@ public interface ManagedNeo4jInstance extends Neo4jRestClient {
   void setInProgress(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Started</b></em>' attribute.
+   * Returns the value of the '<em><b>Running</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Started</em>' attribute isn't clear,
+   * If the meaning of the '<em>Running</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Started</em>' attribute.
-   * @see #setStarted(boolean)
-   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance_Started()
+   * @return the value of the '<em>Running</em>' attribute.
+   * @see #setRunning(boolean)
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getManagedNeo4jInstance_Running()
    * @model
    * @generated
    */
-  boolean isStarted();
+  boolean isRunning();
 
   /**
-   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isStarted <em>Started</em>}' attribute.
+   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isRunning <em>Running</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Started</em>' attribute.
-   * @see #isStarted()
+   * @param value the new value of the '<em>Running</em>' attribute.
+   * @see #isRunning()
    * @generated
    */
-  void setStarted(boolean value);
+  void setRunning(boolean value);
 
   /**
    * Returns the value of the '<em><b>Storage Area</b></em>' attribute.

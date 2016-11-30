@@ -3,6 +3,8 @@
 package org.slizaa.neo4j.dbadapter.provider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 /**
@@ -15,26 +17,29 @@ public class ExtendedNeo4jRestClientItemProvider extends Neo4jRestClientItemProv
 
   @Override
   public Object getImage(Object object) {
-    if (((Neo4jRestClient) object).isActive()) {
+    if (((Neo4jRestClient) object).isConnected()) {
       return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClient_connected.png"));
     }
     else {
       return overlayImage(object, getResourceLocator().getImage("full/obj16/Neo4jRestClient.png"));
     }
   }
-  
-  @Override
-  public String getText(Object object) {
 
+  @Override
+  public Object getStyledText(Object object) {
+    
+    //
+    StyledString result = new StyledString();
+    
     //
     Neo4jRestClient client = (Neo4jRestClient) object;
-
-    //
     if (client.getName() != null) {
-      return client.getName();
+      result.append(client.getName(), StyledString.Style.NO_STYLE);
+    } else {
+      result.append(client.getBaseURI(), StyledString.Style.NO_STYLE);
     }
-
+    
     //
-    return client.getBaseURI();
+    return result;
   }
 }

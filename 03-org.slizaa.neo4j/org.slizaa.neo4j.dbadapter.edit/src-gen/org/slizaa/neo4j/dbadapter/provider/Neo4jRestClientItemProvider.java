@@ -16,10 +16,12 @@ import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
@@ -34,11 +36,7 @@ import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 public class Neo4jRestClientItemProvider 
   extends ItemProviderAdapter
   implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
-    IItemPropertySource {
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -61,10 +59,10 @@ public class Neo4jRestClientItemProvider
       super.getPropertyDescriptors(object);
 
       addNamePropertyDescriptor(object);
+      addConnectedPropertyDescriptor(object);
       addDescriptionPropertyDescriptor(object);
       addBaseURIPropertyDescriptor(object);
       addDefiningResourcePropertyDescriptor(object);
-      addActivePropertyDescriptor(object);
       addHierarchicalGraphPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
@@ -88,6 +86,28 @@ public class Neo4jRestClientItemProvider
          false,
          false,
          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Connected feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addConnectedPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Neo4jRestClient_connected_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_connected_feature", "_UI_Neo4jRestClient_type"),
+         DbAdapterPackage.Literals.NEO4J_REST_CLIENT__CONNECTED,
+         false,
+         false,
+         false,
+         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
          null,
          null));
   }
@@ -159,28 +179,6 @@ public class Neo4jRestClientItemProvider
   }
 
   /**
-   * This adds a property descriptor for the Active feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addActivePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Neo4jRestClient_active_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Neo4jRestClient_active_feature", "_UI_Neo4jRestClient_type"),
-         DbAdapterPackage.Literals.NEO4J_REST_CLIENT__ACTIVE,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
    * This adds a property descriptor for the Hierarchical Graph feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -221,12 +219,27 @@ public class Neo4jRestClientItemProvider
    */
   @Override
   public String getText(Object object) {
-    String label = ((Neo4jRestClient)object).getName();
-    return label == null || label.length() == 0 ?
-      getString("_UI_Neo4jRestClient_type") :
-      getString("_UI_Neo4jRestClient_type") + " " + label;
+    return ((StyledString)getStyledText(object)).getString();
   }
   
+
+  /**
+   * This returns the label styled text for the adapted class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object getStyledText(Object object) {
+    String label = ((Neo4jRestClient)object).getName();
+    	StyledString styledLabel = new StyledString();
+    if (label == null || label.length() == 0) {
+      styledLabel.append(getString("_UI_Neo4jRestClient_type"), StyledString.Style.QUALIFIER_STYLER); 
+    } else {
+      styledLabel.append(getString("_UI_Neo4jRestClient_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+    }
+    return styledLabel;
+  }
 
   /**
    * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -241,10 +254,10 @@ public class Neo4jRestClientItemProvider
 
     switch (notification.getFeatureID(Neo4jRestClient.class)) {
       case DbAdapterPackage.NEO4J_REST_CLIENT__NAME:
+      case DbAdapterPackage.NEO4J_REST_CLIENT__CONNECTED:
       case DbAdapterPackage.NEO4J_REST_CLIENT__DESCRIPTION:
       case DbAdapterPackage.NEO4J_REST_CLIENT__BASE_URI:
       case DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE:
-      case DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE:
       case DbAdapterPackage.NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;

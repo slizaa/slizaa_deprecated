@@ -27,7 +27,7 @@ public class ScanActionContribution extends AbstractManagedInstanceActionContrib
    */
   @Override
   protected boolean onIsEnabled(ManagedNeo4jInstance managedNeo4jInstance) {
-    return  !managedNeo4jInstance.isInProgress() && !managedNeo4jInstance.isStarted();
+    return  !managedNeo4jInstance.isInProgress() && !managedNeo4jInstance.isRunning();
   }
 
   /**

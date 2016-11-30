@@ -27,7 +27,7 @@ import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
  * </p>
  * <ul>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl#isInProgress <em>In Progress</em>}</li>
- *   <li>{@link org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl#isStarted <em>Started</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl#isRunning <em>Running</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl#getStorageArea <em>Storage Area</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.ManagedNeo4jInstanceImpl#getDirectoriesToScan <em>Directories To Scan</em>}</li>
  * </ul>
@@ -56,24 +56,24 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
   protected boolean inProgress = IN_PROGRESS_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isStarted() <em>Started</em>}' attribute.
+   * The default value of the '{@link #isRunning() <em>Running</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isStarted()
+   * @see #isRunning()
    * @generated
    * @ordered
    */
-  protected static final boolean STARTED_EDEFAULT = false;
+  protected static final boolean RUNNING_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #isStarted() <em>Started</em>}' attribute.
+   * The cached value of the '{@link #isRunning() <em>Running</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isStarted()
+   * @see #isRunning()
    * @generated
    * @ordered
    */
-  protected boolean started = STARTED_EDEFAULT;
+  protected boolean running = RUNNING_EDEFAULT;
 
   /**
    * The default value of the '{@link #getStorageArea() <em>Storage Area</em>}' attribute.
@@ -150,8 +150,8 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isStarted() {
-    return started;
+  public boolean isRunning() {
+    return running;
   }
 
   /**
@@ -159,11 +159,11 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setStarted(boolean newStarted) {
-    boolean oldStarted = started;
-    started = newStarted;
+  public void setRunning(boolean newRunning) {
+    boolean oldRunning = running;
+    running = newRunning;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STARTED, oldStarted, started));
+      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING, oldRunning, running));
   }
 
   /**
@@ -286,8 +286,8 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
     switch (featureID) {
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__IN_PROGRESS:
         return isInProgress();
-      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STARTED:
-        return isStarted();
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
+        return isRunning();
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
         return getStorageArea();
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
@@ -308,8 +308,8 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__IN_PROGRESS:
         setInProgress((Boolean)newValue);
         return;
-      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STARTED:
-        setStarted((Boolean)newValue);
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
+        setRunning((Boolean)newValue);
         return;
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
         setStorageArea((String)newValue);
@@ -333,8 +333,8 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__IN_PROGRESS:
         setInProgress(IN_PROGRESS_EDEFAULT);
         return;
-      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STARTED:
-        setStarted(STARTED_EDEFAULT);
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
+        setRunning(RUNNING_EDEFAULT);
         return;
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
         setStorageArea(STORAGE_AREA_EDEFAULT);
@@ -356,8 +356,8 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
     switch (featureID) {
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__IN_PROGRESS:
         return inProgress != IN_PROGRESS_EDEFAULT;
-      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STARTED:
-        return started != STARTED_EDEFAULT;
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
+        return running != RUNNING_EDEFAULT;
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
         return STORAGE_AREA_EDEFAULT == null ? storageArea != null : !STORAGE_AREA_EDEFAULT.equals(storageArea);
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
@@ -409,8 +409,8 @@ public class ManagedNeo4jInstanceImpl extends Neo4jRestClientImpl implements Man
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (inProgress: ");
     result.append(inProgress);
-    result.append(", started: ");
-    result.append(started);
+    result.append(", running: ");
+    result.append(running);
     result.append(", storageArea: ");
     result.append(storageArea);
     result.append(", directoriesToScan: ");

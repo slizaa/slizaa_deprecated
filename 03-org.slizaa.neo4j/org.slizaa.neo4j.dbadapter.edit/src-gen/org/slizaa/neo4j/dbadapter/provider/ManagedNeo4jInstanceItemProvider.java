@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
@@ -46,7 +47,7 @@ public class ManagedNeo4jInstanceItemProvider extends Neo4jRestClientItemProvide
       super.getPropertyDescriptors(object);
 
       addInProgressPropertyDescriptor(object);
-      addStartedPropertyDescriptor(object);
+      addRunningPropertyDescriptor(object);
       addStorageAreaPropertyDescriptor(object);
       addDirectoriesToScanPropertyDescriptor(object);
     }
@@ -76,19 +77,19 @@ public class ManagedNeo4jInstanceItemProvider extends Neo4jRestClientItemProvide
   }
 
   /**
-   * This adds a property descriptor for the Started feature.
+   * This adds a property descriptor for the Running feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addStartedPropertyDescriptor(Object object) {
+  protected void addRunningPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_ManagedNeo4jInstance_started_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ManagedNeo4jInstance_started_feature", "_UI_ManagedNeo4jInstance_type"),
-         DbAdapterPackage.Literals.MANAGED_NEO4J_INSTANCE__STARTED,
+         getString("_UI_ManagedNeo4jInstance_running_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ManagedNeo4jInstance_running_feature", "_UI_ManagedNeo4jInstance_type"),
+         DbAdapterPackage.Literals.MANAGED_NEO4J_INSTANCE__RUNNING,
          true,
          false,
          false,
@@ -160,12 +161,27 @@ public class ManagedNeo4jInstanceItemProvider extends Neo4jRestClientItemProvide
    */
   @Override
   public String getText(Object object) {
-    String label = ((ManagedNeo4jInstance)object).getName();
-    return label == null || label.length() == 0 ?
-      getString("_UI_ManagedNeo4jInstance_type") :
-      getString("_UI_ManagedNeo4jInstance_type") + " " + label;
+    return ((StyledString)getStyledText(object)).getString();
   }
   
+
+  /**
+   * This returns the label styled text for the adapted class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object getStyledText(Object object) {
+    String label = ((ManagedNeo4jInstance)object).getName();
+    	StyledString styledLabel = new StyledString();
+    if (label == null || label.length() == 0) {
+      styledLabel.append(getString("_UI_ManagedNeo4jInstance_type"), StyledString.Style.QUALIFIER_STYLER); 
+    } else {
+      styledLabel.append(getString("_UI_ManagedNeo4jInstance_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+    }
+    return styledLabel;
+  }
 
   /**
    * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -180,7 +196,7 @@ public class ManagedNeo4jInstanceItemProvider extends Neo4jRestClientItemProvide
 
     switch (notification.getFeatureID(ManagedNeo4jInstance.class)) {
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__IN_PROGRESS:
-      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STARTED:
+      case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__RUNNING:
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__STORAGE_AREA:
       case DbAdapterPackage.MANAGED_NEO4J_INSTANCE__DIRECTORIES_TO_SCAN:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

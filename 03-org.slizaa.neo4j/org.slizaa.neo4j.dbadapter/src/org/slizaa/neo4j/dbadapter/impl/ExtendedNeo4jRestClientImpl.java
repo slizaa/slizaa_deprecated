@@ -31,12 +31,13 @@ public class ExtendedNeo4jRestClientImpl extends Neo4jRestClientImpl {
   private Neo4jClientTrait _neo4jClientTrait;
 
   /**
-   * {@inheritDoc}
+   * <p>
+   * </p>
+   *
+   * @return
    */
-  @Override
-  public void setActive(boolean newActive) {
-    super.setActive(newActive);
-    neo4jClientTrait().setActive(newActive);
+  public Neo4jClientTrait getTrait() {
+    return neo4jClientTrait();
   }
 
   /**

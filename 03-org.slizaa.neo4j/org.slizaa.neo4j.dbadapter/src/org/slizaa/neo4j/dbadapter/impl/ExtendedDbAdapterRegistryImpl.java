@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.slizaa.neo4j.dbadapter.ContainerType;
 import org.slizaa.neo4j.dbadapter.DbAdapterContainer;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 
 public class ExtendedDbAdapterRegistryImpl extends DbAdapterRegistryImpl {
 
@@ -17,5 +18,22 @@ public class ExtendedDbAdapterRegistryImpl extends DbAdapterRegistryImpl {
     }
 
     return null;
+  }
+
+  @Override
+  public void setActiveDbAdapter(Neo4jRestClient newActiveDbAdapter) {
+
+    //
+    if (getActiveDbAdapter() != null) {
+      Neo4jClientTrait.getNeo4jClientTrait(getActiveDbAdapter()).setConnected(false);
+    }
+
+    //
+    super.setActiveDbAdapter(newActiveDbAdapter);
+
+    //
+    if (getActiveDbAdapter() != null) {
+      Neo4jClientTrait.getNeo4jClientTrait(getActiveDbAdapter()).setConnected(true);
+    }
   }
 }

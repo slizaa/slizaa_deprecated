@@ -43,6 +43,16 @@ public class ExtendedManagedNeo4JInstanceImpl extends ManagedNeo4jInstanceImpl {
    *
    * @return
    */
+  public Neo4jClientTrait getTrait() {
+    return neo4jClientTrait();
+  }
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
   public ILauncherService getLauncherService() {
     return _launcherService;
   }
@@ -75,15 +85,6 @@ public class ExtendedManagedNeo4JInstanceImpl extends ManagedNeo4jInstanceImpl {
    */
   public void setLaunch(ILaunch launch) {
     _launch = launch;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void setActive(boolean newActive) {
-    super.setActive(newActive);
-    neo4jClientTrait().setActive(newActive);
   }
 
   /**

@@ -64,7 +64,7 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
   @Override
   public boolean isEnabled(Object selection) {
     Neo4jRestClient restClient = (Neo4jRestClient) selection;
-    return restClient.isActive() && restClient.getHierarchicalGraph() == null;
+    return restClient.isConnected() && restClient.getHierarchicalGraph() == null;
   }
 
   @Override

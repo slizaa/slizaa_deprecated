@@ -4,10 +4,14 @@
     modelPluginID="org.slizaa.neo4j.dbadapter" modelName="Neo4j-dbadapter" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     usedGenPackages="../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.genmodel#//hierarchicalgraph"
-    operationReflection="true" importOrganizing="true">
+    operationReflection="true" importOrganizing="true" styleProviders="true">
   <foreignModel>neo4j-dbadapter.ecore</foreignModel>
   <genPackages prefix="DbAdapter" basePackage="org.slizaa.neo4j" disposableProviderFactory="true"
       ecorePackage="neo4j-dbadapter.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="neo4j-dbadapter.ecore#//ContainerType">
+      <genEnumLiterals ecoreEnumLiteral="neo4j-dbadapter.ecore#//ContainerType/MANAGED"/>
+      <genEnumLiterals ecoreEnumLiteral="neo4j-dbadapter.ecore#//ContainerType/UNMANAGED"/>
+    </genEnums>
     <genDataTypes ecoreDataType="neo4j-dbadapter.ecore#//Future">
       <genTypeParameters ecoreTypeParameter="neo4j-dbadapter.ecore#//Future/T"/>
     </genDataTypes>
@@ -20,9 +24,11 @@
     <genDataTypes ecoreDataType="neo4j-dbadapter.ecore#//IFile"/>
     <genClasses ecoreClass="neo4j-dbadapter.ecore#//Neo4jRestClient">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//Neo4jRestClient/name"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//Neo4jRestClient/connected"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//Neo4jRestClient/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//Neo4jRestClient/baseURI"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//Neo4jRestClient/definingResource"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference neo4j-dbadapter.ecore#//Neo4jRestClient/parent"/>
       <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference neo4j-dbadapter.ecore#//Neo4jRestClient/hierarchicalGraph"/>
       <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/getAllRelationshipTypes"/>
       <genOperations ecoreOperation="neo4j-dbadapter.ecore#//Neo4jRestClient/getAllPropertyKeys"/>
@@ -54,24 +60,29 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="neo4j-dbadapter.ecore#//DbAdapterRegistry">
-      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference neo4j-dbadapter.ecore#//DbAdapterRegistry/managed"/>
-      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference neo4j-dbadapter.ecore#//DbAdapterRegistry/unmanaged"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference neo4j-dbadapter.ecore#//DbAdapterRegistry/activeDbAdapter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference neo4j-dbadapter.ecore#//DbAdapterRegistry/children"/>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//DbAdapterRegistry/getDbAdapterContainer">
+        <genParameters ecoreParameter="neo4j-dbadapter.ecore#//DbAdapterRegistry/getDbAdapterContainer/type"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="neo4j-dbadapter.ecore#//DbAdapterContainer">
-      <genTypeParameters ecoreTypeParameter="neo4j-dbadapter.ecore#//DbAdapterContainer/T"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//DbAdapterContainer/type"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference neo4j-dbadapter.ecore#//DbAdapterContainer/parent"/>
       <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference neo4j-dbadapter.ecore#//DbAdapterContainer/children"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//DbAdapterContainer/name"/>
     </genClasses>
     <genClasses ecoreClass="neo4j-dbadapter.ecore#//ManagedNeo4jInstance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//ManagedNeo4jInstance/inProgress"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//ManagedNeo4jInstance/running"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//ManagedNeo4jInstance/storageArea"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//ManagedNeo4jInstance/directoriesToScan"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute neo4j-dbadapter.ecore#//ManagedNeo4jInstance/launch"/>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//ManagedNeo4jInstance/isDatabaseInstallationAvailable"/>
       <genOperations ecoreOperation="neo4j-dbadapter.ecore#//ManagedNeo4jInstance/scan"/>
       <genOperations ecoreOperation="neo4j-dbadapter.ecore#//ManagedNeo4jInstance/isScanned"/>
       <genOperations ecoreOperation="neo4j-dbadapter.ecore#//ManagedNeo4jInstance/start"/>
       <genOperations ecoreOperation="neo4j-dbadapter.ecore#//ManagedNeo4jInstance/stop"/>
       <genOperations ecoreOperation="neo4j-dbadapter.ecore#//ManagedNeo4jInstance/delete"/>
+      <genOperations ecoreOperation="neo4j-dbadapter.ecore#//ManagedNeo4jInstance/enrich"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

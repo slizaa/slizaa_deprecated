@@ -16,7 +16,7 @@ public class StopActionContribution extends AbstractManagedInstanceActionContrib
    */
   @Override
   protected boolean onIsEnabled(ManagedNeo4jInstance managedNeo4jInstance) {
-    return managedNeo4jInstance.isScanned() && managedNeo4jInstance.isStarted();
+    return managedNeo4jInstance.isScanned() && managedNeo4jInstance.isRunning();
   }
 
   /**

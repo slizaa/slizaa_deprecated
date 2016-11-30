@@ -4,16 +4,17 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.jface.viewers.CheckStateChangedEvent;
+import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -32,18 +33,18 @@ public class GraphDatabasesView {
   /** - */
   public static final String PART_ID = GraphDatabasesView.class.getName();
 
-  /** - */
-  @Inject
-  private ESelectionService  _selectionService;
-
-  @Inject
-  private MPart              part;
+  // /** - */
+  // @Inject
+  // private ESelectionService _selectionService;
+  //
+  // @Inject
+  // private MPart part;
 
   @Inject
   private DbAdapterRegistry  _dbAdapterRegistry;
 
   /** - */
-  private TreeViewer         _treeViewer;
+  private CheckboxTreeViewer _treeViewer;
 
   /**
    * <p>
@@ -61,9 +62,26 @@ public class GraphDatabasesView {
     parent.setLayout(layout);
 
     //
-    _treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent);
+    // https://www.eclipse.org/forums/index.php/t/1082215/
+    _treeViewer = SlizaaTreeViewerFactory.createCheckboxTreeViewer(parent, SWT.NONE);
     _treeViewer.setInput(_dbAdapterRegistry);
     _treeViewer.expandAll();
+    _treeViewer.addCheckStateListener(new ICheckStateListener() {
+      public void checkStateChanged(CheckStateChangedEvent event) {
+
+        if (event.getElement() instanceof Neo4jRestClient) {
+          Neo4jRestClient restClient = (Neo4jRestClient) event.getElement();
+          if (event.getChecked()) {
+            restClient.getParent().getParent().setActiveDbAdapter(restClient);
+          } else {
+            restClient.getParent().getParent().setActiveDbAdapter(null);
+          }
+        } else {
+          // ignore 'new' settings
+          drawCheckboxes();
+        }
+      }
+    });
     _treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
       @Override
@@ -88,6 +106,7 @@ public class GraphDatabasesView {
           public void run() {
             _treeViewer.refresh();
             _treeViewer.expandAll();
+            drawCheckboxes();
           }
         });
       }
@@ -127,6 +146,21 @@ public class GraphDatabasesView {
   // }
   // }
 
+  private void drawCheckboxes() {
+
+    //
+    Neo4jRestClient activeDbAdapter = _dbAdapterRegistry.getActiveDbAdapter();
+    
+    //
+    if (activeDbAdapter != null) {
+      _treeViewer.setCheckedElements(new Object[] { activeDbAdapter, activeDbAdapter.getParent() });
+      _treeViewer.setGrayedElements(new Object[] { activeDbAdapter.getParent() });
+    } else {
+      _treeViewer.setCheckedElements(new Object[] {});
+      _treeViewer.setGrayedElements(new Object[] {});
+    }
+  }
+
   /**
    * Open the given file in an appropriate editor.
    * 
@@ -135,7 +169,7 @@ public class GraphDatabasesView {
    * 
    * @throws PartInitException
    */
-  public static void openFileInEditor(IFile file) throws PartInitException {
+  private static void openFileInEditor(IFile file) throws PartInitException {
 
     // Get the active page.
     IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
@@ -143,6 +177,7 @@ public class GraphDatabasesView {
     // Figure out the default editor for the file type based on extension.
     IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
 
+    //
     page.openEditor(new FileEditorInput(file), desc.getId());
   }
 }

@@ -162,7 +162,7 @@ public class LauncherService implements ILauncherService {
     });
 
     //
-    managedInstance.setStarted(true);
+    managedInstance.setRunning(true);
   }
   
   @Override
@@ -321,7 +321,7 @@ public class LauncherService implements ILauncherService {
         if (managedNeo4jInstance != null) {
           ((ExtendedManagedNeo4JInstanceImpl) managedNeo4jInstance).setLaunch(null);
         }
-        managedNeo4jInstance.setStarted(false);
+        managedNeo4jInstance.setRunning(false);
         managedNeo4jInstance.setInProgress(false);
         try {
           iLaunch.getLaunchConfiguration().delete();

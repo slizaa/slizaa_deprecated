@@ -266,7 +266,7 @@ public class DatabaseDefinitionService {
       managedNeo4jInstance.setLauncherService(_launcherService);
       managedNeo4jInstance.setBaseURI("http://localhost:" + managedLocalDatabase.getPort() + "/");
       managedNeo4jInstance.setName(managedLocalDatabase.getName());
-      managedNeo4jInstance.setStarted(false);
+      managedNeo4jInstance.setRunning(false);
       managedNeo4jInstance
           .setStorageArea(container.getFile(new Path(managedLocalDatabase.getStorage())).getRawLocation().toOSString());
       managedNeo4jInstance.setDefiningResource(definingFile);

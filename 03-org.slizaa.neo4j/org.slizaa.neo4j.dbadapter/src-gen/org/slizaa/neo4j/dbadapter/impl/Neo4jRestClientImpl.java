@@ -43,10 +43,10 @@ import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
  * </p>
  * <ul>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#isConnected <em>Connected</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getBaseURI <em>Base URI</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getDefiningResource <em>Defining Resource</em>}</li>
- *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#isActive <em>Active</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.impl.Neo4jRestClientImpl#getHierarchicalGraph <em>Hierarchical Graph</em>}</li>
  * </ul>
@@ -73,6 +73,26 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isConnected() <em>Connected</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isConnected()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean CONNECTED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isConnected() <em>Connected</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isConnected()
+   * @generated
+   * @ordered
+   */
+  protected boolean connected = CONNECTED_EDEFAULT;
 
   /**
    * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -135,26 +155,6 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
   protected IFile definingResource = DEFINING_RESOURCE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isActive() <em>Active</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isActive()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean ACTIVE_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isActive() <em>Active</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isActive()
-   * @generated
-   * @ordered
-   */
-  protected boolean active = ACTIVE_EDEFAULT;
-
-  /**
    * The cached value of the '{@link #getHierarchicalGraph() <em>Hierarchical Graph</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -202,6 +202,15 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.NEO4J_REST_CLIENT__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isConnected() {
+    return connected;
   }
 
   /**
@@ -265,27 +274,6 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
     definingResource = newDefiningResource;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE, oldDefiningResource, definingResource));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean isActive() {
-    return active;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setActive(boolean newActive) {
-    boolean oldActive = active;
-    active = newActive;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE, oldActive, active));
   }
 
   /**
@@ -531,14 +519,14 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
     switch (featureID) {
       case DbAdapterPackage.NEO4J_REST_CLIENT__NAME:
         return getName();
+      case DbAdapterPackage.NEO4J_REST_CLIENT__CONNECTED:
+        return isConnected();
       case DbAdapterPackage.NEO4J_REST_CLIENT__DESCRIPTION:
         return getDescription();
       case DbAdapterPackage.NEO4J_REST_CLIENT__BASE_URI:
         return getBaseURI();
       case DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE:
         return getDefiningResource();
-      case DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE:
-        return isActive();
       case DbAdapterPackage.NEO4J_REST_CLIENT__PARENT:
         return getParent();
       case DbAdapterPackage.NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH:
@@ -567,9 +555,6 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
         return;
       case DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE:
         setDefiningResource((IFile)newValue);
-        return;
-      case DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE:
-        setActive((Boolean)newValue);
         return;
       case DbAdapterPackage.NEO4J_REST_CLIENT__PARENT:
         setParent((DbAdapterContainer)newValue);
@@ -601,9 +586,6 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
       case DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE:
         setDefiningResource(DEFINING_RESOURCE_EDEFAULT);
         return;
-      case DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE:
-        setActive(ACTIVE_EDEFAULT);
-        return;
       case DbAdapterPackage.NEO4J_REST_CLIENT__PARENT:
         setParent((DbAdapterContainer)null);
         return;
@@ -624,14 +606,14 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
     switch (featureID) {
       case DbAdapterPackage.NEO4J_REST_CLIENT__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case DbAdapterPackage.NEO4J_REST_CLIENT__CONNECTED:
+        return connected != CONNECTED_EDEFAULT;
       case DbAdapterPackage.NEO4J_REST_CLIENT__DESCRIPTION:
         return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
       case DbAdapterPackage.NEO4J_REST_CLIENT__BASE_URI:
         return BASE_URI_EDEFAULT == null ? baseURI != null : !BASE_URI_EDEFAULT.equals(baseURI);
       case DbAdapterPackage.NEO4J_REST_CLIENT__DEFINING_RESOURCE:
         return DEFINING_RESOURCE_EDEFAULT == null ? definingResource != null : !DEFINING_RESOURCE_EDEFAULT.equals(definingResource);
-      case DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE:
-        return active != ACTIVE_EDEFAULT;
       case DbAdapterPackage.NEO4J_REST_CLIENT__PARENT:
         return getParent() != null;
       case DbAdapterPackage.NEO4J_REST_CLIENT__HIERARCHICAL_GRAPH:
@@ -685,14 +667,14 @@ public class Neo4jRestClientImpl extends MinimalEObjectImpl.Container implements
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", connected: ");
+    result.append(connected);
     result.append(", description: ");
     result.append(description);
     result.append(", baseURI: ");
     result.append(baseURI);
     result.append(", definingResource: ");
     result.append(definingResource);
-    result.append(", active: ");
-    result.append(active);
     result.append(')');
     return result.toString();
   }

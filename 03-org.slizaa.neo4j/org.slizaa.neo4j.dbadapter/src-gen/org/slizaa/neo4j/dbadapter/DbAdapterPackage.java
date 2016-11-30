@@ -79,13 +79,22 @@ public interface DbAdapterPackage extends EPackage {
   int NEO4J_REST_CLIENT__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Connected</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEO4J_REST_CLIENT__CONNECTED = 1;
+
+  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT__DESCRIPTION = 1;
+  int NEO4J_REST_CLIENT__DESCRIPTION = 2;
 
   /**
    * The feature id for the '<em><b>Base URI</b></em>' attribute.
@@ -94,7 +103,7 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT__BASE_URI = 2;
+  int NEO4J_REST_CLIENT__BASE_URI = 3;
 
   /**
    * The feature id for the '<em><b>Defining Resource</b></em>' attribute.
@@ -103,16 +112,7 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4J_REST_CLIENT__DEFINING_RESOURCE = 3;
-
-  /**
-   * The feature id for the '<em><b>Active</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NEO4J_REST_CLIENT__ACTIVE = 4;
+  int NEO4J_REST_CLIENT__DEFINING_RESOURCE = 4;
 
   /**
    * The feature id for the '<em><b>Parent</b></em>' container reference.
@@ -370,6 +370,15 @@ public interface DbAdapterPackage extends EPackage {
   int MANAGED_NEO4J_INSTANCE__NAME = NEO4J_REST_CLIENT__NAME;
 
   /**
+   * The feature id for the '<em><b>Connected</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MANAGED_NEO4J_INSTANCE__CONNECTED = NEO4J_REST_CLIENT__CONNECTED;
+
+  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -395,15 +404,6 @@ public interface DbAdapterPackage extends EPackage {
    * @ordered
    */
   int MANAGED_NEO4J_INSTANCE__DEFINING_RESOURCE = NEO4J_REST_CLIENT__DEFINING_RESOURCE;
-
-  /**
-   * The feature id for the '<em><b>Active</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MANAGED_NEO4J_INSTANCE__ACTIVE = NEO4J_REST_CLIENT__ACTIVE;
 
   /**
    * The feature id for the '<em><b>Parent</b></em>' container reference.
@@ -433,13 +433,13 @@ public interface DbAdapterPackage extends EPackage {
   int MANAGED_NEO4J_INSTANCE__IN_PROGRESS = NEO4J_REST_CLIENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Started</b></em>' attribute.
+   * The feature id for the '<em><b>Running</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MANAGED_NEO4J_INSTANCE__STARTED = NEO4J_REST_CLIENT_FEATURE_COUNT + 1;
+  int MANAGED_NEO4J_INSTANCE__RUNNING = NEO4J_REST_CLIENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Storage Area</b></em>' attribute.
@@ -723,6 +723,17 @@ public interface DbAdapterPackage extends EPackage {
   EAttribute getNeo4jRestClient_Name();
 
   /**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#isConnected <em>Connected</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Connected</em>'.
+   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#isConnected()
+   * @see #getNeo4jRestClient()
+   * @generated
+   */
+  EAttribute getNeo4jRestClient_Connected();
+
+  /**
    * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getDescription <em>Description</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -754,17 +765,6 @@ public interface DbAdapterPackage extends EPackage {
    * @generated
    */
   EAttribute getNeo4jRestClient_DefiningResource();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#isActive <em>Active</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Active</em>'.
-   * @see org.slizaa.neo4j.dbadapter.Neo4jRestClient#isActive()
-   * @see #getNeo4jRestClient()
-   * @generated
-   */
-  EAttribute getNeo4jRestClient_Active();
 
   /**
    * Returns the meta object for the container reference '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getParent <em>Parent</em>}'.
@@ -995,15 +995,15 @@ public interface DbAdapterPackage extends EPackage {
   EAttribute getManagedNeo4jInstance_InProgress();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isStarted <em>Started</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isRunning <em>Running</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Started</em>'.
-   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isStarted()
+   * @return the meta object for the attribute '<em>Running</em>'.
+   * @see org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#isRunning()
    * @see #getManagedNeo4jInstance()
    * @generated
    */
-  EAttribute getManagedNeo4jInstance_Started();
+  EAttribute getManagedNeo4jInstance_Running();
 
   /**
    * Returns the meta object for the attribute '{@link org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance#getStorageArea <em>Storage Area</em>}'.
@@ -1215,6 +1215,14 @@ public interface DbAdapterPackage extends EPackage {
     EAttribute NEO4J_REST_CLIENT__NAME = eINSTANCE.getNeo4jRestClient_Name();
 
     /**
+     * The meta object literal for the '<em><b>Connected</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NEO4J_REST_CLIENT__CONNECTED = eINSTANCE.getNeo4jRestClient_Connected();
+
+    /**
      * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1237,14 +1245,6 @@ public interface DbAdapterPackage extends EPackage {
      * @generated
      */
     EAttribute NEO4J_REST_CLIENT__DEFINING_RESOURCE = eINSTANCE.getNeo4jRestClient_DefiningResource();
-
-    /**
-     * The meta object literal for the '<em><b>Active</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NEO4J_REST_CLIENT__ACTIVE = eINSTANCE.getNeo4jRestClient_Active();
 
     /**
      * The meta object literal for the '<em><b>Parent</b></em>' container reference feature.
@@ -1429,12 +1429,12 @@ public interface DbAdapterPackage extends EPackage {
     EAttribute MANAGED_NEO4J_INSTANCE__IN_PROGRESS = eINSTANCE.getManagedNeo4jInstance_InProgress();
 
     /**
-     * The meta object literal for the '<em><b>Started</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Running</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MANAGED_NEO4J_INSTANCE__STARTED = eINSTANCE.getManagedNeo4jInstance_Started();
+    EAttribute MANAGED_NEO4J_INSTANCE__RUNNING = eINSTANCE.getManagedNeo4jInstance_Running();
 
     /**
      * The meta object literal for the '<em><b>Storage Area</b></em>' attribute feature.

@@ -27,10 +27,10 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
  * </p>
  * <ul>
  *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getName <em>Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#isConnected <em>Connected</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getDescription <em>Description</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getBaseURI <em>Base URI</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getDefiningResource <em>Defining Resource</em>}</li>
- *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#isActive <em>Active</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getParent <em>Parent</em>}</li>
  *   <li>{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#getHierarchicalGraph <em>Hierarchical Graph</em>}</li>
  * </ul>
@@ -65,6 +65,21 @@ public interface Neo4jRestClient extends EObject {
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Connected</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Connected</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Connected</em>' attribute.
+   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getNeo4jRestClient_Connected()
+   * @model transient="true" changeable="false"
+   * @generated
+   */
+  boolean isConnected();
 
   /**
    * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -143,32 +158,6 @@ public interface Neo4jRestClient extends EObject {
    * @generated
    */
   void setDefiningResource(IFile value);
-
-  /**
-   * Returns the value of the '<em><b>Active</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Active</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Active</em>' attribute.
-   * @see #setActive(boolean)
-   * @see org.slizaa.neo4j.dbadapter.DbAdapterPackage#getNeo4jRestClient_Active()
-   * @model transient="true"
-   * @generated
-   */
-  boolean isActive();
-
-  /**
-   * Sets the value of the '{@link org.slizaa.neo4j.dbadapter.Neo4jRestClient#isActive <em>Active</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Active</em>' attribute.
-   * @see #isActive()
-   * @generated
-   */
-  void setActive(boolean value);
 
   /**
    * Returns the value of the '<em><b>Parent</b></em>' container reference.

@@ -19,8 +19,12 @@ import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.function.Consumer;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.glassfish.jersey.client.ClientConfig;
+import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
+import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.dbadapter.internal.DbAdapterActivator;
 import org.slizaa.neo4j.dbadapter.internal.rest.Neo4JRemoteServiceRestApi;
 import org.slizaa.neo4j.dbadapter.internal.rest.QueryCallable;
@@ -38,6 +42,16 @@ import com.google.gson.JsonObject;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 class Neo4jClientTrait {
+
+  public static Neo4jClientTrait getNeo4jClientTrait(Neo4jRestClient neo4jRestClient) {
+    if (neo4jRestClient instanceof ExtendedNeo4jRestClientImpl) {
+      return ((ExtendedNeo4jRestClientImpl) neo4jRestClient).getTrait();
+    }
+    if (neo4jRestClient instanceof ExtendedManagedNeo4JInstanceImpl) {
+      return ((ExtendedManagedNeo4JInstanceImpl) neo4jRestClient).getTrait();
+    }
+    return null;
+  }
 
   /** - */
   private Neo4JRemoteServiceRestApi _cypherQueryService;
@@ -59,23 +73,51 @@ class Neo4jClientTrait {
         new ClientConfig().register(new GsonProvider<>()), Neo4JRemoteServiceRestApi.class);
   }
 
-  @SuppressWarnings("deprecation")
-  public void setActive(boolean newActive) {
-
-    //
-    if (newActive) {
-      if (_neo4jRestClient.getParent() != null && _neo4jRestClient.getParent().getParent() != null) {
-        _neo4jRestClient.getParent().getParent().setActiveDbAdapter(_neo4jRestClient);
-      }
-    } else {
-      if (_neo4jRestClient.getParent() != null && _neo4jRestClient.getParent().getParent() != null) {
-        _neo4jRestClient.getParent().getParent().setActiveDbAdapter(null);
-      }
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public void setConnected(boolean newConnected) {
+    boolean oldConnected = _neo4jRestClient.connected;
+    _neo4jRestClient.connected = newConnected;
+    if (_neo4jRestClient.eNotificationRequired()) {
+      _neo4jRestClient.eNotify(new ENotificationImpl(_neo4jRestClient, Notification.SET,
+          DbAdapterPackage.NEO4J_REST_CLIENT__CONNECTED, oldConnected, _neo4jRestClient.connected));
     }
 
     //
-    _neo4jRestClient.getDefiningResource().setReadOnly(newActive);
+    _neo4jRestClient.getDefiningResource().setReadOnly(newConnected);
   }
+
+  // @SuppressWarnings("deprecation")
+  // public void setActive(boolean newActive) {
+  //
+  // /**
+  // * <!-- begin-user-doc -->
+  // * <!-- end-user-doc -->
+  // * @generated
+  // */
+  // boolean oldActive = active;
+  // active = newActive;
+  // if (eNotificationRequired())
+  // eNotify(new ENotificationImpl(this, Notification.SET, DbAdapterPackage.NEO4J_REST_CLIENT__ACTIVE, oldActive,
+  // active));
+  //
+  //
+  // //
+  // if (newActive) {
+  // if (_neo4jRestClient.getParent() != null && _neo4jRestClient.getParent().getParent() != null) {
+  // _neo4jRestClient.getParent().getParent().setActiveDbAdapter(_neo4jRestClient);
+  // }
+  // } else {
+  // if (_neo4jRestClient.getParent() != null && _neo4jRestClient.getParent().getParent() != null) {
+  // _neo4jRestClient.getParent().getParent().setActiveDbAdapter(null);
+  // }
+  // }
+  //
+  //
+  // }
 
   /**
    * <p>

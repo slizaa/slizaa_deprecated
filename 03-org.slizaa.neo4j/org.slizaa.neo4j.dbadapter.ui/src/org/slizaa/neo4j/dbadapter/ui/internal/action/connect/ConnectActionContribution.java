@@ -11,12 +11,12 @@ import org.slizaa.ui.tree.ISlizaaActionContribution;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-@Component(service = ISlizaaActionContribution.class)
+//@Component(service = ISlizaaActionContribution.class)
 public class ConnectActionContribution implements ISlizaaActionContribution {
 
   @Override
   public String getLabel(Object selectedObject) {
-    return ((Neo4jRestClient) selectedObject).isActive() ? "Disconnect" : "Connect";
+    return ((Neo4jRestClient) selectedObject).isConnected() ? "Disconnect" : "Connect";
   }
 
   @Override
@@ -46,12 +46,12 @@ public class ConnectActionContribution implements ISlizaaActionContribution {
     Neo4jRestClient restClient = (Neo4jRestClient) selectedObject;
 
     //
-    if (restClient instanceof ManagedNeo4jInstance && !((ManagedNeo4jInstance)restClient).isStarted()) {
+    if (restClient instanceof ManagedNeo4jInstance && !((ManagedNeo4jInstance)restClient).isRunning()) {
       return false;
     }
     
     //
-    if (restClient.isActive() && restClient.getHierarchicalGraph() != null) {
+    if (restClient.isConnected() && restClient.getHierarchicalGraph() != null) {
       return false;
     }
 
@@ -61,13 +61,17 @@ public class ConnectActionContribution implements ISlizaaActionContribution {
     }
 
     //
-    return (restClient.isActive() && restClient.getParent().getParent().getActiveDbAdapter() == restClient)
+    return (restClient.isConnected() && restClient.getParent().getParent().getActiveDbAdapter() == restClient)
         || restClient.getParent().getParent().getActiveDbAdapter() == null;
   }
 
   @Override
   public void execute(Object selectedObject) {
     Neo4jRestClient restClient = (Neo4jRestClient) selectedObject;
-    restClient.setActive(!restClient.isActive());
+    if (restClient == restClient.getParent().getParent().getActiveDbAdapter()) {
+      restClient.getParent().getParent().setActiveDbAdapter(null);
+    } else {
+      restClient.getParent().getParent().setActiveDbAdapter(restClient);
+    }
   }
 }
