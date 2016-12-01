@@ -91,6 +91,9 @@ public abstract class AbstractNeo4JCypherCallable {
    */
   protected static String asQuery(String cypherQuery, Map<String, String> params) {
 
+    // escape quote signs
+    cypherQuery = cypherQuery.replace("\"", "\\\"");
+
     //
     if (params != null && !params.isEmpty()) {
 

@@ -52,12 +52,23 @@ public class QueryConsumerCallable extends AbstractNeo4JCypherCallable implement
   public Void call() throws Exception {
 
     // execute the cypher call
-    JsonObject jsonObject = neo4JRemoteServiceRestApi().executeCypherQuery(asQuery(query(), params()));
-
-    // we have to synchronize the consumption to avoid race conditions
-    synchronized (neo4JRemoteServiceRestApi()) {
-      _consumer.accept(jsonObject);
+    String query = asQuery(query(), params());
+    System.out.println("Query: " + query);
+    JsonObject jsonObject;
+    try {
+      jsonObject = neo4JRemoteServiceRestApi().executeCypherQuery(query);
+      
+      // we have to synchronize the consumption to avoid race conditions
+      synchronized (neo4JRemoteServiceRestApi()) {
+        _consumer.accept(jsonObject);
+      }
+    } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+      e.getCause().printStackTrace();
     }
+
+
 
     //
     return null;
