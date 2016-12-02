@@ -20,6 +20,7 @@ import java.util.concurrent.FutureTask;
 import java.util.function.Consumer;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.glassfish.jersey.client.ClientConfig;
@@ -207,18 +208,21 @@ class Neo4jClientTrait {
   }
 
   public EList<String> getAllRelationshipTypes() {
-    // http://localhost:7474/db/data/relationship/types
-    throw new UnsupportedOperationException();
+    EList<String> result = new BasicEList<String>();
+    _cypherQueryService.getRelationshipTypes().forEach(c -> result.add(c.getAsString()));
+    return result;
   }
 
   public EList<String> getAllPropertyKeys() {
-    // http://localhost:7474/db/data/propertykeys
-    throw new UnsupportedOperationException();
+    EList<String> result = new BasicEList<String>();
+    _cypherQueryService.getPropertyKeys().forEach(c -> result.add(c.getAsString()));
+    return result;
   }
 
   public EList<String> getAllLabels() {
-    // http://localhost:7474/db/data/labels
-    throw new UnsupportedOperationException();
+    EList<String> result = new BasicEList<String>();
+    _cypherQueryService.getNodeLabels().forEach(c -> result.add(c.getAsString()));
+    return result;
   }
 
   public JsonArray getLabelsForNode(long nodeId) {

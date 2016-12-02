@@ -3,11 +3,14 @@ package org.slizaa.neo4j.dbadapter.internal.dbdefservice;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.eclipse.xtext.serializer.ISerializer;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
+import org.slizaa.neo4j.opencypher.openCypher.Cypher;
 import org.slizaa.neo4j.opencypher.ui.custom.spi.IGraphDatabaseClientAdapter;
+import org.slizaa.neo4j.opencypher.util.WhitespaceUtil;
 
 import com.google.gson.JsonObject;
 
@@ -26,8 +29,10 @@ public class Neo4jGraphDatabaseClientAdapterProvider implements IGraphDatabaseCl
   }
 
   @Override
-  public void executeCypherQuery(String cypher) {
-    _client.executeCypherQuery(cypher, c -> System.out.println(c));
+  public void executeCypherQuery(Cypher cypher, ISerializer serializer) {
+    String cypherString = serializer.serialize(cypher);
+    cypherString = WhitespaceUtil.normalize(cypherString);
+    _client.executeCypherQuery(cypherString, c -> System.out.println(c));
   }
 
   @Override
