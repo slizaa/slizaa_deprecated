@@ -34,11 +34,13 @@ public class VisualizeDependenciesPerspectiveFactory implements IPerspectiveFact
     //
     IFolderLayout folderLayout = layout.createFolder(FOLDER_UPPER_LEFT, IPageLayout.LEFT, 0.2f,
         IPageLayout.ID_EDITOR_AREA);
+    folderLayout.addView("org.slizaa.neo4j.restclient.ui.GraphDatabasesView");
     folderLayout.addView("org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart");
 
     //
     folderLayout = layout.createFolder(FOLDER_LOWER_LEFT, IPageLayout.BOTTOM, 0.6f, FOLDER_UPPER_LEFT);
-    folderLayout.addView("org.slizaa.neo4j.restclient.ui.GraphDatabasesView");
+    folderLayout.addView("org.slizaa.ui.xref.ReferencedNodesPart");
+    folderLayout.addView("org.slizaa.ui.xref.ReferencingNodesPart");
     folderLayout.addView(IPageLayout.ID_PROP_SHEET);
 
     //
