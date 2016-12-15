@@ -81,7 +81,7 @@ public class HierarchicalGraphViewPart {
     }
 
     _currentRootNode = rootNode;
-    if (_treeViewer != null && !_treeViewer.getTree().isDisposed()) {
+    if (_treeViewer != null ) {
       if (_currentRootNode == null) {
         _treeViewer.setInput(null);
       } else {
