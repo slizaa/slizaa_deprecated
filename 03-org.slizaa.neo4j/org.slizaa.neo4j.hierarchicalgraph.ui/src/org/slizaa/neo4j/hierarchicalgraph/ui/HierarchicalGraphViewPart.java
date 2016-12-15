@@ -75,16 +75,18 @@ public class HierarchicalGraphViewPart {
   @Named(SelectionIdentifier.CURRENT_ROOTNODE)
   final HGRootNode rootNode) {
 
-    // 
+    //
     if (_currentRootNode == rootNode) {
       return;
-    } 
+    }
 
     _currentRootNode = rootNode;
-    if (_currentRootNode == null) {
-      _treeViewer.setInput(null);
-    } else {
-      _treeViewer.setInput(new RootObject(rootNode));
+    if (_treeViewer != null && !_treeViewer.getTree().isDisposed()) {
+      if (_currentRootNode == null) {
+        _treeViewer.setInput(null);
+      } else {
+        _treeViewer.setInput(new RootObject(rootNode));
+      }
     }
   }
 
