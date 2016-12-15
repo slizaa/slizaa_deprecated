@@ -27,6 +27,7 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.AggregatedDependencyQuery;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.StructureDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.HierarchicalGraphMappingException;
@@ -83,6 +84,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     List<Future<JsonObject>> rootQueries = new LinkedList<>();
     List<Future<JsonObject>> hierachyQueries = new LinkedList<>();
     List<Future<JsonObject>> simpleDependencyQueries = new LinkedList<>();
+    List<AggregatedDependencyQueryHolder> aggregatedDependencyQueries = new LinkedList<>();
 
     // process root, hierarchy and dependency queries
     StructureDescriptor structureDescriptor = mappingDescriptor.getStructureDescriptor();
@@ -92,9 +94,14 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     structureDescriptor.getNodeHierarchyQueries().getQueries().forEach(cypherQuery -> {
       hierachyQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
     });
-
     structureDescriptor.getDependencyQueries().getSimpleDependencyQueries().forEach(cypherQuery -> {
       simpleDependencyQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
+    });
+    structureDescriptor.getDependencyQueries().getAggregatedDependencyQueries().forEach(aggregatedDependencyQuery -> {
+      AggregatedDependencyQueryHolder holder = new AggregatedDependencyQueryHolder(aggregatedDependencyQuery,
+          remoteRepository
+              .executeCypherQuery(WhitespaceUtil.normalize(aggregatedDependencyQuery.getAggregatedQuery())));
+      aggregatedDependencyQueries.add(holder);
     });
 
     //
@@ -107,6 +114,10 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
     //
     resolveSimpleDependencyQueries(rootNode, simpleDependencyQueries,
+        subMonitor != null ? subMonitor.split(25).setWorkRemaining(simpleDependencyQueries.size()) : null);
+    
+    //
+    resolveAggregatedDependencyQueries(rootNode, aggregatedDependencyQueries,
         subMonitor != null ? subMonitor.split(25).setWorkRemaining(simpleDependencyQueries.size()) : null);
 
     // set the extensions
@@ -142,8 +153,32 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
         // create dependencies
         report(iterationMonitor, "Creating dependencies...");
         createDependencies(jsonArray, rootNode,
-            (id, type) -> GraphFactoryFunctions.createDependencySource(id, type, null),
-            false, false, iterationMonitor);
+            (id, type) -> GraphFactoryFunctions.createDependencySource(id, type, null), false, false, iterationMonitor);
+
+      } catch (Exception e) {
+        throw new HierarchicalGraphMappingException(e);
+      }
+    });
+  }
+
+  // TODO
+  private void resolveAggregatedDependencyQueries(final HGRootNode rootNode,
+      List<AggregatedDependencyQueryHolder> dependencyQueries, SubMonitor dependencyLoopMonitor) {
+
+    //
+    dependencyQueries.forEach((dependencyQuery) -> {
+
+      try {
+        SubMonitor iterationMonitor = dependencyLoopMonitor != null ? dependencyLoopMonitor.split(1) : null;
+
+        // request dependencies
+        report(iterationMonitor, "Requesting dependencies...");
+        JsonArray jsonArray = dependencyQuery.getFuture().get().getAsJsonArray("data");
+
+        // create dependencies
+        report(iterationMonitor, "Creating dependencies...");
+        createDependencies(jsonArray, rootNode,
+            (id, type) -> GraphFactoryFunctions.createDependencySource(id, type, null), false, false, iterationMonitor);
 
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
@@ -276,46 +311,52 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     }
   }
 
-  // private class DependencyQuery {
-  //
-  // /** - */
-  // private Future<JsonObject> _future;
-  //
-  // /** - */
-  // private DependencyMapping _depencyMapping;
-  //
-  // /**
-  // * <p>
-  // * Creates a new instance of type {@link DependencyQuery}.
-  // * </p>
-  // *
-  // * @param depencyMapping
-  // * @param future
-  // */
-  // public DependencyQuery(DependencyMapping depencyMapping, Future<JsonObject> future) {
-  // this._future = checkNotNull(future);
-  // this._depencyMapping = checkNotNull(depencyMapping);
-  // }
-  //
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @return
-  // */
-  // public Future<JsonObject> getFuture() {
-  // return _future;
-  // }
-  //
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @return
-  // */
-  // public DependencyMapping getDependencyMapping() {
-  // return _depencyMapping;
-  // }
-  // }
+  /**
+   * <p>
+   * </p>
+   *
+   * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+   */
+  private class AggregatedDependencyQueryHolder {
 
+    /** - */
+    private Future<JsonObject>        _future;
+
+    /** - */
+    private AggregatedDependencyQuery _aggregatedDependencyQuery;
+
+    /**
+     * <p>
+     * Creates a new instance of type {@link AggregatedDependencyQuery}.
+     * </p>
+     *
+     * @param aggregatedDependencyQuery
+     * @param future
+     */
+    public AggregatedDependencyQueryHolder(AggregatedDependencyQuery aggregatedDependencyQuery,
+        Future<JsonObject> future) {
+      this._future = checkNotNull(future);
+      this._aggregatedDependencyQuery = checkNotNull(aggregatedDependencyQuery);
+    }
+
+    /**
+     * <p>
+     * </p>
+     *
+     * @return
+     */
+    public Future<JsonObject> getFuture() {
+      return _future;
+    }
+
+    /**
+     * <p>
+     * </p>
+     *
+     * @return
+     */
+    public AggregatedDependencyQuery getAggregatedDependencyQuery() {
+      return _aggregatedDependencyQuery;
+    }
+  }
 }
