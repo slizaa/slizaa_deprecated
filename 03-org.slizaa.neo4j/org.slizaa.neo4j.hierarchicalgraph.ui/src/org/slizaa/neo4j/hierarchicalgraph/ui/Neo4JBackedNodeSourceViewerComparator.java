@@ -1,11 +1,11 @@
 package org.slizaa.neo4j.hierarchicalgraph.ui;
 
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 
-public class CustomViewerSorter extends ViewerSorter {
+public class Neo4JBackedNodeSourceViewerComparator extends ViewerComparator {
 
   @Override
   public int category(Object element) {

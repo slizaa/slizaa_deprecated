@@ -136,21 +136,20 @@ public class OverlayImageRegistry {
 
   private URL imageUrl(String path) {
 
-//    if (Activator.getDefault() != null) {
-//      final Activator plugin = Activator.getDefault();
-//      return plugin.getBundle().getEntry(path);
-//    }
-//    //
-//    else {
-    
-    System.out.println(path);
-    
-      try {
-        return new File(path).toURL();
-      } catch (MalformedURLException e) {
-        throw new RuntimeException(e);
+    if (Activator.getDefault() != null) {
+      final Activator plugin = Activator.getDefault();
+
+      URL entry = plugin.getBundle().getEntry(path);
+      if (entry != null) {
+        return entry;
       }
-//    }
+    }
+    
+    try {
+      return new File(path).toURL();
+    } catch (MalformedURLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   /**

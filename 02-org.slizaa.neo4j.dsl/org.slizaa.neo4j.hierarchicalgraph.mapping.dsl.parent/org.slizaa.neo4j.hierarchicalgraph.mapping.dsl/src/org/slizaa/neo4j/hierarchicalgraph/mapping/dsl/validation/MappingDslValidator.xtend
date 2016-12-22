@@ -3,10 +3,16 @@
  */
 package org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.validation
 
+import org.eclipse.core.runtime.Platform
+import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.validation.Check
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDslPackage
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.StructureDescriptor
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.TopLevelNodesQueries
+import org.slizaa.neo4j.opencypher.openCypher.Cypher
+import org.slizaa.neo4j.opencypher.openCypher.Return
+import org.slizaa.neo4j.opencypher.util.CypherNormalizer
+import org.eclipse.emf.ecore.EObject
 
 /**
  * This class contains custom validation rules. 
@@ -39,20 +45,25 @@ class MappingDslValidator extends AbstractMappingDslValidator {
 
 	@Check
 	def checkTopLevelNodesQueries(TopLevelNodesQueries topLevelNodesQueries) {
-//		println("checkTopLevelNodesQueries")
-//		for (String query : topLevelNodesQueries.queries) {
-//			val c = Platform.getAdapterManager().getAdapter(WhitespaceUtil.normalize(query), Cypher)
-//			if (c == null) {
-//				error('Invalid cypher query.', MappingDslPackage.Literals.TOP_LEVEL_NODES_QUERIES__QUERIES,
-//					INVALID_CYPHER_QUERY)
-//			}
-//			val Return ret = EcoreUtil2.eAllOfType(c, Return).stream.findFirst.orElse(null);
-//			if (ret == null) {
-//				error('Invalid cypher query.', MappingDslPackage.Literals.TOP_LEVEL_NODES_QUERIES__QUERIES,
-//					INVALID_CYPHER_QUERY)
-//			} else {
-//				println(ret)
-//			}
-//		}
+		println("checkTopLevelNodesQueries")
+		for (String query : topLevelNodesQueries.queries) {
+
+// TODO : Adapter usage with platform NOT running?
+			if (Platform.isRunning) {
+				val c = Platform.getAdapterManager().loadAdapter(CypherNormalizer.normalize(query), Cypher.name)
+				if (c == null) {
+					error('Invalid cypher query.', MappingDslPackage.Literals.TOP_LEVEL_NODES_QUERIES__QUERIES,
+						topLevelNodesQueries.queries.indexOf(query), INVALID_CYPHER_QUERY)
+				} else {
+					val Return ret = EcoreUtil2.eAllOfType(c as EObject, Return).stream.findFirst.orElse(null);
+					if (ret == null) {
+						error('Invalid cypher query.', MappingDslPackage.Literals.TOP_LEVEL_NODES_QUERIES__QUERIES,
+							topLevelNodesQueries.queries.indexOf(query), INVALID_CYPHER_QUERY)
+					} else {
+						println(ret)
+					}
+				}
+			}
+		}
 	}
 }

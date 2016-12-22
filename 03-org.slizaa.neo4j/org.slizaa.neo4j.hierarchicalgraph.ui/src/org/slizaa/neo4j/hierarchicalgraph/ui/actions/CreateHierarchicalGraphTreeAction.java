@@ -15,7 +15,10 @@ import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.ViewerComparator;
+import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
@@ -28,6 +31,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescript
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorBasedItemLabelProviderImpl;
+import org.slizaa.neo4j.hierarchicalgraph.ui.Neo4JBackedNodeSourceViewerComparator;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
@@ -153,9 +157,14 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
 
         // convert the model
         HGRootNode rootNode = _mappingService.convert(_mappingDescriptor, _remoteRepository, monitor);
+
         // set label provider
         rootNode.registerExtension(IItemLabelProvider.class,
             new MappingDescriptorBasedItemLabelProviderImpl(_mappingDescriptor));
+
+        // set Sorter
+        rootNode.registerExtension(ViewerComparator.class, new Neo4JBackedNodeSourceViewerComparator());
+
         _remoteRepository.setHierarchicalGraph(rootNode);
 
         //
@@ -163,7 +172,16 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
 
       } catch (Exception e) {
         e.printStackTrace();
-        MessageDialogs.openCannotConnectToServerDialog(_remoteRepository.getBaseURI());
+        Display.getDefault().syncExec(new Runnable() {
+          public void run() {
+            Throwable cause = e;
+            while (cause.getCause() != null) {
+              cause = cause.getCause();
+            }
+            MessageDialog.openError(Display.getDefault().getActiveShell(), "Error",
+                "Cannot load model: " + cause.getMessage());
+          }
+        });
       }
       return Status.OK_STATUS;
     }

@@ -88,22 +88,52 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
     // process root, hierarchy and dependency queries
     StructureDescriptor structureDescriptor = mappingDescriptor.getStructureDescriptor();
-    structureDescriptor.getTopLevelNodeQueries().getQueries().forEach(cypherQuery -> {
-      rootQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
-    });
-    structureDescriptor.getNodeHierarchyQueries().getQueries().forEach(cypherQuery -> {
-      hierachyQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
-    });
-    structureDescriptor.getDependencyQueries().getSimpleDependencyQueries().forEach(cypherQuery -> {
-      simpleDependencyQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
-    });
-    structureDescriptor.getDependencyQueries().getAggregatedDependencyQueries().forEach(aggregatedDependencyQuery -> {
-      AggregatedDependencyQueryHolder holder = new AggregatedDependencyQueryHolder(aggregatedDependencyQuery,
-          remoteRepository
-              .executeCypherQuery(WhitespaceUtil.normalize(aggregatedDependencyQuery.getAggregatedQuery())));
-      aggregatedDependencyQueries.add(holder);
-    });
+    if (structureDescriptor != null) {
 
+      //
+      if (structureDescriptor.getTopLevelNodeQueries() != null
+          && structureDescriptor.getTopLevelNodeQueries().getQueries() != null) {
+
+        //
+        structureDescriptor.getTopLevelNodeQueries().getQueries().forEach(cypherQuery -> {
+          rootQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
+        });
+      }
+
+      //
+      if (structureDescriptor.getNodeHierarchyQueries() != null
+          && structureDescriptor.getNodeHierarchyQueries().getQueries() != null) {
+
+        //
+        structureDescriptor.getNodeHierarchyQueries().getQueries().forEach(cypherQuery -> {
+          hierachyQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
+        });
+      }
+
+      //
+      if (structureDescriptor.getDependencyQueries() != null
+          && structureDescriptor.getDependencyQueries().getSimpleDependencyQueries() != null) {
+
+        //
+        structureDescriptor.getDependencyQueries().getSimpleDependencyQueries().forEach(cypherQuery -> {
+          simpleDependencyQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
+        });
+      }
+
+      //
+      if (structureDescriptor.getDependencyQueries() != null
+          && structureDescriptor.getDependencyQueries().getAggregatedDependencyQueries() != null) {
+
+        //
+        structureDescriptor.getDependencyQueries().getAggregatedDependencyQueries()
+            .forEach(aggregatedDependencyQuery -> {
+              AggregatedDependencyQueryHolder holder = new AggregatedDependencyQueryHolder(aggregatedDependencyQuery,
+                  remoteRepository
+                      .executeCypherQuery(WhitespaceUtil.normalize(aggregatedDependencyQuery.getAggregatedQuery())));
+              aggregatedDependencyQueries.add(holder);
+            });
+      }
+    }
     //
     resolveRootQueries(rootNode, rootQueries,
         subMonitor != null ? subMonitor.split(25).setWorkRemaining(rootQueries.size()) : null);
@@ -115,12 +145,12 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     //
     resolveSimpleDependencyQueries(rootNode, simpleDependencyQueries,
         subMonitor != null ? subMonitor.split(25).setWorkRemaining(simpleDependencyQueries.size()) : null);
-    
+
     //
     resolveAggregatedDependencyQueries(rootNode, aggregatedDependencyQueries,
         subMonitor != null ? subMonitor.split(25).setWorkRemaining(simpleDependencyQueries.size()) : null);
 
-    // set the extensions
+    // register default extensions
     rootNode.registerExtension(Neo4jRestClient.class, remoteRepository);
     rootNode.registerExtension(IAggregatedCoreDependencyResolver.class, new CustomAggregatedDependencyResolver());
     rootNode.registerExtension(MappingDescriptor.class, mappingDescriptor);

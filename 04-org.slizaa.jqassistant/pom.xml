@@ -4,29 +4,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.slizaa</groupId>
-	<artifactId>org.slizaa.neo4j.parent</artifactId>
+	<artifactId>org.slizaa.jqassistant.parent</artifactId>
 	<version>0.0.4-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
-
-	<modules>
-	
-		<module>org.slizaa.neo4j.dbadapter</module>
-		<module>org.slizaa.neo4j.dbadapter.edit</module>
-		<module>org.slizaa.neo4j.dbadapter.test</module>
-		<module>org.slizaa.neo4j.dbadapter.ui</module>
-		<module>org.slizaa.neo4j.feature</module>
-		<module>org.slizaa.neo4j.hierarchicalgraph</module>
-		<module>org.slizaa.neo4j.hierarchicalgraph.edit</module>
-		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.service</module>
-		<!-- module>org.slizaa.neo4j.hierarchicalgraph.mapping.service.test</module -->
-		<module>org.slizaa.neo4j.hierarchicalgraph.test</module>
-		<module>org.slizaa.neo4j.hierarchicalgraph.ui</module>
-		<module>org.slizaa.neo4j.target</module>
-		<module>org.slizaa.neo4j.testfwk</module>
-		<module>org.slizaa.neo4j.testfwk.dbserver</module>
-		<module>org.slizaa.neo4j.ui.discovery</module>
-	</modules>
 
 	<!-- tycho requires maven >= 3.0 -->
 	<prerequisites>
@@ -35,10 +16,16 @@
 
 	<properties>
 		<tycho-version>0.24.0</tycho-version>
-		<xtend-version>2.10.0</xtend-version>
 	</properties>
 
-	<build>
+	<modules>
+		<module>org.slizaa.jqassistant</module>
+		<module>org.slizaa.jqassistant.feature</module>
+		<module>org.slizaa.jqassistant.product</module>
+		<module>org.slizaa.jqassistant.target</module>
+	</modules>
+
+<build>
 		<plugins>
 			<plugin>
 				<!-- enable tycho build extension -->
@@ -56,7 +43,7 @@
 					<target>
 						<artifact>
 							<groupId>org.slizaa</groupId>
-							<artifactId>org.slizaa.neo4j.target</artifactId>
+							<artifactId>org.slizaa.jqassistant.target</artifactId>
 							<version>${project.version}</version>
 						</artifact>
 					</target>

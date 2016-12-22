@@ -66,7 +66,7 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
       return _imageRegistry.getOverlayImage(labelDefinition.image, new String[] { labelDefinition.ovl_topLeft,
           labelDefinition.ovl_topRight, labelDefinition.ovl_bottomLeft, labelDefinition.ovl_bottomRight });
     }
-    return null;
+    return _imageRegistry.getImage("icons/HGNode.png");
   }
 
   /**
@@ -81,62 +81,64 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
     //
     LabelDefinition result = new LabelDefinition();
 
-    result.text = "Not: " + nodeSource.getIdentifier();
+    result.text = "Node " + nodeSource.getIdentifier();
 
-    //
-    for (NodeVisualizationDefinition visualizationDefinition : _descriptor.getVisualisationDescriptor()
-        .getNodeVisualizationDefinition()) {
+    if (_descriptor.getVisualisationDescriptor() != null) {
+      
+      //
+      for (NodeVisualizationDefinition visualizationDefinition : _descriptor.getVisualisationDescriptor()
+          .getNodeVisualizationDefinition()) {
 
-      // TODO: rename to condition
-      // TODO: functions!!
-      StringConstant stringConstant = (StringConstant) visualizationDefinition.getCondition().getParameters().get(0);
-      if (containsAll(nodeSource.getLabels(), stringConstant.getValue())) {
+        // TODO: rename to condition
+        // TODO: functions!!
+        StringConstant stringConstant = (StringConstant) visualizationDefinition.getCondition().getParameters().get(0);
+        if (containsAll(nodeSource.getLabels(), stringConstant.getValue())) {
 
-        EMap<String, String> properties = nodeSource.getProperties();
+          EMap<String, String> properties = nodeSource.getProperties();
 
-        // TODO
-        Function function = (Function) visualizationDefinition.getLabelProperties().getTextLabel();
-        String propertyName = ((StringConstant) function.getParameters().get(0)).getValue();
-        result.text = properties.get(propertyName);
-        
-        //
-        StringConstant constant = (StringConstant) visualizationDefinition.getLabelProperties().getBaseImage();
-        URI uri = URI.createURI(constant.getValue()); 
-        URI deresolvedUri = uri.resolve(_descriptor.eResource().getURI()) ;
+          // TODO
+          Function function = (Function) visualizationDefinition.getLabelProperties().getTextLabel();
+          String propertyName = ((StringConstant) function.getParameters().get(0)).getValue();
+          result.text = properties.get(propertyName);
 
-        result.image = deresolvedUri.toFileString();
+          //
+          StringConstant constant = (StringConstant) visualizationDefinition.getLabelProperties().getBaseImage();
+          URI uri = URI.createURI(constant.getValue());
+          URI deresolvedUri = uri.resolve(_descriptor.eResource().getURI());
 
-        // for (PropertyBasedImageMapper mapper : labelMapper.getPropertyBasedImages()) {
-        //
-        // //
-        // String propertyValue = properties.get(mapper.getPropertyName());
-        //
-        // if (mapper.getPropertyValue().equals(propertyValue)) {
-        //
-        // switch (mapper.getPosition()) {
-        // case BASE:
-        // result.image = mapper.getImage();
-        // break;
-        // case OVERLAY_BOTTOM_LEFT:
-        // result.ovl_bottomLeft = mapper.getImage();
-        // break;
-        // case OVERLAY_BOTTOM_RIGHT:
-        // result.ovl_bottomRight = mapper.getImage();
-        // break;
-        // case OVERLAY_TOP_LEFT:
-        // result.ovl_topLeft = mapper.getImage();
-        // break;
-        // case OVERLAY_TOP_RIGHT:
-        // result.ovl_topRight = mapper.getImage();
-        // break;
-        // }
-        // }
-        // }
-        //
-        return result;
-      }
+          result.image = deresolvedUri.toFileString();
+
+          // for (PropertyBasedImageMapper mapper : labelMapper.getPropertyBasedImages()) {
+          //
+          // //
+          // String propertyValue = properties.get(mapper.getPropertyName());
+          //
+          // if (mapper.getPropertyValue().equals(propertyValue)) {
+          //
+          // switch (mapper.getPosition()) {
+          // case BASE:
+          // result.image = mapper.getImage();
+          // break;
+          // case OVERLAY_BOTTOM_LEFT:
+          // result.ovl_bottomLeft = mapper.getImage();
+          // break;
+          // case OVERLAY_BOTTOM_RIGHT:
+          // result.ovl_bottomRight = mapper.getImage();
+          // break;
+          // case OVERLAY_TOP_LEFT:
+          // result.ovl_topLeft = mapper.getImage();
+          // break;
+          // case OVERLAY_TOP_RIGHT:
+          // result.ovl_topRight = mapper.getImage();
+          // break;
+          // }
+          // }
+          // }
+          //
+          return result;
+        }
+      } 
     }
-
     //
     return result;
   }

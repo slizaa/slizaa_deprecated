@@ -24,6 +24,8 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.ViewerComparator;
+import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -81,11 +83,15 @@ public class HierarchicalGraphViewPart {
     }
 
     _currentRootNode = rootNode;
-    if (_treeViewer != null ) {
+    if (_treeViewer != null) {
       if (_currentRootNode == null) {
         _treeViewer.setInput(null);
+        _treeViewer.setComparator(null);
       } else {
         _treeViewer.setInput(new RootObject(rootNode));
+        if (rootNode.hasExtension(ViewerComparator.class)) {
+          _treeViewer.setComparator(_currentRootNode.getExtension(ViewerComparator.class));
+        }
       }
     }
   }
@@ -103,7 +109,6 @@ public class HierarchicalGraphViewPart {
     _treeViewer = SlizaaTreeViewerFactory.createTreeViewer(parent, SWT.NO_BACKGROUND | SWT.NONE | SWT.MULTI, 2, null);
 
     // TODO: MOVE SORTER TO Graph module!!!
-    _treeViewer.setSorter(new CustomViewerSorter());
     _treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
       @Override

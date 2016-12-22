@@ -4,11 +4,11 @@
 
 	<parent>
 		<groupId>org.slizaa</groupId>
-		<artifactId>org.slizaa.parent</artifactId>
+		<artifactId>org.slizaa.jqassistant.parent</artifactId>
 		<version>0.0.4-SNAPSHOT</version>
-		<relativePath>../../00-releng/org.slizaa.parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>org.slizaa.jqassistant</artifactId>
-	<packaging>eclipse-plugin</packaging>
+	<artifactId>org.slizaa.jqassistant.target</artifactId>
+	<packaging>eclipse-target-definition</packaging>
+
 </project>
