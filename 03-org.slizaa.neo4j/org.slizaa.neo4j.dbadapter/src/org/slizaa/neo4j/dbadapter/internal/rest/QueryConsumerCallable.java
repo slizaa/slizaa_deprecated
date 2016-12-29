@@ -53,7 +53,6 @@ public class QueryConsumerCallable extends AbstractNeo4JCypherCallable implement
 
     // execute the cypher call
     String query = asQuery(query(), params());
-    System.out.println("Query: " + query);
     JsonObject jsonObject;
     try {
       jsonObject = neo4JRemoteServiceRestApi().executeCypherQuery(query);

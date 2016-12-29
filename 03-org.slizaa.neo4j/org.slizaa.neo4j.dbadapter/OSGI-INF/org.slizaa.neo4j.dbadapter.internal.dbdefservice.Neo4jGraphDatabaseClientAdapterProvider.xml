@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" factory="Neo4jGraphDatabaseClientAdapterProvider" name="org.slizaa.neo4j.dbadapter.internal.dbdefservice.Neo4jGraphDatabaseClientAdapterProvider">
-   <service>
-      <provide interface="org.slizaa.neo4j.opencypher.ui.custom.spi.IGraphDatabaseClientAdapter"/>
-   </service>
-   <implementation class="org.slizaa.neo4j.dbadapter.internal.dbdefservice.Neo4jGraphDatabaseClientAdapterProvider"/>
-</scr:component>

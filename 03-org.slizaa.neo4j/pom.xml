@@ -22,6 +22,7 @@
 		<!-- module>org.slizaa.neo4j.hierarchicalgraph.mapping.service.test</module -->
 		<module>org.slizaa.neo4j.hierarchicalgraph.test</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.ui</module>
+		<module>org.slizaa.neo4j.queryresult</module>
 		<module>org.slizaa.neo4j.target</module>
 		<module>org.slizaa.neo4j.testfwk</module>
 		<module>org.slizaa.neo4j.testfwk.dbserver</module>

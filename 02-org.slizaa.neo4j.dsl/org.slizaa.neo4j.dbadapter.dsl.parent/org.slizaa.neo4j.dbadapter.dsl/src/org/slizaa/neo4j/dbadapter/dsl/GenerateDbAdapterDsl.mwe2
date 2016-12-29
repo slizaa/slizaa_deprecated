@@ -6,7 +6,7 @@ import org.eclipse.xtext.xtext.generator.model.project.*
 var rootPath = ".."
 
 Workflow {
-	
+
 	component = XtextGenerator {
 		configuration = {
 			project = StandardProjectConfig {
@@ -31,12 +31,15 @@ Workflow {
 		language = StandardLanguage {
 			name = "org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl"
 			fileExtensions = "dbdef"
-
 			serializer = {
 				generateStub = false
 			}
+			formatter = {
+				generateStub = true
+				generateXtendStub = true
+			}
 			validator = {
-				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+			// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
 			}
 		}
 	}

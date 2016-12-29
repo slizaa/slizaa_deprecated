@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) Gerd Wütherich 2012-2016.
+ * Copyright (c) Gerd Wï¿½therich 2012-2016.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
+ *    Gerd Wï¿½therich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
 package org.slizaa.ui.dsm;
 
@@ -155,7 +155,7 @@ public class DsmPart {
 
           BusyCursor.execute(_viewWidget, () -> {
             IEclipseContext eclipseContext = _perspective.getContext();
-            eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_ROOTNODE);
+            eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION);
             eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
           });
 
@@ -250,7 +250,7 @@ public class DsmPart {
     _selectedCell = null;
 
     IEclipseContext eclipseContext = _perspective.getContext();
-    eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_ROOTNODE);
+    eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION);
     eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, Collections.emptyList());
   }
 }

@@ -25,5 +25,6 @@ Export-Package: org.slizaa.neo4j.dbadapter.dsl.serializer,
  org.slizaa.neo4j.dbadapter.dsl,
  org.slizaa.neo4j.dbadapter.dsl.generator,
  org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.impl,
- org.slizaa.neo4j.dbadapter.dsl.parser.antlr.internal
+ org.slizaa.neo4j.dbadapter.dsl.parser.antlr.internal,
+ org.slizaa.neo4j.dbadapter.dsl.formatting2
 Import-Package: org.apache.log4j

@@ -32,8 +32,7 @@ Import-Package: com.google.common.base;version="15.0.0",
  org.osgi.service.component.annotations;version="1.2.0",
  org.slizaa.hierarchicalgraph,
  org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl
-Service-Component: OSGI-INF/org.slizaa.neo4j.dbadapter.internal.dbdefservice.DatabaseDefinitionService.xml,
- OSGI-INF/org.slizaa.neo4j.dbadapter.internal.dbdefservice.Neo4jGraphDatabaseClientAdapterProvider.xml
+Service-Component: OSGI-INF/org.slizaa.neo4j.dbadapter.internal.dbdefservice.DatabaseDefinitionService.xml
 Bundle-Activator: org.slizaa.neo4j.dbadapter.internal.DbAdapterActivator
 Require-Bundle: org.eclipse.emf.common,
  org.eclipse.debug.core,

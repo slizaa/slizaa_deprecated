@@ -96,7 +96,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
         //
         structureDescriptor.getTopLevelNodeQueries().getQueries().forEach(cypherQuery -> {
-          rootQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
+          rootQueries.add(remoteRepository.executeCypherQuery(CypherNormalizer.normalize(cypherQuery)));
         });
       }
 
@@ -106,7 +106,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
         //
         structureDescriptor.getNodeHierarchyQueries().getQueries().forEach(cypherQuery -> {
-          hierachyQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
+          hierachyQueries.add(remoteRepository.executeCypherQuery(CypherNormalizer.normalize(cypherQuery)));
         });
       }
 
@@ -116,7 +116,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
         //
         structureDescriptor.getDependencyQueries().getSimpleDependencyQueries().forEach(cypherQuery -> {
-          simpleDependencyQueries.add(remoteRepository.executeCypherQuery(WhitespaceUtil.normalize(cypherQuery)));
+          simpleDependencyQueries.add(remoteRepository.executeCypherQuery(CypherNormalizer.normalize(cypherQuery)));
         });
       }
 
@@ -129,7 +129,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
             .forEach(aggregatedDependencyQuery -> {
               AggregatedDependencyQueryHolder holder = new AggregatedDependencyQueryHolder(aggregatedDependencyQuery,
                   remoteRepository
-                      .executeCypherQuery(WhitespaceUtil.normalize(aggregatedDependencyQuery.getAggregatedQuery())));
+                      .executeCypherQuery(CypherNormalizer.normalize(aggregatedDependencyQuery.getAggregatedQuery())));
               aggregatedDependencyQueries.add(holder);
             });
       }

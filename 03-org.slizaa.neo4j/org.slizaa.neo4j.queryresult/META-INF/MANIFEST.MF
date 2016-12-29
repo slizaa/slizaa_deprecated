@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.slizaa.neo4j.queryresult.ui
+Bundle-SymbolicName: org.slizaa.neo4j.queryresult.ui;singleton:=true
+Bundle-Version: 0.0.4.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.osgi.services;bundle-version="3.5.100",
+ org.slizaa.neo4j.opencypher;bundle-version="1.0.0",
+ org.slizaa.neo4j.opencypher.ui;bundle-version="1.0.0",
+ org.slizaa.neo4j.dbadapter;bundle-version="0.0.4",
+ com.google.gson;bundle-version="2.5.0",
+ org.eclipse.xtext;bundle-version="2.10.0",
+ org.eclipse.swt
+Service-Component: OSGI-INF/org.slizaa.neo4j.queryresult.ui.Neo4jGraphDatabaseClientAdapterProvider.xml
+Bundle-ActivationPolicy: lazy

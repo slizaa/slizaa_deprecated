@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.osgi.service.component.ComponentFactory;
 import org.osgi.service.component.ComponentInstance;
 import org.slizaa.neo4j.dbadapter.ContainerType;
+import org.slizaa.neo4j.dbadapter.DbAdapterConstants;
 import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
@@ -76,7 +77,7 @@ public class DbClientManager {
           //
           if (msg.getNewBooleanValue()) {
             Dictionary<String, Object> properties = new Hashtable<>();
-            properties.put(Neo4jGraphDatabaseClientAdapterProvider.PROPERTY_NEO4J_REST_CLIENT, restClient);
+            properties.put(DbAdapterConstants.PROPERTY_NEO4J_REST_CLIENT, restClient);
             ComponentInstance componentInstance = _componentFactory.newInstance(properties);
             _componentInstances.put(restClient, componentInstance);
           } else {

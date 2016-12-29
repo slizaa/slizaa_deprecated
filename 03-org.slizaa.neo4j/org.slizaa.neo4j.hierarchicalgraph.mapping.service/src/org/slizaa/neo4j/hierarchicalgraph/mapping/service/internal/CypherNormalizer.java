@@ -1,6 +1,6 @@
 package org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal;
 
-public class WhitespaceUtil {
+public class CypherNormalizer {
 
   private static final String whitespace_chars         = ""                                         /*
                                                                                                      * dummy empty
@@ -43,13 +43,23 @@ public class WhitespaceUtil {
       + "\\u3000"                                                                                   // IDEOGRAPHIC SPACE
   ;
 
-  /* A \s that actually works for Java’s native character set: Unicode */
+  /* A \s that actually works for Javaï¿½s native character set: Unicode */
   static String               whitespace_charclass     = "[" + whitespace_chars + "]";
 
-  /* A \S that actually works for Java’s native character set: Unicode */
+  /* A \S that actually works for Javaï¿½s native character set: Unicode */
   static String               not_whitespace_charclass = "[^" + whitespace_chars + "]";
 
   public static String normalize(String text) {
-   return text.replaceAll(whitespace_charclass + "+", " ");
+   String result = text.replaceAll(whitespace_charclass + "+", " ");
+   
+   if (result.startsWith("\"")) {
+     result = result.substring(1);
+   }
+   if (result.endsWith("\"")) {
+     result = result.substring(0, result.length() - 1);
+   }
+   
+   return result;
+   
   }
 }
