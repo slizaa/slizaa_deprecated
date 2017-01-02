@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.debug.core.DebugException;
@@ -20,15 +19,14 @@ import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.ILaunchesListener2;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
+import org.slizaa.neo4j.dbadapter.GraphDatabaseUtil;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 import org.slizaa.neo4j.dbadapter.impl.ExtendedManagedNeo4JInstanceImpl;
 import org.slizaa.neo4j.dbadapter.impl.ILauncherService;
 
 /**
  * <p>
+ * https://franckyarch.blogspot.de/2014/02/running-external-tools-programmatically.html
  * </p>
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
@@ -47,9 +45,7 @@ public class LauncherService implements ILauncherService {
   /** - */
   private Map<ILaunch, ManagedNeo4jInstance> _launch2managedNeo4jInstanceMap;
 
-  /** - */
-  private String                             _jqassistantHomeDirectory;
-
+  
   /**
    * <p>
    * </p>
@@ -85,33 +81,6 @@ public class LauncherService implements ILauncherService {
     _launch2managedNeo4jInstanceMap = null;
     _manager = null;
     _programLaunchConfigurationType = null;
-  }
-
-  /**
-   * <p>
-   * </p>
-   */
-  @Override
-  public boolean isJQAssistantInstalled() {
-    return getJQAssistantBundle() != null;
-  }
-
-  /**
-   * <p>
-   * </p>
-   */
-  public Bundle getJQAssistantBundle() {
-
-    //
-    BundleContext context = FrameworkUtil.getBundle(LauncherService.class).getBundleContext();
-    for (Bundle bundle : context.getBundles()) {
-      if (bundle.getSymbolicName().equals("org.slizaa.org.jqassistant.distribution")) {
-        return bundle;
-      }
-    }
-
-    //
-    return null;
   }
 
   /**
@@ -164,7 +133,7 @@ public class LauncherService implements ILauncherService {
     //
     managedInstance.setRunning(true);
   }
-  
+
   @Override
   public void stop(ManagedNeo4jInstance managedInstance) {
 
@@ -173,7 +142,7 @@ public class LauncherService implements ILauncherService {
 
     //
     try {
-      ((ExtendedManagedNeo4JInstanceImpl)managedInstance).getLaunch().terminate();
+      ((ExtendedManagedNeo4JInstanceImpl) managedInstance).getLaunch().terminate();
     } catch (DebugException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -220,7 +189,7 @@ public class LauncherService implements ILauncherService {
 
     //
     managedInstance.setInProgress(true);
-    
+
     //
     deleteLaunchConfiguration(name);
 
@@ -235,39 +204,16 @@ public class LauncherService implements ILauncherService {
 
     //
     workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_LOCATION",
-        getJQAssistantHomeDirectory() + "\\bin\\" + exec);
+        GraphDatabaseUtil.getGraphDatabaseHomeDirectory() + "\\bin\\" + exec);
 
-    workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY", getJQAssistantHomeDirectory());
+    workingCopy.setAttribute("org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY",
+        GraphDatabaseUtil.getGraphDatabaseHomeDirectory());
 
     consumer.accept(workingCopy);
 
     ILaunch launch = workingCopy.launch(ILaunchManager.RUN_MODE, new NullProgressMonitor());
     ((ExtendedManagedNeo4JInstanceImpl) managedInstance).setLaunch(launch);
     _launch2managedNeo4jInstanceMap.put(launch, managedInstance);
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   * @throws IOException
-   */
-  private String getJQAssistantHomeDirectory() {
-
-    //
-    if (_jqassistantHomeDirectory == null) {
-      Bundle jqassistantBundle = getJQAssistantBundle();
-      try {
-        _jqassistantHomeDirectory = FileLocator.getBundleFile(jqassistantBundle).getAbsolutePath();
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
-    }
-
-    //
-    return _jqassistantHomeDirectory;
   }
 
   /**

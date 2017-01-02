@@ -10,14 +10,6 @@ import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
  */
 public interface ILauncherService {
 
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  boolean isJQAssistantInstalled();
-
   void enrich(ManagedNeo4jInstance managedInstance) throws Exception;
 
   void scan(ManagedNeo4jInstance managedInstance) throws Exception;

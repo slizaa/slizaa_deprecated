@@ -131,10 +131,11 @@ public class SlizaaTreeMenuBuilder {
     // TODO: HIERARCHIES
     for (ISlizaaActionGroupContribution actionGroupContribution : Activator.getDefault()
         .getSlizaaActionGroupContributions()) {
-
-      SlizaaTreeMenuGroup group = menuGroupMap.getUnchecked(actionGroupContribution.getId());
-      group.setActionGroupContribution(actionGroupContribution);
-      menuGroup.getMenuEntries().add(group);
+      if (actionGroupContribution.shouldShow(eSelectedObject)) {
+        SlizaaTreeMenuGroup group = menuGroupMap.getUnchecked(actionGroupContribution.getId());
+        group.setActionGroupContribution(actionGroupContribution);
+        menuGroup.getMenuEntries().add(group);
+      }
     }
 
     //

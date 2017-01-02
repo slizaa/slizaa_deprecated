@@ -16,6 +16,7 @@ import java.util.function.Consumer;
 
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.emf.common.util.EList;
+import org.slizaa.neo4j.dbadapter.GraphDatabaseUtil;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -46,7 +47,7 @@ public class ExtendedManagedNeo4JInstanceImpl extends ManagedNeo4jInstanceImpl {
   public Neo4jClientTrait getTrait() {
     return neo4jClientTrait();
   }
-  
+
   /**
    * <p>
    * </p>
@@ -191,7 +192,7 @@ public class ExtendedManagedNeo4JInstanceImpl extends ManagedNeo4jInstanceImpl {
 
   @Override
   public boolean isDatabaseInstallationAvailable() {
-    return _launcherService.isJQAssistantInstalled();
+    return GraphDatabaseUtil.isGraphDatabaseInstalled();
   }
 
   @Override
