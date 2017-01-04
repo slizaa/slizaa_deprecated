@@ -124,7 +124,7 @@ public class DbAdapterContainerItemProvider
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/DbAdapterContainer"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/DbAdapterContainer.gif"));
   }
 
   /**

@@ -122,7 +122,7 @@ public class DbAdapterRegistryItemProvider
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/DbAdapterRegistry"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/DbAdapterRegistry.gif"));
   }
 
   /**

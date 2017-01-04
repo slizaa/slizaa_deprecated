@@ -2,6 +2,7 @@ package org.slizaa.neo4j.queryresult.ui;
 
 import java.util.List;
 import java.util.concurrent.Future;
+import java.util.function.BiConsumer;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
@@ -12,24 +13,30 @@ import org.osgi.service.component.annotations.Component;
 import org.slizaa.neo4j.dbadapter.DbAdapterConstants;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.opencypher.openCypher.Cypher;
-import org.slizaa.neo4j.opencypher.openCypher.Limit;
-import org.slizaa.neo4j.opencypher.openCypher.NumberConstant;
-import org.slizaa.neo4j.opencypher.openCypher.OpenCypherFactory;
 import org.slizaa.neo4j.opencypher.openCypher.ReturnBody;
 import org.slizaa.neo4j.opencypher.ui.custom.spi.IGraphDatabaseClientAdapter;
 import org.slizaa.neo4j.opencypher.util.CypherNormalizer;
 
 import com.google.gson.JsonObject;
 
-@Component(factory = "Neo4jGraphDatabaseClientAdapterProvider", service = IGraphDatabaseClientAdapter.class)
-public class Neo4jGraphDatabaseClientAdapterProvider implements IGraphDatabaseClientAdapter {
+@Component(factory = "Neo4jGraphDatabaseClientAdapterProvider", service = { IGraphDatabaseClientAdapter.class,
+    IQueryResultProvider.class })
+public class Neo4jGraphDatabaseClientAdapterProvider implements IGraphDatabaseClientAdapter, IQueryResultProvider {
 
   /** - */
-  private Neo4jRestClient _client;
+  private Neo4jRestClient                _client;
+
+  /** - */
+  private BiConsumer<String, JsonObject> _consumer;
 
   @Activate
   public void activate(ComponentContext context) {
     _client = (Neo4jRestClient) context.getProperties().get(DbAdapterConstants.PROPERTY_NEO4J_REST_CLIENT);
+  }
+
+  @Override
+  public void registerQueryResultHandler(BiConsumer<String, JsonObject> consumer) {
+    _consumer = consumer;
   }
 
   /**
@@ -58,7 +65,12 @@ public class Neo4jGraphDatabaseClientAdapterProvider implements IGraphDatabaseCl
     }
 
     //
-   Future<?> future = _client.executeCypherQuery(cypherString, c -> System.out.println(c));
+    String finalCypherQuery = cypherString;
+    Future<?> future = _client.executeCypherQuery(cypherString, result -> {
+      if (_consumer != null) {
+        _consumer.accept(finalCypherQuery, result);
+      }
+    });
   }
 
   @Override

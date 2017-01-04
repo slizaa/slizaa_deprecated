@@ -11,17 +11,34 @@
 package org.slizaa.neo4j.queryresult.ui;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
+import org.osgi.util.tracker.ServiceTracker;
 
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 public class QueryResultViewPart {
 
   /** - */
-  public static final String PART_ID = QueryResultViewPart.class.getName();
+  public static final String                                         PART_ID = QueryResultViewPart.class.getName();
+
+  /** - */
+  private Browser                                                    _browser;
+
+  /** - */
+  private ServiceTracker<IQueryResultProvider, IQueryResultProvider> _tracker;
 
   /**
    * <p>
@@ -38,38 +55,40 @@ public class QueryResultViewPart {
     layout.marginWidth = 0;
     parent.setLayout(layout);
 
-    //
-    Browser browser;
-    browser = new Browser(parent, SWT.NONE);
+    _browser = new Browser(parent, SWT.NONE);
     GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-    browser.setLayoutData(gridData);
-    
-    
+    _browser.setLayoutData(gridData);
+
     final String html = "<html><title>Snippet</title><body><p id='myid'>Best Friends</p><p id='myid2'>Cat and Dog</p></body></html>";
-    browser.setText(html);
+    _browser.setText(html);
+
+    _tracker = new ServiceTracker<IQueryResultProvider, IQueryResultProvider>(
+        FrameworkUtil.getBundle(QueryResultViewPart.class).getBundleContext(), IQueryResultProvider.class, null) {
+
+      @Override
+      public IQueryResultProvider addingService(ServiceReference<IQueryResultProvider> reference) {
+        IQueryResultProvider queryResultProvider = super.addingService(reference);
+        queryResultProvider.registerQueryResultHandler((query, result) -> Display.getDefault().syncExec(() -> {
+          _browser.setText(result.toString());
+        }));
+        return queryResultProvider;
+      }
+
+      @Override
+      public void modifiedService(ServiceReference<IQueryResultProvider> reference, IQueryResultProvider service) {
+        //
+      }
+
+      @Override
+      public void removedService(ServiceReference<IQueryResultProvider> reference, IQueryResultProvider service) {
+        service.registerQueryResultHandler(null);
+      }
+    };
+    _tracker.open();
   }
 
-  // @Inject
-  // public void handleChangedDependencies(@Optional
-  // @Named(SelectionIdentifier.CURRENT_ROOTNODE)
-  // final HGRootNode rootNode) {
-  //
-  // //
-  // if (_currentRootNode == rootNode) {
-  // return;
-  // }
-  //
-  // _currentRootNode = rootNode;
-  // if (_treeViewer != null) {
-  // if (_currentRootNode == null) {
-  // _treeViewer.setInput(null);
-  // _treeViewer.setComparator(null);
-  // } else {
-  // _treeViewer.setInput(new RootObject(rootNode));
-  // if (rootNode.hasExtension(ViewerComparator.class)) {
-  // _treeViewer.setComparator(_currentRootNode.getExtension(ViewerComparator.class));
-  // }
-  // }
-  // }
-  // }
+  @PreDestroy
+  public void dispose() {
+    _tracker.close();
+  }
 }

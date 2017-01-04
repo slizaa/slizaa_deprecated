@@ -10,6 +10,9 @@ Require-Bundle: org.eclipse.osgi.services;bundle-version="3.5.100",
  org.slizaa.neo4j.dbadapter;bundle-version="0.0.4",
  com.google.gson;bundle-version="2.5.0",
  org.eclipse.xtext;bundle-version="2.10.0",
- org.eclipse.swt
+ org.eclipse.swt,
+ org.eclipse.ui.workbench;bundle-version="3.108.2",
+ org.eclipse.jface;bundle-version="3.12.1",
+ org.eclipse.osgi;bundle-version="3.11.2"
 Service-Component: OSGI-INF/org.slizaa.neo4j.queryresult.ui.Neo4jGraphDatabaseClientAdapterProvider.xml
 Bundle-ActivationPolicy: lazy

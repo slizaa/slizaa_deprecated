@@ -149,6 +149,7 @@ public class DbClientManager {
           .setStorageArea(container.getFile(new Path(managedLocalDatabase.getStorage())).getRawLocation().toOSString());
       managedNeo4jInstance.setDefiningResource(definingFile);
 
+      managedNeo4jInstance.getDirectoriesToScan().clear();
       for (String file : managedLocalDatabase.getFiles()) {
         // TODO PATHES -> LAZY
         managedNeo4jInstance.getDirectoriesToScan()

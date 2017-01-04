@@ -2,6 +2,7 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" factory="Neo4jGraphDatabaseClientAdapterProvider" name="org.slizaa.neo4j.queryresult.ui.Neo4jGraphDatabaseClientAdapterProvider">
    <service>
       <provide interface="org.slizaa.neo4j.opencypher.ui.custom.spi.IGraphDatabaseClientAdapter"/>
+      <provide interface="org.slizaa.neo4j.queryresult.ui.IQueryResultProvider"/>
    </service>
    <implementation class="org.slizaa.neo4j.queryresult.ui.Neo4jGraphDatabaseClientAdapterProvider"/>
 </scr:component>
