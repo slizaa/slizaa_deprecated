@@ -8,10 +8,10 @@ env:
   - secure: "Z3l3tXC+O+phvLuypQ99pnsqoQZXcI+hNto4dRaMRpNQJzGJkHYoPgFNImAtc46QuL8w/yKfkrRwXfIc7d/YpSDYl6yjq4txHByMlT2+iwO12hKqi8gSOekESXO9LBVs2OtAUvddYXwjdK24BiiAZNJUiUchoLPUqQC0Nqa2b9uauTTPyyROX1rXWPbbZzRaH/OHPlozeFpBHo1t2mwHw814phOEj73ap+icCmFTYQjzmbyAhUYgkuGr2DwBRdZhIQcBuN9w118qkgGfJ/SswJMciM15KXHJxgzAM1ULbMBiCgjLZZiqUe25fooBCONZAV+6vwRl+95/HejB2cRbjHWE8bCzE3+PWGDQ2zlYgx6eEekAouFO29quh+JrV1SSIGDZVXNu1IgkmSAD86wYON/5c9bxZ9qcz4JwJYXSwm1F/jVJ2aW5smdXbNkLprbw2yA5F59uuEhtNiblD8UKGNpXp/rSmHeTZPV8emy4+FlOh8STbWaIZFc092KRRpy7O8Fwccjy6z2Z2BV2W+7HP0WlF3xOZ2UJrA5Uz+14uA5aS6tgZp551uquRJHnbjUoVzjXp8g+Ol5MJvJ8iSiDwLNIaGNzOSWttA49zkDqv8HoX35Z5iI39+7zY83Vo6bXXRSHdYkvz22VrsTWH1t04BKMiJ5P1FU4xEeUED5eAsc="
 
 script: 
-  - "mvn clean install -f 00-releng/pom.xml"
   - "mvn clean install -f 01-org.slizaa/pom.xml"
-  - "mvn clean install -f 02-org.slizaa.neo4j/pom.xml"
-  - "mvn clean install -f 03-org.slizaa.neo4j.jqassistant/pom.xml"
+  - "mvn clean install -f 02-org.slizaa.neo4j.dsl/pom.xml"
+  - "mvn clean install -f 03-org.slizaa.neo4j/pom.xml"
+  - "mvn clean install -f 04-org.slizaa.jqassistant/pom.xml"
 
 after_success:
   - chmod +x ./.travis/artifact-upload.sh
