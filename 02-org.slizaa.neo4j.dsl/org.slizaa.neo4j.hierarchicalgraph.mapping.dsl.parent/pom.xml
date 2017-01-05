@@ -20,7 +20,7 @@
 		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.target</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.feature</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.tests</module>
-		<module>org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.ui.tests</module>
+		<!-- module>org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.ui.tests</module -->
 	</modules>
 	<build>
 		<plugins>
