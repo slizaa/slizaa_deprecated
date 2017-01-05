@@ -1,5 +1,6 @@
 package org.slizaa.neo4j.graphdb.testfwk;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
@@ -10,8 +11,8 @@ public class AbstractNeo4JServerTest {
   /** - */
   private static AutoCloseable _server;
 
-  @BeforeClass
-  public static void before() {
+  @Before
+  public void before() throws InterruptedException {
 
     if (_server == null) {
 
@@ -22,7 +23,7 @@ public class AbstractNeo4JServerTest {
       serviceTracker.open();
 
       //
-      _server = serviceTracker.getService().createJqaServer(TestDB.MAPSTRUCT);
+      _server = serviceTracker.waitForService(5000l).createJqaServer(TestDB.MAPSTRUCT);
     }
   }
 }
