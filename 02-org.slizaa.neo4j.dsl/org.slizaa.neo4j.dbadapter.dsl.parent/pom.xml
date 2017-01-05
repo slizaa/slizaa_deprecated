@@ -20,7 +20,7 @@
 		<module>org.slizaa.neo4j.dbadapter.dsl.target</module>
 		<module>org.slizaa.neo4j.dbadapter.dsl.feature</module>
 		<module>org.slizaa.neo4j.dbadapter.dsl.tests</module>
-		<module>org.slizaa.neo4j.dbadapter.dsl.ui.tests</module>
+		<!-- module>org.slizaa.neo4j.dbadapter.dsl.ui.tests</module -->
 	</modules>
 	<build>
 		<plugins>
