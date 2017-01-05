@@ -2,7 +2,7 @@
 
 echo TRAVIS_BUILD_DIR: $TRAVIS_BUILD_DIR
 
-PRODUCTS_DIR=$TRAVIS_BUILD_DIR/03-org.slizaa.neo4j.jqassistant/org.slizaa.neo4j.jqassistant.product/target/products
+PRODUCTS_DIR=$TRAVIS_BUILD_DIR/04-org.slizaa.jqassistant/org.slizaa.jqassistant.product/target/products
 echo PRODUCTS_DIR: $PRODUCTS_DIR
 
 filesToUpload=$(find $PRODUCTS_DIR -name "slizaa-*.zip" -printf '%f\n')
