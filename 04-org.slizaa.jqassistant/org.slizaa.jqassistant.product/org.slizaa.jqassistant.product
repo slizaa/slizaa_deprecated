@@ -34,7 +34,7 @@ offerings.
 
    <splash
       location="org.slizaa.jqassistant"
-      startupProgressRect="1,180,463,16"
+      startupProgressRect="0,180,463,16"
       startupMessageRect="7,151,464,29"
       startupForegroundColor="000000" />
    <launcher name="slizaa">
@@ -52,6 +52,7 @@ offerings.
             winExtraLargeHigh="icons/slizaa_256_256_32.bmp"/>
       </win>
    </launcher>
+
 
    <vm>
       <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
