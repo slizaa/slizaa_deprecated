@@ -5,6 +5,7 @@ package org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.tests
 
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDslPackage
@@ -14,6 +15,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDslPacka
 class StructureTest extends AbstractMappingDslParsingTest {
 
 	@Test
+	@Ignore
 	def void emptyStructureBlock() {
 		testAssertError('''
 			mapping org.slizza.jqassistant.java.HierachicalPackagesMapping {
@@ -26,6 +28,7 @@ class StructureTest extends AbstractMappingDslParsingTest {
 	}
 
 	@Test
+	@Ignore
 	def void emptyTopLevelNodeQueries() {
 		testAssertError('''
 			mapping org.slizza.jqassistant.java.HierachicalPackagesMapping {
