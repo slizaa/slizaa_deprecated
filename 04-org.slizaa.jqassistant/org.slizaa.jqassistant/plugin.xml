@@ -49,7 +49,7 @@
          </property>
          <property
                name="startupProgressRect"
-               value="1,180,463,16">
+               value="0,180,463,16">
          </property>
          <property
                name="applicationCSS"
