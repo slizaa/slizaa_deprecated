@@ -20,11 +20,22 @@ Bundle-ClassPath: lib/aether-api-1.0.2.v20150114.jar,
  lib/plexus-interpolation-1.21.jar,
  lib/guava-11.0.2.jar,
  testdbs/,
- .
+ .,
+ lib/commons-codec-1.9.jar,
+ lib/commons-logging-1.2.jar,
+ lib/fluent-hc-4.5.2.jar,
+ lib/httpclient-4.5.2.jar,
+ lib/httpclient-cache-4.5.2.jar,
+ lib/httpclient-win-4.5.2.jar,
+ lib/httpcore-4.4.4.jar,
+ lib/httpmime-4.5.2.jar,
+ lib/jna-4.1.0.jar,
+ lib/jna-platform-4.1.0.jar
 Require-Bundle: org.eclipse.osgi,
  org.eclipse.osgi.services,
  org.junit;bundle-version="4.12.0",
- com.google.guava;bundle-version="15.0.0"
+ com.google.guava;bundle-version="15.0.0",
+ org.eclipse.equinox.ds
 Service-Component: OSGI-INF/org.slizaa.neo4j.graphdb.testfwk.internal.TestJqaDatabaseCreatorServiceImpl.xml
 Bundle-ActivationPolicy: lazy
 Export-Package: org.slizaa.neo4j.graphdb.testfwk

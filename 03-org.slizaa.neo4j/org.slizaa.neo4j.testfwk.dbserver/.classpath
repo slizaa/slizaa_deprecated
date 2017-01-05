@@ -18,5 +18,16 @@
 	<classpathentry exported="true" kind="lib" path="lib/plexus-utils-3.0.20.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/plexus-interpolation-1.21.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/guava-11.0.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="testdbs" sourcepath="testdbs"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-codec-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-logging-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/fluent-hc-4.5.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/httpclient-4.5.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/httpclient-cache-4.5.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/httpclient-win-4.5.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/httpcore-4.4.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/httpmime-4.5.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jna-4.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jna-platform-4.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
