@@ -413,5 +413,8 @@
       <factory adaptableType="org.eclipse.core.resources.IFile" class="org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.ui.MappingDslExecutableExtensionFactory:org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.ui.util.ModelLoadingAdapter">
          <adapter type="org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescriptor" />
       </factory>
+      <factory adaptableType="java.net.URL" class="org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.ui.MappingDslExecutableExtensionFactory:org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.ui.util.ModelLoadingAdapter">
+         <adapter type="org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescriptor" />
+      </factory>
 	</extension>	
 </plugin>
