@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.slizaa.jqassistant.mappings
+Bundle-SymbolicName: org.slizaa.jqassistant.mappings
+Bundle-Version: 0.0.4.qualifier
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Slizaa-Mappings: mappings

@@ -20,6 +20,7 @@
 
 	<modules>
 		<module>org.slizaa.jqassistant</module>
+		<module>org.slizaa.jqassistant.mappings</module>
 		<module>org.slizaa.jqassistant.feature</module>
 		<module>org.slizaa.jqassistant.product</module>
 		<module>org.slizaa.jqassistant.target</module>
