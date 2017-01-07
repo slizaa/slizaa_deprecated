@@ -14,40 +14,48 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.Function;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.NodeVisualizationDefinition;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.StringConstant;
+import org.slizaa.neo4j.hierarchicalgraph.ui.internal.OverlayImageRegistry;
+import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappings.ISlizaaMappingDescription;
 
 public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelProvider, IItemStyledLabelProvider {
 
-  private OverlayImageRegistry _imageRegistry;
+  /** - */
+  private OverlayImageRegistry      _imageRegistry;
 
-  private MappingDescriptor    _descriptor;
+  /** - */
+  private ISlizaaMappingDescription _slizaaMappingDescription;
 
   /**
    * <p>
    * Creates a new instance of type {@link MappingDescriptorBasedItemLabelProviderImpl}.
    * </p>
    *
-   * @param imageRegistry
+   * @param slizaaMappingDescription
    */
-  public MappingDescriptorBasedItemLabelProviderImpl(MappingDescriptor descriptor) {
+  public MappingDescriptorBasedItemLabelProviderImpl(ISlizaaMappingDescription slizaaMappingDescription) {
     _imageRegistry = new OverlayImageRegistry();
-    _descriptor = descriptor;
+    _slizaaMappingDescription = checkNotNull(slizaaMappingDescription);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Object getStyledText(Object object) {
     return new StyledString(getText(object));
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public String getText(Object object) {
     Neo4JBackedNodeSource nodeSource = getNodeSource(object);
@@ -58,6 +66,9 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
     return labelDefinition.text /* + " (" + nodeSource.getIdentifier() + ")" */;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Object getImage(Object object) {
     Neo4JBackedNodeSource nodeSource = getNodeSource(object);
@@ -66,7 +77,7 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
       return _imageRegistry.getOverlayImage(labelDefinition.image, new String[] { labelDefinition.ovl_topLeft,
           labelDefinition.ovl_topRight, labelDefinition.ovl_bottomLeft, labelDefinition.ovl_bottomRight });
     }
-    return _imageRegistry.getImage("icons/HGNode.png");
+    return _imageRegistry.getImage("platform:/plugin/org.slizaa.neo4j.hierarchicalgraph.ui/icons/HGNode.png");
   }
 
   /**
@@ -83,11 +94,11 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
 
     result.text = "Node " + nodeSource.getIdentifier();
 
-    if (_descriptor.getVisualisationDescriptor() != null) {
-      
+    if (_slizaaMappingDescription.getMappingDescriptor().getVisualisationDescriptor() != null) {
+
       //
-      for (NodeVisualizationDefinition visualizationDefinition : _descriptor.getVisualisationDescriptor()
-          .getNodeVisualizationDefinition()) {
+      for (NodeVisualizationDefinition visualizationDefinition : _slizaaMappingDescription.getMappingDescriptor()
+          .getVisualisationDescriptor().getNodeVisualizationDefinition()) {
 
         // TODO: rename to condition
         // TODO: functions!!
@@ -98,15 +109,14 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
 
           // TODO
           Function function = (Function) visualizationDefinition.getLabelProperties().getTextLabel();
-          String propertyName = ((StringConstant) function.getParameters().get(0)).getValue();
-          result.text = properties.get(propertyName);
-
+          if (function != null) {
+            String propertyName = ((StringConstant) function.getParameters().get(0)).getValue();
+            result.text = properties.get(propertyName);
+          }
           //
           StringConstant constant = (StringConstant) visualizationDefinition.getLabelProperties().getBaseImage();
-          URI uri = URI.createURI(constant.getValue());
-          URI deresolvedUri = uri.resolve(_descriptor.eResource().getURI());
 
-          result.image = deresolvedUri.toFileString();
+          result.image = _slizaaMappingDescription.resolveImage(constant.getValue());
 
           // for (PropertyBasedImageMapper mapper : labelMapper.getPropertyBasedImages()) {
           //
@@ -137,7 +147,7 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
           //
           return result;
         }
-      } 
+      }
     }
     //
     return result;
@@ -181,17 +191,17 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
 
   private class LabelDefinition {
 
-    public String image           = null;
+    String image           = null;
 
-    public String ovl_topRight    = null;
+    String ovl_topRight    = null;
 
-    public String ovl_bottomRight = null;
+    String ovl_bottomRight = null;
 
-    public String ovl_topLeft     = null;
+    String ovl_topLeft     = null;
 
-    public String ovl_bottomLeft  = null;
+    String ovl_bottomLeft  = null;
 
-    public String text;
+    String text;
 
     @Override
     public String toString() {

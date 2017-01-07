@@ -18,7 +18,6 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
-import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
@@ -27,11 +26,12 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorBasedItemLabelProviderImpl;
 import org.slizaa.neo4j.hierarchicalgraph.ui.Neo4JBackedNodeSourceViewerComparator;
+import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappings.ISlizaaMappingDescription;
+import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappings.MappingDescriptorUtil;
 import org.slizaa.ui.common.context.ContextHelper;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
@@ -78,14 +78,19 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
     Neo4jRestClient remoteRepository = (Neo4jRestClient) selection;
 
     ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(),
-        new LabelProvider());
+        new LabelProvider() {
+      
+          @Override
+          public String getText(Object element) {
+            ISlizaaMappingDescription mappingDescription = (ISlizaaMappingDescription) element;
+            return mappingDescription.getMappingDescriptor().getMetaInformation() != null
+                && mappingDescription.getMappingDescriptor().getMetaInformation().getName() != null
+                    ? mappingDescription.getMappingDescriptor().getMetaInformation().getName()
+                    : mappingDescription.getMappingDescriptor().getQualifiedName();
+          }
+        });
 
-    List<String> names = new LinkedList<String>();
-    List<MappingDescriptor> mappingDescriptors = ReadDescriptors.getMappingDescriptors();
-    for (MappingDescriptor mappingDescriptor : mappingDescriptors) {
-      names.add(mappingDescriptor.getQualifiedName());
-    }
-    dialog.setElements(names.toArray(new String[0]));
+    dialog.setElements(MappingDescriptorUtil.getSlizaaMappingDescriptions().toArray());
     dialog.setTitle("Which mapping should be applied?");
 
     // user pressed cancel
@@ -94,11 +99,9 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
     }
 
     Object[] result = dialog.getResult();
-    MappingDescriptor mapping = mappingDescriptors.stream().filter(md -> md.getQualifiedName().equals(result[0]))
-        .findFirst().get();
 
     //
-    LoadModelFromGraphDatabaseJob myJob = new LoadModelFromGraphDatabaseJob(remoteRepository, mapping);
+    LoadModelFromGraphDatabaseJob myJob = new LoadModelFromGraphDatabaseJob(remoteRepository, (ISlizaaMappingDescription) result[0]);
     myJob.schedule();
 
     //
@@ -129,10 +132,10 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
   private class LoadModelFromGraphDatabaseJob extends Job {
 
     /** - */
-    private Neo4jRestClient   _remoteRepository;
+    private Neo4jRestClient           _remoteRepository;
 
     /** - */
-    private MappingDescriptor _mappingDescriptor;
+    private ISlizaaMappingDescription _slizaaMappingDescription;
 
     /**
      * <p>
@@ -141,13 +144,14 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
      *
      * @param remoteRepository
      */
-    public LoadModelFromGraphDatabaseJob(Neo4jRestClient remoteRepository, MappingDescriptor mappingDescriptor) {
+    public LoadModelFromGraphDatabaseJob(Neo4jRestClient remoteRepository,
+        ISlizaaMappingDescription slizaaMappingDescription) {
       super("Creating hierarchical graph");
 
       //
       setUser(true);
       _remoteRepository = checkNotNull(remoteRepository);
-      _mappingDescriptor = checkNotNull(mappingDescriptor);
+      _slizaaMappingDescription = checkNotNull(slizaaMappingDescription);
     }
 
     @Override
@@ -156,11 +160,12 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
       try {
 
         // convert the model
-        HGRootNode rootNode = _mappingService.convert(_mappingDescriptor, _remoteRepository, monitor);
+        HGRootNode rootNode = _mappingService.convert(_slizaaMappingDescription.getMappingDescriptor(),
+            _remoteRepository, monitor);
 
         // set label provider
         rootNode.registerExtension(IItemLabelProvider.class,
-            new MappingDescriptorBasedItemLabelProviderImpl(_mappingDescriptor));
+            new MappingDescriptorBasedItemLabelProviderImpl(_slizaaMappingDescription));
 
         // set Sorter
         rootNode.registerExtension(ViewerComparator.class, new Neo4JBackedNodeSourceViewerComparator());
