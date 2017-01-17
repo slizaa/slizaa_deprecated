@@ -162,6 +162,10 @@ Shell.MTrimmedWindow > .MTrimBar > .MToolBar.Draggable {
 	jtab-chevron-color: #000000;
 }
 
+CTabItem {
+    font-family: "Segoe UI";
+ }
+
 .MPartStack>CTabItem {
 	/* unselected tab text */
 	color: #000000;
