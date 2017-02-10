@@ -3,6 +3,7 @@ package org.slizaa.neo4j.queryresult.ui;
 import java.util.List;
 import java.util.concurrent.Future;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
@@ -27,16 +28,36 @@ public class Neo4jGraphDatabaseClientAdapterProvider implements IGraphDatabaseCl
   private Neo4jRestClient                _client;
 
   /** - */
-  private BiConsumer<String, JsonObject> _consumer;
+  private BiConsumer<String, JsonObject> _queryResultReceivedHandler;
 
+  /** - */
+  private Consumer<String>               _queryStartedHandler;
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param context
+   */
   @Activate
   public void activate(ComponentContext context) {
     _client = (Neo4jRestClient) context.getProperties().get(DbAdapterConstants.PROPERTY_NEO4J_REST_CLIENT);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void registerQueryResultHandler(BiConsumer<String, JsonObject> consumer) {
-    _consumer = consumer;
+  public void onQueryResultReceived(BiConsumer<String, JsonObject> queryResultReceivedHandler) {
+    _queryResultReceivedHandler = queryResultReceivedHandler;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void onQueryStarted(Consumer<String> queryStartedHandler) {
+    _queryStartedHandler = queryStartedHandler;
   }
 
   /**
@@ -48,11 +69,16 @@ public class Neo4jGraphDatabaseClientAdapterProvider implements IGraphDatabaseCl
    * @param defaultLimit
    */
   @Override
-  public void executeCypherQuery(Cypher cypher, ISerializer serializer, int defaultLimit) {
+  public Future<?> executeCypherQuery(Cypher cypher, ISerializer serializer, int defaultLimit) {
 
     //
     String cypherString = serializer.serialize(cypher);
     cypherString = CypherNormalizer.normalize(cypherString);
+
+    //
+    if (_queryStartedHandler != null) {
+      _queryStartedHandler.accept(cypherString);
+    }
 
     //
     ReturnBody returnBody = getReturnBody(cypher);
@@ -67,10 +93,11 @@ public class Neo4jGraphDatabaseClientAdapterProvider implements IGraphDatabaseCl
     //
     String finalCypherQuery = cypherString;
     Future<?> future = _client.executeCypherQuery(cypherString, result -> {
-      if (_consumer != null) {
-        _consumer.accept(finalCypherQuery, result);
+      if (_queryResultReceivedHandler != null) {
+        _queryResultReceivedHandler.accept(finalCypherQuery, result);
       }
     });
+    return future;
   }
 
   @Override

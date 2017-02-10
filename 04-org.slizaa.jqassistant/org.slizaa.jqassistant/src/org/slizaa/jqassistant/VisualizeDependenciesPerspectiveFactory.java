@@ -42,6 +42,7 @@ public class VisualizeDependenciesPerspectiveFactory implements IPerspectiveFact
 		folderLayout.addView("org.slizaa.ui.xref.ReferencingNodesPart");
 		folderLayout.addView(IPageLayout.ID_PROP_SHEET);
 
+
 		// http://stackoverflow.com/questions/26776802/eclipse-rcp-open-a-view-in-the-editor-area-3-8-e4-hybrid
 		((ModeledPageLayout) layout).stackView("org.slizaa.ui.klighd.SlizaaDiagramViewPart", IPageLayout.ID_EDITOR_AREA,
 				false);

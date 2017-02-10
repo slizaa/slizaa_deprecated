@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>HTML Test</title>
+		<link rel="stylesheet" href="stylesheet.css">
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="queryresult.js"></script>
+		<script type="text/javascript" src="helper.js"></script>
+		<script>
+		  $(document).ready(function(){
+		    queryResult = JSON.parse(getQueryResult());
+            renderQueryResult(queryResult);
+		  });
+		</script>
+	</head>
+	<body>
+	<div id="error"/>
+		<table id="query-result-table" class="query-result-table" >
+            <thead>
+			    <tr id="query-result-table-header" />
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+	</body>
+</html>

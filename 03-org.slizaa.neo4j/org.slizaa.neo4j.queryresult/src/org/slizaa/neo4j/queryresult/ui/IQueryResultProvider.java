@@ -1,6 +1,7 @@
 package org.slizaa.neo4j.queryresult.ui;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import com.google.gson.JsonObject;
 
@@ -12,5 +13,7 @@ import com.google.gson.JsonObject;
  */
 public interface IQueryResultProvider {
 
-  void registerQueryResultHandler(BiConsumer<String, JsonObject> consumer);
+  void onQueryStarted(Consumer<String> consumer);
+  
+  void onQueryResultReceived(BiConsumer<String, JsonObject> consumer);
 }

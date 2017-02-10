@@ -8,21 +8,15 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.Future;
-import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
-
-import com.google.gson.JsonArray;
 
 public class CustomAggregatedDependencyResolver implements IAggregatedCoreDependencyResolver {
 
@@ -61,9 +55,9 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
     Neo4jRestClient neo4jRepository = dependency.getRootNode().getExtension(Neo4jRestClient.class);
 
     //
-// TODO
-//    return getDetailQueries(dependency).stream()
-//        .map(query -> createFutureForQuery(neo4jRepository, dependency, query, params)).collect(Collectors.toList());
+    // TODO
+    // return getDetailQueries(dependency).stream()
+    // .map(query -> createFutureForQuery(neo4jRepository, dependency, query, params)).collect(Collectors.toList());
     return null;
   }
 
@@ -73,20 +67,20 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
    *
    * @return
    */
-// TODO
-//  private List<String> getDetailQueries(HGAggregatedCoreDependency dependency) {
-//
-//    //
-//    Optional<EList<String>> specificDetailQueries = dependency.getDependencySource(Neo4JBackedDependencySource.class)
-//        .flatMap(s -> s.getUserObject(DependencyMapping.class)).map(depMap -> depMap.getDetailQueries());
-//
-//    //
-//    HierarchicalGraphMappingDescriptor mappingDescriptor = dependency.getRootNode()
-//        .getExtension(HierarchicalGraphMappingDescriptor.class);
-//
-//    //
-//    return specificDetailQueries.orElse(mappingDescriptor.getDependencyMappings().get(0).getDetailQueries());
-//  }
+  // TODO
+  // private List<String> getDetailQueries(HGAggregatedCoreDependency dependency) {
+  //
+  // //
+  // Optional<EList<String>> specificDetailQueries = dependency.getDependencySource(Neo4JBackedDependencySource.class)
+  // .flatMap(s -> s.getUserObject(DependencyMapping.class)).map(depMap -> depMap.getDetailQueries());
+  //
+  // //
+  // HierarchicalGraphMappingDescriptor mappingDescriptor = dependency.getRootNode()
+  // .getExtension(HierarchicalGraphMappingDescriptor.class);
+  //
+  // //
+  // return specificDetailQueries.orElse(mappingDescriptor.getDependencyMappings().get(0).getDetailQueries());
+  // }
 
   /**
    * <p>
@@ -104,13 +98,14 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
     // return new future
     return neo4jRepository.executeCypherQuery(query, params, (queryResult) -> {
 
-      // get data
-      JsonArray jsonArray = queryResult.getAsJsonArray("data");
+      //
+      List<GraphFactoryFunctions.DependencyDefinition> dependencyDefinitions = Neo4jResultJsonConverter
+          .extractDependencyDefinition(queryResult);
 
-      if (jsonArray.size() > 0) {
+      if (dependencyDefinitions.size() > 0) {
 
         // create the dependencies
-        List<HGCoreDependency> coreDependencies = GraphFactoryFunctions.createDependencies(jsonArray,
+        List<HGCoreDependency> coreDependencies = GraphFactoryFunctions.createDependencies(dependencyDefinitions,
             dependency.getRootNode(), (id, type) -> GraphFactoryFunctions.createDependencySource(id, type), false,
             false, null);
 

@@ -20,9 +20,6 @@ import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-
 /**
  * <p>
  * </p>
@@ -76,26 +73,25 @@ public class GraphFactoryFunctions {
    * @param rootElement
    * @param nodeSourceCreator
    */
-  public static void createFirstLevelElements(JsonArray hierachyResult, HGRootNode rootElement,
+  public static void createFirstLevelElements(Long[] firstLevelNodeIds, HGRootNode rootElement,
       final Function<Long, INodeSource> nodeSourceCreator, IProgressMonitor progressMonitor) {
 
-    checkNotNull(hierachyResult);
+    checkNotNull(firstLevelNodeIds);
     checkNotNull(rootElement);
     checkNotNull(nodeSourceCreator);
 
     // create sub monitor
-    final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, hierachyResult.size())
-        : null;
+    final SubMonitor subMonitor = progressMonitor != null
+        ? SubMonitor.convert(progressMonitor, firstLevelNodeIds.length) : null;
 
-    for (int i = 0; i < hierachyResult.size(); i++) {
+    for (int i = 0; i < firstLevelNodeIds.length; i++) {
 
       // increase sub monitor
       if (subMonitor != null) {
         subMonitor.split(1);
       }
 
-      createNodeIfAbsent(asLong(hierachyResult.get(i).getAsJsonArray(), 0), rootElement, rootElement,
-          nodeSourceCreator);
+      createNodeIfAbsent(firstLevelNodeIds[i], rootElement, rootElement, nodeSourceCreator);
     }
   }
 
@@ -106,24 +102,26 @@ public class GraphFactoryFunctions {
    * @param hierachyResult
    * @param creator
    */
-  public static void createHierarchy(JsonArray hierachyResult, HGRootNode rootElement,
+  public static void createHierarchy(Long[][] hierarchyNodeIds, HGRootNode rootElement,
       final Function<Long, INodeSource> nodeSourceCreator, IProgressMonitor progressMonitor) {
 
+    checkNotNull(hierarchyNodeIds);
+
     // create sub monitor
-    final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, hierachyResult.size())
+    final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, hierarchyNodeIds.length)
         : null;
 
     //
-    for (int i = 0; i < hierachyResult.size(); i++) {
+    for (int i = 0; i < hierarchyNodeIds.length; i++) {
 
       // increase sub monitor
       if (subMonitor != null) {
         subMonitor.split(1);
       }
 
-      JsonArray row = hierachyResult.get(i).getAsJsonArray();
-      HGNode moduleNode = createNodeIfAbsent(asLong(row, 0), rootElement, null, nodeSourceCreator);
-      createNodeIfAbsent(asLong(row, 1), rootElement, moduleNode, nodeSourceCreator);
+      // JsonArray row = hierachyResult.get(i).getAsJsonArray();
+      HGNode moduleNode = createNodeIfAbsent(hierarchyNodeIds[i][0], rootElement, null, nodeSourceCreator);
+      createNodeIfAbsent(hierarchyNodeIds[i][1], rootElement, moduleNode, nodeSourceCreator);
     }
   }
 
@@ -135,33 +133,27 @@ public class GraphFactoryFunctions {
    * @param rootElement
    * @param dependencySourceCreator
    */
-  public static List<HGCoreDependency> createDependencies(JsonArray asJsonArray, HGRootNode rootElement,
-      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean aggregatedCoreDependency,
-      boolean reinitializeCaches, IProgressMonitor progressMonitor) {
+  public static List<HGCoreDependency> createDependencies(List<DependencyDefinition> dependencyDefinitions,
+      HGRootNode rootElement, BiFunction<Long, String, IDependencySource> dependencySourceCreator,
+      boolean aggregatedCoreDependency, boolean reinitializeCaches, IProgressMonitor progressMonitor) {
 
     // create sub monitor
-    final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, asJsonArray.size())
-        : null;
+    final SubMonitor subMonitor = progressMonitor != null
+        ? SubMonitor.convert(progressMonitor, dependencyDefinitions.size()) : null;
 
     //
     List<HGCoreDependency> result = new LinkedList<HGCoreDependency>();
 
     //
-    asJsonArray.forEach((element) -> {
+    dependencyDefinitions.forEach((element) -> {
 
       // increase sub monitor
       if (subMonitor != null) {
         subMonitor.split(1);
       }
 
-      JsonArray row = element.getAsJsonArray();
-      long idStart = row.get(0).getAsLong();
-      long idTarget = row.get(1).getAsLong();
-      long idRel = row.get(2).getAsLong();
-      String type = row.get(3).getAsString();
-
-      result.add(createDependency(idStart, idTarget, idRel, type, rootElement, dependencySourceCreator,
-          aggregatedCoreDependency, reinitializeCaches));
+      result.add(createDependency(element.getIdStart(), element.getIdTarget(), element.getIdTarget(), element.getType(),
+          rootElement, dependencySourceCreator, aggregatedCoreDependency, reinitializeCaches));
     });
 
     //
@@ -246,16 +238,43 @@ public class GraphFactoryFunctions {
    * <p>
    * </p>
    *
-   * @param array
-   * @param i
-   * 
-   * @return
+   * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
    */
-  private static long asLong(JsonArray array, int i) {
-    JsonElement jsonElement = array.get(i);
-    if (jsonElement == null || jsonElement.isJsonNull()) {
-      return -1l;
+  public static class DependencyDefinition {
+
+    /** - */
+    public long   _idStart;
+
+    /** - */
+    public long   _idTarget;
+
+    /** - */
+    public long   _idRel;
+
+    /** - */
+    public String _type;
+
+    public DependencyDefinition(long idStart, long idTarget, long idRel, String type) {
+      _idStart = idStart;
+      _idTarget = idTarget;
+      _idRel = idRel;
+      _type = type;
     }
-    return jsonElement.getAsLong();
+
+    public long getIdStart() {
+      return _idStart;
+    }
+
+    public long getIdTarget() {
+      return _idTarget;
+    }
+
+    public long getIdRel() {
+      return _idRel;
+    }
+
+    public String getType() {
+      return _type;
+    }
   }
 }

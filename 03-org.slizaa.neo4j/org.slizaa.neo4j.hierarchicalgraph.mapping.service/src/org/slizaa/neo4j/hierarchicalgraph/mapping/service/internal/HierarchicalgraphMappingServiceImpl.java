@@ -34,6 +34,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.service.HierarchicalGraphMappi
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 /**
@@ -178,11 +179,15 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
         // request dependencies
         report(iterationMonitor, "Requesting dependencies...");
-        JsonArray jsonArray = dependencyQuery.get().getAsJsonArray("data");
+
+        List<GraphFactoryFunctions.DependencyDefinition> dependencyDefinitions = Neo4jResultJsonConverter
+            .extractDependencyDefinition(dependencyQuery.get());
 
         // create dependencies
         report(iterationMonitor, "Creating dependencies...");
-        createDependencies(jsonArray, rootNode,
+
+        //
+        createDependencies(dependencyDefinitions, rootNode,
             (id, type) -> GraphFactoryFunctions.createDependencySource(id, type, null), false, false, iterationMonitor);
 
       } catch (Exception e) {
@@ -203,11 +208,14 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
         // request dependencies
         report(iterationMonitor, "Requesting dependencies...");
-        JsonArray jsonArray = dependencyQuery.getFuture().get().getAsJsonArray("data");
+
+        //
+        List<GraphFactoryFunctions.DependencyDefinition> dependencyDefinitions = Neo4jResultJsonConverter
+            .extractDependencyDefinition(dependencyQuery.getFuture().get());
 
         // create dependencies
         report(iterationMonitor, "Creating dependencies...");
-        createDependencies(jsonArray, rootNode,
+        createDependencies(dependencyDefinitions, rootNode,
             (id, type) -> GraphFactoryFunctions.createDependencySource(id, type, null), false, false, iterationMonitor);
 
       } catch (Exception e) {
@@ -268,9 +276,12 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
       try {
         SubMonitor iterationMonitor = hierarchyLoopMonitor != null ? hierarchyLoopMonitor.split(1) : null;
         report(iterationMonitor, "Requesting nodes...");
-        JsonArray jsonArray = f.get().getAsJsonArray("data");
+
+        Long[][] hierarchyElementIds = Neo4jResultJsonConverter.extractHierarchy(f.get()).toArray(new Long[0][0]);
+
         report(iterationMonitor, "Creating nodes...");
-        createHierarchy(jsonArray, rootNode, createNodeSourceFunction, iterationMonitor);
+
+        createHierarchy(hierarchyElementIds, rootNode, createNodeSourceFunction, iterationMonitor);
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
       }
@@ -294,9 +305,14 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
       try {
         SubMonitor iterationMonitor = rootLoopMonitor != null ? rootLoopMonitor.split(1) : null;
         report(iterationMonitor, "Requesting root nodes...");
-        JsonArray jsonArray = f.get().getAsJsonArray("data");
+
+        //
+        List<Long> rootNodes = Neo4jResultJsonConverter.extractRootNodes(f.get());
+
+        //
         report(iterationMonitor, "Creating root nodes...");
-        createFirstLevelElements(jsonArray, rootNode, createNodeSourceFunction, iterationMonitor);
+        createFirstLevelElements(rootNodes.toArray(new Long[0]), rootNode, createNodeSourceFunction,
+            iterationMonitor);
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
       }

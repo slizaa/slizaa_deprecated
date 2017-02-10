@@ -16,7 +16,9 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 
+import com.eclipsesource.jaxrs.consumer.RequestException;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <p>
@@ -54,6 +56,7 @@ public class QueryConsumerCallable extends AbstractNeo4JCypherCallable implement
     // execute the cypher call
     String query = asQuery(query(), params());
     JsonObject jsonObject;
+
     try {
       jsonObject = neo4JRemoteServiceRestApi().executeCypherQuery(query);
       
@@ -61,12 +64,23 @@ public class QueryConsumerCallable extends AbstractNeo4JCypherCallable implement
       synchronized (neo4JRemoteServiceRestApi()) {
         _consumer.accept(jsonObject);
       }
+    } catch (RequestException requestException) {
+      
+      // we have to synchronize the consumption to avoid race conditions
+      synchronized (neo4JRemoteServiceRestApi()) {
+        _consumer.accept(new JsonParser().parse(requestException.getEntity()).getAsJsonObject());
+      }
+      
     } catch (Exception e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-      e.getCause().printStackTrace();
+      
+      //
+      String result = String.format("{ \"message\" = \"%s\", \"exception\" = \"%s\" }", e.getMessage(), e.getClass().getName()); 
+      
+      // we have to synchronize the consumption to avoid race conditions
+      synchronized (neo4JRemoteServiceRestApi()) {
+        _consumer.accept(new JsonParser().parse(result).getAsJsonObject());
+      }
     }
-
 
 
     //

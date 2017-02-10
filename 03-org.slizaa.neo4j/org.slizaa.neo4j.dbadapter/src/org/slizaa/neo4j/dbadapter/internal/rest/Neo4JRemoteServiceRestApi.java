@@ -27,11 +27,11 @@ import com.google.gson.JsonObject;
 public interface Neo4JRemoteServiceRestApi {
 
   @POST
-  @Path("/db/data/cypher")
+  @Path("/db/data/transaction/commit")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   JsonObject executeCypherQuery(String message);
-
+  
   @GET
   @Path("/db/data")
   @Produces(MediaType.APPLICATION_JSON)

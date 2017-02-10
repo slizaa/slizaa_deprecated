@@ -104,10 +104,11 @@ public abstract class AbstractNeo4JCypherCallable {
         }
       }
 
-      return String.format("{\"query\" : \"%s\", \"params\": {%s}}", checkNotNull(cypherQuery), builder.toString());
+      return String
+          .format("{ \"statements\" : [ { \"statement\" : \"%s\", \"parameters\" : { %s } , \"resultDataContents\" : [ \"row\", \"graph\" ] } ] }", checkNotNull(cypherQuery), builder.toString());
     }
 
     //
-    return String.format("{\"query\" : \"%s\"}", checkNotNull(cypherQuery));
+    return String.format("{ \"statements\" : [ { \"statement\" : \"%s\", \"resultDataContents\" : [ \"row\", \"graph\"] } ] }", checkNotNull(cypherQuery));
   }
 }

@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewNode;
 
+import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -29,21 +30,18 @@ public class TestModelMappingFunctions {
    * <p>
    * </p>
    *
-   * @param hierachyResult
+   * @param elements
    * @param rootElement
    * @param nodeSourceCreator
    */
-  public static void mapFirstLevelElements(JsonArray hierachyResult, HGRootNode rootElement,
+  public static void mapFirstLevelElements(List<Long> elements, HGRootNode rootElement,
       final Function<Long, INodeSource> nodeSourceCreator) {
 
-    checkNotNull(hierachyResult);
+    checkNotNull(elements);
     checkNotNull(rootElement);
     checkNotNull(nodeSourceCreator);
 
-    for (int i = 0; i < hierachyResult.size(); i++) {
-      createNodeIfAbsent(asLong(hierachyResult.get(i).getAsJsonArray(), 0), rootElement, rootElement,
-          nodeSourceCreator);
-    }
+    elements.forEach(e -> createNodeIfAbsent(e, rootElement, rootElement, nodeSourceCreator));
   }
 
   /**
@@ -53,28 +51,23 @@ public class TestModelMappingFunctions {
    * @param hierachyResult
    * @param creator
    */
-  public static void mapHierarchy(JsonArray hierachyResult, HGRootNode rootElement,
+  public static void mapHierarchy(List<Long[]> elements, HGRootNode rootElement,
       final Function<Long, INodeSource> nodeSourceCreator) {
 
     //
-    for (int i = 0; i < hierachyResult.size(); i++) {
-      JsonArray row = hierachyResult.get(i).getAsJsonArray();
-      HGNode moduleNode = createNodeIfAbsent(asLong(row, 0), rootElement, null, nodeSourceCreator);
-      createNodeIfAbsent(asLong(row, 1), rootElement, moduleNode, nodeSourceCreator);
-    }
+    elements.forEach(e -> {
+      HGNode moduleNode = createNodeIfAbsent(e[0], rootElement, null, nodeSourceCreator);
+      createNodeIfAbsent(e[1], rootElement, moduleNode, nodeSourceCreator);
+    });
   }
 
-  public static void mapDependencies(JsonArray asJsonArray, HGRootNode rootElement, boolean isAggregatedCoreDependency,
-      BiFunction<Long, String, IDependencySource> dependencySourceCreator) {
+  public static void mapDependencies(List<DependencyDefinition> definitions, HGRootNode rootElement,
+      boolean isAggregatedCoreDependency, BiFunction<Long, String, IDependencySource> dependencySourceCreator) {
 
     //
-    asJsonArray.forEach((element) -> {
-      JsonArray row = element.getAsJsonArray();
-      long idStart = row.get(0).getAsLong();
-      long idTarget = row.get(1).getAsLong();
-      long idRel = row.get(2).getAsLong();
-      String type = row.get(3).getAsString();
-      mapDependency(idStart, idTarget, idRel, type, rootElement, isAggregatedCoreDependency, dependencySourceCreator);
+    definitions.forEach((def) -> {
+      mapDependency(def.getIdStart(), def.getIdTarget(), def.getIdRel(), def.getType(), rootElement,
+          isAggregatedCoreDependency, dependencySourceCreator);
     });
   }
 
@@ -140,20 +133,41 @@ public class TestModelMappingFunctions {
     return newNode;
   }
 
-  /**
-   * <p>
-   * </p>
-   *
-   * @param array
-   * @param i
-   * 
-   * @return
-   */
-  private static long asLong(JsonArray array, int i) {
-    JsonElement jsonElement = array.get(i);
-    if (jsonElement == null || jsonElement.isJsonNull()) {
-      return -1l;
+  public static class DependencyDefinition {
+
+    /** - */
+    public long   _idStart;
+
+    /** - */
+    public long   _idTarget;
+
+    /** - */
+    public long   _idRel;
+
+    /** - */
+    public String _type;
+
+    public DependencyDefinition(long idStart, long idTarget, long idRel, String type) {
+      _idStart = idStart;
+      _idTarget = idTarget;
+      _idRel = idRel;
+      _type = type;
     }
-    return jsonElement.getAsLong();
+
+    public long getIdStart() {
+      return _idStart;
+    }
+
+    public long getIdTarget() {
+      return _idTarget;
+    }
+
+    public long getIdRel() {
+      return _idRel;
+    }
+
+    public String getType() {
+      return _type;
+    }
   }
 }

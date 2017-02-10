@@ -21,6 +21,7 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
+import org.slizaa.neo4j.testfwk.internal.Neo4jResultJsonConverter;
 
 import com.google.gson.JsonObject;
 
@@ -113,13 +114,16 @@ public class TestModelFactory {
     Future<JsonObject> resultTypes = remoteRepository.executeCypherQuery(TYPES);
     Future<JsonObject> dependencies = remoteRepository.executeCypherQuery(DEPENDENCIES);
 
-    mapFirstLevelElements(resultRoot.get().getAsJsonArray("data"), rootElement, createNodeSourceFunction);
-    mapHierarchy(resultDirectories.get().getAsJsonArray("data"), rootElement, createNodeSourceFunction);
-    mapHierarchy(resultFiles.get().getAsJsonArray("data"), rootElement, createNodeSourceFunction);
-    mapHierarchy(resultTypes.get().getAsJsonArray("data"), rootElement, createNodeSourceFunction);
+    mapFirstLevelElements(Neo4jResultJsonConverter.extractRootNodes(resultRoot.get()), rootElement,
+        createNodeSourceFunction);
+    mapHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultDirectories.get()), rootElement,
+        createNodeSourceFunction);
+    mapHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultFiles.get()), rootElement, createNodeSourceFunction);
+    mapHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultTypes.get()), rootElement, createNodeSourceFunction);
 
     //
-    mapDependencies(dependencies.get().getAsJsonArray("data"), rootElement, true, createDependencySourceFunction);
+    mapDependencies(Neo4jResultJsonConverter.extractDependencyDefinition(dependencies.get()), rootElement, true,
+        createDependencySourceFunction);
 
     //
     return rootElement;

@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
+import org.slizaa.neo4j.dbadapter.QueryResultConverter;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 /**
@@ -31,7 +31,7 @@ import com.google.gson.JsonObject;
 public class ExtendedNeo4JBackedNodeSourceTrait {
 
   /** - */
-  private static final String       BATCH_UPDATE_QUERY = "MATCH (p) where id(p) in { ids } RETURN p";
+  private static final String       BATCH_UPDATE_QUERY = "MATCH (p) where id(p) in { ids } RETURN id(p), labels(p), p";
 
   /** - */
   private Neo4JBackedNodeSourceImpl _nodeSource;
@@ -193,25 +193,25 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
     Future<JsonObject> result = getNeo4jRestClient().executeCypherQuery(BATCH_UPDATE_QUERY, params);
 
     try {
-      JsonObject jsonObject = result.get();
-      for (JsonElement jsonElement : jsonObject.getAsJsonArray("data")) {
+      
+      //
+      List<BatchUpdateQueryResultRow> rows = QueryResultConverter.convertRows(result.get(), row -> {
+        return new BatchUpdateQueryResultRow(row.get(0).getAsLong(), row.get(1).getAsJsonArray(),
+            row.get(2).getAsJsonObject());
+      });
 
-        for (JsonElement nodeElement : jsonElement.getAsJsonArray()) {
+      //
+      for (BatchUpdateQueryResultRow row : rows) {
 
-          JsonObject metadata = nodeElement.getAsJsonObject().get("metadata").getAsJsonObject();
+        HGNode hgNode = nodes.get(row.getIdentifier());
 
-          long identifier = metadata.get("id").getAsLong();
-          HGNode hgNode = nodes.get(identifier);
+        // set the labels
+        ((ExtendedNeo4JBackedNodeSourceImpl) hgNode.getNodeSource()).getTrait().setLabels(row.getLabels());
 
-          ((ExtendedNeo4JBackedNodeSourceImpl) hgNode.getNodeSource()).getTrait()
-              .setLabels(metadata.get("labels").getAsJsonArray());
-
-          //
-          JsonObject data = nodeElement.getAsJsonObject().get("data").getAsJsonObject();
-
-          ((ExtendedNeo4JBackedNodeSourceImpl) hgNode.getNodeSource()).getTrait().setProperties(data);
-        }
+        // set the properties
+        ((ExtendedNeo4JBackedNodeSourceImpl) hgNode.getNodeSource()).getTrait().setProperties(row.getProperties());
       }
+
     } catch (InterruptedException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -239,5 +239,41 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
   public boolean isAutoExpand() {
     // TODO
     return true;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+   */
+  public static class BatchUpdateQueryResultRow {
+
+    /** - */
+    private long       _identifier;
+
+    /** - */
+    private JsonArray  _labels;
+
+    /** - */
+    private JsonObject _properties;
+
+    public BatchUpdateQueryResultRow(long identifier, JsonArray labels, JsonObject properties) {
+      this._identifier = identifier;
+      this._labels = labels;
+      this._properties = properties;
+    }
+
+    public long getIdentifier() {
+      return _identifier;
+    }
+
+    public JsonArray getLabels() {
+      return _labels;
+    }
+
+    public JsonObject getProperties() {
+      return _properties;
+    }
   }
 }
