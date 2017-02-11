@@ -19,8 +19,8 @@ tr .query-result-table-header {
 table.node {
     width: auto;
     background: #e0e8f0;
-    -moz-border-radius: 7px;
-    border-radius: 7px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
     margin: 3px;
 }
 
