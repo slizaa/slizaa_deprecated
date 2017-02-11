@@ -76,8 +76,6 @@ public class HierarchicalGraphViewPart {
   public void handleChangedDependencies(@Optional
   @Named(SelectionIdentifier.CURRENT_ROOTNODE)
   final HGRootNode rootNode) {
-
-    System.out.println(this + " : " + rootNode);
     
     //
     if (_currentRootNode == rootNode) {

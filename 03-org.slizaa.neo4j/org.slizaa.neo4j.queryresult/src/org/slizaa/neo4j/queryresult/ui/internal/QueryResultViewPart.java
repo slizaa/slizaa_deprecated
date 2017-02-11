@@ -13,6 +13,10 @@ package org.slizaa.neo4j.queryresult.ui.internal;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.e4.ui.model.application.ui.menu.MDirectToolItem;
+import org.eclipse.e4.ui.model.application.ui.menu.MMenuFactory;
+import org.eclipse.e4.ui.model.application.ui.menu.MToolBar;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
@@ -25,6 +29,7 @@ import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;
+import org.slizaa.neo4j.queryresult.ui.internal.action.CleanQueryResultHandler;
 
 import com.google.gson.JsonObject;
 
@@ -55,7 +60,20 @@ public class QueryResultViewPart {
    * @param parent
    */
   @PostConstruct
-  public void createComposite(Composite parent) {
+  public void createComposite(Composite parent, MPart mPart) {
+
+    // create the toolbar entries
+    MToolBar toolbar = MMenuFactory.INSTANCE.createToolBar();
+    MDirectToolItem element = MMenuFactory.INSTANCE.createDirectToolItem();
+    element.setElementId("myToolItemId");
+    element.setIconURI("platform:/plugin/org.slizaa.neo4j.queryresult.ui/icons/remove.png");
+    element
+        .setContributionURI("bundleclass://org.slizaa.neo4j.queryresult.ui/" + CleanQueryResultHandler.class.getName());
+    element.setVisible(true);
+    element.setEnabled(true);
+
+    toolbar.getChildren().add(element);
+    mPart.setToolbar(toolbar);
 
     //
     GridLayout layout = new GridLayout(1, false);
@@ -76,30 +94,30 @@ public class QueryResultViewPart {
       @Override
       public IQueryResultProvider addingService(ServiceReference<IQueryResultProvider> reference) {
         IQueryResultProvider queryResultProvider = super.addingService(reference);
-        
+
         // adding call-backs
         queryResultProvider.onQueryStarted(query -> Display.getDefault().syncExec(() -> {
           _jsonResult = null;
           try {
-            PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.slizaa.neo4j.queryresult.ui.QueryResultViewPart");
+            PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+                .showView("org.slizaa.neo4j.queryresult.ui.QueryResultViewPart");
           } catch (PartInitException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            // do nothing
           }
           _browser.setUrl(Activator.getDefault().getInProgressUrl());
         }));
-        
+
         queryResultProvider.onQueryResultReceived((query, result) -> Display.getDefault().syncExec(() -> {
           _jsonResult = result;
           try {
-            PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.slizaa.neo4j.queryresult.ui.QueryResultViewPart");
+            PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+                .showView("org.slizaa.neo4j.queryresult.ui.QueryResultViewPart");
           } catch (PartInitException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            // do nothing
           }
           _browser.setUrl(Activator.getDefault().getMainUrl());
         }));
-        
+
         //
         return queryResultProvider;
       }
@@ -115,11 +133,28 @@ public class QueryResultViewPart {
       }
     };
     _tracker.open();
+
+    // IActionBars actionBars = getViewSite().getActionBars();
+    // IToolBarManager toolBar = actionBars.getToolBarManager();
+    // toolBar.add(new CleanAction(this));
   }
 
   @PreDestroy
   public void dispose() {
     _tracker.close();
+  }
+
+  public void clean() {
+    Display.getDefault().syncExec(() -> {
+      _jsonResult = null;
+      try {
+        PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+            .showView("org.slizaa.neo4j.queryresult.ui.QueryResultViewPart");
+      } catch (PartInitException e) {
+        // do nothing
+      }
+      _browser.setUrl(Activator.getDefault().getMainUrl());
+    });
   }
 
   class CustomFunction extends BrowserFunction {

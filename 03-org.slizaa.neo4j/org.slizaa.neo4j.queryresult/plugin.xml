@@ -7,7 +7,8 @@
             class="org.slizaa.neo4j.queryresult.ui.internal.QueryResultViewPart"
             id="org.slizaa.neo4j.queryresult.ui.QueryResultViewPart"
             name="Query Result"
-            restorable="true">
+            restorable="true"
+            icon="icons/opencypher.png">
       </e4view>
    </extension>
 </plugin>

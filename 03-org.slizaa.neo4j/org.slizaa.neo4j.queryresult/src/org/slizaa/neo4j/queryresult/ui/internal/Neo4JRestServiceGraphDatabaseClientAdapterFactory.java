@@ -57,19 +57,9 @@ public class Neo4JRestServiceGraphDatabaseClientAdapterFactory implements IRestC
   public void restClientDisconnected(Neo4jRestClient restClient) {
 
     //
-    ServiceRegistration<?> serviceRegistration = _serviceRegistration.get(restClient);
+    ServiceRegistration<?> serviceRegistration = _serviceRegistration.remove(restClient);
     if (serviceRegistration != null) {
       serviceRegistration.unregister();
     }
   }
-
-  // @Override
-  // public AdapterImpl restClientConnected(Neo4jRestClient restClient) {
-
-  // }
-  //
-  // @Override
-  // public void restClientDisconnected(AdapterImpl t) {
-  // System.out.println("restClientDisconnected");
-  // }
 }
