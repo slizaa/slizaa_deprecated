@@ -1,4 +1,6 @@
-package org.slizaa.neo4j.queryresult.ui;
+package org.slizaa.neo4j.queryresult.ui.internal;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.List;
 import java.util.concurrent.Future;
@@ -8,10 +10,6 @@ import java.util.function.Consumer;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.serializer.ISerializer;
-import org.osgi.service.component.ComponentContext;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.slizaa.neo4j.dbadapter.DbAdapterConstants;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.opencypher.openCypher.Cypher;
 import org.slizaa.neo4j.opencypher.openCypher.ReturnBody;
@@ -20,9 +18,7 @@ import org.slizaa.neo4j.opencypher.util.CypherNormalizer;
 
 import com.google.gson.JsonObject;
 
-@Component(factory = "Neo4jGraphDatabaseClientAdapterProvider", service = { IGraphDatabaseClientAdapter.class,
-    IQueryResultProvider.class })
-public class Neo4jGraphDatabaseClientAdapterProvider implements IGraphDatabaseClientAdapter, IQueryResultProvider {
+public class Neo4JRestServiceGraphDatabaseClientAdapter implements IGraphDatabaseClientAdapter, IQueryResultProvider {
 
   /** - */
   private Neo4jRestClient                _client;
@@ -35,13 +31,13 @@ public class Neo4jGraphDatabaseClientAdapterProvider implements IGraphDatabaseCl
 
   /**
    * <p>
+   * Creates a new instance of type {@link Neo4JRestServiceGraphDatabaseClientAdapter}.
    * </p>
    *
-   * @param context
+   * @param client
    */
-  @Activate
-  public void activate(ComponentContext context) {
-    _client = (Neo4jRestClient) context.getProperties().get(DbAdapterConstants.PROPERTY_NEO4J_REST_CLIENT);
+  public Neo4JRestServiceGraphDatabaseClientAdapter(Neo4jRestClient client) {
+    _client = checkNotNull(client);
   }
 
   /**
@@ -139,5 +135,4 @@ public class Neo4jGraphDatabaseClientAdapterProvider implements IGraphDatabaseCl
     }
     return null;
   }
-
 }

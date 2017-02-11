@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="init" deactivate="dispose" name="org.slizaa.neo4j.dbadapter.internal.dbdefservice.DatabaseDefinitionService">
-   <reference bind="bindComponentFactory" cardinality="1..1" interface="org.osgi.service.component.ComponentFactory" name="ComponentFactory" policy="static" target="(component.factory=Neo4jGraphDatabaseClientAdapterProvider)" unbind="unbindComponentFactory"/>
+   <reference bind="addDatabaseClientAdapterFactory" cardinality="0..n" interface="org.slizaa.neo4j.dbadapter.IRestClientConnectionListener" name="DatabaseClientAdapterFactory" policy="dynamic" unbind="removeDatabaseClientAdapterFactory"/>
    <reference bind="bindDbAdapterRegistry" cardinality="1..1" interface="org.slizaa.neo4j.dbadapter.DbAdapterRegistry" name="DbAdapterRegistry" policy="static" unbind="unbindDbAdapterRegistry"/>
    <implementation class="org.slizaa.neo4j.dbadapter.internal.dbdefservice.DatabaseDefinitionService"/>
 </scr:component>

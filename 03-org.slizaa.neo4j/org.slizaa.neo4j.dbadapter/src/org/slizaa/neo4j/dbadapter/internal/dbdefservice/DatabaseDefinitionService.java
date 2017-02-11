@@ -1,5 +1,8 @@
 package org.slizaa.neo4j.dbadapter.internal.dbdefservice;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -11,12 +14,14 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
-import org.osgi.service.component.ComponentFactory;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
+import org.slizaa.neo4j.dbadapter.IRestClientConnectionListener;
 import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.DbAdapterDefinition;
 import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.ManagedLocalDatabase;
 import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.UnmanagedRemoteDatabase;
@@ -26,15 +31,16 @@ import org.slizaa.neo4j.dbadapter.internal.LauncherService;
 public class DatabaseDefinitionService {
 
   /** - */
-  private DbAdapterRegistry _dbAdapterRegistry;
+  private DbAdapterRegistry                      _dbAdapterRegistry;
 
   /** - */
-  private ComponentFactory  _componentFactory;
+  private List<IRestClientConnectionListener> _databaseClientAdapterFactories = new LinkedList<IRestClientConnectionListener>();
 
   /** - */
-  private LauncherService   _launcherService;
+  private LauncherService                        _launcherService;
 
-  private DbClientManager   _manager;
+  /** - */
+  private DbClientManager                        _manager;
 
   /**
    * <p>
@@ -42,9 +48,9 @@ public class DatabaseDefinitionService {
    *
    * @param componentFactory
    */
-  @Reference(target = "(component.factory=Neo4jGraphDatabaseClientAdapterProvider)")
-  public void bindComponentFactory(ComponentFactory componentFactory) {
-    _componentFactory = componentFactory;
+  @Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
+  public void addDatabaseClientAdapterFactory(IRestClientConnectionListener clientAdapterFactory) {
+    _databaseClientAdapterFactories.add(clientAdapterFactory);
   }
 
   /**
@@ -53,8 +59,8 @@ public class DatabaseDefinitionService {
    *
    * @param componentFactory
    */
-  public void unbindComponentFactory(ComponentFactory componentFactory) {
-    _componentFactory = null;
+  public void removeDatabaseClientAdapterFactory(IRestClientConnectionListener clientAdapterFactory) {
+    _databaseClientAdapterFactories.remove(clientAdapterFactory);
   }
 
   /**
@@ -90,7 +96,7 @@ public class DatabaseDefinitionService {
     _launcherService.init();
 
     //
-    _manager = new DbClientManager(_dbAdapterRegistry, _componentFactory, _launcherService);
+    _manager = new DbClientManager(_dbAdapterRegistry, _databaseClientAdapterFactories, _launcherService);
 
     //
     observeWorkspace();

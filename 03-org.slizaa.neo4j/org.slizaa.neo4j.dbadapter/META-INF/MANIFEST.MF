@@ -42,3 +42,4 @@ Require-Bundle: org.eclipse.emf.common,
  org.slizaa.hierarchicalgraph;visibility:=reexport,
  org.slizaa.neo4j.opencypher.ui;bundle-version="1.0.0",
  org.slizaa.neo4j.opencypher;bundle-version="1.0.0"
+

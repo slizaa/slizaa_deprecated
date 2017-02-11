@@ -8,7 +8,7 @@
  * Contributors:
  *    Gerd W�therich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
-package org.slizaa.neo4j.queryresult.ui;
+package org.slizaa.neo4j.queryresult.ui.internal;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;

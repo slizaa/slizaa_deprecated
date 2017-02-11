@@ -2,10 +2,7 @@ package org.slizaa.neo4j.dbadapter.internal.dbdefservice;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.List;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -13,13 +10,11 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.osgi.service.component.ComponentFactory;
-import org.osgi.service.component.ComponentInstance;
 import org.slizaa.neo4j.dbadapter.ContainerType;
-import org.slizaa.neo4j.dbadapter.DbAdapterConstants;
 import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.DbAdapterPackage;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
+import org.slizaa.neo4j.dbadapter.IRestClientConnectionListener;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.ManagedLocalDatabase;
 import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.UnmanagedRemoteDatabase;
@@ -29,19 +24,16 @@ import org.slizaa.neo4j.dbadapter.internal.LauncherService;
 public class DbClientManager {
 
   /** - */
-  private DbAdapterRegistry                       _dbAdapterRegistry;
+  private DbAdapterRegistry                   _dbAdapterRegistry;
 
   /** - */
-  private ComponentFactory                        _componentFactory;
+  private List<IRestClientConnectionListener> _databaseClientAdapterFactories;
 
   /** - */
-  private LauncherService                         _launcherService;
+  private LauncherService                     _launcherService;
 
   /** - */
-  private Map<Neo4jRestClient, ComponentInstance> _componentInstances;
-
-  /** - */
-  private Adapter                                 _adapter;
+  private Adapter                             _adapter;
 
   /**
    * <p>
@@ -52,40 +44,38 @@ public class DbClientManager {
    * @param componentFactory
    * @param launcherService
    */
-  public DbClientManager(DbAdapterRegistry dbAdapterRegistry, ComponentFactory componentFactory,
-      LauncherService launcherService) {
+  public DbClientManager(DbAdapterRegistry dbAdapterRegistry,
+      List<IRestClientConnectionListener> databaseClientAdapterFactories, LauncherService launcherService) {
 
     //
     _dbAdapterRegistry = checkNotNull(dbAdapterRegistry);
-    _componentFactory = checkNotNull(componentFactory);
+    _databaseClientAdapterFactories = checkNotNull(databaseClientAdapterFactories);
     _launcherService = checkNotNull(launcherService);
 
     //
-    _componentInstances = new HashMap<>();
-
-    //
     _adapter = new AdapterImpl() {
+
       @Override
       public void notifyChanged(Notification msg) {
         if (msg.getEventType() == Notification.SET
             && (msg.getFeatureID(Neo4jRestClient.class) == DbAdapterPackage.MANAGED_NEO4J_INSTANCE__CONNECTED
                 || msg.getFeatureID(Neo4jRestClient.class) == DbAdapterPackage.NEO4J_REST_CLIENT__CONNECTED)) {
 
-          //
           Neo4jRestClient restClient = (Neo4jRestClient) msg.getNotifier();
 
-          //
           if (msg.getNewBooleanValue()) {
-            Dictionary<String, Object> properties = new Hashtable<>();
-            properties.put(DbAdapterConstants.PROPERTY_NEO4J_REST_CLIENT, restClient);
-            ComponentInstance componentInstance = _componentFactory.newInstance(properties);
-            _componentInstances.put(restClient, componentInstance);
+            for (IRestClientConnectionListener databaseClientAdapterFactory : _databaseClientAdapterFactories) {
+              databaseClientAdapterFactory.restClientConnected(restClient);
+            }
           } else {
-            _componentInstances.get(restClient).dispose();
+            for (IRestClientConnectionListener databaseClientAdapterFactory : _databaseClientAdapterFactories) {
+              databaseClientAdapterFactory.restClientDisconnected(restClient);
+            }
           }
         }
       }
     };
+
   }
 
   /**
@@ -97,12 +87,6 @@ public class DbClientManager {
    */
   void updateUnmanagedRemoteDatabase(IFile definingFile, UnmanagedRemoteDatabase unmanagedRemoteDatabase) {
 
-    // IStringVariableManager manager = VariablesPlugin.getDefault().getStringVariableManager();
-    //
-    // for (IDynamicVariable variable : manager.getDynamicVariables()) {
-    // System.out.println(" - dynVar " + variable.getName());
-    // }
-    //
     //
     Neo4jRestClient restClient = _dbAdapterRegistry.getDbAdapterContainer(ContainerType.UNMANAGED).getChildren()
         .stream().filter(c -> definingFile.equals(c.getDefiningResource())).findFirst().orElse(null);
@@ -125,12 +109,6 @@ public class DbClientManager {
 
   void updateManagedLocalDatabase(IFile definingFile, ManagedLocalDatabase managedLocalDatabase) {
 
-    // IStringVariableManager manager = VariablesPlugin.getDefault().getStringVariableManager();
-    //
-    // for (IDynamicVariable variable : manager.getDynamicVariables()) {
-    // System.out.println(" - dynVar " + variable.getName());
-    // }
-    //
     //
     Neo4jRestClient restClient = _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED).getChildren().stream()
         .filter(c -> definingFile.equals(c.getDefiningResource())).findFirst().orElse(null);

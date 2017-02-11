@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.views">
       <e4view
-            class="org.slizaa.neo4j.queryresult.ui.QueryResultViewPart"
+            class="org.slizaa.neo4j.queryresult.ui.internal.QueryResultViewPart"
             id="org.slizaa.neo4j.queryresult.ui.QueryResultViewPart"
             name="Query Result"
             restorable="true">

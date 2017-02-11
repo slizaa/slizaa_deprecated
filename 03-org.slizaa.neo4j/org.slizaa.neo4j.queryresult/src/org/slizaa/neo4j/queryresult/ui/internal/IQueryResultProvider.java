@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.queryresult.ui;
+package org.slizaa.neo4j.queryresult.ui.internal;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
