@@ -47,7 +47,7 @@ public class DsmPart {
   /**
    * This is used as the DSMView's providerId for the xxxSelectionServices
    */
-  public static String            DSM_EDITOR_ID = DsmPart.class.getName();
+  public static String            DSM_ID = DsmPart.class.getName();
 
   /** - */
   @Inject
