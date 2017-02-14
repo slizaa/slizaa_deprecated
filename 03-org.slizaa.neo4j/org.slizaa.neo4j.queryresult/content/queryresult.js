@@ -1,8 +1,11 @@
 function renderQueryResult(queryResult) {
 
+    console.log(queryResult);
+
     // handle error json ({ "message": "a msg", "exception": "an exception"})
-    if (typeof queryResult['message'] !== 'undefined' && typeof queryResult['exception'] !== 'undefined') {
-        $("#error").text("Error: " + queryResult['message']);
+    if (queryResult.errors.length > 0) {
+
+        $("#error").html("<div>" + queryResult.errors[0].code + ": </div><div>" + queryResult.errors[0].message + "</div>");
         return;
     }
 

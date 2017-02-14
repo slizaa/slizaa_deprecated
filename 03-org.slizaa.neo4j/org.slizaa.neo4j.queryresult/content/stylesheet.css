@@ -52,6 +52,11 @@ th, td {
     font-size: 75%;
 }
 
+#error div {
+    padding: 10px;
+    margin: 10px;
+}
+
 .loader {
     position: absolute;
     margin: auto;
