@@ -25,7 +25,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerComparator;
-import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -83,7 +82,7 @@ public class HierarchicalGraphViewPart {
     }
 
     _currentRootNode = rootNode;
-    if (_treeViewer != null) {
+    if (_treeViewer != null && !_treeViewer.getTree().isDisposed()) {
       if (_currentRootNode == null) {
         _treeViewer.setInput(null);
         _treeViewer.setComparator(null);
