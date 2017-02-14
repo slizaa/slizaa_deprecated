@@ -36,12 +36,11 @@ public class Neo4JBackedNodeSourceViewerComparator extends ViewerComparator {
 
   @Override
   public int compare(Viewer viewer, Object e1, Object e2) {
-    
+
     //
-    if (! (e1 instanceof HGNode && e2 instanceof HGNode)) {
+    if (!(e1 instanceof HGNode && e2 instanceof HGNode)) {
       return 0;
     }
-    
 
     //
     Neo4JBackedNodeSource nodeSource1 = (Neo4JBackedNodeSource) ((HGNode) e1).getNodeSource();
@@ -55,8 +54,9 @@ public class Neo4JBackedNodeSourceViewerComparator extends ViewerComparator {
       return nodeSource1.getProperties().get("name").compareTo(nodeSource2.getProperties().get("name"));
     }
     //
-    else if ((nodeSource1.getLabels().contains("Directory") && nodeSource2.getLabels().contains("Directory"))
-        || (nodeSource1.getLabels().contains("Artifact") && nodeSource2.getLabels().contains("Artifact"))) {
+    else if (((nodeSource1.getLabels().contains("Directory") && nodeSource2.getLabels().contains("Directory"))
+        || (nodeSource1.getLabels().contains("Artifact") && nodeSource2.getLabels().contains("Artifact")))
+        && nodeSource1.getProperties().contains("fileName") && nodeSource2.getProperties().contains("fileName")) {
 
       return nodeSource1.getProperties().get("fileName").compareTo(nodeSource2.getProperties().get("fileName"));
     }
