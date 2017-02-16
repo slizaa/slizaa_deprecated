@@ -5,12 +5,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
@@ -158,7 +156,7 @@ public class XRefComposite extends Composite {
     _toTreeViewer.setSelection(new StructuredSelection());
 
     //
-    _centerViewer.setFilters(new VisibleNodesFilter(() -> _filteredNodes));
+    _centerViewer.setFilters(new VisibleNodesFilter(() -> _filteredNodes, true));
 
     // set focus to center tree viewer
     _centerViewer.getTree().setFocus();
