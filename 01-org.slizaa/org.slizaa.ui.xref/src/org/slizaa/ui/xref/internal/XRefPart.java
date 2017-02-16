@@ -50,6 +50,7 @@ public class XRefPart {
     _composite = new XRefComposite(parent, _perspective.getContext());
     _composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     _composite.setRootNode(_rootNode);
+    // setFilter();
   }
 
   @Inject
@@ -63,6 +64,30 @@ public class XRefPart {
     // immediately set if composite is already created
     if (_composite != null && !_composite.isDisposed()) {
       _composite.setRootNode(_rootNode);
+      // setFilter();
     }
   }
+
+  // /**
+  // * <p>
+  // * </p>
+  // */
+  // private void setFilter() {
+  //
+  // ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
+  // Display.getDefault().getActiveShell(),
+  // new WorkbenchLabelProvider(),
+  // new BaseWorkbenchContentProvider());
+  //
+  // dialog.setTitle("Tree Selection");
+  // dialog.setMessage("Select the elements from the tree:");
+  // dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
+  // dialog.open();
+  //
+  // // todo
+  // List<Long> filteredNodeIds = Arrays.asList(4365l, 4336l, 4447l, 4597l, 4604l, 4197l, 84633l);
+  // List<HGNode> stuff = filteredNodeIds.stream().map(id -> _rootNode.lookupNode(id)).collect(Collectors.toList());
+  // _composite.setFilteredNodes(stuff);
+  // _composite.refresh();
+  // }
 }

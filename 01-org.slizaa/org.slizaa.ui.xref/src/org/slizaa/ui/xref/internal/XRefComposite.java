@@ -5,9 +5,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
@@ -28,6 +31,7 @@ import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.SourceOrTarget;
+import org.slizaa.hierarchicalgraph.selection.NodeSelections;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector;
 import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
@@ -90,6 +94,9 @@ public class XRefComposite extends Composite {
   /** - */
   private SourceOrTarget            _selectedBackReferences;
 
+  /** - */
+  private Set<HGNode>               _filteredNodes;
+
   /**
    * <p>
    * Creates a new instance of type {@link XRefComposite}.
@@ -105,6 +112,24 @@ public class XRefComposite extends Composite {
 
     //
     init();
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param filteredNodes
+   */
+  public void setFilteredNodes(List<HGNode> filteredNodes) {
+    
+    //
+    if (filteredNodes == null || filteredNodes.isEmpty()) {
+      _filteredNodes = null;
+    } 
+    //
+    else {
+      _filteredNodes = NodeSelections.computeNodesWithParents(filteredNodes, false);
+    }
   }
 
   /**
@@ -131,6 +156,9 @@ public class XRefComposite extends Composite {
     _fromTreeViewer.setSelection(new StructuredSelection());
     _centerViewer.setSelection(_rootNode != null ? new StructuredSelection(_rootNode) : new StructuredSelection());
     _toTreeViewer.setSelection(new StructuredSelection());
+
+    //
+    _centerViewer.setFilters(new VisibleNodesFilter(() -> _filteredNodes));
 
     // set focus to center tree viewer
     _centerViewer.getTree().setFocus();

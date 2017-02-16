@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) Gerd Wütherich 2012-2016.
+ * Copyright (c) Gerd Wï¿½therich 2012-2016.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
+ *    Gerd Wï¿½therich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
 package org.slizaa.ui.tree;
 
@@ -28,9 +28,10 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
  */
 public class VisibleNodesFilter extends ViewerFilter {
 
-
   /** - */
   private Supplier<Collection<HGNode>> _visibleNodesSupplier;
+
+  private boolean                      _dontFilterIfNull = false;
 
   /**
    * <p>
@@ -43,6 +44,11 @@ public class VisibleNodesFilter extends ViewerFilter {
     _visibleNodesSupplier = checkNotNull(visibleNodesSupplier);
   }
 
+  public VisibleNodesFilter(Supplier<Collection<HGNode>> visibleNodesSupplier, boolean dontFilterIfNull) {
+    _visibleNodesSupplier = checkNotNull(visibleNodesSupplier);
+    _dontFilterIfNull = dontFilterIfNull;
+  }
+
   /**
    * {@inheritDoc}
    */
@@ -52,15 +58,17 @@ public class VisibleNodesFilter extends ViewerFilter {
     //
     if (element instanceof HGRootNode) {
       return true;
-    } else if (visibleNodes().contains(element)) {
+    }
+
+    //
+    Collection<HGNode> hgNodes = _visibleNodesSupplier.get();
+
+    if (_dontFilterIfNull && (hgNodes == null || hgNodes.isEmpty())) {
+      return true;
+    } else if (hgNodes != null && hgNodes.contains(element)) {
       return true;
     } else {
       return false;
     }
-  }
-  
-  /** - */
-  private Collection<HGNode> visibleNodes() {
-    return _visibleNodesSupplier.get();
   }
 }
