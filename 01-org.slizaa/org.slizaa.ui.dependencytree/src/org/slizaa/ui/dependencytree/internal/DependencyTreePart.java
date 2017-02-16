@@ -54,7 +54,7 @@ public class DependencyTreePart {
    */
   @PostConstruct
   public void createComposite(Composite parent) {
-
+    
     //
     GridLayout layout = new GridLayout(1, false);
     layout.marginHeight = 0;
@@ -62,7 +62,7 @@ public class DependencyTreePart {
     parent.setLayout(layout);
 
     //
-    _composite = new DependencyTreeComposite(parent, _mPerspective.getContext());
+    _composite = new DependencyTreeComposite(parent, () -> _mPerspective.getContext());
     _composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
   }
 

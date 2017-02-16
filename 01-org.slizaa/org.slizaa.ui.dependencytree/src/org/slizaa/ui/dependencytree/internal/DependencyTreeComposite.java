@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
@@ -73,7 +74,7 @@ public class DependencyTreeComposite extends Composite {
   private IExpandStrategy                    _toExpandStrategy;
 
   /** - */
-  private IEclipseContext                    _eclipseContext;
+  private Supplier<IEclipseContext>          _eclipseContextSupplier;
 
   /** - */
   private boolean                            _filterSource;
@@ -88,7 +89,7 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @param parent
    */
-  public DependencyTreeComposite(Composite parent, IEclipseContext eclipseContext) {
+  public DependencyTreeComposite(Composite parent, Supplier<IEclipseContext> eclipseContextSupplier) {
     super(parent, SWT.NONE);
 
     // TODO
@@ -98,7 +99,7 @@ public class DependencyTreeComposite extends Composite {
         (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getIncomingCoreDependencies()));
 
     //
-    _eclipseContext = eclipseContext;
+    _eclipseContextSupplier = eclipseContextSupplier;
     _selector = new DefaultDependencySelector();
 
     // TODO
@@ -228,7 +229,7 @@ public class DependencyTreeComposite extends Composite {
    * @param selectedDetailDependencies
    */
   private void setSelectedDetailDependencies(Collection<HGCoreDependency> dependencies) {
-    ContextHelper.setValueInContext(_eclipseContext, SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION,
+    ContextHelper.setValueInContext(_eclipseContextSupplier.get(), SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION,
         new ArrayList<>(dependencies));
   }
 
