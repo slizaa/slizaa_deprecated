@@ -34,6 +34,9 @@ public class GraphDatabasesPerspectiveFactory implements IPerspectiveFactory {
    */
   @Override
   public void createInitialLayout(IPageLayout layout) {
+    
+    // add wizard shortcut
+    layout.addNewWizardShortcut("org.slizaa.ui.shared.newprojectwizard");
 
     // upper left
     IFolderLayout folder = layout.createFolder(FOLDER_UPPER_LEFT, IPageLayout.LEFT, 0.2f, IPageLayout.ID_EDITOR_AREA);

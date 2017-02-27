@@ -1,4 +1,4 @@
-package org.slizaa.ui.common.internal.wizard;
+package org.slizaa.ui.shared.internal.wizard;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
@@ -17,7 +17,7 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.ide.undo.CreateProjectOperation;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
-import org.slizaa.ui.common.internal.SlizaaProjectUtils;
+import org.slizaa.ui.shared.internal.SlizaaProjectUtils;
 
 /**
  * <p>
@@ -29,9 +29,7 @@ import org.slizaa.ui.common.internal.SlizaaProjectUtils;
  */
 public class NewSlizaaProjectWizard extends Wizard implements INewWizard {
 
-  /**
-   * The project that has been created after the wizard has been successfully completed
-   */
+  /** the project that has been created after the wizard has been successfully completed */
   private IProject _newProject;
 
   @Override
@@ -64,6 +62,8 @@ public class NewSlizaaProjectWizard extends Wizard implements INewWizard {
   }
 
   private IProject createNewProject() {
+    
+    //
     if (_newProject != null) {
       return _newProject;
     }
@@ -132,9 +132,10 @@ public class NewSlizaaProjectWizard extends Wizard implements INewWizard {
       return null;
     }
 
+    // add the project nature
     try {
-      SlizaaProjectUtils.addSlizaaProjectNature(newProjectHandle);
       SlizaaProjectUtils.addXtextProjectNature(newProjectHandle);
+      SlizaaProjectUtils.addSlizaaProjectNature(newProjectHandle);
     } catch (CoreException ex) {
       ex.printStackTrace();
       return null;

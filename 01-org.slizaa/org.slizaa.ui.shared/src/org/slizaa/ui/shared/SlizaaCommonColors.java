@@ -1,7 +1,7 @@
-package org.slizaa.ui.common;
+package org.slizaa.ui.shared;
 
 import org.eclipse.swt.graphics.Color;
-import org.slizaa.ui.common.internal.Activator;
+import org.slizaa.ui.shared.internal.Activator;
 
 public class SlizaaCommonColors {
 

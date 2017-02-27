@@ -1,4 +1,4 @@
-package org.slizaa.ui.common.internal.wizard;
+package org.slizaa.ui.shared.internal.wizard;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.swt.widgets.Composite;

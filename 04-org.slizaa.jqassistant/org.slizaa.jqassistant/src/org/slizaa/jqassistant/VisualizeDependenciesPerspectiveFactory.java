@@ -28,6 +28,9 @@ public class VisualizeDependenciesPerspectiveFactory implements IPerspectiveFact
 	 */
 	@Override
 	public void createInitialLayout(IPageLayout layout) {
+	  
+    // add wizard shortcut
+    layout.addNewWizardShortcut("org.slizaa.ui.shared.newprojectwizard");
 
 		//
 		IFolderLayout folderLayout = layout.createFolder(FOLDER_UPPER_LEFT, IPageLayout.LEFT, 0.2f,

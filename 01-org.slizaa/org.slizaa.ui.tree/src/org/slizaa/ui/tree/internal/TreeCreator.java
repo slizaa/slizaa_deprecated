@@ -13,7 +13,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
-import org.slizaa.ui.common.context.RootObject;
+import org.slizaa.ui.shared.context.RootObject;
 import org.slizaa.ui.tree.interceptors.ITreeEventInterceptor;
 
 public class TreeCreator {

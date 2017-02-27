@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension point="org.eclipse.ui.startup">
+     <startup class="org.slizaa.ui.shared.internal.DisableXTextDecorator"/>
+   </extension>
+
+   <extension
+         id="org.slizaa.ui.shared.slizaanature"
+         point="org.eclipse.core.resources.natures"
+         name="slizaa Nature">
+      <runtime>
+         <run
+               class="org.slizaa.ui.shared.SlizaaProjectNature">
+         </run>
+      </runtime>
+   </extension>
+   
+   	<!-- New slizaa project -->
+	<extension id="org.slizaa.ui.shared.newWizards" name="slizaa Wizards"
+		point="org.eclipse.ui.newWizards">
+		<category id="org.slizaa.ui.wizards.category" name="slizaa"> </category>
+		<wizard
+        id="org.slizaa.ui.shared.newprojectwizard"
+        canFinishEarly="false"
+        category="org.slizaa.ui.wizards.category"
+        class="org.slizaa.ui.shared.internal.wizard.NewSlizaaProjectWizard"
+        hasPages="true"
+        name="slizaa Project..."
+        icon="icons/slizaanatureimage.png"
+        project="true">
+			<description> Create a slizaa project </description>
+		</wizard>
+	</extension>
+	
+ <extension
+       point="org.eclipse.ui.ide.projectNatureImages">
+    <image
+          icon="icons/slizaanatureimage.png"
+          id="org.slizaa.ui.shared.slizaaimage"
+          natureId="org.slizaa.ui.shared.slizaanature">
+    </image>
+ </extension>
+   
+</plugin>

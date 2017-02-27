@@ -14,6 +14,9 @@ public class CrossReferencerPerspectiveFactory implements IPerspectiveFactory {
 
   @Override
   public void createInitialLayout(IPageLayout layout) {
+    
+    // add wizard shortcut
+    layout.addNewWizardShortcut("org.slizaa.ui.shared.newprojectwizard");
 
     // top
     IFolderLayout folder = layout.createFolder(FOLDER_TOP, IPageLayout.TOP, 0.6f, IPageLayout.ID_EDITOR_AREA);

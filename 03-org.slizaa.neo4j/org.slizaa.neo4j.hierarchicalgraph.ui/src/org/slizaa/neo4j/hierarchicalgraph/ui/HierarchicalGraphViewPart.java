@@ -31,8 +31,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
-import org.slizaa.ui.common.context.ContextHelper;
-import org.slizaa.ui.common.context.RootObject;
+import org.slizaa.ui.shared.context.ContextHelper;
+import org.slizaa.ui.shared.context.RootObject;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 
 public class HierarchicalGraphViewPart {

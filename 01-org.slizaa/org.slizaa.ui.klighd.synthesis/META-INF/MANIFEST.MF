@@ -18,6 +18,6 @@ Require-Bundle: javax.inject,
  org.eclipse.elk.alg.layered;bundle-version="0.1.0",
  org.eclipse.elk.core;bundle-version="0.1.0",
  org.eclipse.e4.core.contexts;bundle-version="1.5.0",
- org.slizaa.ui.common;bundle-version="0.0.3",
+ org.slizaa.ui.shared;bundle-version="0.0.3",
  org.slizaa.hierarchicalgraph.selection;bundle-version="0.0.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

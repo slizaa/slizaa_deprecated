@@ -2,14 +2,13 @@ package org.slizaa.ui.klighd.synthesis.hierarchicalgraph;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.elk.graph.KGraphElement;
 import org.eclipse.ui.internal.PartSite;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
-import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.shared.context.ContextHelper;
 
 import de.cau.cs.kieler.klighd.IAction;
 

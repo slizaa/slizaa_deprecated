@@ -30,7 +30,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
-import org.slizaa.ui.common.context.BusyCursor;
+import org.slizaa.ui.shared.context.BusyCursor;
 import org.slizaa.ui.widget.dsm.DsmViewWidget;
 import org.slizaa.ui.widget.dsm.IDsmContentProvider;
 import org.slizaa.ui.widget.dsm.IMatrixListener;

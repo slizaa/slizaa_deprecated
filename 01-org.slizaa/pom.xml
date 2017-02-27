@@ -21,7 +21,7 @@
 		<module>org.slizaa.hierarchicalgraph.selection.test</module>
 		<module>org.slizaa.testfwk</module>
 		
-		<module>org.slizaa.ui.common</module>
+		<module>org.slizaa.ui.shared</module>
 		<module>org.slizaa.ui.dependencytable</module>
 		<module>org.slizaa.ui.dependencytree</module>
 		<module>org.slizaa.ui.dsm</module>

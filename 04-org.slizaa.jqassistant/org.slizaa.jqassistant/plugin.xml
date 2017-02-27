@@ -113,5 +113,13 @@
       <startup
             class="org.slizaa.jqassistant.internal.Startup">
       </startup>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <commonWizard
+            type="new"
+            wizardId="org.slizaa.ui.shared.newprojectwizard">
+         <enablement></enablement>
+      </commonWizard>
    </extension>   
 </plugin>

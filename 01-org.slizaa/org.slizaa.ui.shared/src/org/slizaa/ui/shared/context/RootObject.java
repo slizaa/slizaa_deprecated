@@ -1,4 +1,4 @@
-package org.slizaa.ui.common.context;
+package org.slizaa.ui.shared.context;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

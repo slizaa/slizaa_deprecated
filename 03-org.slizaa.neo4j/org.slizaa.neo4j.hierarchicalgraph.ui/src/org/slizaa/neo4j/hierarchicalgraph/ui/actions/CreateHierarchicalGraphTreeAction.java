@@ -2,9 +2,6 @@ package org.slizaa.neo4j.hierarchicalgraph.ui.actions;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -32,7 +29,7 @@ import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorBasedItemLabelProv
 import org.slizaa.neo4j.hierarchicalgraph.ui.Neo4JBackedNodeSourceViewerComparator;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappings.ISlizaaMappingDescription;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappings.MappingDescriptorUtil;
-import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.shared.context.ContextHelper;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
 @Component

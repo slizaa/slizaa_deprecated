@@ -9,7 +9,7 @@ import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.neo4j.dbadapter.ContainerType;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.ui.common.context.ContextHelper;
+import org.slizaa.ui.shared.context.ContextHelper;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
 @Component

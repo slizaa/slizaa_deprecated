@@ -2,7 +2,6 @@ package org.slizaa.ui.xref.internal;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -17,8 +16,7 @@ import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.NodeSelections;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
-import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
-import org.slizaa.ui.common.context.RootObject;
+import org.slizaa.ui.shared.context.RootObject;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 import org.slizaa.ui.tree.VisibleNodesFilter;
 
