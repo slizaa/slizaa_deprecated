@@ -11,5 +11,17 @@
             id="org.slizaa.neo4j.restclient.ui.GraphDatabasesView">
       </e4view>
    </extension>
+   
+   <extension id="org.slizaa.jqassistant.newWizards" name="slizaa Wizards" point="org.eclipse.ui.newWizards">
+      <wizard id="org.slizaa.jqassistant.newDbdefWizard" canFinishEarly="false" category="org.slizaa.ui.wizards.category" class="org.slizaa.neo4j.dbadapter.ui.internal.wizard.NewDatabaseDefinitionFileWizard" hasPages="true" name="slizaa Database Definition File..." icon="icons/newSlizaaDbdefFile.png" project="false">
+         <description>Create a new database definition file</description>
+      </wizard>
+   </extension>
+   
+   <extension point="org.eclipse.ui.navigator.navigatorContent">
+      <commonWizard type="new" wizardId="org.slizaa.jqassistant.newDbdefWizard" menuGroupId="group.new">
+         <enablement/>
+      </commonWizard>
+   </extension>
 
 </plugin>

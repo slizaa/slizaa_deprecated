@@ -5,6 +5,7 @@ import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 import org.eclipse.ui.console.IConsoleConstants;
 import org.eclipse.ui.internal.e4.compatibility.ModeledPageLayout;
+import org.slizaa.jqassistant.internal.SharedWizardShortcuts;
 
 /**
  * <p>
@@ -36,7 +37,7 @@ public class GraphDatabasesPerspectiveFactory implements IPerspectiveFactory {
   public void createInitialLayout(IPageLayout layout) {
     
     // add wizard shortcut
-    layout.addNewWizardShortcut("org.slizaa.ui.shared.newprojectwizard");
+    SharedWizardShortcuts.addWizardShortcuts(layout);
 
     // upper left
     IFolderLayout folder = layout.createFolder(FOLDER_UPPER_LEFT, IPageLayout.LEFT, 0.2f, IPageLayout.ID_EDITOR_AREA);

@@ -28,7 +28,7 @@
         class="org.slizaa.ui.shared.internal.wizard.NewSlizaaProjectWizard"
         hasPages="true"
         name="slizaa Project..."
-        icon="icons/slizaanatureimage.png"
+        icon="icons/newSlizaaProject.png"
         project="true">
 			<description> Create a slizaa project </description>
 		</wizard>
@@ -37,7 +37,7 @@
  <extension
        point="org.eclipse.ui.ide.projectNatureImages">
     <image
-          icon="icons/slizaanatureimage.png"
+          icon="icons/slizaaNatureImage.png"
           id="org.slizaa.ui.shared.slizaaimage"
           natureId="org.slizaa.ui.shared.slizaanature">
     </image>

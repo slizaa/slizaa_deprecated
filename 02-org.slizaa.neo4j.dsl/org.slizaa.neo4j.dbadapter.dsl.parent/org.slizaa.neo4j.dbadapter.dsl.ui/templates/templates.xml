@@ -5,21 +5,21 @@
 		context="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl.DbAdapterDefinition"
 		deleted="false" description="Defines a managed local database"
 		enabled="true" name="Managed Local Database">managed local database {
-		
+
 	// name &amp; description
-	name "${name}"
-	description "${description}"
-	
-	// the port for the local neo4j server
-	port 7474 
+	name "${instance_name}_(localhost:${port})"
+	description "A managed, local database instance (port ${port}, storage directory ${instance_name}_db)."
 	
 	// the storage directory
-	storage "${storage}"
+	storage "${instance_name}_db"
+	
+	// the port for the local neo4j server
+	port ${port} 
 	
 	// the list of directories to parse
 	files {
-	"${file}"
-	}
+		"${instance_name}"
+	}	
 }</template>
 	<template autoinsert="true"
 		id="dbadapterdsl.build-in.dbadapterdefinition.unmanagedremotedatabase"	
@@ -27,11 +27,12 @@
 		deleted="false" description="Defines a unmanaged remote database"
 		enabled="true" name="Unmanaged Remote Database">unmanaged remote database {
 		
-	// name &amp; description
-	name "${name}"
-	description "${description}"
-	
 	//
-	uri "${uri}"
+	uri "http://${servername}:${port}"
+			
+	// name &amp; description
+	name "unmanaged_${servername}_${port}"
+	description "An unmanaged database instance running at ${servername} (port ${port})."
+	
 }</template>
 </templates>

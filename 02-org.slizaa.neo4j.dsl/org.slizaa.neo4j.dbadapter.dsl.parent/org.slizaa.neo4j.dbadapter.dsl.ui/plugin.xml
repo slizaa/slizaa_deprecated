@@ -8,6 +8,7 @@
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
 			extensions="dbdef"
+			icon="icons/slizaaDbdefFile.png"
 			id="org.slizaa.neo4j.dbadapter.dsl.DbAdapterDsl"
 			name="DbAdapterDsl Editor">
 		</editor>

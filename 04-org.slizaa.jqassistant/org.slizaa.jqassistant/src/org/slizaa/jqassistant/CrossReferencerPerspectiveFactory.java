@@ -3,6 +3,7 @@ package org.slizaa.jqassistant;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
+import org.slizaa.jqassistant.internal.SharedWizardShortcuts;
 
 public class CrossReferencerPerspectiveFactory implements IPerspectiveFactory {
 
@@ -16,7 +17,7 @@ public class CrossReferencerPerspectiveFactory implements IPerspectiveFactory {
   public void createInitialLayout(IPageLayout layout) {
     
     // add wizard shortcut
-    layout.addNewWizardShortcut("org.slizaa.ui.shared.newprojectwizard");
+    SharedWizardShortcuts.addWizardShortcuts(layout);
 
     // top
     IFolderLayout folder = layout.createFolder(FOLDER_TOP, IPageLayout.TOP, 0.6f, IPageLayout.ID_EDITOR_AREA);
