@@ -2,9 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
       <extension point="org.eclipse.ui.perspectives">
-            <perspective class="org.slizaa.jqassistant.VisualizeDependenciesPerspectiveFactory" id="org.slizaa.jqassistant.VisualizeDependenciesPerspective" name="Visualize Dependencies" icon="icons/perspectives/perspective_visdep.gif"></perspective>
-            <perspective class="org.slizaa.jqassistant.GraphDatabasesPerspectiveFactory" id="org.slizaa.jqassistant.GraphDatabasesPerspective" name="Graph Databases" icon="icons/perspectives/perspective_create.gif"></perspective>
-            <perspective class="org.slizaa.jqassistant.CrossReferencerPerspectiveFactory" id="org.slizaa.jqassistant.CrossReferencerPerspective" name="Cross-Referencer" icon="icons/perspectives/perspective_xref.png"></perspective>
+            <perspective class="org.slizaa.jqassistant.VisualizeDependenciesPerspectiveFactory" id="org.slizaa.jqassistant.VisualizeDependenciesPerspective" name="Dependency Visualization" icon="icons/perspectives/perspective_visdep.gif"></perspective>
+            <perspective class="org.slizaa.jqassistant.GraphDatabasesPerspectiveFactory" id="org.slizaa.jqassistant.GraphDatabasesPerspective" name="Graph Mapping" icon="icons/perspectives/perspective_create.gif"></perspective>
+            <perspective class="org.slizaa.jqassistant.CrossReferencerPerspectiveFactory" id="org.slizaa.jqassistant.CrossReferencerPerspective" name="Cross Referencer" icon="icons/perspectives/perspective_xref.png"></perspective>
       </extension>
       
       <!-- New slizaa project -->
@@ -24,7 +24,7 @@
       </extension>
       
       <extension id="slizaa4jqassistant" name="Slizaa powered by jQAssistant" point="org.eclipse.core.runtime.products">
-            <product application="org.eclipse.ui.ide.workbench" description="Slizaa powered by jQAssistant" name="org.slizaa.jqassistant">
+            <product application="org.eclipse.ui.ide.workbench" description="Slizaa powered by jQAssistant" name="Slizaa powered by jQAssistant">
                   <property name="appName" value="org.slizaa.jqassistant"></property>
                   <property name="aboutImage" value="icons/about.png"></property>
                   <property name="aboutText" value="Slizaa architecture workbench&#x0A;powered by jQAssistant&#x0A;&#x0A;(c) Copyright Gerd Wütherich. 2015-2016. All rights reserved.&#x0A;&#x0A;Visit http://www.slizaa.org&#x0A;&#x0A;This offering is powered by Eclipse technology &#x0A;and includes Eclipse plug-ins that can be &#x0A;installed and used with other Eclipse-based &#x0A;offerings."></property>
