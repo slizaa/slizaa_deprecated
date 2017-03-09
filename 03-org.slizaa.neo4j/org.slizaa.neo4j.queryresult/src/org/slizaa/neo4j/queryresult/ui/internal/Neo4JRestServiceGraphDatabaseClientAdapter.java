@@ -7,12 +7,9 @@ import java.util.concurrent.Future;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.opencypher.openCypher.Cypher;
-import org.slizaa.neo4j.opencypher.openCypher.ReturnBody;
 import org.slizaa.neo4j.opencypher.ui.custom.spi.IGraphDatabaseClientAdapter;
 import org.slizaa.neo4j.opencypher.util.CypherNormalizer;
 
@@ -65,25 +62,14 @@ public class Neo4JRestServiceGraphDatabaseClientAdapter implements IGraphDatabas
    * @param defaultLimit
    */
   @Override
-  public Future<?> executeCypherQuery(Cypher cypher, ISerializer serializer, int defaultLimit) {
+  public Future<?> executeCypherQuery(Cypher cypher, ISerializer serializer) {
 
     //
-    String cypherString = serializer.serialize(cypher);
-    cypherString = CypherNormalizer.normalize(cypherString);
+    String cypherString = CypherNormalizer.normalize(serializer.serialize(cypher));
 
     //
     if (_queryStartedHandler != null) {
       _queryStartedHandler.accept(cypherString);
-    }
-
-    //
-    ReturnBody returnBody = getReturnBody(cypher);
-    if (returnBody != null && returnBody.getLimit() == null && defaultLimit >= 0) {
-      if (cypherString.endsWith(";")) {
-        cypherString = cypherString.substring(0, cypherString.length() - 1) + " limit " + defaultLimit + ";";
-      } else {
-        cypherString = cypherString + " limit " + defaultLimit;
-      }
     }
 
     //
@@ -119,20 +105,5 @@ public class Neo4JRestServiceGraphDatabaseClientAdapter implements IGraphDatabas
   @Override
   public List<String> getPropertyKeys() {
     return _client.getAllPropertyKeys();
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param eObject
-   * @return
-   */
-  private static ReturnBody getReturnBody(EObject eObject) {
-    List<ReturnBody> returnBodies = EcoreUtil2.eAllOfType(eObject, ReturnBody.class);
-    if (returnBodies != null && returnBodies.size() > 0) {
-      return returnBodies.get(0);
-    }
-    return null;
   }
 }
