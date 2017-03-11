@@ -3,7 +3,7 @@ package org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal;
 import java.util.List;
 
 import org.slizaa.neo4j.dbadapter.QueryResultConverter;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.GraphFactoryFunctions.DependencyDefinition;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.GraphFactoryFunctions.Neo4jRelationship;
 
 import com.google.gson.JsonObject;
 
@@ -16,8 +16,8 @@ public class Neo4jResultJsonConverter {
    * @param jsonObject
    * @return
    */
-  public static List<DependencyDefinition> extractDependencyDefinition(JsonObject jsonObject) {
-    return QueryResultConverter.convertRows(jsonObject, row -> new DependencyDefinition(row.get(0).getAsLong(),
+  public static List<Neo4jRelationship> extractNeo4jRelationships(JsonObject jsonObject) {
+    return QueryResultConverter.convertRows(jsonObject, row -> new Neo4jRelationship(row.get(0).getAsLong(),
         row.get(1).getAsLong(), row.get(2).getAsLong(), row.get(3).getAsString()));
   }
 

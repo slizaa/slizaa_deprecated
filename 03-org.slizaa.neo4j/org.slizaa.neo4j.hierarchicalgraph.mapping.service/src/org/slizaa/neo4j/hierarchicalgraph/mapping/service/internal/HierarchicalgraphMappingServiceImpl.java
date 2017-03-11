@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Future;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
@@ -23,6 +24,7 @@ import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.INodeSource;
+import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
@@ -33,8 +35,6 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.StructureDescri
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.HierarchicalGraphMappingException;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 /**
@@ -135,6 +135,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
             });
       }
     }
+
     //
     resolveRootQueries(rootNode, rootQueries,
         subMonitor != null ? subMonitor.split(25).setWorkRemaining(rootQueries.size()) : null);
@@ -142,6 +143,20 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     //
     resolveHierarchyQueries(rootNode, hierachyQueries,
         subMonitor != null ? subMonitor.split(25).setWorkRemaining(hierachyQueries.size()) : null);
+
+    // filter 'dangling' nodes
+    List<Object> nodeKeys2Remove = ((ExtendedHGRootNodeImpl) rootNode).getIdToNodeMap().entrySet().stream()
+        .filter((n) -> {
+          try {
+            return !new Long(0).equals(n.getValue().getIdentifier()) && n.getValue().getRootNode() == null;
+          } catch (Exception e) {
+            return true;
+          }
+        }).map(n -> n.getKey()).collect(Collectors.toList());
+
+    // TODO
+    System.out.println("REMOVING: " + nodeKeys2Remove);
+    nodeKeys2Remove.forEach(k -> ((ExtendedHGRootNodeImpl) rootNode).getIdToNodeMap().remove(k));
 
     //
     resolveSimpleDependencyQueries(rootNode, simpleDependencyQueries,
@@ -180,8 +195,8 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
         // request dependencies
         report(iterationMonitor, "Requesting dependencies...");
 
-        List<GraphFactoryFunctions.DependencyDefinition> dependencyDefinitions = Neo4jResultJsonConverter
-            .extractDependencyDefinition(dependencyQuery.get());
+        List<GraphFactoryFunctions.Neo4jRelationship> dependencyDefinitions = Neo4jResultJsonConverter
+            .extractNeo4jRelationships(dependencyQuery.get());
 
         // create dependencies
         report(iterationMonitor, "Creating dependencies...");
@@ -210,13 +225,15 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
         report(iterationMonitor, "Requesting dependencies...");
 
         //
-        List<GraphFactoryFunctions.DependencyDefinition> dependencyDefinitions = Neo4jResultJsonConverter
-            .extractDependencyDefinition(dependencyQuery.getFuture().get());
+        List<GraphFactoryFunctions.Neo4jRelationship> neo4jRelationships = Neo4jResultJsonConverter
+            .extractNeo4jRelationships(dependencyQuery.getFuture().get());
 
         // create dependencies
         report(iterationMonitor, "Creating dependencies...");
-        createDependencies(dependencyDefinitions, rootNode,
-            (id, type) -> GraphFactoryFunctions.createDependencySource(id, type, null), false, false, iterationMonitor);
+        createDependencies(neo4jRelationships, rootNode,
+            (id, type) -> GraphFactoryFunctions.createDependencySource(id, type,
+                dependencyQueries.size() > 1 ? dependencyQuery.getAggregatedDependencyQuery() : null),
+            true, false, iterationMonitor);
 
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
@@ -311,8 +328,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
         //
         report(iterationMonitor, "Creating root nodes...");
-        createFirstLevelElements(rootNodes.toArray(new Long[0]), rootNode, createNodeSourceFunction,
-            iterationMonitor);
+        createFirstLevelElements(rootNodes.toArray(new Long[0]), rootNode, createNodeSourceFunction, iterationMonitor);
       } catch (Exception e) {
         throw new HierarchicalGraphMappingException(e);
       }

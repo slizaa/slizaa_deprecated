@@ -133,19 +133,19 @@ public class GraphFactoryFunctions {
    * @param rootElement
    * @param dependencySourceCreator
    */
-  public static List<HGCoreDependency> createDependencies(List<DependencyDefinition> dependencyDefinitions,
+  public static List<HGCoreDependency> createDependencies(List<Neo4jRelationship> neo4jRelationships,
       HGRootNode rootElement, BiFunction<Long, String, IDependencySource> dependencySourceCreator,
       boolean aggregatedCoreDependency, boolean reinitializeCaches, IProgressMonitor progressMonitor) {
 
     // create sub monitor
     final SubMonitor subMonitor = progressMonitor != null
-        ? SubMonitor.convert(progressMonitor, dependencyDefinitions.size()) : null;
+        ? SubMonitor.convert(progressMonitor, neo4jRelationships.size()) : null;
 
     //
     List<HGCoreDependency> result = new LinkedList<HGCoreDependency>();
 
     //
-    dependencyDefinitions.forEach((element) -> {
+    neo4jRelationships.forEach((element) -> {
 
       // increase sub monitor
       if (subMonitor != null) {
@@ -240,7 +240,7 @@ public class GraphFactoryFunctions {
    *
    * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
    */
-  public static class DependencyDefinition {
+  public static class Neo4jRelationship {
 
     /** - */
     public long   _idStart;
@@ -254,7 +254,7 @@ public class GraphFactoryFunctions {
     /** - */
     public String _type;
 
-    public DependencyDefinition(long idStart, long idTarget, long idRel, String type) {
+    public Neo4jRelationship(long idStart, long idTarget, long idRel, String type) {
       _idStart = idStart;
       _idTarget = idTarget;
       _idRel = idRel;

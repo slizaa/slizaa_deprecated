@@ -333,7 +333,7 @@ public class ExtendedHGNodeTrait {
       if (_hgNode.getParent() == null) {
 
         if (!(_hgNode instanceof HGRootNode)) {
-          throw new RuntimeException("No root set.");
+          throw new RuntimeException("No root set for " + _hgNode.getIdentifier());
         }
 
         _hgNode.rootNode = (HGRootNode) _hgNode;
