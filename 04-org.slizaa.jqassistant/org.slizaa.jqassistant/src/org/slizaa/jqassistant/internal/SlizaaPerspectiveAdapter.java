@@ -136,8 +136,14 @@ public class SlizaaPerspectiveAdapter extends PerspectiveAdapter {
       }
     }
 
+    //
     if (selectedPart != null) {
       _partService.showPart(selectedPart, PartState.ACTIVATE);
+    }
+
+    //
+    if ("org.slizaa.jqassistant.CrossReferencerPerspective".equals(newPerspective.getElementId())) {
+      _partService.showPart("org.slizaa.ui.xref.XRefPart", PartState.ACTIVATE);
     }
   }
 }

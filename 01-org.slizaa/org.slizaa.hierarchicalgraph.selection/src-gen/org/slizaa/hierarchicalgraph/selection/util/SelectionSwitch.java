@@ -71,6 +71,18 @@ public class SelectionSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SelectionPackage.NODE_SELECTION: {
+        NodeSelection nodeSelection = (NodeSelection)theEObject;
+        T result = caseNodeSelection(nodeSelection);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SelectionPackage.DEPENDENCY_SELECTION: {
+        DependencySelection dependencySelection = (DependencySelection)theEObject;
+        T result = caseDependencySelection(dependencySelection);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -87,6 +99,36 @@ public class SelectionSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseDependencySelectionStack(DependencySelectionStack object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Node Selection</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Node Selection</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNodeSelection(NodeSelection object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dependency Selection</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dependency Selection</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDependencySelection(DependencySelection object) {
     return null;
   }
 

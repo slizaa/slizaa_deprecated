@@ -1,5 +1,7 @@
 package org.slizaa.neo4j.dbadapter.ui.internal.action;
 
+import java.util.List;
+
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.neo4j.dbadapter.GraphDatabaseUtil;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
@@ -40,7 +42,7 @@ public class ManagedServerActionGroup implements ISlizaaActionGroupContribution 
 
   @Override
   public boolean shouldShow(Object object) {
-    return object instanceof ManagedNeo4jInstance && GraphDatabaseUtil.isGraphDatabaseInstalled();
+    return ((List<?>) object).stream().allMatch(n -> n instanceof ManagedNeo4jInstance)  && GraphDatabaseUtil.isGraphDatabaseInstalled();
   }
 
   @Override

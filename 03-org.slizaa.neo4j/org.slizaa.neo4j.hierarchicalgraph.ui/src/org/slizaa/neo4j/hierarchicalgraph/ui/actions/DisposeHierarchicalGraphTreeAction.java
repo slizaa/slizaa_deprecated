@@ -1,8 +1,11 @@
 package org.slizaa.neo4j.hierarchicalgraph.ui.actions;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.model.application.MApplication;
+import org.eclipse.jface.viewers.Viewer;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
@@ -35,15 +38,15 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
    * {@inheritDoc}
    */
   @Override
-  public boolean shouldShow(Object selection) {
-    return selection instanceof HGRootNode;
+  public boolean shouldShow(List<?> selection, Viewer viewer) {
+    return selection.stream().allMatch(n -> n instanceof HGRootNode);
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public boolean isEnabled(Object selection) {
+  public boolean isEnabled(List<?> selection, Viewer viewer) {
     return true;
   }
 
@@ -51,10 +54,10 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
    * {@inheritDoc}
    */
   @Override
-  public void execute(Object selection) {
+  public void execute(List<?> selection, Viewer viewer) {
 
     //
-    HGRootNode rootNode = (HGRootNode) selection;
+    HGRootNode rootNode = (HGRootNode) selection.get(0);
 
     //
     for (Neo4jRestClient managedNeo4jInstance : _dbAdapterRegistry.getDbAdapterContainer(ContainerType.MANAGED)
@@ -79,7 +82,7 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
    * {@inheritDoc}
    */
   @Override
-  public String getLabel(Object selectedObject) {
+  public String getLabel(List<?> selection) {
     return "Dispose";
   }
 
@@ -87,7 +90,7 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
    * {@inheritDoc}
    */
   @Override
-  public String getImagePath(Object selectedObject) {
+  public String getImagePath(List<?> selection) {
     return null;
   }
 }

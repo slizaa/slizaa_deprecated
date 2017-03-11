@@ -478,13 +478,22 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE__NAME = HG_NODE_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Extension Registry</b></em>' map.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE__EXTENSION_REGISTRY = HG_NODE_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>HG Root Node</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE_FEATURE_COUNT = HG_NODE_FEATURE_COUNT + 1;
+  int HG_ROOT_NODE_FEATURE_COUNT = HG_NODE_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Get Identifier</em>' operation.
@@ -631,13 +640,31 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE___GET_EXTENSION__CLASS = HG_NODE_OPERATION_COUNT + 4;
 
   /**
+   * The operation id for the '<em>Get Extension</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___GET_EXTENSION__STRING_CLASS = HG_NODE_OPERATION_COUNT + 5;
+
+  /**
    * The operation id for the '<em>Register Extension</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___REGISTER_EXTENSION__CLASS_OBJECT = HG_NODE_OPERATION_COUNT + 5;
+  int HG_ROOT_NODE___REGISTER_EXTENSION__CLASS_OBJECT = HG_NODE_OPERATION_COUNT + 6;
+
+  /**
+   * The operation id for the '<em>Register Extension</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___REGISTER_EXTENSION__STRING_OBJECT = HG_NODE_OPERATION_COUNT + 7;
 
   /**
    * The operation id for the '<em>Has Extension</em>' operation.
@@ -646,7 +673,16 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___HAS_EXTENSION__CLASS = HG_NODE_OPERATION_COUNT + 6;
+  int HG_ROOT_NODE___HAS_EXTENSION__CLASS = HG_NODE_OPERATION_COUNT + 8;
+
+  /**
+   * The operation id for the '<em>Has Extension</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HG_ROOT_NODE___HAS_EXTENSION__STRING_CLASS = HG_NODE_OPERATION_COUNT + 9;
 
   /**
    * The number of operations of the '<em>HG Root Node</em>' class.
@@ -655,7 +691,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE_OPERATION_COUNT = HG_NODE_OPERATION_COUNT + 7;
+  int HG_ROOT_NODE_OPERATION_COUNT = HG_NODE_OPERATION_COUNT + 10;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultNodeSourceImpl <em>Default Node Source</em>}' class.
@@ -1352,6 +1388,52 @@ public interface HierarchicalgraphPackage extends EPackage {
   int NODE_TO_CORE_DEPENDENCIES_MAP_OPERATION_COUNT = 0;
 
   /**
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.StringToObjectMapImpl <em>String To Object Map</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.hierarchicalgraph.impl.StringToObjectMapImpl
+   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getStringToObjectMap()
+   * @generated
+   */
+  int STRING_TO_OBJECT_MAP = 14;
+
+  /**
+   * The feature id for the '<em><b>Key</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_TO_OBJECT_MAP__KEY = 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_TO_OBJECT_MAP__VALUE = 1;
+
+  /**
+   * The number of structural features of the '<em>String To Object Map</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_TO_OBJECT_MAP_FEATURE_COUNT = 2;
+
+  /**
+   * The number of operations of the '<em>String To Object Map</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_TO_OBJECT_MAP_OPERATION_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1359,7 +1441,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getSourceOrTarget()
    * @generated
    */
-  int SOURCE_OR_TARGET = 14;
+  int SOURCE_OR_TARGET = 15;
 
   /**
    * The meta object id for the '<em>IItem Label Provider</em>' data type.
@@ -1369,7 +1451,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIItemLabelProvider()
    * @generated
    */
-  int IITEM_LABEL_PROVIDER = 15;
+  int IITEM_LABEL_PROVIDER = 16;
 
   /**
    * The meta object id for the '<em>Future</em>' data type.
@@ -1379,7 +1461,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getFuture()
    * @generated
    */
-  int FUTURE = 16;
+  int FUTURE = 17;
 
   /**
    * The meta object id for the '<em>Optional</em>' data type.
@@ -1389,7 +1471,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getOptional()
    * @generated
    */
-  int OPTIONAL = 17;
+  int OPTIONAL = 18;
 
   /**
    * The meta object id for the '<em>IAggregated Core Dependency Resolver</em>' data type.
@@ -1399,7 +1481,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIAggregatedCoreDependencyResolver()
    * @generated
    */
-  int IAGGREGATED_CORE_DEPENDENCY_RESOLVER = 18;
+  int IAGGREGATED_CORE_DEPENDENCY_RESOLVER = 19;
 
 
   /**
@@ -1737,6 +1819,17 @@ public interface HierarchicalgraphPackage extends EPackage {
   EAttribute getHGRootNode_Name();
 
   /**
+   * Returns the meta object for the map '{@link org.slizaa.hierarchicalgraph.HGRootNode#getExtensionRegistry <em>Extension Registry</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the map '<em>Extension Registry</em>'.
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#getExtensionRegistry()
+   * @see #getHGRootNode()
+   * @generated
+   */
+  EReference getHGRootNode_ExtensionRegistry();
+
+  /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#invalidateAllCaches() <em>Invalidate All Caches</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1787,6 +1880,16 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGRootNode__GetExtension__Class();
 
   /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#getExtension(java.lang.String, java.lang.Class) <em>Get Extension</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Extension</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#getExtension(java.lang.String, java.lang.Class)
+   * @generated
+   */
+  EOperation getHGRootNode__GetExtension__String_Class();
+
+  /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#registerExtension(java.lang.Class, java.lang.Object) <em>Register Extension</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1797,6 +1900,16 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGRootNode__RegisterExtension__Class_Object();
 
   /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#registerExtension(java.lang.String, java.lang.Object) <em>Register Extension</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Register Extension</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#registerExtension(java.lang.String, java.lang.Object)
+   * @generated
+   */
+  EOperation getHGRootNode__RegisterExtension__String_Object();
+
+  /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#hasExtension(java.lang.Class) <em>Has Extension</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1805,6 +1918,16 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    */
   EOperation getHGRootNode__HasExtension__Class();
+
+  /**
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGRootNode#hasExtension(java.lang.String, java.lang.Class) <em>Has Extension</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Has Extension</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGRootNode#hasExtension(java.lang.String, java.lang.Class)
+   * @generated
+   */
+  EOperation getHGRootNode__HasExtension__String_Class();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.DefaultNodeSource <em>Default Node Source</em>}'.
@@ -2175,6 +2298,40 @@ public interface HierarchicalgraphPackage extends EPackage {
   EReference getNodeToCoreDependenciesMap_Value();
 
   /**
+   * Returns the meta object for class '{@link java.util.Map.Entry <em>String To Object Map</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>String To Object Map</em>'.
+   * @see java.util.Map.Entry
+   * @model keyDataType="org.eclipse.emf.ecore.EString"
+   *        valueDataType="org.eclipse.emf.ecore.EJavaObject"
+   * @generated
+   */
+  EClass getStringToObjectMap();
+
+  /**
+   * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Key</em>'.
+   * @see java.util.Map.Entry
+   * @see #getStringToObjectMap()
+   * @generated
+   */
+  EAttribute getStringToObjectMap_Key();
+
+  /**
+   * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see java.util.Map.Entry
+   * @see #getStringToObjectMap()
+   * @generated
+   */
+  EAttribute getStringToObjectMap_Value();
+
+  /**
    * Returns the meta object for enum '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2516,6 +2673,14 @@ public interface HierarchicalgraphPackage extends EPackage {
     EAttribute HG_ROOT_NODE__NAME = eINSTANCE.getHGRootNode_Name();
 
     /**
+     * The meta object literal for the '<em><b>Extension Registry</b></em>' map feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference HG_ROOT_NODE__EXTENSION_REGISTRY = eINSTANCE.getHGRootNode_ExtensionRegistry();
+
+    /**
      * The meta object literal for the '<em><b>Invalidate All Caches</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2556,6 +2721,14 @@ public interface HierarchicalgraphPackage extends EPackage {
     EOperation HG_ROOT_NODE___GET_EXTENSION__CLASS = eINSTANCE.getHGRootNode__GetExtension__Class();
 
     /**
+     * The meta object literal for the '<em><b>Get Extension</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_ROOT_NODE___GET_EXTENSION__STRING_CLASS = eINSTANCE.getHGRootNode__GetExtension__String_Class();
+
+    /**
      * The meta object literal for the '<em><b>Register Extension</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2564,12 +2737,28 @@ public interface HierarchicalgraphPackage extends EPackage {
     EOperation HG_ROOT_NODE___REGISTER_EXTENSION__CLASS_OBJECT = eINSTANCE.getHGRootNode__RegisterExtension__Class_Object();
 
     /**
+     * The meta object literal for the '<em><b>Register Extension</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_ROOT_NODE___REGISTER_EXTENSION__STRING_OBJECT = eINSTANCE.getHGRootNode__RegisterExtension__String_Object();
+
+    /**
      * The meta object literal for the '<em><b>Has Extension</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EOperation HG_ROOT_NODE___HAS_EXTENSION__CLASS = eINSTANCE.getHGRootNode__HasExtension__Class();
+
+    /**
+     * The meta object literal for the '<em><b>Has Extension</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation HG_ROOT_NODE___HAS_EXTENSION__STRING_CLASS = eINSTANCE.getHGRootNode__HasExtension__String_Class();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.DefaultNodeSourceImpl <em>Default Node Source</em>}' class.
@@ -2862,6 +3051,32 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EReference NODE_TO_CORE_DEPENDENCIES_MAP__VALUE = eINSTANCE.getNodeToCoreDependenciesMap_Value();
+
+    /**
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.StringToObjectMapImpl <em>String To Object Map</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.hierarchicalgraph.impl.StringToObjectMapImpl
+     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getStringToObjectMap()
+     * @generated
+     */
+    EClass STRING_TO_OBJECT_MAP = eINSTANCE.getStringToObjectMap();
+
+    /**
+     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRING_TO_OBJECT_MAP__KEY = eINSTANCE.getStringToObjectMap_Key();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRING_TO_OBJECT_MAP__VALUE = eINSTANCE.getStringToObjectMap_Value();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.SourceOrTarget <em>Source Or Target</em>}' enum.

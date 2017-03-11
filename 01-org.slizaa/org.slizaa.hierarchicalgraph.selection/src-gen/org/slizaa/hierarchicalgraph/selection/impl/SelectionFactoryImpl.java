@@ -56,6 +56,8 @@ public class SelectionFactoryImpl extends EFactoryImpl implements SelectionFacto
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
       case SelectionPackage.DEPENDENCY_SELECTION_STACK: return createDependencySelectionStack();
+      case SelectionPackage.NODE_SELECTION: return createNodeSelection();
+      case SelectionPackage.DEPENDENCY_SELECTION: return createDependencySelection();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -69,6 +71,26 @@ public class SelectionFactoryImpl extends EFactoryImpl implements SelectionFacto
   public DependencySelectionStack createDependencySelectionStack() {
     DependencySelectionStackImpl dependencySelectionStack = new ExtendedDependencySelectionStack();
     return dependencySelectionStack;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NodeSelection createNodeSelection() {
+    NodeSelectionImpl nodeSelection = new NodeSelectionImpl();
+    return nodeSelection;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DependencySelection createDependencySelection() {
+    DependencySelectionImpl dependencySelection = new DependencySelectionImpl();
+    return dependencySelection;
   }
 
   /**

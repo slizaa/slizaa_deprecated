@@ -42,8 +42,6 @@ public class VisualizeDependenciesPerspectiveFactory implements IPerspectiveFact
 
 		//
 		folderLayout = layout.createFolder(FOLDER_LOWER_LEFT, IPageLayout.BOTTOM, 0.6f, FOLDER_UPPER_LEFT);
-		folderLayout.addView("org.slizaa.ui.xref.ReferencedNodesPart");
-		folderLayout.addView("org.slizaa.ui.xref.ReferencingNodesPart");
 		folderLayout.addView(IPageLayout.ID_PROP_SHEET);
 
 
@@ -56,7 +54,7 @@ public class VisualizeDependenciesPerspectiveFactory implements IPerspectiveFact
 		folderLayout = layout.createFolder(FOLDER_LOWER_RIGHT, IPageLayout.BOTTOM, 0.6f, IPageLayout.ID_EDITOR_AREA);
 		folderLayout.addView("org.slizaa.ui.dependencytree.DependencyTreePart");
 		folderLayout.addView("org.slizaa.ui.dependencytable.DependencyTablePart");
-		folderLayout.addView(IConsoleConstants.ID_CONSOLE_VIEW);
+		folderLayout.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
 
 		//
 		layout.setEditorAreaVisible(true);

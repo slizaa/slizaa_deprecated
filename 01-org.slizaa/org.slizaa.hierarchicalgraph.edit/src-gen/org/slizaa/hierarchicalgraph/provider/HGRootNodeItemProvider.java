@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -135,6 +134,7 @@ public class HGRootNodeItemProvider extends HGNodeItemProvider {
 
     switch (notification.getFeatureID(HGRootNode.class)) {
       case HierarchicalgraphPackage.HG_ROOT_NODE__NAME:
+      case HierarchicalgraphPackage.HG_ROOT_NODE__EXTENSION_REGISTRY:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

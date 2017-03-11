@@ -2,6 +2,8 @@ package org.slizaa.neo4j.hierarchicalgraph.ui.actions;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -13,6 +15,7 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
@@ -21,7 +24,6 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
-import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart;
@@ -44,9 +46,6 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
   @Inject
   private MApplication                     _mApplication;
 
-  @Inject
-  private DbAdapterRegistry                _dbAdapterRegistry;
-
   @Override
   public String getParentGroupId() {
     return null;
@@ -58,25 +57,26 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
   }
 
   @Override
-  public boolean shouldShow(Object selection) {
-    return selection instanceof Neo4jRestClient;
+  public boolean shouldShow(List<?> selection, Viewer viewer) {
+    return selection.stream().allMatch(n -> n instanceof Neo4jRestClient);
   }
 
   @Override
-  public boolean isEnabled(Object selection) {
-    Neo4jRestClient restClient = (Neo4jRestClient) selection;
-    return restClient.isConnected() && restClient.getHierarchicalGraph() == null;
+  public boolean isEnabled(List<?> selection, Viewer viewer) {
+    return selection.size() == 1 && selection.get(0) instanceof Neo4jRestClient
+        && ((Neo4jRestClient) selection.get(0)).isConnected()
+        && ((Neo4jRestClient) selection.get(0)).getHierarchicalGraph() == null;
   }
 
   @Override
-  public void execute(Object selection) {
+  public void execute(List<?> selection, Viewer viewer) {
 
     //
-    Neo4jRestClient remoteRepository = (Neo4jRestClient) selection;
+    Neo4jRestClient remoteRepository = (Neo4jRestClient) selection.get(0);
 
     ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(),
         new LabelProvider() {
-      
+
           @Override
           public String getText(Object element) {
             ISlizaaMappingDescription mappingDescription = (ISlizaaMappingDescription) element;
@@ -98,7 +98,8 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
     Object[] result = dialog.getResult();
 
     //
-    LoadModelFromGraphDatabaseJob myJob = new LoadModelFromGraphDatabaseJob(remoteRepository, (ISlizaaMappingDescription) result[0]);
+    LoadModelFromGraphDatabaseJob myJob = new LoadModelFromGraphDatabaseJob(remoteRepository,
+        (ISlizaaMappingDescription) result[0]);
     myJob.schedule();
 
     //
@@ -111,12 +112,12 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
   }
 
   @Override
-  public String getLabel(Object selectedObject) {
+  public String getLabel(List<?> selection) {
     return "New Graph... ";
   }
 
   @Override
-  public String getImagePath(Object selectedObject) {
+  public String getImagePath(List<?> selection) {
     return null;
   }
 
@@ -164,7 +165,8 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
         rootNode.registerExtension(INodeLabelProvider.class,
             new MappingDescriptorBasedItemLabelProviderImpl(_slizaaMappingDescription));
 
-        // set Sorter
+        // set comparator
+        // TODO
         rootNode.registerExtension(INodeComparator.class, new TEMPORARY_NodeComparator());
 
         _remoteRepository.setHierarchicalGraph(rootNode);

@@ -2,6 +2,9 @@ package org.slizaa.neo4j.dbadapter.ui.internal.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.List;
+
+import org.eclipse.jface.viewers.Viewer;
 import org.slizaa.neo4j.dbadapter.ManagedNeo4jInstance;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
@@ -30,29 +33,35 @@ public abstract class AbstractManagedInstanceActionContribution
    * {@inheritDoc}
    */
   @Override
-  public final boolean shouldShow(Object object) {
-    return object instanceof ManagedNeo4jInstance;
+  public final boolean shouldShow(List<?> selection, Viewer viewer) {
+    return selection.stream().allMatch(n -> n instanceof ManagedNeo4jInstance);
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public boolean isEnabled(Object selectedObject) {
-    ManagedNeo4jInstance managedInstance = (ManagedNeo4jInstance) selectedObject;
-    return managedInstance.isDatabaseInstallationAvailable()
-        && onIsEnabled((ManagedNeo4jInstance) selectedObject);
+  public boolean isEnabled(List<?> selection, Viewer viewer) {
+
+    //
+    if (selection.size() != 1) {
+      return false;
+    }
+
+    //
+    ManagedNeo4jInstance managedInstance = (ManagedNeo4jInstance) selection.get(0);
+    return managedInstance.isDatabaseInstallationAvailable() && onIsEnabled(managedInstance);
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public final void execute(Object selectedObject) {
+  public final void execute(List<?> selection, Viewer viewer) {
 
     try {
-      ManagedNeo4jInstance managedNeo4jInstance = (ManagedNeo4jInstance) selectedObject;
-      onExecute(managedNeo4jInstance);
+      ManagedNeo4jInstance managedInstance = (ManagedNeo4jInstance) selection.get(0);
+      onExecute(managedInstance);
     } catch (Exception e) {
       e.printStackTrace();
     }

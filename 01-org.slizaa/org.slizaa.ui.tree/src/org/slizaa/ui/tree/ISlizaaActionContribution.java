@@ -2,7 +2,10 @@ package org.slizaa.ui.tree;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.Viewer;
 
 /**
  * <p>
@@ -34,7 +37,7 @@ public interface ISlizaaActionContribution {
    * 
    * @return the label of the action
    */
-  String getLabel(Object selectedObject);
+  String getLabel(List<?> selectedObjects);
 
   /**
    * <p>
@@ -42,7 +45,7 @@ public interface ISlizaaActionContribution {
    * 
    * @return the imagePath
    */
-  String getImagePath(Object selectedObject);
+  String getImagePath(List<?> selectedObjects);
 
   /**
    * <p>
@@ -52,7 +55,7 @@ public interface ISlizaaActionContribution {
    *          the {@link EObject} on which to test if the action can be executed
    * @return <b>true</b> if the action can be executed on the parameter {@code eObject}
    */
-  boolean shouldShow(Object selectedObject);
+  boolean shouldShow(List<?> selectedObjects, Viewer viewer);
 
   /**
    * <p>
@@ -61,7 +64,7 @@ public interface ISlizaaActionContribution {
    * @param eSelectedObject
    * @return
    */
-  boolean isEnabled(Object selectedObject);
+  boolean isEnabled(List<?> selectedObjects, Viewer viewer);
 
   /**
    * <p>
@@ -70,7 +73,7 @@ public interface ISlizaaActionContribution {
    * @param object
    *          The {@link EObject} on which the action is executed
    **/
-  void execute(Object selectedObject);
+  void execute(List<?> selectedObjects, Viewer viewer);
 
   /**
    * <p>
@@ -141,7 +144,7 @@ public interface ISlizaaActionContribution {
      * {@inheritDoc}
      */
     @Override
-    public String getImagePath(Object selectedObject) {
+    public String getImagePath(List<?> selectedObject) {
       return _imagePath;
     }
 
@@ -149,7 +152,7 @@ public interface ISlizaaActionContribution {
      * {@inheritDoc}
      */
     @Override
-    public String getLabel(Object selectedObject) {
+    public String getLabel(List<?> selectedObject) {
       return _label;
     }
 
@@ -157,7 +160,7 @@ public interface ISlizaaActionContribution {
      * {@inheritDoc}
      */
     @Override
-    public boolean shouldShow(Object selectedObject) {
+    public boolean shouldShow(List<?> selectedObject, Viewer viewer) {
       return true;
     }
 
@@ -165,7 +168,7 @@ public interface ISlizaaActionContribution {
      * {@inheritDoc}
      */
     @Override
-    public boolean isEnabled(Object selectedObject) {
+    public boolean isEnabled(List<?> selectedObject, Viewer viewer) {
       return true;
     }
 
@@ -173,7 +176,7 @@ public interface ISlizaaActionContribution {
      * {@inheritDoc}
      */
     @Override
-    public void execute(Object selectedObject) {
+    public void execute(List<?> selectedObject, Viewer viewer) {
       // do nothing
     }
   }

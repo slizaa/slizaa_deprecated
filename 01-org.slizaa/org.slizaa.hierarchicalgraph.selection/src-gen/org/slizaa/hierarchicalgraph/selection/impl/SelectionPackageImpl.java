@@ -12,7 +12,9 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
+import org.slizaa.hierarchicalgraph.selection.DependencySelection;
 import org.slizaa.hierarchicalgraph.selection.DependencySelectionStack;
+import org.slizaa.hierarchicalgraph.selection.NodeSelection;
 import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
 import org.slizaa.hierarchicalgraph.selection.SelectionPackage;
 
@@ -29,6 +31,19 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
    * @generated
    */
   private EClass dependencySelectionStackEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass nodeSelectionEClass = null;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dependencySelectionEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -171,6 +186,42 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getNodeSelection() {
+    return nodeSelectionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNodeSelection_SelectedNodes() {
+    return (EReference)nodeSelectionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDependencySelection() {
+    return dependencySelectionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDependencySelection_SelectedDependencies() {
+    return (EReference)dependencySelectionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public SelectionFactory getSelectionFactory() {
     return (SelectionFactory)getEFactoryInstance();
   }
@@ -202,6 +253,12 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
     createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___GO_BACK);
     createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___CLEAR);
     createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___SET_SELECTION__LIST);
+
+    nodeSelectionEClass = createEClass(NODE_SELECTION);
+    createEReference(nodeSelectionEClass, NODE_SELECTION__SELECTED_NODES);
+
+    dependencySelectionEClass = createEClass(DEPENDENCY_SELECTION);
+    createEReference(dependencySelectionEClass, DEPENDENCY_SELECTION__SELECTED_DEPENDENCIES);
   }
 
   /**
@@ -256,6 +313,12 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
     t1.getEBounds().add(g1);
     g1 = createEGenericType(t1);
     addEParameter(op, g1, "selection", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+    initEClass(nodeSelectionEClass, NodeSelection.class, "NodeSelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNodeSelection_SelectedNodes(), theHierarchicalgraphPackage.getHGNode(), null, "selectedNodes", null, 0, -1, NodeSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dependencySelectionEClass, DependencySelection.class, "DependencySelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDependencySelection_SelectedDependencies(), theHierarchicalgraphPackage.getAbstractHGDependency(), null, "selectedDependencies", null, 0, -1, DependencySelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

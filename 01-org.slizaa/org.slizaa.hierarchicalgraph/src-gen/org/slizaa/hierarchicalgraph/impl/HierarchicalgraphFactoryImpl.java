@@ -77,6 +77,7 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
       case HierarchicalgraphPackage.STRING_TO_STRING_MAP: return (EObject)createStringToStringMap();
       case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP: return (EObject)createIdentifierToNodeMap();
       case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCIES_MAP: return (EObject)createNodeToCoreDependenciesMap();
+      case HierarchicalgraphPackage.STRING_TO_OBJECT_MAP: return (EObject)createStringToObjectMap();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -236,6 +237,16 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   public Map.Entry<HGNode, List<HGCoreDependency>> createNodeToCoreDependenciesMap() {
     NodeToCoreDependenciesMapImpl nodeToCoreDependenciesMap = new NodeToCoreDependenciesMapImpl();
     return nodeToCoreDependenciesMap;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Map.Entry<String, Object> createStringToObjectMap() {
+    StringToObjectMapImpl stringToObjectMap = new StringToObjectMapImpl();
+    return stringToObjectMap;
   }
 
   /**

@@ -33,10 +33,7 @@ public class SlizaaTreeMenuListener implements IMenuListener {
       final IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
 
       //
-      if (selection.size() > 0 && selection.getFirstElement() instanceof EObject) {
-        final EObject eSelectedObject = (EObject) selection.getFirstElement();
-        SlizaaTreeMenuBuilder.populateMenu(menuManager, eSelectedObject);
-      }
+      SlizaaTreeMenuBuilder.populateMenu(menuManager, selection.toList(), treeViewer);
     }
   }
 }

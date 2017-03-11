@@ -24,16 +24,21 @@
       </extension>
       
       <extension id="slizaa4jqassistant" name="Slizaa powered by jQAssistant" point="org.eclipse.core.runtime.products">
-            <product application="org.eclipse.ui.ide.workbench" description="Slizaa powered by jQAssistant" name="Slizaa powered by jQAssistant">
+            <product application="org.eclipse.ui.ide.workbench" description="Slizaa powered by jQAssistant" name="org.slizaa.jqassistant">
                   <property name="appName" value="org.slizaa.jqassistant"></property>
                   <property name="aboutImage" value="icons/about.png"></property>
-                  <property name="aboutText" value="Slizaa architecture workbench&#x0A;powered by jQAssistant&#x0A;&#x0A;(c) Copyright Gerd Wütherich. 2015-2016. All rights reserved.&#x0A;&#x0A;Visit http://www.slizaa.org&#x0A;&#x0A;This offering is powered by Eclipse technology &#x0A;and includes Eclipse plug-ins that can be &#x0A;installed and used with other Eclipse-based &#x0A;offerings."></property>
+                  <property
+                        name="aboutText"
+                        value="Slizaa architecture workbench&#x0A;powered by jQAssistant&#x0A;&#x0A;(c) Copyright Gerd Wütherich. 2015-2016. All rights reserved.&#x0A;&#x0A;Visit http://www.slizaa.org&#x0A;&#x0A;This offering is powered by Eclipse technology &#x0A;and includes Eclipse plug-ins that can be &#x0A;installed and used with other Eclipse-based &#x0A;offerings."></property>
                   <property name="windowImages" value="icons/slizaa_16.png,icons/slizaa_32.png,icons/slizaa_48.png,icons/slizaa_64.png,icons/slizaa_128.png,icons/slizaa_256.png"></property>
                   <property name="startupProgressRect" value="0,180,463,16"></property>
                   <property name="applicationCSS" value="platform:/plugin/org.slizaa.jqassistant/css/default.css"></property>
                   <property name="startupForegroundColor" value="000000"></property>
                   <property name="startupMessageRect" value="7,151,464,29"></property>
-                  <property name="preferenceCustomization" value="plugin_customization.ini"></property>
+                  <property
+                        name="preferenceCustomization"
+                        value="plugin_customization.ini">
+                  </property>
             </product>
       </extension>
       

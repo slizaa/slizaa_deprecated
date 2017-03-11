@@ -1,15 +1,18 @@
 package org.slizaa.neo4j.ui.discovery;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.neo4j.dbadapter.GraphDatabaseUtil;
+import org.slizaa.neo4j.dbadapter.dsl.dbAdapterDsl.DbAdapterDefinition;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 
 @Component(service = ISlizaaActionContribution.class)
@@ -20,12 +23,13 @@ public class InstallLocalDatabaseSupportContribution extends ISlizaaActionContri
   }
 
   @Override
-  public boolean shouldShow(Object selectedObject) {
-    return !GraphDatabaseUtil.isGraphDatabaseInstalled();
+  public boolean shouldShow(List<?> selection, Viewer viewer) {
+    return !GraphDatabaseUtil.isGraphDatabaseInstalled()
+        && selection.stream().anyMatch(n -> n instanceof DbAdapterDefinition);
   }
 
   @Override
-  public void execute(Object selectedObject) {
+  public void execute(List<?> selection, Viewer viewer) {
     Display.getDefault().syncExec(new Runnable() {
       public void run() {
 

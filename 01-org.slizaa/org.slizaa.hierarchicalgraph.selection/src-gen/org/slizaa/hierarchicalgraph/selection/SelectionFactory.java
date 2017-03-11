@@ -31,6 +31,24 @@ public interface SelectionFactory extends EFactory {
   DependencySelectionStack createDependencySelectionStack();
 
   /**
+   * Returns a new object of class '<em>Node Selection</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Node Selection</em>'.
+   * @generated
+   */
+  NodeSelection createNodeSelection();
+
+  /**
+   * Returns a new object of class '<em>Dependency Selection</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dependency Selection</em>'.
+   * @generated
+   */
+  DependencySelection createDependencySelection();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

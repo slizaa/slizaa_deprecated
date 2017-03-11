@@ -1,6 +1,7 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,9 +32,6 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
   /** - */
   protected Map<Object, HGNode> _idToNodeMap;
 
-  /** - */
-  private Map<Class<?>, Object> _registry;
-
   /**
    * <p>
    * Creates a new instance of type {@link ExtendedHGRootNodeImpl}.
@@ -41,23 +39,51 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
    */
   public ExtendedHGRootNodeImpl() {
     _trait = new ExtendedHGNodeTrait(this);
-    _registry = new HashMap<>();
   }
   
   @SuppressWarnings("unchecked")
   @Override
   public <T> T getExtension(Class<T> clazz) {
-    return (T) _registry.get(checkNotNull(clazz));
+    return (T) getExtensionRegistry().get(checkNotNull(clazz).getName());
   }
 
   @Override
   public <T> void registerExtension(Class<T> clazz, T extension) {
-    _registry.put(checkNotNull(clazz), extension);
+    getExtensionRegistry().put(checkNotNull(clazz).getName(), extension);
   }
 
   @Override
   public <T> boolean hasExtension(Class<T> key) {
-    return _registry.containsKey(key);
+    return getExtensionRegistry().containsKey(checkNotNull(key).getName());
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public <T> T getExtension(String key, Class<T> type) {
+    Object result = getExtensionRegistry().get(checkNotNull(key));
+    
+    if (result == null) {
+      checkState(checkNotNull(type).isAssignableFrom(result.getClass()));
+      return null;
+    }
+    
+    return (T) result;
+  }
+
+  @Override
+  public void registerExtension(String key, Object extension) {
+    getExtensionRegistry().put(checkNotNull(key), extension);
+  }
+
+  @Override
+  public <T> boolean hasExtension(String key, Class<T> type) {
+    Object result = getExtensionRegistry().get(checkNotNull(key));
+    
+    if (result != null) {
+      return checkNotNull(type).isAssignableFrom(result.getClass());
+    }
+    
+    return false;
   }
 
   /**

@@ -149,6 +149,81 @@ public interface SelectionPackage extends EPackage {
 
 
   /**
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.selection.impl.NodeSelectionImpl <em>Node Selection</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.hierarchicalgraph.selection.impl.NodeSelectionImpl
+   * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getNodeSelection()
+   * @generated
+   */
+  int NODE_SELECTION = 1;
+
+  /**
+   * The feature id for the '<em><b>Selected Nodes</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE_SELECTION__SELECTED_NODES = 0;
+
+  /**
+   * The number of structural features of the '<em>Node Selection</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE_SELECTION_FEATURE_COUNT = 1;
+
+  /**
+   * The number of operations of the '<em>Node Selection</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE_SELECTION_OPERATION_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionImpl <em>Dependency Selection</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionImpl
+   * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getDependencySelection()
+   * @generated
+   */
+  int DEPENDENCY_SELECTION = 2;
+
+  /**
+   * The feature id for the '<em><b>Selected Dependencies</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEPENDENCY_SELECTION__SELECTED_DEPENDENCIES = 0;
+
+  /**
+   * The number of structural features of the '<em>Dependency Selection</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEPENDENCY_SELECTION_FEATURE_COUNT = 1;
+
+  /**
+   * The number of operations of the '<em>Dependency Selection</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEPENDENCY_SELECTION_OPERATION_COUNT = 0;
+
+
+  /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack <em>Dependency Selection Stack</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -228,6 +303,48 @@ public interface SelectionPackage extends EPackage {
    * @generated
    */
   EOperation getDependencySelectionStack__SetSelection__List();
+
+  /**
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.selection.NodeSelection <em>Node Selection</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Node Selection</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.NodeSelection
+   * @generated
+   */
+  EClass getNodeSelection();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.selection.NodeSelection#getSelectedNodes <em>Selected Nodes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Selected Nodes</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.NodeSelection#getSelectedNodes()
+   * @see #getNodeSelection()
+   * @generated
+   */
+  EReference getNodeSelection_SelectedNodes();
+
+  /**
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.selection.DependencySelection <em>Dependency Selection</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Dependency Selection</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.DependencySelection
+   * @generated
+   */
+  EClass getDependencySelection();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.selection.DependencySelection#getSelectedDependencies <em>Selected Dependencies</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Selected Dependencies</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.DependencySelection#getSelectedDependencies()
+   * @see #getDependencySelection()
+   * @generated
+   */
+  EReference getDependencySelection_SelectedDependencies();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -317,6 +434,42 @@ public interface SelectionPackage extends EPackage {
      * @generated
      */
     EOperation DEPENDENCY_SELECTION_STACK___SET_SELECTION__LIST = eINSTANCE.getDependencySelectionStack__SetSelection__List();
+
+    /**
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.selection.impl.NodeSelectionImpl <em>Node Selection</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.hierarchicalgraph.selection.impl.NodeSelectionImpl
+     * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getNodeSelection()
+     * @generated
+     */
+    EClass NODE_SELECTION = eINSTANCE.getNodeSelection();
+
+    /**
+     * The meta object literal for the '<em><b>Selected Nodes</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NODE_SELECTION__SELECTED_NODES = eINSTANCE.getNodeSelection_SelectedNodes();
+
+    /**
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionImpl <em>Dependency Selection</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionImpl
+     * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getDependencySelection()
+     * @generated
+     */
+    EClass DEPENDENCY_SELECTION = eINSTANCE.getDependencySelection();
+
+    /**
+     * The meta object literal for the '<em><b>Selected Dependencies</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DEPENDENCY_SELECTION__SELECTED_DEPENDENCIES = eINSTANCE.getDependencySelection_SelectedDependencies();
 
   }
 

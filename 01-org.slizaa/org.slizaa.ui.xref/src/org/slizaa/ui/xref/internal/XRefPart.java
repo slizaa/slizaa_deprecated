@@ -1,17 +1,24 @@
 package org.slizaa.ui.xref.internal;
 
+import java.util.Collections;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.selection.NodeSelection;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.ui.xref.XRefUtils;
 
 /**
  * <p>
@@ -31,6 +38,23 @@ public class XRefPart {
   @Inject
   private MPerspective  _perspective;
 
+  /** - */
+  private NodeSelection _filteredNodeSelection;
+
+  /** - */
+  private Adapter       _adapter;
+
+  public XRefPart() {
+
+    //
+    _adapter = new AdapterImpl() {
+      @Override
+      public void notifyChanged(Notification msg) {
+        setFilter();
+      }
+    };
+  }
+
   /**
    * <p>
    * </p>
@@ -47,47 +71,59 @@ public class XRefPart {
     parent.setLayout(layout);
 
     //
-    _composite = new XRefComposite(parent, _perspective.getContext());
+    _composite = new XRefComposite(parent, () -> _perspective.getContext());
     _composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-    _composite.setRootNode(_rootNode);
-    // setFilter();
-  }
-
-  @Inject
-  public void handleChangedDependencies(@Optional
-  @Named(SelectionIdentifier.CURRENT_ROOTNODE)
-  final HGRootNode rootNode) {
-
-    // store the root node
-    _rootNode = rootNode;
-
-    // immediately set if composite is already created
-    if (_composite != null && !_composite.isDisposed()) {
+    if (_rootNode != null) {
       _composite.setRootNode(_rootNode);
-      // setFilter();
+      setFilter();
     }
   }
 
-  // /**
-  // * <p>
-  // * </p>
-  // */
-  // private void setFilter() {
-  //
-  // ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
-  // Display.getDefault().getActiveShell(),
-  // new WorkbenchLabelProvider(),
-  // new BaseWorkbenchContentProvider());
-  //
-  // dialog.setTitle("Tree Selection");
-  // dialog.setMessage("Select the elements from the tree:");
-  // dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
-  // dialog.open();
-  //
-  // // todo
-  // List<Long> filteredNodeIds = Arrays.asList(4365l, 4336l, 4447l, 4597l, 4604l, 4197l, 84633l);
-  // List<HGNode> stuff = filteredNodeIds.stream().map(id -> _rootNode.lookupNode(id)).collect(Collectors.toList());
-  // _composite.setFilteredNodes(stuff);
-  // _composite.refresh();
-  // }
+  @Inject
+  public void handleChangedRootNode(@Optional
+  @Named(SelectionIdentifier.CURRENT_ROOTNODE)
+  final HGRootNode rootNode) {
+
+    //
+    if (_rootNode == rootNode) {
+      return;
+    }
+
+    // remove old selection
+    if (_rootNode != null) {
+      XRefUtils.getOrCreateFilteredNodeSelection(_rootNode).eAdapters().remove(_adapter);
+    }
+
+    // set the new node
+    _rootNode = rootNode;
+
+    if (_rootNode != null) {
+      _filteredNodeSelection = XRefUtils.getOrCreateFilteredNodeSelection(_rootNode);
+      _filteredNodeSelection.eAdapters().add(_adapter);
+    } else {
+      _filteredNodeSelection = null;
+    }
+
+    // immediately set if composite is already created
+    if (_composite != null && ! _composite.isDisposed()) {
+      _composite.setRootNode(_rootNode);
+      setFilter();
+    }
+  }
+
+  /**
+   * <p>
+   * </p>
+   */
+  private void setFilter() {
+
+    //
+    if (_rootNode != null) {
+      _composite.setFilteredNodes(
+          _filteredNodeSelection != null ? _filteredNodeSelection.getSelectedNodes() : Collections.emptyList(), true);
+      if (!_composite.isDisposed()) {
+        _composite.refresh();
+      }
+    }
+  }
 }

@@ -66,7 +66,7 @@ public class GraphDatabasesPerspectiveFactory implements IPerspectiveFactory {
     // lower middle
     folder = layout.createFolder(FOLDER_LOWER_MIDDLE, IPageLayout.BOTTOM, 0.5f, IPageLayout.ID_EDITOR_AREA);
     folder.addView("org.slizaa.neo4j.queryresult.ui.QueryResultViewPart");
-    folder.addView(IConsoleConstants.ID_CONSOLE_VIEW);
+    folder.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
 
     //
     addViewShortCuts(layout);

@@ -281,6 +281,29 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected StringToObjectMapItemProvider stringToObjectMapItemProvider;
+
+  /**
+   * This creates an adapter for a {@link java.util.Map.Entry}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createStringToObjectMapAdapter() {
+    if (stringToObjectMapItemProvider == null) {
+      stringToObjectMapItemProvider = new StringToObjectMapItemProvider(this);
+    }
+
+    return stringToObjectMapItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -388,6 +411,7 @@ public class HierarchicalgraphItemProviderAdapterFactory extends Hierarchicalgra
     if (hgAggregatedCoreDependencyItemProvider != null) hgAggregatedCoreDependencyItemProvider.dispose();
     if (nodeToCoreDependencyMapItemProvider != null) nodeToCoreDependencyMapItemProvider.dispose();
     if (nodeToCoreDependenciesMapItemProvider != null) nodeToCoreDependenciesMapItemProvider.dispose();
+    if (stringToObjectMapItemProvider != null) stringToObjectMapItemProvider.dispose();
   }
 
 }

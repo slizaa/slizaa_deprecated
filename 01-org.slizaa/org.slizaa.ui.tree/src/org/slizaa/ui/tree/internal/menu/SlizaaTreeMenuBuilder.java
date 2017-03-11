@@ -1,6 +1,7 @@
 package org.slizaa.ui.tree.internal.menu;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.e4.core.contexts.ContextInjectionFactory;
 import org.eclipse.jface.action.Action;
@@ -8,6 +9,7 @@ import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.Viewer;
 import org.osgi.framework.FrameworkUtil;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
 import org.slizaa.ui.tree.ISlizaaActionGroupContribution;
@@ -32,13 +34,13 @@ public class SlizaaTreeMenuBuilder {
    *
    * @param menuManager
    */
-  public static void populateMenu(IMenuManager menuManager, Object eSelectedObject) {
+  public static void populateMenu(IMenuManager menuManager, List<Object> eSelectedObjects, Viewer viewer) {
 
     //
-    SlizaaTreeMenuGroup menuGroup = computeMenu(eSelectedObject);
+    SlizaaTreeMenuGroup menuGroup = computeMenu(eSelectedObjects, viewer);
 
     //
-    populateMenuManager(menuManager, menuGroup, null, eSelectedObject);
+    populateMenuManager(menuManager, menuGroup, null, eSelectedObjects, viewer);
   }
 
   /**
@@ -50,7 +52,7 @@ public class SlizaaTreeMenuBuilder {
    * @param eSelectedObject
    */
   private static void populateMenuManager(IMenuManager menuManager, SlizaaTreeMenuGroup menuGroup, String groupName,
-      Object eSelectedObject) {
+      List<Object> eSelectedObjects, Viewer viewer) {
 
     //
     Collections.sort(menuGroup.getMenuEntries(), (a, b) -> a.ranking() - b.ranking());
@@ -62,11 +64,12 @@ public class SlizaaTreeMenuBuilder {
         SlizaaTreeMenuEntry menuEntry = (SlizaaTreeMenuEntry) menuPart;
         //
         if (groupName == null) {
-          menuManager.add(wrapActionContribution(eSelectedObject, menuEntry.getActionContribution()));
-        } 
+          menuManager.add(wrapActionContribution(eSelectedObjects, menuEntry.getActionContribution(), viewer));
+        }
         //
         else {
-          menuManager.appendToGroup(groupName, wrapActionContribution(eSelectedObject, menuEntry.getActionContribution()));
+          menuManager.appendToGroup(groupName,
+              wrapActionContribution(eSelectedObjects, menuEntry.getActionContribution(), viewer));
         }
       }
       //
@@ -76,34 +79,34 @@ public class SlizaaTreeMenuBuilder {
 
         //
         if (((SlizaaTreeMenuGroup) menuPart).isSubMenu()) {
-          
+
           MenuManager menuManager2 = new MenuManager(group.getActionGroupContribution().getLabel(),
               group.getActionGroupContribution().getId());
           //
           if (groupName == null) {
             menuManager.add(menuManager2);
-          } 
+          }
           //
           else {
             menuManager.appendToGroup(groupName, menuManager2);
           }
-          populateMenuManager(menuManager2, group, null, eSelectedObject);
+          populateMenuManager(menuManager2, group, null, eSelectedObjects, viewer);
         }
-        
+
         //
         else {
-          
+
           //
           if (groupName == null) {
             menuManager.add(new GroupMarker(group.getId()));
-          } 
+          }
           //
           else {
-            menuManager.appendToGroup(groupName,new GroupMarker(group.getId()));
+            menuManager.appendToGroup(groupName, new GroupMarker(group.getId()));
           }
-          
+
           //
-          populateMenuManager(menuManager, group, group.getId(), eSelectedObject);
+          populateMenuManager(menuManager, group, group.getId(), eSelectedObjects, viewer);
         }
       }
     }
@@ -115,7 +118,7 @@ public class SlizaaTreeMenuBuilder {
    *
    * @param menuManager
    */
-  private static SlizaaTreeMenuGroup computeMenu(Object eSelectedObject) {
+  private static SlizaaTreeMenuGroup computeMenu(List<Object> eSelectedObjects, Viewer viewer) {
 
     //
     SlizaaTreeMenuGroup menuGroup = new SlizaaTreeMenuGroup(SlizaaTreeMenuBuilder.class.getName() + "#DEFAULT");
@@ -131,7 +134,7 @@ public class SlizaaTreeMenuBuilder {
     // TODO: HIERARCHIES
     for (ISlizaaActionGroupContribution actionGroupContribution : Activator.getDefault()
         .getSlizaaActionGroupContributions()) {
-      if (actionGroupContribution.shouldShow(eSelectedObject)) {
+      if (actionGroupContribution.shouldShow(eSelectedObjects)) {
         SlizaaTreeMenuGroup group = menuGroupMap.getUnchecked(actionGroupContribution.getId());
         group.setActionGroupContribution(actionGroupContribution);
         menuGroup.getMenuEntries().add(group);
@@ -140,7 +143,7 @@ public class SlizaaTreeMenuBuilder {
 
     //
     for (ISlizaaActionContribution slizaaActionContribution : Activator.getDefault().getSlizaaActionContributions()) {
-      if (slizaaActionContribution.shouldShow(eSelectedObject)) {
+      if (slizaaActionContribution.shouldShow(eSelectedObjects, viewer)) {
         if (slizaaActionContribution.getParentGroupId() != null) {
           SlizaaTreeMenuGroup group = menuGroupMap.getIfPresent(slizaaActionContribution.getParentGroupId());
           if (group != null) {
@@ -165,8 +168,8 @@ public class SlizaaTreeMenuBuilder {
    * 
    * @return
    */
-  private static Action wrapActionContribution(final Object eSelectedObject,
-      final ISlizaaActionContribution slizaaTreeAction) {
+  private static Action wrapActionContribution(final List<Object> eSelectedObjects,
+      final ISlizaaActionContribution slizaaTreeAction, Viewer viewer) {
 
     // set enabled
     ContextInjectionFactory.inject(slizaaTreeAction,
@@ -181,23 +184,23 @@ public class SlizaaTreeMenuBuilder {
         ContextInjectionFactory.inject(slizaaTreeAction,
             Activator.getDefault().getE4Workbench().getApplication().getContext());
 
-        slizaaTreeAction.execute(eSelectedObject);
+        slizaaTreeAction.execute(eSelectedObjects, viewer);
       }
     };
 
     // set action image
-    if (slizaaTreeAction.getImagePath(eSelectedObject) != null) {
+    if (slizaaTreeAction.getImagePath(eSelectedObjects) != null) {
 
-      newAction.setImageDescriptor(ImageDescriptor.createFromURL(
-          FrameworkUtil.getBundle(slizaaTreeAction.getClass()).getResource(slizaaTreeAction.getImagePath(eSelectedObject))));
+      newAction.setImageDescriptor(ImageDescriptor.createFromURL(FrameworkUtil.getBundle(slizaaTreeAction.getClass())
+          .getResource(slizaaTreeAction.getImagePath(eSelectedObjects))));
 
     }
 
     //
-    newAction.setEnabled(slizaaTreeAction.isEnabled(eSelectedObject));
+    newAction.setEnabled(slizaaTreeAction.isEnabled(eSelectedObjects, viewer));
 
     // set action text
-    newAction.setText(slizaaTreeAction.getLabel(eSelectedObject));
+    newAction.setText(slizaaTreeAction.getLabel(eSelectedObjects));
 
     // return the result
     return newAction;
