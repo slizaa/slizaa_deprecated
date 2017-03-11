@@ -1,14 +1,14 @@
 package org.slizaa.ui.dsm;
 
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
+import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 
 public class DelegatingLabelProvider extends LabelProvider {
 
-  private IItemLabelProvider _itemLabelProvider;
+  private INodeLabelProvider _itemLabelProvider;
 
-  public void setItemLabelProvider(IItemLabelProvider itemLabelProvider) {
+  public void setItemLabelProvider(INodeLabelProvider itemLabelProvider) {
     _itemLabelProvider = itemLabelProvider;
   }
 

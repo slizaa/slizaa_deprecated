@@ -33,6 +33,8 @@ import org.slizaa.hierarchicalgraph.selection.NodeSelections;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector;
 import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector.NodeType;
+import org.slizaa.hierarchicalgraph.spi.INodeComparator;
+import org.slizaa.ui.shared.NodeComparator2ViewerComparatorAdapter;
 import org.slizaa.ui.shared.SlizaaCommonColors;
 import org.slizaa.ui.shared.context.ContextHelper;
 import org.slizaa.ui.shared.context.RootObject;
@@ -155,6 +157,13 @@ public class XRefComposite extends Composite {
     _centerViewer.setSelection(_rootNode != null ? new StructuredSelection(_rootNode) : new StructuredSelection());
     _toTreeViewer.setSelection(new StructuredSelection());
 
+    //
+    if (_rootNode != null && _rootNode.hasExtension(INodeComparator.class)) {
+      _fromTreeViewer.setComparator(new NodeComparator2ViewerComparatorAdapter(_rootNode.getExtension(INodeComparator.class)));
+      _centerViewer.setComparator(new NodeComparator2ViewerComparatorAdapter(_rootNode.getExtension(INodeComparator.class)));
+      _toTreeViewer.setComparator(new NodeComparator2ViewerComparatorAdapter(_rootNode.getExtension(INodeComparator.class)));
+    }
+    
     //
     _centerViewer.setFilters(new VisibleNodesFilter(() -> _filteredNodes, true));
 

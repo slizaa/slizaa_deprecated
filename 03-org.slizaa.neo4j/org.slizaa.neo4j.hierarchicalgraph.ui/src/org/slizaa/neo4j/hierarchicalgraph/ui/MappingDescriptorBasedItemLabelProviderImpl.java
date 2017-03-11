@@ -14,10 +14,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
-import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.Function;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.NodeVisualizationDefinition;
@@ -25,7 +24,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.StringConstant;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.OverlayImageRegistry;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappings.ISlizaaMappingDescription;
 
-public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelProvider, IItemStyledLabelProvider {
+public class MappingDescriptorBasedItemLabelProviderImpl implements INodeLabelProvider {
 
   /** - */
   private OverlayImageRegistry      _imageRegistry;
@@ -86,7 +85,7 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements IItemLabelPr
    *
    * @return
    */
-  public LabelDefinition getLabelDefinition(Neo4JBackedNodeSource nodeSource) {
+  private LabelDefinition getLabelDefinition(Neo4JBackedNodeSource nodeSource) {
     checkNotNull(nodeSource);
 
     //

@@ -30,6 +30,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.ui.shared.context.BusyCursor;
 import org.slizaa.ui.widget.dsm.DsmViewWidget;
 import org.slizaa.ui.widget.dsm.IDsmContentProvider;
@@ -188,8 +189,8 @@ public class DsmPart {
 
       if (selectedNodes != null && !selectedNodes.isEmpty()) {
         _dsmContentProvider = new DefaultAnalysisModelElementDsmContentProvider(selectedNodes);
-        IItemLabelProvider itemLabelProvider = selectedNodes.get(0).getRootNode()
-            .getExtension(IItemLabelProvider.class);
+        INodeLabelProvider itemLabelProvider = selectedNodes.get(0).getRootNode()
+            .getExtension(INodeLabelProvider.class);
         _labelProvider.setItemLabelProvider(itemLabelProvider);
       } else {
         _dsmContentProvider = new DefaultAnalysisModelElementDsmContentProvider();

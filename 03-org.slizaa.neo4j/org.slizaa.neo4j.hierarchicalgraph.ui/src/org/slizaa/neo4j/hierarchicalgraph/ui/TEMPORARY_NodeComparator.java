@@ -1,12 +1,20 @@
 package org.slizaa.neo4j.hierarchicalgraph.ui;
 
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerComparator;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 
-public class Neo4JBackedNodeSourceViewerComparator extends ViewerComparator {
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
+public class TEMPORARY_NodeComparator implements INodeComparator {
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public int category(Object element) {
 
@@ -34,8 +42,11 @@ public class Neo4JBackedNodeSourceViewerComparator extends ViewerComparator {
     return 1;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public int compare(Viewer viewer, Object e1, Object e2) {
+  public int compare(Object e1, Object e2) {
 
     //
     if (!(e1 instanceof HGNode && e2 instanceof HGNode)) {
@@ -56,12 +67,11 @@ public class Neo4JBackedNodeSourceViewerComparator extends ViewerComparator {
     //
     else if (((nodeSource1.getLabels().contains("Directory") && nodeSource2.getLabels().contains("Directory"))
         || (nodeSource1.getLabels().contains("Artifact") && nodeSource2.getLabels().contains("Artifact")))
-        && nodeSource1.getProperties().contains("fileName") && nodeSource2.getProperties().contains("fileName")) {
-
+        && nodeSource1.getProperties().containsKey("fileName") && nodeSource2.getProperties().containsKey("fileName")) {
       return nodeSource1.getProperties().get("fileName").compareTo(nodeSource2.getProperties().get("fileName"));
     }
 
     //
-    return super.compare(viewer, e1, e2);
+    return -1;
   }
 }

@@ -22,6 +22,7 @@ import org.eclipse.swt.graphics.Image
 import org.eclipse.swt.widgets.Display
 import org.slizaa.hierarchicalgraph.HGNode
 import java.util.List
+import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider
 
 class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<List<HGNode>> {
 
@@ -97,7 +98,7 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<List<
 				it.setGridPlacement(2);
 
 				// SHOW IMAGE
-				val IItemLabelProvider itemLabelProvider = object.rootNode.getExtension(IItemLabelProvider);
+				val IItemLabelProvider itemLabelProvider = object.rootNode.getExtension(INodeLabelProvider);
 				val Image original = itemLabelProvider.getImage(object) as Image;
 
 				// upper part is icon
@@ -113,7 +114,7 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<List<
 						]
 				}
 
-				it.addText(object.rootNode.getExtension(IItemLabelProvider).getText(object)).associateWith(object) => [
+				it.addText(object.rootNode.getExtension(INodeLabelProvider).getText(object)).associateWith(object) => [
 					it.fontSize = 10;
 					it.setFontBold(false);
 					it.setGridPlacementData().from(LEFT, 0, 0, TOP, 8, 0).to(RIGHT, 16, 0, BOTTOM, 8, 0);

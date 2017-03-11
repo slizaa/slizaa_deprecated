@@ -11,22 +11,22 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.hierarchicalgraph.spi.INodeComparator;
+import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorBasedItemLabelProviderImpl;
-import org.slizaa.neo4j.hierarchicalgraph.ui.Neo4JBackedNodeSourceViewerComparator;
+import org.slizaa.neo4j.hierarchicalgraph.ui.TEMPORARY_NodeComparator;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappings.ISlizaaMappingDescription;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappings.MappingDescriptorUtil;
 import org.slizaa.ui.shared.context.ContextHelper;
@@ -161,11 +161,11 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
             _remoteRepository, monitor);
 
         // set label provider
-        rootNode.registerExtension(IItemLabelProvider.class,
+        rootNode.registerExtension(INodeLabelProvider.class,
             new MappingDescriptorBasedItemLabelProviderImpl(_slizaaMappingDescription));
 
         // set Sorter
-        rootNode.registerExtension(ViewerComparator.class, new Neo4JBackedNodeSourceViewerComparator());
+        rootNode.registerExtension(INodeComparator.class, new TEMPORARY_NodeComparator());
 
         _remoteRepository.setHierarchicalGraph(rootNode);
 

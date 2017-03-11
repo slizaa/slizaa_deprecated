@@ -11,6 +11,7 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.INodeSource;
+import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 
 public class ExtendedHGNodeItemProvider extends HGNodeItemProvider {
 
@@ -44,7 +45,7 @@ public class ExtendedHGNodeItemProvider extends HGNodeItemProvider {
 	  
 		if (object instanceof HGNode) {
 			HGNode hgNode = (HGNode) object;
-			IItemLabelProvider itemLabelProvider = hgNode.getRootNode().getExtension(IItemLabelProvider.class);
+			INodeLabelProvider itemLabelProvider = hgNode.getRootNode().getExtension(INodeLabelProvider.class);
 			return itemLabelProvider.getImage(object);
 		}
 		return null;
@@ -55,7 +56,7 @@ public class ExtendedHGNodeItemProvider extends HGNodeItemProvider {
 
 		if (object instanceof HGNode) {
 			HGNode hgNode = (HGNode) object;
-			IItemLabelProvider itemLabelProvider = hgNode.getRootNode().getExtension(IItemLabelProvider.class);
+			INodeLabelProvider itemLabelProvider = hgNode.getRootNode().getExtension(INodeLabelProvider.class);
 			if (itemLabelProvider instanceof IItemStyledLabelProvider) {
 				IItemStyledLabelProvider styledLabelProvider = (IItemStyledLabelProvider) itemLabelProvider;
 				return styledLabelProvider.getStyledText(object);

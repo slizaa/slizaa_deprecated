@@ -31,6 +31,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.hierarchicalgraph.spi.INodeComparator;
+import org.slizaa.ui.shared.NodeComparator2ViewerComparatorAdapter;
 import org.slizaa.ui.shared.context.ContextHelper;
 import org.slizaa.ui.shared.context.RootObject;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
@@ -88,8 +90,8 @@ public class HierarchicalGraphViewPart {
         _treeViewer.setComparator(null);
       } else {
         _treeViewer.setInput(new RootObject(rootNode));
-        if (rootNode.hasExtension(ViewerComparator.class)) {
-          _treeViewer.setComparator(_currentRootNode.getExtension(ViewerComparator.class));
+        if (rootNode.hasExtension(INodeComparator.class)) {
+          _treeViewer.setComparator(new NodeComparator2ViewerComparatorAdapter(_currentRootNode.getExtension(INodeComparator.class)));
         }
       }
     }
