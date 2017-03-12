@@ -244,6 +244,6 @@ class Neo4jClientTrait {
    * @return
    */
   private ExecutorService getExecutor() {
-    return DbAdapterActivator.instance().getExecutor();
+    return DbAdapterActivator.getExecutor();
   }
 }

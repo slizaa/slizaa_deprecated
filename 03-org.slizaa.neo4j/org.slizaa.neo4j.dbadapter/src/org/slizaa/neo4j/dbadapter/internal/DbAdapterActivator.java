@@ -17,10 +17,10 @@ public class DbAdapterActivator implements BundleActivator {
   private static DbAdapterActivator _instance;
 
   /** - */
-  private DbAdapterRegistry         _dbAdapterRegistry;
+  private static ExecutorService    _executor;
 
   /** - */
-  private ExecutorService           _executor;
+  private DbAdapterRegistry         _dbAdapterRegistry;
 
   /**
    * <p>
@@ -38,7 +38,11 @@ public class DbAdapterActivator implements BundleActivator {
    *
    * @return
    */
-  public ExecutorService getExecutor() {
+  public static ExecutorService getExecutor() {
+
+    //
+    initializeExecutor();
+
     return _executor;
   }
 
@@ -49,20 +53,18 @@ public class DbAdapterActivator implements BundleActivator {
     _instance = this;
 
     // TODO!!
-    _executor = Executors.newFixedThreadPool(20);
+    initializeExecutor();
 
     //
     _dbAdapterRegistry = DbAdapterFactory.eINSTANCE.createDbAdapterRegistry();
 
     //
-    DbAdapterContainer remoteUnmanagedDatabaseClient = DbAdapterFactory.eINSTANCE
-        .createDbAdapterContainer();
+    DbAdapterContainer remoteUnmanagedDatabaseClient = DbAdapterFactory.eINSTANCE.createDbAdapterContainer();
     remoteUnmanagedDatabaseClient.setType(ContainerType.UNMANAGED);
     _dbAdapterRegistry.getChildren().add(remoteUnmanagedDatabaseClient);
 
     //
-    DbAdapterContainer localManagedDatabaseClient = DbAdapterFactory.eINSTANCE
-        .createDbAdapterContainer();
+    DbAdapterContainer localManagedDatabaseClient = DbAdapterFactory.eINSTANCE.createDbAdapterContainer();
     localManagedDatabaseClient.setType(ContainerType.MANAGED);
     _dbAdapterRegistry.getChildren().add(localManagedDatabaseClient);
 
@@ -95,5 +97,15 @@ public class DbAdapterActivator implements BundleActivator {
    */
   public DbAdapterRegistry getRestClientRegistry() {
     return _dbAdapterRegistry;
+  }
+
+  /**
+   * <p>
+   * </p>
+   */
+  private static void initializeExecutor() {
+    if (_executor == null) {
+      _executor = Executors.newFixedThreadPool(20);
+    }
   }
 }
