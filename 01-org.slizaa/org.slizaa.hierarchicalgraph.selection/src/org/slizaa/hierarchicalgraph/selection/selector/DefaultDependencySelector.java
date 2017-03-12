@@ -14,13 +14,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -85,10 +82,10 @@ public class DefaultDependencySelector implements IDependencySelector {
   private Set<HGNode>                                        _filteredTargetNodesWithParents;
 
   /** - */
-  private final LoadingCache<HGNode, List<HGCoreDependency>> _sourceNode2CoreDependenciesMap;
+  private final LoadingCache<HGNode, Set<HGCoreDependency>> _sourceNode2CoreDependenciesMap;
 
   /** - */
-  private final LoadingCache<HGNode, List<HGCoreDependency>> _targetNode2CoreDependenciesMap;
+  private final LoadingCache<HGNode, Set<HGCoreDependency>> _targetNode2CoreDependenciesMap;
 
   /** - */
   private boolean                                            _initialized;
@@ -123,17 +120,17 @@ public class DefaultDependencySelector implements IDependencySelector {
 
     //
     _sourceNode2CoreDependenciesMap = CacheBuilder.newBuilder()
-        .build(new CacheLoader<HGNode, List<HGCoreDependency>>() {
-          public List<HGCoreDependency> load(HGNode key) {
-            return new LinkedList<>();
+        .build(new CacheLoader<HGNode, Set<HGCoreDependency>>() {
+          public Set<HGCoreDependency> load(HGNode key) {
+            return new HashSet<>();
           }
         });
 
     //
     _targetNode2CoreDependenciesMap = CacheBuilder.newBuilder()
-        .build(new CacheLoader<HGNode, List<HGCoreDependency>>() {
-          public List<HGCoreDependency> load(HGNode key) {
-            return new LinkedList<>();
+        .build(new CacheLoader<HGNode, Set<HGCoreDependency>>() {
+          public Set<HGCoreDependency> load(HGNode key) {
+            return new HashSet<>();
           }
         });
 
@@ -236,12 +233,12 @@ public class DefaultDependencySelector implements IDependencySelector {
   }
 
   @Override
-  public List<HGCoreDependency> getDependenciesForSourceNode(HGNode sourceNode) {
+  public Set<HGCoreDependency> getDependenciesForSourceNode(HGNode sourceNode) {
     return _sourceNode2CoreDependenciesMap.getIfPresent(checkNotNull(sourceNode));
   }
 
   @Override
-  public List<HGCoreDependency> getDependenciesForTargetNode(HGNode targetNode) {
+  public Set<HGCoreDependency> getDependenciesForTargetNode(HGNode targetNode) {
     return _targetNode2CoreDependenciesMap.getIfPresent(checkNotNull(targetNode));
   }
 
@@ -249,9 +246,9 @@ public class DefaultDependencySelector implements IDependencySelector {
    * {@inheritDoc}
    */
   @Override
-  public Collection<HGCoreDependency> getUnfilteredCoreDependencies() {
+  public Set<HGCoreDependency> getUnfilteredCoreDependencies() {
     init();
-    return Collections.unmodifiableCollection(getResolvedCoreDependenciesOrAggregatedCoreDependencyOtherwise());
+    return Collections.unmodifiableSet(getResolvedCoreDependenciesOrAggregatedCoreDependencyOtherwise());
   }
 
   /**
@@ -370,13 +367,13 @@ public class DefaultDependencySelector implements IDependencySelector {
       //
       if (_selectedNodesWithChildren != null) {
 
-        Map<HGNode, List<HGCoreDependency>> node2DependenciesMap = _selectedNodesType == NodeType.SOURCE
+        Map<HGNode, Set<HGCoreDependency>> node2DependenciesMap = _selectedNodesType == NodeType.SOURCE
             ? _sourceNode2CoreDependenciesMap.asMap() : _targetNode2CoreDependenciesMap.asMap();
 
         //
         for (HGNode keyNode : node2DependenciesMap.keySet()) {
           if (_selectedNodesWithChildren.contains(keyNode)) {
-            List<HGCoreDependency> dependencies = node2DependenciesMap.get(keyNode);
+            Set<HGCoreDependency> dependencies = node2DependenciesMap.get(keyNode);
             _filteredCoreDependencies.addAll(dependencies);
 
             // compute the reverse side
@@ -428,10 +425,10 @@ public class DefaultDependencySelector implements IDependencySelector {
    *
    * @return
    */
-  private Collection<HGCoreDependency> getResolvedCoreDependenciesOrAggregatedCoreDependencyOtherwise() {
+  private Set<HGCoreDependency> getResolvedCoreDependenciesOrAggregatedCoreDependencyOtherwise() {
 
     //
-    List<HGCoreDependency> coreDependencies = new ArrayList<>();
+    Set<HGCoreDependency> coreDependencies = new HashSet<>();
 
     _coreDependencies.forEach((c) -> {
       if (c instanceof HGAggregatedCoreDependency && ((HGAggregatedCoreDependency) c).isResolved()

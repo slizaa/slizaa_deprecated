@@ -1,7 +1,7 @@
 package org.slizaa.ui.klighd.synthesis.hierarchicalgraph;
 
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.elk.graph.KGraphElement;
@@ -30,7 +30,7 @@ public class SelectDependenciesAction implements IAction {
 
       if (sourceElement instanceof HGAggregatedDependency) {
         HGAggregatedDependency dependency = (HGAggregatedDependency) sourceElement;
-        Collection<HGAggregatedDependency> dependencies = new LinkedList<>();
+        Set<HGAggregatedDependency> dependencies = new HashSet<>();
         if (dependency != null) {
           dependencies.add(dependency);
         }
@@ -39,8 +39,8 @@ public class SelectDependenciesAction implements IAction {
         IEclipseContext eclipseContext = ((PartSite) context.getViewContext().getDiagramWorkbenchPart().getSite())
             .getContext().getParent();
 
-        ContextHelper.setValueInContext(eclipseContext,
-            SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
+        ContextHelper.setDependenciesInContext(eclipseContext, SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION,
+            dependencies);
       }
     }
 

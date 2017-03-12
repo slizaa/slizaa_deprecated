@@ -1,16 +1,15 @@
 /*******************************************************************************
- * Copyright (c) Gerd Wütherich 2012-2016.
+ * Copyright (c) Gerd Wï¿½therich 2012-2016.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
+ *    Gerd Wï¿½therich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
 package org.slizaa.ui.dependencytable;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -55,7 +54,7 @@ public class DependencyTablePart {
   /** - */
   private ArtifactPathLabelGenerator _toLabelGenerator   = new ArtifactPathLabelGenerator();
 
-  private List<AbstractHGDependency> _selectedDependencies;
+  private Set<AbstractHGDependency>  _selectedDependencies;
 
   @PostConstruct
   public void createComposite(Composite parent) {
@@ -86,7 +85,7 @@ public class DependencyTablePart {
 
   @Inject
   public void initSelection(
-      @Optional @Named(SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION) List<AbstractHGDependency> selectedDependencies) {
+      @Optional @Named(SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION) Set<AbstractHGDependency> selectedDependencies) {
 
     _selectedDependencies = selectedDependencies;
 
@@ -103,9 +102,9 @@ public class DependencyTablePart {
     //
     else {
 
-      HGNode toBaseArtifact = selectedDependencies.get(0).getFrom();
+      HGNode toBaseArtifact = _selectedDependencies.toArray(new AbstractHGDependency[0])[0].getFrom();
 
-      HGNode fromBaseArtifact = selectedDependencies.get(0).getTo();
+      HGNode fromBaseArtifact = _selectedDependencies.toArray(new AbstractHGDependency[0])[0].getTo();
 
       if (selectedDependencies.size() != 1) {
         // TODO determine deepest common base of all dependencies

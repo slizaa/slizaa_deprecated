@@ -1,7 +1,6 @@
 package org.slizaa.hierarchicalgraph.selection.selector;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
@@ -26,7 +25,7 @@ public interface IDependencySelector {
    *
    * @return
    */
-  Collection<HGCoreDependency> getUnfilteredCoreDependencies();
+  Set<HGCoreDependency> getUnfilteredCoreDependencies();
 
   /**
    * <p>
@@ -89,7 +88,7 @@ public interface IDependencySelector {
    * @param fromNode
    * @return
    */
-  List<HGCoreDependency> getDependenciesForSourceNode(HGNode fromNode);
+  Set<HGCoreDependency> getDependenciesForSourceNode(HGNode fromNode);
 
   /**
    * <p>
@@ -98,7 +97,7 @@ public interface IDependencySelector {
    * @param toNode
    * @return
    */
-  List<HGCoreDependency> getDependenciesForTargetNode(HGNode toNode);
+  Set<HGCoreDependency> getDependenciesForTargetNode(HGNode toNode);
 
   /**
    * <p>

@@ -7,6 +7,7 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
@@ -190,7 +191,7 @@ public class XRefComposite extends Composite {
    * 
    * @param selectedDetailDependencies
    */
-  private void notifySelectedDependencies(Collection<HGCoreDependency> dependencies) {
+  private void notifySelectedDependencies(Set<HGCoreDependency> dependencies) {
     Display.getDefault().syncExec(new Runnable() {
       @Override
       public void run() {
@@ -199,9 +200,13 @@ public class XRefComposite extends Composite {
           XRefComposite.this.setCursor(cursor);
 
           //
-          ContextHelper.setValueInContext(_eclipseContextSupplier.get(),
+          ContextHelper.setDependenciesInContext(_eclipseContextSupplier.get(),
               SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
-
+          
+          //
+          ContextHelper.setDependenciesInContext(_eclipseContextSupplier.get(),
+              SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION, dependencies);
+          
         } finally {
           XRefComposite.this.setCursor(null);
         }
@@ -237,12 +242,12 @@ public class XRefComposite extends Composite {
         (node) -> _incomingDependencySelector.getDependenciesForSourceNode(node)), new NullExpandStrategy());
 
     _centerTreeViewComposite = new TreeViewComposite(sashForm, new DependencyResolvingTreeEventInterceptor((node) -> {
-      List<HGCoreDependency> result = new ArrayList<>();
-      List<HGCoreDependency> in = _incomingDependencySelector.getDependenciesForTargetNode(node);
+      Set<HGCoreDependency> result = new HashSet<>();
+      Set<HGCoreDependency> in = _incomingDependencySelector.getDependenciesForTargetNode(node);
       if (in != null) {
         result.addAll(in);
       }
-      List<HGCoreDependency> out = _outgoingDependencySelector.getDependenciesForSourceNode(node);
+      Set<HGCoreDependency> out = _outgoingDependencySelector.getDependenciesForSourceNode(node);
       if (out != null) {
         result.addAll(out);
       }
@@ -392,7 +397,7 @@ public class XRefComposite extends Composite {
 
       // don't highlight anything
       _selectedBackReferences = null;
-      notifySelectedDependencies(Collections.emptyList());
+      notifySelectedDependencies(Collections.emptySet());
 
       //
       _fromTreeViewComposite.getTreeExpandStrategy()

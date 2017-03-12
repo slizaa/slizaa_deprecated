@@ -172,7 +172,7 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
         _remoteRepository.setHierarchicalGraph(rootNode);
 
         //
-        ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE, rootNode);
+        ContextHelper.setRootNodeInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE, rootNode);
 
       } catch (Exception e) {
         e.printStackTrace();

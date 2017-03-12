@@ -1,6 +1,5 @@
 package org.slizaa.ui.xref.internal;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -29,7 +28,7 @@ public abstract class AbstractRefNodesPart {
   private HGRootNode   _currentRootNode;
 
   /** - */
-  private List<HGNode> _currentSelectedNodes;
+  private Set<HGNode> _currentSelectedNodes;
 
   /**
    * <p>
@@ -58,7 +57,7 @@ public abstract class AbstractRefNodesPart {
   @Named(SelectionIdentifier.CURRENT_ROOTNODE)
   final HGRootNode rootNode, @Optional
   @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION)
-  final List<HGNode> selectedNodes) {
+  final Set<HGNode> selectedNodes) {
 
     _currentRootNode = rootNode;
     _currentSelectedNodes = getVisibleNodes(selectedNodes);
@@ -84,7 +83,7 @@ public abstract class AbstractRefNodesPart {
       _treeViewer.setInput(new RootObject(_currentRootNode));
     }
 
-    List<HGNode> referencedNodes = getNodesToShow();
+    Set<HGNode> referencedNodes = getNodesToShow();
     Set<HGNode> visible = NodeSelections.computeNodesWithParents(getVisibleNodes(referencedNodes), false);
     _treeViewer.setFilters(new VisibleNodesFilter(() -> {
       return visible;
@@ -97,7 +96,7 @@ public abstract class AbstractRefNodesPart {
    *
    * @return
    */
-  protected abstract List<HGNode> getNodesToShow();
+  protected abstract Set<HGNode> getNodesToShow();
 
   /**
    * <p>
@@ -105,7 +104,7 @@ public abstract class AbstractRefNodesPart {
    *
    * @return
    */
-  protected List<HGNode> getCurrentSelection() {
+  protected Set<HGNode> getCurrentSelection() {
     return _currentSelectedNodes;
   }
 
@@ -116,7 +115,7 @@ public abstract class AbstractRefNodesPart {
    * @param referencedNodes
    * @return
    */
-  private List<HGNode> getVisibleNodes(List<HGNode> referencedNodes) {
+  private Set<HGNode> getVisibleNodes(Set<HGNode> referencedNodes) {
     return referencedNodes;
   }
 

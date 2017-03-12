@@ -8,6 +8,7 @@ import de.cau.cs.kieler.klighd.krendering.extensions.KNodeExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KPolylineExtensions
 import de.cau.cs.kieler.klighd.krendering.extensions.KRenderingExtensions
 import de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis
+import java.util.Set
 import javax.inject.Inject
 import org.eclipse.elk.alg.layered.LayeredLayoutProvider
 import org.eclipse.elk.alg.layered.p4nodes.NodePlacementStrategy
@@ -17,14 +18,11 @@ import org.eclipse.elk.core.options.Direction
 import org.eclipse.elk.core.options.EdgeRouting
 import org.eclipse.elk.graph.KNode
 import org.eclipse.emf.edit.provider.IItemLabelProvider
-import org.eclipse.swt.SWT
 import org.eclipse.swt.graphics.Image
-import org.eclipse.swt.widgets.Display
 import org.slizaa.hierarchicalgraph.HGNode
-import java.util.List
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider
 
-class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<List<HGNode>> {
+class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<Set<HGNode>> {
 
 	@Inject extension KNodeExtensions
 	@Inject extension KEdgeExtensions
@@ -35,7 +33,7 @@ class HierarchicalGraphSelectionSynthesis extends AbstractDiagramSynthesis<List<
 
 	val float LINE_WIDTH = 1.5f;
 
-	override KNode transform(List<HGNode> nodeSelection) {
+	override KNode transform(Set<HGNode> nodeSelection) {
 		val rootNode = nodeSelection.createNode().associateWith(nodeSelection);
 
 		//

@@ -3,6 +3,7 @@ package org.slizaa.ui.tree.interceptors;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,7 @@ import org.slizaa.hierarchicalgraph.impl.Utilities;
 public class DependencyResolvingTreeEventInterceptor implements ITreeEventInterceptor {
 
   /** - */
-  private Function<HGNode, List<HGCoreDependency>> _coreDependencySupplier;
+  private Function<HGNode, Set<HGCoreDependency>> _coreDependencySupplier;
 
   /**
    * <p>
@@ -29,7 +30,7 @@ public class DependencyResolvingTreeEventInterceptor implements ITreeEventInterc
    *
    * @param coreDependencySupplier
    */
-  public DependencyResolvingTreeEventInterceptor(Function<HGNode, List<HGCoreDependency>> coreDependencySupplier) {
+  public DependencyResolvingTreeEventInterceptor(Function<HGNode, Set<HGCoreDependency>> coreDependencySupplier) {
     _coreDependencySupplier = checkNotNull(coreDependencySupplier);
   }
 
@@ -66,7 +67,7 @@ public class DependencyResolvingTreeEventInterceptor implements ITreeEventInterc
    * @param node
    */
   private void resolveDependencies(HGNode node) {
-    List<HGCoreDependency> dependencies = _coreDependencySupplier.apply(node);
+    Set<HGCoreDependency> dependencies = _coreDependencySupplier.apply(node);
     if (dependencies != null) {
       List<HGAggregatedCoreDependency> aggregatedCoreDependencies = dependencies.stream().filter(dep -> dep instanceof HGAggregatedCoreDependency)
           .map(dep -> (HGAggregatedCoreDependency) dep).collect(Collectors.toList());

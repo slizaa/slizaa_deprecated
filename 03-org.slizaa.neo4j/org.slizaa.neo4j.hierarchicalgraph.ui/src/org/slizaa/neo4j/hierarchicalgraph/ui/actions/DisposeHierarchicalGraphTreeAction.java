@@ -75,7 +75,7 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
       }
     }
 
-    ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE, null);
+    ContextHelper.setRootNodeInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE, null);
   }
 
   /**

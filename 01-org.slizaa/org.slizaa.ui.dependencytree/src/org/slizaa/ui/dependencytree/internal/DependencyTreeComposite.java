@@ -12,7 +12,6 @@ package org.slizaa.ui.dependencytree.internal;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
@@ -228,9 +227,9 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @param selectedDetailDependencies
    */
-  private void setSelectedDetailDependencies(Collection<HGCoreDependency> dependencies) {
-    ContextHelper.setValueInContext(_eclipseContextSupplier.get(), SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION,
-        new ArrayList<>(dependencies));
+  private void setSelectedDetailDependencies(Set<HGCoreDependency> dependencies) {
+    ContextHelper.setDependenciesInContext(_eclipseContextSupplier.get(),
+        SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION, dependencies);
   }
 
   /**

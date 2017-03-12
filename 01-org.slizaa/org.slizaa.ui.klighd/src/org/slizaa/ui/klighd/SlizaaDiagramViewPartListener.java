@@ -2,7 +2,7 @@ package org.slizaa.ui.klighd;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,10 +33,10 @@ class SlizaaDiagramViewPartListener implements IPartListener2 {
   private final SlizaaDiagramViewPart _diagramView;
 
   /** - */
-  private List<HGNode>                _currentNodeSelection;
+  private Set<HGNode>                _currentNodeSelection;
   
   /** - */
-  private List<HGNode>                _shownNodeSelection;
+  private Set<HGNode>                _shownNodeSelection;
 
   /**
    * Create a new listener handling events for the given {@link SlizaaDiagramViewPart}.
@@ -176,7 +176,7 @@ class SlizaaDiagramViewPartListener implements IPartListener2 {
 
   @Inject
   public void initSelection(
-      @Optional @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION) List<HGNode> selectedNodes) {
+      @Optional @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION) Set<HGNode> selectedNodes) {
     
     //
     _currentNodeSelection = selectedNodes;
@@ -208,7 +208,7 @@ class SlizaaDiagramViewPartListener implements IPartListener2 {
       }
   }
 
-  public  boolean equalLists(List<HGNode> a, List<HGNode> b){     
+  public  boolean equalLists(Set<HGNode> a, Set<HGNode> b){     
     
     if (a == null && b == null) {
       return true;

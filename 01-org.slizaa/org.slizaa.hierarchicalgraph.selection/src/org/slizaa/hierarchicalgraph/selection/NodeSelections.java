@@ -4,7 +4,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -44,9 +43,9 @@ public class NodeSelections {
    * @param nodes
    * @return
    */
-  public static List<HGCoreDependency> getAccumulatedOutgoingCoreDependencies(Collection<HGNode> nodes) {
+  public static Set<HGCoreDependency> getAccumulatedOutgoingCoreDependencies(Collection<HGNode> nodes) {
     return checkNotNull(nodes).stream().flatMap(node -> node.getAccumulatedOutgoingCoreDependencies().stream())
-        .collect(Collectors.toList());
+        .collect(Collectors.toSet());
   }
 
   /**
@@ -56,8 +55,8 @@ public class NodeSelections {
    * @param nodes
    * @return
    */
-  public static List<HGCoreDependency> getAccumulatedIncomingCoreDependencies(Collection<HGNode> nodes) {
+  public static Set<HGCoreDependency> getAccumulatedIncomingCoreDependencies(Collection<HGNode> nodes) {
     return checkNotNull(nodes).stream().flatMap(node -> node.getAccumulatedIncomingCoreDependencies().stream())
-        .collect(Collectors.toList());
+        .collect(Collectors.toSet());
   }
 }

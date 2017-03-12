@@ -10,8 +10,8 @@
  ******************************************************************************/
 package org.slizaa.neo4j.hierarchicalgraph.ui;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -24,7 +24,6 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -71,19 +70,26 @@ public class HierarchicalGraphViewPart {
 
     //
     createTreeViewer(parent);
+    if (_currentRootNode != null) {
+      setRootNodeInViewer(_currentRootNode);
+    }
   }
 
   @Inject
   public void handleChangedDependencies(@Optional
   @Named(SelectionIdentifier.CURRENT_ROOTNODE)
   final HGRootNode rootNode) {
-    
+
     //
     if (_currentRootNode == rootNode) {
       return;
     }
 
     _currentRootNode = rootNode;
+    setRootNodeInViewer(rootNode);
+  }
+
+  private void setRootNodeInViewer(final HGRootNode rootNode) {
     if (_treeViewer != null && !_treeViewer.getTree().isDisposed()) {
       if (_currentRootNode == null) {
         _treeViewer.setInput(null);
@@ -91,7 +97,8 @@ public class HierarchicalGraphViewPart {
       } else {
         _treeViewer.setInput(new RootObject(rootNode));
         if (rootNode.hasExtension(INodeComparator.class)) {
-          _treeViewer.setComparator(new NodeComparator2ViewerComparatorAdapter(_currentRootNode.getExtension(INodeComparator.class)));
+          _treeViewer.setComparator(
+              new NodeComparator2ViewerComparatorAdapter(_currentRootNode.getExtension(INodeComparator.class)));
         }
       }
     }
@@ -120,7 +127,7 @@ public class HierarchicalGraphViewPart {
         _selectionService.setSelection(selection.size() == 1 ? selection.getFirstElement() : selection.toArray());
 
         //
-        List<HGNode> rep = new LinkedList<>();
+        Set<HGNode> rep = new HashSet<>();
         for (Object s : selection.toList()) {
           if (!(s instanceof HGNode) || s instanceof HGRootNode) {
             rep.clear();
@@ -131,7 +138,7 @@ public class HierarchicalGraphViewPart {
         }
 
         //
-        ContextHelper.setValueInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION,
+        ContextHelper.setNodesInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION,
             rep);
       }
     });

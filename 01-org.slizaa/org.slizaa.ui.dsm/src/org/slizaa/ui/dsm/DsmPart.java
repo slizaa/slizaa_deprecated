@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -22,7 +23,6 @@ import javax.inject.Named;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -76,7 +76,7 @@ public class DsmPart {
   private DelegatingLabelProvider _labelProvider;
 
   /** - */
-  private List<HGNode>            _selectedNodes;
+  private Set<HGNode>             _selectedNodes;
 
   /**
    * <p>
@@ -181,7 +181,7 @@ public class DsmPart {
 
   @Inject
   public void initSelection(
-      @Optional @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION) List<HGNode> selectedNodes) {
+      @Optional @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION) Set<HGNode> selectedNodes) {
 
     _selectedNodes = selectedNodes;
 
@@ -189,7 +189,7 @@ public class DsmPart {
 
       if (selectedNodes != null && !selectedNodes.isEmpty()) {
         _dsmContentProvider = new DefaultAnalysisModelElementDsmContentProvider(selectedNodes);
-        INodeLabelProvider itemLabelProvider = selectedNodes.get(0).getRootNode()
+        INodeLabelProvider itemLabelProvider = selectedNodes.toArray(new HGNode[0])[0].getRootNode()
             .getExtension(INodeLabelProvider.class);
         _labelProvider.setItemLabelProvider(itemLabelProvider);
       } else {

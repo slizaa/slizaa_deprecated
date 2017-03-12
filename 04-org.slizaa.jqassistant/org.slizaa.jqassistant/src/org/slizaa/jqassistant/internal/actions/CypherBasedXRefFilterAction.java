@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.widgets.Display;
@@ -27,6 +28,7 @@ import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.selection.NodeSelection;
 import org.slizaa.jqassistant.internal.actions.filter.AbstractFilterAction;
+import org.slizaa.jqassistant.internal.actions.filter.CypherUtils;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.dbadapter.QueryResultConverter;
 import org.slizaa.neo4j.opencypher.openCypher.Cypher;
@@ -70,13 +72,19 @@ public class CypherBasedXRefFilterAction extends AbstractFilterAction {
       //
       IFile cypherFile = (IFile) dialog.getFirstResult();
 
-      Cypher cypher = (Cypher) Platform.getAdapterManager().loadAdapter(cypherFile, Cypher.class.getName());
-      System.out.println(cypher);
-
-      // TODO: checks
-
       try {
+
         final String cypherQuery = CypherNormalizer.normalize(readStream(cypherFile.getContents()));
+
+        //
+        Cypher cypher = (Cypher) Platform.getAdapterManager().loadAdapter(cypherQuery, Cypher.class.getName());
+
+        //
+        if (!CypherUtils.returnItemsContainOnlyIds(cypher)) {
+          MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid cyuper statement",
+              "A filter statement must return only ids (e.g. RETURNS id(a), id(b)).");
+          return;
+        }
 
         Neo4jRestClient restClient = node.getRootNode().getExtension(Neo4jRestClient.class);
 
