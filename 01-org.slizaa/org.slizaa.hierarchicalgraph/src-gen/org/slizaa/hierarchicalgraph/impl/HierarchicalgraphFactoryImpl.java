@@ -15,12 +15,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
-
 import org.slizaa.hierarchicalgraph.*;
-
-import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
  * <!-- begin-user-doc -->
@@ -93,14 +88,10 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
     switch (eDataType.getClassifierID()) {
       case HierarchicalgraphPackage.SOURCE_OR_TARGET:
         return createSourceOrTargetFromString(eDataType, initialValue);
-      case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
-        return createIItemLabelProviderFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.FUTURE:
         return createFutureFromString(eDataType, initialValue);
       case HierarchicalgraphPackage.OPTIONAL:
         return createOptionalFromString(eDataType, initialValue);
-      case HierarchicalgraphPackage.IAGGREGATED_CORE_DEPENDENCY_RESOLVER:
-        return createIAggregatedCoreDependencyResolverFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -116,14 +107,10 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
     switch (eDataType.getClassifierID()) {
       case HierarchicalgraphPackage.SOURCE_OR_TARGET:
         return convertSourceOrTargetToString(eDataType, instanceValue);
-      case HierarchicalgraphPackage.IITEM_LABEL_PROVIDER:
-        return convertIItemLabelProviderToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.FUTURE:
         return convertFutureToString(eDataType, instanceValue);
       case HierarchicalgraphPackage.OPTIONAL:
         return convertOptionalToString(eDataType, instanceValue);
-      case HierarchicalgraphPackage.IAGGREGATED_CORE_DEPENDENCY_RESOLVER:
-        return convertIAggregatedCoreDependencyResolverToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -274,24 +261,6 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public IItemLabelProvider createIItemLabelProviderFromString(EDataType eDataType, String initialValue) {
-    return (IItemLabelProvider)super.createFromString(eDataType, initialValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertIItemLabelProviderToString(EDataType eDataType, Object instanceValue) {
-    return super.convertToString(eDataType, instanceValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Future<?> createFutureFromString(EDataType eDataType, String initialValue) {
     return (Future<?>)super.createFromString(initialValue);
   }
@@ -321,24 +290,6 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
    */
   public String convertOptionalToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(instanceValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public IAggregatedCoreDependencyResolver createIAggregatedCoreDependencyResolverFromString(EDataType eDataType, String initialValue) {
-    return (IAggregatedCoreDependencyResolver)super.createFromString(eDataType, initialValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertIAggregatedCoreDependencyResolverToString(EDataType eDataType, Object instanceValue) {
-    return super.convertToString(eDataType, instanceValue);
   }
 
   /**

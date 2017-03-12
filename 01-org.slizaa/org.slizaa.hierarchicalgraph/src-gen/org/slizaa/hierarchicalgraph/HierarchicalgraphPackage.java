@@ -1444,16 +1444,6 @@ public interface HierarchicalgraphPackage extends EPackage {
   int SOURCE_OR_TARGET = 15;
 
   /**
-   * The meta object id for the '<em>IItem Label Provider</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.emf.edit.provider.IItemLabelProvider
-   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIItemLabelProvider()
-   * @generated
-   */
-  int IITEM_LABEL_PROVIDER = 16;
-
-  /**
    * The meta object id for the '<em>Future</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1461,7 +1451,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getFuture()
    * @generated
    */
-  int FUTURE = 17;
+  int FUTURE = 16;
 
   /**
    * The meta object id for the '<em>Optional</em>' data type.
@@ -1471,18 +1461,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getOptional()
    * @generated
    */
-  int OPTIONAL = 18;
-
-  /**
-   * The meta object id for the '<em>IAggregated Core Dependency Resolver</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver
-   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIAggregatedCoreDependencyResolver()
-   * @generated
-   */
-  int IAGGREGATED_CORE_DEPENDENCY_RESOLVER = 19;
-
+  int OPTIONAL = 17;
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGNode <em>HG Node</em>}'.
@@ -2342,17 +2321,6 @@ public interface HierarchicalgraphPackage extends EPackage {
   EEnum getSourceOrTarget();
 
   /**
-   * Returns the meta object for data type '{@link org.eclipse.emf.edit.provider.IItemLabelProvider <em>IItem Label Provider</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>IItem Label Provider</em>'.
-   * @see org.eclipse.emf.edit.provider.IItemLabelProvider
-   * @model instanceClass="org.eclipse.emf.edit.provider.IItemLabelProvider"
-   * @generated
-   */
-  EDataType getIItemLabelProvider();
-
-  /**
    * Returns the meta object for data type '{@link java.util.concurrent.Future <em>Future</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2373,17 +2341,6 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    */
   EDataType getOptional();
-
-  /**
-   * Returns the meta object for data type '{@link org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver <em>IAggregated Core Dependency Resolver</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>IAggregated Core Dependency Resolver</em>'.
-   * @see org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver
-   * @model instanceClass="org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver"
-   * @generated
-   */
-  EDataType getIAggregatedCoreDependencyResolver();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -3089,16 +3046,6 @@ public interface HierarchicalgraphPackage extends EPackage {
     EEnum SOURCE_OR_TARGET = eINSTANCE.getSourceOrTarget();
 
     /**
-     * The meta object literal for the '<em>IItem Label Provider</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.emf.edit.provider.IItemLabelProvider
-     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIItemLabelProvider()
-     * @generated
-     */
-    EDataType IITEM_LABEL_PROVIDER = eINSTANCE.getIItemLabelProvider();
-
-    /**
      * The meta object literal for the '<em>Future</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3117,16 +3064,6 @@ public interface HierarchicalgraphPackage extends EPackage {
      * @generated
      */
     EDataType OPTIONAL = eINSTANCE.getOptional();
-
-    /**
-     * The meta object literal for the '<em>IAggregated Core Dependency Resolver</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver
-     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getIAggregatedCoreDependencyResolver()
-     * @generated
-     */
-    EDataType IAGGREGATED_CORE_DEPENDENCY_RESOLVER = eINSTANCE.getIAggregatedCoreDependencyResolver();
 
   }
 

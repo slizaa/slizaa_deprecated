@@ -18,9 +18,6 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
-
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.DefaultDependencySource;
 import org.slizaa.hierarchicalgraph.DefaultNodeSource;
@@ -34,8 +31,6 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.SourceOrTarget;
-
-import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 
 /**
  * <!-- begin-user-doc -->
@@ -161,13 +156,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  private EDataType iItemLabelProviderEDataType = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EDataType futureEDataType = null;
 
   /**
@@ -176,13 +164,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * @generated
    */
   private EDataType optionalEDataType = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EDataType iAggregatedCoreDependencyResolverEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -979,15 +960,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EDataType getIItemLabelProvider() {
-    return iItemLabelProviderEDataType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EDataType getFuture() {
     return futureEDataType;
   }
@@ -999,15 +971,6 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    */
   public EDataType getOptional() {
     return optionalEDataType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EDataType getIAggregatedCoreDependencyResolver() {
-    return iAggregatedCoreDependencyResolverEDataType;
   }
 
   /**
@@ -1137,10 +1100,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     sourceOrTargetEEnum = createEEnum(SOURCE_OR_TARGET);
 
     // Create data types
-    iItemLabelProviderEDataType = createEDataType(IITEM_LABEL_PROVIDER);
     futureEDataType = createEDataType(FUTURE);
     optionalEDataType = createEDataType(OPTIONAL);
-    iAggregatedCoreDependencyResolverEDataType = createEDataType(IAGGREGATED_CORE_DEPENDENCY_RESOLVER);
   }
 
   /**
@@ -1372,10 +1333,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     addEEnumLiteral(sourceOrTargetEEnum, SourceOrTarget.TARGET);
 
     // Initialize data types
-    initEDataType(iItemLabelProviderEDataType, IItemLabelProvider.class, "IItemLabelProvider", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(futureEDataType, Future.class, "Future", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
     initEDataType(optionalEDataType, Optional.class, "Optional", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-    initEDataType(iAggregatedCoreDependencyResolverEDataType, IAggregatedCoreDependencyResolver.class, "IAggregatedCoreDependencyResolver", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);
