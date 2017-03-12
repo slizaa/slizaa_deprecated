@@ -1,9 +1,9 @@
 package org.slizaa.neo4j.testfwk.internal.exporter;
 
-import static org.slizaa.neo4j.testfwk.internal.exporter.TestModelCreatorFunctions.createDependencies;
-import static org.slizaa.neo4j.testfwk.internal.exporter.TestModelCreatorFunctions.createFirstLevelElements;
-import static org.slizaa.neo4j.testfwk.internal.exporter.TestModelCreatorFunctions.createHierarchy;
 import static org.slizaa.neo4j.testfwk.internal.exporter.XmiUtils.save;
+import static org.slizaa.neo4j.testfwk.internal.exporter.mapping.GraphFactoryFunctions.createDependencies;
+import static org.slizaa.neo4j.testfwk.internal.exporter.mapping.GraphFactoryFunctions.createFirstLevelElements;
+import static org.slizaa.neo4j.testfwk.internal.exporter.mapping.GraphFactoryFunctions.createHierarchy;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +20,7 @@ import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
+import org.slizaa.neo4j.testfwk.internal.exporter.mapping.Neo4jResultJsonConverter;
 
 import com.google.gson.JsonObject;
 
@@ -55,10 +56,10 @@ public class TestModelCreator {
     remoteRepository.setBaseURI(baseUri);
 
     // create the root element
-    final HGRootNode rootElement = HierarchicalgraphFactory.eINSTANCE.createHGRootNode();
+    final HGRootNode rootNode = HierarchicalgraphFactory.eINSTANCE.createHGRootNode();
     DefaultNodeSource rootNodeSource = HierarchicalgraphFactory.eINSTANCE.createDefaultNodeSource();
     rootNodeSource.setIdentifier(-1l);
-    rootElement.setNodeSource(rootNodeSource);
+    rootNode.setNodeSource(rootNodeSource);
 
     // ***************************************************
     // create the node source creator function
@@ -109,16 +110,24 @@ public class TestModelCreator {
     Future<JsonObject> resultTypes = remoteRepository.executeCypherQuery(TYPES);
     Future<JsonObject> dependencies = remoteRepository.executeCypherQuery(DEPENDENCIES);
 
-    createFirstLevelElements(resultRoot.get().getAsJsonArray("data"), rootElement, createNodeSourceFunction);
-    createHierarchy(resultDirectories.get().getAsJsonArray("data"), rootElement, createNodeSourceFunction);
-    createHierarchy(resultFiles.get().getAsJsonArray("data"), rootElement, createNodeSourceFunction);
-    createHierarchy(resultTypes.get().getAsJsonArray("data"), rootElement, createNodeSourceFunction);
+    //
+    createFirstLevelElements(Neo4jResultJsonConverter.extractRootNodes(resultRoot.get()).toArray(new Long[0]), rootNode,
+        createNodeSourceFunction, null);
 
     //
-    createDependencies(dependencies.get().getAsJsonArray("data"), rootElement, createDependencySourceFunction);
+    createHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultDirectories.get()).toArray(new Long[0][0]),
+        rootNode, createNodeSourceFunction, null);
+    createHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultFiles.get()).toArray(new Long[0][0]), rootNode,
+        createNodeSourceFunction, null);
+    createHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultTypes.get()).toArray(new Long[0][0]), rootNode,
+        createNodeSourceFunction, null);
 
     //
-    save(fileName, rootElement);
+    createDependencies(Neo4jResultJsonConverter.extractNeo4jRelationships(dependencies.get()), rootNode,
+        createDependencySourceFunction, false, false, null);
+
+    //
+    save(fileName, rootNode);
   }
 
   /**
@@ -131,5 +140,6 @@ public class TestModelCreator {
   public static void main(String[] args) throws Exception {
     TestModelCreator.createTestModel(new File(System.getProperty("user.dir"), "test.hggraph").getAbsolutePath(),
         "http://localhost:7474");
+    System.out.println("DONE");
   }
 }
