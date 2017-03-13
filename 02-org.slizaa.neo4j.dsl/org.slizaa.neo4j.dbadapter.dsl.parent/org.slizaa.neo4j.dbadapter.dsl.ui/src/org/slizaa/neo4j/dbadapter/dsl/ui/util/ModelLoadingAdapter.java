@@ -13,7 +13,8 @@ import com.google.inject.Inject;
 
 /**
  * <p>
- * See: http://coopology.com/2011/06/easily-load-xtext-files-and-objects-in-eclipse-plugin-or-rcp-projects-using-adapters/
+ * See:
+ * http://coopology.com/2011/06/easily-load-xtext-files-and-objects-in-eclipse-plugin-or-rcp-projects-using-adapters/
  * </p>
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
@@ -33,8 +34,9 @@ public class ModelLoadingAdapter implements IAdapterFactory {
 
       if (adaptableObject instanceof IFile) {
         final IFile file = (IFile) adaptableObject;
-        if (!file.getFileExtension().toLowerCase().equals("dbdef"))
+        if (file.getFileExtension() == null || !file.getFileExtension().toLowerCase().equals("dbdef")) {
           return null;
+        }
 
         XtextResourceSet resourceSet = (XtextResourceSet) _resourceSetProvider.get(file.getProject());
         resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
