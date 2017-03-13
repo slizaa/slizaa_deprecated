@@ -211,6 +211,7 @@ public class DependencyTablePart {
 
     _viewer.setInput(dependencies);
     _viewer.setItemCount(dependencies.length); // This is the difference when using a ILazyContentProvider
-    _viewer.getTable().redraw();
+//    _viewer.getTable().redraw();
+    _viewer.refresh();
   }
 }
