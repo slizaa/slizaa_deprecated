@@ -29,14 +29,14 @@ import org.slizaa.ui.xref.XRefUtils;
 public class XRefPart {
 
   /** - */
+  @Inject
+  private MPerspective  _perspective;
+
+  /** - */
   private XRefComposite _composite;
 
   /** - */
   private HGRootNode    _rootNode;
-
-  /** - */
-  @Inject
-  private MPerspective  _perspective;
 
   /** - */
   private NodeSelection _filteredNodeSelection;
@@ -111,6 +111,15 @@ public class XRefPart {
     }
   }
 
+  /**
+   * <p>
+   * JUST FOR TESTING PURPOSE
+   * </p>
+   */
+  void setPerspective(MPerspective perspective) {
+    _perspective = perspective;
+  }
+  
   /**
    * <p>
    * </p>

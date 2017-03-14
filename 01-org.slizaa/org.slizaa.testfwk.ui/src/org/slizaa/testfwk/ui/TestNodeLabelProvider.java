@@ -1,4 +1,4 @@
-package org.slizaa.ui.dependencytable;
+package org.slizaa.testfwk.ui;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import org.slizaa.testfwk.HGNodeUtils;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class DummyProvider implements INodeLabelProvider {
+public class TestNodeLabelProvider implements INodeLabelProvider {
 
   /**
    * {@inheritDoc}

@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.slizaa.ui.dependencytable.test
-Bundle-SymbolicName: org.slizaa.ui.dependencytable.test
-Fragment-Host: org.slizaa.ui.dependencytable
+Bundle-Name: org.slizaa.ui.xref.test
+Bundle-SymbolicName: org.slizaa.ui.xref.test
+Fragment-Host: org.slizaa.ui.xref
 Bundle-Version: 0.0.4.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.swtbot.eclipse.core;bundle-version="2.5.0",
@@ -12,4 +12,5 @@ Require-Bundle: org.eclipse.swtbot.eclipse.core;bundle-version="2.5.0",
  org.junit;bundle-version="4.12.0",
  org.apache.log4j;bundle-version="1.2.15",
  org.slizaa.testfwk;bundle-version="0.0.4",
- org.slizaa.testfwk.ui;bundle-version="0.0.4"
+ org.slizaa.testfwk.ui;bundle-version="0.0.4",
+ org.mockito;bundle-version="1.9.5"

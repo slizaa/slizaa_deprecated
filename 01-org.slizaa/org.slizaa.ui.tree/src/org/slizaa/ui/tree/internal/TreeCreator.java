@@ -99,7 +99,7 @@ public class TreeCreator {
    * @return the content provider
    */
   protected static AdapterFactoryContentProvider getAdapterFactoryContentProvider() {
-    final ComposedAdapterFactory adapterFactory = Activator.getDefault().getComposedAdapterFactory();
+    final ComposedAdapterFactory adapterFactory = Activator.getComposedAdapterFactory();
     return new AdapterFactoryContentProvider(adapterFactory) {
 
       @Override

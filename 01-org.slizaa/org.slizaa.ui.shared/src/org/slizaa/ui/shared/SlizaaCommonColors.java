@@ -12,9 +12,9 @@ public class SlizaaCommonColors {
    * @return
    */
   public static Color getSashBackgroundColor() {
-    return Activator.getDefault().getSashBackgroundColor();
+    return Activator.getSashBackgroundColor();
   }
-  
+
   /**
    * <p>
    * </p>
@@ -22,6 +22,6 @@ public class SlizaaCommonColors {
    * @return
    */
   public static Color getScrollbarThumbColor() {
-    return Activator.getDefault().getScrollbarThumbColor();
+    return Activator.getScrollbarThumbColor();
   }
 }

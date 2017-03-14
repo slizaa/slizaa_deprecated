@@ -31,7 +31,7 @@ public class Activator extends AbstractUIPlugin {
   private ServiceTracker<IWorkbench, IWorkbench>                                         _workBenchServiceTracker;
 
   /** - */
-  private ComposedAdapterFactory                                                         _adapterFactory;
+  private static ComposedAdapterFactory                                                  _adapterFactory;
 
   /**
    * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
@@ -81,7 +81,7 @@ public class Activator extends AbstractUIPlugin {
    * 
    * @return
    */
-  public ISlizaaActionGroupContribution[]  getSlizaaActionGroupContributions() {
+  public ISlizaaActionGroupContribution[] getSlizaaActionGroupContributions() {
     return _slizaaActionGroupContribution.getServices(new ISlizaaActionGroupContribution[0]);
   }
 
@@ -109,7 +109,7 @@ public class Activator extends AbstractUIPlugin {
    *
    * @return the adapter factory
    */
-  public ComposedAdapterFactory getComposedAdapterFactory() {
+  public static ComposedAdapterFactory getComposedAdapterFactory() {
     if (_adapterFactory == null) {
       _adapterFactory = new ComposedAdapterFactory(new AdapterFactory[] { new ReflectiveItemProviderAdapterFactory(),
           new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE) });
