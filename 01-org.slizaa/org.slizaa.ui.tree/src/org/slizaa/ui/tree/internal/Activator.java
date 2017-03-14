@@ -22,6 +22,9 @@ public class Activator extends AbstractUIPlugin {
   private static Activator                                                               plugin;
 
   /** - */
+  private static ComposedAdapterFactory                                                  _adapterFactory;
+
+  /** - */
   private ServiceTracker<ISlizaaActionContribution, ISlizaaActionContribution>           _slizaaTreeActionTracker;
 
   /** - */
@@ -29,9 +32,6 @@ public class Activator extends AbstractUIPlugin {
 
   /** - */
   private ServiceTracker<IWorkbench, IWorkbench>                                         _workBenchServiceTracker;
-
-  /** - */
-  private static ComposedAdapterFactory                                                  _adapterFactory;
 
   /**
    * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
@@ -115,5 +115,9 @@ public class Activator extends AbstractUIPlugin {
           new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE) });
     }
     return _adapterFactory;
+  }
+  
+  public static void setComposedAdapterFactory(ComposedAdapterFactory composedAdapterFactory) {
+    _adapterFactory = composedAdapterFactory;
   }
 }

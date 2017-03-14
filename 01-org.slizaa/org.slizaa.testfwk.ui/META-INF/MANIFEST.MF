@@ -15,4 +15,6 @@ Require-Bundle: org.eclipse.swtbot.eclipse.core;bundle-version="2.5.0",
  org.slizaa.hierarchicalgraph;bundle-version="0.0.4",
  org.eclipse.emf.edit;bundle-version="2.12.0",
  org.mockito;bundle-version="1.9.5",
- org.objenesis;bundle-version="1.0.0"
+ org.objenesis;bundle-version="1.0.0",
+ org.slizaa.hierarchicalgraph.edit;bundle-version="0.0.4",
+ org.slizaa.ui.tree;bundle-version="0.0.4"

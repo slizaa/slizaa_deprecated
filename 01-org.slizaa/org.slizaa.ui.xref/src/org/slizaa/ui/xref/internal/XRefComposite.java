@@ -138,10 +138,8 @@ public class XRefComposite extends Composite {
     _rootNode = rootNode;
 
     // Set Tree Viewer input
-
     _fromTreeViewComposite.getTreeViewer().setInput(_rootNode != null ? new RootObject(_rootNode) : null);
     _centerTreeViewComposite.getTreeViewer().setInput(_rootNode != null ? new RootObject(_rootNode) : null);
-
     _toTreeViewComposite.getTreeViewer().setInput(_rootNode != null ? new RootObject(_rootNode) : null);
 
     // Make sure selected Artifacts are visible in Center Tree Viewer

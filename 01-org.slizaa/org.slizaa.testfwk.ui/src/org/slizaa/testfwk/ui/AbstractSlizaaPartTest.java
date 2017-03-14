@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -16,8 +18,10 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.provider.HierarchicalgraphItemProviderAdapterFactory;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.testfwk.AbstractXmiBasedTest;
+import org.slizaa.ui.tree.internal.Activator;
 
 @RunWith(SWTBotJunit4ClassRunner.class)
 public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest {
@@ -48,6 +52,12 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest {
     super.setup();
 
     MockitoAnnotations.initMocks(this);
+    
+    // manual add the adapter factory
+    ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory();
+    adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+    adapterFactory.addAdapterFactory(new HierarchicalgraphItemProviderAdapterFactory());
+    Activator.setComposedAdapterFactory(adapterFactory);
     
     _display = new Display();
     _shell = new Shell(_display);

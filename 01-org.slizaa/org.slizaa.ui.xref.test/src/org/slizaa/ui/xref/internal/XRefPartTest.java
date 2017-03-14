@@ -1,18 +1,24 @@
 package org.slizaa.ui.xref.internal;
 
+import static org.mockito.Mockito.when;
+
+import org.eclipse.e4.core.internal.contexts.EclipseContext;
 import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.slizaa.testfwk.ui.AbstractSlizaaPartTest;
 
+@SuppressWarnings("restriction")
 public class XRefPartTest extends AbstractSlizaaPartTest {
 
   /** - */
-  private XRefPart _part;
-  
+  private XRefPart       _part;
+
   @Mock
-  private MPerspective _perspective;
+  private MPerspective   _perspective;
+
+  private EclipseContext _eclipseContext;
 
   /**
    * {@inheritDoc}
@@ -23,12 +29,13 @@ public class XRefPartTest extends AbstractSlizaaPartTest {
     //
     _part = new XRefPart();
     _part.createComposite(shell());
-    
-    //
-    System.out.println(_perspective);
-    
+
     //
     _part.setPerspective(_perspective);
+
+    //
+    _eclipseContext = new EclipseContext(null);
+    when(_perspective.getContext()).thenReturn(_eclipseContext);
   }
 
   @Test

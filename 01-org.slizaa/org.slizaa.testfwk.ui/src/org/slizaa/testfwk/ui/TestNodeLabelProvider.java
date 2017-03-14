@@ -2,6 +2,7 @@ package org.slizaa.testfwk.ui;
 
 import java.util.List;
 
+import org.eclipse.emf.edit.provider.StyledString;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.testfwk.HGNodeUtils;
@@ -43,10 +44,10 @@ public class TestNodeLabelProvider implements INodeLabelProvider {
 
     //
     if (labels.contains("Type")) {
-      return HGNodeUtils.getProperties(hgNode).get("fqn");
+      return new StyledString(HGNodeUtils.getProperties(hgNode).get("fqn"));
     }
 
     //
-    return HGNodeUtils.getLabels((HGNode) object).toString();
+    return new StyledString(HGNodeUtils.getLabels((HGNode) object).toString());
   }
 }
