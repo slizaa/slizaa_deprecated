@@ -1,4 +1,4 @@
-package org.slizaa.ui.xref.internal;
+package org.slizaa.ui.xref.internal.osgi;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

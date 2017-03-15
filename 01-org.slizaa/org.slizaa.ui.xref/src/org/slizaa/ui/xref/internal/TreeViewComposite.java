@@ -29,21 +29,22 @@ public class TreeViewComposite {
    * Creates a new instance of type {@link TreeViewComposite}.
    * </p>
    *
+   * @param parent
    * @param interceptor
+   * @param expandStrategy
+   * @param hAlign horizontal alignment. One of SWT.BEGINNING, SWT.CENTER, SWT.END, or SWT.FILL.
    */
   public TreeViewComposite(Composite parent, DependencyResolvingTreeEventInterceptor interceptor,
-      IExpandStrategy expandStrategy) {
+      IExpandStrategy expandStrategy, int hAlign) {
 
+    //
     Composite composite = new Composite(parent, SWT.NONE);
-    GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).margins(0, 0).applyTo(composite);
+    GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(0, 0, 0, 0).margins(0, 0)
+        .applyTo(composite);
 
     //
     _toolBar = new ToolBar(composite, SWT.NONE);
-    GridDataFactory.fillDefaults().align(SWT.END, SWT.CENTER).grab(true, false).applyTo(_toolBar);
-
-    Image image = new Image(Display.getCurrent(), 16, 16);
-    ToolItem item = new ToolItem(_toolBar, SWT.PUSH);
-    item.setImage(image);
+    GridDataFactory.fillDefaults().align(hAlign, SWT.FILL).indent(0, 10).grab(true, false).applyTo(_toolBar);
 
     //
     _treeViewer = SlizaaTreeViewerFactory.createTreeViewer(composite, SWT.NO_BACKGROUND | SWT.MULTI, 2, interceptor);

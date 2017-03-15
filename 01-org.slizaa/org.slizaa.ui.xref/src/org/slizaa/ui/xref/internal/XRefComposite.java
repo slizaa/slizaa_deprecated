@@ -4,7 +4,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,17 +13,21 @@ import java.util.function.Supplier;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
@@ -86,6 +89,10 @@ public class XRefComposite extends Composite {
 
   /** - */
   private Set<HGNode>               _filteredNodes;
+
+  private ToolItem                  _setToSelectionToCenterToolItem;
+
+  private ToolItem                  _setFromSelectionToCenterToolItem;
 
   /**
    * <p>
@@ -236,8 +243,10 @@ public class XRefComposite extends Composite {
     _selectedBackReferences = null;
 
     //
-    _fromTreeViewComposite = new TreeViewComposite(sashForm, new DependencyResolvingTreeEventInterceptor(
-        (node) -> _incomingDependencySelector.getDependenciesForSourceNode(node)), new NullExpandStrategy());
+    _fromTreeViewComposite = new TreeViewComposite(sashForm,
+        new DependencyResolvingTreeEventInterceptor(
+            (node) -> _incomingDependencySelector.getDependenciesForSourceNode(node)),
+        new NullExpandStrategy(), SWT.END);
 
     _centerTreeViewComposite = new TreeViewComposite(sashForm, new DependencyResolvingTreeEventInterceptor((node) -> {
       Set<HGCoreDependency> result = new HashSet<>();
@@ -251,10 +260,12 @@ public class XRefComposite extends Composite {
       }
       return result;
     }), new DefaultExpandStrategy((node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(
-        Iterables.concat(node.getOutgoingCoreDependencies(), node.getIncomingCoreDependencies()))));
+        Iterables.concat(node.getOutgoingCoreDependencies(), node.getIncomingCoreDependencies()))), SWT.FILL);
 
-    _toTreeViewComposite = new TreeViewComposite(sashForm, new DependencyResolvingTreeEventInterceptor(
-        (node) -> _outgoingDependencySelector.getDependenciesForTargetNode(node)), new NullExpandStrategy());
+    _toTreeViewComposite = new TreeViewComposite(sashForm,
+        new DependencyResolvingTreeEventInterceptor(
+            (node) -> _outgoingDependencySelector.getDependenciesForTargetNode(node)),
+        new NullExpandStrategy(), SWT.BEGINNING);
 
     // filter 'grayed' items
     // _centerTreeViewComposite.getTreeViewer().setFilters(new VisibleNodesFilter(() -> {
@@ -265,6 +276,26 @@ public class XRefComposite extends Composite {
     _fromTreeViewComposite.getTreeViewer().setData("slizaa-id", "xref-from-treeviewer");
     _centerTreeViewComposite.getTreeViewer().setData("slizaa-id", "xref-center-treeviewer");
     _toTreeViewComposite.getTreeViewer().setData("slizaa-id", "xref-to-treeviewer");
+
+    _setFromSelectionToCenterToolItem = new ToolItem(_fromTreeViewComposite.getToolBar(), SWT.PUSH);
+    _setFromSelectionToCenterToolItem.setImage(XRefImages.SELECT_FROM_SELECTION.getImage());
+    _setFromSelectionToCenterToolItem.setDisabledImage(XRefImages.DISABLED_SELECT_FROM_SELECTION.getImage());
+    _setFromSelectionToCenterToolItem.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(final SelectionEvent e) {
+        ISelection selection = _fromTreeViewComposite.getTreeViewer().getSelection();
+        _centerTreeViewComposite.getTreeViewer().setSelection(selection);
+      }
+    });
+
+    _setToSelectionToCenterToolItem = new ToolItem(_toTreeViewComposite.getToolBar(), SWT.PUSH);
+    _setToSelectionToCenterToolItem.setImage(XRefImages.SELECT_TO_SELECTION.getImage());
+    _setToSelectionToCenterToolItem.setDisabledImage(XRefImages.DISABLED_SELECT_TO_SELECTION.getImage());
+    _setToSelectionToCenterToolItem.addSelectionListener(new SelectionAdapter() {
+      public void widgetSelected(final SelectionEvent e) {
+        ISelection selection = _toTreeViewComposite.getTreeViewer().getSelection();
+        _centerTreeViewComposite.getTreeViewer().setSelection(selection);
+      }
+    });
 
     //
     _outgoingDependencySelector.addPropertyChangeListener(new PropertyChangeListener() {
@@ -389,6 +420,8 @@ public class XRefComposite extends Composite {
       // reset selections in from and to viewer
       _fromTreeViewComposite.getTreeViewer().setSelection(new StructuredSelection());
       _toTreeViewComposite.getTreeViewer().setSelection(new StructuredSelection());
+      _setFromSelectionToCenterToolItem.setEnabled(false);
+      _setToSelectionToCenterToolItem.setEnabled(false);
 
       // store the top item
       TreeItem toTreeTopItem = _toTreeViewComposite.getTreeViewer().getTree().getTopItem();
@@ -454,8 +487,12 @@ public class XRefComposite extends Composite {
 
       //
       if (structuredSelection.isEmpty()) {
+        _setFromSelectionToCenterToolItem.setEnabled(false);
         return;
       }
+
+      //
+      _setFromSelectionToCenterToolItem.setEnabled(true);
 
       // Reset Selection in 'to' Viewer
       _toTreeViewComposite.getTreeViewer().setSelection(new StructuredSelection());
@@ -494,8 +531,12 @@ public class XRefComposite extends Composite {
 
       //
       if (structuredSelection.isEmpty()) {
+        _setToSelectionToCenterToolItem.setEnabled(false);
         return;
       }
+
+      //
+      _setToSelectionToCenterToolItem.setEnabled(true);
 
       // Reset Selection in 'from' Viewer
       _fromTreeViewComposite.getTreeViewer().setSelection(new StructuredSelection());
