@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.e4.core.contexts.EclipseContextFactory;
+import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.swt.graphics.Image;
@@ -23,7 +25,7 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.provider.HierarchicalgraphItemProviderAdapterFactory;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.testfwk.AbstractXmiBasedTest;
-import org.slizaa.ui.tree.internal.Activator;
+import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -33,15 +35,21 @@ import com.google.common.cache.LoadingCache;
 public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest implements IImageProvider {
 
   /** - */
-  private Shell                       _shell;
+  private Shell                             _shell;
 
   /** - */
-  private Display                     _display;
+  private Display                           _display;
 
   /** - */
-  private SWTBot                      _swtbot;
+  private SWTBot                            _swtbot;
 
-  private LoadingCache<String, Image> _imageCache;
+  /** - */
+  private IEclipseContext                   _eclipseContext;
+
+  private DefaultActionContributionProvider _defaultActionContributionProvider;
+
+  /** - */
+  private LoadingCache<String, Image>       _imageCache;
 
   /**
    * <p>
@@ -61,11 +69,15 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest implem
 
     MockitoAnnotations.initMocks(this);
 
+    _eclipseContext = EclipseContextFactory.create();
+    _defaultActionContributionProvider = new DefaultActionContributionProvider();
+
     // manual add the adapter factory
-    ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory();
-    adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new HierarchicalgraphItemProviderAdapterFactory());
-    Activator.setComposedAdapterFactory(adapterFactory);
+    ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory();
+    composedAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+    composedAdapterFactory.addAdapterFactory(new HierarchicalgraphItemProviderAdapterFactory());
+    SlizaaTreeViewerFactory.setSlizaaTreeViewerCreator(_defaultActionContributionProvider, composedAdapterFactory,
+        () -> _eclipseContext);
 
     //
     _display = new Display();
@@ -108,7 +120,7 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest implem
    * </p>
    */
   protected void onPrepareRootNode(HGRootNode rootNode) {
-    rootNode.registerExtension(INodeLabelProvider.class, new TestNodeLabelProvider(this));
+    rootNode.registerExtension(INodeLabelProvider.class, new DefaultNodeLabelProvider(this));
   }
 
   /**
@@ -131,6 +143,26 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest implem
 
     // dispose display
     _display.dispose();
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public final IEclipseContext eclipseContext() {
+    return _eclipseContext;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public final DefaultActionContributionProvider defaultActionContributionProvider() {
+    return _defaultActionContributionProvider;
   }
 
   /**

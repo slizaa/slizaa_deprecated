@@ -1,5 +1,7 @@
 package org.slizaa.ui.xref.internal;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +27,24 @@ public class StructuredSelectionUtils {
   @SuppressWarnings("unchecked")
   static List<HGCoreDependency> selectedIncomingCoreDependencies(IStructuredSelection structuredSelection) {
     return (List<HGCoreDependency>) structuredSelection.toList().stream().filter((e) -> e instanceof HGNode)
+        .flatMap((node) -> ((HGNode) node).getAccumulatedIncomingCoreDependencies().stream())
+        .collect(Collectors.toList());
+  }
+
+  @SuppressWarnings("unchecked")
+  static List<HGNode> selectedNodes(List<?> selectedElements) {
+    return (List<HGNode>) checkNotNull(selectedElements).stream().filter((e) -> e instanceof HGNode)
+        .collect(Collectors.toList());
+  }
+
+  static List<HGCoreDependency> selectedOutGoingCoreDependencies(List<?> selectedElements) {
+    return (List<HGCoreDependency>) checkNotNull(selectedElements).stream().filter((e) -> e instanceof HGNode)
+        .flatMap((node) -> ((HGNode) node).getAccumulatedOutgoingCoreDependencies().stream())
+        .collect(Collectors.toList());
+  }
+
+  static List<HGCoreDependency> selectedIncomingCoreDependencies(List<?> selectedElements) {
+    return (List<HGCoreDependency>) checkNotNull(selectedElements).stream().filter((e) -> e instanceof HGNode)
         .flatMap((node) -> ((HGNode) node).getAccumulatedIncomingCoreDependencies().stream())
         .collect(Collectors.toList());
   }

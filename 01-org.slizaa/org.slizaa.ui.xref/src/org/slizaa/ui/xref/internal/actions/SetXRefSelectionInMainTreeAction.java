@@ -14,10 +14,10 @@ import org.slizaa.ui.tree.ISlizaaActionContribution;
 @Component(service = ISlizaaActionContribution.class)
 public class SetXRefSelectionInMainTreeAction implements ISlizaaActionContribution {
 
-  @Inject
-  @Active
-  @Optional
-  private MPart _part;
+//  @Inject
+//  @Active
+//  @Optional
+//  private MPart _part;
 
   @Override
   public String getParentGroupId() {
@@ -51,7 +51,7 @@ public class SetXRefSelectionInMainTreeAction implements ISlizaaActionContributi
    */
   @Override
   public void execute(List<?> selection, Viewer viewer) {
-    System.out.println(_part.getObject());
+    System.out.println("BUMM");
   }
 
   /**

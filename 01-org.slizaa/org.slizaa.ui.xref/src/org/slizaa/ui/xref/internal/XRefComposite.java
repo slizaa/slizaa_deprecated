@@ -85,10 +85,10 @@ public class XRefComposite extends Composite {
   private DefaultDependencySelector _incomingDependencySelector;
 
   /** - */
-  private SourceOrTarget            _selectedBackReferences;
+  private Set<HGNode>               _filteredNodes;
 
   /** - */
-  private Set<HGNode>               _filteredNodes;
+  private SourceOrTarget            _selectedBackReferences;
 
   private ToolItem                  _setToSelectionToCenterToolItem;
 
@@ -125,7 +125,13 @@ public class XRefComposite extends Composite {
     }
     //
     else {
+      
+      //
       _filteredNodes = NodeSelections.computeNodesWithParents(filteredNodes, includeChildren);
+
+      //
+      _outgoingDependencySelector.setDependencies(getSelectedOutGoingCoreDependenciesIfNotRoot(filteredNodes));
+      _incomingDependencySelector.setDependencies(getSelectedIncomingCoreDependenciesIfNotRoot(filteredNodes));
     }
   }
 
@@ -365,17 +371,15 @@ public class XRefComposite extends Composite {
    * @param structuredSelection
    * @return
    */
-  private List<HGCoreDependency> getSelectedIncomingCoreDependenciesIfNotRoot(
-      IStructuredSelection structuredSelection) {
+  private List<HGCoreDependency> getSelectedIncomingCoreDependenciesIfNotRoot(List<?> elements) {
 
     //
-    if (structuredSelection.size() == 1
-        && _rootNode.equals(StructuredSelectionUtils.selectedNodes(structuredSelection).get(0))) {
+    if (elements.size() == 1 && _rootNode.equals(StructuredSelectionUtils.selectedNodes(elements).get(0))) {
       return Collections.emptyList();
     }
 
     //
-    return StructuredSelectionUtils.selectedIncomingCoreDependencies(structuredSelection);
+    return StructuredSelectionUtils.selectedIncomingCoreDependencies(elements);
   }
 
   /**
@@ -385,16 +389,15 @@ public class XRefComposite extends Composite {
    * @param structuredSelection
    * @return
    */
-  private List<HGCoreDependency> getSelectedOutGoingCoreDependenciesIfNotRoot(
-      IStructuredSelection structuredSelection) {
+  private List<HGCoreDependency> getSelectedOutGoingCoreDependenciesIfNotRoot(List<?> elements) {
 
     //
-    if (structuredSelection.size() == 1
-        && _rootNode.equals(StructuredSelectionUtils.selectedNodes(structuredSelection).get(0))) {
+    if (elements.size() == 1 && _rootNode.equals(StructuredSelectionUtils.selectedNodes(elements).get(0))) {
       return Collections.emptyList();
     }
 
-    return StructuredSelectionUtils.selectedOutGoingCoreDependencies(structuredSelection);
+    //
+    return StructuredSelectionUtils.selectedOutGoingCoreDependencies(elements);
   }
 
   /**
@@ -428,8 +431,8 @@ public class XRefComposite extends Composite {
       TreeItem fromTreeTopItem = _fromTreeViewComposite.getTreeViewer().getTree().getTopItem();
 
       //
-      _outgoingDependencySelector.setDependencies(getSelectedOutGoingCoreDependenciesIfNotRoot(structuredSelection));
-      _incomingDependencySelector.setDependencies(getSelectedIncomingCoreDependenciesIfNotRoot(structuredSelection));
+      _outgoingDependencySelector.setDependencies(getSelectedOutGoingCoreDependenciesIfNotRoot(structuredSelection.toList()));
+      _incomingDependencySelector.setDependencies(getSelectedIncomingCoreDependenciesIfNotRoot(structuredSelection.toList()));
 
       // don't highlight anything
       _selectedBackReferences = null;

@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.slizaa.testfwk.ui.AbstractSlizaaPartTest;
+import org.slizaa.ui.xref.internal.actions.SetXRefSelectionInMainTreeAction;
 
 @SuppressWarnings("restriction")
 public class XRefPartTest extends AbstractSlizaaPartTest {
@@ -36,8 +37,15 @@ public class XRefPartTest extends AbstractSlizaaPartTest {
     //
     _eclipseContext = new EclipseContext(null);
     when(_perspective.getContext()).thenReturn(_eclipseContext);
+
+    //
+    defaultActionContributionProvider().actions().add(new SetXRefSelectionInMainTreeAction());
   }
 
+  /**
+   * <p>
+   * </p>
+   */
   @Test
   public void test() {
 

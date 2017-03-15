@@ -1,4 +1,4 @@
-package org.slizaa.ui.tree.internal.menu;
+package org.slizaa.ui.tree.internal;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

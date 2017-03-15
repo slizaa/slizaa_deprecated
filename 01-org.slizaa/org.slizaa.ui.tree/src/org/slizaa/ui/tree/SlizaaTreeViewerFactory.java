@@ -1,11 +1,19 @@
 package org.slizaa.ui.tree;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+
+import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.ui.tree.interceptors.ITreeEventInterceptor;
-import org.slizaa.ui.tree.internal.TreeCreator;
+import org.slizaa.ui.tree.internal.SlizaaTreeViewerCreator;
+import org.slizaa.ui.tree.internal.osgi.Activator;
+
+import com.google.common.base.Supplier;
 
 /**
  * <p>
@@ -14,6 +22,25 @@ import org.slizaa.ui.tree.internal.TreeCreator;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public class SlizaaTreeViewerFactory {
+
+  /** - */
+  private static SlizaaTreeViewerCreator _creator;
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param composedAdapterFactory
+   */
+  public static void setSlizaaTreeViewerCreator(ISlizaaActionContributionProvider slizaaActionContributionProvider,
+      ComposedAdapterFactory adapterFactory, Supplier<IEclipseContext> contextSupplier) {
+
+    checkState(_creator == null);
+
+    //
+    _creator = new SlizaaTreeViewerCreator(checkNotNull(slizaaActionContributionProvider), checkNotNull(adapterFactory),
+        checkNotNull(contextSupplier));
+  }
 
   /**
    * <p>
@@ -24,7 +51,7 @@ public class SlizaaTreeViewerFactory {
    * @return
    */
   public static CheckboxTreeViewer createCheckboxTreeViewer(Composite parent, int style) {
-    return TreeCreator.createCheckboxTreeViewer(parent, style);
+    return slizaaTreeViewerCreator().createCheckboxTreeViewer(parent, style);
   }
 
   /**
@@ -60,11 +87,30 @@ public class SlizaaTreeViewerFactory {
    * @param input
    * @param style
    * @param autoExpandLevel
-   * @param eventInterceptor
    * @return
    */
   public static TreeViewer createTreeViewer(Composite parent, int style, int autoExpandLevel,
       ITreeEventInterceptor eventInterceptor) {
-    return TreeCreator.createTreeViewer(parent, style, autoExpandLevel, eventInterceptor);
+    return slizaaTreeViewerCreator().createTreeViewer(parent, style, autoExpandLevel, eventInterceptor);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  private static SlizaaTreeViewerCreator slizaaTreeViewerCreator() {
+
+    //
+    if (_creator == null) {
+
+      // create the default OSGi based creator
+      _creator = new SlizaaTreeViewerCreator(Activator.getDefault().getSlizaaActionContributionProvider(),
+          Activator.getDefault().getComposedAdapterFactory(), () -> Activator.getDefault().getEclipseContext());
+    }
+
+    //
+    return _creator;
   }
 }

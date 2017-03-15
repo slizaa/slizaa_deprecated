@@ -15,18 +15,18 @@ import org.slizaa.testfwk.HGNodeUtils;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class TestNodeLabelProvider implements INodeLabelProvider {
+public class DefaultNodeLabelProvider implements INodeLabelProvider {
 
   private final IImageProvider _imageProvider;
 
   /**
    * <p>
-   * Creates a new instance of type {@link TestNodeLabelProvider}.
+   * Creates a new instance of type {@link DefaultNodeLabelProvider}.
    * </p>
    *
    * @param imageProvider
    */
-  public TestNodeLabelProvider(IImageProvider imageProvider) {
+  public DefaultNodeLabelProvider(IImageProvider imageProvider) {
     _imageProvider = checkNotNull(imageProvider);
   }
 
