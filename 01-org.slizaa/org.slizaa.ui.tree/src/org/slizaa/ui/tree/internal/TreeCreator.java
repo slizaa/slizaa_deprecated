@@ -32,7 +32,7 @@ public class TreeCreator {
     
     // https://www.eclipse.org/forums/index.php/t/1082215/
     treeViewer.setLabelProvider(
-        new InterceptableAdapterFactoryLabelProvider(Activator.getDefault().getComposedAdapterFactory(), treeViewer));
+        new InterceptableAdapterFactoryLabelProvider(Activator.getComposedAdapterFactory(), treeViewer));
 
     // set the layout data
     treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -99,7 +99,7 @@ public class TreeCreator {
    * @return the content provider
    */
   protected static AdapterFactoryContentProvider getAdapterFactoryContentProvider() {
-    final ComposedAdapterFactory adapterFactory = Activator.getDefault().getComposedAdapterFactory();
+    final ComposedAdapterFactory adapterFactory = Activator.getComposedAdapterFactory();
     return new AdapterFactoryContentProvider(adapterFactory) {
 
       @Override

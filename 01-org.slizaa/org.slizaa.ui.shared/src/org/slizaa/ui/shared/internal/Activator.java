@@ -27,10 +27,10 @@ public class Activator extends AbstractUIPlugin {
   private static Activator   plugin;
 
   /** - */
-  private Color              _sashBackgroundColor;
+  private static Color              _sashBackgroundColor;
 
   /** - */
-  private Color              _scrollbarThumbColor;
+  private static Color              _scrollbarThumbColor;
 
   /**
    * The constructor
@@ -69,7 +69,7 @@ public class Activator extends AbstractUIPlugin {
    *
    * @return
    */
-  public Color getSashBackgroundColor() {
+  public static Color getSashBackgroundColor() {
     if (_sashBackgroundColor == null) {
       _sashBackgroundColor = new Color(Display.getCurrent(), 181, 197, 212);
     }
@@ -82,7 +82,7 @@ public class Activator extends AbstractUIPlugin {
    *
    * @return
    */
-  public Color getScrollbarThumbColor() {
+  public static Color getScrollbarThumbColor() {
     if (_scrollbarThumbColor == null) {
       _scrollbarThumbColor = new Color(Display.getCurrent(), 100, 138, 175);
     }

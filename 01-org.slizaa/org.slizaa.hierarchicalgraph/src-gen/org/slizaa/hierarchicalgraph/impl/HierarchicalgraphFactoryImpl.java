@@ -4,18 +4,25 @@ package org.slizaa.hierarchicalgraph.impl;
 
 import java.util.List;
 import java.util.Map;
-
 import java.util.Optional;
 import java.util.concurrent.Future;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.slizaa.hierarchicalgraph.*;
+import org.slizaa.hierarchicalgraph.DefaultDependencySource;
+import org.slizaa.hierarchicalgraph.DefaultNodeSource;
+import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
+import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
+import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
+import org.slizaa.hierarchicalgraph.SourceOrTarget;
 
 /**
  * <!-- begin-user-doc -->
@@ -139,10 +146,10 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public DefaultNodeSource createDefaultNodeSource() {
-    DefaultNodeSourceImpl defaultNodeSource = new DefaultNodeSourceImpl();
+    DefaultNodeSourceImpl defaultNodeSource = new ExtendedDefaultNodeSourceImpl();
     return defaultNodeSource;
   }
 
