@@ -49,7 +49,7 @@ public class HGNodeUtils {
     //
     if (props.containsKey("labels")) {
       String arrayString = props.get("labels");
-      arrayString = arrayString.substring(1, arrayString.length() - 2);
+      arrayString = arrayString.substring(1, arrayString.length() - 1);
       return Arrays.asList(arrayString.split("\\s*,\\s*"));
     }
 

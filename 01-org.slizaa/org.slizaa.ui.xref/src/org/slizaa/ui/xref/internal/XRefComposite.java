@@ -158,7 +158,7 @@ public class XRefComposite extends Composite {
           .setComparator(new NodeComparator2ViewerComparatorAdapter(_rootNode.getExtension(INodeComparator.class)));
     }
 
-    //
+    // TODO
     _centerTreeViewComposite.getTreeViewer().setFilters(new VisibleNodesFilter(() -> _filteredNodes, true));
 
     // set focus to center tree viewer
@@ -200,11 +200,11 @@ public class XRefComposite extends Composite {
           //
           ContextHelper.setDependenciesInContext(_eclipseContextSupplier.get(),
               SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
-          
+
           //
           ContextHelper.setDependenciesInContext(_eclipseContextSupplier.get(),
               SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION, dependencies);
-          
+
         } finally {
           XRefComposite.this.setCursor(null);
         }
@@ -256,7 +256,12 @@ public class XRefComposite extends Composite {
     _toTreeViewComposite = new TreeViewComposite(sashForm, new DependencyResolvingTreeEventInterceptor(
         (node) -> _outgoingDependencySelector.getDependenciesForTargetNode(node)), new NullExpandStrategy());
 
-    //
+    // filter 'grayed' items
+    // _centerTreeViewComposite.getTreeViewer().setFilters(new VisibleNodesFilter(() -> {
+    // return _outgoingDependencySelector.getNodesWithParents(NodeType.SOURCE, true);
+    // }, true));
+
+    // the slizaa-id is used for actions and testing
     _fromTreeViewComposite.getTreeViewer().setData("slizaa-id", "xref-from-treeviewer");
     _centerTreeViewComposite.getTreeViewer().setData("slizaa-id", "xref-center-treeviewer");
     _toTreeViewComposite.getTreeViewer().setData("slizaa-id", "xref-to-treeviewer");

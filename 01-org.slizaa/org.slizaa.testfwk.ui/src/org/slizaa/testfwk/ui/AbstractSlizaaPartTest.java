@@ -1,12 +1,14 @@
 package org.slizaa.testfwk.ui;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -23,17 +25,23 @@ import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.testfwk.AbstractXmiBasedTest;
 import org.slizaa.ui.tree.internal.Activator;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+
 @RunWith(SWTBotJunit4ClassRunner.class)
-public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest {
+public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest implements IImageProvider {
 
   /** - */
-  private Shell   _shell;
+  private Shell                       _shell;
 
   /** - */
-  private Display _display;
+  private Display                     _display;
 
   /** - */
-  private SWTBot  _swtbot;
+  private SWTBot                      _swtbot;
+
+  private LoadingCache<String, Image> _imageCache;
 
   /**
    * <p>
@@ -52,24 +60,42 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest {
     super.setup();
 
     MockitoAnnotations.initMocks(this);
-    
+
     // manual add the adapter factory
     ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory();
     adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new HierarchicalgraphItemProviderAdapterFactory());
     Activator.setComposedAdapterFactory(adapterFactory);
-    
+
+    //
     _display = new Display();
     _shell = new Shell(_display);
     _shell.setLayout(new FillLayout());
     _shell.setSize(800, 400);
 
     //
+    _imageCache = CacheBuilder.newBuilder().build(new CacheLoader<String, Image>() {
+      public Image load(String key) {
+        try {
+          try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(key)) {
+            if (inputStream != null) {
+              return new Image(_display, inputStream);
+            } else {
+              throw new RuntimeException(String.format("No image for path '%s'.", key));
+            }
+          }
+        } catch (Exception e) {
+          throw new RuntimeException(e);
+        }
+      }
+    });
+
+    //
     onPrepareRootNode(rootNode());
 
     //
     onSetup(_shell);
-    
+
     //
     shell().open();
 
@@ -82,7 +108,7 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest {
    * </p>
    */
   protected void onPrepareRootNode(HGRootNode rootNode) {
-    rootNode.registerExtension(INodeLabelProvider.class, new TestNodeLabelProvider());    
+    rootNode.registerExtension(INodeLabelProvider.class, new TestNodeLabelProvider(this));
   }
 
   /**
@@ -97,6 +123,13 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest {
    */
   @After
   public final void dispose() throws IOException {
+
+    // dispose images
+    _imageCache.asMap().values().forEach(image -> image.dispose());
+    _imageCache.invalidateAll();
+    _imageCache = null;
+
+    // dispose display
     _display.dispose();
   }
 
@@ -124,14 +157,19 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest {
     return _display;
   }
 
+  public final Image getImage(String path) {
+    return _imageCache.getUnchecked(path);
+  }
+
   /**
    * <p>
    * </p>
    */
-  public final Set<AbstractHGDependency> toAbstractHGDependencySet(Collection<? extends AbstractHGDependency> collection) {
+  public final Set<AbstractHGDependency> toAbstractHGDependencySet(
+      Collection<? extends AbstractHGDependency> collection) {
     return new HashSet<>(collection);
   }
-  
+
   /**
    * <p>
    * </p>
