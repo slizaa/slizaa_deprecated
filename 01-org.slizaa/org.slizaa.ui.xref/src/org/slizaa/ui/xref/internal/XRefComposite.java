@@ -290,6 +290,7 @@ public class XRefComposite extends Composite {
       public void widgetSelected(final SelectionEvent e) {
         ISelection selection = _fromTreeViewComposite.getTreeViewer().getSelection();
         _centerTreeViewComposite.getTreeViewer().setSelection(selection);
+        _centerTreeViewComposite.getTreeViewer().getTree().setFocus();
       }
     });
 
@@ -300,6 +301,7 @@ public class XRefComposite extends Composite {
       public void widgetSelected(final SelectionEvent e) {
         ISelection selection = _toTreeViewComposite.getTreeViewer().getSelection();
         _centerTreeViewComposite.getTreeViewer().setSelection(selection);
+        _centerTreeViewComposite.getTreeViewer().getTree().setFocus();
       }
     });
 
