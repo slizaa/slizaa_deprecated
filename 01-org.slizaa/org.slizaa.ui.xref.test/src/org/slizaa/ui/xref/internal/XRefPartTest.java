@@ -7,11 +7,11 @@ import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.slizaa.testfwk.ui.AbstractSlizaaPartTest;
+import org.slizaa.testfwk.ui.AbstractXmiBasedSlizaaPartTest;
 import org.slizaa.ui.xref.internal.actions.SetXRefSelectionInMainTreeAction;
 
 @SuppressWarnings("restriction")
-public class XRefPartTest extends AbstractSlizaaPartTest {
+public class XRefPartTest extends AbstractXmiBasedSlizaaPartTest {
 
   /** - */
   private XRefPart       _part;

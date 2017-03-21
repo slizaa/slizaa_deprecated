@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.slizaa.neo4j.hierarchicalgraph.ui/src-gen"
+    editDirectory="/org.slizaa.neo4j.hierarchicalgraph.ui.edit/src-gen" modelPluginID="org.slizaa.neo4j.hierarchicalgraph.ui"
+    modelName="Hierarchicalgraph-ui" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../org.slizaa.neo4j.hierarchicalgraph.mapping.dsl/model/generated/MappingDsl.genmodel#//mappingDsl"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>hierarchicalgraph-ui.ecore</foreignModel>
+  <genPackages prefix="HierarchicalGraphUI" basePackage="org.slizaa.neo4j.hierarchicalgraph"
+      disposableProviderFactory="true" ecorePackage="hierarchicalgraph-ui.ecore#/">
+    <genClasses image="false" ecoreClass="hierarchicalgraph-ui.ecore#//ISlizaaMappingDescription">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hierarchicalgraph-ui.ecore#//ISlizaaMappingDescription/mappingDescriptor"/>
+      <genOperations ecoreOperation="hierarchicalgraph-ui.ecore#//ISlizaaMappingDescription/resolveImage">
+        <genParameters ecoreParameter="hierarchicalgraph-ui.ecore#//ISlizaaMappingDescription/resolveImage/relativeImagePath"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

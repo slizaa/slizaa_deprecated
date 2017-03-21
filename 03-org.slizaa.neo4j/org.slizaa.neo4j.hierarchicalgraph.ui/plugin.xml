@@ -19,4 +19,12 @@
       </factory>
 	</extension>	
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated hierarchicalgraph-ui -->
+      <package
+            uri="http://org/slizaa/neo4j/hierarchicalgraph/ui"
+            class="org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage"
+            genModel="model/hierarchicalgraph-ui.genmodel"/>
+   </extension>
+
 </plugin>

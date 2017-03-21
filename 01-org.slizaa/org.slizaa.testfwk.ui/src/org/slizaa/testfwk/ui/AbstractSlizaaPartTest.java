@@ -2,9 +2,6 @@ package org.slizaa.testfwk.ui;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.eclipse.e4.core.contexts.EclipseContextFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
@@ -20,11 +17,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
-import org.slizaa.hierarchicalgraph.AbstractHGDependency;
-import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.provider.HierarchicalgraphItemProviderAdapterFactory;
-import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
-import org.slizaa.testfwk.AbstractXmiBasedTest;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
 
 import com.google.common.cache.CacheBuilder;
@@ -32,7 +25,7 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
 @RunWith(SWTBotJunit4ClassRunner.class)
-public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest implements IImageProvider {
+public abstract class AbstractSlizaaPartTest implements IImageProvider {
 
   /** - */
   private Shell                             _shell;
@@ -46,26 +39,17 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest implem
   /** - */
   private IEclipseContext                   _eclipseContext;
 
+  /** - */
   private DefaultActionContributionProvider _defaultActionContributionProvider;
 
   /** - */
   private LoadingCache<String, Image>       _imageCache;
 
   /**
-   * <p>
-   * Creates a new instance of type {@link ${enclosing_type}}.
-   * </p>
-   */
-  public AbstractSlizaaPartTest() {
-    super("eureka_1-4-10.hggraph");
-  }
-
-  /**
    * {@inheritDoc}
    */
   @Before
-  public final void setup() throws IOException {
-    super.setup();
+  public void setup() throws IOException {
 
     MockitoAnnotations.initMocks(this);
 
@@ -103,9 +87,6 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest implem
     });
 
     //
-    onPrepareRootNode(rootNode());
-
-    //
     onSetup(_shell);
 
     //
@@ -119,15 +100,9 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest implem
    * <p>
    * </p>
    */
-  protected void onPrepareRootNode(HGRootNode rootNode) {
-    rootNode.registerExtension(INodeLabelProvider.class, new DefaultNodeLabelProvider(this));
+  protected void onSetup(Shell shell) {
+    //
   }
-
-  /**
-   * <p>
-   * </p>
-   */
-  protected abstract void onSetup(Shell shell);
 
   /**
    * <p>
@@ -189,17 +164,11 @@ public abstract class AbstractSlizaaPartTest extends AbstractXmiBasedTest implem
     return _display;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public final Image getImage(String path) {
     return _imageCache.getUnchecked(path);
-  }
-
-  /**
-   * <p>
-   * </p>
-   */
-  public final Set<AbstractHGDependency> toAbstractHGDependencySet(
-      Collection<? extends AbstractHGDependency> collection) {
-    return new HashSet<>(collection);
   }
 
   /**

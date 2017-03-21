@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ui" nsURI="http://org/slizaa/neo4j/hierarchicalgraph/ui" nsPrefix="org.slizaa.neo4j.hierarchicalgraph.ui">
+  <eClassifiers xsi:type="ecore:EClass" name="ISlizaaMappingDescription" abstract="true"
+      interface="true">
+    <eOperations name="resolveImage">
+      <eParameters name="relativeImagePath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappingDescriptor" eType="ecore:EClass ../../org.slizaa.neo4j.hierarchicalgraph.mapping.dsl/model/generated/MappingDsl.ecore#//MappingDescriptor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BundleBasedMappingDescriptor" eSuperTypes="#//ISlizaaMappingDescription">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bundleSymbolicName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basePath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkspaceBasedMappingDescriptor" eSuperTypes="#//ISlizaaMappingDescription">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basePath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MappingDescriptorContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bundleBasedMappingDescriptors"
+        upperBound="-1" eType="#//BundleBasedMappingDescriptor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workspaceBasedMappingDescriptors"
+        upperBound="-1" eType="#//WorkspaceBasedMappingDescriptor"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -7,9 +7,9 @@ import org.eclipse.swtbot.swt.finder.waits.Conditions;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTable;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
-import org.slizaa.testfwk.ui.AbstractSlizaaPartTest;
+import org.slizaa.testfwk.ui.AbstractXmiBasedSlizaaPartTest;
 
-public class DependencyTableTest extends AbstractSlizaaPartTest {
+public class DependencyTableTest extends AbstractXmiBasedSlizaaPartTest {
 
   /** - */
   private DependencyTablePart _part;
