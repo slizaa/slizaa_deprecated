@@ -1,0 +1,96 @@
+mapping org.slizza.jqassistant.java.SimpleFlatPackagesMapping {
+	
+	name "Simplified Java Model (flat Packages)"
+	description "Simplified Java Model (flat Packages)"
+	
+	//
+	structure {
+
+		//
+		topLevelNodeQueries {
+
+			// top level 'modules' (jars and/or directories)
+			"MATCH (module:Java:Artifact) 
+			 WHERE (module:Directory OR module:Jar:Archive) 
+			 RETURN id(module)"
+		}
+
+		//
+		nodeHierarchyQueries {
+			
+			//  flat directories
+			"MATCH (module:Java:Artifact)-[:CONTAINS]->(d:Directory)-[:CONTAINS]->(f:File) 
+             WHERE (module:Directory OR module:Jar:Archive)  AND NOT (f:Directory) 
+             RETURN DISTINCT id(module), id(d)",
+             
+			// top level files (no types!)
+			"MATCH (d:Directory)-[:CONTAINS]->(f:File) 
+             WHERE NOT (f:Type) AND NOT (f:Directory)
+			 RETURN id(d), id(f)",
+             
+            // java types
+            "MATCH (d:Directory)-[:CONTAINS]->(t:Type) 
+			 RETURN id(d), id(t)"
+		}
+		
+		//
+		dependencyQueries {
+			"MATCH (t1:File:Type:Java)-[r:DEPENDS_ON]->(t2:File:Type:Java) 
+			 RETURN id(t1),id(t2),id(r),type(r)"
+		}
+	}
+	
+	//
+	visualization {
+		
+		node hasLabel("Artifact") {
+			textLabel propertyValue("fileName")
+			baseImage "icons/jar_obj.png"
+		}
+		
+		node hasLabel("Package") {
+			textLabel propertyValue("fqn")
+			baseImage "icons/package_obj.png"
+		}
+		
+		node hasLabel("Method") {
+			textLabel propertyValue("signature")
+			baseImage "icons/methdef_obj.png"
+		}
+		
+		node hasLabel("Field") {
+			textLabel propertyValue("name")
+			baseImage "icons/field_default_obj.png"			
+		}		
+
+		node hasLabel("Class") {
+			textLabel propertyValue("name")
+			baseImage "icons/class_obj.png"			
+		}	
+		
+		node hasLabel("Annotation") {
+			textLabel propertyValue("name")
+			baseImage "icons/annotation_obj.png"			
+		}
+		
+		node hasLabel("Enum") {
+			textLabel propertyValue("name")
+			baseImage "icons/enum_obj.png"			
+		}
+		
+		node hasLabel("Interface") {
+			textLabel propertyValue("name")
+			baseImage "icons/int_obj.png"			
+		}
+		
+		node hasLabel("Directory") {
+			textLabel propertyValue("fileName")
+			baseImage "icons/fldr_obj.png"		
+		}
+		
+		node hasLabel("File") {
+			textLabel propertyValue("fileName")
+			baseImage "icons/file_obj.png"			
+		}	
+	}
+}
