@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.osgi.framework.Bundle;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescriptor;
 
 import org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor;
@@ -28,7 +29,10 @@ import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage;
  * </p>
  * <ul>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getMappingDescriptor <em>Mapping Descriptor</em>}</li>
- *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getBundleSymbolicName <em>Bundle Symbolic Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getQualifiedName <em>Qualified Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getBundle <em>Bundle</em>}</li>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getBasePath <em>Base Path</em>}</li>
  * </ul>
  *
@@ -46,24 +50,54 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
   protected MappingDescriptor mappingDescriptor;
 
   /**
-   * The default value of the '{@link #getBundleSymbolicName() <em>Bundle Symbolic Name</em>}' attribute.
+   * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBundleSymbolicName()
+   * @see #getQualifiedName()
    * @generated
    * @ordered
    */
-  protected static final String BUNDLE_SYMBOLIC_NAME_EDEFAULT = null;
+  protected static final String QUALIFIED_NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getBundleSymbolicName() <em>Bundle Symbolic Name</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBundleSymbolicName()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String bundleSymbolicName = BUNDLE_SYMBOLIC_NAME_EDEFAULT;
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescription()
+   * @generated
+   * @ordered
+   */
+  protected static final String DESCRIPTION_EDEFAULT = null;
+
+  /**
+   * The default value of the '{@link #getBundle() <em>Bundle</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBundle()
+   * @generated
+   * @ordered
+   */
+  protected static final Bundle BUNDLE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getBundle() <em>Bundle</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBundle()
+   * @generated
+   * @ordered
+   */
+  protected Bundle bundle = BUNDLE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getBasePath() <em>Base Path</em>}' attribute.
@@ -147,8 +181,10 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getBundleSymbolicName() {
-    return bundleSymbolicName;
+  public String getQualifiedName() {
+    // TODO: implement this method to return the 'Qualified Name' attribute
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**
@@ -156,11 +192,42 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setBundleSymbolicName(String newBundleSymbolicName) {
-    String oldBundleSymbolicName = bundleSymbolicName;
-    bundleSymbolicName = newBundleSymbolicName;
+  public String getName() {
+    // TODO: implement this method to return the 'Name' attribute
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getDescription() {
+    // TODO: implement this method to return the 'Description' attribute
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Bundle getBundle() {
+    return bundle;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setBundle(Bundle newBundle) {
+    Bundle oldBundle = bundle;
+    bundle = newBundle;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE_SYMBOLIC_NAME, oldBundleSymbolicName, bundleSymbolicName));
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE, oldBundle, bundle));
   }
 
   /**
@@ -189,7 +256,7 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
    * <!-- end-user-doc -->
    * @generated
    */
-  public void resolveImage(String relativeImagePath) {
+  public String resolveImage(String relativeImagePath) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -206,8 +273,14 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR:
         if (resolve) return getMappingDescriptor();
         return basicGetMappingDescriptor();
-      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE_SYMBOLIC_NAME:
-        return getBundleSymbolicName();
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME:
+        return getQualifiedName();
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__NAME:
+        return getName();
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__DESCRIPTION:
+        return getDescription();
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE:
+        return getBundle();
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BASE_PATH:
         return getBasePath();
     }
@@ -225,8 +298,8 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR:
         setMappingDescriptor((MappingDescriptor)newValue);
         return;
-      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE_SYMBOLIC_NAME:
-        setBundleSymbolicName((String)newValue);
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE:
+        setBundle((Bundle)newValue);
         return;
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BASE_PATH:
         setBasePath((String)newValue);
@@ -246,8 +319,8 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR:
         setMappingDescriptor((MappingDescriptor)null);
         return;
-      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE_SYMBOLIC_NAME:
-        setBundleSymbolicName(BUNDLE_SYMBOLIC_NAME_EDEFAULT);
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE:
+        setBundle(BUNDLE_EDEFAULT);
         return;
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BASE_PATH:
         setBasePath(BASE_PATH_EDEFAULT);
@@ -266,8 +339,14 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
     switch (featureID) {
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR:
         return mappingDescriptor != null;
-      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE_SYMBOLIC_NAME:
-        return BUNDLE_SYMBOLIC_NAME_EDEFAULT == null ? bundleSymbolicName != null : !BUNDLE_SYMBOLIC_NAME_EDEFAULT.equals(bundleSymbolicName);
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME:
+        return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__NAME:
+        return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__DESCRIPTION:
+        return DESCRIPTION_EDEFAULT == null ? getDescription() != null : !DESCRIPTION_EDEFAULT.equals(getDescription());
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE:
+        return BUNDLE_EDEFAULT == null ? bundle != null : !BUNDLE_EDEFAULT.equals(bundle);
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BASE_PATH:
         return BASE_PATH_EDEFAULT == null ? basePath != null : !BASE_PATH_EDEFAULT.equals(basePath);
     }
@@ -283,8 +362,7 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING:
-        resolveImage((String)arguments.get(0));
-        return null;
+        return resolveImage((String)arguments.get(0));
     }
     return super.eInvoke(operationID, arguments);
   }
@@ -299,8 +377,8 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (bundleSymbolicName: ");
-    result.append(bundleSymbolicName);
+    result.append(" (bundle: ");
+    result.append(bundle);
     result.append(", basePath: ");
     result.append(basePath);
     result.append(')');

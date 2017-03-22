@@ -66,23 +66,23 @@ public class HierarchicalGraphUISwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
-      case HierarchicalGraphUIPackage.ISLIZAA_MAPPING_DESCRIPTION: {
-        ISlizaaMappingDescription iSlizaaMappingDescription = (ISlizaaMappingDescription)theEObject;
-        T result = caseISlizaaMappingDescription(iSlizaaMappingDescription);
+      case HierarchicalGraphUIPackage.ISLIZAA_MAPPING_DESCRIPTOR: {
+        ISlizaaMappingDescriptor iSlizaaMappingDescriptor = (ISlizaaMappingDescriptor)theEObject;
+        T result = caseISlizaaMappingDescriptor(iSlizaaMappingDescriptor);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR: {
         BundleBasedMappingDescriptor bundleBasedMappingDescriptor = (BundleBasedMappingDescriptor)theEObject;
         T result = caseBundleBasedMappingDescriptor(bundleBasedMappingDescriptor);
-        if (result == null) result = caseISlizaaMappingDescription(bundleBasedMappingDescriptor);
+        if (result == null) result = caseISlizaaMappingDescriptor(bundleBasedMappingDescriptor);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR: {
         WorkspaceBasedMappingDescriptor workspaceBasedMappingDescriptor = (WorkspaceBasedMappingDescriptor)theEObject;
         T result = caseWorkspaceBasedMappingDescriptor(workspaceBasedMappingDescriptor);
-        if (result == null) result = caseISlizaaMappingDescription(workspaceBasedMappingDescriptor);
+        if (result == null) result = caseISlizaaMappingDescriptor(workspaceBasedMappingDescriptor);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -92,22 +92,28 @@ public class HierarchicalGraphUISwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_LIST: {
+        MappingDescriptorList mappingDescriptorList = (MappingDescriptorList)theEObject;
+        T result = caseMappingDescriptorList(mappingDescriptorList);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>ISlizaa Mapping Description</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>ISlizaa Mapping Descriptor</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>ISlizaa Mapping Description</em>'.
+   * @return the result of interpreting the object as an instance of '<em>ISlizaa Mapping Descriptor</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseISlizaaMappingDescription(ISlizaaMappingDescription object) {
+  public T caseISlizaaMappingDescriptor(ISlizaaMappingDescriptor object) {
     return null;
   }
 
@@ -153,6 +159,21 @@ public class HierarchicalGraphUISwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseMappingDescriptorContainer(MappingDescriptorContainer object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Mapping Descriptor List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Mapping Descriptor List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMappingDescriptorList(MappingDescriptorList object) {
     return null;
   }
 

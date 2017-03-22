@@ -19,7 +19,7 @@ package org.slizaa.neo4j.hierarchicalgraph.ui;
  * @model
  * @generated
  */
-public interface WorkspaceBasedMappingDescriptor extends ISlizaaMappingDescription {
+public interface WorkspaceBasedMappingDescriptor extends ISlizaaMappingDescriptor {
   /**
    * Returns the value of the '<em><b>Base Path</b></em>' attribute.
    * <!-- begin-user-doc -->

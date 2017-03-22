@@ -2,8 +2,6 @@
  */
 package org.slizaa.neo4j.hierarchicalgraph.ui;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -25,35 +23,55 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface MappingDescriptorContainer extends EObject {
   /**
-   * Returns the value of the '<em><b>Bundle Based Mapping Descriptors</b></em>' reference list.
-   * The list contents are of type {@link org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor}.
+   * Returns the value of the '<em><b>Bundle Based Mapping Descriptors</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Bundle Based Mapping Descriptors</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Bundle Based Mapping Descriptors</em>' reference list.
+   * @return the value of the '<em>Bundle Based Mapping Descriptors</em>' reference.
+   * @see #setBundleBasedMappingDescriptors(MappingDescriptorList)
    * @see org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage#getMappingDescriptorContainer_BundleBasedMappingDescriptors()
-   * @model
+   * @model required="true"
    * @generated
    */
-  EList<BundleBasedMappingDescriptor> getBundleBasedMappingDescriptors();
+  MappingDescriptorList getBundleBasedMappingDescriptors();
 
   /**
-   * Returns the value of the '<em><b>Workspace Based Mapping Descriptors</b></em>' reference list.
-   * The list contents are of type {@link org.slizaa.neo4j.hierarchicalgraph.ui.WorkspaceBasedMappingDescriptor}.
+   * Sets the value of the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorContainer#getBundleBasedMappingDescriptors <em>Bundle Based Mapping Descriptors</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Bundle Based Mapping Descriptors</em>' reference.
+   * @see #getBundleBasedMappingDescriptors()
+   * @generated
+   */
+  void setBundleBasedMappingDescriptors(MappingDescriptorList value);
+
+  /**
+   * Returns the value of the '<em><b>Workspace Based Mapping Descriptors</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Workspace Based Mapping Descriptors</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Workspace Based Mapping Descriptors</em>' reference list.
+   * @return the value of the '<em>Workspace Based Mapping Descriptors</em>' reference.
+   * @see #setWorkspaceBasedMappingDescriptors(MappingDescriptorList)
    * @see org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage#getMappingDescriptorContainer_WorkspaceBasedMappingDescriptors()
-   * @model
+   * @model required="true"
    * @generated
    */
-  EList<WorkspaceBasedMappingDescriptor> getWorkspaceBasedMappingDescriptors();
+  MappingDescriptorList getWorkspaceBasedMappingDescriptors();
+
+  /**
+   * Sets the value of the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorContainer#getWorkspaceBasedMappingDescriptors <em>Workspace Based Mapping Descriptors</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Workspace Based Mapping Descriptors</em>' reference.
+   * @see #getWorkspaceBasedMappingDescriptors()
+   * @generated
+   */
+  void setWorkspaceBasedMappingDescriptors(MappingDescriptorList value);
 
 } // MappingDescriptorContainer

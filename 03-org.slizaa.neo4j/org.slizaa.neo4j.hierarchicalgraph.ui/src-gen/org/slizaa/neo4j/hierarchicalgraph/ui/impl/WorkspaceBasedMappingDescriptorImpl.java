@@ -28,6 +28,9 @@ import org.slizaa.neo4j.hierarchicalgraph.ui.WorkspaceBasedMappingDescriptor;
  * </p>
  * <ul>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.WorkspaceBasedMappingDescriptorImpl#getMappingDescriptor <em>Mapping Descriptor</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.WorkspaceBasedMappingDescriptorImpl#getQualifiedName <em>Qualified Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.WorkspaceBasedMappingDescriptorImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.WorkspaceBasedMappingDescriptorImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.WorkspaceBasedMappingDescriptorImpl#getBasePath <em>Base Path</em>}</li>
  * </ul>
  *
@@ -43,6 +46,36 @@ public class WorkspaceBasedMappingDescriptorImpl extends MinimalEObjectImpl.Cont
    * @ordered
    */
   protected MappingDescriptor mappingDescriptor;
+
+  /**
+   * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getQualifiedName()
+   * @generated
+   * @ordered
+   */
+  protected static final String QUALIFIED_NAME_EDEFAULT = null;
+
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescription()
+   * @generated
+   * @ordered
+   */
+  protected static final String DESCRIPTION_EDEFAULT = null;
 
   /**
    * The default value of the '{@link #getBasePath() <em>Base Path</em>}' attribute.
@@ -126,6 +159,39 @@ public class WorkspaceBasedMappingDescriptorImpl extends MinimalEObjectImpl.Cont
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getQualifiedName() {
+    // TODO: implement this method to return the 'Qualified Name' attribute
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getName() {
+    // TODO: implement this method to return the 'Name' attribute
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getDescription() {
+    // TODO: implement this method to return the 'Description' attribute
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getBasePath() {
     return basePath;
   }
@@ -147,7 +213,7 @@ public class WorkspaceBasedMappingDescriptorImpl extends MinimalEObjectImpl.Cont
    * <!-- end-user-doc -->
    * @generated
    */
-  public void resolveImage(String relativeImagePath) {
+  public String resolveImage(String relativeImagePath) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -164,6 +230,12 @@ public class WorkspaceBasedMappingDescriptorImpl extends MinimalEObjectImpl.Cont
       case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR:
         if (resolve) return getMappingDescriptor();
         return basicGetMappingDescriptor();
+      case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME:
+        return getQualifiedName();
+      case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__NAME:
+        return getName();
+      case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__DESCRIPTION:
+        return getDescription();
       case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__BASE_PATH:
         return getBasePath();
     }
@@ -216,6 +288,12 @@ public class WorkspaceBasedMappingDescriptorImpl extends MinimalEObjectImpl.Cont
     switch (featureID) {
       case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR:
         return mappingDescriptor != null;
+      case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME:
+        return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
+      case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__NAME:
+        return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+      case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__DESCRIPTION:
+        return DESCRIPTION_EDEFAULT == null ? getDescription() != null : !DESCRIPTION_EDEFAULT.equals(getDescription());
       case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__BASE_PATH:
         return BASE_PATH_EDEFAULT == null ? basePath != null : !BASE_PATH_EDEFAULT.equals(basePath);
     }
@@ -231,8 +309,7 @@ public class WorkspaceBasedMappingDescriptorImpl extends MinimalEObjectImpl.Cont
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
       case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING:
-        resolveImage((String)arguments.get(0));
-        return null;
+        return resolveImage((String)arguments.get(0));
     }
     return super.eInvoke(operationID, arguments);
   }

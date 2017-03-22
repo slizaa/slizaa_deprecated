@@ -22,26 +22,25 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.Function;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.NodeVisualizationDefinition;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.StringConstant;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.OverlayImageRegistry;
-import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappings.ISlizaaMappingDescription;
 
 public class MappingDescriptorBasedItemLabelProviderImpl implements INodeLabelProvider {
 
   /** - */
-  private OverlayImageRegistry      _imageRegistry;
+  private OverlayImageRegistry     _imageRegistry;
 
   /** - */
-  private ISlizaaMappingDescription _slizaaMappingDescription;
+  private ISlizaaMappingDescriptor _slizaaMappingDescriptor;
 
   /**
    * <p>
    * Creates a new instance of type {@link MappingDescriptorBasedItemLabelProviderImpl}.
    * </p>
    *
-   * @param slizaaMappingDescription
+   * @param slizaaMappingDescriptor
    */
-  public MappingDescriptorBasedItemLabelProviderImpl(ISlizaaMappingDescription slizaaMappingDescription) {
+  public MappingDescriptorBasedItemLabelProviderImpl(ISlizaaMappingDescriptor slizaaMappingDescriptor) {
     _imageRegistry = new OverlayImageRegistry();
-    _slizaaMappingDescription = checkNotNull(slizaaMappingDescription);
+    _slizaaMappingDescriptor = checkNotNull(slizaaMappingDescriptor);
   }
 
   /**
@@ -93,10 +92,10 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements INodeLabelPr
 
     result.text = "Node " + nodeSource.getIdentifier();
 
-    if (_slizaaMappingDescription.getMappingDescriptor().getVisualisationDescriptor() != null) {
+    if (_slizaaMappingDescriptor.getMappingDescriptor().getVisualisationDescriptor() != null) {
 
       //
-      for (NodeVisualizationDefinition visualizationDefinition : _slizaaMappingDescription.getMappingDescriptor()
+      for (NodeVisualizationDefinition visualizationDefinition : _slizaaMappingDescriptor.getMappingDescriptor()
           .getVisualisationDescriptor().getNodeVisualizationDefinition()) {
 
         // TODO: rename to condition
@@ -115,7 +114,7 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements INodeLabelPr
           //
           StringConstant constant = (StringConstant) visualizationDefinition.getLabelProperties().getBaseImage();
 
-          result.image = _slizaaMappingDescription.resolveImage(constant.getValue());
+          result.image = _slizaaMappingDescriptor.resolveImage(constant.getValue());
 
           // for (PropertyBasedImageMapper mapper : labelMapper.getPropertyBasedImages()) {
           //

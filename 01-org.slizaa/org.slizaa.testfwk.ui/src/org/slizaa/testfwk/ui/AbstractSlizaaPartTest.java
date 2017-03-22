@@ -60,6 +60,7 @@ public abstract class AbstractSlizaaPartTest implements IImageProvider {
     ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory();
     composedAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
     composedAdapterFactory.addAdapterFactory(new HierarchicalgraphItemProviderAdapterFactory());
+    configureTestAdapterFactory(composedAdapterFactory);
     SlizaaTreeViewerFactory.setSlizaaTreeViewerCreator(_defaultActionContributionProvider, composedAdapterFactory,
         () -> _eclipseContext);
 
@@ -94,6 +95,10 @@ public abstract class AbstractSlizaaPartTest implements IImageProvider {
 
     // create SWTBot
     _swtbot = new SWTBot(shell());
+  }
+
+  protected void configureTestAdapterFactory(ComposedAdapterFactory composedAdapterFactory) {
+    //
   }
 
   /**

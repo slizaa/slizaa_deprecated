@@ -61,7 +61,10 @@ public class BundleBasedMappingDescriptorItemProvider
       super.getPropertyDescriptors(object);
 
       addMappingDescriptorPropertyDescriptor(object);
-      addBundleSymbolicNamePropertyDescriptor(object);
+      addQualifiedNamePropertyDescriptor(object);
+      addNamePropertyDescriptor(object);
+      addDescriptionPropertyDescriptor(object);
+      addBundlePropertyDescriptor(object);
       addBasePathPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
@@ -78,9 +81,9 @@ public class BundleBasedMappingDescriptorItemProvider
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_ISlizaaMappingDescription_mappingDescriptor_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingDescription_mappingDescriptor_feature", "_UI_ISlizaaMappingDescription_type"),
-         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_DESCRIPTION__MAPPING_DESCRIPTOR,
+         getString("_UI_ISlizaaMappingDescriptor_mappingDescriptor_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingDescriptor_mappingDescriptor_feature", "_UI_ISlizaaMappingDescriptor_type"),
+         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR,
          true,
          false,
          true,
@@ -90,19 +93,85 @@ public class BundleBasedMappingDescriptorItemProvider
   }
 
   /**
-   * This adds a property descriptor for the Bundle Symbolic Name feature.
+   * This adds a property descriptor for the Qualified Name feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addBundleSymbolicNamePropertyDescriptor(Object object) {
+  protected void addQualifiedNamePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_BundleBasedMappingDescriptor_bundleSymbolicName_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_BundleBasedMappingDescriptor_bundleSymbolicName_feature", "_UI_BundleBasedMappingDescriptor_type"),
-         HierarchicalGraphUIPackage.Literals.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE_SYMBOLIC_NAME,
+         getString("_UI_ISlizaaMappingDescriptor_qualifiedName_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingDescriptor_qualifiedName_feature", "_UI_ISlizaaMappingDescriptor_type"),
+         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_DESCRIPTOR__QUALIFIED_NAME,
+         false,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Name feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addNamePropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_ISlizaaMappingDescriptor_name_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingDescriptor_name_feature", "_UI_ISlizaaMappingDescriptor_type"),
+         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_DESCRIPTOR__NAME,
+         false,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Description feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addDescriptionPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_ISlizaaMappingDescriptor_description_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingDescriptor_description_feature", "_UI_ISlizaaMappingDescriptor_type"),
+         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_DESCRIPTOR__DESCRIPTION,
+         false,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Bundle feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addBundlePropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_BundleBasedMappingDescriptor_bundle_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_BundleBasedMappingDescriptor_bundle_feature", "_UI_BundleBasedMappingDescriptor_type"),
+         HierarchicalGraphUIPackage.Literals.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE,
          true,
          false,
          false,
@@ -152,7 +221,7 @@ public class BundleBasedMappingDescriptorItemProvider
    */
   @Override
   public String getText(Object object) {
-    String label = ((BundleBasedMappingDescriptor)object).getBundleSymbolicName();
+    String label = ((BundleBasedMappingDescriptor)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_BundleBasedMappingDescriptor_type") :
       getString("_UI_BundleBasedMappingDescriptor_type") + " " + label;
@@ -171,7 +240,10 @@ public class BundleBasedMappingDescriptorItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(BundleBasedMappingDescriptor.class)) {
-      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE_SYMBOLIC_NAME:
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME:
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__NAME:
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__DESCRIPTION:
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE:
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BASE_PATH:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;

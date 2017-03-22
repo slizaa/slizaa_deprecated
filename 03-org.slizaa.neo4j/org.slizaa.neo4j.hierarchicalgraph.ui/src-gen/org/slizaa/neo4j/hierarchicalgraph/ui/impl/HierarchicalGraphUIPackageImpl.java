@@ -4,19 +4,22 @@ package org.slizaa.neo4j.hierarchicalgraph.ui.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.osgi.framework.Bundle;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDslPackage;
 
 import org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIFactory;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage;
-import org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescription;
+import org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorContainer;
+import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorList;
 import org.slizaa.neo4j.hierarchicalgraph.ui.WorkspaceBasedMappingDescriptor;
 
 /**
@@ -31,7 +34,7 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass iSlizaaMappingDescriptionEClass = null;
+  private EClass iSlizaaMappingDescriptorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -52,6 +55,20 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * @generated
    */
   private EClass mappingDescriptorContainerEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass mappingDescriptorListEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType bundleEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -122,8 +139,8 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getISlizaaMappingDescription() {
-    return iSlizaaMappingDescriptionEClass;
+  public EClass getISlizaaMappingDescriptor() {
+    return iSlizaaMappingDescriptorEClass;
   }
 
   /**
@@ -131,8 +148,8 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getISlizaaMappingDescription_MappingDescriptor() {
-    return (EReference)iSlizaaMappingDescriptionEClass.getEStructuralFeatures().get(0);
+  public EReference getISlizaaMappingDescriptor_MappingDescriptor() {
+    return (EReference)iSlizaaMappingDescriptorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -140,8 +157,35 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getISlizaaMappingDescription__ResolveImage__String() {
-    return iSlizaaMappingDescriptionEClass.getEOperations().get(0);
+  public EAttribute getISlizaaMappingDescriptor_QualifiedName() {
+    return (EAttribute)iSlizaaMappingDescriptorEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getISlizaaMappingDescriptor_Name() {
+    return (EAttribute)iSlizaaMappingDescriptorEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getISlizaaMappingDescriptor_Description() {
+    return (EAttribute)iSlizaaMappingDescriptorEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EOperation getISlizaaMappingDescriptor__ResolveImage__String() {
+    return iSlizaaMappingDescriptorEClass.getEOperations().get(0);
   }
 
   /**
@@ -158,7 +202,7 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getBundleBasedMappingDescriptor_BundleSymbolicName() {
+  public EAttribute getBundleBasedMappingDescriptor_Bundle() {
     return (EAttribute)bundleBasedMappingDescriptorEClass.getEStructuralFeatures().get(0);
   }
 
@@ -221,6 +265,42 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getMappingDescriptorList() {
+    return mappingDescriptorListEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMappingDescriptorList_Name() {
+    return (EAttribute)mappingDescriptorListEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMappingDescriptorList_MappingDescriptors() {
+    return (EReference)mappingDescriptorListEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EDataType getBundle() {
+    return bundleEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public HierarchicalGraphUIFactory getHierarchicalGraphUIFactory() {
     return (HierarchicalGraphUIFactory)getEFactoryInstance();
   }
@@ -244,12 +324,15 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
     isCreated = true;
 
     // Create classes and their features
-    iSlizaaMappingDescriptionEClass = createEClass(ISLIZAA_MAPPING_DESCRIPTION);
-    createEReference(iSlizaaMappingDescriptionEClass, ISLIZAA_MAPPING_DESCRIPTION__MAPPING_DESCRIPTOR);
-    createEOperation(iSlizaaMappingDescriptionEClass, ISLIZAA_MAPPING_DESCRIPTION___RESOLVE_IMAGE__STRING);
+    iSlizaaMappingDescriptorEClass = createEClass(ISLIZAA_MAPPING_DESCRIPTOR);
+    createEReference(iSlizaaMappingDescriptorEClass, ISLIZAA_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR);
+    createEAttribute(iSlizaaMappingDescriptorEClass, ISLIZAA_MAPPING_DESCRIPTOR__QUALIFIED_NAME);
+    createEAttribute(iSlizaaMappingDescriptorEClass, ISLIZAA_MAPPING_DESCRIPTOR__NAME);
+    createEAttribute(iSlizaaMappingDescriptorEClass, ISLIZAA_MAPPING_DESCRIPTOR__DESCRIPTION);
+    createEOperation(iSlizaaMappingDescriptorEClass, ISLIZAA_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING);
 
     bundleBasedMappingDescriptorEClass = createEClass(BUNDLE_BASED_MAPPING_DESCRIPTOR);
-    createEAttribute(bundleBasedMappingDescriptorEClass, BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE_SYMBOLIC_NAME);
+    createEAttribute(bundleBasedMappingDescriptorEClass, BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE);
     createEAttribute(bundleBasedMappingDescriptorEClass, BUNDLE_BASED_MAPPING_DESCRIPTOR__BASE_PATH);
 
     workspaceBasedMappingDescriptorEClass = createEClass(WORKSPACE_BASED_MAPPING_DESCRIPTOR);
@@ -258,6 +341,13 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
     mappingDescriptorContainerEClass = createEClass(MAPPING_DESCRIPTOR_CONTAINER);
     createEReference(mappingDescriptorContainerEClass, MAPPING_DESCRIPTOR_CONTAINER__BUNDLE_BASED_MAPPING_DESCRIPTORS);
     createEReference(mappingDescriptorContainerEClass, MAPPING_DESCRIPTOR_CONTAINER__WORKSPACE_BASED_MAPPING_DESCRIPTORS);
+
+    mappingDescriptorListEClass = createEClass(MAPPING_DESCRIPTOR_LIST);
+    createEAttribute(mappingDescriptorListEClass, MAPPING_DESCRIPTOR_LIST__NAME);
+    createEReference(mappingDescriptorListEClass, MAPPING_DESCRIPTOR_LIST__MAPPING_DESCRIPTORS);
+
+    // Create data types
+    bundleEDataType = createEDataType(BUNDLE);
   }
 
   /**
@@ -291,26 +381,36 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    bundleBasedMappingDescriptorEClass.getESuperTypes().add(this.getISlizaaMappingDescription());
-    workspaceBasedMappingDescriptorEClass.getESuperTypes().add(this.getISlizaaMappingDescription());
+    bundleBasedMappingDescriptorEClass.getESuperTypes().add(this.getISlizaaMappingDescriptor());
+    workspaceBasedMappingDescriptorEClass.getESuperTypes().add(this.getISlizaaMappingDescriptor());
 
     // Initialize classes, features, and operations; add parameters
-    initEClass(iSlizaaMappingDescriptionEClass, ISlizaaMappingDescription.class, "ISlizaaMappingDescription", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getISlizaaMappingDescription_MappingDescriptor(), theMappingDslPackage.getMappingDescriptor(), null, "mappingDescriptor", null, 0, 1, ISlizaaMappingDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(iSlizaaMappingDescriptorEClass, ISlizaaMappingDescriptor.class, "ISlizaaMappingDescriptor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getISlizaaMappingDescriptor_MappingDescriptor(), theMappingDslPackage.getMappingDescriptor(), null, "mappingDescriptor", null, 0, 1, ISlizaaMappingDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getISlizaaMappingDescriptor_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, ISlizaaMappingDescriptor.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEAttribute(getISlizaaMappingDescriptor_Name(), ecorePackage.getEString(), "name", null, 0, 1, ISlizaaMappingDescriptor.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEAttribute(getISlizaaMappingDescriptor_Description(), ecorePackage.getEString(), "description", null, 0, 1, ISlizaaMappingDescriptor.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-    EOperation op = initEOperation(getISlizaaMappingDescription__ResolveImage__String(), null, "resolveImage", 0, 1, IS_UNIQUE, IS_ORDERED);
+    EOperation op = initEOperation(getISlizaaMappingDescriptor__ResolveImage__String(), ecorePackage.getEString(), "resolveImage", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEString(), "relativeImagePath", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(bundleBasedMappingDescriptorEClass, BundleBasedMappingDescriptor.class, "BundleBasedMappingDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getBundleBasedMappingDescriptor_BundleSymbolicName(), ecorePackage.getEString(), "bundleSymbolicName", null, 0, 1, BundleBasedMappingDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBundleBasedMappingDescriptor_Bundle(), this.getBundle(), "bundle", null, 0, 1, BundleBasedMappingDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBundleBasedMappingDescriptor_BasePath(), ecorePackage.getEString(), "basePath", null, 0, 1, BundleBasedMappingDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(workspaceBasedMappingDescriptorEClass, WorkspaceBasedMappingDescriptor.class, "WorkspaceBasedMappingDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getWorkspaceBasedMappingDescriptor_BasePath(), ecorePackage.getEString(), "basePath", null, 0, 1, WorkspaceBasedMappingDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(mappingDescriptorContainerEClass, MappingDescriptorContainer.class, "MappingDescriptorContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMappingDescriptorContainer_BundleBasedMappingDescriptors(), this.getBundleBasedMappingDescriptor(), null, "bundleBasedMappingDescriptors", null, 0, -1, MappingDescriptorContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMappingDescriptorContainer_WorkspaceBasedMappingDescriptors(), this.getWorkspaceBasedMappingDescriptor(), null, "workspaceBasedMappingDescriptors", null, 0, -1, MappingDescriptorContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMappingDescriptorContainer_BundleBasedMappingDescriptors(), this.getMappingDescriptorList(), null, "bundleBasedMappingDescriptors", null, 1, 1, MappingDescriptorContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMappingDescriptorContainer_WorkspaceBasedMappingDescriptors(), this.getMappingDescriptorList(), null, "workspaceBasedMappingDescriptors", null, 1, 1, MappingDescriptorContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(mappingDescriptorListEClass, MappingDescriptorList.class, "MappingDescriptorList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMappingDescriptorList_Name(), ecorePackage.getEString(), "name", null, 0, 1, MappingDescriptorList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMappingDescriptorList_MappingDescriptors(), this.getISlizaaMappingDescriptor(), null, "mappingDescriptors", null, 0, -1, MappingDescriptorList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize data types
+    initEDataType(bundleEDataType, Bundle.class, "Bundle", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

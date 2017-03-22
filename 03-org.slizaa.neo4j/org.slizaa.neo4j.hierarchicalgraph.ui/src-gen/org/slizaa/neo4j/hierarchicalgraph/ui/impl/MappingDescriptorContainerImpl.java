@@ -2,20 +2,15 @@
  */
 package org.slizaa.neo4j.hierarchicalgraph.ui.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorContainer;
-import org.slizaa.neo4j.hierarchicalgraph.ui.WorkspaceBasedMappingDescriptor;
+import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorList;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,24 +28,24 @@ import org.slizaa.neo4j.hierarchicalgraph.ui.WorkspaceBasedMappingDescriptor;
  */
 public class MappingDescriptorContainerImpl extends MinimalEObjectImpl.Container implements MappingDescriptorContainer {
   /**
-   * The cached value of the '{@link #getBundleBasedMappingDescriptors() <em>Bundle Based Mapping Descriptors</em>}' reference list.
+   * The cached value of the '{@link #getBundleBasedMappingDescriptors() <em>Bundle Based Mapping Descriptors</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getBundleBasedMappingDescriptors()
    * @generated
    * @ordered
    */
-  protected EList<BundleBasedMappingDescriptor> bundleBasedMappingDescriptors;
+  protected MappingDescriptorList bundleBasedMappingDescriptors;
 
   /**
-   * The cached value of the '{@link #getWorkspaceBasedMappingDescriptors() <em>Workspace Based Mapping Descriptors</em>}' reference list.
+   * The cached value of the '{@link #getWorkspaceBasedMappingDescriptors() <em>Workspace Based Mapping Descriptors</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getWorkspaceBasedMappingDescriptors()
    * @generated
    * @ordered
    */
-  protected EList<WorkspaceBasedMappingDescriptor> workspaceBasedMappingDescriptors;
+  protected MappingDescriptorList workspaceBasedMappingDescriptors;
 
   /**
    * <!-- begin-user-doc -->
@@ -76,9 +71,14 @@ public class MappingDescriptorContainerImpl extends MinimalEObjectImpl.Container
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<BundleBasedMappingDescriptor> getBundleBasedMappingDescriptors() {
-    if (bundleBasedMappingDescriptors == null) {
-      bundleBasedMappingDescriptors = new EObjectResolvingEList<BundleBasedMappingDescriptor>(BundleBasedMappingDescriptor.class, this, HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__BUNDLE_BASED_MAPPING_DESCRIPTORS);
+  public MappingDescriptorList getBundleBasedMappingDescriptors() {
+    if (bundleBasedMappingDescriptors != null && bundleBasedMappingDescriptors.eIsProxy()) {
+      InternalEObject oldBundleBasedMappingDescriptors = (InternalEObject)bundleBasedMappingDescriptors;
+      bundleBasedMappingDescriptors = (MappingDescriptorList)eResolveProxy(oldBundleBasedMappingDescriptors);
+      if (bundleBasedMappingDescriptors != oldBundleBasedMappingDescriptors) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__BUNDLE_BASED_MAPPING_DESCRIPTORS, oldBundleBasedMappingDescriptors, bundleBasedMappingDescriptors));
+      }
     }
     return bundleBasedMappingDescriptors;
   }
@@ -88,11 +88,58 @@ public class MappingDescriptorContainerImpl extends MinimalEObjectImpl.Container
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<WorkspaceBasedMappingDescriptor> getWorkspaceBasedMappingDescriptors() {
-    if (workspaceBasedMappingDescriptors == null) {
-      workspaceBasedMappingDescriptors = new EObjectResolvingEList<WorkspaceBasedMappingDescriptor>(WorkspaceBasedMappingDescriptor.class, this, HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__WORKSPACE_BASED_MAPPING_DESCRIPTORS);
+  public MappingDescriptorList basicGetBundleBasedMappingDescriptors() {
+    return bundleBasedMappingDescriptors;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setBundleBasedMappingDescriptors(MappingDescriptorList newBundleBasedMappingDescriptors) {
+    MappingDescriptorList oldBundleBasedMappingDescriptors = bundleBasedMappingDescriptors;
+    bundleBasedMappingDescriptors = newBundleBasedMappingDescriptors;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__BUNDLE_BASED_MAPPING_DESCRIPTORS, oldBundleBasedMappingDescriptors, bundleBasedMappingDescriptors));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MappingDescriptorList getWorkspaceBasedMappingDescriptors() {
+    if (workspaceBasedMappingDescriptors != null && workspaceBasedMappingDescriptors.eIsProxy()) {
+      InternalEObject oldWorkspaceBasedMappingDescriptors = (InternalEObject)workspaceBasedMappingDescriptors;
+      workspaceBasedMappingDescriptors = (MappingDescriptorList)eResolveProxy(oldWorkspaceBasedMappingDescriptors);
+      if (workspaceBasedMappingDescriptors != oldWorkspaceBasedMappingDescriptors) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__WORKSPACE_BASED_MAPPING_DESCRIPTORS, oldWorkspaceBasedMappingDescriptors, workspaceBasedMappingDescriptors));
+      }
     }
     return workspaceBasedMappingDescriptors;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MappingDescriptorList basicGetWorkspaceBasedMappingDescriptors() {
+    return workspaceBasedMappingDescriptors;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setWorkspaceBasedMappingDescriptors(MappingDescriptorList newWorkspaceBasedMappingDescriptors) {
+    MappingDescriptorList oldWorkspaceBasedMappingDescriptors = workspaceBasedMappingDescriptors;
+    workspaceBasedMappingDescriptors = newWorkspaceBasedMappingDescriptors;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__WORKSPACE_BASED_MAPPING_DESCRIPTORS, oldWorkspaceBasedMappingDescriptors, workspaceBasedMappingDescriptors));
   }
 
   /**
@@ -104,9 +151,11 @@ public class MappingDescriptorContainerImpl extends MinimalEObjectImpl.Container
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__BUNDLE_BASED_MAPPING_DESCRIPTORS:
-        return getBundleBasedMappingDescriptors();
+        if (resolve) return getBundleBasedMappingDescriptors();
+        return basicGetBundleBasedMappingDescriptors();
       case HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__WORKSPACE_BASED_MAPPING_DESCRIPTORS:
-        return getWorkspaceBasedMappingDescriptors();
+        if (resolve) return getWorkspaceBasedMappingDescriptors();
+        return basicGetWorkspaceBasedMappingDescriptors();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -121,12 +170,10 @@ public class MappingDescriptorContainerImpl extends MinimalEObjectImpl.Container
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
       case HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__BUNDLE_BASED_MAPPING_DESCRIPTORS:
-        getBundleBasedMappingDescriptors().clear();
-        getBundleBasedMappingDescriptors().addAll((Collection<? extends BundleBasedMappingDescriptor>)newValue);
+        setBundleBasedMappingDescriptors((MappingDescriptorList)newValue);
         return;
       case HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__WORKSPACE_BASED_MAPPING_DESCRIPTORS:
-        getWorkspaceBasedMappingDescriptors().clear();
-        getWorkspaceBasedMappingDescriptors().addAll((Collection<? extends WorkspaceBasedMappingDescriptor>)newValue);
+        setWorkspaceBasedMappingDescriptors((MappingDescriptorList)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,10 +188,10 @@ public class MappingDescriptorContainerImpl extends MinimalEObjectImpl.Container
   public void eUnset(int featureID) {
     switch (featureID) {
       case HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__BUNDLE_BASED_MAPPING_DESCRIPTORS:
-        getBundleBasedMappingDescriptors().clear();
+        setBundleBasedMappingDescriptors((MappingDescriptorList)null);
         return;
       case HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__WORKSPACE_BASED_MAPPING_DESCRIPTORS:
-        getWorkspaceBasedMappingDescriptors().clear();
+        setWorkspaceBasedMappingDescriptors((MappingDescriptorList)null);
         return;
     }
     super.eUnset(featureID);
@@ -159,9 +206,9 @@ public class MappingDescriptorContainerImpl extends MinimalEObjectImpl.Container
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__BUNDLE_BASED_MAPPING_DESCRIPTORS:
-        return bundleBasedMappingDescriptors != null && !bundleBasedMappingDescriptors.isEmpty();
+        return bundleBasedMappingDescriptors != null;
       case HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_CONTAINER__WORKSPACE_BASED_MAPPING_DESCRIPTORS:
-        return workspaceBasedMappingDescriptors != null && !workspaceBasedMappingDescriptors.isEmpty();
+        return workspaceBasedMappingDescriptors != null;
     }
     return super.eIsSet(featureID);
   }

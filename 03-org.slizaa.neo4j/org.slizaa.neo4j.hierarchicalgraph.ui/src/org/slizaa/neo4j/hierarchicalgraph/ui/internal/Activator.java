@@ -2,7 +2,7 @@ package org.slizaa.neo4j.hierarchicalgraph.ui.internal;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappings.BundleBasedMappingsTracker;
+import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappingsdialog.BundleBasedMappingsTracker;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -10,7 +10,7 @@ import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappings.BundleBasedMappin
 public class Activator extends AbstractUIPlugin {
 
   // The plug-in ID
-  public static final String         PLUGIN_ID = "org.slizaa.neo4j.hierarchicalgraph.mapping.service"; //$NON-NLS-1$
+  public static final String         PLUGIN_ID         = "org.slizaa.neo4j.hierarchicalgraph.mapping.service"; //$NON-NLS-1$
 
   // The shared instance
   private static Activator           plugin;
@@ -40,7 +40,7 @@ public class Activator extends AbstractUIPlugin {
 
     _tracker.close();
   }
-  
+
   /**
    * <p>
    * </p>

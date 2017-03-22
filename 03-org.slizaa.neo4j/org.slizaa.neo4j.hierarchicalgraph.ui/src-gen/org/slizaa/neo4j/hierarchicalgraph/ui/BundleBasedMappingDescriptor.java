@@ -2,6 +2,8 @@
  */
 package org.slizaa.neo4j.hierarchicalgraph.ui;
 
+import org.osgi.framework.Bundle;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -12,7 +14,7 @@ package org.slizaa.neo4j.hierarchicalgraph.ui;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor#getBundleSymbolicName <em>Bundle Symbolic Name</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor#getBundle <em>Bundle</em>}</li>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor#getBasePath <em>Base Path</em>}</li>
  * </ul>
  *
@@ -20,32 +22,32 @@ package org.slizaa.neo4j.hierarchicalgraph.ui;
  * @model
  * @generated
  */
-public interface BundleBasedMappingDescriptor extends ISlizaaMappingDescription {
+public interface BundleBasedMappingDescriptor extends ISlizaaMappingDescriptor {
   /**
-   * Returns the value of the '<em><b>Bundle Symbolic Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Bundle</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Bundle Symbolic Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Bundle</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Bundle Symbolic Name</em>' attribute.
-   * @see #setBundleSymbolicName(String)
-   * @see org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage#getBundleBasedMappingDescriptor_BundleSymbolicName()
-   * @model
+   * @return the value of the '<em>Bundle</em>' attribute.
+   * @see #setBundle(Bundle)
+   * @see org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage#getBundleBasedMappingDescriptor_Bundle()
+   * @model dataType="org.slizaa.neo4j.hierarchicalgraph.ui.Bundle"
    * @generated
    */
-  String getBundleSymbolicName();
+  Bundle getBundle();
 
   /**
-   * Sets the value of the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor#getBundleSymbolicName <em>Bundle Symbolic Name</em>}' attribute.
+   * Sets the value of the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor#getBundle <em>Bundle</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Bundle Symbolic Name</em>' attribute.
-   * @see #getBundleSymbolicName()
+   * @param value the new value of the '<em>Bundle</em>' attribute.
+   * @see #getBundle()
    * @generated
    */
-  void setBundleSymbolicName(String value);
+  void setBundle(Bundle value);
 
   /**
    * Returns the value of the '<em><b>Base Path</b></em>' attribute.

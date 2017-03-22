@@ -49,6 +49,15 @@ public interface HierarchicalGraphUIFactory extends EFactory {
   MappingDescriptorContainer createMappingDescriptorContainer();
 
   /**
+   * Returns a new object of class '<em>Mapping Descriptor List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mapping Descriptor List</em>'.
+   * @generated
+   */
+  MappingDescriptorList createMappingDescriptorList();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
