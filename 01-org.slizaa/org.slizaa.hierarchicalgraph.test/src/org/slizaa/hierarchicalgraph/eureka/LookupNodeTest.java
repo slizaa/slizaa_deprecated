@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
-import org.slizaa.hierarchicalgraph.DefaultNodeSource;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.testfwk.AbstractXmiBasedTest;
@@ -23,7 +22,7 @@ public class LookupNodeTest extends AbstractXmiBasedTest {
    * </p>
    */
   public LookupNodeTest() {
-    super("eureka.hggraph");
+    super("eureka_1-4-10.hggraph");
   }
 
   /**
@@ -39,10 +38,5 @@ public class LookupNodeTest extends AbstractXmiBasedTest {
         assertThat(rootNode().lookupNode(node.getIdentifier())).isEqualTo(node);
       }
     });
-    
-    System.out.println(rootNode().getChildren().size());
-    for (HGNode hgNode : rootNode().getChildren()) {
-      System.out.println(((DefaultNodeSource)hgNode.getNodeSource()).getProperties().get("fileName"));
-    }
   }
 }

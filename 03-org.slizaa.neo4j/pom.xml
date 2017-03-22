@@ -10,7 +10,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-	
+
 		<module>org.slizaa.neo4j.dbadapter</module>
 		<module>org.slizaa.neo4j.dbadapter.edit</module>
 		<module>org.slizaa.neo4j.dbadapter.test</module>
@@ -22,6 +22,7 @@
 		<!-- module>org.slizaa.neo4j.hierarchicalgraph.mapping.service.test</module -->
 		<module>org.slizaa.neo4j.hierarchicalgraph.test</module>
 		<module>org.slizaa.neo4j.hierarchicalgraph.ui</module>
+		<module>org.slizaa.neo4j.hierarchicalgraph.ui.edit</module>
 		<module>org.slizaa.neo4j.queryresult</module>
 		<module>org.slizaa.neo4j.target</module>
 		<module>org.slizaa.neo4j.testfwk</module>
@@ -53,7 +54,7 @@
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-			        <pomDependencies>consider</pomDependencies>
+					<pomDependencies>consider</pomDependencies>
 					<target>
 						<artifact>
 							<groupId>org.slizaa</groupId>
