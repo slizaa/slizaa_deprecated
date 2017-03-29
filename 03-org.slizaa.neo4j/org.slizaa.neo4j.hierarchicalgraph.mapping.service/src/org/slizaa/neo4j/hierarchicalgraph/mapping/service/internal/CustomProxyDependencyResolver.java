@@ -15,23 +15,23 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
+import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.AggregatedDependencyQuery;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescriptor;
 
-public class CustomAggregatedDependencyResolver implements IAggregatedCoreDependencyResolver {
+public class CustomProxyDependencyResolver implements IProxyDependencyResolver {
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public List<Future<?>> resolveAggregatedDependency(final HGAggregatedCoreDependency dependency) {
-    System.out.println("resolveAggregatedDependency");
+  public List<Future<?>> resolveProxyDependency(final HGProxyDependency dependency) {
+    System.out.println("resolveProxyDependency");
     checkNotNull(dependency);
 
     Set<Object> fromNodes = new HashSet<>();
@@ -71,7 +71,7 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
    *
    * @return
    */
-  private List<String> getDetailQueries(HGAggregatedCoreDependency dependency) {
+  private List<String> getDetailQueries(HGProxyDependency dependency) {
 
     //
     Optional<EList<String>> specificDetailQueries = dependency.getDependencySource(Neo4JBackedDependencySource.class)
@@ -95,7 +95,7 @@ public class CustomAggregatedDependencyResolver implements IAggregatedCoreDepend
    * @param params
    * @return
    */
-  private Future<?> createFutureForQuery(Neo4jRestClient neo4jRepository, final HGAggregatedCoreDependency dependency,
+  private Future<?> createFutureForQuery(Neo4jRestClient neo4jRepository, final HGProxyDependency dependency,
       final String query, Map<String, String> params) {
 
     // return new future

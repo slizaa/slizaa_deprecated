@@ -106,8 +106,8 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
         return createHGCoreDependencyAdapter();
       }
       @Override
-      public Adapter caseHGAggregatedCoreDependency(HGAggregatedCoreDependency object) {
-        return createHGAggregatedCoreDependencyAdapter();
+      public Adapter caseHGProxyDependency(HGProxyDependency object) {
+        return createHGProxyDependencyAdapter();
       }
       @Override
       public Adapter caseNodeToCoreDependencyMap(Map.Entry<HGNode, HGCoreDependency> object) {
@@ -276,16 +276,16 @@ public class HierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency <em>HG Aggregated Core Dependency</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.HGProxyDependency <em>HG Proxy Dependency</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency
+   * @see org.slizaa.hierarchicalgraph.HGProxyDependency
    * @generated
    */
-  public Adapter createHGAggregatedCoreDependencyAdapter() {
+  public Adapter createHGProxyDependencyAdapter() {
     return null;
   }
 

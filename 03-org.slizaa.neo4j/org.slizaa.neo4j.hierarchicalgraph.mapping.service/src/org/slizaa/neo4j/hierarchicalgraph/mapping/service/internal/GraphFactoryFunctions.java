@@ -135,7 +135,7 @@ public class GraphFactoryFunctions {
    */
   public static List<HGCoreDependency> createDependencies(List<Neo4jRelationship> neo4jRelationships,
       HGRootNode rootElement, BiFunction<Long, String, IDependencySource> dependencySourceCreator,
-      boolean aggregatedCoreDependency, boolean reinitializeCaches, IProgressMonitor progressMonitor) {
+      boolean proxyDependency, boolean reinitializeCaches, IProgressMonitor progressMonitor) {
 
     // create sub monitor
     final SubMonitor subMonitor = progressMonitor != null
@@ -153,7 +153,7 @@ public class GraphFactoryFunctions {
       }
 
       result.add(createDependency(element.getIdStart(), element.getIdTarget(), element.getIdTarget(), element.getType(),
-          rootElement, dependencySourceCreator, aggregatedCoreDependency, reinitializeCaches));
+          rootElement, dependencySourceCreator, proxyDependency, reinitializeCaches));
     });
 
     //
@@ -170,7 +170,7 @@ public class GraphFactoryFunctions {
    * @return
    */
   public static HGCoreDependency createDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
-      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean aggregatedCoreDependency,
+      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean proxyDependency,
       boolean reinitializeCaches) {
 
     // get the from...
@@ -186,8 +186,8 @@ public class GraphFactoryFunctions {
     }
 
     //
-    if (aggregatedCoreDependency) {
-      return HierarchicalgraphFactoryMethods.createNewAggregatedCoreDependency(fromElement, toElement, type,
+    if (proxyDependency) {
+      return HierarchicalgraphFactoryMethods.createNewProxyDependency(fromElement, toElement, type,
           () -> dependencySourceCreator.apply(idRel, type), reinitializeCaches);
     }
 

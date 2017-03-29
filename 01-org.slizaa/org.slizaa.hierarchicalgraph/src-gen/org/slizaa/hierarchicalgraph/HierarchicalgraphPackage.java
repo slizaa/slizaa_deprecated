@@ -223,22 +223,22 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST = 7;
 
   /**
-   * The operation id for the '<em>Resolve Incoming Aggregated Core Dependencies</em>' operation.
+   * The operation id for the '<em>Resolve Incoming Proxy Dependencies</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES = 8;
+  int HG_NODE___RESOLVE_INCOMING_PROXY_DEPENDENCIES = 8;
 
   /**
-   * The operation id for the '<em>Resolve Outgoing Aggregated Core Dependencies</em>' operation.
+   * The operation id for the '<em>Resolve Outgoing Proxy Dependencies</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES = 9;
+  int HG_NODE___RESOLVE_OUTGOING_PROXY_DEPENDENCIES = 9;
 
   /**
    * The operation id for the '<em>Get Node Source</em>' operation.
@@ -568,22 +568,22 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_ROOT_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST = HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST;
 
   /**
-   * The operation id for the '<em>Resolve Incoming Aggregated Core Dependencies</em>' operation.
+   * The operation id for the '<em>Resolve Incoming Proxy Dependencies</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES = HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES;
+  int HG_ROOT_NODE___RESOLVE_INCOMING_PROXY_DEPENDENCIES = HG_NODE___RESOLVE_INCOMING_PROXY_DEPENDENCIES;
 
   /**
-   * The operation id for the '<em>Resolve Outgoing Aggregated Core Dependencies</em>' operation.
+   * The operation id for the '<em>Resolve Outgoing Proxy Dependencies</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_ROOT_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES = HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES;
+  int HG_ROOT_NODE___RESOLVE_OUTGOING_PROXY_DEPENDENCIES = HG_NODE___RESOLVE_OUTGOING_PROXY_DEPENDENCIES;
 
   /**
    * The operation id for the '<em>Get Node Source</em>' operation.
@@ -959,13 +959,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_AGGREGATED_DEPENDENCY___GET_ROOT_NODE = ABSTRACT_HG_DEPENDENCY___GET_ROOT_NODE;
 
   /**
-   * The operation id for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
+   * The operation id for the '<em>Resolve Proxy Dependencies</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 0;
+  int HG_AGGREGATED_DEPENDENCY___RESOLVE_PROXY_DEPENDENCIES = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 0;
 
   /**
    * The number of operations of the '<em>HG Aggregated Dependency</em>' class.
@@ -1032,13 +1032,13 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>Aggregated Core Dependency Parent</b></em>' reference.
+   * The feature id for the '<em><b>Proxy Dependency Parent</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 3;
+  int HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT = ABSTRACT_HG_DEPENDENCY_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>HG Core Dependency</em>' class.
@@ -1077,14 +1077,14 @@ public interface HierarchicalgraphPackage extends EPackage {
   int HG_CORE_DEPENDENCY_OPERATION_COUNT = ABSTRACT_HG_DEPENDENCY_OPERATION_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedCoreDependencyImpl <em>HG Aggregated Core Dependency</em>}' class.
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.HGProxyDependencyImpl <em>HG Proxy Dependency</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.hierarchicalgraph.impl.HGAggregatedCoreDependencyImpl
-   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getHGAggregatedCoreDependency()
+   * @see org.slizaa.hierarchicalgraph.impl.HGProxyDependencyImpl
+   * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getHGProxyDependency()
    * @generated
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY = 9;
+  int HG_PROXY_DEPENDENCY = 9;
 
   /**
    * The feature id for the '<em><b>From</b></em>' reference.
@@ -1093,7 +1093,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY__FROM = HG_CORE_DEPENDENCY__FROM;
+  int HG_PROXY_DEPENDENCY__FROM = HG_CORE_DEPENDENCY__FROM;
 
   /**
    * The feature id for the '<em><b>To</b></em>' reference.
@@ -1102,7 +1102,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY__TO = HG_CORE_DEPENDENCY__TO;
+  int HG_PROXY_DEPENDENCY__TO = HG_CORE_DEPENDENCY__TO;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1111,7 +1111,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY__TYPE = HG_CORE_DEPENDENCY__TYPE;
+  int HG_PROXY_DEPENDENCY__TYPE = HG_CORE_DEPENDENCY__TYPE;
 
   /**
    * The feature id for the '<em><b>Weight</b></em>' attribute.
@@ -1120,7 +1120,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY__WEIGHT = HG_CORE_DEPENDENCY__WEIGHT;
+  int HG_PROXY_DEPENDENCY__WEIGHT = HG_CORE_DEPENDENCY__WEIGHT;
 
   /**
    * The feature id for the '<em><b>Dependency Source</b></em>' containment reference.
@@ -1129,16 +1129,16 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY__DEPENDENCY_SOURCE = HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE;
+  int HG_PROXY_DEPENDENCY__DEPENDENCY_SOURCE = HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE;
 
   /**
-   * The feature id for the '<em><b>Aggregated Core Dependency Parent</b></em>' reference.
+   * The feature id for the '<em><b>Proxy Dependency Parent</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT = HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT;
+  int HG_PROXY_DEPENDENCY__PROXY_DEPENDENCY_PARENT = HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT;
 
   /**
    * The feature id for the '<em><b>Resolved</b></em>' attribute.
@@ -1147,7 +1147,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED = HG_CORE_DEPENDENCY_FEATURE_COUNT + 0;
+  int HG_PROXY_DEPENDENCY__RESOLVED = HG_CORE_DEPENDENCY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Resolved Core Dependencies</b></em>' reference list.
@@ -1156,16 +1156,16 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES = HG_CORE_DEPENDENCY_FEATURE_COUNT + 1;
+  int HG_PROXY_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES = HG_CORE_DEPENDENCY_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>HG Aggregated Core Dependency</em>' class.
+   * The number of structural features of the '<em>HG Proxy Dependency</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY_FEATURE_COUNT = HG_CORE_DEPENDENCY_FEATURE_COUNT + 2;
+  int HG_PROXY_DEPENDENCY_FEATURE_COUNT = HG_CORE_DEPENDENCY_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Get Root Node</em>' operation.
@@ -1174,7 +1174,7 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY___GET_ROOT_NODE = HG_CORE_DEPENDENCY___GET_ROOT_NODE;
+  int HG_PROXY_DEPENDENCY___GET_ROOT_NODE = HG_CORE_DEPENDENCY___GET_ROOT_NODE;
 
   /**
    * The operation id for the '<em>Get Dependency Source</em>' operation.
@@ -1183,25 +1183,25 @@ public interface HierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS = HG_CORE_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS;
+  int HG_PROXY_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS = HG_CORE_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS;
 
   /**
-   * The operation id for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
+   * The operation id for the '<em>Resolve Proxy Dependencies</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = HG_CORE_DEPENDENCY_OPERATION_COUNT + 0;
+  int HG_PROXY_DEPENDENCY___RESOLVE_PROXY_DEPENDENCIES = HG_CORE_DEPENDENCY_OPERATION_COUNT + 0;
 
   /**
-   * The number of operations of the '<em>HG Aggregated Core Dependency</em>' class.
+   * The number of operations of the '<em>HG Proxy Dependency</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HG_AGGREGATED_CORE_DEPENDENCY_OPERATION_COUNT = HG_CORE_DEPENDENCY_OPERATION_COUNT + 1;
+  int HG_PROXY_DEPENDENCY_OPERATION_COUNT = HG_CORE_DEPENDENCY_OPERATION_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.impl.NodeToCoreDependencyMapImpl <em>Node To Core Dependency Map</em>}' class.
@@ -1642,24 +1642,24 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGNode__GetOutgoingDependenciesTo__List();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#resolveIncomingAggregatedCoreDependencies() <em>Resolve Incoming Aggregated Core Dependencies</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#resolveIncomingProxyDependencies() <em>Resolve Incoming Proxy Dependencies</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Resolve Incoming Aggregated Core Dependencies</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGNode#resolveIncomingAggregatedCoreDependencies()
+   * @return the meta object for the '<em>Resolve Incoming Proxy Dependencies</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGNode#resolveIncomingProxyDependencies()
    * @generated
    */
-  EOperation getHGNode__ResolveIncomingAggregatedCoreDependencies();
+  EOperation getHGNode__ResolveIncomingProxyDependencies();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#resolveOutgoingAggregatedCoreDependencies() <em>Resolve Outgoing Aggregated Core Dependencies</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#resolveOutgoingProxyDependencies() <em>Resolve Outgoing Proxy Dependencies</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Resolve Outgoing Aggregated Core Dependencies</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGNode#resolveOutgoingAggregatedCoreDependencies()
+   * @return the meta object for the '<em>Resolve Outgoing Proxy Dependencies</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGNode#resolveOutgoingProxyDependencies()
    * @generated
    */
-  EOperation getHGNode__ResolveOutgoingAggregatedCoreDependencies();
+  EOperation getHGNode__ResolveOutgoingProxyDependencies();
 
   /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGNode#getNodeSource(java.lang.Class) <em>Get Node Source</em>}' operation.
@@ -2025,14 +2025,14 @@ public interface HierarchicalgraphPackage extends EPackage {
   EAttribute getHGAggregatedDependency_AggregatedWeight();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#resolveAggregatedCoreDependencies() <em>Resolve Aggregated Core Dependencies</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGAggregatedDependency#resolveProxyDependencies() <em>Resolve Proxy Dependencies</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGAggregatedDependency#resolveAggregatedCoreDependencies()
+   * @return the meta object for the '<em>Resolve Proxy Dependencies</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGAggregatedDependency#resolveProxyDependencies()
    * @generated
    */
-  EOperation getHGAggregatedDependency__ResolveAggregatedCoreDependencies();
+  EOperation getHGAggregatedDependency__ResolveProxyDependencies();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGCoreDependency <em>HG Core Dependency</em>}'.
@@ -2078,15 +2078,15 @@ public interface HierarchicalgraphPackage extends EPackage {
   EReference getHGCoreDependency_DependencySource();
 
   /**
-   * Returns the meta object for the reference '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependencyParent <em>Aggregated Core Dependency Parent</em>}'.
+   * Returns the meta object for the reference '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getProxyDependencyParent <em>Proxy Dependency Parent</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Aggregated Core Dependency Parent</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependencyParent()
+   * @return the meta object for the reference '<em>Proxy Dependency Parent</em>'.
+   * @see org.slizaa.hierarchicalgraph.HGCoreDependency#getProxyDependencyParent()
    * @see #getHGCoreDependency()
    * @generated
    */
-  EReference getHGCoreDependency_AggregatedCoreDependencyParent();
+  EReference getHGCoreDependency_ProxyDependencyParent();
 
   /**
    * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getDependencySource(java.lang.Class) <em>Get Dependency Source</em>}' operation.
@@ -2099,46 +2099,46 @@ public interface HierarchicalgraphPackage extends EPackage {
   EOperation getHGCoreDependency__GetDependencySource__Class();
 
   /**
-   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency <em>HG Aggregated Core Dependency</em>}'.
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.HGProxyDependency <em>HG Proxy Dependency</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>HG Aggregated Core Dependency</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency
+   * @return the meta object for class '<em>HG Proxy Dependency</em>'.
+   * @see org.slizaa.hierarchicalgraph.HGProxyDependency
    * @generated
    */
-  EClass getHGAggregatedCoreDependency();
+  EClass getHGProxyDependency();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#isResolved <em>Resolved</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.hierarchicalgraph.HGProxyDependency#isResolved <em>Resolved</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Resolved</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#isResolved()
-   * @see #getHGAggregatedCoreDependency()
+   * @see org.slizaa.hierarchicalgraph.HGProxyDependency#isResolved()
+   * @see #getHGProxyDependency()
    * @generated
    */
-  EAttribute getHGAggregatedCoreDependency_Resolved();
+  EAttribute getHGProxyDependency_Resolved();
 
   /**
-   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#getResolvedCoreDependencies <em>Resolved Core Dependencies</em>}'.
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.HGProxyDependency#getResolvedCoreDependencies <em>Resolved Core Dependencies</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference list '<em>Resolved Core Dependencies</em>'.
-   * @see org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#getResolvedCoreDependencies()
-   * @see #getHGAggregatedCoreDependency()
+   * @see org.slizaa.hierarchicalgraph.HGProxyDependency#getResolvedCoreDependencies()
+   * @see #getHGProxyDependency()
    * @generated
    */
-  EReference getHGAggregatedCoreDependency_ResolvedCoreDependencies();
+  EReference getHGProxyDependency_ResolvedCoreDependencies();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#resolveAggregatedCoreDependencies() <em>Resolve Aggregated Core Dependencies</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.HGProxyDependency#resolveProxyDependencies() <em>Resolve Proxy Dependencies</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Resolve Aggregated Core Dependencies</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#resolveAggregatedCoreDependencies()
+   * @return the meta object for the '<em>Resolve Proxy Dependencies</em>' operation.
+   * @see org.slizaa.hierarchicalgraph.HGProxyDependency#resolveProxyDependencies()
    * @generated
    */
-  EOperation getHGAggregatedCoreDependency__ResolveAggregatedCoreDependencies();
+  EOperation getHGProxyDependency__ResolveProxyDependencies();
 
   /**
    * Returns the meta object for class '{@link java.util.Map.Entry <em>Node To Core Dependency Map</em>}'.
@@ -2504,20 +2504,20 @@ public interface HierarchicalgraphPackage extends EPackage {
     EOperation HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST = eINSTANCE.getHGNode__GetOutgoingDependenciesTo__List();
 
     /**
-     * The meta object literal for the '<em><b>Resolve Incoming Aggregated Core Dependencies</b></em>' operation.
+     * The meta object literal for the '<em><b>Resolve Incoming Proxy Dependencies</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES = eINSTANCE.getHGNode__ResolveIncomingAggregatedCoreDependencies();
+    EOperation HG_NODE___RESOLVE_INCOMING_PROXY_DEPENDENCIES = eINSTANCE.getHGNode__ResolveIncomingProxyDependencies();
 
     /**
-     * The meta object literal for the '<em><b>Resolve Outgoing Aggregated Core Dependencies</b></em>' operation.
+     * The meta object literal for the '<em><b>Resolve Outgoing Proxy Dependencies</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES = eINSTANCE.getHGNode__ResolveOutgoingAggregatedCoreDependencies();
+    EOperation HG_NODE___RESOLVE_OUTGOING_PROXY_DEPENDENCIES = eINSTANCE.getHGNode__ResolveOutgoingProxyDependencies();
 
     /**
      * The meta object literal for the '<em><b>Get Node Source</b></em>' operation.
@@ -2814,12 +2814,12 @@ public interface HierarchicalgraphPackage extends EPackage {
     EAttribute HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT = eINSTANCE.getHGAggregatedDependency_AggregatedWeight();
 
     /**
-     * The meta object literal for the '<em><b>Resolve Aggregated Core Dependencies</b></em>' operation.
+     * The meta object literal for the '<em><b>Resolve Proxy Dependencies</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_AGGREGATED_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = eINSTANCE.getHGAggregatedDependency__ResolveAggregatedCoreDependencies();
+    EOperation HG_AGGREGATED_DEPENDENCY___RESOLVE_PROXY_DEPENDENCIES = eINSTANCE.getHGAggregatedDependency__ResolveProxyDependencies();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl <em>HG Core Dependency</em>}' class.
@@ -2856,12 +2856,12 @@ public interface HierarchicalgraphPackage extends EPackage {
     EReference HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE = eINSTANCE.getHGCoreDependency_DependencySource();
 
     /**
-     * The meta object literal for the '<em><b>Aggregated Core Dependency Parent</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Proxy Dependency Parent</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT = eINSTANCE.getHGCoreDependency_AggregatedCoreDependencyParent();
+    EReference HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT = eINSTANCE.getHGCoreDependency_ProxyDependencyParent();
 
     /**
      * The meta object literal for the '<em><b>Get Dependency Source</b></em>' operation.
@@ -2872,14 +2872,14 @@ public interface HierarchicalgraphPackage extends EPackage {
     EOperation HG_CORE_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS = eINSTANCE.getHGCoreDependency__GetDependencySource__Class();
 
     /**
-     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.HGAggregatedCoreDependencyImpl <em>HG Aggregated Core Dependency</em>}' class.
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.HGProxyDependencyImpl <em>HG Proxy Dependency</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.slizaa.hierarchicalgraph.impl.HGAggregatedCoreDependencyImpl
-     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getHGAggregatedCoreDependency()
+     * @see org.slizaa.hierarchicalgraph.impl.HGProxyDependencyImpl
+     * @see org.slizaa.hierarchicalgraph.impl.HierarchicalgraphPackageImpl#getHGProxyDependency()
      * @generated
      */
-    EClass HG_AGGREGATED_CORE_DEPENDENCY = eINSTANCE.getHGAggregatedCoreDependency();
+    EClass HG_PROXY_DEPENDENCY = eINSTANCE.getHGProxyDependency();
 
     /**
      * The meta object literal for the '<em><b>Resolved</b></em>' attribute feature.
@@ -2887,7 +2887,7 @@ public interface HierarchicalgraphPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED = eINSTANCE.getHGAggregatedCoreDependency_Resolved();
+    EAttribute HG_PROXY_DEPENDENCY__RESOLVED = eINSTANCE.getHGProxyDependency_Resolved();
 
     /**
      * The meta object literal for the '<em><b>Resolved Core Dependencies</b></em>' reference list feature.
@@ -2895,15 +2895,15 @@ public interface HierarchicalgraphPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES = eINSTANCE.getHGAggregatedCoreDependency_ResolvedCoreDependencies();
+    EReference HG_PROXY_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES = eINSTANCE.getHGProxyDependency_ResolvedCoreDependencies();
 
     /**
-     * The meta object literal for the '<em><b>Resolve Aggregated Core Dependencies</b></em>' operation.
+     * The meta object literal for the '<em><b>Resolve Proxy Dependencies</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation HG_AGGREGATED_CORE_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES = eINSTANCE.getHGAggregatedCoreDependency__ResolveAggregatedCoreDependencies();
+    EOperation HG_PROXY_DEPENDENCY___RESOLVE_PROXY_DEPENDENCIES = eINSTANCE.getHGProxyDependency__ResolveProxyDependencies();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.impl.NodeToCoreDependencyMapImpl <em>Node To Core Dependency Map</em>}' class.

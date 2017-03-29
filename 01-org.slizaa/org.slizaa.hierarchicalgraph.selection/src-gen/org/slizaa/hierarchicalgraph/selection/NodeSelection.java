@@ -5,7 +5,6 @@ package org.slizaa.hierarchicalgraph.selection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.slizaa.hierarchicalgraph.HGNode;
 
 /**

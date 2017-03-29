@@ -17,7 +17,7 @@ import java.util.Optional;
  *   <li>{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getType <em>Type</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getWeight <em>Weight</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getDependencySource <em>Dependency Source</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependencyParent <em>Aggregated Core Dependency Parent</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getProxyDependencyParent <em>Proxy Dependency Parent</em>}</li>
  * </ul>
  *
  * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGCoreDependency()
@@ -107,32 +107,32 @@ public interface HGCoreDependency extends AbstractHGDependency {
   void setDependencySource(IDependencySource value);
 
   /**
-   * Returns the value of the '<em><b>Aggregated Core Dependency Parent</b></em>' reference.
-   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#getResolvedCoreDependencies <em>Resolved Core Dependencies</em>}'.
+   * Returns the value of the '<em><b>Proxy Dependency Parent</b></em>' reference.
+   * It is bidirectional and its opposite is '{@link org.slizaa.hierarchicalgraph.HGProxyDependency#getResolvedCoreDependencies <em>Resolved Core Dependencies</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Aggregated Core Dependency Parent</em>' reference isn't clear,
+   * If the meaning of the '<em>Proxy Dependency Parent</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Aggregated Core Dependency Parent</em>' reference.
-   * @see #setAggregatedCoreDependencyParent(HGAggregatedCoreDependency)
-   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGCoreDependency_AggregatedCoreDependencyParent()
-   * @see org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency#getResolvedCoreDependencies
+   * @return the value of the '<em>Proxy Dependency Parent</em>' reference.
+   * @see #setProxyDependencyParent(HGProxyDependency)
+   * @see org.slizaa.hierarchicalgraph.HierarchicalgraphPackage#getHGCoreDependency_ProxyDependencyParent()
+   * @see org.slizaa.hierarchicalgraph.HGProxyDependency#getResolvedCoreDependencies
    * @model opposite="resolvedCoreDependencies"
    * @generated
    */
-  HGAggregatedCoreDependency getAggregatedCoreDependencyParent();
+  HGProxyDependency getProxyDependencyParent();
 
   /**
-   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getAggregatedCoreDependencyParent <em>Aggregated Core Dependency Parent</em>}' reference.
+   * Sets the value of the '{@link org.slizaa.hierarchicalgraph.HGCoreDependency#getProxyDependencyParent <em>Proxy Dependency Parent</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Aggregated Core Dependency Parent</em>' reference.
-   * @see #getAggregatedCoreDependencyParent()
+   * @param value the new value of the '<em>Proxy Dependency Parent</em>' reference.
+   * @see #getProxyDependencyParent()
    * @generated
    */
-  void setAggregatedCoreDependencyParent(HGAggregatedCoreDependency value);
+  void setProxyDependencyParent(HGProxyDependency value);
 
   /**
    * <!-- begin-user-doc -->

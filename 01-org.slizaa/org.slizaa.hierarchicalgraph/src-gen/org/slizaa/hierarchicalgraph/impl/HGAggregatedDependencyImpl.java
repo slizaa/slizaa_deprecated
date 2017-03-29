@@ -94,7 +94,7 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void resolveAggregatedCoreDependencies() {
+  public void resolveProxyDependencies() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -172,8 +172,8 @@ public class HGAggregatedDependencyImpl extends AbstractHGDependencyImpl impleme
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES:
-        resolveAggregatedCoreDependencies();
+      case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY___RESOLVE_PROXY_DEPENDENCIES:
+        resolveProxyDependencies();
         return null;
     }
     return super.eInvoke(operationID, arguments);

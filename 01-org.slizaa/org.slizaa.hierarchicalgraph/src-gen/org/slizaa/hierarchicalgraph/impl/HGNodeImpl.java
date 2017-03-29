@@ -349,7 +349,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void resolveIncomingAggregatedCoreDependencies() {
+  public void resolveIncomingProxyDependencies() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -360,7 +360,7 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void resolveOutgoingAggregatedCoreDependencies() {
+  public void resolveOutgoingProxyDependencies() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -585,11 +585,11 @@ public class HGNodeImpl extends MinimalEObjectImpl.Container implements HGNode {
         return getOutgoingDependenciesTo((HGNode)arguments.get(0));
       case HierarchicalgraphPackage.HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST:
         return getOutgoingDependenciesTo((List<HGNode>)arguments.get(0));
-      case HierarchicalgraphPackage.HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES:
-        resolveIncomingAggregatedCoreDependencies();
+      case HierarchicalgraphPackage.HG_NODE___RESOLVE_INCOMING_PROXY_DEPENDENCIES:
+        resolveIncomingProxyDependencies();
         return null;
-      case HierarchicalgraphPackage.HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES:
-        resolveOutgoingAggregatedCoreDependencies();
+      case HierarchicalgraphPackage.HG_NODE___RESOLVE_OUTGOING_PROXY_DEPENDENCIES:
+        resolveOutgoingProxyDependencies();
         return null;
       case HierarchicalgraphPackage.HG_NODE___GET_NODE_SOURCE__CLASS:
         return getNodeSource((Class)arguments.get(0));

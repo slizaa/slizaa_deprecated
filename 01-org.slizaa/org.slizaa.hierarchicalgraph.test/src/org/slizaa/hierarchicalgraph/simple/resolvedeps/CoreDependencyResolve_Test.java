@@ -3,8 +3,8 @@ package org.slizaa.hierarchicalgraph.simple.resolvedeps;
 import java.util.ArrayList;
 
 import org.junit.Test;
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 
 /**
  * <p>
@@ -37,8 +37,8 @@ public class CoreDependencyResolve_Test extends AbstractResolverTest {
     //
     resolve(() -> {
       for (HGCoreDependency outgoingDependency : new ArrayList<>(model().a1().getAccumulatedOutgoingCoreDependencies())) {
-        if (outgoingDependency instanceof HGAggregatedCoreDependency) {
-          ((HGAggregatedCoreDependency) outgoingDependency).resolveAggregatedCoreDependencies();
+        if (outgoingDependency instanceof HGProxyDependency) {
+          ((HGProxyDependency) outgoingDependency).resolveProxyDependencies();
         }
       }
     });

@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
+import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
 
 /**
  * <p>
@@ -54,9 +54,9 @@ public class Utilities {
    *
    * @param dependencies
    */
-  public static void resolveAggregatedCoreDependencies(IProgressMonitor progressMonitor,
+  public static void resolveProxyDependencies(IProgressMonitor progressMonitor,
       HGCoreDependency... dependencies) {
-    resolveAggregatedCoreDependencies(Arrays.asList(dependencies), progressMonitor);
+    resolveProxyDependencies(Arrays.asList(dependencies), progressMonitor);
   }
 
   /**
@@ -65,7 +65,7 @@ public class Utilities {
    *
    * @param dependencies
    */
-  public static void resolveAggregatedCoreDependencies(List<? extends HGCoreDependency> dependencies,
+  public static void resolveProxyDependencies(List<? extends HGCoreDependency> dependencies,
       IProgressMonitor progressMonitor) {
 
     //
@@ -74,7 +74,7 @@ public class Utilities {
     }
 
     //
-    if (!dependencies.get(0).getRootNode().hasExtension(IAggregatedCoreDependencyResolver.class)) {
+    if (!dependencies.get(0).getRootNode().hasExtension(IProxyDependencyResolver.class)) {
       return;
     }
 
@@ -84,12 +84,12 @@ public class Utilities {
     // copy the dependencies (concurrent modifications!)
     for (HGCoreDependency coreDependency : new ArrayList<>(dependencies)) {
 
-      if (coreDependency instanceof ExtendedHGAggregatedCoreDependencyImpl
-          && !((ExtendedHGAggregatedCoreDependencyImpl) coreDependency).isResolved()) {
+      if (coreDependency instanceof ExtendedHGProxyDependencyImpl
+          && !((ExtendedHGProxyDependencyImpl) coreDependency).isResolved()) {
 
         //
-        ExtendedHGAggregatedCoreDependencyImpl extendedDependency = (ExtendedHGAggregatedCoreDependencyImpl) coreDependency;
-        List<Future<?>> futureList = extendedDependency.onResolveAggregatedCoreDependency();
+        ExtendedHGProxyDependencyImpl extendedDependency = (ExtendedHGProxyDependencyImpl) coreDependency;
+        List<Future<?>> futureList = extendedDependency.onResolveProxyDependency();
         dependencyResolutions.add(new DependencyResolution(futureList, extendedDependency));
       }
     }
@@ -148,9 +148,9 @@ public class Utilities {
 
     private List<Future<?>>                        _futures;
 
-    private ExtendedHGAggregatedCoreDependencyImpl _dependency;
+    private ExtendedHGProxyDependencyImpl _dependency;
 
-    public DependencyResolution(List<Future<?>> futures, ExtendedHGAggregatedCoreDependencyImpl dependency) {
+    public DependencyResolution(List<Future<?>> futures, ExtendedHGProxyDependencyImpl dependency) {
       _dependency = checkNotNull(dependency);
       _futures = futures != null ? futures : Collections.emptyList();
     }
@@ -159,7 +159,7 @@ public class Utilities {
       return _futures;
     }
 
-    public ExtendedHGAggregatedCoreDependencyImpl getDependency() {
+    public ExtendedHGProxyDependencyImpl getDependency() {
       return _dependency;
     }
   }

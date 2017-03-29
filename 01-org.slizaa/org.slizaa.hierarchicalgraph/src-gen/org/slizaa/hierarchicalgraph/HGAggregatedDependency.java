@@ -59,6 +59,6 @@ public interface HGAggregatedDependency extends AbstractHGDependency {
    * @model
    * @generated
    */
-  void resolveAggregatedCoreDependencies();
+  void resolveProxyDependencies();
 
 } // HGAggregatedDependency

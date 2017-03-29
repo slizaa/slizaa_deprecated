@@ -21,7 +21,7 @@ public class AggregatedDependencyResolve_Test extends AbstractResolverTest {
     //
     resolve(() -> {
       HGAggregatedDependency aggregatedDependency = model().a1().getOutgoingDependenciesTo(model().b1());
-      aggregatedDependency.resolveAggregatedCoreDependencies();
+      aggregatedDependency.resolveProxyDependencies();
     });
   }
 }

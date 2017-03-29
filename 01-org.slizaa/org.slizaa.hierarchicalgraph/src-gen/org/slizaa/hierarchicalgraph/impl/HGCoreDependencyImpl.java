@@ -12,9 +12,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 
@@ -29,7 +28,7 @@ import org.slizaa.hierarchicalgraph.IDependencySource;
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl#getWeight <em>Weight</em>}</li>
  *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl#getDependencySource <em>Dependency Source</em>}</li>
- *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl#getAggregatedCoreDependencyParent <em>Aggregated Core Dependency Parent</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.impl.HGCoreDependencyImpl#getProxyDependencyParent <em>Proxy Dependency Parent</em>}</li>
  * </ul>
  *
  * @generated
@@ -86,14 +85,14 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
   protected IDependencySource dependencySource;
 
   /**
-   * The cached value of the '{@link #getAggregatedCoreDependencyParent() <em>Aggregated Core Dependency Parent</em>}' reference.
+   * The cached value of the '{@link #getProxyDependencyParent() <em>Proxy Dependency Parent</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAggregatedCoreDependencyParent()
+   * @see #getProxyDependencyParent()
    * @generated
    * @ordered
    */
-  protected HGAggregatedCoreDependency aggregatedCoreDependencyParent;
+  protected HGProxyDependency proxyDependencyParent;
 
   /**
    * <!-- begin-user-doc -->
@@ -204,16 +203,16 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGAggregatedCoreDependency getAggregatedCoreDependencyParent() {
-    if (aggregatedCoreDependencyParent != null && aggregatedCoreDependencyParent.eIsProxy()) {
-      InternalEObject oldAggregatedCoreDependencyParent = (InternalEObject)aggregatedCoreDependencyParent;
-      aggregatedCoreDependencyParent = (HGAggregatedCoreDependency)eResolveProxy(oldAggregatedCoreDependencyParent);
-      if (aggregatedCoreDependencyParent != oldAggregatedCoreDependencyParent) {
+  public HGProxyDependency getProxyDependencyParent() {
+    if (proxyDependencyParent != null && proxyDependencyParent.eIsProxy()) {
+      InternalEObject oldProxyDependencyParent = (InternalEObject)proxyDependencyParent;
+      proxyDependencyParent = (HGProxyDependency)eResolveProxy(oldProxyDependencyParent);
+      if (proxyDependencyParent != oldProxyDependencyParent) {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT, oldAggregatedCoreDependencyParent, aggregatedCoreDependencyParent));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT, oldProxyDependencyParent, proxyDependencyParent));
       }
     }
-    return aggregatedCoreDependencyParent;
+    return proxyDependencyParent;
   }
 
   /**
@@ -221,8 +220,8 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGAggregatedCoreDependency basicGetAggregatedCoreDependencyParent() {
-    return aggregatedCoreDependencyParent;
+  public HGProxyDependency basicGetProxyDependencyParent() {
+    return proxyDependencyParent;
   }
 
   /**
@@ -230,11 +229,11 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAggregatedCoreDependencyParent(HGAggregatedCoreDependency newAggregatedCoreDependencyParent, NotificationChain msgs) {
-    HGAggregatedCoreDependency oldAggregatedCoreDependencyParent = aggregatedCoreDependencyParent;
-    aggregatedCoreDependencyParent = newAggregatedCoreDependencyParent;
+  public NotificationChain basicSetProxyDependencyParent(HGProxyDependency newProxyDependencyParent, NotificationChain msgs) {
+    HGProxyDependency oldProxyDependencyParent = proxyDependencyParent;
+    proxyDependencyParent = newProxyDependencyParent;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT, oldAggregatedCoreDependencyParent, newAggregatedCoreDependencyParent);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT, oldProxyDependencyParent, newProxyDependencyParent);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -245,18 +244,18 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAggregatedCoreDependencyParent(HGAggregatedCoreDependency newAggregatedCoreDependencyParent) {
-    if (newAggregatedCoreDependencyParent != aggregatedCoreDependencyParent) {
+  public void setProxyDependencyParent(HGProxyDependency newProxyDependencyParent) {
+    if (newProxyDependencyParent != proxyDependencyParent) {
       NotificationChain msgs = null;
-      if (aggregatedCoreDependencyParent != null)
-        msgs = ((InternalEObject)aggregatedCoreDependencyParent).eInverseRemove(this, HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES, HGAggregatedCoreDependency.class, msgs);
-      if (newAggregatedCoreDependencyParent != null)
-        msgs = ((InternalEObject)newAggregatedCoreDependencyParent).eInverseAdd(this, HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES, HGAggregatedCoreDependency.class, msgs);
-      msgs = basicSetAggregatedCoreDependencyParent(newAggregatedCoreDependencyParent, msgs);
+      if (proxyDependencyParent != null)
+        msgs = ((InternalEObject)proxyDependencyParent).eInverseRemove(this, HierarchicalgraphPackage.HG_PROXY_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES, HGProxyDependency.class, msgs);
+      if (newProxyDependencyParent != null)
+        msgs = ((InternalEObject)newProxyDependencyParent).eInverseAdd(this, HierarchicalgraphPackage.HG_PROXY_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES, HGProxyDependency.class, msgs);
+      msgs = basicSetProxyDependencyParent(newProxyDependencyParent, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT, newAggregatedCoreDependencyParent, newAggregatedCoreDependencyParent));
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT, newProxyDependencyParent, newProxyDependencyParent));
   }
 
   /**
@@ -282,10 +281,10 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
         if (dependencySource != null)
           msgs = ((InternalEObject)dependencySource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE, null, msgs);
         return basicSetDependencySource((IDependencySource)otherEnd, msgs);
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT:
-        if (aggregatedCoreDependencyParent != null)
-          msgs = ((InternalEObject)aggregatedCoreDependencyParent).eInverseRemove(this, HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES, HGAggregatedCoreDependency.class, msgs);
-        return basicSetAggregatedCoreDependencyParent((HGAggregatedCoreDependency)otherEnd, msgs);
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT:
+        if (proxyDependencyParent != null)
+          msgs = ((InternalEObject)proxyDependencyParent).eInverseRemove(this, HierarchicalgraphPackage.HG_PROXY_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES, HGProxyDependency.class, msgs);
+        return basicSetProxyDependencyParent((HGProxyDependency)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -300,8 +299,8 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
     switch (featureID) {
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
         return basicSetDependencySource(null, msgs);
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT:
-        return basicSetAggregatedCoreDependencyParent(null, msgs);
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT:
+        return basicSetProxyDependencyParent(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -320,9 +319,9 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
         return getWeight();
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
         return getDependencySource();
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT:
-        if (resolve) return getAggregatedCoreDependencyParent();
-        return basicGetAggregatedCoreDependencyParent();
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT:
+        if (resolve) return getProxyDependencyParent();
+        return basicGetProxyDependencyParent();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -344,8 +343,8 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
         setDependencySource((IDependencySource)newValue);
         return;
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT:
-        setAggregatedCoreDependencyParent((HGAggregatedCoreDependency)newValue);
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT:
+        setProxyDependencyParent((HGProxyDependency)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -368,8 +367,8 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
         setDependencySource((IDependencySource)null);
         return;
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT:
-        setAggregatedCoreDependencyParent((HGAggregatedCoreDependency)null);
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT:
+        setProxyDependencyParent((HGProxyDependency)null);
         return;
     }
     super.eUnset(featureID);
@@ -389,8 +388,8 @@ public class HGCoreDependencyImpl extends AbstractHGDependencyImpl implements HG
         return weight != WEIGHT_EDEFAULT;
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE:
         return dependencySource != null;
-      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT:
-        return aggregatedCoreDependencyParent != null;
+      case HierarchicalgraphPackage.HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT:
+        return proxyDependencyParent != null;
     }
     return super.eIsSet(featureID);
   }

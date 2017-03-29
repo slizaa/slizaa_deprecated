@@ -9,9 +9,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-
 import org.slizaa.hierarchicalgraph.selection.DependencySelection;
 import org.slizaa.hierarchicalgraph.selection.DependencySelectionStack;
 import org.slizaa.hierarchicalgraph.selection.NodeSelection;

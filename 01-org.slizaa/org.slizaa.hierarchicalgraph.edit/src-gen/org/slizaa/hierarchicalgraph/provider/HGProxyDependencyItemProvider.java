@@ -7,30 +7,28 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
 /**
- * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency} object.
+ * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.HGProxyDependency} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class HGAggregatedCoreDependencyItemProvider extends HGCoreDependencyItemProvider {
+public class HGProxyDependencyItemProvider extends HGCoreDependencyItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGAggregatedCoreDependencyItemProvider(AdapterFactory adapterFactory) {
+  public HGProxyDependencyItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -62,9 +60,9 @@ public class HGAggregatedCoreDependencyItemProvider extends HGCoreDependencyItem
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGAggregatedCoreDependency_resolved_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGAggregatedCoreDependency_resolved_feature", "_UI_HGAggregatedCoreDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED,
+         getString("_UI_HGProxyDependency_resolved_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGProxyDependency_resolved_feature", "_UI_HGProxyDependency_type"),
+         HierarchicalgraphPackage.Literals.HG_PROXY_DEPENDENCY__RESOLVED,
          false,
          false,
          false,
@@ -84,9 +82,9 @@ public class HGAggregatedCoreDependencyItemProvider extends HGCoreDependencyItem
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGAggregatedCoreDependency_resolvedCoreDependencies_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGAggregatedCoreDependency_resolvedCoreDependencies_feature", "_UI_HGAggregatedCoreDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES,
+         getString("_UI_HGProxyDependency_resolvedCoreDependencies_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGProxyDependency_resolvedCoreDependencies_feature", "_UI_HGProxyDependency_type"),
+         HierarchicalgraphPackage.Literals.HG_PROXY_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES,
          true,
          false,
          true,
@@ -96,14 +94,14 @@ public class HGAggregatedCoreDependencyItemProvider extends HGCoreDependencyItem
   }
 
   /**
-   * This returns HGAggregatedCoreDependency.gif.
+   * This returns HGProxyDependency.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/HGAggregatedCoreDependency"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/HGProxyDependency"));
   }
 
   /**
@@ -135,12 +133,12 @@ public class HGAggregatedCoreDependencyItemProvider extends HGCoreDependencyItem
    */
   @Override
   public Object getStyledText(Object object) {
-    String label = ((HGAggregatedCoreDependency)object).getType();
+    String label = ((HGProxyDependency)object).getType();
     	StyledString styledLabel = new StyledString();
     if (label == null || label.length() == 0) {
-      styledLabel.append(getString("_UI_HGAggregatedCoreDependency_type"), StyledString.Style.QUALIFIER_STYLER); 
+      styledLabel.append(getString("_UI_HGProxyDependency_type"), StyledString.Style.QUALIFIER_STYLER); 
     } else {
-      styledLabel.append(getString("_UI_HGAggregatedCoreDependency_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+      styledLabel.append(getString("_UI_HGProxyDependency_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
     }
     return styledLabel;
   }	
@@ -156,8 +154,8 @@ public class HGAggregatedCoreDependencyItemProvider extends HGCoreDependencyItem
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(HGAggregatedCoreDependency.class)) {
-      case HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED:
+    switch (notification.getFeatureID(HGProxyDependency.class)) {
+      case HierarchicalgraphPackage.HG_PROXY_DEPENDENCY__RESOLVED:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

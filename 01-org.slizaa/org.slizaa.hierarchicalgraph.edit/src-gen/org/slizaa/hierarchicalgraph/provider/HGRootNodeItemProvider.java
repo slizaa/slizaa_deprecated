@@ -12,7 +12,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 

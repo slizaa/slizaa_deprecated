@@ -13,7 +13,7 @@ public class NodeResolveOutgoing_Test extends AbstractResolverTest {
   @Test
   public void nodeResolveOutgoing() {
     resolve(() -> {
-      model().a1().resolveOutgoingAggregatedCoreDependencies();
+      model().a1().resolveOutgoingProxyDependencies();
     });
   }
 }

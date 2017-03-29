@@ -1,17 +1,17 @@
 package org.slizaa.hierarchicalgraph.simple;
 
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewAggregatedCoreDependency;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewNode;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewProxyDependency;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewRootNode;
 
 import java.util.function.Supplier;
 
 import org.junit.After;
 import org.junit.Before;
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.IDependencySource;
@@ -76,7 +76,7 @@ public class AbstractSimpleModelTest {
 
     private HGCoreDependency           _dep_a2_b2_core1;
 
-    private HGAggregatedCoreDependency _dep_a3_b3_core1;
+    private HGProxyDependency _dep_a3_b3_core1;
 
     private HGRootNode                 _rootNode;
 
@@ -102,7 +102,7 @@ public class AbstractSimpleModelTest {
       _dep_a1_b1_core2 = createNewCoreDependency(_a1, _b1, "DEPENDS_ON", dependencySourceSupplier, false);
       _dep_a2_b2_core1 = createNewCoreDependency(_a2, _b2, "USES", dependencySourceSupplier, false);
 
-      _dep_a3_b3_core1 = createNewAggregatedCoreDependency(_a3, _b3, "DEPENDS_ON", dependencySourceSupplier, false);
+      _dep_a3_b3_core1 = createNewProxyDependency(_a3, _b3, "DEPENDS_ON", dependencySourceSupplier, false);
     }
 
     /**
@@ -211,7 +211,7 @@ public class AbstractSimpleModelTest {
      *
      * @return the dep_a3_b3_core1
      */
-    public HGAggregatedCoreDependency a3_b3_core1() {
+    public HGProxyDependency a3_b3_core1() {
       return _dep_a3_b3_core1;
     }
   }

@@ -4,9 +4,11 @@ package org.slizaa.hierarchicalgraph.selection.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-import org.slizaa.hierarchicalgraph.selection.*;
+import org.slizaa.hierarchicalgraph.selection.DependencySelection;
+import org.slizaa.hierarchicalgraph.selection.DependencySelectionStack;
+import org.slizaa.hierarchicalgraph.selection.NodeSelection;
+import org.slizaa.hierarchicalgraph.selection.SelectionPackage;
 
 /**
  * <!-- begin-user-doc -->

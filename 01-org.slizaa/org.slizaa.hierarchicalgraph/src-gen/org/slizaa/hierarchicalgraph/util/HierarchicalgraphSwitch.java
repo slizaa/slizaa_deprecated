@@ -127,11 +127,11 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY: {
-        HGAggregatedCoreDependency hgAggregatedCoreDependency = (HGAggregatedCoreDependency)theEObject;
-        T result = caseHGAggregatedCoreDependency(hgAggregatedCoreDependency);
-        if (result == null) result = caseHGCoreDependency(hgAggregatedCoreDependency);
-        if (result == null) result = caseAbstractHGDependency(hgAggregatedCoreDependency);
+      case HierarchicalgraphPackage.HG_PROXY_DEPENDENCY: {
+        HGProxyDependency hgProxyDependency = (HGProxyDependency)theEObject;
+        T result = caseHGProxyDependency(hgProxyDependency);
+        if (result == null) result = caseHGCoreDependency(hgProxyDependency);
+        if (result == null) result = caseAbstractHGDependency(hgProxyDependency);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -305,17 +305,17 @@ public class HierarchicalgraphSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>HG Aggregated Core Dependency</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>HG Proxy Dependency</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>HG Aggregated Core Dependency</em>'.
+   * @return the result of interpreting the object as an instance of '<em>HG Proxy Dependency</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseHGAggregatedCoreDependency(HGAggregatedCoreDependency object) {
+  public T caseHGProxyDependency(HGProxyDependency object) {
     return null;
   }
 

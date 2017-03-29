@@ -25,9 +25,9 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphUtilityMethods;
 import org.slizaa.hierarchicalgraph.selection.NodeSelections;
@@ -139,9 +139,9 @@ public class DefaultDependencySelector implements IDependencySelector {
       @Override
       public void notifyChanged(Notification msg) {
         if (msg.getFeatureID(
-            HGAggregatedCoreDependency.class) == HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED) {
+            HGProxyDependency.class) == HierarchicalgraphPackage.HG_PROXY_DEPENDENCY__RESOLVED) {
 
-          handleNotify((HGAggregatedCoreDependency) msg.getNotifier());
+          handleNotify((HGProxyDependency) msg.getNotifier());
         }
       }
     };
@@ -155,19 +155,19 @@ public class DefaultDependencySelector implements IDependencySelector {
     this._propertyChangeSupport.removePropertyChangeListener(listener);
   }
 
-  private void handleNotify(HGAggregatedCoreDependency aggregatedCoreDependency) {
+  private void handleNotify(HGProxyDependency proxyDependency) {
 
     // remove the aggregated dependency
-    _sourceNode2CoreDependenciesMap.getUnchecked(aggregatedCoreDependency.getFrom()).remove(aggregatedCoreDependency);
-    _targetNode2CoreDependenciesMap.getUnchecked(aggregatedCoreDependency.getTo()).remove(aggregatedCoreDependency);
-    _unfilteredSourceNodes.remove(aggregatedCoreDependency.getFrom());
-    _unfilteredTargetNodes.remove(aggregatedCoreDependency.getTo());
+    _sourceNode2CoreDependenciesMap.getUnchecked(proxyDependency.getFrom()).remove(proxyDependency);
+    _targetNode2CoreDependenciesMap.getUnchecked(proxyDependency.getTo()).remove(proxyDependency);
+    _unfilteredSourceNodes.remove(proxyDependency.getFrom());
+    _unfilteredTargetNodes.remove(proxyDependency.getTo());
     // _unfilteredSourceNodesWithParents - we don't have to change this here...
     // _unfilteredTargetNodesWithParents - we don't have to change this here...
-    _filteredCoreDependencies.remove(aggregatedCoreDependency);
+    _filteredCoreDependencies.remove(proxyDependency);
 
     // add the new core dependencies
-    for (HGCoreDependency hgCoreDependency : aggregatedCoreDependency.getResolvedCoreDependencies()) {
+    for (HGCoreDependency hgCoreDependency : proxyDependency.getResolvedCoreDependencies()) {
 
       _sourceNode2CoreDependenciesMap.getUnchecked(hgCoreDependency.getFrom()).add(hgCoreDependency);
       _targetNode2CoreDependenciesMap.getUnchecked(hgCoreDependency.getTo()).add(hgCoreDependency);
@@ -248,7 +248,7 @@ public class DefaultDependencySelector implements IDependencySelector {
   @Override
   public Set<HGCoreDependency> getUnfilteredCoreDependencies() {
     init();
-    return Collections.unmodifiableSet(getResolvedCoreDependenciesOrAggregatedCoreDependencyOtherwise());
+    return Collections.unmodifiableSet(getResolvedCoreDependenciesOrProxyDependencyOtherwise());
   }
 
   /**
@@ -347,7 +347,7 @@ public class DefaultDependencySelector implements IDependencySelector {
       Set<HGNode> unfilteredTargetNodes = new HashSet<HGNode>();
 
       //
-      getResolvedCoreDependenciesOrAggregatedCoreDependencyOtherwise().forEach(dep -> {
+      getResolvedCoreDependenciesOrProxyDependencyOtherwise().forEach(dep -> {
         _sourceNode2CoreDependenciesMap.getUnchecked(dep.getFrom()).add(dep);
         _targetNode2CoreDependenciesMap.getUnchecked(dep.getTo()).add(dep);
         unfilteredSourceNodes.add(dep.getFrom());
@@ -425,15 +425,15 @@ public class DefaultDependencySelector implements IDependencySelector {
    *
    * @return
    */
-  private Set<HGCoreDependency> getResolvedCoreDependenciesOrAggregatedCoreDependencyOtherwise() {
+  private Set<HGCoreDependency> getResolvedCoreDependenciesOrProxyDependencyOtherwise() {
 
     //
     Set<HGCoreDependency> coreDependencies = new HashSet<>();
 
     _coreDependencies.forEach((c) -> {
-      if (c instanceof HGAggregatedCoreDependency && ((HGAggregatedCoreDependency) c).isResolved()
-          && ((HGAggregatedCoreDependency) c).getResolvedCoreDependencies().size() > 0) {
-        coreDependencies.addAll(((HGAggregatedCoreDependency) c).getResolvedCoreDependencies());
+      if (c instanceof HGProxyDependency && ((HGProxyDependency) c).isResolved()
+          && ((HGProxyDependency) c).getResolvedCoreDependencies().size() > 0) {
+        coreDependencies.addAll(((HGProxyDependency) c).getResolvedCoreDependencies());
       } else {
         coreDependencies.add(c);
       }

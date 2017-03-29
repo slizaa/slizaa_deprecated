@@ -11,7 +11,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.simple.AbstractSimpleModelTest;
-import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
+import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
 
 /**
  * <p>
@@ -22,7 +22,7 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
 public class CallResolver_Test extends AbstractSimpleModelTest {
 
   /** - */
-  private IAggregatedCoreDependencyResolver _resolver;
+  private IProxyDependencyResolver _resolver;
 
   /** - */
   private HGAggregatedDependency            _aggregatedDependency;
@@ -35,8 +35,8 @@ public class CallResolver_Test extends AbstractSimpleModelTest {
     super.before();
 
     //
-    _resolver = mock(IAggregatedCoreDependencyResolver.class);
-    model().root().registerExtension(IAggregatedCoreDependencyResolver.class, _resolver);
+    _resolver = mock(IProxyDependencyResolver.class);
+    model().root().registerExtension(IProxyDependencyResolver.class, _resolver);
 
     // get the aggregated dependency
     _aggregatedDependency = model().a1().getOutgoingDependenciesTo(model().b1());
@@ -48,22 +48,22 @@ public class CallResolver_Test extends AbstractSimpleModelTest {
    * </p>
    */
   @Test
-  public void testResolveAggregatedCoreDependencies() {
+  public void testResolveProxyDependencies() {
 
     //
-    _aggregatedDependency.resolveAggregatedCoreDependencies();
+    _aggregatedDependency.resolveProxyDependencies();
 
     //
-    verify(_resolver).resolveAggregatedDependency(model().a3_b3_core1());
+    verify(_resolver).resolveProxyDependency(model().a3_b3_core1());
     verifyNoMoreInteractions(_resolver);
 
     //
     reset(_resolver);
 
     // don't call 'createNewAggregatedDependencyResolver' again
-    _aggregatedDependency.resolveAggregatedCoreDependencies();
+    _aggregatedDependency.resolveProxyDependencies();
 
     //
-    verify(_resolver, never()).resolveAggregatedDependency(any());
+    verify(_resolver, never()).resolveProxyDependency(any());
   }
 }

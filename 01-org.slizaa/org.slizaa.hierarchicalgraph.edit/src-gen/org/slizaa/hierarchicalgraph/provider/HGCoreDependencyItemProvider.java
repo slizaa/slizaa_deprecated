@@ -8,15 +8,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 
@@ -50,7 +47,7 @@ public class HGCoreDependencyItemProvider extends AbstractHGDependencyItemProvid
 
       addTypePropertyDescriptor(object);
       addWeightPropertyDescriptor(object);
-      addAggregatedCoreDependencyParentPropertyDescriptor(object);
+      addProxyDependencyParentPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -100,19 +97,19 @@ public class HGCoreDependencyItemProvider extends AbstractHGDependencyItemProvid
   }
 
   /**
-   * This adds a property descriptor for the Aggregated Core Dependency Parent feature.
+   * This adds a property descriptor for the Proxy Dependency Parent feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addAggregatedCoreDependencyParentPropertyDescriptor(Object object) {
+  protected void addProxyDependencyParentPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_HGCoreDependency_aggregatedCoreDependencyParent_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_HGCoreDependency_aggregatedCoreDependencyParent_feature", "_UI_HGCoreDependency_type"),
-         HierarchicalgraphPackage.Literals.HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT,
+         getString("_UI_HGCoreDependency_proxyDependencyParent_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_HGCoreDependency_proxyDependencyParent_feature", "_UI_HGCoreDependency_type"),
+         HierarchicalgraphPackage.Literals.HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT,
          true,
          false,
          true,

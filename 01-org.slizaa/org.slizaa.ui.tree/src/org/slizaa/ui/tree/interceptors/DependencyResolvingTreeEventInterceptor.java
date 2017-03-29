@@ -7,9 +7,9 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.impl.Utilities;
 
 /**
@@ -69,9 +69,9 @@ public class DependencyResolvingTreeEventInterceptor implements ITreeEventInterc
   private void resolveDependencies(HGNode node) {
     Set<HGCoreDependency> dependencies = _coreDependencySupplier.apply(node);
     if (dependencies != null) {
-      List<HGAggregatedCoreDependency> aggregatedCoreDependencies = dependencies.stream().filter(dep -> dep instanceof HGAggregatedCoreDependency)
-          .map(dep -> (HGAggregatedCoreDependency) dep).collect(Collectors.toList());
-      Utilities.resolveAggregatedCoreDependencies(aggregatedCoreDependencies, null);
+      List<HGProxyDependency> proxyDependencies = dependencies.stream().filter(dep -> dep instanceof HGProxyDependency)
+          .map(dep -> (HGProxyDependency) dep).collect(Collectors.toList());
+      Utilities.resolveProxyDependencies(proxyDependencies, null);
     }
   }
 }

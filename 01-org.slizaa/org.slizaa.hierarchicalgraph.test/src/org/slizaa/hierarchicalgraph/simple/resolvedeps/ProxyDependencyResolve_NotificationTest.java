@@ -15,7 +15,7 @@ import org.junit.Test;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class AggregatedCoreDependencyResolve_NotificationTest extends AbstractResolverTest {
+public class ProxyDependencyResolve_NotificationTest extends AbstractResolverTest {
 
   /** - */
   private List<Notification> _notifications;
@@ -52,7 +52,7 @@ public class AggregatedCoreDependencyResolve_NotificationTest extends AbstractRe
 
     //
     resolve(() -> {
-      model().a3_b3_core1().resolveAggregatedCoreDependencies();
+      model().a3_b3_core1().resolveProxyDependencies();
     });
 
     //

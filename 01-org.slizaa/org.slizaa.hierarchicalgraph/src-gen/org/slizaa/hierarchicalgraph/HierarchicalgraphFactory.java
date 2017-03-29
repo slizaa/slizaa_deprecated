@@ -76,13 +76,13 @@ public interface HierarchicalgraphFactory extends EFactory {
   HGCoreDependency createHGCoreDependency();
 
   /**
-   * Returns a new object of class '<em>HG Aggregated Core Dependency</em>'.
+   * Returns a new object of class '<em>HG Proxy Dependency</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>HG Aggregated Core Dependency</em>'.
+   * @return a new object of class '<em>HG Proxy Dependency</em>'.
    * @generated
    */
-  HGAggregatedCoreDependency createHGAggregatedCoreDependency();
+  HGProxyDependency createHGProxyDependency();
 
   /**
    * Returns the package supported by this factory.

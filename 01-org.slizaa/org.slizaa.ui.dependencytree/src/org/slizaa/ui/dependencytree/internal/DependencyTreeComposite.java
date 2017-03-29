@@ -93,9 +93,9 @@ public class DependencyTreeComposite extends Composite {
 
     // TODO
     _fromExpandStrategy = new DefaultExpandStrategy(
-        (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getOutgoingCoreDependencies()));
+        (node) -> DefaultExpandStrategy.hasUnresolvedProxyDependencies(node.getOutgoingCoreDependencies()));
     _toExpandStrategy = new DefaultExpandStrategy(
-        (node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(node.getIncomingCoreDependencies()));
+        (node) -> DefaultExpandStrategy.hasUnresolvedProxyDependencies(node.getIncomingCoreDependencies()));
 
     //
     _eclipseContextSupplier = eclipseContextSupplier;

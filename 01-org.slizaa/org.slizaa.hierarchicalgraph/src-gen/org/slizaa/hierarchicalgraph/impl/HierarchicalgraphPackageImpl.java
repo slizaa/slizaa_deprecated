@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.DefaultDependencySource;
 import org.slizaa.hierarchicalgraph.DefaultNodeSource;
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
@@ -107,7 +107,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass hgAggregatedCoreDependencyEClass = null;
+  private EClass hgProxyDependencyEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -384,7 +384,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGNode__ResolveIncomingAggregatedCoreDependencies() {
+  public EOperation getHGNode__ResolveIncomingProxyDependencies() {
     return hgNodeEClass.getEOperations().get(8);
   }
 
@@ -393,7 +393,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGNode__ResolveOutgoingAggregatedCoreDependencies() {
+  public EOperation getHGNode__ResolveOutgoingProxyDependencies() {
     return hgNodeEClass.getEOperations().get(9);
   }
 
@@ -717,7 +717,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGAggregatedDependency__ResolveAggregatedCoreDependencies() {
+  public EOperation getHGAggregatedDependency__ResolveProxyDependencies() {
     return hgAggregatedDependencyEClass.getEOperations().get(0);
   }
 
@@ -762,7 +762,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getHGCoreDependency_AggregatedCoreDependencyParent() {
+  public EReference getHGCoreDependency_ProxyDependencyParent() {
     return (EReference)hgCoreDependencyEClass.getEStructuralFeatures().get(3);
   }
 
@@ -780,8 +780,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getHGAggregatedCoreDependency() {
-    return hgAggregatedCoreDependencyEClass;
+  public EClass getHGProxyDependency() {
+    return hgProxyDependencyEClass;
   }
 
   /**
@@ -789,8 +789,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getHGAggregatedCoreDependency_Resolved() {
-    return (EAttribute)hgAggregatedCoreDependencyEClass.getEStructuralFeatures().get(0);
+  public EAttribute getHGProxyDependency_Resolved() {
+    return (EAttribute)hgProxyDependencyEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -798,8 +798,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getHGAggregatedCoreDependency_ResolvedCoreDependencies() {
-    return (EReference)hgAggregatedCoreDependencyEClass.getEStructuralFeatures().get(1);
+  public EReference getHGProxyDependency_ResolvedCoreDependencies() {
+    return (EReference)hgProxyDependencyEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -807,8 +807,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getHGAggregatedCoreDependency__ResolveAggregatedCoreDependencies() {
-    return hgAggregatedCoreDependencyEClass.getEOperations().get(0);
+  public EOperation getHGProxyDependency__ResolveProxyDependencies() {
+    return hgProxyDependencyEClass.getEOperations().get(0);
   }
 
   /**
@@ -1018,8 +1018,8 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     createEOperation(hgNodeEClass, HG_NODE___GET_INCOMING_DEPENDENCIES_FROM__LIST);
     createEOperation(hgNodeEClass, HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__HGNODE);
     createEOperation(hgNodeEClass, HG_NODE___GET_OUTGOING_DEPENDENCIES_TO__LIST);
-    createEOperation(hgNodeEClass, HG_NODE___RESOLVE_INCOMING_AGGREGATED_CORE_DEPENDENCIES);
-    createEOperation(hgNodeEClass, HG_NODE___RESOLVE_OUTGOING_AGGREGATED_CORE_DEPENDENCIES);
+    createEOperation(hgNodeEClass, HG_NODE___RESOLVE_INCOMING_PROXY_DEPENDENCIES);
+    createEOperation(hgNodeEClass, HG_NODE___RESOLVE_OUTGOING_PROXY_DEPENDENCIES);
     createEOperation(hgNodeEClass, HG_NODE___GET_NODE_SOURCE__CLASS);
 
     iNodeSourceEClass = createEClass(INODE_SOURCE);
@@ -1062,19 +1062,19 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     hgAggregatedDependencyEClass = createEClass(HG_AGGREGATED_DEPENDENCY);
     createEReference(hgAggregatedDependencyEClass, HG_AGGREGATED_DEPENDENCY__CORE_DEPENDENCIES);
     createEAttribute(hgAggregatedDependencyEClass, HG_AGGREGATED_DEPENDENCY__AGGREGATED_WEIGHT);
-    createEOperation(hgAggregatedDependencyEClass, HG_AGGREGATED_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES);
+    createEOperation(hgAggregatedDependencyEClass, HG_AGGREGATED_DEPENDENCY___RESOLVE_PROXY_DEPENDENCIES);
 
     hgCoreDependencyEClass = createEClass(HG_CORE_DEPENDENCY);
     createEAttribute(hgCoreDependencyEClass, HG_CORE_DEPENDENCY__TYPE);
     createEAttribute(hgCoreDependencyEClass, HG_CORE_DEPENDENCY__WEIGHT);
     createEReference(hgCoreDependencyEClass, HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE);
-    createEReference(hgCoreDependencyEClass, HG_CORE_DEPENDENCY__AGGREGATED_CORE_DEPENDENCY_PARENT);
+    createEReference(hgCoreDependencyEClass, HG_CORE_DEPENDENCY__PROXY_DEPENDENCY_PARENT);
     createEOperation(hgCoreDependencyEClass, HG_CORE_DEPENDENCY___GET_DEPENDENCY_SOURCE__CLASS);
 
-    hgAggregatedCoreDependencyEClass = createEClass(HG_AGGREGATED_CORE_DEPENDENCY);
-    createEAttribute(hgAggregatedCoreDependencyEClass, HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED);
-    createEReference(hgAggregatedCoreDependencyEClass, HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES);
-    createEOperation(hgAggregatedCoreDependencyEClass, HG_AGGREGATED_CORE_DEPENDENCY___RESOLVE_AGGREGATED_CORE_DEPENDENCIES);
+    hgProxyDependencyEClass = createEClass(HG_PROXY_DEPENDENCY);
+    createEAttribute(hgProxyDependencyEClass, HG_PROXY_DEPENDENCY__RESOLVED);
+    createEReference(hgProxyDependencyEClass, HG_PROXY_DEPENDENCY__RESOLVED_CORE_DEPENDENCIES);
+    createEOperation(hgProxyDependencyEClass, HG_PROXY_DEPENDENCY___RESOLVE_PROXY_DEPENDENCIES);
 
     nodeToCoreDependencyMapEClass = createEClass(NODE_TO_CORE_DEPENDENCY_MAP);
     createEReference(nodeToCoreDependencyMapEClass, NODE_TO_CORE_DEPENDENCY_MAP__KEY);
@@ -1139,7 +1139,7 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     defaultDependencySourceEClass.getESuperTypes().add(this.getIDependencySource());
     hgAggregatedDependencyEClass.getESuperTypes().add(this.getAbstractHGDependency());
     hgCoreDependencyEClass.getESuperTypes().add(this.getAbstractHGDependency());
-    hgAggregatedCoreDependencyEClass.getESuperTypes().add(this.getHGCoreDependency());
+    hgProxyDependencyEClass.getESuperTypes().add(this.getHGCoreDependency());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(hgNodeEClass, HGNode.class, "HGNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1174,9 +1174,9 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     op = initEOperation(getHGNode__GetOutgoingDependenciesTo__List(), this.getHGAggregatedDependency(), "getOutgoingDependenciesTo", 0, -1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, this.getHGNode(), "targetNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-    initEOperation(getHGNode__ResolveIncomingAggregatedCoreDependencies(), null, "resolveIncomingAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getHGNode__ResolveIncomingProxyDependencies(), null, "resolveIncomingProxyDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-    initEOperation(getHGNode__ResolveOutgoingAggregatedCoreDependencies(), null, "resolveOutgoingAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getHGNode__ResolveOutgoingProxyDependencies(), null, "resolveOutgoingProxyDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     op = initEOperation(getHGNode__GetNodeSource__Class(), null, "getNodeSource", 1, 1, IS_UNIQUE, IS_ORDERED);
     ETypeParameter t1 = addETypeParameter(op, "T");
@@ -1282,13 +1282,13 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     initEReference(getHGAggregatedDependency_CoreDependencies(), this.getHGCoreDependency(), null, "coreDependencies", null, 0, -1, HGAggregatedDependency.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
     initEAttribute(getHGAggregatedDependency_AggregatedWeight(), ecorePackage.getEInt(), "aggregatedWeight", null, 0, 1, HGAggregatedDependency.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEOperation(getHGAggregatedDependency__ResolveAggregatedCoreDependencies(), null, "resolveAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getHGAggregatedDependency__ResolveProxyDependencies(), null, "resolveProxyDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(hgCoreDependencyEClass, HGCoreDependency.class, "HGCoreDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHGCoreDependency_Type(), ecorePackage.getEString(), "type", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getHGCoreDependency_Weight(), ecorePackage.getEInt(), "weight", "1", 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHGCoreDependency_DependencySource(), this.getIDependencySource(), this.getIDependencySource_Dependency(), "dependencySource", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getHGCoreDependency_AggregatedCoreDependencyParent(), this.getHGAggregatedCoreDependency(), this.getHGAggregatedCoreDependency_ResolvedCoreDependencies(), "aggregatedCoreDependencyParent", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getHGCoreDependency_ProxyDependencyParent(), this.getHGProxyDependency(), this.getHGProxyDependency_ResolvedCoreDependencies(), "proxyDependencyParent", null, 0, 1, HGCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     op = initEOperation(getHGCoreDependency__GetDependencySource__Class(), null, "getDependencySource", 1, 1, IS_UNIQUE, IS_ORDERED);
     t1 = addETypeParameter(op, "T");
@@ -1301,11 +1301,11 @@ public class HierarchicalgraphPackageImpl extends EPackageImpl implements Hierar
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
 
-    initEClass(hgAggregatedCoreDependencyEClass, HGAggregatedCoreDependency.class, "HGAggregatedCoreDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getHGAggregatedCoreDependency_Resolved(), ecorePackage.getEBoolean(), "resolved", null, 0, 1, HGAggregatedCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getHGAggregatedCoreDependency_ResolvedCoreDependencies(), this.getHGCoreDependency(), this.getHGCoreDependency_AggregatedCoreDependencyParent(), "resolvedCoreDependencies", null, 0, -1, HGAggregatedCoreDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(hgProxyDependencyEClass, HGProxyDependency.class, "HGProxyDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getHGProxyDependency_Resolved(), ecorePackage.getEBoolean(), "resolved", null, 0, 1, HGProxyDependency.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getHGProxyDependency_ResolvedCoreDependencies(), this.getHGCoreDependency(), this.getHGCoreDependency_ProxyDependencyParent(), "resolvedCoreDependencies", null, 0, -1, HGProxyDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEOperation(getHGAggregatedCoreDependency__ResolveAggregatedCoreDependencies(), null, "resolveAggregatedCoreDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
+    initEOperation(getHGProxyDependency__ResolveProxyDependencies(), null, "resolveProxyDependencies", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(nodeToCoreDependencyMapEClass, Map.Entry.class, "NodeToCoreDependencyMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNodeToCoreDependencyMap_Key(), this.getHGNode(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

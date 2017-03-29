@@ -25,7 +25,7 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
-import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
+import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
@@ -168,7 +168,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
 
     // register default extensions
     rootNode.registerExtension(Neo4jRestClient.class, remoteRepository);
-    rootNode.registerExtension(IAggregatedCoreDependencyResolver.class, new CustomAggregatedDependencyResolver());
+    rootNode.registerExtension(IProxyDependencyResolver.class, new CustomProxyDependencyResolver());
     rootNode.registerExtension(MappingDescriptor.class, mappingDescriptor);
 
     //
@@ -268,7 +268,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
   // createDependencies(jsonArray, rootNode,
   // (id, type) -> GraphFactoryFunctions.createDependencySource(id, type,
   // dependencyQueries.size() > 1 ? dependencyQuery.getDependencyMapping() : null),
-  // dependencyQuery.getDependencyMapping().isAggregatedCoreDependency(), false, iterationMonitor);
+  // dependencyQuery.getDependencyMapping().isProxyDependency(), false, iterationMonitor);
   //
   // } catch (Exception e) {
   // throw new HierarchicalGraphMappingException(e);

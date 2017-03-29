@@ -67,16 +67,16 @@ public class ExtendedHGNodeImpl extends HGNodeImpl {
    * {@inheritDoc}
    */
   @Override
-  public void resolveIncomingAggregatedCoreDependencies() {
-    _trait.resolveIncomingAggregatedCoreDependencies();
+  public void resolveIncomingProxyDependencies() {
+    _trait.resolveIncomingProxyDependencies();
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public void resolveOutgoingAggregatedCoreDependencies() {
-    _trait.resolveOutgoingAggregatedCoreDependencies();
+  public void resolveOutgoingProxyDependencies() {
+    _trait.resolveOutgoingProxyDependencies();
   }
 
   @Override

@@ -265,7 +265,7 @@ public interface HGNode extends EObject {
    * @model
    * @generated
    */
-  void resolveIncomingAggregatedCoreDependencies();
+  void resolveIncomingProxyDependencies();
 
   /**
    * <!-- begin-user-doc -->
@@ -273,7 +273,7 @@ public interface HGNode extends EObject {
    * @model
    * @generated
    */
-  void resolveOutgoingAggregatedCoreDependencies();
+  void resolveOutgoingProxyDependencies();
 
   /**
    * <!-- begin-user-doc -->

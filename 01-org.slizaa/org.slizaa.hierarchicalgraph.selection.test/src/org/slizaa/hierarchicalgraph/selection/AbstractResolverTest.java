@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 import org.junit.Before;
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
-import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
+import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
 
 /**
  * <p>
@@ -18,7 +18,7 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 public abstract class AbstractResolverTest extends AbstractSimpleModelTest
-    implements IAggregatedCoreDependencyResolver {
+    implements IProxyDependencyResolver {
 
   /** - */
   private HGCoreDependency _newDependency_1;
@@ -32,7 +32,7 @@ public abstract class AbstractResolverTest extends AbstractSimpleModelTest
     super.before();
 
     //
-    model().root().registerExtension(IAggregatedCoreDependencyResolver.class, this);
+    model().root().registerExtension(IProxyDependencyResolver.class, this);
   }
 
   /**
@@ -59,7 +59,7 @@ public abstract class AbstractResolverTest extends AbstractSimpleModelTest
    * {@inheritDoc}
    */
   @Override
-  public List<Future<?>> resolveAggregatedDependency(HGAggregatedCoreDependency dependencyToResolve) {
+  public List<Future<?>> resolveProxyDependency(HGProxyDependency dependencyToResolve) {
 
     _newDependency_1 = createNewCoreDependency(dependencyToResolve.getFrom(), dependencyToResolve.getTo(), "NEW_USAGE",
         () -> HierarchicalgraphFactory.eINSTANCE.createDefaultDependencySource(), false);

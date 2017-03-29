@@ -3,7 +3,7 @@ package org.slizaa.hierarchicalgraph.spi;
 import java.util.List;
 import java.util.concurrent.Future;
 
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 
 /**
  * <p>
@@ -11,7 +11,7 @@ import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public interface IAggregatedCoreDependencyResolver {
+public interface IProxyDependencyResolver {
 
   /**
    * <p>
@@ -19,5 +19,5 @@ public interface IAggregatedCoreDependencyResolver {
    *
    * @param dependencyToResolve
    */
-  List<Future<?>> resolveAggregatedDependency(HGAggregatedCoreDependency dependencyToResolve);
+  List<Future<?>> resolveProxyDependency(HGProxyDependency dependencyToResolve);
 }

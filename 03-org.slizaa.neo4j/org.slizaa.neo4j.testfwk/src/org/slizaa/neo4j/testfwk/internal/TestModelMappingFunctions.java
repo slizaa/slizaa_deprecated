@@ -62,12 +62,12 @@ public class TestModelMappingFunctions {
   }
 
   public static void mapDependencies(List<DependencyDefinition> definitions, HGRootNode rootElement,
-      boolean isAggregatedCoreDependency, BiFunction<Long, String, IDependencySource> dependencySourceCreator) {
+      boolean proxyDependency, BiFunction<Long, String, IDependencySource> dependencySourceCreator) {
 
     //
     definitions.forEach((def) -> {
       mapDependency(def.getIdStart(), def.getIdTarget(), def.getIdRel(), def.getType(), rootElement,
-          isAggregatedCoreDependency, dependencySourceCreator);
+          proxyDependency, dependencySourceCreator);
     });
   }
 
@@ -81,7 +81,7 @@ public class TestModelMappingFunctions {
    * @return
    */
   public static HGCoreDependency mapDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
-      boolean isAggregatedCoreDependency, BiFunction<Long, String, IDependencySource> dependencySourceCreator) {
+      boolean isProxyDependency, BiFunction<Long, String, IDependencySource> dependencySourceCreator) {
 
     // get the from...
     HGNode fromElement = ((ExtendedHGRootNodeImpl) rootElement).getIdToNodeMap().get(from);

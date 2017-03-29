@@ -37,14 +37,14 @@ public class SimpleDependencySelectorTest extends AbstractResolverTest {
 
     assertThat(_dependencySelector.getUnfilteredCoreDependencies()).hasSize(4);
 
-    _aggregatedDependency.resolveAggregatedCoreDependencies();
+    _aggregatedDependency.resolveProxyDependencies();
 
     assertThat(_dependencySelector.getUnfilteredCoreDependencies()).hasSize(5);
   }
 
   @Test
   public void testNotification() {
-    
+
     //
     _dependencySelector.addPropertyChangeListener(new PropertyChangeListener() {
       @Override
@@ -55,8 +55,8 @@ public class SimpleDependencySelectorTest extends AbstractResolverTest {
 
     //
     assertThat(_dependencySelector.getUnfilteredCoreDependencies()).hasSize(4);
-    
+
     //
-    _aggregatedDependency.resolveAggregatedCoreDependencies();
+    _aggregatedDependency.resolveProxyDependencies();
   }
 }

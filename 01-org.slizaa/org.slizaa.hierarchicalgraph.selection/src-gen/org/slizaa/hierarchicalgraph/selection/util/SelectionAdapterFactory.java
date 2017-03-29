@@ -4,11 +4,12 @@ package org.slizaa.hierarchicalgraph.selection.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-import org.slizaa.hierarchicalgraph.selection.*;
+import org.slizaa.hierarchicalgraph.selection.DependencySelection;
+import org.slizaa.hierarchicalgraph.selection.DependencySelectionStack;
+import org.slizaa.hierarchicalgraph.selection.NodeSelection;
+import org.slizaa.hierarchicalgraph.selection.SelectionPackage;
 
 /**
  * <!-- begin-user-doc -->

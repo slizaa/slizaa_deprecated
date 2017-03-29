@@ -52,7 +52,7 @@ public class HierarchicalgraphUtilityMethods {
    * @param dependencies
    * @return
    */
-  public static boolean containsUnresolvedAggregatedCoreDependencies(List<AbstractHGDependency> dependencies) {
+  public static boolean containsUnresolvedProxyDependencies(List<AbstractHGDependency> dependencies) {
 
     //
     if (dependencies == null) {
@@ -66,15 +66,15 @@ public class HierarchicalgraphUtilityMethods {
       if (dependency instanceof HGAggregatedDependency) {
         HGAggregatedDependency aggregatedDependency = (HGAggregatedDependency) dependency;
         for (HGCoreDependency coreDependency : aggregatedDependency.getCoreDependencies()) {
-          if (coreDependency instanceof HGAggregatedCoreDependency
-              && !((HGAggregatedCoreDependency) coreDependency).isResolved()) {
+          if (coreDependency instanceof HGProxyDependency
+              && !((HGProxyDependency) coreDependency).isResolved()) {
             return true;
           }
         }
       }
 
-      // HGAggregatedCoreDependency
-      if (dependency instanceof HGAggregatedCoreDependency) {
+      // HGProxyDependency
+      if (dependency instanceof HGProxyDependency) {
         return true;
       }
     }
@@ -89,31 +89,31 @@ public class HierarchicalgraphUtilityMethods {
    *
    * @param dependencies
    */
-  public static void resolveAggregatedCoreDependencies(List<AbstractHGDependency> dependencies,
+  public static void resolveProxyDependencies(List<AbstractHGDependency> dependencies,
       IProgressMonitor progressMonitor) {
 
     checkNotNull(dependencies);
 
     //
-    List<HGAggregatedCoreDependency> aggregatedCoreDependencies = new ArrayList<>();
+    List<HGProxyDependency> proxyDependencies = new ArrayList<>();
 
     //
     for (AbstractHGDependency dependency : dependencies) {
       if (dependency instanceof HGAggregatedDependency) {
         HGAggregatedDependency aggregatedDependency = (HGAggregatedDependency) dependency;
         for (HGCoreDependency coreDependency : aggregatedDependency.getCoreDependencies()) {
-          if (coreDependency instanceof HGAggregatedCoreDependency
-              && !((HGAggregatedCoreDependency) coreDependency).isResolved()) {
-            aggregatedCoreDependencies.add(((HGAggregatedCoreDependency) coreDependency));
+          if (coreDependency instanceof HGProxyDependency
+              && !((HGProxyDependency) coreDependency).isResolved()) {
+            proxyDependencies.add(((HGProxyDependency) coreDependency));
           }
         }
       }
-      if (dependency instanceof HGAggregatedCoreDependency) {
-        aggregatedCoreDependencies.add(((HGAggregatedCoreDependency) dependency));
+      if (dependency instanceof HGProxyDependency) {
+        proxyDependencies.add(((HGProxyDependency) dependency));
       }
     }
 
     //
-    Utilities.resolveAggregatedCoreDependencies(aggregatedCoreDependencies, progressMonitor);
+    Utilities.resolveProxyDependencies(proxyDependencies, progressMonitor);
   }
 }

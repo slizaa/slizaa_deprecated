@@ -86,13 +86,13 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
 
       // compute the aggregated weight
       int weightOfSimpleDependencies = prototypeList.stream()
-          .filter((dep) -> (dep.getAggregatedCoreDependencyParent() == null)).mapToInt(coreDep -> coreDep.getWeight())
+          .filter((dep) -> (dep.getProxyDependencyParent() == null)).mapToInt(coreDep -> coreDep.getWeight())
           .sum();
 
       // weightOfResovedCoreDependencies
       int weightOfResovedCoreDependencies = prototypeList.stream()
-          .filter((dep) -> (dep.getAggregatedCoreDependencyParent() != null))
-          .map(coreDep -> coreDep.getAggregatedCoreDependencyParent()).distinct()
+          .filter((dep) -> (dep.getProxyDependencyParent() != null))
+          .map(coreDep -> coreDep.getProxyDependencyParent()).distinct()
           .mapToInt(coreDep -> coreDep.getWeight()).sum();
 
       setNewAggregatedWeight(weightOfSimpleDependencies + weightOfResovedCoreDependencies);
@@ -138,13 +138,13 @@ public class ExtendedHGAggregatedDependencyImpl extends HGAggregatedDependencyIm
    * {@inheritDoc}
    */
   @Override
-  public void resolveAggregatedCoreDependencies() {
+  public void resolveProxyDependencies() {
 
     //
     initialize();
 
     //
-    Utilities.resolveAggregatedCoreDependencies(this.coreDependencies, null);
+    Utilities.resolveProxyDependencies(this.coreDependencies, null);
   }
 
   /**

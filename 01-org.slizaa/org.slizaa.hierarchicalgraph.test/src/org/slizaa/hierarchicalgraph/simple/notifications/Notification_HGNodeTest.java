@@ -15,7 +15,6 @@ import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
-import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.hierarchicalgraph.simple.AbstractSimpleModelTest;
 
 /**

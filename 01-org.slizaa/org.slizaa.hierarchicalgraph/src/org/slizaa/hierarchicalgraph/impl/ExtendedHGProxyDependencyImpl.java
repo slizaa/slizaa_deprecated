@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
+import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
 
 /**
  * <p>
@@ -18,7 +18,7 @@ import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDependencyImpl {
+public class ExtendedHGProxyDependencyImpl extends HGProxyDependencyImpl {
 
   /**
    * {@inheritDoc}
@@ -46,11 +46,11 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
    * {@inheritDoc}
    */
   @Override
-  public void resolveAggregatedCoreDependencies() {
+  public void resolveProxyDependencies() {
 
     //
     if (!resolved) {
-      Utilities.resolveAggregatedCoreDependencies(null, this);
+      Utilities.resolveProxyDependencies(null, this);
     }
   }
 
@@ -60,14 +60,14 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
    *
    * @return
    */
-  public List<Future<?>> onResolveAggregatedCoreDependency() {
+  public List<Future<?>> onResolveProxyDependency() {
 
     //
     if (!resolved) {
 
       //
-      if (getRootNode().hasExtension(IAggregatedCoreDependencyResolver.class)) {
-        return getRootNode().getExtension(IAggregatedCoreDependencyResolver.class).resolveAggregatedDependency(this);
+      if (getRootNode().hasExtension(IProxyDependencyResolver.class)) {
+        return getRootNode().getExtension(IProxyDependencyResolver.class).resolveProxyDependency(this);
       }
     }
 
@@ -86,6 +86,6 @@ public class ExtendedHGAggregatedCoreDependencyImpl extends HGAggregatedCoreDepe
     resolved = newResolved;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET,
-          HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY__RESOLVED, oldResolved, resolved));
+          HierarchicalgraphPackage.HG_PROXY_DEPENDENCY__RESOLVED, oldResolved, resolved));
   }
 }

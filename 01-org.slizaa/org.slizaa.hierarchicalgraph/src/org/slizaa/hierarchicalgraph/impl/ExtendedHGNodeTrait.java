@@ -17,7 +17,7 @@ import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
+import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
 
 /**
  * <p>
@@ -221,10 +221,10 @@ public class ExtendedHGNodeTrait {
    * <p>
    * </p>
    */
-  public void resolveAggregatedCoreDependencies() {
+  public void resolveProxyDependencies() {
 
     //
-    if (_hgNode.getRootNode().hasExtension(IAggregatedCoreDependencyResolver.class)
+    if (_hgNode.getRootNode().hasExtension(IProxyDependencyResolver.class)
         && (_incomingCoreDependencies != null || _outgoingCoreDependencies != null)) {
 
       //
@@ -237,7 +237,7 @@ public class ExtendedHGNodeTrait {
       }
 
       //
-      Utilities.resolveAggregatedCoreDependencies(dependencies, null);
+      Utilities.resolveProxyDependencies(dependencies, null);
     }
   }
 
@@ -245,16 +245,16 @@ public class ExtendedHGNodeTrait {
    * <p>
    * </p>
    */
-  public void resolveIncomingAggregatedCoreDependencies() {
-    Utilities.resolveAggregatedCoreDependencies(getAccumulatedIncomingCoreDependencies(), null);
+  public void resolveIncomingProxyDependencies() {
+    Utilities.resolveProxyDependencies(getAccumulatedIncomingCoreDependencies(), null);
   }
 
   /**
    * <p>
    * </p>
    */
-  public void resolveOutgoingAggregatedCoreDependencies() {
-    Utilities.resolveAggregatedCoreDependencies(getAccumulatedOutgoingCoreDependencies(), null);
+  public void resolveOutgoingProxyDependencies() {
+    Utilities.resolveProxyDependencies(getAccumulatedOutgoingCoreDependencies(), null);
   }
 
   /**

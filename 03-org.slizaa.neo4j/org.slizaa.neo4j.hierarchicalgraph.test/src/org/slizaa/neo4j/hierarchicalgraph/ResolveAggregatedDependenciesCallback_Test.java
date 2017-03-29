@@ -6,12 +6,12 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.hierarchicalgraph.spi.IAggregatedCoreDependencyResolver;
+import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
 import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
 
 /**
@@ -23,10 +23,10 @@ import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
 public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRepositoryTest {
 
   /** - */
-  private HGRootNode                        _rootNode;
+  private HGRootNode               _rootNode;
 
   /** - */
-  private IAggregatedCoreDependencyResolver _aggregatedDependencyResolver;
+  private IProxyDependencyResolver _aggregatedDependencyResolver;
 
   /**
    * {@inheritDoc}
@@ -39,10 +39,10 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
     _rootNode = createGraphFromDefaultMapping(getNeo4JRemoteRepository());
 
     //
-    _aggregatedDependencyResolver = mock(IAggregatedCoreDependencyResolver.class);
+    _aggregatedDependencyResolver = mock(IProxyDependencyResolver.class);
 
     //
-    _rootNode.registerExtension(IAggregatedCoreDependencyResolver.class, _aggregatedDependencyResolver);
+    _rootNode.registerExtension(IProxyDependencyResolver.class, _aggregatedDependencyResolver);
   }
 
   /**
@@ -50,7 +50,7 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
    * </p>
    */
   @Test
-  public void testResolveAggregatedCoreDependencies() {
+  public void testResolveProxyDependencies() {
 
     //
     HGNode pkg_omaiconversion = _rootNode.lookupNode(new Long(611));
@@ -63,13 +63,13 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
     assertThat(aggregatedDependency.getCoreDependencies().size()).isEqualTo(59);
 
     // resolve the dependency
-    aggregatedDependency.resolveAggregatedCoreDependencies();
+    aggregatedDependency.resolveProxyDependencies();
     assertThat(aggregatedDependency.getCoreDependencies().size()).isEqualTo(59);
 
     //
     for (HGCoreDependency dependency : aggregatedDependency.getCoreDependencies()) {
-      if (dependency instanceof HGAggregatedCoreDependency) {
-        verify(_aggregatedDependencyResolver).resolveAggregatedDependency((HGAggregatedCoreDependency) dependency);
+      if (dependency instanceof HGProxyDependency) {
+        verify(_aggregatedDependencyResolver).resolveProxyDependency((HGProxyDependency) dependency);
       }
     }
 

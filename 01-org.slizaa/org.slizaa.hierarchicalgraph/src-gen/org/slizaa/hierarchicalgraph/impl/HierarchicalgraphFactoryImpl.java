@@ -15,10 +15,10 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.slizaa.hierarchicalgraph.DefaultDependencySource;
 import org.slizaa.hierarchicalgraph.DefaultNodeSource;
-import org.slizaa.hierarchicalgraph.HGAggregatedCoreDependency;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
@@ -74,7 +74,7 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
       case HierarchicalgraphPackage.DEFAULT_DEPENDENCY_SOURCE: return createDefaultDependencySource();
       case HierarchicalgraphPackage.HG_AGGREGATED_DEPENDENCY: return createHGAggregatedDependency();
       case HierarchicalgraphPackage.HG_CORE_DEPENDENCY: return createHGCoreDependency();
-      case HierarchicalgraphPackage.HG_AGGREGATED_CORE_DEPENDENCY: return createHGAggregatedCoreDependency();
+      case HierarchicalgraphPackage.HG_PROXY_DEPENDENCY: return createHGProxyDependency();
       case HierarchicalgraphPackage.NODE_TO_CORE_DEPENDENCY_MAP: return (EObject)createNodeToCoreDependencyMap();
       case HierarchicalgraphPackage.STRING_TO_STRING_MAP: return (EObject)createStringToStringMap();
       case HierarchicalgraphPackage.IDENTIFIER_TO_NODE_MAP: return (EObject)createIdentifierToNodeMap();
@@ -188,9 +188,9 @@ public class HierarchicalgraphFactoryImpl extends EFactoryImpl implements Hierar
    * <!-- end-user-doc -->
    * @generated NOT
    */
-  public HGAggregatedCoreDependency createHGAggregatedCoreDependency() {
-    HGAggregatedCoreDependencyImpl hgAggregatedCoreDependency = new ExtendedHGAggregatedCoreDependencyImpl();
-    return hgAggregatedCoreDependency;
+  public HGProxyDependency createHGProxyDependency() {
+    HGProxyDependencyImpl hgProxyDependency = new ExtendedHGProxyDependencyImpl();
+    return hgProxyDependency;
   }
 
   /**

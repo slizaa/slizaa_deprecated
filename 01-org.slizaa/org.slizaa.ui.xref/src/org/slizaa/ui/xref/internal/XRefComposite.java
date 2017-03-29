@@ -265,7 +265,7 @@ public class XRefComposite extends Composite {
         result.addAll(out);
       }
       return result;
-    }), new DefaultExpandStrategy((node) -> DefaultExpandStrategy.hasUnresolvedAggregatedCoreDependencies(
+    }), new DefaultExpandStrategy((node) -> DefaultExpandStrategy.hasUnresolvedProxyDependencies(
         Iterables.concat(node.getOutgoingCoreDependencies(), node.getIncomingCoreDependencies()))), SWT.FILL);
 
     _toTreeViewComposite = new TreeViewComposite(sashForm,

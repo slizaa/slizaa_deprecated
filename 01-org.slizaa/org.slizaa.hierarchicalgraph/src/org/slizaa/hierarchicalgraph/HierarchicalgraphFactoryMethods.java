@@ -77,12 +77,12 @@ public class HierarchicalgraphFactoryMethods {
    * @param target
    * @return
    */
-  public static HGAggregatedCoreDependency createNewAggregatedCoreDependency(HGNode source, HGNode target, String type,
+  public static HGProxyDependency createNewProxyDependency(HGNode source, HGNode target, String type,
       Supplier<IDependencySource> dependencySourceSupplier, boolean reinitializeCaches) {
 
     //
-    return _initializeDependency(HierarchicalgraphFactory.eINSTANCE.createHGAggregatedCoreDependency(), source, target,
-        type, dependencySourceSupplier, reinitializeCaches);
+    return _initializeDependency(HierarchicalgraphFactory.eINSTANCE.createHGProxyDependency(), source, target, type,
+        dependencySourceSupplier, reinitializeCaches);
   }
 
   /**
