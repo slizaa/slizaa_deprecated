@@ -12,7 +12,6 @@ mapping org.slizza.jqassistant.java.FullHierarchicalPackagesMapping {
 			// top level 'modules' (jars and/or directories)
 			"MATCH (module:Java:Artifact) 
 			 WHERE (module:Directory OR module:Jar:Archive) 
-             AND NOT (:Java:Artifact)-[:CONTAINS]->(module) 
 			 RETURN id(module)"
 		}
 
