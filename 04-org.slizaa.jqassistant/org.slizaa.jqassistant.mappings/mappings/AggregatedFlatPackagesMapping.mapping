@@ -43,7 +43,8 @@ mapping org.slizza.jqassistant.java.AggregatedFlatPackagesMapping {
 			
 			aggregatedDependencyQuery {
 				"MATCH (t1:File:Type:Java)-[r:DEPENDS_ON]->(t2:File:Type:Java) 
-			 		RETURN id(t1),id(t2),id(r),type(r)"
+				 WHERE NOT (t1)-[:DECLARES]->(t2)
+				 RETURN id(t1),id(t2),id(r),type(r)"
 			 		
 				onResolve {
 				
@@ -58,9 +59,8 @@ mapping org.slizza.jqassistant.java.AggregatedFlatPackagesMapping {
 						(n1:Method)-[rel:RETURNS]->(n2:Type)) 
 					RETURN id(n1), id(n2), id(rel), type(rel)"
 					
-				"MATCH (n1:Method)-[rel:HAS]->(:PARAMETER)-[:OF_TYPE]->(n2:Type)
-					WHERE 
-						id(n1) in {from} AND id(n2) in {to}
+				"MATCH (n1)-[rel:HAS]->(:Parameter)-[:OF_TYPE]->(n2:Type)
+					WHERE id(n1) in {from} AND id(n2) in {to}
 				 	RETURN id(n1), id(n2), id(rel), 'HAS_PARAMETER'"
 				}
 			}
