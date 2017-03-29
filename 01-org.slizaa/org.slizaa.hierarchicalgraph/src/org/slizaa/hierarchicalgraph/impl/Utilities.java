@@ -110,32 +110,16 @@ public class Utilities {
       if (!dependencyResolution.getDependency().getResolvedCoreDependencies().isEmpty()) {
         removeDependency(dependencyResolution.getDependency(), true);
       } else {
-        // System.out.println("*****************************************************************************************");
-        // System.out.println("** WARNING: Aggregated Dependency has been resolved to ZERO core dependencies! **");
-        // System.out
-        // .println(String.format("** %s : %s **", dependencyResolution.getDependency().getFrom().getIdentifier(),
-        // dependencyResolution.getDependency().getTo().getIdentifier()));
-        // System.out.println("*****************************************************************************************");
+         System.out.println("*****************************************************************************************");
+         System.out.println("** WARNING: Aggregated Dependency has been resolved to ZERO core dependencies! **");
+         System.out
+         .println(String.format("** %s : %s **", dependencyResolution.getDependency().getFrom().getIdentifier(),
+         dependencyResolution.getDependency().getTo().getIdentifier()));
+         System.out.println("*****************************************************************************************");
       }
       
       dependencyResolution.getDependency().setResolved(true);
     }
-
-    // // Workaround for bug https://github.com/slizaa/slizaa/issues/52
-    // for (Iterator<DependencyResolution> iterator = dependencyResolutions.iterator(); iterator.hasNext();) {
-    // DependencyResolution dependencyResolution = iterator.next();
-    //
-    // NotificationBuffer buffer = null;
-    // if (iterator.hasNext()) {
-    // buffer = new NotificationBuffer(dependencyResolution.getDependency());
-    // buffer.startBuffering();
-    // }
-    // dependencyResolution.getDependency().setResolved(true);
-    //
-    // if (iterator.hasNext()) {
-    // buffer.stopBuffering();
-    // }
-    // }
   }
 
   /**

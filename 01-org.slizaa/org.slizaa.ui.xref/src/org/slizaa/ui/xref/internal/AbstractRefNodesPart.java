@@ -22,10 +22,10 @@ import org.slizaa.ui.tree.VisibleNodesFilter;
 public abstract class AbstractRefNodesPart {
 
   /** - */
-  private TreeViewer   _treeViewer;
+  private TreeViewer  _treeViewer;
 
   /** - */
-  private HGRootNode   _currentRootNode;
+  private HGRootNode  _currentRootNode;
 
   /** - */
   private Set<HGNode> _currentSelectedNodes;
@@ -53,7 +53,7 @@ public abstract class AbstractRefNodesPart {
   }
 
   @Inject
-  public void handleChangedDependencies(@Optional
+  public void handleChangedNodeSelection(@Optional
   @Named(SelectionIdentifier.CURRENT_ROOTNODE)
   final HGRootNode rootNode, @Optional
   @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION)
@@ -116,6 +116,7 @@ public abstract class AbstractRefNodesPart {
    * @return
    */
   private Set<HGNode> getVisibleNodes(Set<HGNode> referencedNodes) {
+    // TODO: filter?
     return referencedNodes;
   }
 
