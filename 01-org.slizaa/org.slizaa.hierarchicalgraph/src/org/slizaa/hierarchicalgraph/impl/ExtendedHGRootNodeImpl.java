@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -156,6 +157,30 @@ public class ExtendedHGRootNodeImpl extends HGRootNodeImpl {
   @Override
   public HGRootNode getRootNode() {
     return _trait.getRootNode();
+  }
+
+  public void resolveProxyDependencies() {
+    _trait.resolveProxyDependencies();
+  }
+
+  public void resolveIncomingProxyDependencies() {
+    _trait.resolveIncomingProxyDependencies();
+  }
+
+  public void resolveOutgoingProxyDependencies() {
+    _trait.resolveOutgoingProxyDependencies();
+  }
+
+  public void invalidateLocalCaches() {
+    _trait.invalidateLocalCaches();
+  }
+
+  public void initializeLocalCaches() {
+    _trait.initializeLocalCaches();
+  }
+
+  public <T> Optional<T> getNodeSource(Class<T> clazz) {
+    return _trait.getNodeSource(clazz);
   }
 
   @Override

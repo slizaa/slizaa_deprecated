@@ -1,7 +1,7 @@
 package org.slizaa.neo4j.testfwk;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewRootNode;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewRootNode;
 import static org.slizaa.neo4j.testfwk.internal.TestModelMappingFunctions.mapDependencies;
 import static org.slizaa.neo4j.testfwk.internal.TestModelMappingFunctions.mapFirstLevelElements;
 import static org.slizaa.neo4j.testfwk.internal.TestModelMappingFunctions.mapHierarchy;

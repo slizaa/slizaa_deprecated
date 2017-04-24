@@ -35,7 +35,7 @@ public class DefaultNodeLabelProvider implements INodeLabelProvider {
    */
   @Override
   public String getText(Object object) {
-    return (String) getStyledText(object);
+    return ((StyledString) getStyledText(object)).getString();
   }
 
   /**
@@ -91,7 +91,7 @@ public class DefaultNodeLabelProvider implements INodeLabelProvider {
     //
     for (String[] mapping : mappings) {
       if (labels.contains(mapping[0])) {
-        return new StyledString(HGNodeUtils.getProperties(hgNode).get((mapping[1])));
+        return new StyledString(HGNodeUtils.getProperties(hgNode).get((mapping[1])) + " (" + hgNode.getIdentifier() + ")");
       }
     }
 

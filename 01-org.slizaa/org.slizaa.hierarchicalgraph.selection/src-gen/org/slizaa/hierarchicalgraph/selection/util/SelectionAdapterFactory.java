@@ -4,12 +4,12 @@ package org.slizaa.hierarchicalgraph.selection.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
-import org.slizaa.hierarchicalgraph.selection.DependencySelection;
-import org.slizaa.hierarchicalgraph.selection.DependencySelectionStack;
-import org.slizaa.hierarchicalgraph.selection.NodeSelection;
-import org.slizaa.hierarchicalgraph.selection.SelectionPackage;
+
+import org.slizaa.hierarchicalgraph.selection.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,16 +68,20 @@ public class SelectionAdapterFactory extends AdapterFactoryImpl {
   protected SelectionSwitch<Adapter> modelSwitch =
     new SelectionSwitch<Adapter>() {
       @Override
-      public Adapter caseDependencySelectionStack(DependencySelectionStack object) {
-        return createDependencySelectionStackAdapter();
-      }
-      @Override
       public Adapter caseNodeSelection(NodeSelection object) {
         return createNodeSelectionAdapter();
       }
       @Override
       public Adapter caseDependencySelection(DependencySelection object) {
         return createDependencySelectionAdapter();
+      }
+      @Override
+      public Adapter caseSelection(Selection object) {
+        return createSelectionAdapter();
+      }
+      @Override
+      public Adapter caseXReferenceSelection(XReferenceSelection object) {
+        return createXReferenceSelectionAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -98,20 +102,6 @@ public class SelectionAdapterFactory extends AdapterFactoryImpl {
     return modelSwitch.doSwitch((EObject)target);
   }
 
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack <em>Dependency Selection Stack</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.slizaa.hierarchicalgraph.selection.DependencySelectionStack
-   * @generated
-   */
-  public Adapter createDependencySelectionStackAdapter() {
-    return null;
-  }
 
   /**
    * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.selection.NodeSelection <em>Node Selection</em>}'.
@@ -138,6 +128,34 @@ public class SelectionAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createDependencySelectionAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.selection.Selection <em>Selection</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.hierarchicalgraph.selection.Selection
+   * @generated
+   */
+  public Adapter createSelectionAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.selection.XReferenceSelection <em>XReference Selection</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.hierarchicalgraph.selection.XReferenceSelection
+   * @generated
+   */
+  public Adapter createXReferenceSelectionAdapter() {
     return null;
   }
 

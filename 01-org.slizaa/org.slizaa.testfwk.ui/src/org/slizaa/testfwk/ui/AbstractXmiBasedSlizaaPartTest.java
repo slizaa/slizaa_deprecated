@@ -1,16 +1,16 @@
 package org.slizaa.testfwk.ui;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import org.slizaa.hierarchicalgraph.AbstractHGDependency;
+import org.junit.Before;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.testfwk.IHierarchicalGraphProvider;
 import org.slizaa.testfwk.XmiBasedGraphProvider;
+
+import com.google.common.base.Stopwatch;
 
 /**
  * <p>
@@ -22,9 +22,10 @@ public abstract class AbstractXmiBasedSlizaaPartTest extends AbstractSlizaaPartT
     implements IImageProvider, IHierarchicalGraphProvider {
 
   /** - */
-  private XmiBasedGraphProvider _xmiBasedGraphedProvider;
+  private static XmiBasedGraphProvider _xmiBasedGraphedProvider;
 
-  private String                _modelName;
+  /** - */
+  private String                       _modelName;
 
   /**
    * <p>
@@ -46,22 +47,27 @@ public abstract class AbstractXmiBasedSlizaaPartTest extends AbstractSlizaaPartT
     _modelName = modelName;
   }
 
-  @Override
-  public void setup() throws IOException {
-    _xmiBasedGraphedProvider = new XmiBasedGraphProvider(_modelName);
-    _xmiBasedGraphedProvider.setup();
-    rootNode().registerExtension(INodeLabelProvider.class, new DefaultNodeLabelProvider(this));
-    onPrepareRootNode(rootNode());
-    
-    super.setup();
-  }
-
   /**
    * <p>
    * </p>
+   *
+   * @throws Exception
    */
-  protected void onPrepareRootNode(HGRootNode rootNode) {
+  @Before
+  public void setupAbstractXmiBasedSlizaaPartTest() throws Exception {
+
     //
+    if (_xmiBasedGraphedProvider == null) {
+
+      System.out.println("Loading XMI-based model...");
+      Stopwatch stopwatch = Stopwatch.createStarted();
+      _xmiBasedGraphedProvider = new XmiBasedGraphProvider(_modelName);
+      _xmiBasedGraphedProvider.setup();
+      System.out.printf("Loading XMI-based model completed (%s ms).\n", stopwatch.elapsed(TimeUnit.MILLISECONDS));
+    }
+
+    //
+    rootNode().registerExtension(INodeLabelProvider.class, new DefaultNodeLabelProvider(this));
   }
 
   /**
@@ -88,16 +94,14 @@ public abstract class AbstractXmiBasedSlizaaPartTest extends AbstractSlizaaPartT
   /**
    * {@inheritDoc}
    */
-  public void dumpChildren(HGNode hgNode) {
-    _xmiBasedGraphedProvider.dumpChildren(hgNode);
+  public List<HGNode> nodes(long... ids) {
+    return _xmiBasedGraphedProvider.nodes(ids);
   }
 
   /**
-   * <p>
-   * </p>
+   * {@inheritDoc}
    */
-  public final Set<AbstractHGDependency> toAbstractHGDependencySet(
-      Collection<? extends AbstractHGDependency> collection) {
-    return new HashSet<>(collection);
+  public void dumpChildren(HGNode hgNode) {
+    _xmiBasedGraphedProvider.dumpChildren(hgNode);
   }
 }

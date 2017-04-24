@@ -1,7 +1,5 @@
 package org.slizaa.ui.xref.internal;
 
-import java.util.Collections;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -18,6 +16,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.NodeSelection;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.hierarchicalgraph.selection.xref.XRefStack;
 import org.slizaa.ui.xref.XRefUtils;
 
 /**
@@ -46,6 +45,7 @@ public class XRefPart {
 
   public XRefPart() {
 
+    // TODO!!
     //
     _adapter = new AdapterImpl() {
       @Override
@@ -75,7 +75,7 @@ public class XRefPart {
     _composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     if (_rootNode != null) {
       _composite.setRootNode(_rootNode);
-      setFilter();
+      // setFilter();
     }
   }
 
@@ -105,10 +105,26 @@ public class XRefPart {
     }
 
     // immediately set if composite is already created
-    if (_composite != null && ! _composite.isDisposed()) {
+    if (_composite != null && !_composite.isDisposed()) {
       _composite.setRootNode(_rootNode);
-      setFilter();
+      // setFilter();
     }
+  }
+
+  /**
+   * <p>
+   * </p>
+   */
+  private void setFilter() {
+
+    // //
+    // if (_rootNode != null) {
+    // _composite.setFilteredNodes(
+    // _filteredNodeSelection != null ? _filteredNodeSelection.getNodes() : Collections.emptyList(), true);
+    // if (!_composite.isDisposed()) {
+    // _composite.refresh();
+    // }
+    // }
   }
 
   /**
@@ -118,21 +134,5 @@ public class XRefPart {
    */
   void setPerspective(MPerspective perspective) {
     _perspective = perspective;
-  }
-  
-  /**
-   * <p>
-   * </p>
-   */
-  private void setFilter() {
-
-    //
-    if (_rootNode != null) {
-      _composite.setFilteredNodes(
-          _filteredNodeSelection != null ? _filteredNodeSelection.getSelectedNodes() : Collections.emptyList(), true);
-      if (!_composite.isDisposed()) {
-        _composite.refresh();
-      }
-    }
   }
 }

@@ -3,7 +3,6 @@
 package org.slizaa.hierarchicalgraph.selection;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -57,96 +56,32 @@ public interface SelectionPackage extends EPackage {
   SelectionPackage eINSTANCE = org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionStackImpl <em>Dependency Selection Stack</em>}' class.
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.selection.Selection <em>Selection</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionStackImpl
-   * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getDependencySelectionStack()
+   * @see org.slizaa.hierarchicalgraph.selection.Selection
+   * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getSelection()
    * @generated
    */
-  int DEPENDENCY_SELECTION_STACK = 0;
+  int SELECTION = 2;
 
   /**
-   * The feature id for the '<em><b>Current Selection</b></em>' reference list.
+   * The number of structural features of the '<em>Selection</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEPENDENCY_SELECTION_STACK__CURRENT_SELECTION = 0;
+  int SELECTION_FEATURE_COUNT = 0;
 
   /**
-   * The number of structural features of the '<em>Dependency Selection Stack</em>' class.
+   * The number of operations of the '<em>Selection</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEPENDENCY_SELECTION_STACK_FEATURE_COUNT = 1;
-
-  /**
-   * The operation id for the '<em>Can Go Forward</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEPENDENCY_SELECTION_STACK___CAN_GO_FORWARD = 0;
-
-  /**
-   * The operation id for the '<em>Go Forward</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEPENDENCY_SELECTION_STACK___GO_FORWARD = 1;
-
-  /**
-   * The operation id for the '<em>Can Go Back</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEPENDENCY_SELECTION_STACK___CAN_GO_BACK = 2;
-
-  /**
-   * The operation id for the '<em>Go Back</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEPENDENCY_SELECTION_STACK___GO_BACK = 3;
-
-  /**
-   * The operation id for the '<em>Clear</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEPENDENCY_SELECTION_STACK___CLEAR = 4;
-
-  /**
-   * The operation id for the '<em>Set Selection</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEPENDENCY_SELECTION_STACK___SET_SELECTION__LIST = 5;
-
-  /**
-   * The number of operations of the '<em>Dependency Selection Stack</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEPENDENCY_SELECTION_STACK_OPERATION_COUNT = 6;
-
+  int SELECTION_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.selection.impl.NodeSelectionImpl <em>Node Selection</em>}' class.
@@ -156,16 +91,16 @@ public interface SelectionPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getNodeSelection()
    * @generated
    */
-  int NODE_SELECTION = 1;
+  int NODE_SELECTION = 0;
 
   /**
-   * The feature id for the '<em><b>Selected Nodes</b></em>' reference list.
+   * The feature id for the '<em><b>Nodes</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NODE_SELECTION__SELECTED_NODES = 0;
+  int NODE_SELECTION__NODES = SELECTION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Node Selection</em>' class.
@@ -174,7 +109,7 @@ public interface SelectionPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NODE_SELECTION_FEATURE_COUNT = 1;
+  int NODE_SELECTION_FEATURE_COUNT = SELECTION_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Node Selection</em>' class.
@@ -183,7 +118,7 @@ public interface SelectionPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NODE_SELECTION_OPERATION_COUNT = 0;
+  int NODE_SELECTION_OPERATION_COUNT = SELECTION_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionImpl <em>Dependency Selection</em>}' class.
@@ -193,16 +128,16 @@ public interface SelectionPackage extends EPackage {
    * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getDependencySelection()
    * @generated
    */
-  int DEPENDENCY_SELECTION = 2;
+  int DEPENDENCY_SELECTION = 1;
 
   /**
-   * The feature id for the '<em><b>Selected Dependencies</b></em>' reference list.
+   * The feature id for the '<em><b>Dependencies</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEPENDENCY_SELECTION__SELECTED_DEPENDENCIES = 0;
+  int DEPENDENCY_SELECTION__DEPENDENCIES = SELECTION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Dependency Selection</em>' class.
@@ -211,7 +146,7 @@ public interface SelectionPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DEPENDENCY_SELECTION_FEATURE_COUNT = 1;
+  int DEPENDENCY_SELECTION_FEATURE_COUNT = SELECTION_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Dependency Selection</em>' class.
@@ -220,89 +155,53 @@ public interface SelectionPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DEPENDENCY_SELECTION_OPERATION_COUNT = 0;
-
-
-  /**
-   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack <em>Dependency Selection Stack</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Dependency Selection Stack</em>'.
-   * @see org.slizaa.hierarchicalgraph.selection.DependencySelectionStack
-   * @generated
-   */
-  EClass getDependencySelectionStack();
+  int DEPENDENCY_SELECTION_OPERATION_COUNT = SELECTION_OPERATION_COUNT + 0;
 
   /**
-   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#getCurrentSelection <em>Current Selection</em>}'.
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.selection.impl.XReferenceSelectionImpl <em>XReference Selection</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Current Selection</em>'.
-   * @see org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#getCurrentSelection()
-   * @see #getDependencySelectionStack()
+   * @see org.slizaa.hierarchicalgraph.selection.impl.XReferenceSelectionImpl
+   * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getXReferenceSelection()
    * @generated
    */
-  EReference getDependencySelectionStack_CurrentSelection();
+  int XREFERENCE_SELECTION = 3;
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#canGoForward() <em>Can Go Forward</em>}' operation.
+   * The feature id for the '<em><b>Incoming Dependencies</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Can Go Forward</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#canGoForward()
    * @generated
+   * @ordered
    */
-  EOperation getDependencySelectionStack__CanGoForward();
+  int XREFERENCE_SELECTION__INCOMING_DEPENDENCIES = SELECTION_FEATURE_COUNT + 0;
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#goForward() <em>Go Forward</em>}' operation.
+   * The feature id for the '<em><b>Outgoing Dependencies</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Go Forward</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#goForward()
    * @generated
+   * @ordered
    */
-  EOperation getDependencySelectionStack__GoForward();
+  int XREFERENCE_SELECTION__OUTGOING_DEPENDENCIES = SELECTION_FEATURE_COUNT + 1;
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#canGoBack() <em>Can Go Back</em>}' operation.
+   * The number of structural features of the '<em>XReference Selection</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Can Go Back</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#canGoBack()
    * @generated
+   * @ordered
    */
-  EOperation getDependencySelectionStack__CanGoBack();
+  int XREFERENCE_SELECTION_FEATURE_COUNT = SELECTION_FEATURE_COUNT + 2;
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#goBack() <em>Go Back</em>}' operation.
+   * The number of operations of the '<em>XReference Selection</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Go Back</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#goBack()
    * @generated
+   * @ordered
    */
-  EOperation getDependencySelectionStack__GoBack();
-
-  /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#clear() <em>Clear</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Clear</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#clear()
-   * @generated
-   */
-  EOperation getDependencySelectionStack__Clear();
-
-  /**
-   * Returns the meta object for the '{@link org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#setSelection(java.util.List) <em>Set Selection</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Set Selection</em>' operation.
-   * @see org.slizaa.hierarchicalgraph.selection.DependencySelectionStack#setSelection(java.util.List)
-   * @generated
-   */
-  EOperation getDependencySelectionStack__SetSelection__List();
+  int XREFERENCE_SELECTION_OPERATION_COUNT = SELECTION_OPERATION_COUNT + 0;
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.selection.NodeSelection <em>Node Selection</em>}'.
@@ -315,15 +214,15 @@ public interface SelectionPackage extends EPackage {
   EClass getNodeSelection();
 
   /**
-   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.selection.NodeSelection#getSelectedNodes <em>Selected Nodes</em>}'.
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.selection.NodeSelection#getNodes <em>Nodes</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Selected Nodes</em>'.
-   * @see org.slizaa.hierarchicalgraph.selection.NodeSelection#getSelectedNodes()
+   * @return the meta object for the reference list '<em>Nodes</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.NodeSelection#getNodes()
    * @see #getNodeSelection()
    * @generated
    */
-  EReference getNodeSelection_SelectedNodes();
+  EReference getNodeSelection_Nodes();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.selection.DependencySelection <em>Dependency Selection</em>}'.
@@ -336,15 +235,57 @@ public interface SelectionPackage extends EPackage {
   EClass getDependencySelection();
 
   /**
-   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.selection.DependencySelection#getSelectedDependencies <em>Selected Dependencies</em>}'.
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.selection.DependencySelection#getDependencies <em>Dependencies</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Selected Dependencies</em>'.
-   * @see org.slizaa.hierarchicalgraph.selection.DependencySelection#getSelectedDependencies()
+   * @return the meta object for the reference list '<em>Dependencies</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.DependencySelection#getDependencies()
    * @see #getDependencySelection()
    * @generated
    */
-  EReference getDependencySelection_SelectedDependencies();
+  EReference getDependencySelection_Dependencies();
+
+  /**
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.selection.Selection <em>Selection</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Selection</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.Selection
+   * @generated
+   */
+  EClass getSelection();
+
+  /**
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.selection.XReferenceSelection <em>XReference Selection</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>XReference Selection</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.XReferenceSelection
+   * @generated
+   */
+  EClass getXReferenceSelection();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.selection.XReferenceSelection#getIncomingDependencies <em>Incoming Dependencies</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Incoming Dependencies</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.XReferenceSelection#getIncomingDependencies()
+   * @see #getXReferenceSelection()
+   * @generated
+   */
+  EReference getXReferenceSelection_IncomingDependencies();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.slizaa.hierarchicalgraph.selection.XReferenceSelection#getOutgoingDependencies <em>Outgoing Dependencies</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Outgoing Dependencies</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.XReferenceSelection#getOutgoingDependencies()
+   * @see #getXReferenceSelection()
+   * @generated
+   */
+  EReference getXReferenceSelection_OutgoingDependencies();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -370,72 +311,6 @@ public interface SelectionPackage extends EPackage {
    */
   interface Literals {
     /**
-     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionStackImpl <em>Dependency Selection Stack</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionStackImpl
-     * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getDependencySelectionStack()
-     * @generated
-     */
-    EClass DEPENDENCY_SELECTION_STACK = eINSTANCE.getDependencySelectionStack();
-
-    /**
-     * The meta object literal for the '<em><b>Current Selection</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DEPENDENCY_SELECTION_STACK__CURRENT_SELECTION = eINSTANCE.getDependencySelectionStack_CurrentSelection();
-
-    /**
-     * The meta object literal for the '<em><b>Can Go Forward</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation DEPENDENCY_SELECTION_STACK___CAN_GO_FORWARD = eINSTANCE.getDependencySelectionStack__CanGoForward();
-
-    /**
-     * The meta object literal for the '<em><b>Go Forward</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation DEPENDENCY_SELECTION_STACK___GO_FORWARD = eINSTANCE.getDependencySelectionStack__GoForward();
-
-    /**
-     * The meta object literal for the '<em><b>Can Go Back</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation DEPENDENCY_SELECTION_STACK___CAN_GO_BACK = eINSTANCE.getDependencySelectionStack__CanGoBack();
-
-    /**
-     * The meta object literal for the '<em><b>Go Back</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation DEPENDENCY_SELECTION_STACK___GO_BACK = eINSTANCE.getDependencySelectionStack__GoBack();
-
-    /**
-     * The meta object literal for the '<em><b>Clear</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation DEPENDENCY_SELECTION_STACK___CLEAR = eINSTANCE.getDependencySelectionStack__Clear();
-
-    /**
-     * The meta object literal for the '<em><b>Set Selection</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation DEPENDENCY_SELECTION_STACK___SET_SELECTION__LIST = eINSTANCE.getDependencySelectionStack__SetSelection__List();
-
-    /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.selection.impl.NodeSelectionImpl <em>Node Selection</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -446,12 +321,12 @@ public interface SelectionPackage extends EPackage {
     EClass NODE_SELECTION = eINSTANCE.getNodeSelection();
 
     /**
-     * The meta object literal for the '<em><b>Selected Nodes</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Nodes</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference NODE_SELECTION__SELECTED_NODES = eINSTANCE.getNodeSelection_SelectedNodes();
+    EReference NODE_SELECTION__NODES = eINSTANCE.getNodeSelection_Nodes();
 
     /**
      * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionImpl <em>Dependency Selection</em>}' class.
@@ -464,12 +339,48 @@ public interface SelectionPackage extends EPackage {
     EClass DEPENDENCY_SELECTION = eINSTANCE.getDependencySelection();
 
     /**
-     * The meta object literal for the '<em><b>Selected Dependencies</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Dependencies</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DEPENDENCY_SELECTION__SELECTED_DEPENDENCIES = eINSTANCE.getDependencySelection_SelectedDependencies();
+    EReference DEPENDENCY_SELECTION__DEPENDENCIES = eINSTANCE.getDependencySelection_Dependencies();
+
+    /**
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.selection.Selection <em>Selection</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.hierarchicalgraph.selection.Selection
+     * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getSelection()
+     * @generated
+     */
+    EClass SELECTION = eINSTANCE.getSelection();
+
+    /**
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.selection.impl.XReferenceSelectionImpl <em>XReference Selection</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.hierarchicalgraph.selection.impl.XReferenceSelectionImpl
+     * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getXReferenceSelection()
+     * @generated
+     */
+    EClass XREFERENCE_SELECTION = eINSTANCE.getXReferenceSelection();
+
+    /**
+     * The meta object literal for the '<em><b>Incoming Dependencies</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference XREFERENCE_SELECTION__INCOMING_DEPENDENCIES = eINSTANCE.getXReferenceSelection_IncomingDependencies();
+
+    /**
+     * The meta object literal for the '<em><b>Outgoing Dependencies</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference XREFERENCE_SELECTION__OUTGOING_DEPENDENCIES = eINSTANCE.getXReferenceSelection_OutgoingDependencies();
 
   }
 

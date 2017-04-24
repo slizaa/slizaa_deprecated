@@ -15,4 +15,5 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.slizaa.hierarchicalgraph.selection,
  org.slizaa.hierarchicalgraph.selection.impl,
  org.slizaa.hierarchicalgraph.selection.selector,
- org.slizaa.hierarchicalgraph.selection.util
+ org.slizaa.hierarchicalgraph.selection.util,
+ org.slizaa.hierarchicalgraph.selection.xref

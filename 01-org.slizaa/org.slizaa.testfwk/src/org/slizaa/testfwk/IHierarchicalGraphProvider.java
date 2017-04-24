@@ -1,13 +1,11 @@
 package org.slizaa.testfwk;
 
+import java.util.List;
+
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 
 public interface IHierarchicalGraphProvider {
-
-  void setup() throws Exception;
-
-  void dispose() throws Exception;
 
   HGNode node(Long id);
 
@@ -16,5 +14,6 @@ public interface IHierarchicalGraphProvider {
   HGRootNode rootNode();
 
   HGNode node(long id);
-
+  
+  List<HGNode> nodes(long... ids);
 }

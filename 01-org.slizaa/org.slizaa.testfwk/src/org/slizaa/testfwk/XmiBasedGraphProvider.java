@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -41,17 +43,21 @@ public class XmiBasedGraphProvider implements IHierarchicalGraphProvider {
   }
 
   /**
-   * {@inheritDoc}
+   * <p>
+   * </p>
+   *
+   * @throws IOException
    */
-  @Override
   public void setup() throws IOException {
     _rootNode = load(_xmiModelPath);
   }
 
   /**
-   * {@inheritDoc}
+   * <p>
+   * </p>
+   *
+   * @throws IOException
    */
-  @Override
   public void dispose() throws IOException {
     //
   }
@@ -76,10 +82,31 @@ public class XmiBasedGraphProvider implements IHierarchicalGraphProvider {
    * {@inheritDoc}
    */
   @Override
+  public List<HGNode> nodes(long... ids) {
+
+    //
+    List<HGNode> result = new LinkedList<HGNode>();
+
+    //
+    for (long id : ids) {
+      HGNode node = rootNode().lookupNode(new Long(id));
+      result.add(node);
+    }
+
+    //
+    return result;
+  }
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public HGRootNode rootNode() {
     return _rootNode;
   }
 
+
+  
   /**
    * {@inheritDoc}
    */

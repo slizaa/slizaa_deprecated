@@ -1,8 +1,8 @@
 package org.slizaa.neo4j.hierarchicalgraph;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewNode;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewRootNode;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewNode;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewRootNode;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;

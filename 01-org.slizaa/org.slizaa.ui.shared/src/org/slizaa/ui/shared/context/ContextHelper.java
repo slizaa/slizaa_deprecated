@@ -15,16 +15,16 @@ public class ContextHelper {
   public static void setDependenciesInContext(IEclipseContext eclipseContext, String name,
       Set<? extends AbstractHGDependency> value) {
     checkNotNull(eclipseContext).declareModifiable(checkNotNull(name));
-    Display.getDefault().syncExec(() -> eclipseContext.set(name, value));
+    Display.getDefault().syncExec(() -> eclipseContext.modify(name, value));
   }
 
   public static void setNodesInContext(IEclipseContext eclipseContext, String name, Set<? extends HGNode> value) {
     checkNotNull(eclipseContext).declareModifiable(checkNotNull(name));
-    Display.getDefault().syncExec(() -> eclipseContext.set(name, value));
+    Display.getDefault().syncExec(() -> eclipseContext.modify(name, value));
   }
 
   public static void setRootNodeInContext(IEclipseContext eclipseContext, String name, HGRootNode rootNode) {
     checkNotNull(eclipseContext).declareModifiable(checkNotNull(name));
-    Display.getDefault().syncExec(() -> eclipseContext.set(name, rootNode));
+    Display.getDefault().syncExec(() -> eclipseContext.modify(name, rootNode));
   }
 }

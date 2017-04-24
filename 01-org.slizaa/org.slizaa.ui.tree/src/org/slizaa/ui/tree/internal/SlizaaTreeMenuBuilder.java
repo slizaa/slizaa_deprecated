@@ -90,7 +90,7 @@ public class SlizaaTreeMenuBuilder {
 
           SlizaaTreeMenuGroup rootMenuGroup = computeInternalSlizaaMenuModel();
 
-          populateMenuManager(rootMenuGroup, null);
+          populateMenuManager(_menuManager, rootMenuGroup, null);
         }
       }
     });
@@ -107,7 +107,7 @@ public class SlizaaTreeMenuBuilder {
    * @param menuGroup
    * @param eSelectedObject
    */
-  private void populateMenuManager(SlizaaTreeMenuGroup menuGroup, String currentGroup) {
+  private void populateMenuManager(MenuManager menuManager, SlizaaTreeMenuGroup menuGroup, String currentGroup) {
 
     //
     Collections.sort(menuGroup.getMenuEntries(), (a, b) -> a.ranking() - b.ranking());
@@ -119,11 +119,11 @@ public class SlizaaTreeMenuBuilder {
         SlizaaTreeMenuEntry menuEntry = (SlizaaTreeMenuEntry) menuPart;
         //
         if (currentGroup == null) {
-          _menuManager.add(wrapActionContribution(menuEntry.getActionContribution()));
+          menuManager.add(wrapActionContribution(menuEntry.getActionContribution()));
         }
         //
         else {
-          _menuManager.appendToGroup(currentGroup, wrapActionContribution(menuEntry.getActionContribution()));
+          menuManager.appendToGroup(currentGroup, wrapActionContribution(menuEntry.getActionContribution()));
         }
       }
       //
@@ -134,17 +134,17 @@ public class SlizaaTreeMenuBuilder {
         //
         if (group.isSubMenu()) {
 
-          MenuManager menuManager2 = new MenuManager(group.getActionGroupContribution().getLabel(),
+          MenuManager subMenuManager = new MenuManager(group.getActionGroupContribution().getLabel(),
               group.getActionGroupContribution().getId());
           //
           if (currentGroup == null) {
-            _menuManager.add(menuManager2);
+            menuManager.add(subMenuManager);
           }
           //
           else {
-            _menuManager.appendToGroup(currentGroup, menuManager2);
+            menuManager.appendToGroup(currentGroup, subMenuManager);
           }
-          populateMenuManager(group, null);
+          populateMenuManager(subMenuManager, group, null);
         }
 
         //
@@ -152,15 +152,15 @@ public class SlizaaTreeMenuBuilder {
 
           //
           if (currentGroup == null) {
-            _menuManager.add(new GroupMarker(group.getId()));
+            menuManager.add(new GroupMarker(group.getId()));
           }
           //
           else {
-            _menuManager.appendToGroup(currentGroup, new GroupMarker(group.getId()));
+            menuManager.appendToGroup(currentGroup, new GroupMarker(group.getId()));
           }
 
           //
-          populateMenuManager(group, group.getId());
+          populateMenuManager(menuManager, group, group.getId());
         }
       }
     }

@@ -114,7 +114,7 @@ public class CypherBasedXRefFilterAction extends AbstractFilterAction {
             NodeSelection nodeSelection = XRefUtils.getOrCreateFilteredNodeSelection(node.getRootNode());
 
             Display.getDefault().asyncExec(
-                () -> ECollections.setEList((EList<HGNode>) nodeSelection.getSelectedNodes(), filteredNodes));
+                () -> ECollections.setEList((EList<HGNode>) nodeSelection.getNodes(), filteredNodes));
 
           } catch (InterruptedException | ExecutionException e) {
             // TODO Auto-generated catch block

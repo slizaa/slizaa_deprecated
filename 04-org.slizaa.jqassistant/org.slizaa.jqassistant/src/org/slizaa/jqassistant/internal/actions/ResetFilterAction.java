@@ -17,7 +17,7 @@ public class ResetFilterAction extends AbstractFilterAction {
   public void execute(List<?> selection, Viewer viewer) {
     HGNode node = (HGNode) selection.get(0);
     NodeSelection nodeSelection = XRefUtils.getOrCreateFilteredNodeSelection(node.getRootNode());
-    nodeSelection.getSelectedNodes().clear();
+    nodeSelection.getNodes().clear();
   }
 
   @Override

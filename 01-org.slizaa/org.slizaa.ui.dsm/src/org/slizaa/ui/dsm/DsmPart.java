@@ -29,6 +29,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.selection.DependencySelection;
+import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.ui.shared.context.BusyCursor;
@@ -156,8 +158,12 @@ public class DsmPart {
 
           BusyCursor.execute(_viewWidget, () -> {
             IEclipseContext eclipseContext = _perspective.getContext();
+            
+            //
+            DependencySelection dependencySelection = SelectionFactory.eINSTANCE.createDependencySelection();
+            dependencySelection.getDependencies().addAll(dependencies);
             eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION);
-            eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencies);
+            eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencySelection);
           });
 
           _fromArtifact = (HGNode) _dsmContentProvider.getNodes()[event.getX()];
@@ -251,7 +257,9 @@ public class DsmPart {
     _selectedCell = null;
 
     IEclipseContext eclipseContext = _perspective.getContext();
+    DependencySelection dependencySelection = SelectionFactory.eINSTANCE.createDependencySelection();
     eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION);
-    eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, Collections.emptyList());
+    eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencySelection);
+    
   }
 }

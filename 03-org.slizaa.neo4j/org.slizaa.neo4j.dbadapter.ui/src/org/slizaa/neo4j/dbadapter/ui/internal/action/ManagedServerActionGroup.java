@@ -1,5 +1,7 @@
 package org.slizaa.neo4j.dbadapter.ui.internal.action;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -41,12 +43,13 @@ public class ManagedServerActionGroup implements ISlizaaActionGroupContribution 
   }
 
   @Override
-  public boolean shouldShow(Object object) {
-    return ((List<?>) object).stream().allMatch(n -> n instanceof ManagedNeo4jInstance)  && GraphDatabaseUtil.isGraphDatabaseInstalled();
+  public boolean shouldShow(List<?> selectedObjects) {
+    return checkNotNull(selectedObjects).stream().allMatch(n -> n instanceof ManagedNeo4jInstance)
+        && GraphDatabaseUtil.isGraphDatabaseInstalled();
   }
 
   @Override
-  public boolean isEnabled(Object selectedObject) {
+  public boolean isEnabled(List<?> selectedObjects) {
     return true;
   }
 }

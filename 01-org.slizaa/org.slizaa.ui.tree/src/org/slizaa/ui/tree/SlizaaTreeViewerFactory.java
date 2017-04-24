@@ -35,7 +35,7 @@ public class SlizaaTreeViewerFactory {
   public static void setSlizaaTreeViewerCreator(ISlizaaActionContributionProvider slizaaActionContributionProvider,
       ComposedAdapterFactory adapterFactory, Supplier<IEclipseContext> contextSupplier) {
 
-    checkState(_creator == null);
+//    checkState(_creator == null);
 
     //
     _creator = new SlizaaTreeViewerCreator(checkNotNull(slizaaActionContributionProvider), checkNotNull(adapterFactory),

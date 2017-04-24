@@ -13,7 +13,7 @@ import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
-import org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods;
+import org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
@@ -187,13 +187,13 @@ public class GraphFactoryFunctions {
 
     //
     if (proxyDependency) {
-      return HierarchicalgraphFactoryMethods.createNewProxyDependency(fromElement, toElement, type,
+      return HierarchicalgraphFactoryFunctions.createNewProxyDependency(fromElement, toElement, type,
           () -> dependencySourceCreator.apply(idRel, type), reinitializeCaches);
     }
 
     //
     else {
-      return HierarchicalgraphFactoryMethods.createNewCoreDependency(fromElement, toElement, type,
+      return HierarchicalgraphFactoryFunctions.createNewCoreDependency(fromElement, toElement, type,
           () -> dependencySourceCreator.apply(idRel, type), reinitializeCaches);
     }
   }

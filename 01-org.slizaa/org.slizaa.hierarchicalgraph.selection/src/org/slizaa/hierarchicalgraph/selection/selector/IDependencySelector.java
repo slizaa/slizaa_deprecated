@@ -6,18 +6,91 @@ import java.util.Set;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 
-// TODO: API REVIEW!!
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 public interface IDependencySelector {
 
   /**
    * <p>
    * </p>
    *
-   * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+   * @param listener
    */
-  public enum NodeType {
-    SOURCE, TARGET;
-  }
+  void addDependencySelectorListener(IDependencySelectorListener listener);
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param listener
+   */
+  void removeDependencySelectorListener(IDependencySelectorListener listener);
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param dependencies
+   */
+  void setUnfilteredCoreDependencies(Collection<HGCoreDependency> dependencies);
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param selectedNodes
+   */
+  void setSelectedSourceNodes(HGNode... selectedNodes);
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param selectedNodes
+   */
+  void setSelectedSourceNodes(Collection<HGNode> selectedNodes);
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param selectedNodes
+   */
+  void setSelectedTargetNodes(HGNode... selectedNodes);
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param selectedNodes
+   */
+  void setSelectedTargetNodes(Collection<HGNode> selectedNodes);
+
+  /**
+   * <p>
+   * </p>
+   */
+  void unselectNodes();
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  Set<HGNode> getSelectedSourceNodes();
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  Set<HGNode> getSelectedTargetNodes();
 
   /**
    * <p>
@@ -31,10 +104,33 @@ public interface IDependencySelector {
    * <p>
    * </p>
    *
-   * @param type
    * @return
    */
-  Set<HGNode> getUnfilteredNodes(NodeType type);
+  Set<HGNode> getUnfilteredSourceNodes();
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  Set<HGNode> getUnfilteredSourceNodesWithParents();
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  Set<HGNode> getUnfilteredTargetNodes();
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  Set<HGNode> getUnfilteredTargetNodesWithParents();
 
   /**
    * <p>
@@ -48,38 +144,33 @@ public interface IDependencySelector {
    * <p>
    * </p>
    *
-   * @param type
    * @return
    */
-  Set<HGNode> getFilteredNodes(NodeType type);
+  Set<HGNode> getFilteredSourceNodes();
 
   /**
    * <p>
    * </p>
    *
-   * @param type
-   * @param filtered
    * @return
    */
-  Set<HGNode> getNodesWithParents(NodeType type, boolean filtered);
+  Set<HGNode> getFilteredSourceNodesWithParents();
 
   /**
    * <p>
    * </p>
    *
-   * @param type
-   * @param selectedNodes
+   * @return
    */
-  void setSelectedNodes(NodeType type, HGNode... selectedNodes);
+  Set<HGNode> getFilteredTargetNodes();
 
   /**
    * <p>
    * </p>
    *
-   * @param type
-   * @param selectedNodes
+   * @return
    */
-  void setSelectedNodes(NodeType type, Collection<HGNode> selectedNodes);
+  Set<HGNode> getFilteredTargetNodesWithParents();
 
   /**
    * <p>
@@ -98,12 +189,4 @@ public interface IDependencySelector {
    * @return
    */
   Set<HGCoreDependency> getDependenciesForTargetNode(HGNode toNode);
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param dependencies
-   */
-  void setDependencies(Collection<HGCoreDependency> dependencies);
 }

@@ -8,22 +8,19 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.slizaa.hierarchicalgraph.selection.DependencySelection;
-import org.slizaa.hierarchicalgraph.selection.DependencySelectionStack;
 import org.slizaa.hierarchicalgraph.selection.NodeSelection;
 import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
 import org.slizaa.hierarchicalgraph.selection.SelectionPackage;
+import org.slizaa.hierarchicalgraph.selection.XReferenceSelection;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * @generated
  */
 public class SelectionFactoryImpl extends EFactoryImpl implements SelectionFactory {
   /**
    * Creates the default factory implementation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public static SelectionFactory init() {
@@ -41,8 +38,7 @@ public class SelectionFactoryImpl extends EFactoryImpl implements SelectionFacto
 
   /**
    * Creates an instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public SelectionFactoryImpl() {
@@ -50,29 +46,18 @@ public class SelectionFactoryImpl extends EFactoryImpl implements SelectionFacto
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
-      case SelectionPackage.DEPENDENCY_SELECTION_STACK: return createDependencySelectionStack();
       case SelectionPackage.NODE_SELECTION: return createNodeSelection();
       case SelectionPackage.DEPENDENCY_SELECTION: return createDependencySelection();
+      case SelectionPackage.XREFERENCE_SELECTION: return createXReferenceSelection();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated NOT
-   */
-  public DependencySelectionStack createDependencySelectionStack() {
-    DependencySelectionStackImpl dependencySelectionStack = new ExtendedDependencySelectionStack();
-    return dependencySelectionStack;
   }
 
   /**
@@ -100,13 +85,21 @@ public class SelectionFactoryImpl extends EFactoryImpl implements SelectionFacto
    * <!-- end-user-doc -->
    * @generated
    */
+  public XReferenceSelection createXReferenceSelection() {
+    XReferenceSelectionImpl xReferenceSelection = new XReferenceSelectionImpl();
+    return xReferenceSelection;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   */
   public SelectionPackage getSelectionPackage() {
     return (SelectionPackage)getEPackage();
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @deprecated
    * @generated
    */
@@ -115,4 +108,4 @@ public class SelectionFactoryImpl extends EFactoryImpl implements SelectionFacto
     return SelectionPackage.eINSTANCE;
   }
 
-} //SelectionFactoryImpl
+} // SelectionFactoryImpl

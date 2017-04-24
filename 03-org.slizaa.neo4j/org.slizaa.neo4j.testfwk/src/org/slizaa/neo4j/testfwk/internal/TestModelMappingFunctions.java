@@ -1,8 +1,8 @@
 package org.slizaa.neo4j.testfwk.internal;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewNode;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewCoreDependency;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewNode;
 
 import java.util.List;
 import java.util.function.BiFunction;

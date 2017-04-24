@@ -2,29 +2,19 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="selection" nsURI="http://org/slizaa/hierarchicalgraph/selection"
     nsPrefix="org.slizaa.hierarchicalgraph.selection">
-  <eClassifiers xsi:type="ecore:EClass" name="DependencySelectionStack">
-    <eOperations name="canGoForward" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eOperations name="goForward"/>
-    <eOperations name="canGoBack" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eOperations name="goBack"/>
-    <eOperations name="clear"/>
-    <eOperations name="setSelection">
-      <eTypeParameters name="E">
-        <eBounds eClassifier="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//AbstractHGDependency"/>
-      </eTypeParameters>
-      <eParameters name="selection" upperBound="-1">
-        <eGenericType eTypeParameter="#//DependencySelectionStack/setSelection/E"/>
-      </eParameters>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="currentSelection" upperBound="-1"
-        eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//AbstractHGDependency"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NodeSelection">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="selectedNodes" upperBound="-1"
+  <eClassifiers xsi:type="ecore:EClass" name="NodeSelection" eSuperTypes="#//Selection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
         eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGNode"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DependencySelection">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="selectedDependencies" upperBound="-1"
+  <eClassifiers xsi:type="ecore:EClass" name="DependencySelection" eSuperTypes="#//Selection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
         eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//AbstractHGDependency"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Selection" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="XReferenceSelection" eSuperTypes="#//Selection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingDependencies" upperBound="-1"
+        eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGCoreDependency"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingDependencies" upperBound="-1"
+        eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGCoreDependency"/>
   </eClassifiers>
 </ecore:EPackage>

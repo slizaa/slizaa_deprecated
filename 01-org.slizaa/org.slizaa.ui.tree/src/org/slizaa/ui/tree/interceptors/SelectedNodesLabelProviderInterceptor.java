@@ -9,6 +9,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGRootNode;
 
 /**
  * <p>
@@ -42,10 +43,10 @@ public class SelectedNodesLabelProviderInterceptor extends ILabelProviderInterce
     Collection<HGNode> selectedNodes = selectedNodes();
     //
     if (selectedNodes != null) {
-      if (selectedNodes.contains(object)) {
-        return font;
+      if (selectedNodes.contains(object) && !(object instanceof HGRootNode)) {
+        return JFaceResources.getFontRegistry().getBold(JFaceResources.DIALOG_FONT);
       } else {
-        return JFaceResources.getFontRegistry().getItalic(JFaceResources.DIALOG_FONT);
+        return font;
       }
     }
 
@@ -53,17 +54,6 @@ public class SelectedNodesLabelProviderInterceptor extends ILabelProviderInterce
     return font;
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public Color alterForeground(Object object, Color color) {
-    Collection<HGNode> selectedNodes = selectedNodes();
-    if (selectedNodes != null && !selectedNodes.contains(object)) {
-      return Display.getCurrent().getSystemColor(SWT.COLOR_GRAY);
-    }
-    return color;
-  }
 
   /**
    * <p>
@@ -71,7 +61,7 @@ public class SelectedNodesLabelProviderInterceptor extends ILabelProviderInterce
    *
    * @return
    */
-  private Collection<HGNode> selectedNodes() {
+  public Collection<HGNode> selectedNodes() {
     return _selectedNodesSupplier.get();
   }
 }

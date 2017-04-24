@@ -1,7 +1,7 @@
 package org.slizaa.hierarchicalgraph.simple.resolvedeps;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewCoreDependency;
 
 import java.util.List;
 import java.util.concurrent.Future;

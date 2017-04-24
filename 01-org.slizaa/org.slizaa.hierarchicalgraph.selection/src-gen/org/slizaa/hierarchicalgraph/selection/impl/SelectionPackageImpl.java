@@ -3,18 +3,17 @@
 package org.slizaa.hierarchicalgraph.selection.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.hierarchicalgraph.selection.DependencySelection;
-import org.slizaa.hierarchicalgraph.selection.DependencySelectionStack;
 import org.slizaa.hierarchicalgraph.selection.NodeSelection;
+import org.slizaa.hierarchicalgraph.selection.Selection;
 import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
 import org.slizaa.hierarchicalgraph.selection.SelectionPackage;
+import org.slizaa.hierarchicalgraph.selection.XReferenceSelection;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,20 +27,28 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass dependencySelectionStackEClass = null;
+  private EClass nodeSelectionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass nodeSelectionEClass = null;
+  private EClass dependencySelectionEClass = null;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass dependencySelectionEClass = null;
+  private EClass selectionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass xReferenceSelectionEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -112,78 +119,6 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDependencySelectionStack() {
-    return dependencySelectionStackEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDependencySelectionStack_CurrentSelection() {
-    return (EReference)dependencySelectionStackEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getDependencySelectionStack__CanGoForward() {
-    return dependencySelectionStackEClass.getEOperations().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getDependencySelectionStack__GoForward() {
-    return dependencySelectionStackEClass.getEOperations().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getDependencySelectionStack__CanGoBack() {
-    return dependencySelectionStackEClass.getEOperations().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getDependencySelectionStack__GoBack() {
-    return dependencySelectionStackEClass.getEOperations().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getDependencySelectionStack__Clear() {
-    return dependencySelectionStackEClass.getEOperations().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EOperation getDependencySelectionStack__SetSelection__List() {
-    return dependencySelectionStackEClass.getEOperations().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getNodeSelection() {
     return nodeSelectionEClass;
   }
@@ -193,7 +128,7 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getNodeSelection_SelectedNodes() {
+  public EReference getNodeSelection_Nodes() {
     return (EReference)nodeSelectionEClass.getEStructuralFeatures().get(0);
   }
 
@@ -211,8 +146,44 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDependencySelection_SelectedDependencies() {
+  public EReference getDependencySelection_Dependencies() {
     return (EReference)dependencySelectionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSelection() {
+    return selectionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getXReferenceSelection() {
+    return xReferenceSelectionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getXReferenceSelection_IncomingDependencies() {
+    return (EReference)xReferenceSelectionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getXReferenceSelection_OutgoingDependencies() {
+    return (EReference)xReferenceSelectionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -243,20 +214,17 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
     isCreated = true;
 
     // Create classes and their features
-    dependencySelectionStackEClass = createEClass(DEPENDENCY_SELECTION_STACK);
-    createEReference(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK__CURRENT_SELECTION);
-    createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___CAN_GO_FORWARD);
-    createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___GO_FORWARD);
-    createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___CAN_GO_BACK);
-    createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___GO_BACK);
-    createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___CLEAR);
-    createEOperation(dependencySelectionStackEClass, DEPENDENCY_SELECTION_STACK___SET_SELECTION__LIST);
-
     nodeSelectionEClass = createEClass(NODE_SELECTION);
-    createEReference(nodeSelectionEClass, NODE_SELECTION__SELECTED_NODES);
+    createEReference(nodeSelectionEClass, NODE_SELECTION__NODES);
 
     dependencySelectionEClass = createEClass(DEPENDENCY_SELECTION);
-    createEReference(dependencySelectionEClass, DEPENDENCY_SELECTION__SELECTED_DEPENDENCIES);
+    createEReference(dependencySelectionEClass, DEPENDENCY_SELECTION__DEPENDENCIES);
+
+    selectionEClass = createEClass(SELECTION);
+
+    xReferenceSelectionEClass = createEClass(XREFERENCE_SELECTION);
+    createEReference(xReferenceSelectionEClass, XREFERENCE_SELECTION__INCOMING_DEPENDENCIES);
+    createEReference(xReferenceSelectionEClass, XREFERENCE_SELECTION__OUTGOING_DEPENDENCIES);
   }
 
   /**
@@ -290,33 +258,22 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    nodeSelectionEClass.getESuperTypes().add(this.getSelection());
+    dependencySelectionEClass.getESuperTypes().add(this.getSelection());
+    xReferenceSelectionEClass.getESuperTypes().add(this.getSelection());
 
     // Initialize classes, features, and operations; add parameters
-    initEClass(dependencySelectionStackEClass, DependencySelectionStack.class, "DependencySelectionStack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDependencySelectionStack_CurrentSelection(), theHierarchicalgraphPackage.getAbstractHGDependency(), null, "currentSelection", null, 0, -1, DependencySelectionStack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEOperation(getDependencySelectionStack__CanGoForward(), ecorePackage.getEBoolean(), "canGoForward", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    initEOperation(getDependencySelectionStack__GoForward(), null, "goForward", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    initEOperation(getDependencySelectionStack__CanGoBack(), ecorePackage.getEBoolean(), "canGoBack", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    initEOperation(getDependencySelectionStack__GoBack(), null, "goBack", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    initEOperation(getDependencySelectionStack__Clear(), null, "clear", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    EOperation op = initEOperation(getDependencySelectionStack__SetSelection__List(), null, "setSelection", 0, 1, IS_UNIQUE, IS_ORDERED);
-    ETypeParameter t1 = addETypeParameter(op, "E");
-    EGenericType g1 = createEGenericType(theHierarchicalgraphPackage.getAbstractHGDependency());
-    t1.getEBounds().add(g1);
-    g1 = createEGenericType(t1);
-    addEParameter(op, g1, "selection", 0, -1, IS_UNIQUE, IS_ORDERED);
-
     initEClass(nodeSelectionEClass, NodeSelection.class, "NodeSelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNodeSelection_SelectedNodes(), theHierarchicalgraphPackage.getHGNode(), null, "selectedNodes", null, 0, -1, NodeSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNodeSelection_Nodes(), theHierarchicalgraphPackage.getHGNode(), null, "nodes", null, 0, -1, NodeSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dependencySelectionEClass, DependencySelection.class, "DependencySelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDependencySelection_SelectedDependencies(), theHierarchicalgraphPackage.getAbstractHGDependency(), null, "selectedDependencies", null, 0, -1, DependencySelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDependencySelection_Dependencies(), theHierarchicalgraphPackage.getAbstractHGDependency(), null, "dependencies", null, 0, -1, DependencySelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(selectionEClass, Selection.class, "Selection", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(xReferenceSelectionEClass, XReferenceSelection.class, "XReferenceSelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getXReferenceSelection_IncomingDependencies(), theHierarchicalgraphPackage.getHGCoreDependency(), null, "incomingDependencies", null, 0, -1, XReferenceSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getXReferenceSelection_OutgoingDependencies(), theHierarchicalgraphPackage.getHGCoreDependency(), null, "outgoingDependencies", null, 0, -1, XReferenceSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

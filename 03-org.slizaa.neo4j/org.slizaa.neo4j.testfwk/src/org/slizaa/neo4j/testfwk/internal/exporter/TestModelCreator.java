@@ -27,19 +27,19 @@ import com.google.gson.JsonObject;
 public class TestModelCreator {
 
   /** - */
-  public static final String ROOT_MODULES     = "MATCH (module:Java:Artifact) WHERE (module:Directory OR module:Jar:Archive) RETURN id(module)";
+  public static final String ROOT_MODULES       = "MATCH (module:Java:Artifact) WHERE (module:Directory OR module:Jar:Archive) RETURN id(module)";
 
   /** - */
-  public static String       FLAT_DIRECTORIES = "MATCH (module:Java:Artifact)-[:CONTAINS]->(d:Directory)-[:CONTAINS]->(f:File) WHERE (module:Directory OR module:Jar:Archive)  AND NOT (f:Directory) RETURN DISTINCT id(module), id(d)";
+  public static String       FLAT_DIRECTORIES   = "MATCH (module:Java:Artifact)-[:CONTAINS]->(d:Directory)-[:CONTAINS]->(f:File) WHERE (module:Directory OR module:Jar:Archive)  AND NOT (f:Directory) RETURN DISTINCT id(module), id(d)";
 
   /** - */
-  public static final String FILES            = "MATCH (d:Directory)-[:CONTAINS]->(f:File) WHERE NOT (f:Type) AND NOT (f:Directory) RETURN id(d), id(f)";
+  public static final String FILES              = "MATCH (d:Directory)-[:CONTAINS]->(f:File) WHERE NOT (f:Type) AND NOT (f:Directory) RETURN id(d), id(f)";
 
   /** - */
-  public static final String TYPES            = "MATCH (d:Directory)-[:CONTAINS]->(t:Type) RETURN id(d), id(t)";
+  public static final String TYPES              = "MATCH (d:Directory)-[:CONTAINS]->(t:Type) RETURN id(d), id(t)";
 
   /** - */
-  public static final String DEPENDENCIES     = "MATCH (t1:File:Type:Java)-[r:DEPENDS_ON]->(t2:File:Type:Java) RETURN id(t1),id(t2),id(r),type(r)";
+  public static final String DEPENDENCIES       = "MATCH (t1:File:Type:Java)-[r:DEPENDS_ON]->(t2:File:Type:Java) RETURN id(t1),id(t2),id(r),type(r)";
 
   /**
    * <p>
@@ -49,7 +49,8 @@ public class TestModelCreator {
    * @throws ExecutionException
    * @throws IOException
    */
-  public static void createTestModel(String fileName, String baseUri) throws Exception {
+  public static void createTestModel(String fileName, String baseUri, boolean createProxyDependencyModel)
+      throws Exception {
 
     // create the remote repository
     final Neo4jRestClient remoteRepository = DbAdapterFactory.eINSTANCE.createNeo4jRestClient();
@@ -110,23 +111,36 @@ public class TestModelCreator {
     Future<JsonObject> resultTypes = remoteRepository.executeCypherQuery(TYPES);
     Future<JsonObject> dependencies = remoteRepository.executeCypherQuery(DEPENDENCIES);
 
+    System.out.println("1");
+    
     //
     createFirstLevelElements(Neo4jResultJsonConverter.extractRootNodes(resultRoot.get()).toArray(new Long[0]), rootNode,
         createNodeSourceFunction, null);
 
+    System.out.println("2");
+    
     //
     createHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultDirectories.get()).toArray(new Long[0][0]),
         rootNode, createNodeSourceFunction, null);
+    
+    System.out.println("3");
+    
     createHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultFiles.get()).toArray(new Long[0][0]), rootNode,
         createNodeSourceFunction, null);
+    
+    System.out.println("4");
+    
     createHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultTypes.get()).toArray(new Long[0][0]), rootNode,
         createNodeSourceFunction, null);
 
+    System.out.println("5");
+    
     //
     createDependencies(Neo4jResultJsonConverter.extractNeo4jRelationships(dependencies.get()), rootNode,
-        createDependencySourceFunction, false, false, null);
+        createDependencySourceFunction, createProxyDependencyModel, false, null);
 
     //
+    System.out.println("DONE");
     save(fileName, rootNode);
   }
 
@@ -139,7 +153,7 @@ public class TestModelCreator {
    */
   public static void main(String[] args) throws Exception {
     TestModelCreator.createTestModel(new File(System.getProperty("user.dir"), "test.hggraph").getAbsolutePath(),
-        "http://localhost:7474");
+        "http://localhost:7474", true);
     System.out.println("DONE");
   }
 }

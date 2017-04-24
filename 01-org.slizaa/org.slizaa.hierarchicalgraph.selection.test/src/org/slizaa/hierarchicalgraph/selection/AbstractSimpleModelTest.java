@@ -1,9 +1,9 @@
 package org.slizaa.hierarchicalgraph.selection;
 
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewProxyDependency;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewNode;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewRootNode;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewProxyDependency;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewCoreDependency;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewNode;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewRootNode;
 
 import java.util.function.Supplier;
 

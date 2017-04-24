@@ -1,7 +1,7 @@
 package org.slizaa.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.removeDependency;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.removeDependency;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,6 +68,8 @@ public class Utilities {
   public static void resolveProxyDependencies(List<? extends HGCoreDependency> dependencies,
       IProgressMonitor progressMonitor) {
 
+    System.out.println(dependencies);
+    
     //
     if (dependencies == null || dependencies.isEmpty()) {
       return;

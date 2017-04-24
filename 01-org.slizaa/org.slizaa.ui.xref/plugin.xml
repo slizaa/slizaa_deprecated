@@ -11,14 +11,14 @@
             restorable="true">
       </e4view>
       <e4view
-            class="org.slizaa.ui.xref.internal.ReferencedNodesPart"
+            class="org.slizaa.ui.ref.ReferencedNodesPart"
             icon="icons/ReferencedNodes.gif"
             id="org.slizaa.ui.xref.ReferencedNodesPart"
             name="Uses"
             restorable="true">
       </e4view>
 	  <e4view
-            class="org.slizaa.ui.xref.internal.ReferencingNodesPart"
+            class="org.slizaa.ui.ref.ReferencingNodesPart"
             icon="icons/ReferencingNodes.gif"
             id="org.slizaa.ui.xref.ReferencingNodesPart"
             name="Used By"

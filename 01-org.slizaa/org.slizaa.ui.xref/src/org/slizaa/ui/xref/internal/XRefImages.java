@@ -8,7 +8,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
-import org.slizaa.ui.xref.internal.osgi.Activator;
 
 /**
  * This enumeration provides a number of images for the plugin.
@@ -19,9 +18,31 @@ public enum XRefImages {
 
   SELECT_TO_SELECTION("icons/enabled/select_to_selection.png"),
 
+  CROP_SELECTION("icons/enabled/pin-selection-add.png"),
+  
+  CROP_SELECTION_FORWARD("icons/enabled/pin-selection-forward.png"),
+  
+  CROP_SELECTION_BACK("icons/enabled/pin-selection-back.png"),
+
+  UNCROP("icons/enabled/pin-selection-clear.png"),
+  
+  COLLAPSE_ALL("icons/enabled/collapseall.png"),
+
   DISABLED_SELECT_FROM_SELECTION("icons/disabled/select_from_selection.png"),
 
-  DISABLED_SELECT_TO_SELECTION("icons/disabled/select_to_selection.png");
+  DISABLED_SELECT_TO_SELECTION("icons/disabled/select_to_selection.png"),
+  
+  DISABLED_CROP_SELECTION("icons/disabled/pin-selection-add.png"),
+  
+  DISABLED_CROP_SELECTION_FORWARD("icons/disabled/pin-selection-forward.png"),
+  
+  DISABLED_CROP_SELECTION_BACK("icons/disabled/pin-selection-back.png"),
+
+  DISABLED_UNCROP("icons/disabled/pin-selection-clear.png"),
+  
+  DISABLED_COLLAPSE_ALL("icons/disabled/collapseall.png"), 
+  
+  EXPAND("icons/enabled/expand.png");
 
   /**
    * The bundle-relative path to the icon
@@ -78,6 +99,7 @@ public enum XRefImages {
   public static void disposeDefaultImageRegistry() {
     if (_defaultImageRegistry != null) {
       _defaultImageRegistry.dispose();
+      _defaultImageRegistry = null;
     }
   }
 

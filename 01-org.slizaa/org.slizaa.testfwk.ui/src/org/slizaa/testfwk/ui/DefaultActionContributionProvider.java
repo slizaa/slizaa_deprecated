@@ -20,7 +20,7 @@ public class DefaultActionContributionProvider implements ISlizaaActionContribut
     _actionContributions = new LinkedList<>();
   }
 
-  public List<ISlizaaActionGroupContribution> groups() {
+  public List<ISlizaaActionGroupContribution> actionGroups() {
     return _actionGroupContributions;
   }
 

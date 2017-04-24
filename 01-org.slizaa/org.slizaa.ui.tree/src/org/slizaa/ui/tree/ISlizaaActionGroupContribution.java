@@ -1,5 +1,7 @@
 package org.slizaa.ui.tree;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -58,7 +60,7 @@ public interface ISlizaaActionGroupContribution {
    *          the {@link EObject} on which to test if the action can be executed
    * @return <b>true</b> if the action can be executed on the parameter {@code eObject}
    */
-  boolean shouldShow(Object selectedObject);
+  boolean shouldShow(List<?> selectedObjects);
 
   /**
    * <p>
@@ -67,7 +69,7 @@ public interface ISlizaaActionGroupContribution {
    * @param eSelectedObject
    * @return
    */
-  boolean isEnabled(Object selectedObject);
+  boolean isEnabled(List<?> selectedObjects);
 
   /**
    * <p>
@@ -108,7 +110,7 @@ public interface ISlizaaActionGroupContribution {
      * {@inheritDoc}
      */
     @Override
-    public boolean shouldShow(Object selectedObject) {
+    public boolean shouldShow(List<?> selectedObjects) {
       return true;
     }
 
@@ -116,7 +118,7 @@ public interface ISlizaaActionGroupContribution {
      * {@inheritDoc}
      */
     @Override
-    public boolean isEnabled(Object selectedObject) {
+    public boolean isEnabled(List<?> selectedObjects) {
       return true;
     }
   }

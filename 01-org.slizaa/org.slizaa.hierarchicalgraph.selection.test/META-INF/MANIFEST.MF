@@ -11,5 +11,5 @@ Require-Bundle: org.slizaa.hierarchicalgraph,
  org.junit;visibility:=reexport,
  com.google.guava;bundle-version="15.0.0",
  org.assertj.core;bundle-version="3.3.0",
- org.mockito;bundle-version="1.9.5",
- org.slizaa.testfwk;bundle-version="0.0.3"
+ org.slizaa.testfwk;bundle-version="0.0.3",
+ org.eclipse.emf.edit;bundle-version="2.12.0"

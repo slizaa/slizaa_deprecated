@@ -34,6 +34,8 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
+import org.slizaa.hierarchicalgraph.selection.DependencySelection;
 import org.slizaa.hierarchicalgraph.selection.DependencySelections;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 
@@ -54,7 +56,8 @@ public class DependencyTablePart {
   /** - */
   private ArtifactPathLabelGenerator _toLabelGenerator   = new ArtifactPathLabelGenerator();
 
-  private Set<AbstractHGDependency>  _selectedDependencies;
+  /** - */
+  private DependencySelection  _selectedDependencies;
 
   @PostConstruct
   public void createComposite(Composite parent) {
@@ -85,7 +88,7 @@ public class DependencyTablePart {
 
   @Inject
   public void initSelection(
-      @Optional @Named(SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION) Set<AbstractHGDependency> selectedDependencies) {
+      @Optional @Named(SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION) DependencySelection selectedDependencies) {
 
     _selectedDependencies = selectedDependencies;
 
@@ -93,7 +96,7 @@ public class DependencyTablePart {
       return;
     }
 
-    if (selectedDependencies == null || selectedDependencies.isEmpty()) {
+    if (selectedDependencies == null || selectedDependencies.getDependencies().isEmpty()) {
       setColumnTitles("From", "To");
       _viewer.setInput(new AbstractHGDependency[0]);
       _viewer.getTable().redraw();
@@ -102,11 +105,11 @@ public class DependencyTablePart {
     //
     else {
 
-      HGNode toBaseArtifact = _selectedDependencies.toArray(new AbstractHGDependency[0])[0].getFrom();
+      HGNode toBaseArtifact = _selectedDependencies.getDependencies().get(0).getFrom();
 
-      HGNode fromBaseArtifact = _selectedDependencies.toArray(new AbstractHGDependency[0])[0].getTo();
+      HGNode fromBaseArtifact = _selectedDependencies.getDependencies().get(0).getTo();
 
-      if (selectedDependencies.size() != 1) {
+      if (_selectedDependencies.getDependencies().size() != 1) {
         // TODO determine deepest common base of all dependencies
         toBaseArtifact = toBaseArtifact.getRootNode();
         fromBaseArtifact = fromBaseArtifact.getRootNode();
@@ -114,13 +117,14 @@ public class DependencyTablePart {
 
       _fromLabelGenerator.setBaseArtifact(fromBaseArtifact);
       _toLabelGenerator.setBaseArtifact(toBaseArtifact);
+      
       //
       String fromColumnTitle = "From " /* + _fromLabelGenerator.getTitle() */;
       String toColumnTitle = "To " /* + _toLabelGenerator.getTitle() */;
 
       setColumnTitles(fromColumnTitle, toColumnTitle);
 
-      Set<HGCoreDependency> leafDependencies = DependencySelections.getCoreDependencies(selectedDependencies);
+      Set<HGCoreDependency> leafDependencies = DependencySelections.getCoreDependencies(_selectedDependencies.getDependencies());
 
       AbstractHGDependency[] dependencies = leafDependencies.toArray(new AbstractHGDependency[0]);
       setOrderedDependencies(dependencies);
@@ -143,7 +147,15 @@ public class DependencyTablePart {
         if (element instanceof AbstractHGDependency) {
           AbstractHGDependency dependency = (AbstractHGDependency) element;
           if (dependency instanceof HGCoreDependency) {
-            return ((HGCoreDependency) dependency).getType();
+            
+            //
+            if (dependency instanceof HGProxyDependency) {
+              return "<<lazy dependency>>";
+            } 
+            //
+            else {
+              return ((HGCoreDependency) dependency).getType();
+            }
           }
           // return String.valueOf(dependency.getDependencyKind()).toLowerCase();
           return "depends on";

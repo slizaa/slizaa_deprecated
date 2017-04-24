@@ -2,8 +2,8 @@ package org.slizaa.ui.tree.interceptors;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -21,7 +21,7 @@ import org.slizaa.hierarchicalgraph.impl.Utilities;
 public class DependencyResolvingTreeEventInterceptor implements ITreeEventInterceptor {
 
   /** - */
-  private Function<HGNode, Set<HGCoreDependency>> _coreDependencySupplier;
+  private Function<HGNode, Collection<HGCoreDependency>> _coreDependencySupplier;
 
   /**
    * <p>
@@ -30,7 +30,8 @@ public class DependencyResolvingTreeEventInterceptor implements ITreeEventInterc
    *
    * @param coreDependencySupplier
    */
-  public DependencyResolvingTreeEventInterceptor(Function<HGNode, Set<HGCoreDependency>> coreDependencySupplier) {
+  public DependencyResolvingTreeEventInterceptor(
+      Function<HGNode, Collection<HGCoreDependency>> coreDependencySupplier) {
     _coreDependencySupplier = checkNotNull(coreDependencySupplier);
   }
 
@@ -41,8 +42,6 @@ public class DependencyResolvingTreeEventInterceptor implements ITreeEventInterc
   public void handleSelect(HGNode node) {
     resolveDependencies(node);
   }
-
-
 
   /**
    * {@inheritDoc}
@@ -59,7 +58,7 @@ public class DependencyResolvingTreeEventInterceptor implements ITreeEventInterc
   public void handleTreeCollapse(HGNode node) {
     // nothing
   }
-  
+
   /**
    * <p>
    * </p>
@@ -67,7 +66,7 @@ public class DependencyResolvingTreeEventInterceptor implements ITreeEventInterc
    * @param node
    */
   private void resolveDependencies(HGNode node) {
-    Set<HGCoreDependency> dependencies = _coreDependencySupplier.apply(node);
+    Collection<HGCoreDependency> dependencies = _coreDependencySupplier.apply(node);
     if (dependencies != null) {
       List<HGProxyDependency> proxyDependencies = dependencies.stream().filter(dep -> dep instanceof HGProxyDependency)
           .map(dep -> (HGProxyDependency) dep).collect(Collectors.toList());

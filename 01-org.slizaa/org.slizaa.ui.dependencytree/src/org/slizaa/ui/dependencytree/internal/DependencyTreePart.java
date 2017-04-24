@@ -1,16 +1,15 @@
 /*******************************************************************************
- * Copyright (c) Gerd Wütherich 2012-2016.
+ * Copyright (c) Gerd Wï¿½therich 2012-2016.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *    Gerd Wütherich (gerd@gerd-wuetherich.de) - initial API and implementation
+ *    Gerd Wï¿½therich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
 package org.slizaa.ui.dependencytree.internal;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 
@@ -24,8 +23,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.slizaa.hierarchicalgraph.AbstractHGDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
+import org.slizaa.hierarchicalgraph.selection.DependencySelection;
 import org.slizaa.hierarchicalgraph.selection.DependencySelections;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 
@@ -40,11 +39,14 @@ public class DependencyTreePart {
   /** - */
   public static final String      ID = DependencyTreePart.class.getName();
 
+  @Inject
+  private MPerspective            _mPerspective;
+
   /** - */
   private DependencyTreeComposite _composite;
 
-  @Inject
-  private MPerspective            _mPerspective;
+  /** - */
+  private DependencySelection     _dependencySelection;
 
   /**
    * <p>
@@ -54,7 +56,7 @@ public class DependencyTreePart {
    */
   @PostConstruct
   public void createComposite(Composite parent) {
-    
+
     //
     GridLayout layout = new GridLayout(1, false);
     layout.marginHeight = 0;
@@ -64,6 +66,11 @@ public class DependencyTreePart {
     //
     _composite = new DependencyTreeComposite(parent, () -> _mPerspective.getContext());
     _composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+    //
+    if (_dependencySelection != null) {
+      setDependencies(_dependencySelection);
+    }
   }
 
   /**
@@ -75,12 +82,39 @@ public class DependencyTreePart {
   @Inject
   public void handleChangedDependencies(@Optional
   @Named(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION)
-  final Collection<AbstractHGDependency> dependencies) {
+  final DependencySelection dependencySelection) {
+
+    //
+    _dependencySelection = dependencySelection;
+
+    //
+    setDependencies(_dependencySelection);
+  }
+
+  /**
+   * <p>
+   * ONLY FOR TESTING
+   * </p>
+   *
+   * @param mPerspective
+   */
+  void setPerspective(MPerspective mPerspective) {
+    _mPerspective = mPerspective;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param dependencySelection
+   */
+  private void setDependencies(final DependencySelection dependencySelection) {
 
     // get the core dependencies
-    Set<HGCoreDependency> coreDependencies = dependencies != null
-        ? DependencySelections.getCoreDependencies(dependencies) : Collections.emptySet();
+    Set<HGCoreDependency> coreDependencies = dependencySelection != null
+        ? DependencySelections.getCoreDependencies(dependencySelection.getDependencies()) : Collections.emptySet();
 
+    //
     if (_composite != null && !_composite.isDisposed()) {
       _composite.setDependencies(coreDependencies);
     }

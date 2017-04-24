@@ -131,7 +131,9 @@ public class SlizaaTreeViewerCreator {
     //
     final TreeViewer treeViewer = new SlizaaTreeViewer(parent, SWT.NO_SCROLL | SWT.V_SCROLL | style, eventInterceptor,
         autoExpandLevel);
-
+    
+    treeViewer.setUseHashlookup(true);
+    
     //
     GridDataFactory.fillDefaults().grab(true, true).applyTo(treeViewer.getControl());
 

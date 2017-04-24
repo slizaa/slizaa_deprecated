@@ -4,11 +4,10 @@ package org.slizaa.hierarchicalgraph.selection.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
-import org.slizaa.hierarchicalgraph.selection.DependencySelection;
-import org.slizaa.hierarchicalgraph.selection.DependencySelectionStack;
-import org.slizaa.hierarchicalgraph.selection.NodeSelection;
-import org.slizaa.hierarchicalgraph.selection.SelectionPackage;
+
+import org.slizaa.hierarchicalgraph.selection.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,41 +66,35 @@ public class SelectionSwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
-      case SelectionPackage.DEPENDENCY_SELECTION_STACK: {
-        DependencySelectionStack dependencySelectionStack = (DependencySelectionStack)theEObject;
-        T result = caseDependencySelectionStack(dependencySelectionStack);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case SelectionPackage.NODE_SELECTION: {
         NodeSelection nodeSelection = (NodeSelection)theEObject;
         T result = caseNodeSelection(nodeSelection);
+        if (result == null) result = caseSelection(nodeSelection);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case SelectionPackage.DEPENDENCY_SELECTION: {
         DependencySelection dependencySelection = (DependencySelection)theEObject;
         T result = caseDependencySelection(dependencySelection);
+        if (result == null) result = caseSelection(dependencySelection);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SelectionPackage.SELECTION: {
+        Selection selection = (Selection)theEObject;
+        T result = caseSelection(selection);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SelectionPackage.XREFERENCE_SELECTION: {
+        XReferenceSelection xReferenceSelection = (XReferenceSelection)theEObject;
+        T result = caseXReferenceSelection(xReferenceSelection);
+        if (result == null) result = caseSelection(xReferenceSelection);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       default: return defaultCase(theEObject);
     }
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Dependency Selection Stack</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Dependency Selection Stack</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDependencySelectionStack(DependencySelectionStack object) {
-    return null;
   }
 
   /**
@@ -131,6 +124,36 @@ public class SelectionSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseDependencySelection(DependencySelection object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Selection</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Selection</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSelection(Selection object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>XReference Selection</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>XReference Selection</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseXReferenceSelection(XReferenceSelection object) {
     return null;
   }
 

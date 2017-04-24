@@ -22,15 +22,6 @@ public interface SelectionFactory extends EFactory {
   SelectionFactory eINSTANCE = org.slizaa.hierarchicalgraph.selection.impl.SelectionFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Dependency Selection Stack</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dependency Selection Stack</em>'.
-   * @generated
-   */
-  DependencySelectionStack createDependencySelectionStack();
-
-  /**
    * Returns a new object of class '<em>Node Selection</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -47,6 +38,15 @@ public interface SelectionFactory extends EFactory {
    * @generated
    */
   DependencySelection createDependencySelection();
+
+  /**
+   * Returns a new object of class '<em>XReference Selection</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>XReference Selection</em>'.
+   * @generated
+   */
+  XReferenceSelection createXReferenceSelection();
 
   /**
    * Returns the package supported by this factory.

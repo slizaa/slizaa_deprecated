@@ -1,6 +1,6 @@
 package org.slizaa.hierarchicalgraph.selection;
 
-import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryMethods.createNewCoreDependency;
+import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewCoreDependency;
 
 import java.util.List;
 import java.util.concurrent.Future;

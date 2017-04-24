@@ -7,9 +7,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.slizaa.hierarchicalgraph.AbstractHGDependency;
+
 import org.slizaa.hierarchicalgraph.selection.DependencySelection;
 import org.slizaa.hierarchicalgraph.selection.SelectionPackage;
 
@@ -21,21 +24,21 @@ import org.slizaa.hierarchicalgraph.selection.SelectionPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionImpl#getSelectedDependencies <em>Selected Dependencies</em>}</li>
+ *   <li>{@link org.slizaa.hierarchicalgraph.selection.impl.DependencySelectionImpl#getDependencies <em>Dependencies</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DependencySelectionImpl extends MinimalEObjectImpl.Container implements DependencySelection {
   /**
-   * The cached value of the '{@link #getSelectedDependencies() <em>Selected Dependencies</em>}' reference list.
+   * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSelectedDependencies()
+   * @see #getDependencies()
    * @generated
    * @ordered
    */
-  protected EList<AbstractHGDependency> selectedDependencies;
+  protected EList<AbstractHGDependency> dependencies;
 
   /**
    * <!-- begin-user-doc -->
@@ -61,11 +64,11 @@ public class DependencySelectionImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public List<AbstractHGDependency> getSelectedDependencies() {
-    if (selectedDependencies == null) {
-      selectedDependencies = new EObjectResolvingEList<AbstractHGDependency>(AbstractHGDependency.class, this, SelectionPackage.DEPENDENCY_SELECTION__SELECTED_DEPENDENCIES);
+  public List<AbstractHGDependency> getDependencies() {
+    if (dependencies == null) {
+      dependencies = new EObjectResolvingEList<AbstractHGDependency>(AbstractHGDependency.class, this, SelectionPackage.DEPENDENCY_SELECTION__DEPENDENCIES);
     }
-    return selectedDependencies;
+    return dependencies;
   }
 
   /**
@@ -76,8 +79,8 @@ public class DependencySelectionImpl extends MinimalEObjectImpl.Container implem
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case SelectionPackage.DEPENDENCY_SELECTION__SELECTED_DEPENDENCIES:
-        return getSelectedDependencies();
+      case SelectionPackage.DEPENDENCY_SELECTION__DEPENDENCIES:
+        return getDependencies();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -91,9 +94,9 @@ public class DependencySelectionImpl extends MinimalEObjectImpl.Container implem
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case SelectionPackage.DEPENDENCY_SELECTION__SELECTED_DEPENDENCIES:
-        getSelectedDependencies().clear();
-        getSelectedDependencies().addAll((Collection<? extends AbstractHGDependency>)newValue);
+      case SelectionPackage.DEPENDENCY_SELECTION__DEPENDENCIES:
+        getDependencies().clear();
+        getDependencies().addAll((Collection<? extends AbstractHGDependency>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -107,8 +110,8 @@ public class DependencySelectionImpl extends MinimalEObjectImpl.Container implem
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case SelectionPackage.DEPENDENCY_SELECTION__SELECTED_DEPENDENCIES:
-        getSelectedDependencies().clear();
+      case SelectionPackage.DEPENDENCY_SELECTION__DEPENDENCIES:
+        getDependencies().clear();
         return;
     }
     super.eUnset(featureID);
@@ -122,8 +125,8 @@ public class DependencySelectionImpl extends MinimalEObjectImpl.Container implem
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case SelectionPackage.DEPENDENCY_SELECTION__SELECTED_DEPENDENCIES:
-        return selectedDependencies != null && !selectedDependencies.isEmpty();
+      case SelectionPackage.DEPENDENCY_SELECTION__DEPENDENCIES:
+        return dependencies != null && !dependencies.isEmpty();
     }
     return super.eIsSet(featureID);
   }
