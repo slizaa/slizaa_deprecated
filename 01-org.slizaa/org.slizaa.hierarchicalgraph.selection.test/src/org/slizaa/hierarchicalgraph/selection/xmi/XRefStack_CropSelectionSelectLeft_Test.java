@@ -10,7 +10,7 @@ public class XRefStack_CropSelectionSelectLeft_Test extends AbstractXRefStack_Te
   public void test() {
 
     //
-    xRefStack().setInitialDependencies(rootNode().getAccumulatedIncomingCoreDependencies(),
+    xRefStack().pruneDependenciesForUncroppedCenterNodes(rootNode().getAccumulatedIncomingCoreDependencies(),
         rootNode().getAccumulatedOutgoingCoreDependencies());
     xRefStack().setSelectedCenterNodes(node(1063));
     xRefStack().cropSelection();
@@ -18,10 +18,10 @@ public class XRefStack_CropSelectionSelectLeft_Test extends AbstractXRefStack_Te
     xRefStack().setSelectedLeftsidedNodes(node(603));
     
     //
-    assertThat(xRefStack().getSelectedCenterNodes()).hasSize(0);
+    assertThat(xRefStack().getVisibleCenterNodes()).hasSize(0);
     assertThat(xRefStack().getBackreferencedCenterNodes()).hasSize(2);
     assertThat(xRefStack().getBackreferencedCenterNodesWithParents()).hasSize(5);
-    assertThat(xRefStack().getCenterNodesWithParents()).hasSize(64);
+    assertThat(xRefStack().getVisibleCenterNodesWithParents()).hasSize(64);
     assertThat(xRefStack().getLeftsidedNodesWithParents()).hasSize(72);
     assertThat(xRefStack().getRightsidedNodesWithParents()).hasSize(120);
   }

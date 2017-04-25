@@ -168,13 +168,22 @@ public interface SelectionPackage extends EPackage {
   int XREFERENCE_SELECTION = 3;
 
   /**
+   * The feature id for the '<em><b>Nodes</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int XREFERENCE_SELECTION__NODES = NODE_SELECTION__NODES;
+
+  /**
    * The feature id for the '<em><b>Incoming Dependencies</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int XREFERENCE_SELECTION__INCOMING_DEPENDENCIES = SELECTION_FEATURE_COUNT + 0;
+  int XREFERENCE_SELECTION__INCOMING_DEPENDENCIES = NODE_SELECTION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Outgoing Dependencies</b></em>' reference list.
@@ -183,7 +192,7 @@ public interface SelectionPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int XREFERENCE_SELECTION__OUTGOING_DEPENDENCIES = SELECTION_FEATURE_COUNT + 1;
+  int XREFERENCE_SELECTION__OUTGOING_DEPENDENCIES = NODE_SELECTION_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>XReference Selection</em>' class.
@@ -192,7 +201,7 @@ public interface SelectionPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int XREFERENCE_SELECTION_FEATURE_COUNT = SELECTION_FEATURE_COUNT + 2;
+  int XREFERENCE_SELECTION_FEATURE_COUNT = NODE_SELECTION_FEATURE_COUNT + 2;
 
   /**
    * The number of operations of the '<em>XReference Selection</em>' class.
@@ -201,7 +210,7 @@ public interface SelectionPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int XREFERENCE_SELECTION_OPERATION_COUNT = SELECTION_OPERATION_COUNT + 0;
+  int XREFERENCE_SELECTION_OPERATION_COUNT = NODE_SELECTION_OPERATION_COUNT + 0;
 
   /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.selection.NodeSelection <em>Node Selection</em>}'.

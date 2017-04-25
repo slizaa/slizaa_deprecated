@@ -8,8 +8,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
@@ -30,7 +28,7 @@ import org.slizaa.hierarchicalgraph.selection.XReferenceSelection;
  *
  * @generated
  */
-public class XReferenceSelectionImpl extends MinimalEObjectImpl.Container implements XReferenceSelection {
+public class XReferenceSelectionImpl extends NodeSelectionImpl implements XReferenceSelection {
   /**
    * The cached value of the '{@link #getIncomingDependencies() <em>Incoming Dependencies</em>}' reference list.
    * <!-- begin-user-doc -->

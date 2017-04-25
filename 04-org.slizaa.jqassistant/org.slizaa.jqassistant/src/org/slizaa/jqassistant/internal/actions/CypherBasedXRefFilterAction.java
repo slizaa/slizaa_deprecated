@@ -95,8 +95,6 @@ public class CypherBasedXRefFilterAction extends AbstractFilterAction {
           try {
             jsonObject = future.get();
 
-            System.out.println(jsonObject);
-
             //
             List<Long> filteredNodeIds = new LinkedList<>();
             List<Void> rows = QueryResultConverter.convertRows(jsonObject, row -> {

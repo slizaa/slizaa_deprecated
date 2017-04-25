@@ -40,8 +40,8 @@ public abstract class AbstractXRefStack_Test extends AbstractXmiBasedTest {
   }
 
   public void assertCenterNodes(int size, long... nodeIds) {
-    assertThat(xRefStack().getCenterNodesWithParents()).hasSize(size);
-    assertThat(xRefStack().getCenterNodesWithParents()).containsNodesWithId(nodeIds);
+    assertThat(xRefStack().getVisibleCenterNodesWithParents()).hasSize(size);
+    assertThat(xRefStack().getVisibleCenterNodesWithParents()).containsNodesWithId(nodeIds);
   }
 
   public void assertLeftsidedNodes(int size, long... nodeIds) {

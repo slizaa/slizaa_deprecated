@@ -10,14 +10,14 @@ public class XRefStack_BasicSetup_Test extends AbstractXRefStack_Test {
   public void test() {
 
     //
-    xRefStack().setInitialDependencies(rootNode().getAccumulatedIncomingCoreDependencies(),
+    xRefStack().pruneDependenciesForUncroppedCenterNodes(rootNode().getAccumulatedIncomingCoreDependencies(),
         rootNode().getAccumulatedOutgoingCoreDependencies());
 
     //
-    assertThat(xRefStack().getSelectedCenterNodes()).hasSize(0);
+    assertThat(xRefStack().getVisibleCenterNodes()).hasSize(0);
     assertThat(xRefStack().getBackreferencedCenterNodes()).hasSize(0);
     assertThat(xRefStack().getBackreferencedCenterNodesWithParents()).hasSize(0);
-    assertThat(xRefStack().getCenterNodesWithParents()).hasSize(1004);
+    assertThat(xRefStack().getVisibleCenterNodesWithParents()).hasSize(1004);
     assertThat(xRefStack().getLeftsidedNodesWithParents()).hasSize(889);
     assertThat(xRefStack().getRightsidedNodesWithParents()).hasSize(981);
   }

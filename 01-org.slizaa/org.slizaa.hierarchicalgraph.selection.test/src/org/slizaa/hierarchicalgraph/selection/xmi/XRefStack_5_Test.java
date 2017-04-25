@@ -20,7 +20,7 @@ public class XRefStack_5_Test extends AbstractXRefStack_Test {
     xRefStack().addXRefListener(_listener);
 
     //
-    xRefStack().setInitialDependencies(rootNode().getAccumulatedIncomingCoreDependencies(),
+    xRefStack().pruneDependenciesForUncroppedCenterNodes(rootNode().getAccumulatedIncomingCoreDependencies(),
         rootNode().getAccumulatedOutgoingCoreDependencies());
 
     verify(_listener).coreDependenciesChanged();

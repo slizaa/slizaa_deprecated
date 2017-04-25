@@ -89,6 +89,7 @@ public class SelectionSwitch<T> extends Switch<T> {
       case SelectionPackage.XREFERENCE_SELECTION: {
         XReferenceSelection xReferenceSelection = (XReferenceSelection)theEObject;
         T result = caseXReferenceSelection(xReferenceSelection);
+        if (result == null) result = caseNodeSelection(xReferenceSelection);
         if (result == null) result = caseSelection(xReferenceSelection);
         if (result == null) result = defaultCase(theEObject);
         return result;

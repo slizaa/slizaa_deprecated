@@ -11,7 +11,7 @@
         eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//AbstractHGDependency"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Selection" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="XReferenceSelection" eSuperTypes="#//Selection">
+  <eClassifiers xsi:type="ecore:EClass" name="XReferenceSelection" eSuperTypes="#//NodeSelection">
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingDependencies" upperBound="-1"
         eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGCoreDependency"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingDependencies" upperBound="-1"

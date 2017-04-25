@@ -260,7 +260,7 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
     // Add supertypes to classes
     nodeSelectionEClass.getESuperTypes().add(this.getSelection());
     dependencySelectionEClass.getESuperTypes().add(this.getSelection());
-    xReferenceSelectionEClass.getESuperTypes().add(this.getSelection());
+    xReferenceSelectionEClass.getESuperTypes().add(this.getNodeSelection());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(nodeSelectionEClass, NodeSelection.class, "NodeSelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

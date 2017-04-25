@@ -18,7 +18,7 @@ public class XRefStack_6_Test extends AbstractXRefStack_Test {
   public void test() {
 
     //
-    xRefStack().setInitialDependencies(rootNode().getAccumulatedIncomingCoreDependencies(),
+    xRefStack().pruneDependenciesForUncroppedCenterNodes(rootNode().getAccumulatedIncomingCoreDependencies(),
         rootNode().getAccumulatedOutgoingCoreDependencies());
 
     //

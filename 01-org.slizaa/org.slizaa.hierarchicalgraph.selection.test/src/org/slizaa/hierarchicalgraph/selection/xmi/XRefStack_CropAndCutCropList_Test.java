@@ -10,7 +10,7 @@ public class XRefStack_CropAndCutCropList_Test extends AbstractXRefStack_Test {
   public void test() {
 
     /** STEP 1: select '/WEB-INF/lib/aws-java-sdk-autoscaling-1.11.9.jar (124105)' */
-    xRefStack().setInitialDependencies(node(124105).getAccumulatedIncomingCoreDependencies(),
+    xRefStack().pruneDependenciesForUncroppedCenterNodes(node(124105).getAccumulatedIncomingCoreDependencies(),
         node(124105).getAccumulatedOutgoingCoreDependencies());
     assertSelection_1();
 

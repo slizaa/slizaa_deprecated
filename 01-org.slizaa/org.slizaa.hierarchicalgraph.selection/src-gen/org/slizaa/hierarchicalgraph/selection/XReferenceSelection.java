@@ -23,7 +23,7 @@ import org.slizaa.hierarchicalgraph.HGCoreDependency;
  * @model
  * @generated
  */
-public interface XReferenceSelection extends Selection {
+public interface XReferenceSelection extends NodeSelection {
   /**
    * Returns the value of the '<em><b>Incoming Dependencies</b></em>' reference list.
    * The list contents are of type {@link org.slizaa.hierarchicalgraph.HGCoreDependency}.
