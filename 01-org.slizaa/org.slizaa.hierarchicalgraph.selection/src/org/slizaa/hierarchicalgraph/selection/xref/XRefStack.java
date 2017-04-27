@@ -451,18 +451,18 @@ public class XRefStack {
     return Collections.emptySet();
   }
 
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  public Set<HGNode> getVisibleCenterNodesWithParents(boolean includeChildren) {
-    Set<HGNode> union = new HashSet<HGNode>(_incomingDependencySelector.getUnfilteredTargetNodesWithParents());
-    union.addAll(_outgoingDependencySelector.getUnfilteredSourceNodesWithParents());
-    union.addAll(NodeSelections.computeNodesWithParents(_additionalVisibleCenterNodes, true));
-    return union;
-  }
+//  /**
+//   * <p>
+//   * </p>
+//   *
+//   * @return
+//   */
+//  public Set<HGNode> getVisibleCenterNodesWithParents(boolean includeChildren) {
+//    Set<HGNode> union = new HashSet<HGNode>(_incomingDependencySelector.getUnfilteredTargetNodesWithParents());
+//    union.addAll(_outgoingDependencySelector.getUnfilteredSourceNodesWithParents());
+//    union.addAll(NodeSelections.computeNodesWithParents(_additionalVisibleCenterNodes, true));
+//    return union;
+//  }
   
   /**
    * <p>

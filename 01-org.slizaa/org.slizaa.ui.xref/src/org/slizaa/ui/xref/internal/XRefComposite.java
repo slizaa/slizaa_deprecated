@@ -27,6 +27,7 @@ import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.DependencySelection;
+import org.slizaa.hierarchicalgraph.selection.NodeSelections;
 import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.selection.xref.IXRefListener;
@@ -547,7 +548,7 @@ public class XRefComposite extends Composite {
       _leftsidedTreeViewComposite.getTreeViewer().getTree().deselectAll();
 
       //
-      _centeredTreeViewComposite.getTreeViewer().update(_xRefStack.getVisibleCenterNodesWithParents(true).toArray(),
+      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getVisibleCenterNodes(), true).toArray(),
           null);
 
       // prepare right tree viewer
@@ -569,7 +570,7 @@ public class XRefComposite extends Composite {
     public void leftsidedNodeSelectionChanged() {
 
       // update center...
-      _centeredTreeViewComposite.getTreeViewer().update(_xRefStack.getVisibleCenterNodesWithParents(true).toArray(),
+      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getVisibleCenterNodes(), true).toArray(),
           null);
 
       // ...and deselect rightsided tree
@@ -589,7 +590,7 @@ public class XRefComposite extends Composite {
     public void rightsidedNodeSelectionChanged() {
 
       // update center...
-      _centeredTreeViewComposite.getTreeViewer().update(_xRefStack.getVisibleCenterNodesWithParents(true).toArray(),
+      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getVisibleCenterNodes(), true).toArray(),
           null);
 
       // ...and deselect leftsided tree
