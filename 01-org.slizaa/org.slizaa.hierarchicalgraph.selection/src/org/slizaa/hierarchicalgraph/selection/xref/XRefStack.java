@@ -472,30 +472,30 @@ public class XRefStack {
     return union;
   }
 
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  public Set<HGNode> getBackreferencedCenterNodesWithParents() {
-
-    //
-    if (_activeBackReferenceSelector == null) {
-      return Collections.emptySet();
-    }
-    //
-    else if (SourceOrTarget.SOURCE.equals(_activeBackReferenceSelector)) {
-      return _backReferencesFromIncomingDependenciesSelector.getFilteredTargetNodesWithParents();
-    }
-    //
-    else if (SourceOrTarget.TARGET.equals(_activeBackReferenceSelector)) {
-      return _backReferencesFromOutgoingDependenciesSelector.getFilteredSourceNodesWithParents();
-    }
-
-    // should not happen
-    return Collections.emptySet();
-  }
+//  /**
+//   * <p>
+//   * </p>
+//   *
+//   * @return
+//   */
+//  public Set<HGNode> getBackreferencedCenterNodesWithParents() {
+//
+//    //
+//    if (_activeBackReferenceSelector == null) {
+//      return Collections.emptySet();
+//    }
+//    //
+//    else if (SourceOrTarget.SOURCE.equals(_activeBackReferenceSelector)) {
+//      return _backReferencesFromIncomingDependenciesSelector.getFilteredTargetNodesWithParents();
+//    }
+//    //
+//    else if (SourceOrTarget.TARGET.equals(_activeBackReferenceSelector)) {
+//      return _backReferencesFromOutgoingDependenciesSelector.getFilteredSourceNodesWithParents();
+//    }
+//
+//    // should not happen
+//    return Collections.emptySet();
+//  }
 
   /**
    * <p>

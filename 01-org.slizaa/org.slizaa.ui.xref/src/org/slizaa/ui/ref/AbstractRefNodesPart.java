@@ -87,7 +87,7 @@ public abstract class AbstractRefNodesPart {
     Set<HGNode> visible = NodeSelections.computeNodesWithParents(getVisibleNodes(referencedNodes), false);
     _treeViewer.setFilters(new VisibleNodesFilter(() -> {
       return visible;
-    }));
+    }, false));
   }
 
   /**

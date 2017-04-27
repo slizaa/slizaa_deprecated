@@ -31,7 +31,8 @@ public class VisibleNodesFilter extends ViewerFilter {
   /** - */
   private Supplier<Collection<HGNode>> _visibleNodesSupplier;
 
-  private boolean                      _dontFilterIfNull = false;
+  /** - */
+  private boolean                      _showChildren;
 
   /**
    * <p>
@@ -40,13 +41,9 @@ public class VisibleNodesFilter extends ViewerFilter {
    * 
    * @param visibleNodesSupplier
    */
-  public VisibleNodesFilter(Supplier<Collection<HGNode>> visibleNodesSupplier) {
+  public VisibleNodesFilter(Supplier<Collection<HGNode>> visibleNodesSupplier, boolean showChildren) {
     _visibleNodesSupplier = checkNotNull(visibleNodesSupplier);
-  }
-
-  public VisibleNodesFilter(Supplier<Collection<HGNode>> visibleNodesSupplier, boolean dontFilterIfNull) {
-    _visibleNodesSupplier = checkNotNull(visibleNodesSupplier);
-    _dontFilterIfNull = dontFilterIfNull;
+    _showChildren = showChildren;
   }
 
   /**
@@ -61,14 +58,26 @@ public class VisibleNodesFilter extends ViewerFilter {
     }
 
     //
-    Collection<HGNode> hgNodes = _visibleNodesSupplier.get();
+    Collection<HGNode> visibleElements = _visibleNodesSupplier.get();
 
-    if (_dontFilterIfNull && (hgNodes == null || hgNodes.isEmpty())) {
-      return true;
-    } else if (hgNodes != null && hgNodes.contains(element)) {
-      return true;
-    } else {
+    //
+    if (visibleElements == null || visibleElements.isEmpty()) {
       return false;
     }
+    // selected element?
+    else if (visibleElements.contains(element)) {
+      return true;
+    }
+    // child element?
+    else if (_showChildren && element instanceof HGNode && ((HGNode) element).getPredecessors().contains(element)) {
+      return true;
+    }
+    // parent element?
+    else if (visibleElements.parallelStream().anyMatch(node -> node.getPredecessors().contains(element))) {
+      return true;
+    }
+
+    //
+    return false;
   }
 }

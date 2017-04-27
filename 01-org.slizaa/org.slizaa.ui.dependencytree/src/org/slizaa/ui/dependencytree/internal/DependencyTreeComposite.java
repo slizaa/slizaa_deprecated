@@ -230,8 +230,8 @@ public class DependencyTreeComposite extends Composite {
     }
 
     //
-    _fromTreeViewer.setFilters(new VisibleNodesFilter(() -> _selector.getUnfilteredSourceNodesWithParents()));
-    _toTreeViewer.setFilters(new VisibleNodesFilter(() -> _selector.getUnfilteredTargetNodesWithParents()));
+    _fromTreeViewer.setFilters(new VisibleNodesFilter(() -> _selector.getUnfilteredSourceNodesWithParents(), false));
+    _toTreeViewer.setFilters(new VisibleNodesFilter(() -> _selector.getUnfilteredTargetNodesWithParents(), false));
 
     // add SelectionListeners
     _fromTreeViewer.addSelectionChangedListener(new FromArtifactsSelectionChangedListener());

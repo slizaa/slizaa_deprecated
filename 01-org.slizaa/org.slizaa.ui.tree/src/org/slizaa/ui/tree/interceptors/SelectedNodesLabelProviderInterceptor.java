@@ -4,10 +4,7 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 
@@ -40,20 +37,21 @@ public class SelectedNodesLabelProviderInterceptor extends ILabelProviderInterce
    */
   @Override
   public Font alterFont(Object object, Font font) {
-    Collection<HGNode> selectedNodes = selectedNodes();
+
     //
-    if (selectedNodes != null) {
-      if (selectedNodes.contains(object) && !(object instanceof HGRootNode)) {
-        return JFaceResources.getFontRegistry().getBold(JFaceResources.DIALOG_FONT);
-      } else {
-        return font;
-      }
+    Collection<HGNode> selectedNodes = selectedNodes();
+
+    //
+    if (!(object instanceof HGRootNode) && selectedNodes != null && (selectedNodes.contains(object)
+        || selectedNodes.parallelStream().anyMatch(selectedNode -> selectedNode.getPredecessors().contains(object)))) {
+
+      //
+      return JFaceResources.getFontRegistry().getBold(JFaceResources.DIALOG_FONT);
     }
 
     //
     return font;
   }
-
 
   /**
    * <p>

@@ -16,10 +16,8 @@ public class XRefStack_BasicSetup_Test extends AbstractXRefStack_Test {
         rootNode().getAccumulatedOutgoingCoreDependencies());
 
     //
-    assertThat(xRefStack().getVisibleCenterNodes()).hasSize(0);
+    assertThat(xRefStack().getVisibleCenterNodesWithParents()).hasSize(0);
     assertThat(xRefStack().getBackreferencedCenterNodes()).hasSize(0);
-    assertThat(xRefStack().getBackreferencedCenterNodesWithParents()).hasSize(0);
-    assertThat(xRefStack().getVisibleCenterNodesWithParents()).hasSize(14069);
     assertThat(xRefStack().getLeftsidedNodesWithParents()).hasSize(12660);
     assertThat(xRefStack().getRightsidedNodesWithParents()).hasSize(13116);
   }
