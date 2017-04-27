@@ -84,6 +84,10 @@ public class SelectionAdapterFactory extends AdapterFactoryImpl {
         return createXReferenceSelectionAdapter();
       }
       @Override
+      public <S extends Selection> Adapter caseSelectionHolder(SelectionHolder<S> object) {
+        return createSelectionHolderAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object) {
         return createEObjectAdapter();
       }
@@ -156,6 +160,20 @@ public class SelectionAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createXReferenceSelectionAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.slizaa.hierarchicalgraph.selection.SelectionHolder <em>Holder</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.slizaa.hierarchicalgraph.selection.SelectionHolder
+   * @generated
+   */
+  public Adapter createSelectionHolderAdapter() {
     return null;
   }
 

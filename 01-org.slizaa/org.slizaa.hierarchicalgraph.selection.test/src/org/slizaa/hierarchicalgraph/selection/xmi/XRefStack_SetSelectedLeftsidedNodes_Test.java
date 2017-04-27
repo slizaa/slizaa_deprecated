@@ -4,12 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import java.util.Collections;
+
 import org.junit.Test;
 import org.mockito.Mock;
-import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.selection.xref.IXRefListener;
 
-public class XRefStack_6_Test extends AbstractXRefStack_Test {
+public class XRefStack_SetSelectedLeftsidedNodes_Test extends AbstractXRefStack_Test {
 
   @Mock
   private IXRefListener _listener;
@@ -18,21 +19,21 @@ public class XRefStack_6_Test extends AbstractXRefStack_Test {
   public void test() {
 
     //
-    xRefStack().pruneDependenciesForUncroppedCenterNodes(rootNode().getAccumulatedIncomingCoreDependencies(),
+    xRefStack().pruneDependenciesForUncroppedCenterNodes(Collections.singletonList(rootNode()), rootNode().getAccumulatedIncomingCoreDependencies(),
         rootNode().getAccumulatedOutgoingCoreDependencies());
 
     //
     assertThat(xRefStack().getSelectedDependencies()).isEmpty();
 
-    //
-    xRefStack().setSelectedCenterNodes(node(1063));
+    // select "/WEB-INF/lib/archaius-core-0.7.3.jar (54411)"
+    xRefStack().setSelectedCenterNodes(node(54411));
     
     //
     assertThat(xRefStack().getSelectedDependencies()).isEmpty();
 
     //
-    long[] ids = new long[] { 8329, 2869, 14746, 13683, 9618, 8222 };
-    int[] sizes = new int[] { 9, 2, 7, 6, 6, 1 };
+    long[] ids = new long[] { 6303, 44027, 54411, 23};
+    int[] sizes = new int[] { 12, 9, 257, 22};
 
     xRefStack().addXRefListener(_listener);
 
@@ -41,6 +42,6 @@ public class XRefStack_6_Test extends AbstractXRefStack_Test {
       assertThat(xRefStack().getSelectedDependencies()).hasSize(sizes[i]);
     }
 
-    verify(_listener, times(6)).leftsidedNodeSelectionChanged();
+    verify(_listener, times(4)).leftsidedNodeSelectionChanged();
   }
 }

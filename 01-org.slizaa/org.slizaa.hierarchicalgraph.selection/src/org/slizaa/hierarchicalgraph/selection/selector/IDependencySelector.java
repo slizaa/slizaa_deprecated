@@ -90,7 +90,23 @@ public interface IDependencySelector {
    *
    * @return
    */
+  Set<HGNode> getSelectedSourceNodesWithChildren();
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
   Set<HGNode> getSelectedTargetNodes();
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  Set<HGNode> getSelectedTargetNodesWithChildren();
 
   /**
    * <p>

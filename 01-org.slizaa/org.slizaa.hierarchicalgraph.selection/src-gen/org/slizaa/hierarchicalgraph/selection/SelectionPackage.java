@@ -213,6 +213,43 @@ public interface SelectionPackage extends EPackage {
   int XREFERENCE_SELECTION_OPERATION_COUNT = NODE_SELECTION_OPERATION_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link org.slizaa.hierarchicalgraph.selection.impl.SelectionHolderImpl <em>Holder</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionHolderImpl
+   * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getSelectionHolder()
+   * @generated
+   */
+  int SELECTION_HOLDER = 4;
+
+  /**
+   * The feature id for the '<em><b>Selection</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECTION_HOLDER__SELECTION = 0;
+
+  /**
+   * The number of structural features of the '<em>Holder</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECTION_HOLDER_FEATURE_COUNT = 1;
+
+  /**
+   * The number of operations of the '<em>Holder</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECTION_HOLDER_OPERATION_COUNT = 0;
+
+  /**
    * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.selection.NodeSelection <em>Node Selection</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -295,6 +332,27 @@ public interface SelectionPackage extends EPackage {
    * @generated
    */
   EReference getXReferenceSelection_OutgoingDependencies();
+
+  /**
+   * Returns the meta object for class '{@link org.slizaa.hierarchicalgraph.selection.SelectionHolder <em>Holder</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Holder</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.SelectionHolder
+   * @generated
+   */
+  EClass getSelectionHolder();
+
+  /**
+   * Returns the meta object for the reference '{@link org.slizaa.hierarchicalgraph.selection.SelectionHolder#getSelection <em>Selection</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Selection</em>'.
+   * @see org.slizaa.hierarchicalgraph.selection.SelectionHolder#getSelection()
+   * @see #getSelectionHolder()
+   * @generated
+   */
+  EReference getSelectionHolder_Selection();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -390,6 +448,24 @@ public interface SelectionPackage extends EPackage {
      * @generated
      */
     EReference XREFERENCE_SELECTION__OUTGOING_DEPENDENCIES = eINSTANCE.getXReferenceSelection_OutgoingDependencies();
+
+    /**
+     * The meta object literal for the '{@link org.slizaa.hierarchicalgraph.selection.impl.SelectionHolderImpl <em>Holder</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionHolderImpl
+     * @see org.slizaa.hierarchicalgraph.selection.impl.SelectionPackageImpl#getSelectionHolder()
+     * @generated
+     */
+    EClass SELECTION_HOLDER = eINSTANCE.getSelectionHolder();
+
+    /**
+     * The meta object literal for the '<em><b>Selection</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SELECTION_HOLDER__SELECTION = eINSTANCE.getSelectionHolder_Selection();
 
   }
 

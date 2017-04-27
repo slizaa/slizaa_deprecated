@@ -14,8 +14,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.ECollections;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.Viewer;
@@ -27,6 +25,8 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.selection.NodeSelection;
+import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
+import org.slizaa.hierarchicalgraph.selection.SelectionHolder;
 import org.slizaa.jqassistant.internal.actions.filter.AbstractFilterAction;
 import org.slizaa.jqassistant.internal.actions.filter.CypherUtils;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
@@ -95,6 +95,9 @@ public class CypherBasedXRefFilterAction extends AbstractFilterAction {
           try {
             jsonObject = future.get();
 
+            System.out.println(jsonObject);
+            // TODO :ERROR CHECK!!
+            
             //
             List<Long> filteredNodeIds = new LinkedList<>();
             List<Void> rows = QueryResultConverter.convertRows(jsonObject, row -> {
@@ -109,11 +112,14 @@ public class CypherBasedXRefFilterAction extends AbstractFilterAction {
                 .filter(n -> n != null).collect(Collectors.toList());
 
             //
-            NodeSelection nodeSelection = XRefUtils.getOrCreateFilteredNodeSelection(node.getRootNode());
+            SelectionHolder<NodeSelection> selectionHolder = XRefUtils
+                .getOrCreateFilteredNodeSelectionHolder(node.getRootNode());
 
-            Display.getDefault().asyncExec(
-                () -> ECollections.setEList((EList<HGNode>) nodeSelection.getNodes(), filteredNodes));
-
+            Display.getDefault().asyncExec(() -> {
+              NodeSelection sel = SelectionFactory.eINSTANCE.createNodeSelection();
+              sel.getNodes().addAll(filteredNodes);
+              selectionHolder.setSelection(sel);
+            });
           } catch (InterruptedException | ExecutionException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

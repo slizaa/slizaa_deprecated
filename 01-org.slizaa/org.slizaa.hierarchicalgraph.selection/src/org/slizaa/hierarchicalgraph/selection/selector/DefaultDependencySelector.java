@@ -152,8 +152,10 @@ public class DefaultDependencySelector implements IDependencySelector {
     // remove the aggregated dependency
     _sourceNode2CoreDependenciesMap.getUnchecked(proxyDependency.getFrom()).remove(proxyDependency);
     _targetNode2CoreDependenciesMap.getUnchecked(proxyDependency.getTo()).remove(proxyDependency);
+
     _unfilteredSourceNodes.remove(proxyDependency.getFrom());
     _unfilteredTargetNodes.remove(proxyDependency.getTo());
+
     // _unfilteredSourceNodesWithParents - we don't have to change this here...
     // _unfilteredTargetNodesWithParents - we don't have to change this here...
     _filteredCoreDependencies.remove(proxyDependency);
@@ -215,7 +217,7 @@ public class DefaultDependencySelector implements IDependencySelector {
 
     //
     checkNotNull(dependencies);
-    
+
     //
     if (_unfilteredCoreDependencies != null) {
       checkNotNull(_unfilteredCoreDependencies);
@@ -299,6 +301,18 @@ public class DefaultDependencySelector implements IDependencySelector {
   @Override
   public Set<HGNode> getSelectedTargetNodes() {
     return _selectedNodesType == SourceOrTarget.TARGET ? Collections.unmodifiableSet(_selectedNodes)
+        : Collections.emptySet();
+  }
+
+  @Override
+  public Set<HGNode> getSelectedSourceNodesWithChildren() {
+    return _selectedNodesType == SourceOrTarget.SOURCE ? Collections.unmodifiableSet(_selectedNodesWithChildren)
+        : Collections.emptySet();
+  }
+
+  @Override
+  public Set<HGNode> getSelectedTargetNodesWithChildren() {
+    return _selectedNodesType == SourceOrTarget.TARGET ? Collections.unmodifiableSet(_selectedNodesWithChildren)
         : Collections.emptySet();
   }
 

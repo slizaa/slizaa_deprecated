@@ -94,6 +94,12 @@ public class SelectionSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SelectionPackage.SELECTION_HOLDER: {
+        SelectionHolder<?> selectionHolder = (SelectionHolder<?>)theEObject;
+        T result = caseSelectionHolder(selectionHolder);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -155,6 +161,21 @@ public class SelectionSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseXReferenceSelection(XReferenceSelection object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Holder</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Holder</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public <S extends Selection> T caseSelectionHolder(SelectionHolder<S> object) {
     return null;
   }
 

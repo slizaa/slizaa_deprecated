@@ -298,6 +298,10 @@ public class XRefStack {
     selection.getOutgoingDependencies().addAll(_outgoingDependencySelector.getFilteredCoreDependencies());
 
     //
+    System.out.println("OK: " + _incomingDependencySelector.getFilteredCoreDependencies());
+    System.out.println("OK: " + _outgoingDependencySelector.getFilteredCoreDependencies());
+    
+    //
     _additionalVisibleCenterNodes = selectedNodes;
     _incomingDependencySelector.setUnfilteredCoreDependencies(selection.getIncomingDependencies());
     _outgoingDependencySelector.setUnfilteredCoreDependencies(selection.getOutgoingDependencies());
@@ -419,18 +423,18 @@ public class XRefStack {
     return hasCroppedSelections() && _currentCropPosition != -1;
   }
 
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  public Set<HGNode> getVisibleCenterNodes() {
-    Set<HGNode> union = new HashSet<HGNode>(_incomingDependencySelector.getSelectedTargetNodes());
-    union.addAll(_outgoingDependencySelector.getSelectedSourceNodes());
-    union.addAll(_additionalVisibleCenterNodes);
-    return union;
-  }
+//  /**
+//   * <p>
+//   * </p>
+//   *
+//   * @return
+//   */
+//  public Set<HGNode> getVisibleCenterNodes() {
+//    Set<HGNode> union = new HashSet<HGNode>(_incomingDependencySelector.getSelectedTargetNodes());
+//    union.addAll(_outgoingDependencySelector.getSelectedSourceNodes());
+//    union.addAll(_additionalVisibleCenterNodes);
+//    return union;
+//  }
 
   /**
    * <p>
@@ -461,10 +465,10 @@ public class XRefStack {
    *
    * @return
    */
-  public Set<HGNode> getVisibleCenterNodesWithParents() {
+  public Set<HGNode> getVisibleCenterNodesWithParents(boolean includeChildren) {
     Set<HGNode> union = new HashSet<HGNode>(_incomingDependencySelector.getUnfilteredTargetNodesWithParents());
     union.addAll(_outgoingDependencySelector.getUnfilteredSourceNodesWithParents());
-    union.addAll(NodeSelections.computeNodesWithParents(_additionalVisibleCenterNodes, false));
+    union.addAll(NodeSelections.computeNodesWithParents(_additionalVisibleCenterNodes, true));
     return union;
   }
 

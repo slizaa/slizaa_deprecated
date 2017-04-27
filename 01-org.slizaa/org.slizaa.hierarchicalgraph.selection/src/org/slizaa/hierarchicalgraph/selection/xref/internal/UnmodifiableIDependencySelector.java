@@ -58,6 +58,14 @@ public class UnmodifiableIDependencySelector implements IDependencySelector {
     return _target.getSelectedTargetNodes();
   }
 
+  public Set<HGNode> getSelectedSourceNodesWithChildren() {
+    return _target.getSelectedSourceNodesWithChildren();
+  }
+
+  public Set<HGNode> getSelectedTargetNodesWithChildren() {
+    return _target.getSelectedTargetNodesWithChildren();
+  }
+
   public Set<HGCoreDependency> getUnfilteredCoreDependencies() {
     return _target.getUnfilteredCoreDependencies();
   }
@@ -105,6 +113,4 @@ public class UnmodifiableIDependencySelector implements IDependencySelector {
   public Set<HGCoreDependency> getDependenciesForTargetNode(HGNode toNode) {
     return _target.getDependenciesForTargetNode(toNode);
   }
-
-  
 }

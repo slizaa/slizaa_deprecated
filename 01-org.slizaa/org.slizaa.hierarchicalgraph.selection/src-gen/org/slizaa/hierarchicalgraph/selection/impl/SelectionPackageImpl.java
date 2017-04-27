@@ -3,8 +3,10 @@
 package org.slizaa.hierarchicalgraph.selection.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
@@ -12,6 +14,7 @@ import org.slizaa.hierarchicalgraph.selection.DependencySelection;
 import org.slizaa.hierarchicalgraph.selection.NodeSelection;
 import org.slizaa.hierarchicalgraph.selection.Selection;
 import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
+import org.slizaa.hierarchicalgraph.selection.SelectionHolder;
 import org.slizaa.hierarchicalgraph.selection.SelectionPackage;
 import org.slizaa.hierarchicalgraph.selection.XReferenceSelection;
 
@@ -49,6 +52,13 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
    * @generated
    */
   private EClass xReferenceSelectionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass selectionHolderEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -191,6 +201,24 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getSelectionHolder() {
+    return selectionHolderEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSelectionHolder_Selection() {
+    return (EReference)selectionHolderEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public SelectionFactory getSelectionFactory() {
     return (SelectionFactory)getEFactoryInstance();
   }
@@ -225,6 +253,9 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
     xReferenceSelectionEClass = createEClass(XREFERENCE_SELECTION);
     createEReference(xReferenceSelectionEClass, XREFERENCE_SELECTION__INCOMING_DEPENDENCIES);
     createEReference(xReferenceSelectionEClass, XREFERENCE_SELECTION__OUTGOING_DEPENDENCIES);
+
+    selectionHolderEClass = createEClass(SELECTION_HOLDER);
+    createEReference(selectionHolderEClass, SELECTION_HOLDER__SELECTION);
   }
 
   /**
@@ -254,8 +285,11 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
     HierarchicalgraphPackage theHierarchicalgraphPackage = (HierarchicalgraphPackage)EPackage.Registry.INSTANCE.getEPackage(HierarchicalgraphPackage.eNS_URI);
 
     // Create type parameters
+    ETypeParameter selectionHolderEClass_S = addETypeParameter(selectionHolderEClass, "S");
 
     // Set bounds for type parameters
+    EGenericType g1 = createEGenericType(this.getSelection());
+    selectionHolderEClass_S.getEBounds().add(g1);
 
     // Add supertypes to classes
     nodeSelectionEClass.getESuperTypes().add(this.getSelection());
@@ -274,6 +308,10 @@ public class SelectionPackageImpl extends EPackageImpl implements SelectionPacka
     initEClass(xReferenceSelectionEClass, XReferenceSelection.class, "XReferenceSelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getXReferenceSelection_IncomingDependencies(), theHierarchicalgraphPackage.getHGCoreDependency(), null, "incomingDependencies", null, 0, -1, XReferenceSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXReferenceSelection_OutgoingDependencies(), theHierarchicalgraphPackage.getHGCoreDependency(), null, "outgoingDependencies", null, 0, -1, XReferenceSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(selectionHolderEClass, SelectionHolder.class, "SelectionHolder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    g1 = createEGenericType(selectionHolderEClass_S);
+    initEReference(getSelectionHolder_Selection(), g1, null, "selection", null, 1, 1, SelectionHolder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

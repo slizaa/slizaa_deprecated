@@ -49,6 +49,15 @@ public interface SelectionFactory extends EFactory {
   XReferenceSelection createXReferenceSelection();
 
   /**
+   * Returns a new object of class '<em>Holder</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Holder</em>'.
+   * @generated
+   */
+  <S extends Selection> SelectionHolder<S> createSelectionHolder();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

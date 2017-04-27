@@ -17,6 +17,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.NodeSelection;
+import org.slizaa.hierarchicalgraph.selection.SelectionHolder;
 import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.ui.xref.XRefUtils;
 
@@ -30,19 +31,19 @@ public class XRefPart {
 
   /** - */
   @Inject
-  private MPerspective  _perspective;
+  private MPerspective                   _perspective;
 
   /** - */
-  private XRefComposite _composite;
+  private XRefComposite                  _composite;
 
   /** - */
-  private HGRootNode    _rootNode;
+  private HGRootNode                     _rootNode;
 
   /** - */
-  private NodeSelection _filteredNodeSelection;
+  private SelectionHolder<NodeSelection> _filteredNodeSelection;
 
   /** - */
-  private Adapter       _adapter;
+  private Adapter                        _adapter;
 
   public XRefPart() {
 
@@ -50,9 +51,9 @@ public class XRefPart {
     _adapter = new AdapterImpl() {
       @Override
       public void notifyChanged(Notification msg) {
-        
+
         System.out.println("Notify: " + msg.getEventType());
-        
+
         setFilter();
       }
     };
@@ -94,14 +95,14 @@ public class XRefPart {
 
     // remove old selection
     if (_rootNode != null) {
-      XRefUtils.getOrCreateFilteredNodeSelection(_rootNode).eAdapters().remove(_adapter);
+      XRefUtils.getOrCreateFilteredNodeSelectionHolder(_rootNode).eAdapters().remove(_adapter);
     }
 
     // set the new node
     _rootNode = rootNode;
 
     if (_rootNode != null) {
-      _filteredNodeSelection = XRefUtils.getOrCreateFilteredNodeSelection(_rootNode);
+      _filteredNodeSelection = XRefUtils.getOrCreateFilteredNodeSelectionHolder(_rootNode);
       _filteredNodeSelection.eAdapters().add(_adapter);
     } else {
       _filteredNodeSelection = null;
@@ -123,8 +124,8 @@ public class XRefPart {
     //
     if (_rootNode != null) {
       _composite.setFilteredNodes(
-          _filteredNodeSelection != null ? _filteredNodeSelection.getNodes() : Collections.emptyList(), true);
-      
+          _filteredNodeSelection != null ? _filteredNodeSelection.getSelection().getNodes() : Collections.emptyList(), true);
+
       if (!_composite.isDisposed()) {
         _composite.refresh();
       }
