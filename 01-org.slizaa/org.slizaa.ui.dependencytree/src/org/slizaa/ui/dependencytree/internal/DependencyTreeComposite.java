@@ -214,7 +214,7 @@ public class DependencyTreeComposite extends Composite {
     if (_fromTreeViewer.getLabelProvider() instanceof IInterceptableLabelProvider) {
       ((IInterceptableLabelProvider) _fromTreeViewer.getLabelProvider()).setLabelProviderInterceptor(
           new SelectedNodesLabelProviderInterceptor(() -> _selector.getSelectedTargetNodes().isEmpty()
-              ? Collections.emptyList() : _selector.getFilteredSourceNodesWithParents()));
+              ? Collections.emptyList() : _selector.getFilteredSourceNodes()));
     }
 
     //
@@ -226,12 +226,12 @@ public class DependencyTreeComposite extends Composite {
     if (_toTreeViewer.getLabelProvider() instanceof IInterceptableLabelProvider) {
       ((IInterceptableLabelProvider) _toTreeViewer.getLabelProvider()).setLabelProviderInterceptor(
           new SelectedNodesLabelProviderInterceptor(() -> _selector.getSelectedSourceNodes().isEmpty()
-              ? Collections.emptyList() : _selector.getFilteredTargetNodesWithParents()));
+              ? Collections.emptyList() : _selector.getFilteredTargetNodes()));
     }
 
     //
-    _fromTreeViewer.setFilters(new VisibleNodesFilter(() -> _selector.getUnfilteredSourceNodesWithParents(), false));
-    _toTreeViewer.setFilters(new VisibleNodesFilter(() -> _selector.getUnfilteredTargetNodesWithParents(), false));
+    _fromTreeViewer.setFilters(new VisibleNodesFilter(() -> _selector.getUnfilteredSourceNodes(), false));
+    _toTreeViewer.setFilters(new VisibleNodesFilter(() -> _selector.getUnfilteredTargetNodes(), false));
 
     // add SelectionListeners
     _fromTreeViewer.addSelectionChangedListener(new FromArtifactsSelectionChangedListener());

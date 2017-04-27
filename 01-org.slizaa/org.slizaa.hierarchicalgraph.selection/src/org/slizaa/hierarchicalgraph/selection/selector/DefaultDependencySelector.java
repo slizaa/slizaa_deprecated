@@ -30,7 +30,6 @@ import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
 import org.slizaa.hierarchicalgraph.SourceOrTarget;
-import org.slizaa.hierarchicalgraph.selection.NodeSelections;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -63,12 +62,6 @@ public class DefaultDependencySelector implements IDependencySelector {
   private Set<HGNode>                                       _unfilteredTargetNodes;
 
   /** - */
-  private Set<HGNode>                                       _unfilteredSourceNodesWithParents;
-
-  /** - */
-  private Set<HGNode>                                       _unfilteredTargetNodesWithParents;
-
-  /** - */
   private Set<HGCoreDependency>                             _filteredCoreDependencies;
 
   /** - */
@@ -76,12 +69,6 @@ public class DefaultDependencySelector implements IDependencySelector {
 
   /** - */
   private Set<HGNode>                                       _filteredTargetNodes;
-
-  /** - */
-  private Set<HGNode>                                       _filteredSourceNodesWithParents;
-
-  /** - */
-  private Set<HGNode>                                       _filteredTargetNodesWithParents;
 
   /** - */
   private final LoadingCache<HGNode, Set<HGCoreDependency>> _sourceNode2CoreDependenciesMap;
@@ -114,10 +101,6 @@ public class DefaultDependencySelector implements IDependencySelector {
     _unfilteredTargetNodes = new HashSet<>();
     _filteredSourceNodes = new HashSet<>();
     _filteredTargetNodes = new HashSet<>();
-    _filteredSourceNodesWithParents = new HashSet<HGNode>();
-    _filteredTargetNodesWithParents = new HashSet<HGNode>();
-    _unfilteredSourceNodesWithParents = new HashSet<HGNode>();
-    _unfilteredTargetNodesWithParents = new HashSet<HGNode>();
     _selectedNodes = new HashSet<HGNode>();
     _selectedNodesWithChildren = new HashSet<HGNode>();
     _listenerList = new ListenerList<>();
@@ -156,8 +139,6 @@ public class DefaultDependencySelector implements IDependencySelector {
     _unfilteredSourceNodes.remove(proxyDependency.getFrom());
     _unfilteredTargetNodes.remove(proxyDependency.getTo());
 
-    // _unfilteredSourceNodesWithParents - we don't have to change this here...
-    // _unfilteredTargetNodesWithParents - we don't have to change this here...
     _filteredCoreDependencies.remove(proxyDependency);
 
     // add the new core dependencies
@@ -167,10 +148,6 @@ public class DefaultDependencySelector implements IDependencySelector {
       _targetNode2CoreDependenciesMap.getUnchecked(hgCoreDependency.getTo()).add(hgCoreDependency);
       _unfilteredSourceNodes.add(hgCoreDependency.getFrom());
       _unfilteredTargetNodes.add(hgCoreDependency.getTo());
-      _unfilteredSourceNodesWithParents.add(hgCoreDependency.getFrom());
-      _unfilteredSourceNodesWithParents.addAll(hgCoreDependency.getFrom().getPredecessors());
-      _unfilteredTargetNodesWithParents.add(hgCoreDependency.getTo());
-      _unfilteredTargetNodesWithParents.addAll(hgCoreDependency.getTo().getPredecessors());
 
       // if filtered -> updated filtered
       if (_selectedNodesWithChildren.contains(
@@ -180,14 +157,10 @@ public class DefaultDependencySelector implements IDependencySelector {
 
         if (_selectedNodesType == SourceOrTarget.SOURCE) {
           _filteredTargetNodes.add(hgCoreDependency.getTo());
-          _filteredTargetNodesWithParents.add(hgCoreDependency.getTo());
-          _filteredTargetNodesWithParents.addAll(hgCoreDependency.getTo().getPredecessors());
         }
         //
         else {
           _filteredTargetNodes.add(hgCoreDependency.getFrom());
-          _filteredTargetNodesWithParents.add(hgCoreDependency.getFrom());
-          _filteredTargetNodesWithParents.addAll(hgCoreDependency.getFrom().getPredecessors());
         }
       }
     }
@@ -376,34 +349,6 @@ public class DefaultDependencySelector implements IDependencySelector {
   /**
    * <p>
    * </p>
-   *
-   * @param type
-   * @param filtered
-   * @return
-   */
-  @Override
-  public Set<HGNode> getFilteredSourceNodesWithParents() {
-    return _filteredSourceNodesWithParents;
-  }
-
-  @Override
-  public Set<HGNode> getFilteredTargetNodesWithParents() {
-    return _filteredTargetNodesWithParents;
-  }
-
-  @Override
-  public Set<HGNode> getUnfilteredSourceNodesWithParents() {
-    return _unfilteredSourceNodesWithParents;
-  }
-
-  @Override
-  public Set<HGNode> getUnfilteredTargetNodesWithParents() {
-    return _unfilteredTargetNodesWithParents;
-  }
-
-  /**
-   * <p>
-   * </p>
    */
   private void init(Object event) {
 
@@ -428,8 +373,6 @@ public class DefaultDependencySelector implements IDependencySelector {
       //
       _unfilteredSourceNodes = unfilteredSourceNodes;
       _unfilteredTargetNodes = unfilteredTargetNodes;
-      _unfilteredSourceNodesWithParents = NodeSelections.computeNodesWithParents(unfilteredSourceNodes, false);
-      _unfilteredTargetNodesWithParents = NodeSelections.computeNodesWithParents(unfilteredTargetNodes, false);
 
       // clear filtered dependencies
       _filteredCoreDependencies.clear();
@@ -480,8 +423,6 @@ public class DefaultDependencySelector implements IDependencySelector {
         _filteredTargetNodes.clear();
         _filteredTargetNodes.addAll(_unfilteredTargetNodes);
       }
-      _filteredSourceNodesWithParents = NodeSelections.computeNodesWithParents(_filteredSourceNodes, false);
-      _filteredTargetNodesWithParents = NodeSelections.computeNodesWithParents(_filteredTargetNodes, false);
 
       //
       _initialized = true;
