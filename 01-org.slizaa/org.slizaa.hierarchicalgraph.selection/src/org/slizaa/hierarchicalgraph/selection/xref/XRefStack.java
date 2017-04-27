@@ -189,8 +189,6 @@ public class XRefStack {
     _backReferencesFromOutgoingDependenciesSelector.setSelectedTargetNodes(Collections.emptySet());
 
     // fire event
-    Set<HGNode> affectedNodes = new HashSet<>(_incomingDependencySelector.getUnfilteredTargetNodesWithParents());
-    affectedNodes.addAll(_outgoingDependencySelector.getUnfilteredSourceNodesWithParents());
     fireEvent(l -> l.leftsidedNodeSelectionChanged());
   }
 
@@ -218,8 +216,6 @@ public class XRefStack {
     _backReferencesFromOutgoingDependenciesSelector.setSelectedTargetNodes(selectedRightsidedNodes);
 
     // fire event
-    Set<HGNode> affectedNodes = new HashSet<>(_incomingDependencySelector.getUnfilteredTargetNodesWithParents());
-    affectedNodes.addAll(_outgoingDependencySelector.getUnfilteredSourceNodesWithParents());
     fireEvent(l -> l.rightsidedNodeSelectionChanged());
   }
 
@@ -296,10 +292,6 @@ public class XRefStack {
     selection.getNodes().addAll(selectedNodes);
     selection.getIncomingDependencies().addAll(_incomingDependencySelector.getFilteredCoreDependencies());
     selection.getOutgoingDependencies().addAll(_outgoingDependencySelector.getFilteredCoreDependencies());
-
-    //
-    System.out.println("OK: " + _incomingDependencySelector.getFilteredCoreDependencies());
-    System.out.println("OK: " + _outgoingDependencySelector.getFilteredCoreDependencies());
 
     //
     _additionalVisibleCenterNodes = selectedNodes;
@@ -469,6 +461,19 @@ public class XRefStack {
     Set<HGNode> union = new HashSet<HGNode>(_incomingDependencySelector.getUnfilteredTargetNodesWithParents());
     union.addAll(_outgoingDependencySelector.getUnfilteredSourceNodesWithParents());
     union.addAll(NodeSelections.computeNodesWithParents(_additionalVisibleCenterNodes, true));
+    return union;
+  }
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public Set<HGNode> getVisibleCenterNodes() {
+    Set<HGNode> union = new HashSet<HGNode>(_incomingDependencySelector.getUnfilteredTargetNodes());
+    union.addAll(_outgoingDependencySelector.getUnfilteredSourceNodes());
+    union.addAll(_additionalVisibleCenterNodes);
     return union;
   }
 

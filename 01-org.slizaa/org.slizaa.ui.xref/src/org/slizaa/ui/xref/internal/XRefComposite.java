@@ -479,7 +479,7 @@ public class XRefComposite extends Composite {
       //
       if (_xRefStack.isCurrentSelectionCropped()) {
         _centeredTreeViewComposite.getTreeViewer()
-            .setFilters(new VisibleNodesFilter(() -> _xRefStack.getVisibleCenterNodesWithParents(true), true));
+            .setFilters(new VisibleNodesFilter(() -> _xRefStack.getVisibleCenterNodes(), true));
       }
       //
       else {
@@ -516,7 +516,7 @@ public class XRefComposite extends Composite {
       //
       if (_xRefStack.isCurrentSelectionCropped()) {
         _centeredTreeViewComposite.getTreeViewer()
-            .setFilters(new VisibleNodesFilter(() -> _xRefStack.getVisibleCenterNodesWithParents(true), true));
+            .setFilters(new VisibleNodesFilter(() -> _xRefStack.getVisibleCenterNodes(), true));
       }
       //
       else {
