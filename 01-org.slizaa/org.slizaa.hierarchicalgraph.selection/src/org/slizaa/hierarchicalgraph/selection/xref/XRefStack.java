@@ -300,7 +300,7 @@ public class XRefStack {
     //
     System.out.println("OK: " + _incomingDependencySelector.getFilteredCoreDependencies());
     System.out.println("OK: " + _outgoingDependencySelector.getFilteredCoreDependencies());
-    
+
     //
     _additionalVisibleCenterNodes = selectedNodes;
     _incomingDependencySelector.setUnfilteredCoreDependencies(selection.getIncomingDependencies());
@@ -423,18 +423,18 @@ public class XRefStack {
     return hasCroppedSelections() && _currentCropPosition != -1;
   }
 
-//  /**
-//   * <p>
-//   * </p>
-//   *
-//   * @return
-//   */
-//  public Set<HGNode> getVisibleCenterNodes() {
-//    Set<HGNode> union = new HashSet<HGNode>(_incomingDependencySelector.getSelectedTargetNodes());
-//    union.addAll(_outgoingDependencySelector.getSelectedSourceNodes());
-//    union.addAll(_additionalVisibleCenterNodes);
-//    return union;
-//  }
+  // /**
+  // * <p>
+  // * </p>
+  // *
+  // * @return
+  // */
+  // public Set<HGNode> getVisibleCenterNodes() {
+  // Set<HGNode> union = new HashSet<HGNode>(_incomingDependencySelector.getSelectedTargetNodes());
+  // union.addAll(_outgoingDependencySelector.getSelectedSourceNodes());
+  // union.addAll(_additionalVisibleCenterNodes);
+  // return union;
+  // }
 
   /**
    * <p>
@@ -472,30 +472,30 @@ public class XRefStack {
     return union;
   }
 
-//  /**
-//   * <p>
-//   * </p>
-//   *
-//   * @return
-//   */
-//  public Set<HGNode> getBackreferencedCenterNodesWithParents() {
-//
-//    //
-//    if (_activeBackReferenceSelector == null) {
-//      return Collections.emptySet();
-//    }
-//    //
-//    else if (SourceOrTarget.SOURCE.equals(_activeBackReferenceSelector)) {
-//      return _backReferencesFromIncomingDependenciesSelector.getFilteredTargetNodesWithParents();
-//    }
-//    //
-//    else if (SourceOrTarget.TARGET.equals(_activeBackReferenceSelector)) {
-//      return _backReferencesFromOutgoingDependenciesSelector.getFilteredSourceNodesWithParents();
-//    }
-//
-//    // should not happen
-//    return Collections.emptySet();
-//  }
+  // /**
+  // * <p>
+  // * </p>
+  // *
+  // * @return
+  // */
+  // public Set<HGNode> getBackreferencedCenterNodesWithParents() {
+  //
+  // //
+  // if (_activeBackReferenceSelector == null) {
+  // return Collections.emptySet();
+  // }
+  // //
+  // else if (SourceOrTarget.SOURCE.equals(_activeBackReferenceSelector)) {
+  // return _backReferencesFromIncomingDependenciesSelector.getFilteredTargetNodesWithParents();
+  // }
+  // //
+  // else if (SourceOrTarget.TARGET.equals(_activeBackReferenceSelector)) {
+  // return _backReferencesFromOutgoingDependenciesSelector.getFilteredSourceNodesWithParents();
+  // }
+  //
+  // // should not happen
+  // return Collections.emptySet();
+  // }
 
   /**
    * <p>
@@ -528,8 +528,8 @@ public class XRefStack {
    *
    * @return
    */
-  public Set<HGNode> getRightsidedNodesWithParents() {
-    return _outgoingDependencySelector.getFilteredTargetNodesWithParents();
+  public Set<HGNode> getRightsidedNodes() {
+    return _outgoingDependencySelector.getFilteredTargetNodes();
   }
 
   /**
@@ -538,8 +538,8 @@ public class XRefStack {
    *
    * @return
    */
-  public Set<HGNode> getLeftsidedNodesWithParents() {
-    return _incomingDependencySelector.getFilteredSourceNodesWithParents();
+  public Set<HGNode> getLeftsidedNodes() {
+    return _incomingDependencySelector.getFilteredSourceNodes();
   }
 
   /**
