@@ -272,40 +272,40 @@ public class XRefStack {
     fireEvent(l -> l.croppedSelectionChanged());
   }
 
-  /**
-   * <p>
-   * </p>
-   *
-   * @param selectedNodes
-   */
-  public void cropSelection(Collection<HGNode> selectedNodes) {
-
-    //
-    _uncropAll();
-
-    //
-    _incomingDependencySelector.setSelectedTargetNodes(checkNotNull(selectedNodes));
-    _outgoingDependencySelector.setSelectedSourceNodes(checkNotNull(selectedNodes));
-
-    //
-    XReferenceSelection selection = SelectionFactory.eINSTANCE.createXReferenceSelection();
-    selection.getNodes().addAll(selectedNodes);
-    selection.getIncomingDependencies().addAll(_incomingDependencySelector.getFilteredCoreDependencies());
-    selection.getOutgoingDependencies().addAll(_outgoingDependencySelector.getFilteredCoreDependencies());
-
-    //
-    _additionalVisibleCenterNodes = selectedNodes;
-    _incomingDependencySelector.setUnfilteredCoreDependencies(selection.getIncomingDependencies());
-    _outgoingDependencySelector.setUnfilteredCoreDependencies(selection.getOutgoingDependencies());
-    _selectionStack.add(selection);
-    _currentCropPosition++;
-
-    //
-    _activeBackReferenceSelector = null;
-
-    //
-    fireEvent(l -> l.croppedSelectionChanged());
-  }
+//  /**
+//   * <p>
+//   * </p>
+//   *
+//   * @param selectedNodes
+//   */
+//  public void cropSelection(Collection<HGNode> selectedNodes) {
+//
+//    //
+//    _uncropAll();
+//
+//    //
+//    _incomingDependencySelector.setSelectedTargetNodes(checkNotNull(selectedNodes));
+//    _outgoingDependencySelector.setSelectedSourceNodes(checkNotNull(selectedNodes));
+//
+//    //
+//    XReferenceSelection selection = SelectionFactory.eINSTANCE.createXReferenceSelection();
+//    selection.getNodes().addAll(selectedNodes);
+//    selection.getIncomingDependencies().addAll(_incomingDependencySelector.getFilteredCoreDependencies());
+//    selection.getOutgoingDependencies().addAll(_outgoingDependencySelector.getFilteredCoreDependencies());
+//
+//    //
+//    _additionalVisibleCenterNodes = selectedNodes;
+//    _incomingDependencySelector.setUnfilteredCoreDependencies(selection.getIncomingDependencies());
+//    _outgoingDependencySelector.setUnfilteredCoreDependencies(selection.getOutgoingDependencies());
+//    _selectionStack.add(selection);
+//    _currentCropPosition++;
+//
+//    //
+//    _activeBackReferenceSelector = null;
+//
+//    //
+//    fireEvent(l -> l.croppedSelectionChanged());
+//  }
 
   /**
    * <p>
@@ -451,56 +451,18 @@ public class XRefStack {
     return Collections.emptySet();
   }
 
-//  /**
-//   * <p>
-//   * </p>
-//   *
-//   * @return
-//   */
-//  public Set<HGNode> getVisibleCenterNodesWithParents(boolean includeChildren) {
-//    Set<HGNode> union = new HashSet<HGNode>(_incomingDependencySelector.getUnfilteredTargetNodesWithParents());
-//    union.addAll(_outgoingDependencySelector.getUnfilteredSourceNodesWithParents());
-//    union.addAll(NodeSelections.computeNodesWithParents(_additionalVisibleCenterNodes, true));
-//    return union;
-//  }
-  
   /**
    * <p>
    * </p>
    *
    * @return
    */
-  public Set<HGNode> getVisibleCenterNodes() {
+  public Set<HGNode> getCenterNodes() {
     Set<HGNode> union = new HashSet<HGNode>(_incomingDependencySelector.getUnfilteredTargetNodes());
     union.addAll(_outgoingDependencySelector.getUnfilteredSourceNodes());
     union.addAll(_additionalVisibleCenterNodes);
     return union;
   }
-
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @return
-  // */
-  // public Set<HGNode> getBackreferencedCenterNodesWithParents() {
-  //
-  // //
-  // if (_activeBackReferenceSelector == null) {
-  // return Collections.emptySet();
-  // }
-  // //
-  // else if (SourceOrTarget.SOURCE.equals(_activeBackReferenceSelector)) {
-  // return _backReferencesFromIncomingDependenciesSelector.getFilteredTargetNodesWithParents();
-  // }
-  // //
-  // else if (SourceOrTarget.TARGET.equals(_activeBackReferenceSelector)) {
-  // return _backReferencesFromOutgoingDependenciesSelector.getFilteredSourceNodesWithParents();
-  // }
-  //
-  // // should not happen
-  // return Collections.emptySet();
-  // }
 
   /**
    * <p>

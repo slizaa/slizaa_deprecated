@@ -24,9 +24,8 @@ public class CypherUtils {
     List<ReturnItem> returnItems = EcoreUtil2.eAllOfType(checkNotNull(cypher), ReturnItem.class);
 
     //
-    return returnItems != null && !returnItems.isEmpty() && returnItems.stream().allMatch(item -> {
-      return item.getExpression() instanceof FunctionInvocation
-          && "id".equals(((FunctionInvocation) item.getExpression()).getFunctionName().getName());
-    });
+    return returnItems != null && !returnItems.isEmpty()
+        && returnItems.get(returnItems.size() - 1).getExpression() instanceof FunctionInvocation && "id".equals(
+            ((FunctionInvocation) returnItems.get(returnItems.size() - 1).getExpression()).getFunctionName().getName());
   }
 }

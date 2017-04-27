@@ -40,18 +40,18 @@ public abstract class AbstractXRefStack_Test extends AbstractXmiBasedTest {
   }
 
   public void assertCenterNodes(int size, long... nodeIds) {
-    assertThat(xRefStack().getVisibleCenterNodesWithParents()).hasSize(size);
-    assertThat(xRefStack().getVisibleCenterNodesWithParents()).containsNodesWithId(nodeIds);
+    assertThat(xRefStack().getCenterNodes()).hasSize(size);
+    assertThat(xRefStack().getCenterNodes()).containsNodesWithId(nodeIds);
   }
 
   public void assertLeftsidedNodes(int size, long... nodeIds) {
-    assertThat(xRefStack().getLeftsidedNodesWithParents()).hasSize(size);
-    assertThat(xRefStack().getLeftsidedNodesWithParents()).containsNodesWithId(nodeIds);
+    assertThat(xRefStack().getLeftsidedNodes()).hasSize(size);
+    assertThat(xRefStack().getLeftsidedNodes()).containsNodesWithId(nodeIds);
   }
 
   public void assertRightsidedNodes(int size, long... nodeIds) {
-    assertThat(xRefStack().getRightsidedNodesWithParents()).hasSize(size);
-    assertThat(xRefStack().getRightsidedNodesWithParents()).containsNodesWithId(nodeIds);
+    assertThat(xRefStack().getRightsidedNodes()).hasSize(size);
+    assertThat(xRefStack().getRightsidedNodes()).containsNodesWithId(nodeIds);
   }
   
   public void dumpNodes(Collection<HGNode> nodes) {

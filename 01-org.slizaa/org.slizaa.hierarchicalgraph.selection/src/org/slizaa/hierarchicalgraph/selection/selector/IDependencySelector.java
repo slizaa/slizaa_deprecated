@@ -90,23 +90,7 @@ public interface IDependencySelector {
    *
    * @return
    */
-  Set<HGNode> getSelectedSourceNodesWithChildren();
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
   Set<HGNode> getSelectedTargetNodes();
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  Set<HGNode> getSelectedTargetNodesWithChildren();
 
   /**
    * <p>
@@ -124,14 +108,6 @@ public interface IDependencySelector {
    */
   Set<HGNode> getUnfilteredSourceNodes();
 
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @return
-  // */
-  // Set<HGNode> getUnfilteredSourceNodesWithParents();
-
   /**
    * <p>
    * </p>
@@ -139,14 +115,6 @@ public interface IDependencySelector {
    * @return
    */
   Set<HGNode> getUnfilteredTargetNodes();
-
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @return
-  // */
-  // Set<HGNode> getUnfilteredTargetNodesWithParents();
 
   /**
    * <p>
@@ -164,14 +132,6 @@ public interface IDependencySelector {
    */
   Set<HGNode> getFilteredSourceNodes();
 
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @return
-  // */
-  // Set<HGNode> getFilteredSourceNodesWithParents();
-
   /**
    * <p>
    * </p>
@@ -179,14 +139,6 @@ public interface IDependencySelector {
    * @return
    */
   Set<HGNode> getFilteredTargetNodes();
-
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @return
-  // */
-  // Set<HGNode> getFilteredTargetNodesWithParents();
 
   /**
    * <p>

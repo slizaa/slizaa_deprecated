@@ -480,7 +480,7 @@ public class XRefComposite extends Composite {
       //
       if (_xRefStack.isCurrentSelectionCropped()) {
         _centeredTreeViewComposite.getTreeViewer()
-            .setFilters(new VisibleNodesFilter(() -> _xRefStack.getVisibleCenterNodes(), true));
+            .setFilters(new VisibleNodesFilter(() -> _xRefStack.getCenterNodes(), true));
       }
       //
       else {
@@ -517,7 +517,7 @@ public class XRefComposite extends Composite {
       //
       if (_xRefStack.isCurrentSelectionCropped()) {
         _centeredTreeViewComposite.getTreeViewer()
-            .setFilters(new VisibleNodesFilter(() -> _xRefStack.getVisibleCenterNodes(), true));
+            .setFilters(new VisibleNodesFilter(() -> _xRefStack.getCenterNodes(), true));
       }
       //
       else {
@@ -548,7 +548,7 @@ public class XRefComposite extends Composite {
       _leftsidedTreeViewComposite.getTreeViewer().getTree().deselectAll();
 
       //
-      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getVisibleCenterNodes(), true).toArray(),
+      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getCenterNodes(), true).toArray(),
           null);
 
       // prepare right tree viewer
@@ -570,7 +570,7 @@ public class XRefComposite extends Composite {
     public void leftsidedNodeSelectionChanged() {
 
       // update center...
-      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getVisibleCenterNodes(), true).toArray(),
+      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getCenterNodes(), true).toArray(),
           null);
 
       // ...and deselect rightsided tree
@@ -590,7 +590,7 @@ public class XRefComposite extends Composite {
     public void rightsidedNodeSelectionChanged() {
 
       // update center...
-      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getVisibleCenterNodes(), true).toArray(),
+      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getCenterNodes(), true).toArray(),
           null);
 
       // ...and deselect leftsided tree

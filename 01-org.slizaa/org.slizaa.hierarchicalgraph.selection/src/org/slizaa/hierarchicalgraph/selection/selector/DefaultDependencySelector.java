@@ -278,18 +278,6 @@ public class DefaultDependencySelector implements IDependencySelector {
   }
 
   @Override
-  public Set<HGNode> getSelectedSourceNodesWithChildren() {
-    return _selectedNodesType == SourceOrTarget.SOURCE ? Collections.unmodifiableSet(_selectedNodesWithChildren)
-        : Collections.emptySet();
-  }
-
-  @Override
-  public Set<HGNode> getSelectedTargetNodesWithChildren() {
-    return _selectedNodesType == SourceOrTarget.TARGET ? Collections.unmodifiableSet(_selectedNodesWithChildren)
-        : Collections.emptySet();
-  }
-
-  @Override
   public Set<HGCoreDependency> getDependenciesForSourceNode(HGNode sourceNode) {
     Set<HGCoreDependency> result = _sourceNode2CoreDependenciesMap.getIfPresent(checkNotNull(sourceNode));
     return result != null ? result : Collections.emptySet();

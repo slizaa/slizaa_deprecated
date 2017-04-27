@@ -57,6 +57,14 @@ public class VisibleNodesFilter extends ViewerFilter {
       return true;
     }
 
+    // only Filter HGNodes
+    if (!(element instanceof HGNode)) {
+      return true;
+    }
+
+    //
+    HGNode elementNode = ((HGNode) element);
+
     //
     Collection<HGNode> visibleElements = _visibleNodesSupplier.get();
 
@@ -65,15 +73,15 @@ public class VisibleNodesFilter extends ViewerFilter {
       return false;
     }
     // selected element?
-    else if (visibleElements.contains(element)) {
+    else if (visibleElements.contains(elementNode)) {
       return true;
     }
     // child element?
-    else if (_showChildren && element instanceof HGNode && ((HGNode) element).getPredecessors().contains(element)) {
+    else if (_showChildren && elementNode.getPredecessors().stream().anyMatch(visibleElements::contains)) {
       return true;
     }
     // parent element?
-    else if (visibleElements.parallelStream().anyMatch(node -> node.getPredecessors().contains(element))) {
+    else if (visibleElements.parallelStream().anyMatch(node -> node.getPredecessors().contains(elementNode))) {
       return true;
     }
 
