@@ -1,7 +1,5 @@
 function renderQueryResult(queryResult) {
 
-    console.log(queryResult);
-
     // handle error json ({ "message": "a msg", "exception": "an exception"})
     if (queryResult.errors.length > 0) {
 
@@ -15,14 +13,20 @@ function renderQueryResult(queryResult) {
     });
 
     // create the body values
+    var createdContent = "";
+
     $.each(queryResult.results[0].data, function (i, val) {
-        var $tr = $('<tr></tr>');
+        createdContent += '<tr>';
         var row_values = val.row;
-        $("#tbody").append($tr);
         $.each(row_values, function (i, val) {
-            $tr.append('<td class="data">' + renderContent(val) + '</td>');
+            createdContent += '<td class="data">' + renderContent(val) + '</td>';
         });
+
+        createdContent += '</tr>';
     });
+
+    //
+    $("#tbody").append(createdContent);
 }
 
 /**
@@ -48,7 +52,6 @@ function renderContent(row_value) {
                 var html = '';
                 for (var element in row_value) {
                     html += renderObject(row_value[element]);
-                    console.log(element + " : " + row_value.length)
                     if (element < (row_value.length - 1)) {
                         html += ',';
                     }
