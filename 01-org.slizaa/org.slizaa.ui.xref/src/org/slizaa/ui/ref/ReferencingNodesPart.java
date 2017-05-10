@@ -1,5 +1,6 @@
 package org.slizaa.ui.ref;
 
+import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,13 +10,13 @@ import org.slizaa.hierarchicalgraph.selection.NodeSelections;
 
 public class ReferencingNodesPart extends AbstractRefNodesPart {
 
-  protected Set<HGNode> getNodesToShow() {
-    
+  protected Set<HGNode> getNodesToShow(Collection<HGNode> selectedNodes) {
+
     //
-    ProxyDependencyFunctions.resolveProxyDependencies(getCurrentSelection(), true, false, null);
-    
+    ProxyDependencyFunctions.resolveProxyDependencies(selectedNodes, true, false, null);
+
     //
-    return NodeSelections.getAccumulatedIncomingCoreDependencies(getCurrentSelection()).stream()
-        .map(dep -> dep.getFrom()).collect(Collectors.toSet());
+    return NodeSelections.getAccumulatedIncomingCoreDependencies(selectedNodes).stream().map(dep -> dep.getFrom())
+        .collect(Collectors.toSet());
   }
 }

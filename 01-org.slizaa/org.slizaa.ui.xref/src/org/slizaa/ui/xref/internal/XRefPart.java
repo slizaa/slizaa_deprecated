@@ -3,14 +3,13 @@ package org.slizaa.ui.xref.internal;
 import java.util.Collections;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.annotation.PreDestroy;
 
-import org.eclipse.e4.core.di.annotations.Optional;
-import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -18,7 +17,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.NodeSelection;
 import org.slizaa.hierarchicalgraph.selection.SelectionHolder;
-import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.ui.shared.AbstractSlizaaWorkbenchModelComponent;
 import org.slizaa.ui.xref.XRefUtils;
 
 /**
@@ -27,37 +26,16 @@ import org.slizaa.ui.xref.XRefUtils;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class XRefPart {
-
-  /** - */
-  @Inject
-  private MPerspective                   _perspective;
+public class XRefPart extends AbstractSlizaaWorkbenchModelComponent {
 
   /** - */
   private XRefComposite                  _composite;
 
   /** - */
-  private HGRootNode                     _rootNode;
-
-  /** - */
   private SelectionHolder<NodeSelection> _filteredNodeSelection;
 
   /** - */
-  private Adapter                        _adapter;
-
-  public XRefPart() {
-
-    //
-    _adapter = new AdapterImpl() {
-      @Override
-      public void notifyChanged(Notification msg) {
-
-        System.out.println("Notify: " + msg.getEventType());
-
-        setFilter();
-      }
-    };
-  }
+  private Adapter                        _filterObserver;
 
   /**
    * <p>
@@ -69,48 +47,63 @@ public class XRefPart {
   public void createComposite(Composite parent) {
 
     //
-    GridLayout layout = new GridLayout(1, false);
-    layout.marginHeight = 0;
-    layout.marginWidth = 0;
-    parent.setLayout(layout);
+    _filterObserver = new AdapterImpl() {
+      @Override
+      public void notifyChanged(Notification msg) {
+        setFilter();
+      }
+    };
 
     //
-    _composite = new XRefComposite(parent, () -> _perspective.getContext());
-    _composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-    if (_rootNode != null) {
-      _composite.setRootNode(_rootNode);
-      setFilter();
+    GridLayoutFactory.fillDefaults().applyTo(parent);
+
+    //
+    _composite = new XRefComposite(parent, dependencySelection -> {
+      getWorkbenchModel().setMainDependencySelection(dependencySelection);
+      getWorkbenchModel().setDetailDependencySelection(dependencySelection);
+    });
+
+    //
+    GridDataFactory.fillDefaults().grab(true, true).applyTo(_composite);
+
+    //
+    handleRootNodeChanged(null, getWorkbenchModel().getRootNode());
+  }
+
+  @PreDestroy
+  public void dispose() {
+
+    // remove old selection
+    if (getWorkbenchModel().getRootNode() != null) {
+      XRefUtils.getOrCreateFilteredNodeSelectionHolder(getWorkbenchModel().getRootNode()).eAdapters()
+          .remove(_filterObserver);
     }
   }
 
-  @Inject
-  public void handleChangedRootNode(@Optional
-  @Named(SelectionIdentifier.CURRENT_ROOTNODE)
-  final HGRootNode rootNode) {
+  @Override
+  protected void handleRootNodeChanged(HGRootNode oldValue, HGRootNode newValue) {
 
     //
-    if (_rootNode == rootNode) {
+    if (oldValue == newValue) {
       return;
     }
 
     // remove old selection
-    if (_rootNode != null) {
-      XRefUtils.getOrCreateFilteredNodeSelectionHolder(_rootNode).eAdapters().remove(_adapter);
+    if (oldValue != null) {
+      XRefUtils.getOrCreateFilteredNodeSelectionHolder(oldValue).eAdapters().remove(_filterObserver);
     }
 
-    // set the new node
-    _rootNode = rootNode;
-
-    if (_rootNode != null) {
-      _filteredNodeSelection = XRefUtils.getOrCreateFilteredNodeSelectionHolder(_rootNode);
-      _filteredNodeSelection.eAdapters().add(_adapter);
+    // set the new value
+    if (newValue != null) {
+      _filteredNodeSelection = XRefUtils.getOrCreateFilteredNodeSelectionHolder(newValue);
+      _filteredNodeSelection.eAdapters().add(_filterObserver);
     } else {
       _filteredNodeSelection = null;
     }
 
     // immediately set if composite is already created
     if (_composite != null && !_composite.isDisposed()) {
-      _composite.setRootNode(_rootNode);
+      _composite.setRootNode(newValue);
       setFilter();
     }
   }
@@ -121,23 +114,20 @@ public class XRefPart {
    */
   private void setFilter() {
 
-    //
-    if (_rootNode != null) {
-      _composite.setFilteredNodes(
-          _filteredNodeSelection != null ? _filteredNodeSelection.getSelection().getNodes() : Collections.emptyList(), true);
+    if (_composite != null && !_composite.isDisposed()) {
 
-      if (!_composite.isDisposed()) {
-        _composite.refresh();
+      //
+      if (getWorkbenchModel().getRootNode() != null) {
+
+        _composite.setFilteredNodes(
+            _filteredNodeSelection != null ? _filteredNodeSelection.getSelection().getNodes() : Collections.emptyList(),
+            true);
+
+        if (!_composite.isDisposed()) {
+          _composite.refresh();
+        }
       }
-    }
-  }
 
-  /**
-   * <p>
-   * JUST FOR TESTING PURPOSE
-   * </p>
-   */
-  void setPerspective(MPerspective perspective) {
-    _perspective = perspective;
+    }
   }
 }

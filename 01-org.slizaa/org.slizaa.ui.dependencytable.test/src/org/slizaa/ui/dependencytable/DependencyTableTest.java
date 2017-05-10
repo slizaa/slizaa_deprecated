@@ -43,7 +43,7 @@ public class DependencyTableTest extends AbstractXmiBasedSlizaaPartTest {
         .getCoreDependencies();
 
     //
-    _part.initSelection(createDependencySelection(dependencies));
+    _part.handleDetailDependencySelectionChanged(null, createDependencySelection(dependencies));
 
     //
     swtbot().waitUntil(Conditions.tableHasRows(tableBot, dependencies.size()));

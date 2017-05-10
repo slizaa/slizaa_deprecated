@@ -1,13 +1,9 @@
 package org.slizaa.ui.dependencytree.internal;
 
-import static org.mockito.Mockito.when;
-
-import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTree;
 import org.junit.Before;
 import org.junit.experimental.categories.Category;
-import org.mockito.Mock;
 import org.slizaa.testfwk.ui.AbstractXmiBasedSlizaaPartTest;
 import org.slizaa.testfwk.ui.SlizaaUITest;
 
@@ -19,10 +15,6 @@ import org.slizaa.testfwk.ui.SlizaaUITest;
  */
 @Category(SlizaaUITest.class)
 public class AbstractDependencyTreePartTest extends AbstractXmiBasedSlizaaPartTest {
-
-  /** - */
-  @Mock
-  private MPerspective       _perspective;
 
   /** - */
   private DependencyTreePart _part;
@@ -42,10 +34,6 @@ public class AbstractDependencyTreePartTest extends AbstractXmiBasedSlizaaPartTe
     // create the xref part
     _part = new DependencyTreePart();
     _part.createComposite(shell());
-
-    // ...and mock the perspective
-    _part.setPerspective(_perspective);
-    when(_perspective.getContext()).thenReturn(eclipseContext());
   }
 
   /**

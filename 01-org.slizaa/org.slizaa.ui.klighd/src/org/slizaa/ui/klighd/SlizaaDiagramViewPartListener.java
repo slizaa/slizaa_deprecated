@@ -2,23 +2,26 @@ package org.slizaa.ui.klighd;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.e4.core.contexts.ContextInjectionFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.internal.PartSite;
 import org.eclipse.ui.progress.UIJob;
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.hierarchicalgraph.selection.NodeSelection;
+import org.slizaa.workbench.model.ModelPackage;
+import org.slizaa.workbench.model.SlizaaWorkbenchModel;
 
 import de.cau.cs.kieler.klighd.ui.DiagramViewManager;
 
@@ -33,10 +36,15 @@ class SlizaaDiagramViewPartListener implements IPartListener2 {
   private final SlizaaDiagramViewPart _diagramView;
 
   /** - */
-  private Set<HGNode>                _currentNodeSelection;
-  
+  private Set<HGNode>          _currentNodeSelection;
+
   /** - */
-  private Set<HGNode>                _shownNodeSelection;
+  private Set<HGNode>          _shownNodeSelection;
+
+  /** - */
+  private SlizaaWorkbenchModel        _slizaaWorkbenchModel;
+
+  private Adapter                     _adapter;
 
   /**
    * Create a new listener handling events for the given {@link SlizaaDiagramViewPart}.
@@ -54,9 +62,29 @@ class SlizaaDiagramViewPartListener implements IPartListener2 {
    */
   public void activate() {
     _diagramView.getSite().getPage().addPartListener(this);
-    
+
+    //
     IEclipseContext context = ((PartSite) _diagramView.getSite()).getContext();
-    ContextInjectionFactory.inject(this, context.getParent());
+
+    //
+    _slizaaWorkbenchModel = context.get(SlizaaWorkbenchModel.class);
+
+    //
+    _adapter = new AdapterImpl() {
+      @Override
+      public void notifyChanged(Notification msg) {
+        if (msg.getFeature() != null) {
+          if (msg.getFeature().equals(ModelPackage.eINSTANCE.getSlizaaWorkbenchModel_NodeSelection())) {
+            NodeSelection nodeSelection = (NodeSelection) msg.getNewValue();
+            initSelection(nodeSelection != null ? new HashSet<>(nodeSelection.getNodes()) : Collections.emptySet());
+          }
+        }
+      }
+    };
+    _slizaaWorkbenchModel.eAdapters().add(_adapter);
+    
+    // 
+    initSelection(_slizaaWorkbenchModel.getNodeSelection() != null ? new HashSet<>(_slizaaWorkbenchModel.getNodeSelection().getNodes()) : Collections.emptySet());
   }
 
   /**
@@ -64,9 +92,7 @@ class SlizaaDiagramViewPartListener implements IPartListener2 {
    */
   public void deactivate() {
     _diagramView.getSite().getPage().removePartListener(this);
-    
-    IEclipseContext context = ((PartSite) _diagramView.getSite()).getContext();
-    ContextInjectionFactory.uninject(this, context.getParent());
+    _slizaaWorkbenchModel.eAdapters().remove(_adapter);
   }
 
   /**
@@ -174,13 +200,11 @@ class SlizaaDiagramViewPartListener implements IPartListener2 {
     }
   }
 
-  @Inject
-  public void initSelection(
-      @Optional @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION) Set<HGNode> selectedNodes) {
-    
+  private void initSelection(Set<HGNode> selectedNodes) {
+
     //
     _currentNodeSelection = selectedNodes;
-    
+
     //
     if (_diagramView.getSite().getPage().isPartVisible(_diagramView)) {
       updateNodeSelection();
@@ -192,36 +216,33 @@ class SlizaaDiagramViewPartListener implements IPartListener2 {
    */
   private void updateNodeSelection() {
 
-      if (!equalLists(_currentNodeSelection, _shownNodeSelection)) {
-        
-        _shownNodeSelection = _currentNodeSelection;
-        
-        // Start update job
-        new UIJob(UPDATE_JOB) {
-          @Override
-          public IStatus runInUIThread(final IProgressMonitor monitor) {
-            DiagramViewManager.updateView("org.slizaa.ui.klighd.SlizaaDiagramViewPart", null, _currentNodeSelection,
-                null);
-            return Status.OK_STATUS;
-          }
-        }.schedule();
-      }
+    if (!equalLists(_currentNodeSelection, _shownNodeSelection)) {
+
+      _shownNodeSelection = _currentNodeSelection;
+
+      // Start update job
+      new UIJob(UPDATE_JOB) {
+        @Override
+        public IStatus runInUIThread(final IProgressMonitor monitor) {
+          DiagramViewManager.updateView("org.slizaa.ui.klighd.SlizaaDiagramViewPart", null, _currentNodeSelection,
+              null);
+          return Status.OK_STATUS;
+        }
+      }.schedule();
+    }
   }
 
-  public  boolean equalLists(Set<HGNode> a, Set<HGNode> b){     
-    
+  public boolean equalLists(Collection<HGNode> a, Collection<HGNode> b) {
+
     if (a == null && b == null) {
       return true;
     }
-    
+
     //
-    if ((a == null && b!= null) || (a != null && b== null) || (a.size() != b.size())){
-        return false;
+    if ((a == null && b != null) || (a != null && b == null) || (a.size() != b.size())) {
+      return false;
     }
 
-    // Sort and compare the two lists          
-//    Collections.sort(a);
-//    Collections.sort(b);      
     return a.equals(b);
-}
+  }
 }

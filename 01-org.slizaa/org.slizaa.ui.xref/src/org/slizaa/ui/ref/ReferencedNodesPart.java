@@ -1,5 +1,7 @@
 package org.slizaa.ui.ref;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,13 +20,13 @@ public class ReferencedNodesPart extends AbstractRefNodesPart {
   /**
    * {@inheritDoc}
    */
-  protected Set<HGNode> getNodesToShow() {
-    
+  protected Set<HGNode> getNodesToShow(Collection<HGNode> selectedNodes) {
+
     //
-    ProxyDependencyFunctions.resolveProxyDependencies(getCurrentSelection(), false, true, null);
-    
+    ProxyDependencyFunctions.resolveProxyDependencies(selectedNodes, false, true, null);
+
     //
-    return NodeSelections.getAccumulatedOutgoingCoreDependencies(getCurrentSelection()).stream().map(dep -> dep.getTo())
+    return NodeSelections.getAccumulatedOutgoingCoreDependencies(selectedNodes).stream().map(dep -> dep.getTo())
         .collect(Collectors.toSet());
   }
 }

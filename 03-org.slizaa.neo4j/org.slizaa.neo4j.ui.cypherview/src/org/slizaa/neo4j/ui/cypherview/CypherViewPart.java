@@ -8,8 +8,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditor;
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorFactory;
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorModelAccess;
-import org.slizaa.neo4j.opencypher.ui.custom.spi.IGraphDatabaseClientAdapter;
-import org.slizaa.neo4j.opencypher.ui.custom.spi.IGraphDatabaseClientAdapterConsumer;
+import org.slizaa.neo4j.opencypher.spi.IGraphDatabaseClientAdapter;
+import org.slizaa.neo4j.opencypher.spi.IGraphDatabaseClientAdapterConsumer;
 import org.slizaa.neo4j.opencypher.ui.internal.OpencypherActivator;
 
 import com.google.inject.Injector;

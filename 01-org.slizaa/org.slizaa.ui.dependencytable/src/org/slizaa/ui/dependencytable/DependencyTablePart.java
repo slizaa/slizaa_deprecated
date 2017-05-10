@@ -13,10 +13,7 @@ package org.slizaa.ui.dependencytable;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.inject.Named;
 
-import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -37,9 +34,9 @@ import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.selection.DependencySelection;
 import org.slizaa.hierarchicalgraph.selection.DependencySelections;
-import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
+import org.slizaa.ui.shared.AbstractSlizaaWorkbenchModelComponent;
 
-public class DependencyTablePart {
+public class DependencyTablePart extends AbstractSlizaaWorkbenchModelComponent {
 
   /** - */
   public static final String         ID                  = DependencyTablePart.class.getName();
@@ -55,9 +52,6 @@ public class DependencyTablePart {
 
   /** - */
   private ArtifactPathLabelGenerator _toLabelGenerator   = new ArtifactPathLabelGenerator();
-
-  /** - */
-  private DependencySelection  _selectedDependencies;
 
   @PostConstruct
   public void createComposite(Composite parent) {
@@ -81,22 +75,17 @@ public class DependencyTablePart {
     createColumns(tableComposite, _viewer);
 
     //
-    if (_selectedDependencies != null) {
-      initSelection(_selectedDependencies);
-    }
+    handleDetailDependencySelectionChanged(null, getWorkbenchModel().getMainDependencySelection());
   }
 
-  @Inject
-  public void initSelection(
-      @Optional @Named(SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION) DependencySelection selectedDependencies) {
-
-    _selectedDependencies = selectedDependencies;
+  @Override
+  protected void handleDetailDependencySelectionChanged(DependencySelection oldValue, DependencySelection newValue) {
 
     if (_viewer == null || _viewer.getTable().isDisposed()) {
       return;
     }
 
-    if (selectedDependencies == null || selectedDependencies.getDependencies().isEmpty()) {
+    if (newValue == null || newValue.getDependencies().isEmpty()) {
       setColumnTitles("From", "To");
       _viewer.setInput(new AbstractHGDependency[0]);
       _viewer.getTable().redraw();
@@ -105,11 +94,11 @@ public class DependencyTablePart {
     //
     else {
 
-      HGNode toBaseArtifact = _selectedDependencies.getDependencies().get(0).getFrom();
+      HGNode toBaseArtifact = newValue.getDependencies().get(0).getFrom();
 
-      HGNode fromBaseArtifact = _selectedDependencies.getDependencies().get(0).getTo();
+      HGNode fromBaseArtifact = newValue.getDependencies().get(0).getTo();
 
-      if (_selectedDependencies.getDependencies().size() != 1) {
+      if (newValue.getDependencies().size() != 1) {
         // TODO determine deepest common base of all dependencies
         toBaseArtifact = toBaseArtifact.getRootNode();
         fromBaseArtifact = fromBaseArtifact.getRootNode();
@@ -117,14 +106,14 @@ public class DependencyTablePart {
 
       _fromLabelGenerator.setBaseArtifact(fromBaseArtifact);
       _toLabelGenerator.setBaseArtifact(toBaseArtifact);
-      
+
       //
       String fromColumnTitle = "From " /* + _fromLabelGenerator.getTitle() */;
       String toColumnTitle = "To " /* + _toLabelGenerator.getTitle() */;
 
       setColumnTitles(fromColumnTitle, toColumnTitle);
 
-      Set<HGCoreDependency> leafDependencies = DependencySelections.getCoreDependencies(_selectedDependencies.getDependencies());
+      Set<HGCoreDependency> leafDependencies = DependencySelections.getCoreDependencies(newValue.getDependencies());
 
       AbstractHGDependency[] dependencies = leafDependencies.toArray(new AbstractHGDependency[0]);
       setOrderedDependencies(dependencies);
@@ -147,11 +136,11 @@ public class DependencyTablePart {
         if (element instanceof AbstractHGDependency) {
           AbstractHGDependency dependency = (AbstractHGDependency) element;
           if (dependency instanceof HGCoreDependency) {
-            
+
             //
             if (dependency instanceof HGProxyDependency) {
               return "<<lazy dependency>>";
-            } 
+            }
             //
             else {
               return ((HGCoreDependency) dependency).getType();
@@ -223,7 +212,7 @@ public class DependencyTablePart {
 
     _viewer.setInput(dependencies);
     _viewer.setItemCount(dependencies.length); // This is the difference when using a ILazyContentProvider
-//    _viewer.getTable().redraw();
+    // _viewer.getTable().redraw();
     _viewer.refresh();
   }
 }

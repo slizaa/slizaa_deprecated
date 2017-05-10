@@ -10,12 +10,13 @@
  ******************************************************************************/
 package org.slizaa.ui.dependencytree.internal;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
-import java.util.function.Supplier;
+import java.util.function.Consumer;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -30,7 +31,6 @@ import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.DependencySelection;
 import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
-import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.selection.selector.DefaultDependencySelector;
 import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelector;
 import org.slizaa.hierarchicalgraph.selection.selector.IDependencySelectorListener;
@@ -77,7 +77,7 @@ public class DependencyTreeComposite extends Composite {
   private IExpandStrategy                    _toExpandStrategy;
 
   /** - */
-  private Supplier<IEclipseContext>          _eclipseContextSupplier;
+  private Consumer<DependencySelection>      _dependencyConsumer;
 
   /**
    * <p>
@@ -86,7 +86,7 @@ public class DependencyTreeComposite extends Composite {
    * 
    * @param parent
    */
-  public DependencyTreeComposite(Composite parent, Supplier<IEclipseContext> eclipseContextSupplier) {
+  public DependencyTreeComposite(Composite parent, Consumer<DependencySelection> dependencyConsumer) {
     super(parent, SWT.NONE);
 
     // TODO
@@ -96,7 +96,7 @@ public class DependencyTreeComposite extends Composite {
         (node) -> DefaultExpandStrategy.hasUnresolvedProxyDependencies(node.getIncomingCoreDependencies()));
 
     //
-    _eclipseContextSupplier = eclipseContextSupplier;
+    _dependencyConsumer = checkNotNull(dependencyConsumer);
     _selector = new DefaultDependencySelector();
 
     //
@@ -249,12 +249,9 @@ public class DependencyTreeComposite extends Composite {
    * @param selectedDetailDependencies
    */
   private void broadcastDetailDependencies(Set<HGCoreDependency> dependencies) {
-
-    //
     DependencySelection dependencySelection = SelectionFactory.eINSTANCE.createDependencySelection();
     dependencySelection.getDependencies().addAll(dependencies);
-    _eclipseContextSupplier.get().declareModifiable(SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION);
-    _eclipseContextSupplier.get().set(SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION, dependencySelection);
+    _dependencyConsumer.accept(dependencySelection);
   }
 
   /**

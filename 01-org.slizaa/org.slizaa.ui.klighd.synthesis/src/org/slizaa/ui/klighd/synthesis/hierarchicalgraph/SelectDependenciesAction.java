@@ -9,8 +9,7 @@ import org.eclipse.ui.internal.PartSite;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.selection.DependencySelection;
 import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
-import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
-import org.slizaa.ui.shared.context.ContextHelper;
+import org.slizaa.workbench.model.SlizaaWorkbenchModel;
 
 import de.cau.cs.kieler.klighd.IAction;
 
@@ -40,12 +39,13 @@ public class SelectDependenciesAction implements IAction {
         // fetch the perspective context
         IEclipseContext eclipseContext = ((PartSite) context.getViewContext().getDiagramWorkbenchPart().getSite())
             .getContext().getParent();
-        
+
+        SlizaaWorkbenchModel workbenchModel = eclipseContext.get(SlizaaWorkbenchModel.class);
+
         //
         DependencySelection dependencySelection = SelectionFactory.eINSTANCE.createDependencySelection();
         dependencySelection.getDependencies().addAll(dependencies);
-        eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION);
-        eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencySelection);
+        workbenchModel.setMainDependencySelection(dependencySelection);
       }
     }
 

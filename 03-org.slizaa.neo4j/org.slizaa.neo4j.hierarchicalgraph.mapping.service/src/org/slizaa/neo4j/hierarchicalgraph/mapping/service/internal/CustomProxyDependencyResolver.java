@@ -26,13 +26,22 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescript
 
 public class CustomProxyDependencyResolver implements IProxyDependencyResolver {
 
+  private static final boolean DEBUG = true;
+
   /**
    * {@inheritDoc}
    */
   @Override
   public List<Future<?>> resolveProxyDependency(final HGProxyDependency dependency) {
-    System.out.println("resolveProxyDependency");
+
     checkNotNull(dependency);
+
+    //
+    if (DEBUG) {
+      System.out.println("--- CustomProxyDependencyResolver ---");
+      System.out.println(String.format("Resolving ProxyDependency from '%s' to '%s'.",
+          dependency.getFrom().getIdentifier(), dependency.getTo().getIdentifier()));
+    }
 
     Set<Object> fromNodes = new HashSet<>();
     Set<Object> toNodes = new HashSet<>();
@@ -98,8 +107,20 @@ public class CustomProxyDependencyResolver implements IProxyDependencyResolver {
   private Future<?> createFutureForQuery(Neo4jRestClient neo4jRepository, final HGProxyDependency dependency,
       final String query, Map<String, String> params) {
 
+    // normalize
+    String normalizedCypherQuery = CypherNormalizer.normalize(query);
+
     // return new future
-    return neo4jRepository.executeCypherQuery(CypherNormalizer.normalize(query), params, (queryResult) -> {
+    return neo4jRepository.executeCypherQuery(normalizedCypherQuery, params, (queryResult) -> {
+
+      //
+      if (DEBUG) {
+        System.out.println("   --- CustomProxyDependencyResolver ---");
+        System.out.println("   Cypher-Query: " + normalizedCypherQuery);
+        System.out.println("   Params: " + params);
+        System.out.println("   Query-Result: " + queryResult);
+        System.out.println("   -------------------------------------");
+      }
 
       //
       List<GraphFactoryFunctions.Neo4jRelationship> dependencyDefinitions = Neo4jResultJsonConverter

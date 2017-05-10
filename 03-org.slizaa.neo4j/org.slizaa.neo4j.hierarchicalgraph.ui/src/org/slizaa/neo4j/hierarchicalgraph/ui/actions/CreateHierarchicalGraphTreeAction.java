@@ -19,7 +19,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
@@ -30,11 +29,14 @@ import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorBasedItemLabelProv
 import org.slizaa.neo4j.hierarchicalgraph.ui.TEMPORARY_NodeComparator;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappingsdialog.MappingDescriptorUtil;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappingsdialog.SelectMappingDialog;
-import org.slizaa.ui.shared.context.ContextHelper;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
+import org.slizaa.workbench.model.SlizaaWorkbenchModel;
 
 @Component
 public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribution {
+
+  @Inject
+  private SlizaaWorkbenchModel             _workbenchModel;
 
   @Inject
   private IHierarchicalGraphMappingService _mappingService;
@@ -156,7 +158,7 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
         _remoteRepository.setHierarchicalGraph(rootNode);
 
         //
-        ContextHelper.setRootNodeInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE, rootNode);
+        _workbenchModel.setRootNode(rootNode);
 
       } catch (Exception e) {
         e.printStackTrace();

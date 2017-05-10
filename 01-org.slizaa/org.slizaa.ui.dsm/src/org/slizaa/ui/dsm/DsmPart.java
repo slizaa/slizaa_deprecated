@@ -14,15 +14,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.inject.Named;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.e4.core.di.annotations.Optional;
-import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -30,9 +24,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.selection.DependencySelection;
+import org.slizaa.hierarchicalgraph.selection.NodeSelection;
 import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
-import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
+import org.slizaa.ui.shared.AbstractSlizaaWorkbenchModelComponent;
 import org.slizaa.ui.shared.context.BusyCursor;
 import org.slizaa.ui.widget.dsm.DsmViewWidget;
 import org.slizaa.ui.widget.dsm.IDsmContentProvider;
@@ -45,16 +40,12 @@ import org.slizaa.ui.widget.dsm.MatrixEvent;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class DsmPart {
+public class DsmPart extends AbstractSlizaaWorkbenchModelComponent {
 
   /**
    * This is used as the DSMView's providerId for the xxxSelectionServices
    */
   public static String            DSM_ID = DsmPart.class.getName();
-
-  /** - */
-  @Inject
-  private MPerspective            _perspective;
 
   /** - */
   private DsmViewWidget           _viewWidget;
@@ -76,9 +67,6 @@ public class DsmPart {
 
   /** - */
   private DelegatingLabelProvider _labelProvider;
-
-  /** - */
-  private Set<HGNode>             _selectedNodes;
 
   /**
    * <p>
@@ -157,13 +145,10 @@ public class DsmPart {
           }
 
           BusyCursor.execute(_viewWidget, () -> {
-            IEclipseContext eclipseContext = _perspective.getContext();
-            
             //
             DependencySelection dependencySelection = SelectionFactory.eINSTANCE.createDependencySelection();
             dependencySelection.getDependencies().addAll(dependencies);
-            eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION);
-            eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencySelection);
+            getWorkbenchModel().setMainDependencySelection(dependencySelection);
           });
 
           _fromArtifact = (HGNode) _dsmContentProvider.getNodes()[event.getX()];
@@ -174,24 +159,22 @@ public class DsmPart {
     });
 
     //
-    if (_selectedNodes != null)
-
-    {
-      initSelection(_selectedNodes);
-    }
+      handleNodeSelectionChanged(null, getWorkbenchModel().getNodeSelection());
   }
 
   protected String getName(Object object) {
     return _labelProvider.getText(object);
   }
 
-  @Inject
-  public void initSelection(
-      @Optional @Named(SelectionIdentifier.CURRENT_MAIN_NODE_SELECTION) Set<HGNode> selectedNodes) {
+  
+  
+  @Override
+  protected void handleNodeSelectionChanged(NodeSelection oldValue, NodeSelection newValue) {
 
-    _selectedNodes = selectedNodes;
 
     if (_viewWidget != null && _detailComposite != null && !_viewWidget.isDisposed()) {
+
+      List<HGNode> selectedNodes = newValue != null ? newValue.getNodes() : Collections.emptyList();
 
       if (selectedNodes != null && !selectedNodes.isEmpty()) {
         _dsmContentProvider = new DefaultAnalysisModelElementDsmContentProvider(selectedNodes);
@@ -255,11 +238,8 @@ public class DsmPart {
 
   private void clearDependencySelection() {
     _selectedCell = null;
-
-    IEclipseContext eclipseContext = _perspective.getContext();
-    DependencySelection dependencySelection = SelectionFactory.eINSTANCE.createDependencySelection();
-    eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION);
-    eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencySelection);
     
+    DependencySelection dependencySelection = SelectionFactory.eINSTANCE.createDependencySelection();
+    getWorkbenchModel().setMainDependencySelection(dependencySelection);
   }
 }

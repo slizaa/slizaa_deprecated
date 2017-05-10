@@ -25,7 +25,7 @@ public class DependencyTreePartTest extends AbstractDependencyTreePartTest {
         .addAll(rootNode().getChildren().get(5).getAccumulatedOutgoingCoreDependencies());
 
     //
-    part().handleChangedDependencies(dependencySelection);
+    part().handleMainDependencySelectionChanged(null, dependencySelection);
 
     // TODO
 

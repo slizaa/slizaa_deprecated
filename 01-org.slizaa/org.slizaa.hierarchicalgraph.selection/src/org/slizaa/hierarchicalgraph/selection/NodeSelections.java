@@ -21,6 +21,7 @@ public class NodeSelections {
    * @return
    */
   public static Set<HGNode> computeNodesWithParents(Collection<HGNode> nodes, boolean includeChildren) {
+    
     // TODO rework
     Set<HGNode> result = new HashSet<>(checkNotNull(nodes));
     nodes.forEach((n) -> {

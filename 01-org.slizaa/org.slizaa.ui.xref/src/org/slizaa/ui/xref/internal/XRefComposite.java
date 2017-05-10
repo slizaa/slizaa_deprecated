@@ -7,10 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -29,7 +27,6 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.selection.DependencySelection;
 import org.slizaa.hierarchicalgraph.selection.NodeSelections;
 import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
-import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.hierarchicalgraph.selection.xref.IXRefListener;
 import org.slizaa.hierarchicalgraph.selection.xref.XRefStack;
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
@@ -50,22 +47,22 @@ public class XRefComposite extends Composite {
   }
 
   /** - */
-  private Supplier<IEclipseContext> _eclipseContextSupplier;
+  private Consumer<DependencySelection> _dependencySelectionConsumer;
 
   /** - */
-  private XRefStack                 _xRefStack;
+  private XRefStack                     _xRefStack;
 
   /** - */
-  private TreeViewComposite         _leftsidedTreeViewComposite;
+  private TreeViewComposite             _leftsidedTreeViewComposite;
 
   /** - */
-  private TreeViewComposite         _centeredTreeViewComposite;
+  private TreeViewComposite             _centeredTreeViewComposite;
 
   /** - */
-  private TreeViewComposite         _rightsidedTreeViewComposite;
+  private TreeViewComposite             _rightsidedTreeViewComposite;
 
   /** - */
-  private HGRootNode                _rootNode;
+  private HGRootNode                    _rootNode;
 
   /**
    * <p>
@@ -75,11 +72,11 @@ public class XRefComposite extends Composite {
    * @param parent
    * @param eclipseContextSupplier
    */
-  public XRefComposite(Composite parent, Supplier<IEclipseContext> eclipseContextSupplier) {
+  public XRefComposite(Composite parent, Consumer<DependencySelection> dependencySelectionConsumer) {
     super(parent, SWT.NONE);
 
     //
-    _eclipseContextSupplier = checkNotNull(eclipseContextSupplier);
+    _dependencySelectionConsumer = checkNotNull(dependencySelectionConsumer);
 
     //
     GridLayoutFactory.fillDefaults().applyTo(this);
@@ -394,22 +391,16 @@ public class XRefComposite extends Composite {
 
     Display.getDefault().syncExec(() -> {
       try {
+
+        //
         Cursor cursor = Display.getDefault().getSystemCursor(SWT.CURSOR_WAIT);
         XRefComposite.this.setCursor(cursor);
-
-        IEclipseContext eclipseContext = _eclipseContextSupplier.get();
 
         //
         DependencySelection dependencySelection = SelectionFactory.eINSTANCE.createDependencySelection();
         dependencySelection.getDependencies().addAll(_xRefStack.getSelectedDependencies());
-        eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION);
-        eclipseContext.set(SelectionIdentifier.CURRENT_MAIN_DEPENDENCY_SELECTION, dependencySelection);
 
-        //
-        dependencySelection = SelectionFactory.eINSTANCE.createDependencySelection();
-        dependencySelection.getDependencies().addAll(_xRefStack.getSelectedDependencies());
-        eclipseContext.declareModifiable(SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION);
-        eclipseContext.set(SelectionIdentifier.CURRENT_DETAIL_DEPENDENCY_SELECTION, dependencySelection);
+        _dependencySelectionConsumer.accept(dependencySelection);
 
       } finally {
         XRefComposite.this.setCursor(null);
@@ -548,8 +539,8 @@ public class XRefComposite extends Composite {
       _leftsidedTreeViewComposite.getTreeViewer().getTree().deselectAll();
 
       //
-      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getCenterNodes(), true).toArray(),
-          null);
+      _centeredTreeViewComposite.getTreeViewer()
+          .update(NodeSelections.computeNodesWithParents(_xRefStack.getCenterNodes(), true).toArray(), null);
 
       // prepare right tree viewer
       _rightsidedTreeViewComposite.getTreeViewer()
@@ -570,8 +561,8 @@ public class XRefComposite extends Composite {
     public void leftsidedNodeSelectionChanged() {
 
       // update center...
-      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getCenterNodes(), true).toArray(),
-          null);
+      _centeredTreeViewComposite.getTreeViewer()
+          .update(NodeSelections.computeNodesWithParents(_xRefStack.getCenterNodes(), true).toArray(), null);
 
       // ...and deselect rightsided tree
       _rightsidedTreeViewComposite.getTreeViewer().getTree().deselectAll();
@@ -590,8 +581,8 @@ public class XRefComposite extends Composite {
     public void rightsidedNodeSelectionChanged() {
 
       // update center...
-      _centeredTreeViewComposite.getTreeViewer().update(NodeSelections.computeNodesWithParents(_xRefStack.getCenterNodes(), true).toArray(),
-          null);
+      _centeredTreeViewComposite.getTreeViewer()
+          .update(NodeSelections.computeNodesWithParents(_xRefStack.getCenterNodes(), true).toArray(), null);
 
       // ...and deselect leftsided tree
       _leftsidedTreeViewComposite.getTreeViewer().getTree().deselectAll();

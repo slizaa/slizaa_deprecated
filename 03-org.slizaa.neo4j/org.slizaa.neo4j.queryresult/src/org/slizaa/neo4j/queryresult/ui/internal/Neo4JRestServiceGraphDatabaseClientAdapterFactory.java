@@ -10,7 +10,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.slizaa.neo4j.dbadapter.IRestClientConnectionListener;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.neo4j.opencypher.ui.custom.spi.IGraphDatabaseClientAdapter;
+import org.slizaa.neo4j.opencypher.spi.IGraphDatabaseClientAdapter;
 
 @Component(service = { IRestClientConnectionListener.class })
 public class Neo4JRestServiceGraphDatabaseClientAdapterFactory implements IRestClientConnectionListener {

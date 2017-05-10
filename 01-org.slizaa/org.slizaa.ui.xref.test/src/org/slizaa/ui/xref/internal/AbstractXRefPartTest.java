@@ -1,17 +1,13 @@
 package org.slizaa.ui.xref.internal;
 
-import static org.mockito.Mockito.when;
-
 import java.util.List;
 
-import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotToolbarButton;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTree;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
 import org.junit.Before;
 import org.junit.experimental.categories.Category;
-import org.mockito.Mock;
 import org.slizaa.hierarchicalgraph.DefaultNodeSource;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.testfwk.ui.AbstractXmiBasedSlizaaPartTest;
@@ -24,43 +20,44 @@ import org.slizaa.ui.tree.actions.ExpandSelectionAction;
 import org.slizaa.ui.tree.interceptors.IInterceptableLabelProvider;
 import org.slizaa.ui.tree.interceptors.SelectedNodesLabelProviderInterceptor;
 import org.slizaa.ui.xref.internal.testfwk.XRefTestLabelProviderInterceptor;
+import org.slizaa.workbench.model.ModelFactory;
+import org.slizaa.workbench.model.SlizaaWorkbenchModel;
 
 @Category(SlizaaUITest.class)
 public abstract class AbstractXRefPartTest extends AbstractXmiBasedSlizaaPartTest {
 
   /** - */
-  @Mock
-  private MPerspective        _perspective;
+  private XRefPart             _part;
 
   /** - */
-  private XRefPart            _part;
+  private SWTBotTree           _xrefFromTree;
 
   /** - */
-  private SWTBotTree          _xrefFromTree;
+  private SWTBotTree           _xrefCenterTree;
 
   /** - */
-  private SWTBotTree          _xrefCenterTree;
+  private SWTBotTree           _xrefToTree;
 
   /** - */
-  private SWTBotTree          _xrefToTree;
+  private SWTBotTreeItem       _fromRootItem;
 
   /** - */
-  private SWTBotTreeItem      _fromRootItem;
+  private SWTBotTreeItem       _centerRootItem;
 
   /** - */
-  private SWTBotTreeItem      _centerRootItem;
+  private SWTBotTreeItem       _toRootItem;
 
   /** - */
-  private SWTBotTreeItem      _toRootItem;
+  private SWTBotToolbarButton  _cropSelectionButton;
 
   /** - */
-  private SWTBotToolbarButton _cropSelectionButton;
+  private SWTBotToolbarButton  _uncropButton;
 
   /** - */
-  private SWTBotToolbarButton _uncropButton;
+  private List<HGNode>         _modules;
 
   /** - */
-  private List<HGNode>        _modules;
+  private SlizaaWorkbenchModel _workbenchModel;
 
   /**
    * <p>
@@ -79,13 +76,13 @@ public abstract class AbstractXRefPartTest extends AbstractXmiBasedSlizaaPartTes
     // always call super.beforeShellOpens(shell)
     super.beforeShellOpens(shell);
 
+    //
+    _workbenchModel = ModelFactory.eINSTANCE.createSlizaaWorkbenchModel();
+
     // create the xref part
     _part = new XRefPart();
+    _part.initializeAbstractSlizaaPart(_workbenchModel);
     _part.createComposite(shell);
-
-    // ...and mock the perspective
-    _part.setPerspective(_perspective);
-    when(_perspective.getContext()).thenReturn(eclipseContext());
 
     // add actions
     defaultActionContributionProvider().actionGroups().add(new CopyActionGroup());
@@ -118,7 +115,7 @@ public abstract class AbstractXRefPartTest extends AbstractXmiBasedSlizaaPartTes
                 .centeredTreeViewComposite().getTreeViewer().getLabelProvider()).getLabelProviderInterceptor()));
 
     //
-    part().handleChangedRootNode(rootNode());
+    _workbenchModel.setRootNode(rootNode());
     _modules = rootNode().getChildren();
     _fromRootItem = fromTree().getTreeItem("HG Root Node");
     _centerRootItem = centerTree().getTreeItem("HG Root Node");

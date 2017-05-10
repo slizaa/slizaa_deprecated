@@ -8,21 +8,23 @@ import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.jface.viewers.Viewer;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.hierarchicalgraph.selection.SelectionIdentifier;
 import org.slizaa.neo4j.dbadapter.ContainerType;
 import org.slizaa.neo4j.dbadapter.DbAdapterRegistry;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
-import org.slizaa.ui.shared.context.ContextHelper;
 import org.slizaa.ui.tree.ISlizaaActionContribution;
+import org.slizaa.workbench.model.SlizaaWorkbenchModel;
 
 @Component
 public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribution {
 
   @Inject
-  private DbAdapterRegistry _dbAdapterRegistry;
+  private SlizaaWorkbenchModel _workbenchModel;
 
   @Inject
-  private MApplication      _mApplication;
+  private DbAdapterRegistry    _dbAdapterRegistry;
+
+  @Inject
+  private MApplication         _mApplication;
 
   @Override
   public String getParentGroupId() {
@@ -75,7 +77,7 @@ public class DisposeHierarchicalGraphTreeAction implements ISlizaaActionContribu
       }
     }
 
-    ContextHelper.setRootNodeInContext(_mApplication.getContext(), SelectionIdentifier.CURRENT_ROOTNODE, null);
+    _workbenchModel.setRootNode(null);
   }
 
   /**

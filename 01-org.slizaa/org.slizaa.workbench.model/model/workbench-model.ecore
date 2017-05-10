@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="http://org/slizaa/workbench/model" nsPrefix="org.slizaa.workbench.model">
+  <eClassifiers xsi:type="ecore:EClass" name="SlizaaWorkbenchModel">
+    <eOperations name="setNodeSelection">
+      <eParameters name="nodes" upperBound="-1" eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGNode"/>
+    </eOperations>
+    <eOperations name="setMainDependencySelection">
+      <eParameters name="dependencies" upperBound="-1" eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGNode"/>
+    </eOperations>
+    <eOperations name="setDetailDependencySelection">
+      <eParameters name="dependencies" upperBound="-1" eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGNode"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootNode" eType="ecore:EClass ../../org.slizaa.hierarchicalgraph/model/hierarchicalgraph.ecore#//HGRootNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodeSelection" eType="ecore:EClass ../../org.slizaa.hierarchicalgraph.selection/model/selection.ecore#//NodeSelection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mainDependencySelection"
+        eType="ecore:EClass ../../org.slizaa.hierarchicalgraph.selection/model/selection.ecore#//DependencySelection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="detailDependencySelection"
+        eType="ecore:EClass ../../org.slizaa.hierarchicalgraph.selection/model/selection.ecore#//DependencySelection"/>
+  </eClassifiers>
+</ecore:EPackage>

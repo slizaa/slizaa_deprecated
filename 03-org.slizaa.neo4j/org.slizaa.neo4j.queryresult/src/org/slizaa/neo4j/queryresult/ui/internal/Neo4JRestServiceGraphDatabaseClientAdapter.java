@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.slizaa.neo4j.dbadapter.Neo4jRestClient;
 import org.slizaa.neo4j.opencypher.openCypher.Cypher;
-import org.slizaa.neo4j.opencypher.ui.custom.spi.IGraphDatabaseClientAdapter;
+import org.slizaa.neo4j.opencypher.spi.IGraphDatabaseClientAdapter;
 import org.slizaa.neo4j.opencypher.util.CypherNormalizer;
 
 import com.google.gson.JsonObject;
