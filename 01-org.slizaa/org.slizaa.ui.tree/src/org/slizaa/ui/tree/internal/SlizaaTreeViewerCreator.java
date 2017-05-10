@@ -10,10 +10,15 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.ui.shared.context.RootObject;
 import org.slizaa.ui.tree.ISlizaaActionContributionProvider;
 import org.slizaa.ui.tree.interceptors.ITreeEventInterceptor;
@@ -30,7 +35,7 @@ public class SlizaaTreeViewerCreator {
 
   /** - */
   private ComposedAdapterFactory            _adapterFactory;
-  
+
   /**
    * <p>
    * Creates a new instance of type {@link SlizaaTreeViewerCreator}.
@@ -133,7 +138,31 @@ public class SlizaaTreeViewerCreator {
         autoExpandLevel);
     
     treeViewer.setUseHashlookup(true);
-    
+
+    treeViewer.addDoubleClickListener(new IDoubleClickListener() {
+      @Override
+      public void doubleClick(DoubleClickEvent event) {
+
+        //
+        ISelection selection = event.getSelection();
+
+        //
+        if (selection instanceof IStructuredSelection) {
+
+          //
+          IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+          
+          //
+          for (Object selectedElement : structuredSelection.toList()) {
+            if (selectedElement instanceof HGNode) {
+              HGNode selectedNode = (HGNode) selectedElement;
+              treeViewer.setExpandedState(selectedNode, !treeViewer.getExpandedState(selectedNode));
+            }
+          }
+        }
+      }
+    });
+
     //
     GridDataFactory.fillDefaults().grab(true, true).applyTo(treeViewer.getControl());
 
@@ -142,7 +171,8 @@ public class SlizaaTreeViewerCreator {
     new SlizaaTreeMenuBuilder(treeViewer, _slizaaActionContributionProvider, _contextSupplier).populateMenu();
 
     //
-    treeViewer.setLabelProvider(new InterceptableAdapterFactoryLabelProvider(checkNotNull(_adapterFactory), treeViewer));
+    treeViewer
+        .setLabelProvider(new InterceptableAdapterFactoryLabelProvider(checkNotNull(_adapterFactory), treeViewer));
 
     // set the layout data
     treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
