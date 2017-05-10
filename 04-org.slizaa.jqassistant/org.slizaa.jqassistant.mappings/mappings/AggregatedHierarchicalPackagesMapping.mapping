@@ -46,7 +46,6 @@ mapping org.slizza.jqassistant.java.AggregatedHierarchicalPackagesMapping {
 	 		
 		aggregatedDependencyQuery {
 				"MATCH (t1:File:Type:Java)-[r:DEPENDS_ON]->(t2:File:Type:Java) 
-				 WHERE NOT (t1)-[:DECLARES]->(t2)
 				 RETURN id(t1),id(t2),id(r),type(r)"
 			 		
 				onResolve {
@@ -65,6 +64,14 @@ mapping org.slizza.jqassistant.java.AggregatedHierarchicalPackagesMapping {
 				"MATCH (n1)-[rel:HAS]->(:Parameter)-[:OF_TYPE]->(n2:Type)
 					WHERE id(n1) in {from} AND id(n2) in {to}
 				 	RETURN id(n1), id(n2), id(rel), 'HAS_PARAMETER'"
+				 	
+				"MATCH (n1)-[rel:ANNOTATED_BY]->(:Annotation)-[:OF_TYPE]->(n2:Type) 
+				 	WHERE id(n1) in {from} AND id(n2) in {to}
+				 	RETURN id(n1), id(n2), id(rel), 'ANNOTATED_BY'" 
+				 	
+				"MATCH p=(n1)-[rel:ANNOTATED_BY]->(:Value:Annotation)-[r2:HAS]->(:Value)-[r3:IS]->(n2:Type) 
+					WHERE id(n1) in {from} AND id(n2) in {to} 
+					RETURN id(n1), id(n2), id(rel), 'HAS_ANNOTATION_VALUE'" 	
 				}
 			}
 		}
