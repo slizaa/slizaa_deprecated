@@ -22,11 +22,9 @@ public class XRefStack_CropSelectionSelectLeft_Test extends AbstractXRefStack_Te
     xRefStack().setSelectedLeftsidedNodes(node(54411));
 
     //
-    assertThat(xRefStack().getCenterNodes()).hasSize(1);
+    assertThat(xRefStack().getCenterNodes()).hasSize(100);
     assertThat(xRefStack().getBackreferencedCenterNodes()).hasSize(89);
-    assertThat(xRefStack().getBackreferencedCenterNodes()).hasSize(97);
-    assertThat(xRefStack().getCenterNodes()).hasSize(107);
-    assertThat(xRefStack().getLeftsidedNodes()).hasSize(121);
-    assertThat(xRefStack().getRightsidedNodes()).hasSize(146);
+    assertThat(xRefStack().getLeftsidedNodes()).hasSize(100);
+    assertThat(xRefStack().getRightsidedNodes()).hasSize(119);
   }
 }

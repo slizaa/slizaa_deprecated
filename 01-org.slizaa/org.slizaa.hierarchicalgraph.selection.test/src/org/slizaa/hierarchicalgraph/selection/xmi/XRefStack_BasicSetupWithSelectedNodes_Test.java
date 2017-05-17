@@ -19,10 +19,9 @@ public class XRefStack_BasicSetupWithSelectedNodes_Test extends AbstractXRefStac
     xRefStack().setSelectedCenterNodes(node(54411));
     
     //
-    assertThat(xRefStack().getCenterNodes()).hasSize(1);
+    assertThat(xRefStack().getCenterNodes()).hasSize(13365);
     assertThat(xRefStack().getBackreferencedCenterNodes()).hasSize(0);
-    assertThat(xRefStack().getCenterNodes()).hasSize(14069);
-    assertThat(xRefStack().getLeftsidedNodes()).hasSize(121);
-    assertThat(xRefStack().getRightsidedNodes()).hasSize(146);
+    assertThat(xRefStack().getLeftsidedNodes()).hasSize(100);
+    assertThat(xRefStack().getRightsidedNodes()).hasSize(119);
   }
 }
