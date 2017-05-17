@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.slizaa</groupId>
 	<artifactId>org.slizaa.parent</artifactId>
 	<version>0.0.4-SNAPSHOT</version>
-	
+
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>org.slizaa.target</module>		
-		<module>org.slizaa.feature</module>	
-			
+		<module>org.slizaa.target</module>
+		<module>org.slizaa.feature</module>
+
 		<module>org.slizaa.hierarchicalgraph</module>
 		<module>org.slizaa.hierarchicalgraph.algorithms</module>
 		<module>org.slizaa.hierarchicalgraph.edit</module>
-		<module>org.slizaa.hierarchicalgraph.test</module>
 		<module>org.slizaa.hierarchicalgraph.selection</module>
+		<module>org.slizaa.workbench.model</module>
+
+		<module>org.slizaa.hierarchicalgraph.test</module>
 		<module>org.slizaa.hierarchicalgraph.selection.test</module>
 		<module>org.slizaa.testfwk</module>
+		<module>org.slizaa.testfwk.ui</module>
 		
 		<module>org.slizaa.ui.shared</module>
 		<module>org.slizaa.ui.dependencytable</module>
@@ -29,7 +32,7 @@
 		<module>org.slizaa.ui.klighd.synthesis</module>
 		<module>org.slizaa.ui.tree</module>
 		<module>org.slizaa.ui.widget.dsm</module>
-		<module>org.slizaa.ui.xref</module>		
+		<module>org.slizaa.ui.xref</module>
 	</modules>
 
 	<!-- tycho requires maven >= 3.0 -->
@@ -94,7 +97,7 @@
 							<type>eclipse-plugin</type>
 							<id>org.eclipse.jdt.launching</id>
 							<removeAll />
-						</filter>	
+						</filter>
 						<filter>
 							<type>eclipse-plugin</type>
 							<id>org.eclipse.jdt.ui</id>
@@ -119,7 +122,7 @@
 							<type>eclipse-plugin</type>
 							<id>org.eclipse.emf.ecore.editor</id>
 							<removeAll />
-						</filter>							
+						</filter>
 					</filters>
 					<environments>
 						<environment>
